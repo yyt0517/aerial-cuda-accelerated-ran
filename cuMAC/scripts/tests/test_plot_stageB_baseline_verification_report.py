@@ -101,8 +101,8 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
             {
                 "uniform_core_kpis.png",
                 "uniform_core_kpis.svg",
-                "resource_tradeoffs.png",
-                "resource_tradeoffs.svg",
+                "uniform_resource_tradeoffs.png",
+                "uniform_resource_tradeoffs.svg",
                 "queue_aware_improvements.png",
                 "queue_aware_improvements.svg",
             },
