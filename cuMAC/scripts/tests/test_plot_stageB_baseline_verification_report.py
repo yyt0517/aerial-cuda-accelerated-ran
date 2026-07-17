@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import csv
 import importlib.util
-import math
 from pathlib import Path
 import tempfile
 import unittest
@@ -33,6 +32,7 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
 
     def write_fixture(self, *, pfq_mean="4.0", common_seed_count="10"):
         path = self.root / "metrics.csv"
+        common_seeds = "|".join(str(seed) for seed in range(41, 41 + int(common_seed_count)))
         fields = ["scenario", "metric", "unit", "direction", "common_seed_count", "common_seeds"]
         for baseline in ("rr", "pf", "rrq", "pfq"):
             fields += [f"{baseline}_mean", f"{baseline}_std", f"{baseline}_seed_count", f"{baseline}_seeds"]
@@ -55,7 +55,7 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
                     "unit": unit,
                     "direction": direction,
                     "common_seed_count": common_seed_count,
-                    "common_seeds": "41|42|43|44|45|46|47|48|49|50",
+                    "common_seeds": common_seeds,
                 }
                 for baseline, value in zip(("rr", "pf", "rrq", "pfq"), values):
                     row[f"{baseline}_mean"] = value
@@ -87,12 +87,26 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
 
     def test_beneficial_change_respects_metric_direction(self):
         self.assertAlmostEqual(self.module.beneficial_relative_change(100, 110, "higher_better"), 10.0)
+        self.assertAlmostEqual(self.module.beneficial_relative_change(100, 80, "higher_better"), -20.0)
         self.assertAlmostEqual(self.module.beneficial_relative_change(100, 80, "lower_better"), 20.0)
+        self.assertAlmostEqual(self.module.beneficial_relative_change(100, 110, "lower_better"), -10.0)
 
     def test_generates_all_png_and_svg_artifacts(self):
         table = self.module.load_metric_table(self.write_fixture(), ("rr", "pf", "rrq", "pfq"), 10)
         outputs = self.module.generate_figures(table, self.root / "figures", dpi=72)
         self.assertEqual(len(outputs), 6)
+        self.assertEqual(len(set(outputs)), 6)
+        self.assertEqual(
+            {path.name for path in outputs},
+            {
+                "uniform_core_kpis.png",
+                "uniform_core_kpis.svg",
+                "resource_tradeoffs.png",
+                "resource_tradeoffs.svg",
+                "queue_aware_improvements.png",
+                "queue_aware_improvements.svg",
+            },
+        )
         self.assertTrue(all(path.exists() and path.stat().st_size > 0 for path in outputs))
 
 
