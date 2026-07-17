@@ -30,9 +30,20 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def write_fixture(self, *, pfq_mean="4.0", common_seed_count="10"):
+    def write_fixture(
+        self,
+        *,
+        pfq_mean="4.0",
+        pfq_std="0.1",
+        common_seed_count="10",
+        common_seeds=None,
+        pfq_seeds=None,
+    ):
         path = self.root / "metrics.csv"
-        common_seeds = "|".join(str(seed) for seed in range(41, 41 + int(common_seed_count)))
+        if common_seeds is None:
+            common_seeds = "|".join(
+                str(seed) for seed in range(41, 41 + int(common_seed_count))
+            )
         fields = ["scenario", "metric", "unit", "direction", "common_seed_count", "common_seeds"]
         for baseline in ("rr", "pf", "rrq", "pfq"):
             fields += [f"{baseline}_mean", f"{baseline}_std", f"{baseline}_seed_count", f"{baseline}_seeds"]
@@ -59,9 +70,11 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
                 }
                 for baseline, value in zip(("rr", "pf", "rrq", "pfq"), values):
                     row[f"{baseline}_mean"] = value
-                    row[f"{baseline}_std"] = "0.1"
+                    row[f"{baseline}_std"] = pfq_std if baseline == "pfq" else "0.1"
                     row[f"{baseline}_seed_count"] = common_seed_count
-                    row[f"{baseline}_seeds"] = row["common_seeds"]
+                    row[f"{baseline}_seeds"] = (
+                        pfq_seeds if baseline == "pfq" and pfq_seeds is not None else common_seeds
+                    )
                 writer.writerow(row)
         return path
 
@@ -84,6 +97,27 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
     def test_rejects_seed_count_mismatch(self):
         with self.assertRaisesRegex(ValueError, "10 seeds"):
             self.module.load_metric_table(self.write_fixture(common_seed_count="9"), ("rr", "pf", "rrq", "pfq"), 10)
+
+    def test_rejects_invalid_seed_metadata(self):
+        duplicate_seeds = "41|42|43|44|45|46|47|48|49|49"
+        with self.assertRaisesRegex(ValueError, "unique"):
+            self.module.load_metric_table(
+                self.write_fixture(common_seeds=duplicate_seeds),
+                ("rr", "pf", "rrq", "pfq"),
+                10,
+            )
+        with self.assertRaisesRegex(ValueError, "same seeds"):
+            self.module.load_metric_table(
+                self.write_fixture(pfq_seeds="42|41|43|44|45|46|47|48|49|50"),
+                ("rr", "pf", "rrq", "pfq"),
+                10,
+            )
+
+    def test_rejects_negative_standard_deviation(self):
+        with self.assertRaisesRegex(ValueError, "non-negative"):
+            self.module.load_metric_table(
+                self.write_fixture(pfq_std="-0.1"), ("rr", "pf", "rrq", "pfq"), 10
+            )
 
     def test_beneficial_change_respects_metric_direction(self):
         self.assertAlmostEqual(self.module.beneficial_relative_change(100, 110, "higher_better"), 10.0)
@@ -108,6 +142,20 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
             },
         )
         self.assertTrue(all(path.exists() and path.stat().st_size > 0 for path in outputs))
+
+    def test_generates_byte_identical_png_and_svg_artifacts(self):
+        table = self.module.load_metric_table(self.write_fixture(), ("rr", "pf", "rrq", "pfq"), 10)
+        first = self.module.generate_figures(table, self.root / "first", dpi=72)
+        second = self.module.generate_figures(table, self.root / "second", dpi=72)
+        first_bytes = {path.name: path.read_bytes() for path in first}
+        second_bytes = {path.name: path.read_bytes() for path in second}
+        self.assertEqual(set(first_bytes), set(second_bytes))
+        for name in sorted(first_bytes):
+            with self.subTest(name=name):
+                self.assertEqual(first_bytes[name], second_bytes[name])
+                if name.endswith(".svg"):
+                    lines = first_bytes[name].decode("utf-8").splitlines()
+                    self.assertTrue(all(line == line.rstrip() for line in lines))
 
 
 if __name__ == "__main__":

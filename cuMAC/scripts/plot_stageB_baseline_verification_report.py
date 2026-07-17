@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import io
 import math
 from pathlib import Path
 
@@ -15,6 +16,9 @@ import numpy as np
 
 BASELINES = ("rr", "pf", "rrq", "pfq")
 COLORS = {"rr": "#2563EB", "pf": "#D97706", "rrq": "#059669", "pfq": "#7C3AED"}
+SVG_HASHSALT = "stageB-baseline-verification-v1"
+SAVEFIG_METADATA = {"Creator": "Stage-B baseline verification plotter", "Date": None}
+matplotlib.rcParams["svg.hashsalt"] = SVG_HASHSALT
 REQUIRED_METRICS = (
     "traffic.goodput_mbps",
     "traffic.packet_delay_p95_ms",
@@ -24,6 +28,19 @@ REQUIRED_METRICS = (
     "global_kpi.prg_utilization_ratio",
     "global_kpi.ue_goodput_p5_mbps",
 )
+
+
+def _parse_seed_list(raw: str, context: str) -> tuple[int, ...]:
+    tokens = raw.split("|")
+    if not raw or any(not token or token.strip() != token for token in tokens):
+        raise ValueError(f"{context} must contain pipe-delimited integer seeds")
+    try:
+        seeds = tuple(int(token) for token in tokens)
+    except ValueError as error:
+        raise ValueError(f"{context} must contain pipe-delimited integer seeds") from error
+    if len(set(seeds)) != len(seeds):
+        raise ValueError(f"{context} seeds must be unique")
+    return seeds
 
 
 def load_metric_table(
@@ -38,7 +55,12 @@ def load_metric_table(
         required_columns = {"metric", "unit", "direction", "common_seed_count", "common_seeds"}
         for baseline in expected_baselines:
             required_columns.update(
-                {f"{baseline}_mean", f"{baseline}_std", f"{baseline}_seed_count"}
+                {
+                    f"{baseline}_mean",
+                    f"{baseline}_std",
+                    f"{baseline}_seed_count",
+                    f"{baseline}_seeds",
+                }
             )
         missing = sorted(required_columns - set(reader.fieldnames or ()))
         if missing:
@@ -49,13 +71,26 @@ def load_metric_table(
             metric = row["metric"]
             if metric not in REQUIRED_METRICS:
                 continue
-            if int(row["common_seed_count"]) != expected_seed_count:
+            common_seed_count = int(row["common_seed_count"])
+            if common_seed_count != expected_seed_count:
                 raise ValueError(f"Metric {metric} does not contain {expected_seed_count} seeds")
+            common_seeds = _parse_seed_list(row["common_seeds"], f"Metric {metric}/common")
+            if len(common_seeds) != common_seed_count:
+                raise ValueError(
+                    f"Metric {metric}/common seed list does not match common_seed_count"
+                )
             values = {"unit": row["unit"], "direction": row["direction"]}
             for baseline in expected_baselines:
                 if int(row[f"{baseline}_seed_count"]) != expected_seed_count:
                     raise ValueError(
                         f"Metric {metric}/{baseline} does not contain {expected_seed_count} seeds"
+                    )
+                baseline_seeds = _parse_seed_list(
+                    row[f"{baseline}_seeds"], f"Metric {metric}/{baseline}"
+                )
+                if baseline_seeds != common_seeds:
+                    raise ValueError(
+                        f"Metric {metric}/{baseline} must contain the same seeds as common_seeds"
                     )
                 scale = 100.0 if row["unit"] == "%" else 1.0
                 mean = float(row[f"{baseline}_mean"]) * scale
@@ -63,6 +98,10 @@ def load_metric_table(
                 if not math.isfinite(mean) or not math.isfinite(std):
                     raise ValueError(
                         f"Metric {metric}/{baseline} must contain finite mean/std values"
+                    )
+                if std < 0:
+                    raise ValueError(
+                        f"Metric {metric}/{baseline} std must be non-negative"
                     )
                 values[baseline] = {"mean": mean, "std": std}
             if metric in table:
@@ -89,8 +128,20 @@ def beneficial_relative_change(old: float, new: float, direction: str) -> float:
 def _save_both(fig: plt.Figure, stem: Path, dpi: int) -> list[Path]:
     outputs = [stem.with_suffix(".png"), stem.with_suffix(".svg")]
     fig.tight_layout()
-    fig.savefig(outputs[0], dpi=dpi, bbox_inches="tight")
-    fig.savefig(outputs[1], bbox_inches="tight")
+    fig.savefig(
+        outputs[0], dpi=dpi, bbox_inches="tight", metadata=SAVEFIG_METADATA
+    )
+    svg_buffer = io.StringIO()
+    fig.savefig(
+        svg_buffer,
+        format="svg",
+        bbox_inches="tight",
+        metadata=SAVEFIG_METADATA,
+    )
+    normalized_svg = "\n".join(
+        line.rstrip() for line in svg_buffer.getvalue().splitlines()
+    )
+    outputs[1].write_text(f"{normalized_svg}\n", encoding="utf-8")
     plt.close(fig)
     return outputs
 
