@@ -19,15 +19,17 @@ COLORS = {"rr": "#2563EB", "pf": "#D97706", "rrq": "#059669", "pfq": "#7C3AED"}
 SVG_HASHSALT = "stageB-baseline-verification-v1"
 SAVEFIG_METADATA = {"Creator": "Stage-B baseline verification plotter", "Date": None}
 matplotlib.rcParams["svg.hashsalt"] = SVG_HASHSALT
-REQUIRED_METRICS = (
-    "traffic.goodput_mbps",
-    "traffic.packet_delay_p95_ms",
-    "traffic.expiry_drop_rate",
-    "global_kpi.ue_goodput_jain",
-    "global_kpi.global_tb_bler",
-    "global_kpi.prg_utilization_ratio",
-    "global_kpi.ue_goodput_p5_mbps",
-)
+EXPECTED_SCENARIO = "RAYLEIGH"
+REQUIRED_METRIC_SCHEMA = {
+    "traffic.goodput_mbps": ("Mbps", "higher_better"),
+    "traffic.packet_delay_p95_ms": ("ms", "lower_better"),
+    "traffic.expiry_drop_rate": ("%", "lower_better"),
+    "global_kpi.ue_goodput_jain": ("", "higher_better"),
+    "global_kpi.global_tb_bler": ("%", "lower_better"),
+    "global_kpi.prg_utilization_ratio": ("%", "higher_better"),
+    "global_kpi.ue_goodput_p5_mbps": ("Mbps", "higher_better"),
+}
+REQUIRED_METRICS = tuple(REQUIRED_METRIC_SCHEMA)
 
 
 def _parse_seed_list(raw: str, context: str) -> tuple[int, ...]:
@@ -52,7 +54,14 @@ def load_metric_table(
         raise FileNotFoundError(f"Missing aggregate metrics CSV: {path}")
     with path.open("r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
-        required_columns = {"metric", "unit", "direction", "common_seed_count", "common_seeds"}
+        required_columns = {
+            "scenario",
+            "metric",
+            "unit",
+            "direction",
+            "common_seed_count",
+            "common_seeds",
+        }
         for baseline in expected_baselines:
             required_columns.update(
                 {
@@ -71,6 +80,21 @@ def load_metric_table(
             metric = row["metric"]
             if metric not in REQUIRED_METRICS:
                 continue
+            if row["scenario"] != EXPECTED_SCENARIO:
+                raise ValueError(
+                    f"Metric {metric} scenario must be {EXPECTED_SCENARIO}; "
+                    f"got {row['scenario']!r}"
+                )
+            expected_unit, expected_direction = REQUIRED_METRIC_SCHEMA[metric]
+            if row["unit"] != expected_unit:
+                raise ValueError(
+                    f"Metric {metric} unit must be {expected_unit!r}; got {row['unit']!r}"
+                )
+            if row["direction"] != expected_direction:
+                raise ValueError(
+                    f"Metric {metric} direction must be {expected_direction!r}; "
+                    f"got {row['direction']!r}"
+                )
             common_seed_count = int(row["common_seed_count"])
             if common_seed_count != expected_seed_count:
                 raise ValueError(f"Metric {metric} does not contain {expected_seed_count} seeds")

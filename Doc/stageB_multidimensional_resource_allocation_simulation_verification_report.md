@@ -77,7 +77,7 @@ PFQ 的基础权重保留 `rate^beta / avgRate` 形式，并叠加 buffer 权重
 
 ### 4.1 实际 PRG 粒度核验
 
-批准设计要求按各批实际命令/manifest 记录资源分组。保留的 seed wrapper log 均记录 `#define nPrbGrpsConst 17`；结合 272 PRB，可核验为 17 PRG/cell、16 PRB/PRG。
+批准设计要求按各批实际命令/manifest 记录资源分组。full-KPI 批次保留 60 份、active boundary gate 批次保留 20 份，共 80 份 seed wrapper log，均记录 `nPrbGrpsConst 17`；结合 272 PRB，可核验为 17 PRG/cell、16 PRB/PRG。
 
 | 数据批次 | 实际记录 | 报告使用方式 |
 |---|---|---|
@@ -99,7 +99,7 @@ uniform 主场景用于四算法横向验收；boundary 场景将 UE 布置在�
 36 UE × 3000 Byte × 8 bit/Byte × 1 pkt/TTI / 0.0005 s = 1.728 Gbps
 ```
 
-每个 seed 仿真 4000 TTI，即 2.0 s；TTL 为 200 ms，即 400 TTI；不排除 warm-up。有限时窗内实际生成量随 Poisson realization 波动。
+每个 seed 仿真 4000 TTI，即 2.0 s；TTL 为 200 ms，即 400 TTI；三批运行的 warm-up 均为 0 TTI。有限时窗内实际生成量随 Poisson realization 波动。
 
 ## 6. 验证指标与验收判据
 

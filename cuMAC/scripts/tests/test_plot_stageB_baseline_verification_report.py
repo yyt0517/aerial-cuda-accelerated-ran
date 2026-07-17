@@ -38,13 +38,18 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
         common_seed_count="10",
         common_seeds=None,
         pfq_seeds=None,
+        scenario="RAYLEIGH",
+        metric_overrides=None,
+        include_scenario=True,
     ):
         path = self.root / "metrics.csv"
         if common_seeds is None:
             common_seeds = "|".join(
                 str(seed) for seed in range(41, 41 + int(common_seed_count))
             )
-        fields = ["scenario", "metric", "unit", "direction", "common_seed_count", "common_seeds"]
+        fields = ["metric", "unit", "direction", "common_seed_count", "common_seeds"]
+        if include_scenario:
+            fields.insert(0, "scenario")
         for baseline in ("rr", "pf", "rrq", "pfq"):
             fields += [f"{baseline}_mean", f"{baseline}_std", f"{baseline}_seed_count", f"{baseline}_seeds"]
         metrics = [
@@ -56,18 +61,21 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
             ("global_kpi.prg_utilization_ratio", "%", "higher_better", (1.00, 1.00, 0.90, 0.95)),
             ("global_kpi.ue_goodput_p5_mbps", "Mbps", "higher_better", (20, 5, 25, 30)),
         ]
+        metric_overrides = metric_overrides or {}
         with path.open("w", encoding="utf-8", newline="") as handle:
             writer = csv.DictWriter(handle, fieldnames=fields)
             writer.writeheader()
             for metric, unit, direction, values in metrics:
+                overrides = metric_overrides.get(metric, {})
                 row = {
-                    "scenario": "RAYLEIGH",
                     "metric": metric,
-                    "unit": unit,
-                    "direction": direction,
+                    "unit": overrides.get("unit", unit),
+                    "direction": overrides.get("direction", direction),
                     "common_seed_count": common_seed_count,
                     "common_seeds": common_seeds,
                 }
+                if include_scenario:
+                    row["scenario"] = overrides.get("scenario", scenario)
                 for baseline, value in zip(("rr", "pf", "rrq", "pfq"), values):
                     row[f"{baseline}_mean"] = value
                     row[f"{baseline}_std"] = pfq_std if baseline == "pfq" else "0.1"
@@ -89,6 +97,58 @@ class PlotStageBBaselineVerificationReportTest(unittest.TestCase):
         path.write_text(text, encoding="utf-8")
         with self.assertRaisesRegex(ValueError, "pfq_mean"):
             self.module.load_metric_table(path, ("rr", "pf", "rrq", "pfq"), 10)
+
+    def test_rejects_missing_scenario_column(self):
+        with self.assertRaisesRegex(ValueError, "scenario"):
+            self.module.load_metric_table(
+                self.write_fixture(include_scenario=False),
+                ("rr", "pf", "rrq", "pfq"),
+                10,
+            )
+
+    def test_rejects_non_rayleigh_scenario(self):
+        with self.assertRaisesRegex(ValueError, "RAYLEIGH"):
+            self.module.load_metric_table(
+                self.write_fixture(scenario="AWGN"), ("rr", "pf", "rrq", "pfq"), 10
+            )
+
+    def test_rejects_mixed_scenarios(self):
+        with self.assertRaisesRegex(ValueError, "RAYLEIGH"):
+            self.module.load_metric_table(
+                self.write_fixture(
+                    metric_overrides={
+                        "traffic.packet_delay_p95_ms": {"scenario": "AWGN"}
+                    }
+                ),
+                ("rr", "pf", "rrq", "pfq"),
+                10,
+            )
+
+    def test_rejects_noncanonical_metric_unit(self):
+        with self.assertRaisesRegex(ValueError, "traffic.goodput_mbps.*unit.*Mbps"):
+            self.module.load_metric_table(
+                self.write_fixture(
+                    metric_overrides={"traffic.goodput_mbps": {"unit": "Kbps"}}
+                ),
+                ("rr", "pf", "rrq", "pfq"),
+                10,
+            )
+
+    def test_rejects_noncanonical_metric_direction(self):
+        with self.assertRaisesRegex(
+            ValueError, "traffic.packet_delay_p95_ms.*direction.*lower_better"
+        ):
+            self.module.load_metric_table(
+                self.write_fixture(
+                    metric_overrides={
+                        "traffic.packet_delay_p95_ms": {
+                            "direction": "higher_better"
+                        }
+                    }
+                ),
+                ("rr", "pf", "rrq", "pfq"),
+                10,
+            )
 
     def test_rejects_non_finite_metric(self):
         with self.assertRaisesRegex(ValueError, "finite"):
