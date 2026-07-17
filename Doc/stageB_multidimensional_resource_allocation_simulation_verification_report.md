@@ -174,13 +174,13 @@ full-KPI suite 分为三个配对子任务：uniform RR/PF、uniform RRQ/PFQ、b
 
 ### 9.1 Uniform RR 与 RRQ
 
-![Uniform RR 与 RRQ completed-packet 时延分布](../output/stageB_baseline_eval_suite_fullkpi_seed41_50/suite_aggregate/figures/packet_delay_distribution_uniform_rr_vs_rrq.png)
+![Uniform RR 与 RRQ completed-packet 时延分布](figures/stageB_baseline_verification/packet_delay_uniform_rr_vs_rrq.png)
 
 RRQ 将 `0--1 ms` completed-packet 占比从 65.552% 提高到 77.063%，将 `50--200 ms` 尾部占比从 11.224% 降到 5.485%。与此同时，每 seed completed packet 从 139,148.7 增至 139,813.3，pending 从 2,282.3 降至 1,353.7，但 expired packet 从 2,641.2 增至 2,905.2。由此只能确认 RRQ 改善已完成包分布和末端残留，不能据 completed-only p95 推断所有到达包都获得改善。
 
 ### 9.2 Uniform PF 与 PFQ
 
-![Uniform PF 与 PFQ completed-packet 时延分布](../output/stageB_baseline_eval_suite_fullkpi_seed41_50/suite_aggregate/figures/packet_delay_distribution_uniform_pf_vs_pfq.png)
+![Uniform PF 与 PFQ completed-packet 时延分布](figures/stageB_baseline_verification/packet_delay_uniform_pf_vs_pfq.png)
 
 当前 PF 的 `150--200 ms` completed-packet 占比为 37.944%，PFQ 为 1.269%；completed packet 从每 seed 83,639.1 增至 143,178.7，expired 从 49,763.0 降至 283.5，pending 从 10,670.1 降至 610.0。三类状态与分布共同说明 PFQ 避免了当前 PF 实现中的 TTL 临界堆积；仅看 PF 的 100% PRG 占用会掩盖业务层退化。
 
@@ -205,7 +205,7 @@ goodput 是 PHY 成功解码的系统级有效吞吐，而 completed packet 是 
 | Jain fairness | 0.992767 ± 0.006513 | 0.998177 ± 0.000836 | +0.005409 |
 | PRG utilization (%) | 94.350 ± 6.055 | 98.598 ± 2.218 | +4.248 pp |
 
-![Boundary RRQ 与 PFQ completed-packet 时延分布](../output/stageB_baseline_eval_suite_fullkpi_seed41_50/suite_aggregate/figures/packet_delay_distribution_boundary_rrq_vs_pfq.png)
+![Boundary RRQ 与 PFQ completed-packet 时延分布](figures/stageB_baseline_verification/packet_delay_boundary_rrq_vs_pfq.png)
 
 PFQ 的 `0--1 ms` completed 占比低于 RRQ（55.729% 对 63.839%），但 `150--200 ms` 从 3.770% 降至 0.760%。这说明 PFQ 并非让每个包都更快，而是减少两极化并把部分危险长尾移入 1--100 ms 区间。每 seed completed 从 139,301.3 增至 143,025.5，expired 从 3,103.7 降至 186.4，pending 从 1,667.2 降至 860.3，与 tail 治理方向一致。代价是 PRG utilization 增加 4.248 pp，TB BLER 亦由 11.635% 增至 11.823%（+0.188 pp）。
 
@@ -229,7 +229,7 @@ active gate 位于：
 
 ## 11. 多维协同能力分析
 
-时间维上，RRQ/PFQ 的队列约束与单 TTI 衰减改变服务次序和等待尾部，证据为 p95、expiry 及 pending 状态。频率维上，Type-0 bitmap 和 demand cap 改变 PRG 分配密度，证据为 PRG utilization 与 goodput 的联合变化。功率/链路维上，PF/PFQ 使用 SVD 后可达率相关信息，TB BLER 与 goodput 反映调度选择在给定链路条件下的结果。空间维上，三小区同频和 boundary strongest association 提供链路不均衡与簇内复用环境，UE p5/p10 与 Jain 反映弱 UE 和分配均衡性。业务维上，buffer、TTL 和 Poisson 到达通过 completed/expired/pending 及 tail delay 得到验证。
+时间维上，RRQ/PFQ 的队列约束以及 PFQ 的单 TTI 衰减改变服务次序和等待尾部，证据为 p95、expiry 及 pending 状态。频率维上，Type-0 bitmap 和 demand cap 改变 PRG 分配密度，证据为 PRG utilization 与 goodput 的联合变化。功率/链路维上，PF/PFQ 使用 SVD 后可达率相关信息，TB BLER 与 goodput 反映调度选择在给定链路条件下的结果。空间维上，三小区同频和 boundary strongest association 提供链路不均衡与簇内复用环境，UE p5/p10 与 Jain 反映弱 UE 和分配均衡性。业务维上，buffer、TTL 和 Poisson 到达通过 completed/expired/pending 及 tail delay 得到验证。
 
 上述能力属于“给定链路和空间场景下的时频与队列感知调度”。本次基线动作空间不包含发射功率变量，也没有跨小区联合动作优化；因此“多维协同”不能扩展解释为功控、波束与跨小区动作的统一联合最优化。
 
@@ -385,9 +385,9 @@ python3 cuMAC/scripts/plot_stageB_baseline_verification_report.py \
 - `Doc/figures/stageB_baseline_verification/uniform_core_kpis.png`
 - `Doc/figures/stageB_baseline_verification/uniform_resource_tradeoffs.png`
 - `Doc/figures/stageB_baseline_verification/queue_aware_improvements.png`
-- `output/stageB_baseline_eval_suite_fullkpi_seed41_50/suite_aggregate/figures/packet_delay_distribution_uniform_rr_vs_rrq.png`
-- `output/stageB_baseline_eval_suite_fullkpi_seed41_50/suite_aggregate/figures/packet_delay_distribution_uniform_pf_vs_pfq.png`
-- `output/stageB_baseline_eval_suite_fullkpi_seed41_50/suite_aggregate/figures/packet_delay_distribution_boundary_rrq_vs_pfq.png`
+- `Doc/figures/stageB_baseline_verification/packet_delay_uniform_rr_vs_rrq.png`
+- `Doc/figures/stageB_baseline_verification/packet_delay_uniform_pf_vs_pfq.png`
+- `Doc/figures/stageB_baseline_verification/packet_delay_boundary_rrq_vs_pfq.png`
 
 ---
 
