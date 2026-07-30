@@ -185,7 +185,7 @@ def _all_rows_have(rows: Sequence[Mapping[str, object]], fields: Sequence[str]) 
 
 
 def _aggregate_history(
-    summary: Mapping[str, object],
+    _summary: Mapping[str, object],
     rows: Sequence[Mapping[str, object]],
 ) -> tuple[dict[str, float], list[str]]:
     evidence: dict[str, float] = {}
@@ -199,31 +199,33 @@ def _aggregate_history(
         weights = []
         errors.append(f"invalid rollout_steps: {exc}")
 
-    mean_sources = {
-        "candidate_policy_grad_norm": (
-            "candidate_policy_grad_norm",
-            "candidate_head_grad_norm",
-        ),
-        "candidate_policy_entropy": (
-            "candidate_policy_entropy",
-            "rollout_entropy_mean",
-            "entropy_mean",
-        ),
-    }
-    for target, candidates in mean_sources.items():
-        source = next(
-            (field for field in candidates if _all_rows_have(rows, (field,))),
-            None,
-        )
-        if source is None:
-            continue
+    if _all_rows_have(rows, ("candidate_head_grad_norm",)):
         try:
-            evidence[target] = _mean_field(rows, source)
+            evidence["candidate_policy_grad_norm"] = _mean_field(
+                rows, "candidate_head_grad_norm"
+            )
         except (TypeError, ValueError, OverflowError) as exc:
-            evidence[target] = math.nan
-            errors.append(f"invalid {source}: {exc}")
+            evidence["candidate_policy_grad_norm"] = math.nan
+            errors.append(f"invalid candidate_head_grad_norm: {exc}")
 
-    native_counts_from_rollout_means = False
+    if _all_rows_have(rows, ("rollout_entropy_mean",)):
+        if weights:
+            try:
+                evidence["candidate_policy_entropy"] = _weighted_mean_field(
+                    rows, "rollout_entropy_mean", weights
+                )
+            except (TypeError, ValueError, OverflowError) as exc:
+                evidence["candidate_policy_entropy"] = math.nan
+                errors.append(f"invalid rollout_entropy_mean: {exc}")
+    elif _all_rows_have(rows, ("entropy_mean",)):
+        try:
+            evidence["candidate_policy_entropy"] = _mean_field(
+                rows, "entropy_mean"
+            )
+        except (TypeError, ValueError, OverflowError) as exc:
+            evidence["candidate_policy_entropy"] = math.nan
+            errors.append(f"invalid entropy_mean: {exc}")
+
     if weights:
         if _all_rows_have(rows, ("non_hard_override_ratio",)):
             try:
@@ -252,40 +254,26 @@ def _aggregate_history(
                 errors.append(f"invalid non-hard override evidence: {exc}")
 
         count_sources = (
-            (
-                "python_preflight_reject_count",
-                ("python_preflight_reject_count",),
-                _PYTHON_REJECT_MEAN_FIELDS,
-            ),
-            (
-                "native_reject_count",
-                ("native_reject_count",),
-                _NATIVE_REJECT_MEAN_FIELDS,
-            ),
+            ("python_preflight_reject_count", _PYTHON_REJECT_MEAN_FIELDS),
+            ("native_reject_count", _NATIVE_REJECT_MEAN_FIELDS),
             (
                 "action_replay_mismatch_count",
-                ("action_replay_mismatch_count",),
                 ("rollout_action_replay_mismatch_count_mean",),
             ),
         )
-        for target, direct_fields, actual_mean_fields in count_sources:
+        for target, actual_mean_fields in count_sources:
+            if not _all_rows_have(rows, actual_mean_fields):
+                continue
             try:
-                if _all_rows_have(rows, direct_fields):
-                    evidence[target] = sum(
-                        _nonnegative_float(row[direct_fields[0]]) for row in rows
-                    )
-                elif _all_rows_have(rows, actual_mean_fields):
-                    evidence[target] = _weighted_count_from_means(
-                        rows, actual_mean_fields, weights
-                    )
-                    if target == "native_reject_count":
-                        native_counts_from_rollout_means = True
+                evidence[target] = _weighted_count_from_means(
+                    rows, actual_mean_fields, weights
+                )
             except (TypeError, ValueError, OverflowError) as exc:
                 evidence[target] = math.nan
                 errors.append(f"invalid {target}: {exc}")
 
     availability_field = "rollout_native_reject_diagnostics_available_mean"
-    if native_counts_from_rollout_means:
+    if "native_reject_count" in evidence:
         if not _all_rows_have(rows, (availability_field,)):
             evidence["native_reject_count"] = math.nan
             errors.append("native reject diagnostic availability is missing")
@@ -303,12 +291,6 @@ def _aggregate_history(
                 evidence["native_reject_count"] = math.nan
                 errors.append(f"invalid native reject diagnostic availability: {exc}")
 
-    for field in _EVIDENCE_FIELDS:
-        if field not in evidence and field in summary:
-            try:
-                evidence[field] = _nonnegative_float(summary[field])
-            except (TypeError, ValueError, OverflowError):
-                evidence[field] = math.nan
     return evidence, errors
 
 

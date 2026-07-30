@@ -7,6 +7,7 @@ from dataclasses import MISSING, fields
 from pathlib import Path
 from types import SimpleNamespace
 
+import numpy as np
 import pytest
 import torch
 
@@ -405,7 +406,162 @@ def test_direct_rollout_returns_exact_trace_materialization_and_metrics(monkeypa
     assert sampled["safe_fill_count"] == 0.0
     assert sampled["blank_budget_repair_count"] == 0.0
     assert sampled["non_hard_override_count"] == 0.0
-    assert sampled["action_replay_mismatch_count"] == 0.0
+    assert torch.equal(sampled["candidate_packed"].ue_ids, packed.ue_ids)
+    assert "action_replay_mismatch_count" not in sampled
+
+
+def test_rollout_replay_metric_compares_exact_arrays_submitted_to_env(monkeypatch):
+    torch.manual_seed(19)
+    graph = make_candidate_graph(n_prg=2)
+    actor = StageBHGraphPolicy(
+        HGraphModelConfig(action_head_mode="candidate", max_prg_candidates=2)
+    )
+    actor_out = actor(graph)
+    candidate_logits = torch.full_like(actor_out["candidate_prg_logits"], -40.0)
+    candidate_logits[:, 0] = 40.0
+    actor_out["candidate_prg_logits"] = candidate_logits
+    monkeypatch.setattr(
+        online_ppo,
+        "_evaluate_graph",
+        lambda *_args, **_kwargs: (actor_out, torch.tensor(0.0)),
+    )
+
+    submitted = {}
+    sampled_for_submission = {}
+
+    class FakeEnv:
+        def step(self, action_ue_select, action_prg_alloc):
+            submitted["action_ue_select"] = np.asarray(
+                action_ue_select, dtype=np.int32
+            ).copy()
+            submitted["action_prg_alloc"] = np.asarray(
+                action_prg_alloc, dtype=np.int32
+            ).copy()
+            return {}, 0.0, True, {}
+
+    class FakeRunner:
+        def __init__(self):
+            self.args = SimpleNamespace(
+                action_head_mode="candidate",
+                candidate_policy_mode="direct",
+                candidate_budgeted_select_mode="sample",
+                candidate_budgeted_hard_cap=1,
+            )
+            self.env = FakeEnv()
+
+        def begin_rollout(self, _episode_idx):
+            return {}, 0.0, {}, 19, 19, False
+
+        def record_transition(self, *_args):
+            pass
+
+    original_sample = online_ppo._sample_joint_action
+
+    def sample_then_tamper(*args, **kwargs):
+        sampled = original_sample(*args, **kwargs)
+        assert sampled["candidate_policy_trace"].choice[0].item() == 0
+        tampered_alloc = np.asarray(
+            sampled["action_prg_alloc"], dtype=np.int32
+        ).copy()
+        first_native_prg = (
+            int(graph.snapshot.static_meta.prg_local_index[0])
+            * int(graph.snapshot.static_meta.n_cell)
+            + int(graph.snapshot.static_meta.prg_owner_cell[0])
+        )
+        tampered_alloc[first_native_prg] = -1
+        sampled["action_prg_alloc"] = tampered_alloc
+        sampled_for_submission["action_ue_select"] = np.asarray(
+            sampled["action_ue_select"], dtype=np.int32
+        ).copy()
+        sampled_for_submission["action_prg_alloc"] = tampered_alloc.copy()
+        return sampled
+
+    monkeypatch.setattr(online_ppo, "_sample_joint_action", sample_then_tamper)
+    monkeypatch.setattr(
+        online_ppo,
+        "extract_reward_metrics",
+        lambda _info: {
+            "goodput_mbps": 0.0,
+            "tb_err_rate": 0.0,
+            "expiry_drop_rate": 0.0,
+            "prg_utilization_ratio": 0.0,
+            "prg_reuse_ratio": 0.0,
+        },
+    )
+    snapshot_builder = SimpleNamespace(
+        reset=lambda: None,
+        build=lambda _obs: object(),
+    )
+    edge_generator = SimpleNamespace(build_graph=lambda _snapshot: graph)
+
+    rollout, summary, _per_ue, _expiry = online_ppo._collect_rollout(
+        runner=FakeRunner(),
+        snapshot_builder=snapshot_builder,
+        edge_generator=edge_generator,
+        actor=actor,
+        critic=GraphValueHead(hidden_dim=128),
+        device=torch.device("cpu"),
+        rollout_steps=1,
+        rollout_warmup_steps=0,
+        reward_mode="raw",
+        reward_cfg={},
+        episode_idx=0,
+        rollout_log_every_steps=0,
+    )
+
+    assert len(rollout) == 1
+    assert np.array_equal(
+        submitted["action_prg_alloc"],
+        sampled_for_submission["action_prg_alloc"],
+    )
+    assert np.array_equal(
+        submitted["action_ue_select"],
+        sampled_for_submission["action_ue_select"],
+    )
+    assert not hasattr(rollout[0], "candidate_packed")
+    assert rollout[0].action_replay_mismatch_count == 1.0
+    assert summary["rollout_action_replay_mismatch_count_mean"] == 1.0
+
+
+def test_action_replay_uses_native_prg_order_and_checks_blank_choices():
+    graph = make_candidate_graph(n_prg=2)
+    packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    choice = torch.tensor(
+        [
+            packed.blank_class_index,
+            0,
+            1,
+            packed.blank_class_index,
+            0,
+            packed.blank_class_index,
+        ],
+        dtype=torch.long,
+    )
+
+    # Candidate token order is cell-major, while the native Type-0 array is
+    # local-PRG-major: native indices [0, 3, 1, 4, 2, 5].
+    action_ue_select = np.array([0, -1, 3, -1, 4, -1], dtype=np.int32)
+    action_prg_alloc = np.array([-1, 2, 4, 0, -1, -1], dtype=np.int32)
+    exact = online_ppo._candidate_action_replay_mismatch_count(
+        graph,
+        packed,
+        choice,
+        action_ue_select,
+        action_prg_alloc,
+    )
+
+    filled_blank = action_prg_alloc.copy()
+    filled_blank[0] = 0
+    blank_mismatch = online_ppo._candidate_action_replay_mismatch_count(
+        graph,
+        packed,
+        choice,
+        action_ue_select,
+        filled_blank,
+    )
+
+    assert exact == 0.0
+    assert blank_mismatch == 1.0
 
 
 def test_action_replay_diagnostic_detects_tampered_type0_action():

@@ -169,7 +169,7 @@ def test_cli_aggregates_real_summary_and_history_fields_and_writes_pass(tmp_path
     assert report["run_config"]["completed_iterations"] == 2
     assert report["evidence"] == {
         "action_replay_mismatch_count": 0.0,
-        "candidate_policy_entropy": 0.4,
+        "candidate_policy_entropy": 0.45,
         "candidate_policy_grad_norm": pytest.approx(0.3),
         "native_reject_count": 0.0,
         "non_hard_override_ratio": 0.0,
@@ -213,6 +213,31 @@ def test_cli_fails_closed_when_real_history_omits_replay_evidence(tmp_path):
                 "completed_iterations": 2,
                 "candidate_policy_mode": "direct",
                 "history_tail": [],
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(history_path, include_replay=False)
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert "action_replay_mismatch_count" in report["missing_evidence"]
+
+
+def test_cli_does_not_use_summary_replay_when_history_omits_real_replay(tmp_path):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+                "action_replay_mismatch_count": 0.0,
             }
         ),
         encoding="utf-8",
@@ -306,6 +331,37 @@ def test_cli_fails_closed_when_native_diagnostics_are_not_fully_available(
     _write_real_history(
         history_path,
         native_diagnostics_available=availability,
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"]["native_reject_count"] is None
+
+
+def test_cli_direct_native_count_cannot_bypass_partial_availability(tmp_path):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        native_diagnostics_available=0.5,
+        row_updates=(
+            {"native_reject_count": 0.0},
+            {"native_reject_count": 0.0},
+        ),
     )
 
     completed = _run_cli(summary_path, history_path, output_path)
@@ -418,6 +474,56 @@ def test_cli_rejects_counter_means_that_cancel_across_rows(
     report = json.loads(output_path.read_text(encoding="utf-8"))
     assert report["passed"] is False
     assert report["evidence"][target] is None
+
+
+@pytest.mark.parametrize(
+    "field,target,check",
+    [
+        (
+            "rollout_python_preflight_wrong_cell_slot_count_mean",
+            "python_preflight_reject_count",
+            "python_preflight_zero",
+        ),
+        (
+            "rollout_native_reject_wrong_cell_slot_count_mean",
+            "native_reject_count",
+            "native_reject_zero",
+        ),
+        (
+            "rollout_action_replay_mismatch_count_mean",
+            "action_replay_mismatch_count",
+            "action_replay_exact",
+        ),
+    ],
+)
+def test_cli_positive_real_reject_or_replay_count_fails_gate(
+    tmp_path, field, target, check
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        row_updates=({field: 1.0}, {}),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"][target] > 0.0
+    assert report["checks"][check] is False
 
 
 @pytest.mark.parametrize(

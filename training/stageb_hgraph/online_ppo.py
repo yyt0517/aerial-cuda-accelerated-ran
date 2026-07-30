@@ -2704,6 +2704,31 @@ def _candidate_action_replay_mismatch_count(
     return float((actual_ue != expected_ue).sum().item())
 
 
+def _record_submitted_action_replay_mismatch(
+    graph: SparseEntityGraph,
+    sampled: Dict[str, object],
+) -> None:
+    """Record replay parity for the exact direct action about to be submitted."""
+
+    if str(sampled.get("candidate_policy_mode", "legacy")).lower() != "direct":
+        return
+    packed = sampled.get("candidate_packed")
+    trace = sampled.get("candidate_policy_trace")
+    if not isinstance(packed, PackedPrgCandidates):
+        raise ValueError("direct action replay requires carried candidate packing")
+    if not isinstance(trace, CandidatePolicyTrace):
+        raise ValueError("direct action replay requires a candidate policy trace")
+    sampled["action_replay_mismatch_count"] = (
+        _candidate_action_replay_mismatch_count(
+            graph,
+            packed,
+            trace.choice,
+            sampled["action_ue_select"],
+            sampled["action_prg_alloc"],
+        )
+    )
+
+
 def _action_replay_summary(
     steps: Sequence[RolloutStep],
 ) -> Dict[str, float]:
@@ -2924,13 +2949,6 @@ def _sample_joint_action(
             direct_cfg,
         )
         decoded = materialize_candidate_choices_to_type0(graph, packed, trace.choice)
-        action_replay_mismatch_count = _candidate_action_replay_mismatch_count(
-            graph,
-            packed,
-            trace.choice,
-            decoded.action_ue_select,
-            decoded.action_prg_alloc,
-        )
         blank_ratio = float((trace.choice == packed.blank_class_index).float().mean().item())
         action_fill_ratio = float(decoded.prg_chosen_mask.float().mean().item())
         final_blank_ratio = float(1.0 - action_fill_ratio)
@@ -2974,6 +2992,7 @@ def _sample_joint_action(
             ).detach().cpu().to(torch.long),
             "prg_action_class": trace.choice.detach().cpu().to(torch.long),
             "candidate_policy_trace": trace,
+            "candidate_packed": packed,
             "candidate_policy_mode": "direct",
             "action_ue_select": decoded.action_ue_select.cpu().numpy(),
             "action_prg_alloc": decoded.action_prg_alloc.cpu().numpy(),
@@ -3002,7 +3021,6 @@ def _sample_joint_action(
             "candidate_coverage_ratio": candidate_unique_ue_count / max(demand_active_ue_count, 1.0),
             "coverage_repair_count": 0.0,
             "non_hard_override_count": float(decoded.non_hard_override_count),
-            "action_replay_mismatch_count": action_replay_mismatch_count,
             "logp": trace.logp.detach().cpu().to(torch.float32),
             "entropy": float(trace.entropy.item()),
             **zero_budgeted_metrics,
@@ -3892,6 +3910,7 @@ def _collect_rollout(
             planned_assigned_prg_count_cpu[: bincount.shape[0]] = bincount
             planned_served_mask_cpu = planned_assigned_prg_count_cpu > 0
 
+        _record_submitted_action_replay_mismatch(graph, sampled)
         assert runner.env is not None
         next_obs, raw_env_reward, done, next_info = runner.env.step(
             sampled["action_ue_select"],
