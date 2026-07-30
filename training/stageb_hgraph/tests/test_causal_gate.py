@@ -66,6 +66,14 @@ def test_causal_gate_rejects_nonfinite_evidence(field, bad_value):
     assert report["evidence"][field] is None
 
 
+@pytest.mark.parametrize("field", tuple(PASSING_EVIDENCE))
+def test_causal_gate_rejects_negative_evidence(field):
+    report = evaluate_causal_gate({**PASSING_EVIDENCE, field: -0.01})
+    assert report["passed"] is False
+    assert field in report["invalid_evidence"]
+    assert report["evidence"][field] is None
+
+
 def _write_real_history(
     path,
     *,
@@ -73,6 +81,7 @@ def _write_real_history(
     override_mean=0.0,
     native_diagnostics_available=1.0,
     entropy_field="rollout_entropy_mean",
+    row_updates=(),
 ):
     rows = []
     for iteration, rollout_steps, grad, entropy in (
@@ -103,6 +112,8 @@ def _write_real_history(
         if include_replay:
             row["rollout_action_replay_mismatch_count_mean"] = 0.0
         rows.append(row)
+    for row, updates in zip(rows, row_updates):
+        row.update(updates)
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
         writer.writeheader()
@@ -328,3 +339,151 @@ def test_cli_exits_nonzero_and_writes_boundary_failure(tmp_path):
     report = json.loads(output_path.read_text(encoding="utf-8"))
     assert report["evidence"]["non_hard_override_ratio"] == pytest.approx(0.05)
     assert report["checks"]["non_hard_override_below_5pct"] is False
+
+
+def test_cli_rejects_negative_override_mean_before_aggregation(tmp_path):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        row_updates=(
+            {"rollout_non_hard_override_count_mean": -0.01},
+            {},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"]["non_hard_override_ratio"] is None
+
+
+@pytest.mark.parametrize(
+    "field,target",
+    [
+        (
+            "rollout_python_preflight_wrong_cell_slot_count_mean",
+            "python_preflight_reject_count",
+        ),
+        (
+            "rollout_native_reject_wrong_cell_slot_count_mean",
+            "native_reject_count",
+        ),
+        (
+            "rollout_action_replay_mismatch_count_mean",
+            "action_replay_mismatch_count",
+        ),
+    ],
+)
+def test_cli_rejects_counter_means_that_cancel_across_rows(
+    tmp_path, field, target
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        row_updates=(
+            {"rollout_steps": 1, field: 1.0},
+            {"rollout_steps": 1, field: -1.0},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"][target] is None
+
+
+@pytest.mark.parametrize(
+    "field,target",
+    [
+        ("candidate_head_grad_norm", "candidate_policy_grad_norm"),
+        ("rollout_entropy_mean", "candidate_policy_entropy"),
+    ],
+)
+def test_cli_rejects_negative_training_metrics_before_averaging(
+    tmp_path, field, target
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        row_updates=(
+            {field: -1.0},
+            {field: 3.0},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"][target] is None
+
+
+@pytest.mark.parametrize("rollout_steps", [0, -1])
+def test_cli_requires_each_rollout_step_count_to_be_positive(
+    tmp_path, rollout_steps
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        row_updates=({"rollout_steps": rollout_steps}, {}),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["aggregation_errors"]

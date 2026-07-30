@@ -60,6 +60,20 @@ def _finite_float(value: object) -> float:
     return number
 
 
+def _nonnegative_float(value: object) -> float:
+    number = _finite_float(value)
+    if number < 0.0:
+        raise ValueError(f"negative value: {value!r}")
+    return number
+
+
+def _positive_float(value: object) -> float:
+    number = _finite_float(value)
+    if number <= 0.0:
+        raise ValueError(f"non-positive value: {value!r}")
+    return number
+
+
 def _finite_decimal(value: object) -> Decimal:
     try:
         number = Decimal(str(value))
@@ -67,6 +81,13 @@ def _finite_decimal(value: object) -> Decimal:
         raise ValueError(f"invalid decimal value: {value!r}") from exc
     if not number.is_finite():
         raise ValueError(f"non-finite value: {value!r}")
+    return number
+
+
+def _nonnegative_decimal(value: object) -> Decimal:
+    number = _finite_decimal(value)
+    if number < 0:
+        raise ValueError(f"negative value: {value!r}")
     return number
 
 
@@ -84,7 +105,7 @@ def evaluate_causal_gate(summary: Mapping[str, float]) -> dict[str, object]:
             values[field] = math.nan
             continue
         try:
-            values[field] = _finite_float(summary[field])
+            values[field] = _nonnegative_float(summary[field])
             evidence[field] = values[field]
         except (TypeError, ValueError, OverflowError):
             invalid_evidence.append(field)
@@ -122,11 +143,11 @@ def evaluate_causal_gate(summary: Mapping[str, float]) -> dict[str, object]:
 
 
 def _row_weights(rows: Sequence[Mapping[str, object]]) -> list[float]:
-    return [_finite_float(row["rollout_steps"]) for row in rows]
+    return [_positive_float(row["rollout_steps"]) for row in rows]
 
 
 def _mean_field(rows: Sequence[Mapping[str, object]], field: str) -> float:
-    return fmean(_finite_float(row[field]) for row in rows)
+    return fmean(_nonnegative_float(row[field]) for row in rows)
 
 
 def _weighted_mean_field(
@@ -135,7 +156,13 @@ def _weighted_mean_field(
     denominator = sum(weights)
     if denominator <= 0.0:
         raise ValueError("rollout_steps must sum to a positive value")
-    return sum(_finite_float(row[field]) * weight for row, weight in zip(rows, weights)) / denominator
+    return (
+        sum(
+            _nonnegative_float(row[field]) * weight
+            for row, weight in zip(rows, weights)
+        )
+        / denominator
+    )
 
 
 def _weighted_count_from_means(
@@ -144,7 +171,7 @@ def _weighted_count_from_means(
     weights: Sequence[float],
 ) -> float:
     return sum(
-        sum(_finite_float(row[field]) for field in fields) * weight
+        sum(_nonnegative_float(row[field]) for field in fields) * weight
         for row, weight in zip(rows, weights)
     )
 
@@ -210,7 +237,9 @@ def _aggregate_history(
             try:
                 decimal_weights = [_finite_decimal(weight) for weight in weights]
                 override_count = sum(
-                    _finite_decimal(row["rollout_non_hard_override_count_mean"])
+                    _nonnegative_decimal(
+                        row["rollout_non_hard_override_count_mean"]
+                    )
                     * weight
                     for row, weight in zip(rows, decimal_weights)
                 )
@@ -243,7 +272,7 @@ def _aggregate_history(
             try:
                 if _all_rows_have(rows, direct_fields):
                     evidence[target] = sum(
-                        _finite_float(row[direct_fields[0]]) for row in rows
+                        _nonnegative_float(row[direct_fields[0]]) for row in rows
                     )
                 elif _all_rows_have(rows, actual_mean_fields):
                     evidence[target] = _weighted_count_from_means(
@@ -277,7 +306,7 @@ def _aggregate_history(
     for field in _EVIDENCE_FIELDS:
         if field not in evidence and field in summary:
             try:
-                evidence[field] = _finite_float(summary[field])
+                evidence[field] = _nonnegative_float(summary[field])
             except (TypeError, ValueError, OverflowError):
                 evidence[field] = math.nan
     return evidence, errors
@@ -380,7 +409,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     report["provenance_checks"] = provenance_checks
     report["provenance_errors"] = provenance_errors
     report["run_config"] = run_config
-    report["passed"] = bool(report["passed"] and all(provenance_checks.values()))
+    report["passed"] = bool(
+        report["passed"] and not input_errors and all(provenance_checks.values())
+    )
     _write_report(args.out, report)
     print(json.dumps(report, ensure_ascii=True, sort_keys=True, allow_nan=False))
     return 0 if report["passed"] else 1
