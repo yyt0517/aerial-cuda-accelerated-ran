@@ -132,28 +132,9 @@ def test_direct_evaluation_rejects_incompatible_configuration(field, value):
         )
 
 
-def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
-    monkeypatch,
-):
+def _run_evaluator_main_boundary(monkeypatch, checkpoint_args):
     graph = object()
     captured = {}
-    checkpoint_args = {
-        "candidate_mode": "topk_diversity",
-        "candidate_policy_mode": "direct",
-        "candidate_budgeted_select_mode": "sample",
-        "candidate_budgeted_hard_cap": 1,
-        "candidate_decode_demand_slack_bytes": 1234.5,
-        "candidate_budgeted_usage_penalty": 0.41,
-        "candidate_budgeted_overcap_penalty": 8.2,
-        "candidate_budgeted_first_service_bonus": 0.03,
-        "candidate_blank_budget_max_per_cell": -1,
-        "slot_repair_max_per_cell": 0,
-        "safe_fill_max_per_cell": 0,
-        "candidate_budgeted_tail_bias_coef": 0.0,
-        "candidate_budgeted_rescue_bias_coef": 0.0,
-        "candidate_budgeted_completion_bonus": 0.0,
-        "candidate_budgeted_tail_quota_enable": 0,
-    }
 
     class FakeEnv:
         def reset(self, **_kwargs):
@@ -218,9 +199,49 @@ def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
     monkeypatch.setattr(eval_checkpoint_online, "_graph_to_device", lambda value, _device: value)
     monkeypatch.setattr(eval_checkpoint_online, "_select_joint_action", select)
     monkeypatch.setattr(eval_checkpoint_online, "extract_reward_metrics", lambda _info: {})
+    return captured
+
+
+def _direct_evaluation_checkpoint_args(**overrides):
+    values = {
+        "candidate_policy_mode": "direct",
+        "candidate_budgeted_select_mode": "sample",
+        "candidate_budgeted_hard_cap": 1,
+        "candidate_decode_demand_slack_bytes": 1234.5,
+        "candidate_budgeted_usage_penalty": 0.41,
+        "candidate_budgeted_overcap_penalty": 8.2,
+        "candidate_budgeted_first_service_bonus": 0.03,
+        "candidate_blank_budget_max_per_cell": -1,
+        "slot_repair_max_per_cell": 0,
+        "safe_fill_max_per_cell": 0,
+        "candidate_budgeted_tail_bias_coef": 0.0,
+        "candidate_budgeted_rescue_bias_coef": 0.0,
+        "candidate_budgeted_completion_bonus": 0.0,
+        "candidate_budgeted_tail_quota_enable": 0,
+    }
+    values.update(overrides)
+    return values
+
+
+@pytest.mark.parametrize(
+    ("checkpoint_candidate_mode", "expected_candidate_mode"),
+    [
+        ("topk_diversity", "topk_diversity"),
+        (None, "all_demand_ues"),
+    ],
+)
+def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
+    monkeypatch,
+    checkpoint_candidate_mode,
+    expected_candidate_mode,
+):
+    checkpoint_args = _direct_evaluation_checkpoint_args()
+    if checkpoint_candidate_mode is not None:
+        checkpoint_args["candidate_mode"] = checkpoint_candidate_mode
+    captured = _run_evaluator_main_boundary(monkeypatch, checkpoint_args)
 
     assert eval_checkpoint_online.main() == 0
-    assert captured["edge_generator_config"].candidate_mode == "topk_diversity"
+    assert captured["edge_generator_config"].candidate_mode == expected_candidate_mode
     assert captured["candidate_policy_mode"] == "direct"
     assert captured["candidate_budgeted_select_mode"] == "sample"
     assert captured["candidate_decode_demand_slack_bytes"] == 1234.5
@@ -235,6 +256,16 @@ def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
     assert captured["candidate_budgeted_rescue_bias_coef"] == 0.0
     assert captured["candidate_budgeted_completion_bonus"] == 0.0
     assert captured["candidate_budgeted_tail_quota_enable"] == 0
+
+
+def test_evaluator_rejects_unsupported_checkpoint_candidate_mode(monkeypatch):
+    _run_evaluator_main_boundary(
+        monkeypatch,
+        _direct_evaluation_checkpoint_args(candidate_mode="unsupported"),
+    )
+
+    with pytest.raises(ValueError, match="candidate_mode.*all_demand_ues.*topk_diversity"):
+        eval_checkpoint_online.main()
 
 
 def test_causal_direct_preset_executes_with_frozen_compatible_arguments(tmp_path):

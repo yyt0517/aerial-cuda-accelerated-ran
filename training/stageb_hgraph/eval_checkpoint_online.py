@@ -522,6 +522,10 @@ def main() -> int:
     candidate_mode = str(
         _checkpoint_arg(ckpt, "candidate_mode", "all_demand_ues")
     ).lower()
+    if candidate_mode not in ("all_demand_ues", "topk_diversity"):
+        raise ValueError(
+            "checkpoint candidate_mode must be all_demand_ues or topk_diversity"
+        )
     tb_err_ema_alpha = float(
         args.tb_err_ema_alpha if args.tb_err_ema_alpha is not None else _checkpoint_arg(ckpt, "tb_err_ema_alpha", 0.10)
     )
