@@ -10,7 +10,7 @@ from types import SimpleNamespace
 import pytest
 import torch
 
-from training.stageb_hgraph import eval_checkpoint_online
+from training.stageb_hgraph import eval_checkpoint_online, online_ppo
 from training.stageb_hgraph.candidate_policy import (
     CandidatePolicyConfig,
     select_candidate_policy_action,
@@ -405,6 +405,58 @@ def test_direct_rollout_returns_exact_trace_materialization_and_metrics(monkeypa
     assert sampled["safe_fill_count"] == 0.0
     assert sampled["blank_budget_repair_count"] == 0.0
     assert sampled["non_hard_override_count"] == 0.0
+    assert sampled["action_replay_mismatch_count"] == 0.0
+
+
+def test_action_replay_diagnostic_detects_tampered_type0_action():
+    graph = make_candidate_graph(n_prg=2)
+    packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    choice = torch.zeros((packed.num_prg_tokens,), dtype=torch.long)
+    decoded = materialize_candidate_choices_to_type0(graph, packed, choice)
+
+    exact = online_ppo._candidate_action_replay_mismatch_count(
+        graph,
+        packed,
+        choice,
+        decoded.action_ue_select,
+        decoded.action_prg_alloc,
+    )
+    tampered_alloc = decoded.action_prg_alloc.clone()
+    first_native_prg = (
+        int(graph.snapshot.static_meta.prg_local_index[0])
+        * int(graph.snapshot.static_meta.n_cell)
+        + int(graph.snapshot.static_meta.prg_owner_cell[0])
+    )
+    tampered_alloc[first_native_prg] = -1
+    tampered = online_ppo._candidate_action_replay_mismatch_count(
+        graph,
+        packed,
+        choice,
+        decoded.action_ue_select,
+        tampered_alloc,
+    )
+
+    assert exact == 0.0
+    assert tampered == 1.0
+
+
+def test_replay_summary_requires_all_direct_steps_with_real_diagnostics():
+    direct = [
+        SimpleNamespace(
+            candidate_policy_mode="direct",
+            action_replay_mismatch_count=0.0,
+        ),
+        SimpleNamespace(
+            candidate_policy_mode="direct",
+            action_replay_mismatch_count=2.0,
+        ),
+    ]
+    assert online_ppo._action_replay_summary(direct) == {
+        "rollout_action_replay_mismatch_count_mean": 1.0,
+    }
+    assert online_ppo._action_replay_summary(
+        [*direct, SimpleNamespace(candidate_policy_mode="legacy")]
+    ) == {}
 
 
 def _direct_args(**overrides):

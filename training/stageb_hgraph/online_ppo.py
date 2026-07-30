@@ -63,6 +63,7 @@ from training.stageb_hgraph.candidate_policy import (
     select_candidate_policy_action,
 )
 from training.stageb_hgraph.graph_ops import (
+    PackedPrgCandidates,
     _candidate_packet_completion_scores,
     _estimate_ue_prg_demand_cap,
     _candidate_seq_fail_risk_features,
@@ -84,6 +85,7 @@ from training.stageb_hgraph.graph_ops import (
     joint_targets_from_type0_actions,
     materialize_candidate_choices_to_type0,
     pack_prg_candidates,
+    prg_choice_to_ue_ids,
     select_budgeted_candidate_actions,
     select_and_decode_budgeted_candidate_actions,
     type0_action_preflight_reject_counts,
@@ -267,6 +269,7 @@ class RolloutStep:
     candidate_policy_trace: CandidatePolicyTrace | None = None
     candidate_policy_mode: str = "legacy"
     non_hard_override_count: float = 0.0
+    action_replay_mismatch_count: float = math.nan
 
 
 _NATIVE_REJECT_INFO_KEYS = (
@@ -2662,6 +2665,61 @@ def _direct_candidate_logp_entropy_batch(
     return torch.stack(logps), torch.stack(entropies)
 
 
+def _candidate_action_replay_mismatch_count(
+    graph: SparseEntityGraph,
+    packed: PackedPrgCandidates,
+    choice_idx: torch.Tensor,
+    action_ue_select: torch.Tensor | np.ndarray,
+    action_prg_alloc: torch.Tensor | np.ndarray,
+) -> float:
+    """Compare candidate choices with the submitted Type-0 action."""
+
+    device = packed.ue_ids.device
+    choice = torch.as_tensor(choice_idx, dtype=torch.long, device=device)
+    expected_ue = prg_choice_to_ue_ids(choice, packed)
+    ue_select = torch.as_tensor(
+        action_ue_select, dtype=torch.long, device=device
+    ).reshape(-1)
+    prg_alloc = torch.as_tensor(
+        action_prg_alloc, dtype=torch.long, device=device
+    ).reshape(-1)
+
+    meta = graph.snapshot.static_meta
+    expected_alloc_size = int(meta.n_cell * meta.n_prg)
+    if prg_alloc.numel() != expected_alloc_size:
+        raise ValueError(
+            f"action_prg_alloc must have {expected_alloc_size} entries, "
+            f"got {prg_alloc.numel()}"
+        )
+    owner_cell = meta.prg_owner_cell.to(device=device, dtype=torch.long)
+    local_prg = meta.prg_local_index.to(device=device, dtype=torch.long)
+    native_prg = local_prg * int(meta.n_cell) + owner_cell
+    selected_slot = prg_alloc.gather(0, native_prg)
+    actual_ue = torch.full_like(expected_ue, -1)
+    valid_slot = (selected_slot >= 0) & (selected_slot < ue_select.numel())
+    if bool(valid_slot.any().item()):
+        actual_ue[valid_slot] = ue_select.gather(
+            0, selected_slot[valid_slot]
+        )
+    return float((actual_ue != expected_ue).sum().item())
+
+
+def _action_replay_summary(
+    steps: Sequence[RolloutStep],
+) -> Dict[str, float]:
+    if not steps or not all(
+        str(getattr(step, "candidate_policy_mode", "legacy")).lower() == "direct"
+        and hasattr(step, "action_replay_mismatch_count")
+        for step in steps
+    ):
+        return {}
+    return {
+        "rollout_action_replay_mismatch_count_mean": float(
+            np.mean([step.action_replay_mismatch_count for step in steps])
+        )
+    }
+
+
 def _action_logp_entropy_batch(
     actor_out: Dict[str, torch.Tensor],
     graphs: Sequence[SparseEntityGraph],
@@ -2866,6 +2924,13 @@ def _sample_joint_action(
             direct_cfg,
         )
         decoded = materialize_candidate_choices_to_type0(graph, packed, trace.choice)
+        action_replay_mismatch_count = _candidate_action_replay_mismatch_count(
+            graph,
+            packed,
+            trace.choice,
+            decoded.action_ue_select,
+            decoded.action_prg_alloc,
+        )
         blank_ratio = float((trace.choice == packed.blank_class_index).float().mean().item())
         action_fill_ratio = float(decoded.prg_chosen_mask.float().mean().item())
         final_blank_ratio = float(1.0 - action_fill_ratio)
@@ -2937,6 +3002,7 @@ def _sample_joint_action(
             "candidate_coverage_ratio": candidate_unique_ue_count / max(demand_active_ue_count, 1.0),
             "coverage_repair_count": 0.0,
             "non_hard_override_count": float(decoded.non_hard_override_count),
+            "action_replay_mismatch_count": action_replay_mismatch_count,
             "logp": trace.logp.detach().cpu().to(torch.float32),
             "entropy": float(trace.entropy.item()),
             **zero_budgeted_metrics,
@@ -4569,6 +4635,9 @@ def _collect_rollout(
                 candidate_policy_trace=sampled.get("candidate_policy_trace"),
                 candidate_policy_mode=str(sampled.get("candidate_policy_mode", "legacy")),
                 non_hard_override_count=float(sampled.get("non_hard_override_count", 0.0)),
+                action_replay_mismatch_count=float(
+                    sampled.get("action_replay_mismatch_count", math.nan)
+                ),
             )
         if is_warmup_step:
             warmup_steps_completed += 1
@@ -5164,6 +5233,7 @@ def _collect_rollout(
             decode_goodput_positive_total / max(decode_goodput_mask_total, 1.0)
         ),
         "rollout_entropy_mean": float(np.mean([s.entropy for s in steps])) if steps else 0.0,
+        **_action_replay_summary(steps),
     }
     if per_ue_log_dir is not None and steps:
         per_ue_log_dir.mkdir(parents=True, exist_ok=True)
