@@ -56,6 +56,12 @@ from training.stageb_hgraph.edge_generator import (
     SparseEdgeGenerator,
 )
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder, SnapshotBuilderConfig
+from training.stageb_hgraph.candidate_policy import (
+    CandidatePolicyConfig,
+    CandidatePolicyTrace,
+    replay_candidate_policy_trace,
+    select_candidate_policy_action,
+)
 from training.stageb_hgraph.graph_ops import (
     _candidate_packet_completion_scores,
     _estimate_ue_prg_demand_cap,
@@ -76,6 +82,7 @@ from training.stageb_hgraph.graph_ops import (
     demand_active_ue_mask_from_features,
     joint_candidate_targets_from_type0_actions,
     joint_targets_from_type0_actions,
+    materialize_candidate_choices_to_type0,
     pack_prg_candidates,
     select_budgeted_candidate_actions,
     select_and_decode_budgeted_candidate_actions,
@@ -257,6 +264,9 @@ class RolloutStep:
     coverage_repair_count: float
     candidate_decode_goodput_target: torch.Tensor | None = None
     candidate_decode_goodput_mask: torch.Tensor | None = None
+    candidate_policy_trace: CandidatePolicyTrace | None = None
+    candidate_policy_mode: str = "legacy"
+    non_hard_override_count: float = 0.0
 
 
 _NATIVE_REJECT_INFO_KEYS = (
@@ -1158,6 +1168,39 @@ def _resolve_prg_candidate_count(args: argparse.Namespace) -> int:
     if int(getattr(args, "max_prg_candidates", 0)) > 0:
         return int(args.max_prg_candidates)
     return max(1, int(args.ue_prg_topk)) + max(0, int(args.ue_prg_diversity_extra))
+
+
+def _resolve_checkpoint_candidate_policy_mode(checkpoint: Dict[str, object]) -> str:
+    args_payload = checkpoint.get("args", {})
+    if isinstance(args_payload, dict):
+        return str(args_payload.get("candidate_policy_mode", "legacy"))
+    return "legacy"
+
+
+def _validate_candidate_policy_mode(args: argparse.Namespace) -> None:
+    if str(getattr(args, "candidate_policy_mode", "legacy")).lower() != "direct":
+        return
+    required = (
+        ("action_head_mode", "candidate"),
+        ("candidate_budgeted_select_mode", "sample"),
+        ("candidate_blank_budget_max_per_cell", -1),
+        ("slot_repair_max_per_cell", 0),
+        ("safe_fill_max_per_cell", 0),
+        ("candidate_budgeted_tail_bias_coef", 0.0),
+        ("candidate_budgeted_rescue_bias_coef", 0.0),
+        ("candidate_budgeted_completion_bonus", 0.0),
+        ("candidate_budgeted_tail_quota_enable", 0),
+    )
+    incompatible = [
+        f"{name}={getattr(args, name, None)!r} (required {expected!r})"
+        for name, expected in required
+        if getattr(args, name, None) != expected
+    ]
+    if incompatible:
+        raise ValueError(
+            "direct candidate policy has incompatible configuration: "
+            + ", ".join(incompatible)
+        )
 
 
 def _resolve_teacher_aux_coef(args: argparse.Namespace, iter_idx: int) -> float:
@@ -2580,6 +2623,51 @@ def _action_logp_entropy(
     return (ue_logp + prg_logp).squeeze(0), (0.5 * (ue_entropy + prg_entropy)).squeeze(0)
 
 
+def _direct_candidate_logp_entropy(
+    actor_out: Dict[str, torch.Tensor],
+    graph: SparseEntityGraph,
+    trace: CandidatePolicyTrace,
+    cfg: CandidatePolicyConfig,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    packed = pack_prg_candidates(
+        graph,
+        max_candidates=max(0, int(actor_out["candidate_prg_logits"].shape[-1]) - 1),
+        fixed_width=True,
+    )
+    return replay_candidate_policy_trace(
+        graph,
+        packed,
+        actor_out["candidate_prg_logits"],
+        trace,
+        cfg,
+    )
+
+
+def _direct_candidate_logp_entropy_batch(
+    actor_out: Dict[str, torch.Tensor],
+    graphs: Sequence[SparseEntityGraph],
+    traces: Sequence[CandidatePolicyTrace],
+    cfg: CandidatePolicyConfig,
+) -> tuple[torch.Tensor, torch.Tensor]:
+    if len(graphs) != len(traces):
+        raise ValueError(
+            f"direct candidate replay batch mismatch: graphs={len(graphs)} traces={len(traces)}"
+        )
+    logps: List[torch.Tensor] = []
+    entropies: List[torch.Tensor] = []
+    candidate_logits = actor_out["candidate_prg_logits"]
+    for batch_idx, (graph, trace) in enumerate(zip(graphs, traces)):
+        logp, entropy = _direct_candidate_logp_entropy(
+            {"candidate_prg_logits": candidate_logits[batch_idx]},
+            graph,
+            trace,
+            cfg,
+        )
+        logps.append(logp)
+        entropies.append(entropy)
+    return torch.stack(logps), torch.stack(entropies)
+
+
 def _action_logp_entropy_batch(
     actor_out: Dict[str, torch.Tensor],
     graphs: Sequence[SparseEntityGraph],
@@ -2716,6 +2804,7 @@ def _sample_joint_action(
     actor_out: Dict[str, torch.Tensor],
     graph: SparseEntityGraph,
     *,
+    candidate_policy_mode: str = "legacy",
     slot_repair_max_per_cell: int = 0,
     slot_repair_min_backlog_bytes: float = 1.0,
     safe_fill_max_per_cell: int = 0,
@@ -2757,6 +2846,107 @@ def _sample_joint_action(
     candidate_seq_fail_risk_feature_offset: int = -1,
 ) -> Dict[str, torch.Tensor | float]:
     device = actor_out["ue_logits"].device
+    if str(candidate_policy_mode).lower() == "direct":
+        if "candidate_prg_logits" not in actor_out:
+            raise ValueError("direct candidate policy requires candidate_prg_logits")
+        if str(candidate_budgeted_select_mode).lower() != "sample":
+            raise ValueError("direct candidate policy requires candidate_budgeted_select_mode=sample")
+        packed = pack_prg_candidates(
+            graph,
+            max_candidates=max(0, int(actor_out["candidate_prg_logits"].shape[-1]) - 1),
+            fixed_width=True,
+        )
+        direct_cfg = CandidatePolicyConfig(
+            mode="sample",
+            demand_cap_slack_bytes=float(candidate_decode_demand_slack_bytes),
+            hard_cap=bool(int(candidate_budgeted_hard_cap)),
+            usage_penalty=float(candidate_budgeted_usage_penalty),
+            overcap_penalty=float(candidate_budgeted_overcap_penalty),
+            first_service_bonus=float(candidate_budgeted_first_service_bonus),
+        )
+        trace = select_candidate_policy_action(
+            graph,
+            packed,
+            packed.mask,
+            actor_out["candidate_prg_logits"],
+            direct_cfg,
+        )
+        decoded = materialize_candidate_choices_to_type0(graph, packed, trace.choice)
+        blank_ratio = float((trace.choice == packed.blank_class_index).float().mean().item())
+        action_fill_ratio = float(decoded.prg_chosen_mask.float().mean().item())
+        final_blank_ratio = float(1.0 - action_fill_ratio)
+        post_decode_drop_ratio = float(max(0.0, 1.0 - blank_ratio - action_fill_ratio))
+        chosen = decoded.chosen_ue_per_prg[decoded.chosen_ue_per_prg >= 0]
+        action_unique_ue_count = float(torch.unique(chosen).numel()) if chosen.numel() > 0 else 0.0
+        e_up = graph.edges["E_UP"].index
+        candidate_unique_ue_count = float(torch.unique(e_up[0]).numel()) if e_up.numel() > 0 else 0.0
+        demand_active_mask = demand_active_ue_mask_from_features(
+            graph.snapshot.ue_features.values,
+            action_mask_ue=graph.snapshot.static_meta.action_mask_ue,
+        )
+        demand_active_ue_count = float(demand_active_mask.sum().item())
+        zero_budgeted_metrics = {
+            "candidate_budgeted_changed_count": 0.0,
+            "candidate_budgeted_no_headroom_count": 0.0,
+            "candidate_budgeted_active_ue_count": 0.0,
+            "candidate_budgeted_tail_bias_coef": 0.0,
+            "candidate_budgeted_tail_bias_candidate_mean": 0.0,
+            "candidate_budgeted_tail_bias_selected_mean": 0.0,
+            "candidate_budgeted_tail_bias_active_count": 0.0,
+            "candidate_budgeted_rescue_bias_coef": 0.0,
+            "candidate_budgeted_rescue_bias_candidate_mean": 0.0,
+            "candidate_budgeted_rescue_bias_selected_mean": 0.0,
+            "candidate_budgeted_rescue_bias_active_count": 0.0,
+            "candidate_budgeted_completion_bonus": 0.0,
+            "candidate_budgeted_completion_candidate_mean": 0.0,
+            "candidate_budgeted_completion_selected_mean": 0.0,
+            "candidate_budgeted_completion_active_count": 0.0,
+            "candidate_budgeted_tail_quota_enabled": 0.0,
+            "candidate_budgeted_tail_quota_candidate_mean": 0.0,
+            "candidate_budgeted_tail_quota_active_ue_count": 0.0,
+            "candidate_budgeted_tail_quota_selected_count": 0.0,
+            "candidate_budgeted_tail_quota_selected_mean": 0.0,
+            "candidate_budgeted_tail_quota_served_ue_count": 0.0,
+        }
+        return {
+            "ue_action_class": torch.full_like(
+                actor_out["slot_prior_ue_class"],
+                graph.snapshot.static_meta.n_ue,
+            ).detach().cpu().to(torch.long),
+            "prg_action_class": trace.choice.detach().cpu().to(torch.long),
+            "candidate_policy_trace": trace,
+            "candidate_policy_mode": "direct",
+            "action_ue_select": decoded.action_ue_select.cpu().numpy(),
+            "action_prg_alloc": decoded.action_prg_alloc.cpu().numpy(),
+            "chosen_ue_per_prg": decoded.chosen_ue_per_prg.cpu(),
+            "prg_chosen_mask": decoded.prg_chosen_mask,
+            "blank_ratio": blank_ratio,
+            "post_decode_drop_ratio": post_decode_drop_ratio,
+            "final_blank_ratio": final_blank_ratio,
+            "cap_drop_count": float(decoded.cap_drop_count),
+            "fallback_success_count": float(decoded.fallback_success_count),
+            "safe_fill_count": float(decoded.safe_fill_count),
+            "missed_safe_opportunity_count": float(decoded.missed_safe_opportunity_count),
+            "blank_budget_repair_count": 0.0,
+            "final_blank_count": float(decoded.final_blank_count),
+            "post_decode_policy_blank_count": float(
+                (trace.choice == packed.blank_class_index).sum().item()
+            ),
+            "post_decode_no_valid_candidate_count": 0.0,
+            "post_decode_demand_cap_count": 0.0,
+            "post_decode_no_slot_count": float(decoded.slot_capacity_drop_count),
+            "post_decode_other_drop_count": float(decoded.illegal_choice_count),
+            "action_fill_ratio": action_fill_ratio,
+            "action_unique_ue_count": action_unique_ue_count,
+            "candidate_unique_ue_count": candidate_unique_ue_count,
+            "demand_active_ue_count": demand_active_ue_count,
+            "candidate_coverage_ratio": candidate_unique_ue_count / max(demand_active_ue_count, 1.0),
+            "coverage_repair_count": 0.0,
+            "non_hard_override_count": float(decoded.non_hard_override_count),
+            "logp": trace.logp.detach().cpu().to(torch.float32),
+            "entropy": float(trace.entropy.item()),
+            **zero_budgeted_metrics,
+        }
     ue_logits_masked, _ue_valid = _masked_ue_logits(actor_out, graph)
     ue_dist = Categorical(logits=ue_logits_masked)
     ue_class_raw = ue_dist.sample()
@@ -3004,6 +3194,9 @@ def _sample_joint_action(
         "demand_active_ue_count": demand_active_ue_count,
         "candidate_coverage_ratio": candidate_coverage_ratio,
         "coverage_repair_count": coverage_repair_count,
+        "candidate_policy_trace": None,
+        "candidate_policy_mode": "legacy",
+        "non_hard_override_count": 0.0,
         "candidate_budgeted_changed_count": float(budgeted_metrics.get("candidate_budgeted_changed_count", 0.0)) if use_candidate_prg else 0.0,
         "candidate_budgeted_no_headroom_count": float(budgeted_metrics.get("candidate_budgeted_no_headroom_count", 0.0)) if use_candidate_prg else 0.0,
         "candidate_budgeted_active_ue_count": float(budgeted_metrics.get("candidate_budgeted_active_ue_count", 0.0)) if use_candidate_prg else 0.0,
@@ -3418,6 +3611,9 @@ def _collect_rollout(
                 actor,
                 actor_out,
                 graph,
+                candidate_policy_mode=str(
+                    getattr(runner.args, "candidate_policy_mode", "legacy")
+                ),
                 slot_repair_max_per_cell=int(slot_repair_max_per_cell),
                 slot_repair_min_backlog_bytes=float(slot_repair_min_backlog_bytes),
                 safe_fill_max_per_cell=int(getattr(runner.args, "safe_fill_max_per_cell", 0)),
@@ -4376,6 +4572,9 @@ def _collect_rollout(
                 coverage_repair_count=float(sampled["coverage_repair_count"]),
                 candidate_decode_goodput_target=candidate_decode_goodput_target,
                 candidate_decode_goodput_mask=candidate_decode_goodput_mask,
+                candidate_policy_trace=sampled.get("candidate_policy_trace"),
+                candidate_policy_mode=str(sampled.get("candidate_policy_mode", "legacy")),
+                non_hard_override_count=float(sampled.get("non_hard_override_count", 0.0)),
             )
         if is_warmup_step:
             warmup_steps_completed += 1
@@ -4955,6 +5154,12 @@ def _collect_rollout(
         "rollout_coverage_repair_count_mean": (
             float(np.mean([s.coverage_repair_count for s in steps])) if steps else 0.0
         ),
+        "rollout_candidate_policy_direct_ratio": (
+            float(np.mean([s.candidate_policy_mode == "direct" for s in steps])) if steps else 0.0
+        ),
+        "rollout_non_hard_override_count_mean": (
+            float(np.mean([s.non_hard_override_count for s in steps])) if steps else 0.0
+        ),
         "rollout_candidate_decode_goodput_mask_count_mean": (
             float(np.mean(decode_goodput_mask_per_step)) if decode_goodput_mask_per_step else 0.0
         ),
@@ -5136,6 +5341,7 @@ def _ppo_update(
     candidate_rescue_ttl_guard_ms: float = 60.0,
     candidate_rescue_max_target: float = 1.0,
     candidate_pairwise_rank_rescue_weight: float = 0.0,
+    candidate_policy_mode: str = "legacy",
 ) -> Dict[str, float]:
     actor.train(True)
     critic.train(True)
@@ -5192,6 +5398,7 @@ def _ppo_update(
     total_candidate_blank_decision_logit_p10 = 0.0
     total_candidate_blank_decision_logit_p50 = 0.0
     total_candidate_blank_decision_logit_p90 = 0.0
+    total_candidate_head_grad_norm = 0.0
     update_count = 0
     n_steps = len(rollout)
     train_device = next(actor.parameters()).device
@@ -5230,41 +5437,62 @@ def _ppo_update(
                 critic,
                 graphs_mb,
                 state_norm=state_norm,
-                slot_ue_class_for_prg=ue_action_mb,
+                slot_ue_class_for_prg=(
+                    None if str(candidate_policy_mode).lower() == "direct" else ue_action_mb
+                ),
             )
-            new_logp, entropy_vec = _action_logp_entropy_batch(
-                actor_out,
-                graphs_mb,
-                ue_action_mb,
-                prg_action_mb,
-                candidate_decode_demand_slack_bytes=float(candidate_decode_demand_slack_bytes),
-                candidate_budgeted_select_mode=str(candidate_budgeted_select_mode),
-                candidate_budgeted_hard_cap=int(candidate_budgeted_hard_cap),
-                candidate_budgeted_usage_penalty=float(candidate_budgeted_usage_penalty),
-                candidate_budgeted_overcap_penalty=float(candidate_budgeted_overcap_penalty),
-                candidate_budgeted_first_service_bonus=float(candidate_budgeted_first_service_bonus),
-                candidate_budgeted_tail_bias_coef=float(candidate_budgeted_tail_bias_coef),
-                candidate_budgeted_tail_bias_service_target=float(candidate_budgeted_tail_bias_service_target),
-                candidate_budgeted_tail_bias_ttl_guard_ms=float(candidate_budgeted_tail_bias_ttl_guard_ms),
-                candidate_budgeted_tail_bias_max=float(candidate_budgeted_tail_bias_max),
-                candidate_budgeted_rescue_bias_coef=float(candidate_budgeted_rescue_bias_coef),
-                candidate_budgeted_rescue_bias_service_target=float(candidate_budgeted_rescue_bias_service_target),
-                candidate_budgeted_rescue_bias_ttl_guard_ms=float(candidate_budgeted_rescue_bias_ttl_guard_ms),
-                candidate_budgeted_rescue_bias_max=float(candidate_budgeted_rescue_bias_max),
-                candidate_budgeted_completion_bonus=float(candidate_budgeted_completion_bonus),
-                candidate_budgeted_completion_progress_weight=float(candidate_budgeted_completion_progress_weight),
-                candidate_budgeted_completion_max_score=float(candidate_budgeted_completion_max_score),
-                candidate_budgeted_tail_quota_enable=int(candidate_budgeted_tail_quota_enable),
-                candidate_budgeted_tail_quota_min_score=float(candidate_budgeted_tail_quota_min_score),
-                candidate_budgeted_tail_quota_topk_ues=int(candidate_budgeted_tail_quota_topk_ues),
-                candidate_budgeted_tail_quota_prgs_per_ue=int(candidate_budgeted_tail_quota_prgs_per_ue),
-                candidate_budgeted_tail_quota_bonus=float(candidate_budgeted_tail_quota_bonus),
-                candidate_budgeted_tail_quota_order_bonus=float(candidate_budgeted_tail_quota_order_bonus),
-                candidate_budgeted_tail_quota_max_score=float(candidate_budgeted_tail_quota_max_score),
-                candidate_budgeted_tail_quota_risk_max=float(candidate_budgeted_tail_quota_risk_max),
-                candidate_seq_state_coef=float(candidate_seq_state_coef),
-                candidate_seq_fail_risk_feature_offset=int(candidate_seq_fail_risk_feature_offset),
-            )
+            if str(candidate_policy_mode).lower() == "direct":
+                traces = [rollout[sample_idx].candidate_policy_trace for sample_idx in idx]
+                if any(trace is None for trace in traces):
+                    raise ValueError("direct candidate PPO rollout step is missing candidate_policy_trace")
+                direct_cfg = CandidatePolicyConfig(
+                    mode="sample",
+                    demand_cap_slack_bytes=float(candidate_decode_demand_slack_bytes),
+                    hard_cap=bool(int(candidate_budgeted_hard_cap)),
+                    usage_penalty=float(candidate_budgeted_usage_penalty),
+                    overcap_penalty=float(candidate_budgeted_overcap_penalty),
+                    first_service_bonus=float(candidate_budgeted_first_service_bonus),
+                )
+                new_logp, entropy_vec = _direct_candidate_logp_entropy_batch(
+                    actor_out,
+                    graphs_mb,
+                    [trace for trace in traces if trace is not None],
+                    direct_cfg,
+                )
+            else:
+                new_logp, entropy_vec = _action_logp_entropy_batch(
+                    actor_out,
+                    graphs_mb,
+                    ue_action_mb,
+                    prg_action_mb,
+                    candidate_decode_demand_slack_bytes=float(candidate_decode_demand_slack_bytes),
+                    candidate_budgeted_select_mode=str(candidate_budgeted_select_mode),
+                    candidate_budgeted_hard_cap=int(candidate_budgeted_hard_cap),
+                    candidate_budgeted_usage_penalty=float(candidate_budgeted_usage_penalty),
+                    candidate_budgeted_overcap_penalty=float(candidate_budgeted_overcap_penalty),
+                    candidate_budgeted_first_service_bonus=float(candidate_budgeted_first_service_bonus),
+                    candidate_budgeted_tail_bias_coef=float(candidate_budgeted_tail_bias_coef),
+                    candidate_budgeted_tail_bias_service_target=float(candidate_budgeted_tail_bias_service_target),
+                    candidate_budgeted_tail_bias_ttl_guard_ms=float(candidate_budgeted_tail_bias_ttl_guard_ms),
+                    candidate_budgeted_tail_bias_max=float(candidate_budgeted_tail_bias_max),
+                    candidate_budgeted_rescue_bias_coef=float(candidate_budgeted_rescue_bias_coef),
+                    candidate_budgeted_rescue_bias_service_target=float(candidate_budgeted_rescue_bias_service_target),
+                    candidate_budgeted_rescue_bias_ttl_guard_ms=float(candidate_budgeted_rescue_bias_ttl_guard_ms),
+                    candidate_budgeted_rescue_bias_max=float(candidate_budgeted_rescue_bias_max),
+                    candidate_budgeted_completion_bonus=float(candidate_budgeted_completion_bonus),
+                    candidate_budgeted_completion_progress_weight=float(candidate_budgeted_completion_progress_weight),
+                    candidate_budgeted_completion_max_score=float(candidate_budgeted_completion_max_score),
+                    candidate_budgeted_tail_quota_enable=int(candidate_budgeted_tail_quota_enable),
+                    candidate_budgeted_tail_quota_min_score=float(candidate_budgeted_tail_quota_min_score),
+                    candidate_budgeted_tail_quota_topk_ues=int(candidate_budgeted_tail_quota_topk_ues),
+                    candidate_budgeted_tail_quota_prgs_per_ue=int(candidate_budgeted_tail_quota_prgs_per_ue),
+                    candidate_budgeted_tail_quota_bonus=float(candidate_budgeted_tail_quota_bonus),
+                    candidate_budgeted_tail_quota_order_bonus=float(candidate_budgeted_tail_quota_order_bonus),
+                    candidate_budgeted_tail_quota_max_score=float(candidate_budgeted_tail_quota_max_score),
+                    candidate_budgeted_tail_quota_risk_max=float(candidate_budgeted_tail_quota_risk_max),
+                    candidate_seq_state_coef=float(candidate_seq_state_coef),
+                    candidate_seq_fail_risk_feature_offset=int(candidate_seq_fail_risk_feature_offset),
+                )
             entropy = entropy_vec.mean()
 
             ratio = torch.exp(new_logp - old_logp_mb)
@@ -5946,6 +6174,11 @@ def _ppo_update(
 
             actor_optimizer.zero_grad(set_to_none=True)
             actor_loss.backward()
+            candidate_grad_sq = torch.zeros((), dtype=torch.float32, device=train_device)
+            for name, param in actor.named_parameters():
+                if "candidate" in name and param.grad is not None:
+                    candidate_grad_sq = candidate_grad_sq + param.grad.detach().float().square().sum()
+            total_candidate_head_grad_norm += float(candidate_grad_sq.sqrt().item())
             torch.nn.utils.clip_grad_norm_(actor.parameters(), max_norm=max_grad_norm)
             actor_optimizer.step()
 
@@ -6030,6 +6263,10 @@ def _ppo_update(
         "value_loss": total_value_loss / denom,
         "entropy_mean": total_entropy / denom,
         "approx_kl_mean": total_approx_kl / denom,
+        "candidate_head_grad_norm": total_candidate_head_grad_norm / denom,
+        "ue_selector_policy_logp_included": float(
+            str(candidate_policy_mode).lower() != "direct"
+        ),
         "teacher_aux_loss": total_teacher_aux_loss / denom,
         "teacher_aux_coef": float(teacher_aux_coef),
         "candidate_success_aux_loss": total_candidate_success_aux_loss / denom,
@@ -6460,6 +6697,7 @@ def _write_summary(
         "candidate_mode": str(args.candidate_mode),
         "max_prg_candidates": int(args.max_prg_candidates),
         "action_head_mode": str(args.action_head_mode),
+        "candidate_policy_mode": str(args.candidate_policy_mode),
         "candidate_blank_logit_bias": float(args.candidate_blank_logit_bias),
         "candidate_success_logit_scale": float(args.candidate_success_logit_scale),
         "candidate_blank_success_scale": float(args.candidate_blank_success_scale),
@@ -6692,6 +6930,11 @@ def parse_args() -> argparse.Namespace:
         choices=["slot", "candidate"],
         default="slot",
         help="slot keeps legacy PRG->slot logits; candidate scores PRG->candidate UE choices before Type-0 decode",
+    )
+    p.add_argument(
+        "--candidate-policy-mode",
+        choices=["legacy", "direct"],
+        default="legacy",
     )
     p.add_argument(
         "--candidate-blank-logit-bias",
@@ -7489,6 +7732,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    _validate_candidate_policy_mode(args)
     if args.sim_cwd == "":
         args.sim_cwd = None
     if args.rollout_steps < 1:
@@ -8085,6 +8329,7 @@ def main() -> int:
                 candidate_budgeted_tail_quota_risk_max=float(args.candidate_budgeted_tail_quota_risk_max),
                 candidate_seq_state_coef=float(args.candidate_seq_state_coef),
                 candidate_seq_fail_risk_feature_offset=int(args.candidate_seq_fail_risk_feature_offset),
+                candidate_policy_mode=str(args.candidate_policy_mode),
             )
             update_time_s = time.perf_counter() - update_t0
             iter_time_s = time.perf_counter() - iter_t0
