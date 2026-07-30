@@ -283,7 +283,9 @@ def _aggregate_history(
                 evidence["native_reject_count"] = math.nan
                 errors.append(f"invalid native reject diagnostic availability: {exc}")
 
-    availability_field = "rollout_python_preflight_diagnostics_available"
+    availability_field = (
+        "rollout_python_preflight_diagnostics_available_mean"
+    )
     if "python_preflight_reject_count" in evidence:
         if not _all_rows_have(rows, (availability_field,)):
             evidence["python_preflight_reject_count"] = math.nan

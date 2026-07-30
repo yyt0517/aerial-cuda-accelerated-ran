@@ -4927,12 +4927,16 @@ def _collect_rollout(
         "rollout_python_preflight_duplicate_ue_count_mean": (
             float(np.mean([s.python_preflight_duplicate_ue_count for s in steps])) if steps else 0.0
         ),
-        "rollout_python_preflight_diagnostics_available": (
-            1.0
-            if steps
-            and all(
-                s.python_preflight_diagnostics_available == 1.0 for s in steps
+        "rollout_python_preflight_diagnostics_available_mean": (
+            float(
+                np.mean(
+                    [
+                        s.python_preflight_diagnostics_available
+                        for s in steps
+                    ]
+                )
             )
+            if steps
             else 0.0
         ),
         "rollout_native_slot_layout_available_mean": (
@@ -6266,30 +6270,35 @@ def _ppo_update(
             critic_loss = value_coef * value_loss
 
             actor_optimizer.zero_grad(set_to_none=True)
-            candidate_params = [
-                param
-                for name, param in actor.named_parameters()
-                if "candidate" in name and param.requires_grad
-            ]
-            candidate_policy_grad_sq = torch.zeros(
-                (), dtype=torch.float32, device=train_device
+            direct_candidate_policy = (
+                str(candidate_policy_mode).lower() == "direct"
             )
-            if candidate_params:
-                candidate_policy_grads = torch.autograd.grad(
-                    policy_loss,
-                    candidate_params,
-                    retain_graph=True,
-                    allow_unused=True,
+            if direct_candidate_policy:
+                candidate_policy_params = [
+                    param
+                    for name, param in actor.named_parameters()
+                    if name.startswith("action_head.candidate_")
+                    and param.requires_grad
+                ]
+                candidate_policy_grad_sq = torch.zeros(
+                    (), dtype=torch.float32, device=train_device
                 )
-                for grad in candidate_policy_grads:
-                    if grad is not None:
-                        candidate_policy_grad_sq = (
-                            candidate_policy_grad_sq
-                            + grad.detach().float().square().sum()
-                        )
-            total_candidate_policy_grad_norm += float(
-                candidate_policy_grad_sq.sqrt().item()
-            )
+                if candidate_policy_params:
+                    candidate_policy_grads = torch.autograd.grad(
+                        policy_loss,
+                        candidate_policy_params,
+                        retain_graph=True,
+                        allow_unused=True,
+                    )
+                    for grad in candidate_policy_grads:
+                        if grad is not None:
+                            candidate_policy_grad_sq = (
+                                candidate_policy_grad_sq
+                                + grad.detach().float().square().sum()
+                            )
+                total_candidate_policy_grad_norm += float(
+                    candidate_policy_grad_sq.sqrt().item()
+                )
             actor_loss.backward()
             candidate_grad_sq = torch.zeros((), dtype=torch.float32, device=train_device)
             for name, param in actor.named_parameters():
@@ -6380,7 +6389,6 @@ def _ppo_update(
         "value_loss": total_value_loss / denom,
         "entropy_mean": total_entropy / denom,
         "approx_kl_mean": total_approx_kl / denom,
-        "candidate_policy_grad_norm": total_candidate_policy_grad_norm / denom,
         "candidate_head_grad_norm": total_candidate_head_grad_norm / denom,
         "ue_selector_policy_logp_included": float(
             str(candidate_policy_mode).lower() != "direct"
@@ -6472,6 +6480,10 @@ def _ppo_update(
         "stopped_by_target_kl": float(stopped_by_target_kl),
         "epochs_completed": float(completed_epochs),
     }
+    if str(candidate_policy_mode).lower() == "direct":
+        summary["candidate_policy_grad_norm"] = (
+            total_candidate_policy_grad_norm / denom
+        )
     update_elapsed_s = time.perf_counter() - update_t0
     print(
         f"[update iter {iter_idx:04d}] "

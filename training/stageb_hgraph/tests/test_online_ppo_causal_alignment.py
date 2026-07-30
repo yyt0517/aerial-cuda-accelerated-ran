@@ -539,7 +539,9 @@ def test_rollout_replay_metric_compares_exact_arrays_submitted_to_env(monkeypatc
     assert not hasattr(rollout[0], "candidate_packed")
     assert rollout[0].action_replay_mismatch_count == 1.0
     assert summary["rollout_action_replay_mismatch_count_mean"] == 1.0
-    assert summary["rollout_python_preflight_diagnostics_available"] == 1.0
+    assert (
+        summary["rollout_python_preflight_diagnostics_available_mean"] == 1.0
+    )
 
 
 def test_direct_rollout_propagates_python_preflight_failure(monkeypatch):
@@ -551,7 +553,7 @@ def test_direct_rollout_propagates_python_preflight_failure(monkeypatch):
 
     class FakeEnv:
         def step(self, _action_ue_select, _action_prg_alloc):
-            return {}, 0.0, True, {}
+            raise AssertionError("direct preflight failure must precede env.step")
 
     class FakeRunner:
         def __init__(self):
@@ -611,6 +613,101 @@ def test_direct_rollout_propagates_python_preflight_failure(monkeypatch):
             episode_idx=0,
             rollout_log_every_steps=0,
         )
+
+
+def test_legacy_rollout_reports_actual_python_preflight_availability_mean(
+    monkeypatch,
+    capsys,
+):
+    torch.manual_seed(27)
+    graph = make_candidate_graph(n_prg=2)
+    actor = StageBHGraphPolicy(
+        HGraphModelConfig(action_head_mode="candidate", max_prg_candidates=2)
+    )
+    actor_out = actor(graph)
+
+    class FakeEnv:
+        def __init__(self):
+            self.calls = 0
+
+        def step(self, _action_ue_select, _action_prg_alloc):
+            self.calls += 1
+            return {}, 0.0, self.calls == 2, {}
+
+    class FakeRunner:
+        def __init__(self):
+            self.args = SimpleNamespace(
+                action_head_mode="candidate",
+                candidate_policy_mode="legacy",
+                candidate_budgeted_select_mode="sample",
+                candidate_budgeted_hard_cap=1,
+            )
+            self.env = FakeEnv()
+
+        def begin_rollout(self, _episode_idx):
+            return {}, 0.0, {}, 27, 27, False
+
+        def record_transition(self, *_args):
+            pass
+
+    monkeypatch.setattr(
+        online_ppo,
+        "_evaluate_graph",
+        lambda *_args, **_kwargs: (actor_out, torch.tensor(0.0)),
+    )
+    original_preflight = online_ppo.type0_action_preflight_reject_counts
+    preflight_calls = 0
+
+    def second_preflight_fails(*args, **kwargs):
+        nonlocal preflight_calls
+        preflight_calls += 1
+        if preflight_calls == 2:
+            raise ValueError("legacy preflight unavailable")
+        return original_preflight(*args, **kwargs)
+
+    monkeypatch.setattr(
+        online_ppo,
+        "type0_action_preflight_reject_counts",
+        second_preflight_fails,
+    )
+    monkeypatch.setattr(
+        online_ppo,
+        "extract_reward_metrics",
+        lambda _info: {
+            "goodput_mbps": 0.0,
+            "tb_err_rate": 0.0,
+            "expiry_drop_rate": 0.0,
+            "prg_utilization_ratio": 0.0,
+            "prg_reuse_ratio": 0.0,
+        },
+    )
+
+    rollout, summary, _per_ue, _expiry = online_ppo._collect_rollout(
+        runner=FakeRunner(),
+        snapshot_builder=SimpleNamespace(
+            reset=lambda: None,
+            build=lambda _obs: object(),
+        ),
+        edge_generator=SimpleNamespace(build_graph=lambda _snapshot: graph),
+        actor=actor,
+        critic=GraphValueHead(hidden_dim=128),
+        device=torch.device("cpu"),
+        rollout_steps=2,
+        rollout_warmup_steps=0,
+        reward_mode="raw",
+        reward_cfg={},
+        episode_idx=0,
+        rollout_log_every_steps=0,
+    )
+
+    assert [step.python_preflight_diagnostics_available for step in rollout] == [
+        1.0,
+        0.0,
+    ]
+    assert (
+        summary["rollout_python_preflight_diagnostics_available_mean"] == 0.5
+    )
+    assert "WARN preflight reject diagnostic failed" in capsys.readouterr().out
 
 
 def test_action_replay_uses_native_prg_order_and_checks_blank_choices():
@@ -869,8 +966,8 @@ def test_legacy_checkpoint_load_and_default_startup_mode_remain_legacy(
     assert parse_args().candidate_policy_mode == "legacy"
 
 
-def test_direct_ppo_eval_replay_matches_rollout_with_dropout_and_batch_two():
-    torch.manual_seed(29)
+def _direct_ppo_update_inputs(seed=29):
+    torch.manual_seed(seed)
     graphs = [make_candidate_graph(n_prg=2), make_candidate_graph(n_prg=2)]
     actor = StageBHGraphPolicy(
         HGraphModelConfig(
@@ -904,8 +1001,42 @@ def test_direct_ppo_eval_replay_matches_rollout_with_dropout_and_batch_two():
             candidate_policy_mode="direct",
         )
         rollout.append(RolloutStep(**required))
-    critic = GraphValueHead(hidden_dim=128)
+    return actor, GraphValueHead(hidden_dim=128), rollout
 
+
+def _run_test_ppo_update(
+    actor,
+    critic,
+    rollout,
+    *,
+    advantages,
+    entropy_coef,
+    candidate_policy_mode="direct",
+):
+    return _ppo_update(
+        actor=actor,
+        critic=critic,
+        actor_optimizer=torch.optim.Adam(actor.parameters(), lr=0.0),
+        critic_optimizer=torch.optim.Adam(critic.parameters(), lr=0.0),
+        rollout=rollout,
+        advantages=advantages,
+        returns=torch.zeros(2),
+        clip_eps=0.2,
+        value_coef=0.5,
+        entropy_coef=entropy_coef,
+        update_epochs=1,
+        minibatch_size=2,
+        iter_idx=1,
+        update_log_every_minibatches=0,
+        target_kl=0.0,
+        candidate_policy_mode=candidate_policy_mode,
+        candidate_budgeted_select_mode="sample",
+        candidate_decode_demand_slack_bytes=0.0,
+    )
+
+
+def test_direct_ppo_eval_replay_matches_rollout_with_dropout_and_batch_two():
+    actor, critic, rollout = _direct_ppo_update_inputs()
     metrics = _ppo_update(
         actor=actor,
         critic=critic,
@@ -935,3 +1066,45 @@ def test_direct_ppo_eval_replay_matches_rollout_with_dropout_and_batch_two():
     assert metrics["candidate_policy_grad_norm"] > 0.0
     assert abs(metrics["approx_kl_mean"]) < 1.0e-6
     assert actor.training is False
+
+
+def test_candidate_policy_gradient_excludes_entropy_only_gradient():
+    actor, critic, rollout = _direct_ppo_update_inputs(seed=31)
+
+    metrics = _run_test_ppo_update(
+        actor,
+        critic,
+        rollout,
+        advantages=torch.zeros(2),
+        entropy_coef=0.1,
+    )
+
+    assert metrics["candidate_policy_grad_norm"] == 0.0
+    assert metrics["candidate_head_grad_norm"] > 0.0
+
+
+def test_legacy_ppo_omits_candidate_policy_gradient_and_autograd_probe(
+    monkeypatch,
+):
+    actor, critic, rollout = _direct_ppo_update_inputs(seed=37)
+    original_grad = torch.autograd.grad
+    grad_calls = 0
+
+    def record_grad_call(*args, **kwargs):
+        nonlocal grad_calls
+        grad_calls += 1
+        return original_grad(*args, **kwargs)
+
+    monkeypatch.setattr(torch.autograd, "grad", record_grad_call)
+
+    metrics = _run_test_ppo_update(
+        actor,
+        critic,
+        rollout,
+        advantages=torch.ones(2),
+        entropy_coef=0.0,
+        candidate_policy_mode="legacy",
+    )
+
+    assert grad_calls == 0
+    assert "candidate_policy_grad_norm" not in metrics

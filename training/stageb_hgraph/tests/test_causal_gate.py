@@ -114,7 +114,7 @@ def _write_real_history(
             ):
                 row[field] = 0.0
         if include_python_availability:
-            row["rollout_python_preflight_diagnostics_available"] = 1.0
+            row["rollout_python_preflight_diagnostics_available_mean"] = 1.0
         if include_native:
             for field in (
                 "rollout_native_reject_wrong_cell_slot_count_mean",
@@ -353,7 +353,11 @@ def test_cli_rejects_partial_python_preflight_availability(
     _write_real_history(
         history_path,
         row_updates=(
-            {"rollout_python_preflight_diagnostics_available": availability},
+            {
+                "rollout_python_preflight_diagnostics_available_mean": (
+                    availability
+                )
+            },
             {},
         ),
     )
