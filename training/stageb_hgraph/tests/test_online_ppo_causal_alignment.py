@@ -269,6 +269,24 @@ def test_evaluator_rejects_unsupported_checkpoint_candidate_mode(monkeypatch):
         eval_checkpoint_online.main()
 
 
+@pytest.mark.parametrize("checkpoint_candidate_mode", ["topk_diversity", "unsupported"])
+def test_legacy_evaluator_ignores_checkpoint_candidate_mode(
+    monkeypatch,
+    checkpoint_candidate_mode,
+):
+    captured = _run_evaluator_main_boundary(
+        monkeypatch,
+        _direct_evaluation_checkpoint_args(
+            candidate_policy_mode="legacy",
+            candidate_mode=checkpoint_candidate_mode,
+        ),
+    )
+
+    assert eval_checkpoint_online.main() == 0
+    assert captured["edge_generator_config"].candidate_mode == "all_demand_ues"
+    assert captured["candidate_policy_mode"] == "legacy"
+
+
 def test_causal_direct_preset_executes_with_frozen_compatible_arguments(tmp_path):
     repo_root = Path(__file__).resolve().parents[3]
     sandbox_root = tmp_path / "repo"

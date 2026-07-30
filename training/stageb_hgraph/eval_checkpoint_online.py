@@ -513,19 +513,26 @@ def main() -> int:
 
     ckpt_path = Path(args.checkpoint).resolve()
     actor, ckpt = _load_actor_checkpoint(ckpt_path, device)
+    candidate_policy_mode = str(
+        _checkpoint_arg(ckpt, "candidate_policy_mode", "legacy")
+    ).lower()
+    if candidate_policy_mode not in ("legacy", "direct"):
+        raise ValueError("checkpoint candidate_policy_mode must be legacy or direct")
     ue_prg_topk = int(args.ue_prg_topk if args.ue_prg_topk is not None else _checkpoint_arg(ckpt, "ue_prg_topk", 6))
     ue_prg_diversity_extra = int(
         args.ue_prg_diversity_extra
         if args.ue_prg_diversity_extra is not None
         else _checkpoint_arg(ckpt, "ue_prg_diversity_extra", 0)
     )
-    candidate_mode = str(
-        _checkpoint_arg(ckpt, "candidate_mode", "all_demand_ues")
-    ).lower()
-    if candidate_mode not in ("all_demand_ues", "topk_diversity"):
-        raise ValueError(
-            "checkpoint candidate_mode must be all_demand_ues or topk_diversity"
-        )
+    candidate_mode = "all_demand_ues"
+    if candidate_policy_mode == "direct":
+        candidate_mode = str(
+            _checkpoint_arg(ckpt, "candidate_mode", "all_demand_ues")
+        ).lower()
+        if candidate_mode not in ("all_demand_ues", "topk_diversity"):
+            raise ValueError(
+                "checkpoint candidate_mode must be all_demand_ues or topk_diversity"
+            )
     tb_err_ema_alpha = float(
         args.tb_err_ema_alpha if args.tb_err_ema_alpha is not None else _checkpoint_arg(ckpt, "tb_err_ema_alpha", 0.10)
     )
@@ -601,9 +608,6 @@ def main() -> int:
         args.candidate_budgeted_select_mode
         if args.candidate_budgeted_select_mode is not None
         else _checkpoint_arg(ckpt, "candidate_budgeted_select_mode", "off")
-    ).lower()
-    candidate_policy_mode = str(
-        _checkpoint_arg(ckpt, "candidate_policy_mode", "legacy")
     ).lower()
     candidate_budgeted_hard_cap = int(
         args.candidate_budgeted_hard_cap
@@ -688,8 +692,6 @@ def main() -> int:
         raise ValueError("--candidate-headroom-rank-mode must be stable, utility, logit, or phy")
     if candidate_budgeted_select_mode not in ("off", "greedy", "sample"):
         raise ValueError("--candidate-budgeted-select-mode must be off, greedy, or sample")
-    if candidate_policy_mode not in ("legacy", "direct"):
-        raise ValueError("checkpoint candidate_policy_mode must be legacy or direct")
     if candidate_budgeted_hard_cap not in (0, 1):
         raise ValueError("--candidate-budgeted-hard-cap must be 0 or 1")
     if candidate_budgeted_usage_penalty < 0.0:
