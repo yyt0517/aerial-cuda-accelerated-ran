@@ -519,6 +519,9 @@ def main() -> int:
         if args.ue_prg_diversity_extra is not None
         else _checkpoint_arg(ckpt, "ue_prg_diversity_extra", 0)
     )
+    candidate_mode = str(
+        _checkpoint_arg(ckpt, "candidate_mode", "all_demand_ues")
+    ).lower()
     tb_err_ema_alpha = float(
         args.tb_err_ema_alpha if args.tb_err_ema_alpha is not None else _checkpoint_arg(ckpt, "tb_err_ema_alpha", 0.10)
     )
@@ -757,6 +760,7 @@ def main() -> int:
         EdgeGeneratorConfig(
             ue_prg_topk=int(ue_prg_topk),
             ue_prg_diversity_extra=int(ue_prg_diversity_extra),
+            candidate_mode=str(candidate_mode),
             include_pfq_score_anchor=include_pfq_score_anchor,
             include_candidate_risk_features=include_candidate_risk_features,
             candidate_risk_feature_dim=candidate_risk_feature_dim,
@@ -974,6 +978,7 @@ def main() -> int:
         "candidate_policy_mode": str(candidate_policy_mode),
         "ue_prg_topk": int(ue_prg_topk),
         "ue_prg_diversity_extra": int(ue_prg_diversity_extra),
+        "candidate_mode": str(candidate_mode),
         "include_pfq_score_anchor": int(include_pfq_score_anchor),
         "include_candidate_risk_features": int(include_candidate_risk_features),
         "candidate_risk_feature_dim": int(candidate_risk_feature_dim),

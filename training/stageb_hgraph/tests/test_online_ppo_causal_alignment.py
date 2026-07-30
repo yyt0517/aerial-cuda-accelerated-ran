@@ -138,6 +138,7 @@ def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
     graph = object()
     captured = {}
     checkpoint_args = {
+        "candidate_mode": "topk_diversity",
         "candidate_policy_mode": "direct",
         "candidate_budgeted_select_mode": "sample",
         "candidate_budgeted_hard_cap": 1,
@@ -208,7 +209,10 @@ def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
     monkeypatch.setattr(
         eval_checkpoint_online,
         "SparseEdgeGenerator",
-        lambda _cfg: SimpleNamespace(build_graph=lambda _snapshot: graph),
+        lambda cfg: (
+            captured.__setitem__("edge_generator_config", cfg)
+            or SimpleNamespace(build_graph=lambda _snapshot: graph)
+        ),
     )
     monkeypatch.setattr(eval_checkpoint_online, "BridgeEnvClient", lambda _cfg: FakeEnv())
     monkeypatch.setattr(eval_checkpoint_online, "_graph_to_device", lambda value, _device: value)
@@ -216,6 +220,7 @@ def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
     monkeypatch.setattr(eval_checkpoint_online, "extract_reward_metrics", lambda _info: {})
 
     assert eval_checkpoint_online.main() == 0
+    assert captured["edge_generator_config"].candidate_mode == "topk_diversity"
     assert captured["candidate_policy_mode"] == "direct"
     assert captured["candidate_budgeted_select_mode"] == "sample"
     assert captured["candidate_decode_demand_slack_bytes"] == 1234.5
