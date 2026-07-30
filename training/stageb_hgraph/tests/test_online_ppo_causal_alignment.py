@@ -1,9 +1,11 @@
 import argparse
+from collections import defaultdict
 import shutil
 import subprocess
 import sys
 from dataclasses import MISSING, fields
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 import torch
@@ -128,6 +130,106 @@ def test_direct_evaluation_rejects_incompatible_configuration(field, value):
         eval_checkpoint_online._validate_direct_evaluation_config(
             _direct_eval_args(**{field: value})
         )
+
+
+def test_evaluator_uses_direct_checkpoint_policy_config_at_selection_boundary(
+    monkeypatch,
+):
+    graph = object()
+    captured = {}
+    checkpoint_args = {
+        "candidate_policy_mode": "direct",
+        "candidate_budgeted_select_mode": "sample",
+        "candidate_budgeted_hard_cap": 1,
+        "candidate_decode_demand_slack_bytes": 1234.5,
+        "candidate_budgeted_usage_penalty": 0.41,
+        "candidate_budgeted_overcap_penalty": 8.2,
+        "candidate_budgeted_first_service_bonus": 0.03,
+        "candidate_blank_budget_max_per_cell": -1,
+        "slot_repair_max_per_cell": 0,
+        "safe_fill_max_per_cell": 0,
+        "candidate_budgeted_tail_bias_coef": 0.0,
+        "candidate_budgeted_rescue_bias_coef": 0.0,
+        "candidate_budgeted_completion_bonus": 0.0,
+        "candidate_budgeted_tail_quota_enable": 0,
+    }
+
+    class FakeEnv:
+        def reset(self, **_kwargs):
+            return {}, 0.0, {}
+
+        def step(self, *_args):
+            return {}, 0.0, True, {"tti": 0}
+
+        def close(self):
+            pass
+
+    def select(_actor, _graph, **kwargs):
+        captured.update(kwargs)
+        return defaultdict(
+            float,
+            action_ue_select=[0],
+            action_prg_alloc=[0],
+        )
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "eval_checkpoint_online.py",
+            "--checkpoint",
+            "checkpoint.pt",
+            "--socket-path",
+            "unused.sock",
+            "--device",
+            "cpu",
+            "--max-steps",
+            "1",
+            "--save-steps",
+            "0",
+        ],
+    )
+    monkeypatch.setattr(eval_checkpoint_online, "_set_seed", lambda _seed: None)
+    monkeypatch.setattr(
+        eval_checkpoint_online,
+        "_pick_device",
+        lambda _device: torch.device("cpu"),
+    )
+    monkeypatch.setattr(
+        eval_checkpoint_online,
+        "_load_actor_checkpoint",
+        lambda *_args: (SimpleNamespace(cfg=SimpleNamespace(up_edge_attr_dim=6)), {"args": checkpoint_args}),
+    )
+    monkeypatch.setattr(
+        eval_checkpoint_online,
+        "FeatureSnapshotBuilder",
+        lambda _cfg: SimpleNamespace(build=lambda _obs: object()),
+    )
+    monkeypatch.setattr(
+        eval_checkpoint_online,
+        "SparseEdgeGenerator",
+        lambda _cfg: SimpleNamespace(build_graph=lambda _snapshot: graph),
+    )
+    monkeypatch.setattr(eval_checkpoint_online, "BridgeEnvClient", lambda _cfg: FakeEnv())
+    monkeypatch.setattr(eval_checkpoint_online, "_graph_to_device", lambda value, _device: value)
+    monkeypatch.setattr(eval_checkpoint_online, "_select_joint_action", select)
+    monkeypatch.setattr(eval_checkpoint_online, "extract_reward_metrics", lambda _info: {})
+
+    assert eval_checkpoint_online.main() == 0
+    assert captured["candidate_policy_mode"] == "direct"
+    assert captured["candidate_budgeted_select_mode"] == "sample"
+    assert captured["candidate_decode_demand_slack_bytes"] == 1234.5
+    assert captured["candidate_budgeted_hard_cap"] == 1
+    assert captured["candidate_budgeted_usage_penalty"] == 0.41
+    assert captured["candidate_budgeted_overcap_penalty"] == 8.2
+    assert captured["candidate_budgeted_first_service_bonus"] == 0.03
+    assert captured["candidate_blank_budget_max_per_cell"] == -1
+    assert captured["slot_repair_max_per_cell"] == 0
+    assert captured["safe_fill_max_per_cell"] == 0
+    assert captured["candidate_budgeted_tail_bias_coef"] == 0.0
+    assert captured["candidate_budgeted_rescue_bias_coef"] == 0.0
+    assert captured["candidate_budgeted_completion_bonus"] == 0.0
+    assert captured["candidate_budgeted_tail_quota_enable"] == 0
 
 
 def test_causal_direct_preset_executes_with_frozen_compatible_arguments(tmp_path):
