@@ -7,6 +7,7 @@ testVectors/multi-cell/*.yaml
 .idea/
 build*/
 cmake-build-*/
+.worktrees/
 
 # Local Python virtual environments
 .venv/
