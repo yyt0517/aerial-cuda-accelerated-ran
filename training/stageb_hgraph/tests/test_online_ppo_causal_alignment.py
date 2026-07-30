@@ -118,6 +118,7 @@ def _direct_args(**overrides):
     [
         ("action_head_mode", "slot"),
         ("candidate_budgeted_select_mode", "greedy"),
+        ("candidate_budgeted_hard_cap", 0),
         ("candidate_blank_budget_max_per_cell", 0),
         ("slot_repair_max_per_cell", 1),
         ("safe_fill_max_per_cell", 1),
@@ -132,10 +133,8 @@ def test_direct_mode_rejects_incompatible_configuration(field, value):
         _validate_candidate_policy_mode(_direct_args(**{field: value}))
 
 
-def test_direct_mode_requires_hard_cap():
+def test_direct_mode_accepts_hard_cap():
     _validate_candidate_policy_mode(_direct_args(candidate_budgeted_hard_cap=1))
-    with pytest.raises(ValueError, match="candidate_budgeted_hard_cap"):
-        _validate_candidate_policy_mode(_direct_args(candidate_budgeted_hard_cap=0))
 
 
 def test_ppo_direct_batch_replays_each_stored_trace():
