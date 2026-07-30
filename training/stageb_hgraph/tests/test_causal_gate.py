@@ -82,6 +82,7 @@ def _write_real_history(
     include_replay=True,
     include_override=True,
     include_python=True,
+    include_python_availability=True,
     include_native=True,
     override_mean=0.0,
     native_diagnostics_available=1.0,
@@ -98,7 +99,7 @@ def _write_real_history(
             "rollout_steps": rollout_steps,
         }
         if include_grad:
-            row["candidate_head_grad_norm"] = grad
+            row["candidate_policy_grad_norm"] = grad
         if include_entropy:
             row[entropy_field] = entropy
         if include_override:
@@ -112,6 +113,8 @@ def _write_real_history(
                 "rollout_python_preflight_duplicate_ue_count_mean",
             ):
                 row[field] = 0.0
+        if include_python_availability:
+            row["rollout_python_preflight_diagnostics_available"] = 1.0
         if include_native:
             for field in (
                 "rollout_native_reject_wrong_cell_slot_count_mean",
@@ -299,12 +302,76 @@ def test_cli_does_not_use_synthetic_override_ratio_history_field(tmp_path):
     assert "non_hard_override_ratio" in report["missing_evidence"]
 
 
+def test_cli_requires_actual_full_python_preflight_availability(tmp_path):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        include_python_availability=False,
+        row_updates=(
+            {"python_preflight_diagnostics_available": 1.0},
+            {"python_preflight_diagnostics_available": 1.0},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"]["python_preflight_reject_count"] is None
+
+
+@pytest.mark.parametrize("availability", [0.0, 0.5, 2.0])
+def test_cli_rejects_partial_python_preflight_availability(
+    tmp_path, availability
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        row_updates=(
+            {"rollout_python_preflight_diagnostics_available": availability},
+            {},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert report["evidence"]["python_preflight_reject_count"] is None
+
+
 @pytest.mark.parametrize(
     "target,direct_field,actual_flag,direct_value",
     [
         (
             "candidate_policy_grad_norm",
-            "candidate_policy_grad_norm",
+            "candidate_head_grad_norm",
             "include_grad",
             0.2,
         ),
@@ -365,6 +432,39 @@ def test_cli_requires_actual_emitted_history_instead_of_direct_aliases(
     report = json.loads(output_path.read_text(encoding="utf-8"))
     assert report["passed"] is False
     assert target in report["missing_evidence"]
+
+
+def test_cli_auxiliary_candidate_head_gradient_cannot_satisfy_policy_gate(
+    tmp_path,
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        include_grad=False,
+        row_updates=(
+            {"candidate_head_grad_norm": 100.0},
+            {"candidate_head_grad_norm": 100.0},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert "candidate_policy_grad_norm" in report["missing_evidence"]
 
 
 @pytest.mark.parametrize("candidate_policy_mode", ["legacy", None])
@@ -644,7 +744,7 @@ def test_cli_positive_real_reject_or_replay_count_fails_gate(
 @pytest.mark.parametrize(
     "field,target",
     [
-        ("candidate_head_grad_norm", "candidate_policy_grad_norm"),
+        ("candidate_policy_grad_norm", "candidate_policy_grad_norm"),
         ("rollout_entropy_mean", "candidate_policy_entropy"),
     ],
 )

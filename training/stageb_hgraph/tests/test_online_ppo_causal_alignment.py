@@ -539,6 +539,78 @@ def test_rollout_replay_metric_compares_exact_arrays_submitted_to_env(monkeypatc
     assert not hasattr(rollout[0], "candidate_packed")
     assert rollout[0].action_replay_mismatch_count == 1.0
     assert summary["rollout_action_replay_mismatch_count_mean"] == 1.0
+    assert summary["rollout_python_preflight_diagnostics_available"] == 1.0
+
+
+def test_direct_rollout_propagates_python_preflight_failure(monkeypatch):
+    graph = make_candidate_graph(n_prg=2)
+    actor = StageBHGraphPolicy(
+        HGraphModelConfig(action_head_mode="candidate", max_prg_candidates=2)
+    )
+    actor_out = actor(graph)
+
+    class FakeEnv:
+        def step(self, _action_ue_select, _action_prg_alloc):
+            return {}, 0.0, True, {}
+
+    class FakeRunner:
+        def __init__(self):
+            self.args = SimpleNamespace(
+                action_head_mode="candidate",
+                candidate_policy_mode="direct",
+                candidate_budgeted_select_mode="sample",
+                candidate_budgeted_hard_cap=1,
+            )
+            self.env = FakeEnv()
+
+        def begin_rollout(self, _episode_idx):
+            return {}, 0.0, {}, 23, 23, False
+
+        def record_transition(self, *_args):
+            pass
+
+    monkeypatch.setattr(
+        online_ppo,
+        "_evaluate_graph",
+        lambda *_args, **_kwargs: (actor_out, torch.tensor(0.0)),
+    )
+    monkeypatch.setattr(
+        online_ppo,
+        "type0_action_preflight_reject_counts",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(
+            ValueError("preflight unavailable")
+        ),
+    )
+    monkeypatch.setattr(
+        online_ppo,
+        "extract_reward_metrics",
+        lambda _info: {
+            "goodput_mbps": 0.0,
+            "tb_err_rate": 0.0,
+            "expiry_drop_rate": 0.0,
+            "prg_utilization_ratio": 0.0,
+            "prg_reuse_ratio": 0.0,
+        },
+    )
+
+    with pytest.raises(ValueError, match="preflight unavailable"):
+        online_ppo._collect_rollout(
+            runner=FakeRunner(),
+            snapshot_builder=SimpleNamespace(
+                reset=lambda: None,
+                build=lambda _obs: object(),
+            ),
+            edge_generator=SimpleNamespace(build_graph=lambda _snapshot: graph),
+            actor=actor,
+            critic=GraphValueHead(hidden_dim=128),
+            device=torch.device("cpu"),
+            rollout_steps=1,
+            rollout_warmup_steps=0,
+            reward_mode="raw",
+            reward_cfg={},
+            episode_idx=0,
+            rollout_log_every_steps=0,
+        )
 
 
 def test_action_replay_uses_native_prg_order_and_checks_blank_choices():
@@ -612,6 +684,56 @@ def test_action_replay_diagnostic_detects_tampered_type0_action():
 
     assert exact == 0.0
     assert tampered == 1.0
+
+
+def test_action_replay_detects_same_cell_slot_permutation():
+    graph = make_candidate_graph(n_prg=2)
+    packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    choice = torch.tensor([0, 1, 0, 1, 0, 1], dtype=torch.long)
+    decoded = materialize_candidate_choices_to_type0(graph, packed, choice)
+    permuted_ue_select = decoded.action_ue_select.clone()
+    permuted_ue_select[0], permuted_ue_select[1] = (
+        decoded.action_ue_select[1],
+        decoded.action_ue_select[0],
+    )
+    permuted_prg_alloc = decoded.action_prg_alloc.clone()
+    permuted_prg_alloc[decoded.action_prg_alloc == 0] = 1
+    permuted_prg_alloc[decoded.action_prg_alloc == 1] = 0
+
+    for native_prg in (0, 3):
+        expected_slot = int(decoded.action_prg_alloc[native_prg])
+        permuted_slot = int(permuted_prg_alloc[native_prg])
+        assert (
+            int(decoded.action_ue_select[expected_slot])
+            == int(permuted_ue_select[permuted_slot])
+        )
+
+    mismatch = online_ppo._candidate_action_replay_mismatch_count(
+        graph,
+        packed,
+        choice,
+        permuted_ue_select,
+        permuted_prg_alloc,
+    )
+
+    assert mismatch > 0.0
+
+
+def test_action_replay_detects_exact_array_shape_difference():
+    graph = make_candidate_graph(n_prg=2)
+    packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    choice = torch.tensor([0, 1, 0, 1, 0, 1], dtype=torch.long)
+    decoded = materialize_candidate_choices_to_type0(graph, packed, choice)
+
+    mismatch = online_ppo._candidate_action_replay_mismatch_count(
+        graph,
+        packed,
+        choice,
+        decoded.action_ue_select.reshape(2, 3),
+        decoded.action_prg_alloc,
+    )
+
+    assert mismatch > 0.0
 
 
 def test_replay_summary_requires_all_direct_steps_with_real_diagnostics():
@@ -810,5 +932,6 @@ def test_direct_ppo_eval_replay_matches_rollout_with_dropout_and_batch_two():
     assert torch.isfinite(torch.tensor(metrics["policy_loss"]))
     assert torch.isfinite(torch.tensor(metrics["entropy_mean"]))
     assert metrics["candidate_head_grad_norm"] > 0.0
+    assert metrics["candidate_policy_grad_norm"] > 0.0
     assert abs(metrics["approx_kl_mean"]) < 1.0e-6
     assert actor.training is False

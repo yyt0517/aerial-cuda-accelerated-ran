@@ -85,7 +85,6 @@ from training.stageb_hgraph.graph_ops import (
     joint_targets_from_type0_actions,
     materialize_candidate_choices_to_type0,
     pack_prg_candidates,
-    prg_choice_to_ue_ids,
     select_budgeted_candidate_actions,
     select_and_decode_budgeted_candidate_actions,
     type0_action_preflight_reject_counts,
@@ -173,6 +172,7 @@ class RolloutStep:
     python_preflight_prg_mask_count: float
     python_preflight_oob_slot_count: float
     python_preflight_duplicate_ue_count: float
+    python_preflight_diagnostics_available: float
     native_slot_layout_available: float
     native_slot_count_abs_delta_sum: float
     native_cell_start_abs_delta_sum: float
@@ -2672,36 +2672,27 @@ def _candidate_action_replay_mismatch_count(
     action_ue_select: torch.Tensor | np.ndarray,
     action_prg_alloc: torch.Tensor | np.ndarray,
 ) -> float:
-    """Compare candidate choices with the submitted Type-0 action."""
+    """Compare deterministic Type-0 replay with the exact submitted arrays."""
 
     device = packed.ue_ids.device
     choice = torch.as_tensor(choice_idx, dtype=torch.long, device=device)
-    expected_ue = prg_choice_to_ue_ids(choice, packed)
-    ue_select = torch.as_tensor(
-        action_ue_select, dtype=torch.long, device=device
-    ).reshape(-1)
-    prg_alloc = torch.as_tensor(
-        action_prg_alloc, dtype=torch.long, device=device
-    ).reshape(-1)
-
-    meta = graph.snapshot.static_meta
-    expected_alloc_size = int(meta.n_cell * meta.n_prg)
-    if prg_alloc.numel() != expected_alloc_size:
-        raise ValueError(
-            f"action_prg_alloc must have {expected_alloc_size} entries, "
-            f"got {prg_alloc.numel()}"
-        )
-    owner_cell = meta.prg_owner_cell.to(device=device, dtype=torch.long)
-    local_prg = meta.prg_local_index.to(device=device, dtype=torch.long)
-    native_prg = local_prg * int(meta.n_cell) + owner_cell
-    selected_slot = prg_alloc.gather(0, native_prg)
-    actual_ue = torch.full_like(expected_ue, -1)
-    valid_slot = (selected_slot >= 0) & (selected_slot < ue_select.numel())
-    if bool(valid_slot.any().item()):
-        actual_ue[valid_slot] = ue_select.gather(
-            0, selected_slot[valid_slot]
-        )
-    return float((actual_ue != expected_ue).sum().item())
+    expected = materialize_candidate_choices_to_type0(
+        graph,
+        packed,
+        choice,
+    )
+    mismatch_count = 0
+    for submitted, replayed in (
+        (action_ue_select, expected.action_ue_select),
+        (action_prg_alloc, expected.action_prg_alloc),
+    ):
+        actual = torch.as_tensor(submitted, dtype=torch.long, device=device)
+        target = replayed.to(device=device, dtype=torch.long)
+        if actual.shape != target.shape:
+            mismatch_count += 1
+        else:
+            mismatch_count += int((actual != target).sum().item())
+    return float(mismatch_count)
 
 
 def _record_submitted_action_replay_mismatch(
@@ -3792,6 +3783,7 @@ def _collect_rollout(
         python_preflight_counts = {
             key: np.zeros((n_cell,), dtype=np.float64) for key in _PREFLIGHT_REJECT_KEYS
         }
+        python_preflight_diagnostics_available = 0.0
         try:
             preflight_t = type0_action_preflight_reject_counts(
                 graph,
@@ -3802,7 +3794,10 @@ def _collect_rollout(
                 python_preflight_counts[key] = (
                     preflight_t[key].detach().cpu().numpy().astype(np.float64, copy=False).reshape(n_cell)
                 )
+            python_preflight_diagnostics_available = 1.0
         except (TypeError, ValueError, KeyError) as exc:
+            if str(getattr(runner.args, "candidate_policy_mode", "legacy")).lower() == "direct":
+                raise
             print(f"[online-ppo] WARN preflight reject diagnostic failed: {exc}")
         for key in _PREFLIGHT_REJECT_KEYS:
             python_preflight_cell_sum[key] += python_preflight_counts[key]
@@ -4544,6 +4539,9 @@ def _collect_rollout(
                 python_preflight_duplicate_ue_count=float(
                     python_preflight_counts["duplicate_ue"].sum()
                 ),
+                python_preflight_diagnostics_available=float(
+                    python_preflight_diagnostics_available
+                ),
                 native_slot_layout_available=float(native_slot_layout_available),
                 native_slot_count_abs_delta_sum=float(native_slot_count_abs_delta.sum()),
                 native_cell_start_abs_delta_sum=float(native_cell_start_abs_delta.sum()),
@@ -4928,6 +4926,14 @@ def _collect_rollout(
         ),
         "rollout_python_preflight_duplicate_ue_count_mean": (
             float(np.mean([s.python_preflight_duplicate_ue_count for s in steps])) if steps else 0.0
+        ),
+        "rollout_python_preflight_diagnostics_available": (
+            1.0
+            if steps
+            and all(
+                s.python_preflight_diagnostics_available == 1.0 for s in steps
+            )
+            else 0.0
         ),
         "rollout_native_slot_layout_available_mean": (
             float(np.mean([s.native_slot_layout_available for s in steps])) if steps else 0.0
@@ -5484,6 +5490,7 @@ def _ppo_update(
     total_candidate_blank_decision_logit_p10 = 0.0
     total_candidate_blank_decision_logit_p50 = 0.0
     total_candidate_blank_decision_logit_p90 = 0.0
+    total_candidate_policy_grad_norm = 0.0
     total_candidate_head_grad_norm = 0.0
     update_count = 0
     n_steps = len(rollout)
@@ -6259,6 +6266,30 @@ def _ppo_update(
             critic_loss = value_coef * value_loss
 
             actor_optimizer.zero_grad(set_to_none=True)
+            candidate_params = [
+                param
+                for name, param in actor.named_parameters()
+                if "candidate" in name and param.requires_grad
+            ]
+            candidate_policy_grad_sq = torch.zeros(
+                (), dtype=torch.float32, device=train_device
+            )
+            if candidate_params:
+                candidate_policy_grads = torch.autograd.grad(
+                    policy_loss,
+                    candidate_params,
+                    retain_graph=True,
+                    allow_unused=True,
+                )
+                for grad in candidate_policy_grads:
+                    if grad is not None:
+                        candidate_policy_grad_sq = (
+                            candidate_policy_grad_sq
+                            + grad.detach().float().square().sum()
+                        )
+            total_candidate_policy_grad_norm += float(
+                candidate_policy_grad_sq.sqrt().item()
+            )
             actor_loss.backward()
             candidate_grad_sq = torch.zeros((), dtype=torch.float32, device=train_device)
             for name, param in actor.named_parameters():
@@ -6349,6 +6380,7 @@ def _ppo_update(
         "value_loss": total_value_loss / denom,
         "entropy_mean": total_entropy / denom,
         "approx_kl_mean": total_approx_kl / denom,
+        "candidate_policy_grad_norm": total_candidate_policy_grad_norm / denom,
         "candidate_head_grad_norm": total_candidate_head_grad_norm / denom,
         "ue_selector_policy_logp_included": float(
             str(candidate_policy_mode).lower() != "direct"

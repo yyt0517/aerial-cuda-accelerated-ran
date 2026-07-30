@@ -199,14 +199,14 @@ def _aggregate_history(
         weights = []
         errors.append(f"invalid rollout_steps: {exc}")
 
-    if _all_rows_have(rows, ("candidate_head_grad_norm",)):
+    if _all_rows_have(rows, ("candidate_policy_grad_norm",)):
         try:
             evidence["candidate_policy_grad_norm"] = _mean_field(
-                rows, "candidate_head_grad_norm"
+                rows, "candidate_policy_grad_norm"
             )
         except (TypeError, ValueError, OverflowError) as exc:
             evidence["candidate_policy_grad_norm"] = math.nan
-            errors.append(f"invalid candidate_head_grad_norm: {exc}")
+            errors.append(f"invalid candidate_policy_grad_norm: {exc}")
 
     if _all_rows_have(rows, ("rollout_entropy_mean",)):
         if weights:
@@ -282,6 +282,27 @@ def _aggregate_history(
             except (TypeError, ValueError, OverflowError) as exc:
                 evidence["native_reject_count"] = math.nan
                 errors.append(f"invalid native reject diagnostic availability: {exc}")
+
+    availability_field = "rollout_python_preflight_diagnostics_available"
+    if "python_preflight_reject_count" in evidence:
+        if not _all_rows_have(rows, (availability_field,)):
+            evidence["python_preflight_reject_count"] = math.nan
+            errors.append("Python preflight diagnostic availability is missing")
+        else:
+            try:
+                availability = [
+                    _finite_float(row[availability_field]) for row in rows
+                ]
+                if any(value != 1.0 for value in availability):
+                    evidence["python_preflight_reject_count"] = math.nan
+                    errors.append(
+                        "Python preflight diagnostics were unavailable for part of the run"
+                    )
+            except (TypeError, ValueError, OverflowError) as exc:
+                evidence["python_preflight_reject_count"] = math.nan
+                errors.append(
+                    f"invalid Python preflight diagnostic availability: {exc}"
+                )
 
     return evidence, errors
 
