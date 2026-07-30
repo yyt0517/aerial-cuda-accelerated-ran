@@ -79,6 +79,9 @@ class DecodedType0Action:
     post_decode_no_slot_count: int = 0
     post_decode_other_drop_count: int = 0
     missed_safe_opportunity_count: int = 0
+    non_hard_override_count: int = 0
+    illegal_choice_count: int = 0
+    slot_capacity_drop_count: int = 0
 
 
 _TYPE0_PREFLIGHT_KEYS = (
@@ -578,6 +581,101 @@ def prg_choice_to_ue_ids(choice_idx: torch.Tensor, packed: PackedPrgCandidates) 
     selected = packed.ue_ids.to(choice_idx.device).gather(1, probe.unsqueeze(-1)).squeeze(-1)
     out[valid] = selected[valid]
     return out
+
+
+def materialize_candidate_choices_to_type0(
+    graph: SparseEntityGraph,
+    packed: PackedPrgCandidates,
+    choice_idx: torch.Tensor,
+) -> DecodedType0Action:
+    """Materialize exact candidate choices into native Type-0 slots."""
+    meta = graph.snapshot.static_meta
+    device = packed.ue_ids.device
+    choice = torch.as_tensor(choice_idx, dtype=torch.long, device=device).reshape(-1)
+    if choice.shape != (packed.num_prg_tokens,):
+        raise ValueError(
+            f"choice_idx must be [P], got shape={tuple(choice.shape)} for P={packed.num_prg_tokens}"
+        )
+    if packed.num_prg_tokens != graph.snapshot.n_prg_tokens:
+        raise ValueError(
+            "packed PRG token count mismatch: "
+            f"got={packed.num_prg_tokens} expected={graph.snapshot.n_prg_tokens}"
+        )
+
+    action_mask_ue = _default_action_mask_ue(graph, device)
+    action_mask_cell_ue = meta.action_mask_cell_ue.to(device=device, dtype=torch.bool)
+    action_mask_prg_cell = meta.action_mask_prg_cell.to(device=device, dtype=torch.bool)
+    layout = build_type0_slot_layout(
+        action_mask_cell_ue.unsqueeze(0),
+        n_sched_ue=int(meta.n_sched_ue),
+        action_mask_ue=action_mask_ue.unsqueeze(0),
+    )
+    slot_to_cell = layout.slot_to_cell.squeeze(0).to(device=device, dtype=torch.long)
+    slot_valid_mask = layout.slot_valid_mask.squeeze(0).to(device=device, dtype=torch.bool)
+
+    owner_cell = meta.prg_owner_cell.to(device=device, dtype=torch.long)
+    local_prg = meta.prg_local_index.to(device=device, dtype=torch.long)
+    chosen = prg_choice_to_ue_ids(choice, packed)
+    blank = choice == packed.blank_class_index
+    legal = (chosen >= 0) & (chosen < int(meta.n_ue))
+    if bool(legal.any().item()):
+        safe_chosen = chosen.clamp(min=0, max=max(0, int(meta.n_ue) - 1))
+        legal = legal & action_mask_ue.gather(0, safe_chosen)
+        legal = legal & action_mask_cell_ue[owner_cell, safe_chosen]
+        legal = legal & action_mask_prg_cell[owner_cell, local_prg]
+
+    action_ue_select = torch.full(
+        (int(meta.n_sched_ue),), -1, dtype=torch.int32, device=device
+    )
+    action_prg_alloc = torch.full(
+        (int(meta.n_prg) * int(meta.n_cell),), -1, dtype=torch.int16, device=device
+    )
+    chosen_ue_per_prg = torch.full(
+        (packed.num_prg_tokens,), -1, dtype=torch.long, device=device
+    )
+    prg_chosen_mask = torch.zeros(
+        (packed.num_prg_tokens,), dtype=torch.bool, device=device
+    )
+    slot_capacity_drop_count = 0
+
+    for cell_idx in range(int(meta.n_cell)):
+        cell_tokens = torch.nonzero(owner_cell == cell_idx, as_tuple=False).flatten()
+        if cell_tokens.numel() == 0:
+            continue
+        token_order = torch.argsort(local_prg[cell_tokens], stable=True)
+        cell_tokens = cell_tokens[token_order]
+        cell_slots = torch.nonzero(
+            slot_valid_mask & (slot_to_cell == cell_idx), as_tuple=False
+        ).flatten()
+        ue_to_slot: dict[int, int] = {}
+        for token_idx in cell_tokens.tolist():
+            if not bool(legal[token_idx].item()):
+                continue
+            ue_idx = int(chosen[token_idx].item())
+            slot_idx = ue_to_slot.get(ue_idx)
+            if slot_idx is None:
+                next_slot_idx = len(ue_to_slot)
+                if next_slot_idx >= int(cell_slots.numel()):
+                    slot_capacity_drop_count += 1
+                    continue
+                slot_idx = int(cell_slots[next_slot_idx].item())
+                ue_to_slot[ue_idx] = slot_idx
+                action_ue_select[slot_idx] = ue_idx
+            native_idx = int(local_prg[token_idx].item()) * int(meta.n_cell) + cell_idx
+            action_prg_alloc[native_idx] = slot_idx
+            chosen_ue_per_prg[token_idx] = ue_idx
+            prg_chosen_mask[token_idx] = True
+
+    return DecodedType0Action(
+        action_ue_select=action_ue_select,
+        action_prg_alloc=action_prg_alloc,
+        chosen_ue_per_prg=chosen_ue_per_prg,
+        prg_chosen_mask=prg_chosen_mask,
+        final_blank_count=int((~prg_chosen_mask).sum().item()),
+        non_hard_override_count=0,
+        illegal_choice_count=int((~blank & ~legal).sum().item()),
+        slot_capacity_drop_count=int(slot_capacity_drop_count),
+    )
 
 
 def candidate_prg_tail_bias_scores(
