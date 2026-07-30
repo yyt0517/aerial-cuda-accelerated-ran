@@ -1,10 +1,14 @@
 import argparse
+import shutil
+import subprocess
 import sys
 from dataclasses import MISSING, fields
+from pathlib import Path
 
 import pytest
 import torch
 
+from training.stageb_hgraph import eval_checkpoint_online
 from training.stageb_hgraph.candidate_policy import (
     CandidatePolicyConfig,
     select_candidate_policy_action,
@@ -26,6 +30,176 @@ from training.stageb_hgraph.online_ppo import (
     parse_args,
 )
 from training.stageb_hgraph.tests.graph_fixtures import make_candidate_graph
+
+
+def test_direct_evaluation_bypasses_legacy_decode_and_materializes_greedy_choices(
+    monkeypatch,
+):
+    graph = make_candidate_graph(n_prg=2)
+    candidate_logits = torch.tensor(
+        [
+            [9.0, 1.0, -9.0],
+            [8.0, 7.0, -9.0],
+            [9.0, 1.0, -9.0],
+            [8.0, 7.0, -9.0],
+            [9.0, 1.0, -9.0],
+            [8.0, 7.0, -9.0],
+        ]
+    )
+
+    class DirectEvalActor:
+        def forward_graph(self, _graph, **kwargs):
+            assert not kwargs, "direct evaluation invoked the UE-slot-conditioned forward pass"
+            return {"candidate_prg_logits": candidate_logits}
+
+    def fail_legacy(*_args, **_kwargs):
+        pytest.fail("direct evaluation invoked legacy UE selection/coverage/repair")
+
+    for name in (
+        "apply_ue_action_mask",
+        "_repair_ue_action_for_coverage",
+        "build_slot_selection_mask",
+        "apply_prg_action_mask",
+        "build_prg_candidate_valid_mask",
+        "select_and_decode_budgeted_candidate_actions",
+        "apply_candidate_blank_budget",
+        "decode_candidate_actions_to_type0",
+        "decode_joint_actions_to_type0",
+    ):
+        monkeypatch.setattr(eval_checkpoint_online, name, fail_legacy)
+
+    selected = eval_checkpoint_online._select_joint_action(
+        DirectEvalActor(),
+        graph,
+        decode_mode="argmax",
+        candidate_policy_mode="direct",
+        candidate_budgeted_select_mode="sample",
+        candidate_budgeted_hard_cap=1,
+        candidate_budgeted_usage_penalty=0.4,
+        candidate_budgeted_overcap_penalty=8.0,
+        candidate_budgeted_first_service_bonus=0.01,
+        candidate_decode_demand_slack_bytes=0.0,
+    )
+
+    assert selected["prg_action_class"].tolist() == [0, 1, 0, 1, 0, 1]
+    assert selected["action_ue_select"].tolist() == [0, 1, 2, 3, 4, 5]
+    assert selected["action_prg_alloc"].tolist() == [0, 2, 4, 1, 3, 5]
+    assert selected["slot_repair_count"] == 0.0
+    assert selected["coverage_repair_count"] == 0.0
+    assert selected["safe_fill_count"] == 0.0
+    assert selected["blank_budget_repair_count"] == 0.0
+    assert selected["non_hard_override_count"] == 0.0
+    assert selected["candidate_policy_mode_direct"] == 1.0
+
+
+def _direct_eval_args(**overrides):
+    values = {
+        "candidate_policy_mode": "direct",
+        "candidate_budgeted_select_mode": "sample",
+        "candidate_budgeted_hard_cap": 1,
+        "candidate_blank_budget_max_per_cell": -1,
+        "slot_repair_max_per_cell": 0,
+        "safe_fill_max_per_cell": 0,
+        "candidate_budgeted_tail_bias_coef": 0.0,
+        "candidate_budgeted_rescue_bias_coef": 0.0,
+        "candidate_budgeted_completion_bonus": 0.0,
+        "candidate_budgeted_tail_quota_enable": 0,
+    }
+    values.update(overrides)
+    return argparse.Namespace(**values)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    [
+        ("candidate_budgeted_select_mode", "greedy"),
+        ("candidate_budgeted_hard_cap", 0),
+        ("candidate_blank_budget_max_per_cell", 0),
+        ("slot_repair_max_per_cell", 1),
+        ("safe_fill_max_per_cell", 1),
+        ("candidate_budgeted_tail_bias_coef", 0.1),
+        ("candidate_budgeted_rescue_bias_coef", 0.1),
+        ("candidate_budgeted_completion_bonus", 0.1),
+        ("candidate_budgeted_tail_quota_enable", 1),
+    ],
+)
+def test_direct_evaluation_rejects_incompatible_configuration(field, value):
+    with pytest.raises(ValueError, match="direct"):
+        eval_checkpoint_online._validate_direct_evaluation_config(
+            _direct_eval_args(**{field: value})
+        )
+
+
+def test_causal_direct_preset_executes_with_frozen_compatible_arguments(tmp_path):
+    repo_root = Path(__file__).resolve().parents[3]
+    sandbox_root = tmp_path / "repo"
+    script_dir = sandbox_root / "cuMAC" / "scripts"
+    training_dir = sandbox_root / "training" / "stageb_hgraph"
+    venv_bin = sandbox_root / ".venv" / "bin"
+    script_dir.mkdir(parents=True)
+    training_dir.mkdir(parents=True)
+    venv_bin.mkdir(parents=True)
+
+    source_script = repo_root / "cuMAC" / "scripts" / "run_stageB_hgraph_online_ppo.sh"
+    script = script_dir / source_script.name
+    shutil.copy2(source_script, script)
+    (training_dir / "online_ppo.py").write_text("", encoding="utf-8")
+    run_script = script_dir / "run_stageB_main_experiment.sh"
+    run_script.write_text("#!/usr/bin/env bash\nexit 0\n", encoding="utf-8")
+    run_script.chmod(0o755)
+    python_stub = venv_bin / "python"
+    python_stub.write_text(
+        "#!/usr/bin/env bash\nprintf '[fake-python]'\nprintf ' %s' \"$@\"\nprintf '\\n'\n",
+        encoding="utf-8",
+    )
+    python_stub.chmod(0o755)
+
+    build_dir = tmp_path / "build"
+    simulator = (
+        build_dir
+        / "cuMAC"
+        / "examples"
+        / "multiCellSchedulerUeSelection"
+        / "multiCellSchedulerUeSelection"
+    )
+    simulator.parent.mkdir(parents=True)
+    simulator.write_text("#!/usr/bin/env bash\nexit 0\n", encoding="utf-8")
+    simulator.chmod(0o755)
+
+    completed = subprocess.run(
+        [
+            "bash",
+            str(script),
+            "--ppo-preset",
+            "goodput_delay_rate_v20_causal_direct_sample_fast",
+            "--build-dir",
+            str(build_dir),
+            "--out-dir",
+            str(tmp_path / "out"),
+            "--iterations",
+            "0",
+        ],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    assert "candidate_mode=all_demand_ues" in completed.stdout
+    assert "max_prg_candidates=12 action_head_mode=candidate" in completed.stdout
+    assert "candidate_policy_mode=direct" in completed.stdout
+    assert (
+        "candidate_budgeted_select_mode=sample hard_cap=1 usage_penalty=0.4 "
+        "overcap_penalty=8.0 first_service_bonus=0.01"
+    ) in completed.stdout
+    assert "safe_fill_max_per_cell=0" in completed.stdout
+    assert "candidate_blank_budget_max_per_cell=-1" in completed.stdout
+    assert "candidate_tail_bias_coef=0.0" in completed.stdout
+    assert "candidate_rescue_bias_coef=0.0" in completed.stdout
+    assert "candidate_completion_bonus=0.0" in completed.stdout
+    assert "candidate_tail_quota_enable=0" in completed.stdout
+    assert "slot_repair_max_per_cell=0" in completed.stdout
+    assert "--candidate-policy-mode direct" in completed.stdout
 
 
 def test_direct_mode_excludes_ue_selector_logp_and_updates_candidate_head():

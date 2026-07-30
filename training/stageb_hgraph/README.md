@@ -309,7 +309,11 @@ Current PPO boundary:
 
 - actor:
   - reuses `StageBHGraphPolicy`
-  - samples in the `joint` Type-0 action space (`slot -> UE`, then `PRG -> slot`)
+  - in the supported direct path, samples each packed candidate identity from
+    the same cap/penalty-adjusted distribution whose log-probability PPO trains
+  - materializes those sampled identities exactly into the native Type-0 action
+  - the older `slot -> UE`, then `PRG -> slot` policy/decode path remains only
+    for checkpoint and experiment reproducibility
 - critic:
   - uses pooled graph embeddings from the actor encoder
 - reward:
@@ -341,14 +345,20 @@ What PPO is not claiming here:
 
 ## Direct PPO path
 
-At the current code stage, imitation is optional rather than mandatory.
+Direct candidate mode now owns the PPO action contract. Rollout samples the
+adjusted candidate distribution, PPO replays that exact trace, and deterministic
+checkpoint evaluation greedily selects from the same distribution with the same
+demand-cap slack, hard cap, usage penalty, over-cap penalty, and first-service
+bonus. Legacy mode remains available only to reproduce older checkpoints and
+experiments.
 
 The recommended direct-PPO path is:
 
 - keep the current HGraph encoder stack
-- keep the `joint` Type-0 action head:
-  - `slot -> UE`
-  - `PRG -> slot`
+- use the candidate action head and `candidate_policy_mode=direct`
+- disable UE-slot coverage repair, safe fill, blank-budget repair, tail/rescue
+  bias, completion bonus, and tail quota so no post-policy mechanism changes the
+  sampled identities
 - keep `post_eq_topk` candidate generation enabled
 - start from fixed-seed direct PPO first
 - only move to multi-seed after the fixed-seed run is stable
@@ -357,6 +367,7 @@ Recommended fixed-seed smoke / first formal run:
 
 ```bash
 CUDA_VISIBLE_DEVICES=1 ./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
+  --ppo-preset goodput_delay_rate_v20_causal_direct_sample_fast \
   --build-method skip \
   --tti 4000 \
   --topology-scenario 3cell \

@@ -65,6 +65,7 @@ UE_PRG_DIVERSITY_EXTRA=0
 CANDIDATE_MODE="all_demand_ues"
 MAX_PRG_CANDIDATES=0
 ACTION_HEAD_MODE="slot"
+CANDIDATE_POLICY_MODE="legacy"
 INCLUDE_PFQ_SCORE_ANCHOR=1
 INCLUDE_CANDIDATE_RISK_FEATURES=0
 CANDIDATE_BLANK_LOGIT_BIAS=0.0
@@ -343,7 +344,7 @@ Stage-B scenario options:
   --restore-params <0|1>
 
 Online PPO options:
-  --ppo-preset <name>          none | physical_success_blankaware | physical_success_blankaware_v2 | goodput_delay_ue_rate_v1 | goodput_delay_ue_rate_v2_no_teacher | goodput_delay_rate_simple_risk_v1 | goodput_delay_rate_simple_risk_v2_fast | goodput_delay_rate_simple_risk_v3_fast | goodput_delay_rate_simple_risk_v3_tailbias_fast | goodput_delay_rate_simple_risk_v3_repair_fast | goodput_delay_rate_simple_risk_v4_marginal_fast | goodput_delay_rate_simple_risk_v5_relative_margin_fast | goodput_delay_rate_simple_risk_v6_ttl_headroom_fast | goodput_delay_rate_simple_risk_v7_risk_gate_fast | goodput_delay_rate_simple_risk_v7_budgeted_sample_fast | goodput_delay_rate_simple_risk_v7_budgeted_greedy_fast | goodput_delay_rate_simple_risk_v8_seq_budgeted_sample_fast | goodput_delay_rate_simple_risk_v8_seq_budgeted_greedy_fast | goodput_delay_rate_simple_risk_v9_reliability_gate_sample_fast | goodput_delay_rate_simple_risk_v9_reliability_gate_greedy_fast | goodput_delay_rate_simple_risk_v9b_reliability_gate_sample_fast | goodput_delay_rate_simple_risk_v9b_reliability_gate_greedy_fast | goodput_delay_rate_simple_risk_v9c_prg_efficiency_sample_fast | goodput_delay_rate_simple_risk_v9c_prg_efficiency_greedy_fast | goodput_delay_rate_simple_risk_v9d_stable_sample_fast | goodput_delay_rate_simple_risk_v9d_stable_greedy_fast | goodput_delay_rate_simple_risk_v9e_gated_fill_sample_fast | goodput_delay_rate_simple_risk_v9e_gated_fill_greedy_fast | goodput_delay_rate_simple_risk_v10_rate2_sample_fast | goodput_delay_rate_simple_risk_v10_rate2_greedy_fast | goodput_delay_rate_simple_risk_v11_rate_tail_sample_fast | goodput_delay_rate_simple_risk_v11_rate_tail_greedy_fast | goodput_delay_rate_simple_risk_v12_multiseed_rate_sample_fast | goodput_delay_rate_simple_risk_v12_multiseed_rate_greedy_fast | goodput_delay_rate_simple_risk_v12b_steady_rate_sample_fast | goodput_delay_rate_simple_risk_v12b_steady_rate_greedy_fast | goodput_delay_rate_simple_risk_v12c_steady_tail_rescue_sample_fast | goodput_delay_rate_simple_risk_v12c_steady_tail_rescue_greedy_fast | goodput_delay_rate_simple_risk_v13_ue_rate_proxy_sample_fast | goodput_delay_rate_simple_risk_v13_ue_rate_proxy_greedy_fast | goodput_delay_rate_simple_risk_v14_true_packet_rate_sample_fast | goodput_delay_rate_simple_risk_v14_true_packet_rate_greedy_fast | goodput_delay_rate_simple_risk_v14b_true_packet_tail_guard_sample_fast | goodput_delay_rate_simple_risk_v14b_true_packet_tail_guard_greedy_fast | goodput_delay_rate_simple_risk_v15_packet_tail_feature_sample_fast | goodput_delay_rate_simple_risk_v15_packet_tail_feature_greedy_fast | goodput_delay_rate_simple_risk_v16_packet_tail_strict_sample_fast | goodput_delay_rate_simple_risk_v16_packet_tail_strict_greedy_fast | goodput_delay_rate_simple_risk_v17_packet_tail_quota_greedy_fast | goodput_delay_rate_simple_risk_v18_packet_tail_quota_thick_greedy_fast | goodput_delay_rate_simple_risk_v19_packet_tail_quota_coverage_greedy_fast | goodput_tailguard_v3_no_teacher | goodput_tailcredit_v4_no_teacher | goodput_tailcredit_expiry_v5_no_teacher | goodput_tailcredit_expiry_rescue_v6_no_teacher
+  --ppo-preset <name>          none | physical_success_blankaware | physical_success_blankaware_v2 | goodput_delay_ue_rate_v1 | goodput_delay_ue_rate_v2_no_teacher | goodput_delay_rate_simple_risk_v1 | goodput_delay_rate_simple_risk_v2_fast | goodput_delay_rate_simple_risk_v3_fast | goodput_delay_rate_simple_risk_v3_tailbias_fast | goodput_delay_rate_simple_risk_v3_repair_fast | goodput_delay_rate_simple_risk_v4_marginal_fast | goodput_delay_rate_simple_risk_v5_relative_margin_fast | goodput_delay_rate_simple_risk_v6_ttl_headroom_fast | goodput_delay_rate_simple_risk_v7_risk_gate_fast | goodput_delay_rate_simple_risk_v7_budgeted_sample_fast | goodput_delay_rate_simple_risk_v7_budgeted_greedy_fast | goodput_delay_rate_simple_risk_v8_seq_budgeted_sample_fast | goodput_delay_rate_simple_risk_v8_seq_budgeted_greedy_fast | goodput_delay_rate_simple_risk_v9_reliability_gate_sample_fast | goodput_delay_rate_simple_risk_v9_reliability_gate_greedy_fast | goodput_delay_rate_simple_risk_v9b_reliability_gate_sample_fast | goodput_delay_rate_simple_risk_v9b_reliability_gate_greedy_fast | goodput_delay_rate_simple_risk_v9c_prg_efficiency_sample_fast | goodput_delay_rate_simple_risk_v9c_prg_efficiency_greedy_fast | goodput_delay_rate_simple_risk_v9d_stable_sample_fast | goodput_delay_rate_simple_risk_v9d_stable_greedy_fast | goodput_delay_rate_simple_risk_v9e_gated_fill_sample_fast | goodput_delay_rate_simple_risk_v9e_gated_fill_greedy_fast | goodput_delay_rate_simple_risk_v10_rate2_sample_fast | goodput_delay_rate_simple_risk_v10_rate2_greedy_fast | goodput_delay_rate_simple_risk_v11_rate_tail_sample_fast | goodput_delay_rate_simple_risk_v11_rate_tail_greedy_fast | goodput_delay_rate_simple_risk_v12_multiseed_rate_sample_fast | goodput_delay_rate_simple_risk_v12_multiseed_rate_greedy_fast | goodput_delay_rate_simple_risk_v12b_steady_rate_sample_fast | goodput_delay_rate_simple_risk_v12b_steady_rate_greedy_fast | goodput_delay_rate_simple_risk_v12c_steady_tail_rescue_sample_fast | goodput_delay_rate_simple_risk_v12c_steady_tail_rescue_greedy_fast | goodput_delay_rate_simple_risk_v13_ue_rate_proxy_sample_fast | goodput_delay_rate_simple_risk_v13_ue_rate_proxy_greedy_fast | goodput_delay_rate_simple_risk_v14_true_packet_rate_sample_fast | goodput_delay_rate_simple_risk_v14_true_packet_rate_greedy_fast | goodput_delay_rate_simple_risk_v14b_true_packet_tail_guard_sample_fast | goodput_delay_rate_simple_risk_v14b_true_packet_tail_guard_greedy_fast | goodput_delay_rate_simple_risk_v15_packet_tail_feature_sample_fast | goodput_delay_rate_simple_risk_v15_packet_tail_feature_greedy_fast | goodput_delay_rate_simple_risk_v16_packet_tail_strict_sample_fast | goodput_delay_rate_simple_risk_v16_packet_tail_strict_greedy_fast | goodput_delay_rate_simple_risk_v17_packet_tail_quota_greedy_fast | goodput_delay_rate_simple_risk_v18_packet_tail_quota_thick_greedy_fast | goodput_delay_rate_simple_risk_v19_packet_tail_quota_coverage_greedy_fast | goodput_delay_rate_v20_causal_direct_sample_fast | goodput_tailguard_v3_no_teacher | goodput_tailcredit_v4_no_teacher | goodput_tailcredit_expiry_v5_no_teacher | goodput_tailcredit_expiry_rescue_v6_no_teacher
   --out-dir <path>
   --iterations <n>
   --episode-horizon <n>
@@ -361,6 +362,7 @@ Online PPO options:
   --candidate-mode <m>        all_demand_ues | topk_diversity
   --max-prg-candidates <n>
   --action-head-mode <m>      slot | candidate
+  --candidate-policy-mode <m> legacy | direct
   --include-pfq-score-anchor <0|1>
   --include-candidate-risk-features <0|1>
   --candidate-blank-logit-bias <v>
@@ -2042,6 +2044,26 @@ apply_ppo_preset() {
             WRITE_DIAGNOSTICS=0
             KPI_TTI_LOG_INTERVAL=0
             ;;
+        goodput_delay_rate_v20_causal_direct_sample_fast)
+            # Candidate choices are the PPO action: sample the adjusted
+            # distribution during rollout and evaluate it greedily.
+            ACTION_HEAD_MODE="candidate"
+            CANDIDATE_MODE="all_demand_ues"
+            MAX_PRG_CANDIDATES=12
+            CANDIDATE_POLICY_MODE="direct"
+            CANDIDATE_BUDGETED_SELECT_MODE="sample"
+            CANDIDATE_BUDGETED_HARD_CAP=1
+            CANDIDATE_BUDGETED_USAGE_PENALTY=0.4
+            CANDIDATE_BUDGETED_OVERCAP_PENALTY=8.0
+            CANDIDATE_BUDGETED_FIRST_SERVICE_BONUS=0.01
+            SLOT_REPAIR_MAX_PER_CELL=0
+            SAFE_FILL_MAX_PER_CELL=0
+            CANDIDATE_BLANK_BUDGET_MAX_PER_CELL=-1
+            CANDIDATE_BUDGETED_TAIL_BIAS_COEF=0.0
+            CANDIDATE_BUDGETED_RESCUE_BIAS_COEF=0.0
+            CANDIDATE_BUDGETED_COMPLETION_BONUS=0.0
+            CANDIDATE_BUDGETED_TAIL_QUOTA_ENABLE=0
+            ;;
         goodput_tailguard_v3_no_teacher)
             # Simple three-signal reward:
             #   goodput_norm - reliability(BLER+expiry) - max-pooled tail pressure.
@@ -2405,6 +2427,7 @@ while [[ $# -gt 0 ]]; do
         --candidate-mode) CANDIDATE_MODE="$2"; shift 2 ;;
         --max-prg-candidates) MAX_PRG_CANDIDATES="$2"; shift 2 ;;
         --action-head-mode) ACTION_HEAD_MODE="$2"; shift 2 ;;
+        --candidate-policy-mode) CANDIDATE_POLICY_MODE="$2"; shift 2 ;;
         --include-pfq-score-anchor) INCLUDE_PFQ_SCORE_ANCHOR="$2"; shift 2 ;;
         --include-candidate-risk-features) INCLUDE_CANDIDATE_RISK_FEATURES="$2"; shift 2 ;;
         --candidate-blank-logit-bias) CANDIDATE_BLANK_LOGIT_BIAS="$2"; shift 2 ;;
@@ -2870,6 +2893,7 @@ echo "[Stage-B HGraph] best_ue_packet_rate bonus_mbps=${BEST_UE_MACRO_PACKET_RAT
 echo "[Stage-B HGraph] best_multi_seed window_iters=${BEST_MULTI_SEED_WINDOW_ITERS} min_covered_seeds=${BEST_MULTI_SEED_MIN_COVERED_SEEDS}"
 echo "[Stage-B HGraph] imitation_episodes=${IMITATION_EPISODES} teacher_mode=${TEACHER_MODE} teacher_aux_coef=${TEACHER_AUX_COEF} teacher_aux_min_coef=${TEACHER_AUX_MIN_COEF} teacher_aux_decay_iters=${TEACHER_AUX_DECAY_ITERS} teacher_soft_target=${TEACHER_SOFT_TARGET}"
 echo "[Stage-B HGraph] candidate_mode=${CANDIDATE_MODE} ue_prg_topk=${UE_PRG_TOPK} diversity_extra=${UE_PRG_DIVERSITY_EXTRA} max_prg_candidates=${MAX_PRG_CANDIDATES} action_head_mode=${ACTION_HEAD_MODE} include_pfq_score_anchor=${INCLUDE_PFQ_SCORE_ANCHOR} include_candidate_risk_features=${INCLUDE_CANDIDATE_RISK_FEATURES} candidate_blank_logit_bias=${CANDIDATE_BLANK_LOGIT_BIAS}"
+echo "[Stage-B HGraph] candidate_policy_mode=${CANDIDATE_POLICY_MODE}"
 echo "[Stage-B HGraph] candidate_success_logit_scale=${CANDIDATE_SUCCESS_LOGIT_SCALE} candidate_blank_success_scale=${CANDIDATE_BLANK_SUCCESS_SCALE} candidate_pfq_anchor_logit_coef=${CANDIDATE_PFQ_ANCHOR_LOGIT_COEF} candidate_success_aux_coef=${CANDIDATE_SUCCESS_AUX_COEF} candidate_success_calib_coef=${CANDIDATE_SUCCESS_CALIB_COEF}"
 echo "[Stage-B HGraph] candidate_seq_state_dim=${CANDIDATE_SEQ_STATE_DIM} candidate_seq_state_coef=${CANDIDATE_SEQ_STATE_COEF} candidate_seq_fail_risk_feature_offset=${CANDIDATE_SEQ_FAIL_RISK_FEATURE_OFFSET} candidate_seq_train_only=${CANDIDATE_SEQ_TRAIN_ONLY}"
 echo "[Stage-B HGraph] candidate_success_max_calib_coef=${CANDIDATE_SUCCESS_MAX_CALIB_COEF} candidate_success_target_eps=${CANDIDATE_SUCCESS_TARGET_EPS} pairwise_rank_coef=${CANDIDATE_PAIRWISE_RANK_COEF} pairwise_margin=${CANDIDATE_PAIRWISE_RANK_MARGIN} pairwise_min_gap=${CANDIDATE_PAIRWISE_RANK_MIN_GAP}"
@@ -2924,6 +2948,7 @@ CMD=(
     --candidate-mode "${CANDIDATE_MODE}"
     --max-prg-candidates "${MAX_PRG_CANDIDATES}"
     --action-head-mode "${ACTION_HEAD_MODE}"
+    --candidate-policy-mode "${CANDIDATE_POLICY_MODE}"
     --include-pfq-score-anchor "${INCLUDE_PFQ_SCORE_ANCHOR}"
     --include-candidate-risk-features "${INCLUDE_CANDIDATE_RISK_FEATURES}"
     --candidate-blank-logit-bias "${CANDIDATE_BLANK_LOGIT_BIAS}"

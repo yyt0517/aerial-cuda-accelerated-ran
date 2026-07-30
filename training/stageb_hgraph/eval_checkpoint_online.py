@@ -41,6 +41,10 @@ def _configure_torch_threads_from_env() -> None:
 _configure_torch_threads_from_env()
 
 from training.stageb_hgraph.bridge_env import BridgeEnvClient, BridgeEnvConfig
+from training.stageb_hgraph.candidate_policy import (
+    CandidatePolicyConfig,
+    select_candidate_policy_action,
+)
 from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder, SnapshotBuilderConfig
 from training.gnnrl.masks import apply_prg_action_mask, apply_ue_action_mask, build_slot_selection_mask
@@ -49,6 +53,7 @@ from training.stageb_hgraph.graph_ops import (
     build_prg_candidate_valid_mask,
     decode_candidate_actions_to_type0,
     decode_joint_actions_to_type0,
+    materialize_candidate_choices_to_type0,
     pack_prg_candidates,
     select_and_decode_budgeted_candidate_actions,
 )
@@ -89,11 +94,38 @@ def _checkpoint_arg(ckpt: Dict[str, Any], name: str, fallback: Any) -> Any:
     return fallback
 
 
+def _validate_direct_evaluation_config(args: argparse.Namespace) -> None:
+    if str(getattr(args, "candidate_policy_mode", "legacy")).lower() != "direct":
+        return
+    required = (
+        ("candidate_budgeted_select_mode", "sample"),
+        ("candidate_budgeted_hard_cap", 1),
+        ("candidate_blank_budget_max_per_cell", -1),
+        ("slot_repair_max_per_cell", 0),
+        ("safe_fill_max_per_cell", 0),
+        ("candidate_budgeted_tail_bias_coef", 0.0),
+        ("candidate_budgeted_rescue_bias_coef", 0.0),
+        ("candidate_budgeted_completion_bonus", 0.0),
+        ("candidate_budgeted_tail_quota_enable", 0),
+    )
+    incompatible = [
+        f"{name}={getattr(args, name, None)!r} (required {expected!r})"
+        for name, expected in required
+        if getattr(args, name, None) != expected
+    ]
+    if incompatible:
+        raise ValueError(
+            "direct candidate evaluation has incompatible configuration: "
+            + ", ".join(incompatible)
+        )
+
+
 def _select_joint_action(
     actor: StageBHGraphPolicy,
     graph,
     *,
     decode_mode: str,
+    candidate_policy_mode: str = "legacy",
     slot_repair_max_per_cell: int = 0,
     slot_repair_min_backlog_bytes: float = 1.0,
     safe_fill_max_per_cell: int = 0,
@@ -116,11 +148,89 @@ def _select_joint_action(
     candidate_budgeted_tail_bias_service_target: float = 0.75,
     candidate_budgeted_tail_bias_ttl_guard_ms: float = 20.0,
     candidate_budgeted_tail_bias_max: float = 1.5,
+    candidate_budgeted_rescue_bias_coef: float = 0.0,
+    candidate_budgeted_completion_bonus: float = 0.0,
+    candidate_budgeted_tail_quota_enable: int = 0,
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
 ) -> Dict[str, Any]:
+    _validate_direct_evaluation_config(
+        argparse.Namespace(
+            candidate_policy_mode=str(candidate_policy_mode).lower(),
+            candidate_budgeted_select_mode=str(candidate_budgeted_select_mode).lower(),
+            candidate_budgeted_hard_cap=int(candidate_budgeted_hard_cap),
+            candidate_blank_budget_max_per_cell=int(candidate_blank_budget_max_per_cell),
+            slot_repair_max_per_cell=int(slot_repair_max_per_cell),
+            safe_fill_max_per_cell=int(safe_fill_max_per_cell),
+            candidate_budgeted_tail_bias_coef=float(candidate_budgeted_tail_bias_coef),
+            candidate_budgeted_rescue_bias_coef=float(candidate_budgeted_rescue_bias_coef),
+            candidate_budgeted_completion_bonus=float(candidate_budgeted_completion_bonus),
+            candidate_budgeted_tail_quota_enable=int(candidate_budgeted_tail_quota_enable),
+        )
+    )
     with torch.inference_mode():
         actor_out = actor.forward_graph(graph)
+
+    if str(candidate_policy_mode).lower() == "direct":
+        candidate_logits = actor_out.get("candidate_prg_logits")
+        if candidate_logits is None:
+            raise ValueError("direct candidate evaluation requires candidate_prg_logits")
+        packed = pack_prg_candidates(
+            graph,
+            max_candidates=max(0, int(candidate_logits.shape[-1]) - 1),
+            fixed_width=True,
+        )
+        trace = select_candidate_policy_action(
+            graph,
+            packed,
+            packed.mask,
+            candidate_logits,
+            CandidatePolicyConfig(
+                mode="greedy",
+                demand_cap_slack_bytes=float(candidate_decode_demand_slack_bytes),
+                hard_cap=bool(int(candidate_budgeted_hard_cap)),
+                usage_penalty=float(candidate_budgeted_usage_penalty),
+                overcap_penalty=float(candidate_budgeted_overcap_penalty),
+                first_service_bonus=float(candidate_budgeted_first_service_bonus),
+            ),
+        )
+        decoded = materialize_candidate_choices_to_type0(graph, packed, trace.choice)
+        chosen = decoded.chosen_ue_per_prg[decoded.chosen_ue_per_prg >= 0]
+        return {
+            "action_ue_select": decoded.action_ue_select.cpu().numpy(),
+            "action_prg_alloc": decoded.action_prg_alloc.cpu().numpy(),
+            "prg_action_class": trace.choice.detach().cpu().to(torch.long),
+            "candidate_policy_trace": trace,
+            "blank_ratio": float(
+                (trace.choice == packed.blank_class_index).float().mean().item()
+            ),
+            "fill_ratio": float(decoded.prg_chosen_mask.float().mean().item()),
+            "cap_drop_count": float(decoded.cap_drop_count),
+            "fallback_success_count": float(decoded.fallback_success_count),
+            "safe_fill_count": 0.0,
+            "missed_safe_opportunity_count": float(decoded.missed_safe_opportunity_count),
+            "blank_budget_repair_count": 0.0,
+            "final_blank_count": float(decoded.final_blank_count),
+            "post_decode_policy_blank_count": float(
+                (trace.choice == packed.blank_class_index).sum().item()
+            ),
+            "post_decode_no_valid_candidate_count": 0.0,
+            "post_decode_demand_cap_count": 0.0,
+            "post_decode_no_slot_count": float(decoded.slot_capacity_drop_count),
+            "post_decode_other_drop_count": float(decoded.illegal_choice_count),
+            "slot_repair_count": 0.0,
+            "coverage_repair_count": 0.0,
+            "non_hard_override_count": 0.0,
+            "candidate_policy_mode_direct": 1.0,
+            "budgeted_changed_count": 0.0,
+            "budgeted_no_headroom_count": 0.0,
+            "budgeted_active_ue_count": 0.0,
+            "budgeted_tail_bias_coef": 0.0,
+            "budgeted_tail_bias_candidate_mean": 0.0,
+            "budgeted_tail_bias_selected_mean": 0.0,
+            "budgeted_tail_bias_active_count": 0.0,
+            "uniq_ue": float(torch.unique(chosen).numel()) if chosen.numel() > 0 else 0.0,
+        }
 
     device = actor_out["ue_logits"].device
     meta = graph.snapshot.static_meta
@@ -290,7 +400,10 @@ def _select_joint_action(
         "post_decode_demand_cap_count": float(decoded.post_decode_demand_cap_count),
         "post_decode_no_slot_count": float(decoded.post_decode_no_slot_count),
         "post_decode_other_drop_count": float(decoded.post_decode_other_drop_count),
+        "slot_repair_count": float(coverage_repair_count),
         "coverage_repair_count": float(coverage_repair_count),
+        "non_hard_override_count": float(decoded.non_hard_override_count),
+        "candidate_policy_mode_direct": 0.0,
         "budgeted_changed_count": float(budgeted_metrics.get("candidate_budgeted_changed_count", 0.0)),
         "budgeted_no_headroom_count": float(budgeted_metrics.get("candidate_budgeted_no_headroom_count", 0.0)),
         "budgeted_active_ue_count": float(budgeted_metrics.get("candidate_budgeted_active_ue_count", 0.0)),
@@ -373,6 +486,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--candidate-budgeted-tail-bias-service-target", type=float, default=None)
     p.add_argument("--candidate-budgeted-tail-bias-ttl-guard-ms", type=float, default=None)
     p.add_argument("--candidate-budgeted-tail-bias-max", type=float, default=None)
+    p.add_argument("--candidate-budgeted-rescue-bias-coef", type=float, default=None)
+    p.add_argument("--candidate-budgeted-completion-bonus", type=float, default=None)
+    p.add_argument("--candidate-budgeted-tail-quota-enable", type=int, choices=[0, 1], default=None)
     p.add_argument("--candidate-seq-state-coef", type=float, default=None)
     p.add_argument("--candidate-seq-fail-risk-feature-offset", type=int, default=None)
     p.add_argument("--sample-seed", type=int, default=42)
@@ -479,6 +595,9 @@ def main() -> int:
         if args.candidate_budgeted_select_mode is not None
         else _checkpoint_arg(ckpt, "candidate_budgeted_select_mode", "off")
     ).lower()
+    candidate_policy_mode = str(
+        _checkpoint_arg(ckpt, "candidate_policy_mode", "legacy")
+    ).lower()
     candidate_budgeted_hard_cap = int(
         args.candidate_budgeted_hard_cap
         if args.candidate_budgeted_hard_cap is not None
@@ -519,6 +638,21 @@ def main() -> int:
         if args.candidate_budgeted_tail_bias_max is not None
         else _checkpoint_arg(ckpt, "candidate_budgeted_tail_bias_max", 1.5)
     )
+    candidate_budgeted_rescue_bias_coef = float(
+        args.candidate_budgeted_rescue_bias_coef
+        if args.candidate_budgeted_rescue_bias_coef is not None
+        else _checkpoint_arg(ckpt, "candidate_budgeted_rescue_bias_coef", 0.0)
+    )
+    candidate_budgeted_completion_bonus = float(
+        args.candidate_budgeted_completion_bonus
+        if args.candidate_budgeted_completion_bonus is not None
+        else _checkpoint_arg(ckpt, "candidate_budgeted_completion_bonus", 0.0)
+    )
+    candidate_budgeted_tail_quota_enable = int(
+        args.candidate_budgeted_tail_quota_enable
+        if args.candidate_budgeted_tail_quota_enable is not None
+        else _checkpoint_arg(ckpt, "candidate_budgeted_tail_quota_enable", 0)
+    )
     candidate_seq_state_coef = float(
         args.candidate_seq_state_coef
         if args.candidate_seq_state_coef is not None
@@ -547,6 +681,8 @@ def main() -> int:
         raise ValueError("--candidate-headroom-rank-mode must be stable, utility, logit, or phy")
     if candidate_budgeted_select_mode not in ("off", "greedy", "sample"):
         raise ValueError("--candidate-budgeted-select-mode must be off, greedy, or sample")
+    if candidate_policy_mode not in ("legacy", "direct"):
+        raise ValueError("checkpoint candidate_policy_mode must be legacy or direct")
     if candidate_budgeted_hard_cap not in (0, 1):
         raise ValueError("--candidate-budgeted-hard-cap must be 0 or 1")
     if candidate_budgeted_usage_penalty < 0.0:
@@ -561,6 +697,26 @@ def main() -> int:
         raise ValueError("--candidate-budgeted-tail-bias-ttl-guard-ms must be > 0")
     if candidate_budgeted_tail_bias_max < 0.0:
         raise ValueError("--candidate-budgeted-tail-bias-max must be >= 0")
+    if candidate_budgeted_rescue_bias_coef < 0.0:
+        raise ValueError("--candidate-budgeted-rescue-bias-coef must be >= 0")
+    if candidate_budgeted_completion_bonus < 0.0:
+        raise ValueError("--candidate-budgeted-completion-bonus must be >= 0")
+    if candidate_budgeted_tail_quota_enable not in (0, 1):
+        raise ValueError("--candidate-budgeted-tail-quota-enable must be 0 or 1")
+    _validate_direct_evaluation_config(
+        argparse.Namespace(
+            candidate_policy_mode=candidate_policy_mode,
+            candidate_budgeted_select_mode=candidate_budgeted_select_mode,
+            candidate_budgeted_hard_cap=candidate_budgeted_hard_cap,
+            candidate_blank_budget_max_per_cell=candidate_blank_budget_max_per_cell,
+            slot_repair_max_per_cell=slot_repair_max_per_cell,
+            safe_fill_max_per_cell=safe_fill_max_per_cell,
+            candidate_budgeted_tail_bias_coef=candidate_budgeted_tail_bias_coef,
+            candidate_budgeted_rescue_bias_coef=candidate_budgeted_rescue_bias_coef,
+            candidate_budgeted_completion_bonus=candidate_budgeted_completion_bonus,
+            candidate_budgeted_tail_quota_enable=candidate_budgeted_tail_quota_enable,
+        )
+    )
     if int(args.save_steps) not in (0, 1):
         raise ValueError("--save-steps must be 0 or 1")
     if int(args.stats_warmup_steps) < 0:
@@ -643,7 +799,10 @@ def main() -> int:
         "post_decode_no_slot_count": 0.0,
         "post_decode_other_drop_count": 0.0,
         "uniq_ue": 0.0,
+        "slot_repair_count": 0.0,
         "coverage_repair_count": 0.0,
+        "non_hard_override_count": 0.0,
+        "candidate_policy_mode_direct": 0.0,
         "budgeted_changed_count": 0.0,
         "budgeted_no_headroom_count": 0.0,
         "budgeted_active_ue_count": 0.0,
@@ -660,6 +819,7 @@ def main() -> int:
                 actor,
                 graph,
                 decode_mode=str(args.decode_mode),
+                candidate_policy_mode=str(candidate_policy_mode),
                 slot_repair_max_per_cell=int(slot_repair_max_per_cell),
                 slot_repair_min_backlog_bytes=float(slot_repair_min_backlog_bytes),
                 safe_fill_max_per_cell=int(safe_fill_max_per_cell),
@@ -682,6 +842,9 @@ def main() -> int:
                 candidate_budgeted_tail_bias_service_target=float(candidate_budgeted_tail_bias_service_target),
                 candidate_budgeted_tail_bias_ttl_guard_ms=float(candidate_budgeted_tail_bias_ttl_guard_ms),
                 candidate_budgeted_tail_bias_max=float(candidate_budgeted_tail_bias_max),
+                candidate_budgeted_rescue_bias_coef=float(candidate_budgeted_rescue_bias_coef),
+                candidate_budgeted_completion_bonus=float(candidate_budgeted_completion_bonus),
+                candidate_budgeted_tail_quota_enable=int(candidate_budgeted_tail_quota_enable),
                 candidate_seq_state_coef=float(candidate_seq_state_coef),
                 candidate_seq_fail_risk_feature_offset=int(candidate_seq_fail_risk_feature_offset),
             )
@@ -723,7 +886,10 @@ def main() -> int:
                 "post_decode_no_slot_count": float(selected["post_decode_no_slot_count"]),
                 "post_decode_other_drop_count": float(selected["post_decode_other_drop_count"]),
                 "uniq_ue": float(selected["uniq_ue"]),
+                "slot_repair_count": float(selected["slot_repair_count"]),
                 "coverage_repair_count": float(selected["coverage_repair_count"]),
+                "non_hard_override_count": float(selected["non_hard_override_count"]),
+                "candidate_policy_mode_direct": float(selected["candidate_policy_mode_direct"]),
                 "budgeted_changed_count": float(selected["budgeted_changed_count"]),
                 "budgeted_no_headroom_count": float(selected["budgeted_no_headroom_count"]),
                 "budgeted_active_ue_count": float(selected["budgeted_active_ue_count"]),
@@ -805,6 +971,7 @@ def main() -> int:
     summary = {
         "checkpoint": str(ckpt_path),
         "decode_mode": str(args.decode_mode),
+        "candidate_policy_mode": str(candidate_policy_mode),
         "ue_prg_topk": int(ue_prg_topk),
         "ue_prg_diversity_extra": int(ue_prg_diversity_extra),
         "include_pfq_score_anchor": int(include_pfq_score_anchor),
@@ -833,6 +1000,9 @@ def main() -> int:
         "candidate_budgeted_tail_bias_service_target": float(candidate_budgeted_tail_bias_service_target),
         "candidate_budgeted_tail_bias_ttl_guard_ms": float(candidate_budgeted_tail_bias_ttl_guard_ms),
         "candidate_budgeted_tail_bias_max": float(candidate_budgeted_tail_bias_max),
+        "candidate_budgeted_rescue_bias_coef": float(candidate_budgeted_rescue_bias_coef),
+        "candidate_budgeted_completion_bonus": float(candidate_budgeted_completion_bonus),
+        "candidate_budgeted_tail_quota_enable": int(candidate_budgeted_tail_quota_enable),
         "candidate_seq_state_coef": float(candidate_seq_state_coef),
         "candidate_seq_fail_risk_feature_offset": int(candidate_seq_fail_risk_feature_offset),
         "save_steps": int(args.save_steps),
@@ -870,7 +1040,10 @@ def main() -> int:
         "mean_post_decode_no_slot_count": float(sums["post_decode_no_slot_count"] / denom),
         "mean_post_decode_other_drop_count": float(sums["post_decode_other_drop_count"] / denom),
         "mean_uniq_ue": float(sums["uniq_ue"] / denom),
+        "mean_slot_repair_count": float(sums["slot_repair_count"] / denom),
         "mean_coverage_repair_count": float(sums["coverage_repair_count"] / denom),
+        "mean_non_hard_override_count": float(sums["non_hard_override_count"] / denom),
+        "mean_candidate_policy_mode_direct": float(sums["candidate_policy_mode_direct"] / denom),
         "mean_budgeted_changed_count": float(sums["budgeted_changed_count"] / denom),
         "mean_budgeted_no_headroom_count": float(sums["budgeted_no_headroom_count"] / denom),
         "mean_budgeted_active_ue_count": float(sums["budgeted_active_ue_count"] / denom),
@@ -911,7 +1084,10 @@ def main() -> int:
         "stats_mean_post_decode_no_slot_count": _stats_mean("post_decode_no_slot_count"),
         "stats_mean_post_decode_other_drop_count": _stats_mean("post_decode_other_drop_count"),
         "stats_mean_uniq_ue": _stats_mean("uniq_ue"),
+        "stats_mean_slot_repair_count": _stats_mean("slot_repair_count"),
         "stats_mean_coverage_repair_count": _stats_mean("coverage_repair_count"),
+        "stats_mean_non_hard_override_count": _stats_mean("non_hard_override_count"),
+        "stats_mean_candidate_policy_mode_direct": _stats_mean("candidate_policy_mode_direct"),
         "stats_mean_budgeted_changed_count": _stats_mean("budgeted_changed_count"),
         "stats_mean_budgeted_no_headroom_count": _stats_mean("budgeted_no_headroom_count"),
         "stats_mean_budgeted_active_ue_count": _stats_mean("budgeted_active_ue_count"),
