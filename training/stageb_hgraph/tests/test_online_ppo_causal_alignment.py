@@ -7,7 +7,6 @@ import torch
 
 from training.stageb_hgraph.candidate_policy import (
     CandidatePolicyConfig,
-    replay_candidate_policy_trace,
     select_candidate_policy_action,
 )
 from training.stageb_hgraph.graph_ops import (
@@ -20,8 +19,8 @@ from training.stageb_hgraph.online_ppo import (
     RolloutStep,
     _direct_candidate_logp_entropy,
     _direct_candidate_logp_entropy_batch,
+    _load_checkpoint_compatible,
     _ppo_update,
-    _resolve_checkpoint_candidate_policy_mode,
     _sample_joint_action,
     _validate_candidate_policy_mode,
     parse_args,
@@ -101,6 +100,7 @@ def _direct_args(**overrides):
         "candidate_policy_mode": "direct",
         "action_head_mode": "candidate",
         "candidate_budgeted_select_mode": "sample",
+        "candidate_budgeted_hard_cap": 1,
         "candidate_blank_budget_max_per_cell": -1,
         "slot_repair_max_per_cell": 0,
         "safe_fill_max_per_cell": 0,
@@ -130,6 +130,12 @@ def _direct_args(**overrides):
 def test_direct_mode_rejects_incompatible_configuration(field, value):
     with pytest.raises(ValueError, match="direct"):
         _validate_candidate_policy_mode(_direct_args(**{field: value}))
+
+
+def test_direct_mode_requires_hard_cap():
+    _validate_candidate_policy_mode(_direct_args(candidate_budgeted_hard_cap=1))
+    with pytest.raises(ValueError, match="candidate_budgeted_hard_cap"):
+        _validate_candidate_policy_mode(_direct_args(candidate_budgeted_hard_cap=0))
 
 
 def test_ppo_direct_batch_replays_each_stored_trace():
@@ -167,75 +173,92 @@ def test_ppo_direct_batch_replays_each_stored_trace():
         cfg,
     )
 
-    expected = [
-        replay_candidate_policy_trace(
-            graph,
-            pack_prg_candidates(graph, max_candidates=2, fixed_width=True),
-            out["candidate_prg_logits"],
-            trace,
-            cfg,
-        )
-        for graph, out, trace in zip(graphs, outputs, traces)
-    ]
-    assert torch.allclose(logp, torch.stack([item[0] for item in expected]))
-    assert torch.allclose(entropy, torch.stack([item[1] for item in expected]))
+    assert logp.shape == (2,)
+    assert entropy.shape == (2,)
+    assert torch.isfinite(logp).all()
+    assert torch.isfinite(entropy).all()
+    assert torch.allclose(logp, torch.stack([trace.logp for trace in traces]))
+    assert torch.allclose(entropy, torch.stack([trace.entropy for trace in traces]))
 
 
-def test_legacy_checkpoint_and_default_mode_remain_legacy(monkeypatch):
-    assert _resolve_checkpoint_candidate_policy_mode({"args": {"action_head_mode": "candidate"}}) == "legacy"
-    assert (
-        _resolve_checkpoint_candidate_policy_mode(
-            {"args": {"candidate_policy_mode": "direct"}}
-        )
-        == "direct"
+def test_legacy_checkpoint_load_and_default_startup_mode_remain_legacy(
+    monkeypatch,
+    tmp_path,
+):
+    source = StageBHGraphPolicy(
+        HGraphModelConfig(action_head_mode="candidate", max_prg_candidates=2)
     )
+    checkpoint = tmp_path / "legacy.pt"
+    torch.save(
+        {
+            "actor_state": source.state_dict(),
+            "args": {"action_head_mode": "candidate"},
+        },
+        checkpoint,
+    )
+    restored = StageBHGraphPolicy(
+        HGraphModelConfig(action_head_mode="candidate", max_prg_candidates=2)
+    )
+
+    loaded, total = _load_checkpoint_compatible(restored, str(checkpoint))
+
+    assert loaded == total
+    for name, value in source.state_dict().items():
+        assert torch.equal(restored.state_dict()[name], value)
     monkeypatch.setattr(sys, "argv", ["online_ppo.py", "--sim-bin", "unused"])
     assert parse_args().candidate_policy_mode == "legacy"
 
 
-def test_direct_ppo_update_reports_candidate_ownership_metrics():
+def test_direct_ppo_eval_replay_matches_rollout_with_dropout_and_batch_two():
     torch.manual_seed(29)
-    graph = make_candidate_graph(n_prg=2)
+    graphs = [make_candidate_graph(n_prg=2), make_candidate_graph(n_prg=2)]
     actor = StageBHGraphPolicy(
-        HGraphModelConfig(action_head_mode="candidate", max_prg_candidates=2)
+        HGraphModelConfig(
+            action_head_mode="candidate",
+            max_prg_candidates=2,
+            dropout=0.35,
+        )
     )
-    sampled = _sample_joint_action(
-        actor,
-        actor(graph),
-        graph,
-        candidate_policy_mode="direct",
-        candidate_budgeted_select_mode="sample",
-        candidate_decode_demand_slack_bytes=0.0,
-    )
-    required = {
-        field.name: 0.0
-        for field in fields(RolloutStep)
-        if field.default is MISSING and field.default_factory is MISSING
-    }
-    required.update(
-        graph=graph,
-        ue_action_class=sampled["ue_action_class"],
-        prg_action_class=sampled["prg_action_class"],
-        old_logp=sampled["logp"],
-        candidate_policy_trace=sampled["candidate_policy_trace"],
-        candidate_policy_mode="direct",
-    )
-    rollout = [RolloutStep(**required)]
+    actor.eval()
+    rollout = []
+    for graph in graphs:
+        sampled = _sample_joint_action(
+            actor,
+            actor(graph),
+            graph,
+            candidate_policy_mode="direct",
+            candidate_budgeted_select_mode="sample",
+            candidate_decode_demand_slack_bytes=0.0,
+        )
+        required = {
+            field.name: 0.0
+            for field in fields(RolloutStep)
+            if field.default is MISSING and field.default_factory is MISSING
+        }
+        required.update(
+            graph=graph,
+            ue_action_class=sampled["ue_action_class"],
+            prg_action_class=sampled["prg_action_class"],
+            old_logp=sampled["logp"],
+            candidate_policy_trace=sampled["candidate_policy_trace"],
+            candidate_policy_mode="direct",
+        )
+        rollout.append(RolloutStep(**required))
     critic = GraphValueHead(hidden_dim=128)
 
     metrics = _ppo_update(
         actor=actor,
         critic=critic,
-        actor_optimizer=torch.optim.Adam(actor.parameters(), lr=1.0e-3),
-        critic_optimizer=torch.optim.Adam(critic.parameters(), lr=1.0e-3),
+        actor_optimizer=torch.optim.Adam(actor.parameters(), lr=0.0),
+        critic_optimizer=torch.optim.Adam(critic.parameters(), lr=0.0),
         rollout=rollout,
-        advantages=torch.ones(1),
-        returns=torch.zeros(1),
+        advantages=torch.ones(2),
+        returns=torch.zeros(2),
         clip_eps=0.2,
         value_coef=0.5,
         entropy_coef=0.0,
         update_epochs=1,
-        minibatch_size=1,
+        minibatch_size=2,
         iter_idx=1,
         update_log_every_minibatches=0,
         target_kl=0.0,
@@ -244,5 +267,10 @@ def test_direct_ppo_update_reports_candidate_ownership_metrics():
         candidate_decode_demand_slack_bytes=0.0,
     )
 
+    assert metrics["num_updates"] == 1.0
     assert metrics["ue_selector_policy_logp_included"] == 0.0
+    assert torch.isfinite(torch.tensor(metrics["policy_loss"]))
+    assert torch.isfinite(torch.tensor(metrics["entropy_mean"]))
     assert metrics["candidate_head_grad_norm"] > 0.0
+    assert abs(metrics["approx_kl_mean"]) < 1.0e-6
+    assert actor.training is False

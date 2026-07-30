@@ -1170,19 +1170,13 @@ def _resolve_prg_candidate_count(args: argparse.Namespace) -> int:
     return max(1, int(args.ue_prg_topk)) + max(0, int(args.ue_prg_diversity_extra))
 
 
-def _resolve_checkpoint_candidate_policy_mode(checkpoint: Dict[str, object]) -> str:
-    args_payload = checkpoint.get("args", {})
-    if isinstance(args_payload, dict):
-        return str(args_payload.get("candidate_policy_mode", "legacy"))
-    return "legacy"
-
-
 def _validate_candidate_policy_mode(args: argparse.Namespace) -> None:
     if str(getattr(args, "candidate_policy_mode", "legacy")).lower() != "direct":
         return
     required = (
         ("action_head_mode", "candidate"),
         ("candidate_budgeted_select_mode", "sample"),
+        ("candidate_budgeted_hard_cap", 1),
         ("candidate_blank_budget_max_per_cell", -1),
         ("slot_repair_max_per_cell", 0),
         ("safe_fill_max_per_cell", 0),
@@ -5343,7 +5337,10 @@ def _ppo_update(
     candidate_pairwise_rank_rescue_weight: float = 0.0,
     candidate_policy_mode: str = "legacy",
 ) -> Dict[str, float]:
-    actor.train(True)
+    if str(candidate_policy_mode).lower() == "direct":
+        actor.eval()
+    else:
+        actor.train(True)
     critic.train(True)
 
     old_logp = torch.stack([s.old_logp.to(torch.float32) for s in rollout], dim=0)
