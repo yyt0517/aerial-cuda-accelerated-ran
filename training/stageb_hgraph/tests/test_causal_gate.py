@@ -77,7 +77,12 @@ def test_causal_gate_rejects_negative_evidence(field):
 def _write_real_history(
     path,
     *,
+    include_grad=True,
+    include_entropy=True,
     include_replay=True,
+    include_override=True,
+    include_python=True,
+    include_native=True,
     override_mean=0.0,
     native_diagnostics_available=1.0,
     entropy_field="rollout_entropy_mean",
@@ -91,21 +96,32 @@ def _write_real_history(
         row = {
             "iter": iteration,
             "rollout_steps": rollout_steps,
-            "candidate_head_grad_norm": grad,
-            entropy_field: entropy,
-            "rollout_non_hard_override_count_mean": override_mean,
-            "rollout_python_preflight_wrong_cell_slot_count_mean": 0.0,
-            "rollout_python_preflight_empty_slot_count_mean": 0.0,
-            "rollout_python_preflight_prg_mask_count_mean": 0.0,
-            "rollout_python_preflight_oob_slot_count_mean": 0.0,
-            "rollout_python_preflight_duplicate_ue_count_mean": 0.0,
-            "rollout_native_reject_wrong_cell_slot_count_mean": 0.0,
-            "rollout_native_reject_empty_slot_count_mean": 0.0,
-            "rollout_native_reject_prg_mask_count_mean": 0.0,
-            "rollout_native_reject_oob_slot_count_mean": 0.0,
-            "rollout_native_reject_duplicate_ue_count_mean": 0.0,
         }
-        if native_diagnostics_available is not None:
+        if include_grad:
+            row["candidate_head_grad_norm"] = grad
+        if include_entropy:
+            row[entropy_field] = entropy
+        if include_override:
+            row["rollout_non_hard_override_count_mean"] = override_mean
+        if include_python:
+            for field in (
+                "rollout_python_preflight_wrong_cell_slot_count_mean",
+                "rollout_python_preflight_empty_slot_count_mean",
+                "rollout_python_preflight_prg_mask_count_mean",
+                "rollout_python_preflight_oob_slot_count_mean",
+                "rollout_python_preflight_duplicate_ue_count_mean",
+            ):
+                row[field] = 0.0
+        if include_native:
+            for field in (
+                "rollout_native_reject_wrong_cell_slot_count_mean",
+                "rollout_native_reject_empty_slot_count_mean",
+                "rollout_native_reject_prg_mask_count_mean",
+                "rollout_native_reject_oob_slot_count_mean",
+                "rollout_native_reject_duplicate_ue_count_mean",
+            ):
+                row[field] = 0.0
+        if include_native and native_diagnostics_available is not None:
             row["rollout_native_reject_diagnostics_available_mean"] = (
                 native_diagnostics_available
             )
@@ -250,6 +266,105 @@ def test_cli_does_not_use_summary_replay_when_history_omits_real_replay(tmp_path
     report = json.loads(output_path.read_text(encoding="utf-8"))
     assert report["passed"] is False
     assert "action_replay_mismatch_count" in report["missing_evidence"]
+
+
+def test_cli_does_not_use_synthetic_override_ratio_history_field(tmp_path):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        include_override=False,
+        row_updates=(
+            {"non_hard_override_ratio": 0.0},
+            {"non_hard_override_ratio": 0.0},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert "non_hard_override_ratio" in report["missing_evidence"]
+
+
+@pytest.mark.parametrize(
+    "target,direct_field,actual_flag,direct_value",
+    [
+        (
+            "candidate_policy_grad_norm",
+            "candidate_policy_grad_norm",
+            "include_grad",
+            0.2,
+        ),
+        (
+            "candidate_policy_entropy",
+            "candidate_policy_entropy",
+            "include_entropy",
+            0.4,
+        ),
+        (
+            "python_preflight_reject_count",
+            "python_preflight_reject_count",
+            "include_python",
+            0.0,
+        ),
+        (
+            "native_reject_count",
+            "native_reject_count",
+            "include_native",
+            0.0,
+        ),
+        (
+            "action_replay_mismatch_count",
+            "action_replay_mismatch_count",
+            "include_replay",
+            0.0,
+        ),
+    ],
+)
+def test_cli_requires_actual_emitted_history_instead_of_direct_aliases(
+    tmp_path, target, direct_field, actual_flag, direct_value
+):
+    summary_path = tmp_path / "online_ppo_summary.json"
+    history_path = tmp_path / "online_ppo_metrics.csv"
+    output_path = tmp_path / "causal_gate.json"
+    summary_path.write_text(
+        json.dumps(
+            {
+                "iterations": 2,
+                "completed_iterations": 2,
+                "candidate_policy_mode": "direct",
+            }
+        ),
+        encoding="utf-8",
+    )
+    _write_real_history(
+        history_path,
+        **{actual_flag: False},
+        row_updates=(
+            {direct_field: direct_value},
+            {direct_field: direct_value},
+        ),
+    )
+
+    completed = _run_cli(summary_path, history_path, output_path)
+
+    assert completed.returncode != 0
+    report = json.loads(output_path.read_text(encoding="utf-8"))
+    assert report["passed"] is False
+    assert target in report["missing_evidence"]
 
 
 @pytest.mark.parametrize("candidate_policy_mode", ["legacy", None])

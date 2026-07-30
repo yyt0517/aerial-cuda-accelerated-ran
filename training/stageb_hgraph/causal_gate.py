@@ -227,15 +227,7 @@ def _aggregate_history(
             errors.append(f"invalid entropy_mean: {exc}")
 
     if weights:
-        if _all_rows_have(rows, ("non_hard_override_ratio",)):
-            try:
-                evidence["non_hard_override_ratio"] = _weighted_mean_field(
-                    rows, "non_hard_override_ratio", weights
-                )
-            except (TypeError, ValueError, OverflowError) as exc:
-                evidence["non_hard_override_ratio"] = math.nan
-                errors.append(f"invalid non_hard_override_ratio: {exc}")
-        elif _all_rows_have(rows, ("rollout_non_hard_override_count_mean",)):
+        if _all_rows_have(rows, ("rollout_non_hard_override_count_mean",)):
             try:
                 decimal_weights = [_finite_decimal(weight) for weight in weights]
                 override_count = sum(
