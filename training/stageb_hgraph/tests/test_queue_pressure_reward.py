@@ -4,6 +4,9 @@ import pytest
 import torch
 
 from training.stageb_hgraph import reward_utils
+from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
+from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder
+from training.stageb_hgraph.tests.graph_fixtures import make_candidate_observation
 
 
 def test_queue_pressure_increases_with_critical_backlog_and_service_gap():
@@ -95,3 +98,34 @@ def test_queue_pressure_has_finite_gradients():
     assert features.grad is not None
     assert torch.isfinite(features.grad).all()
     assert features.grad[:, 12:16].abs().sum().item() > 0.0
+
+
+def test_online_transition_adds_positive_pressure_credit_when_backlog_falls():
+    from training.stageb_hgraph import online_ppo
+
+    before_obs = make_candidate_observation(n_prg=2, ue_feat_dim=16)
+    before_obs["obs_ue_features"][0, 12:16] = [6000.0, 6000.0, 3000.0, 100.0]
+    after_obs = make_candidate_observation(
+        n_prg=2,
+        ue_feat_dim=16,
+        backlog_bytes=(0.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0),
+    )
+    generator = SparseEdgeGenerator(
+        EdgeGeneratorConfig(candidate_mode="all_demand_ues", ue_prg_topk=2)
+    )
+    before_graph = generator.build_graph(FeatureSnapshotBuilder().build(before_obs))
+    after_graph = generator.build_graph(FeatureSnapshotBuilder().build(after_obs))
+
+    metrics = online_ppo._compute_queue_pressure_transition(
+        before_graph,
+        after_graph,
+        gamma=0.99,
+        weight=0.25,
+        topk=8,
+    )
+    reward_without_pressure = 10.0
+    reward_with_pressure = reward_without_pressure + metrics["queue_pressure_reward"]
+
+    assert metrics["queue_pressure_before"] > metrics["queue_pressure_after"]
+    assert metrics["queue_pressure_reward"] > 0.0
+    assert reward_with_pressure > reward_without_pressure

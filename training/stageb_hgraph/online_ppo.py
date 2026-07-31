@@ -12,7 +12,7 @@ import time
 from collections import deque
 from dataclasses import asdict, dataclass, replace
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Dict, List, Mapping, Sequence
 
 import numpy as np
 import torch
@@ -91,7 +91,13 @@ from training.stageb_hgraph.graph_ops import (
 )
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy
 from training.stageb_hgraph.online_imitation import OnlineEpisodeRunner, _pick_device, _set_seed
+from training.stageb_hgraph.pfq_residual import (
+    initialize_pfq_residual_head,
+    should_initialize_pfq_residual,
+)
 from training.stageb_hgraph.reward_utils import (
+    compute_queue_pressure_potential,
+    compute_queue_pressure_shaping,
     compute_stageb_blankaware_reward,
     compute_stageb_tailcredit_expiry_reward,
     compute_stageb_tailcredit_reward,
@@ -113,6 +119,10 @@ class RolloutStep:
     next_value: float
     reward: float
     reward_raw_env: float
+    queue_pressure_before: float
+    queue_pressure_after: float
+    queue_pressure_delta: float
+    queue_pressure_reward: float
     done: float
     entropy: float
     blank_ratio: float
@@ -1525,6 +1535,42 @@ def _graph_to_device(graph: SparseEntityGraph, device: torch.device) -> SparseEn
         ue_embeddings=graph.ue_embeddings.to(device=device) if graph.ue_embeddings is not None else None,
         prg_embeddings=graph.prg_embeddings.to(device=device) if graph.prg_embeddings is not None else None,
         stats=dict(graph.stats),
+    )
+
+
+def _compute_queue_pressure_transition(
+    before_graph: SparseEntityGraph,
+    after_graph: SparseEntityGraph,
+    *,
+    gamma: float,
+    weight: float,
+    topk: int,
+) -> Dict[str, float]:
+    before_features = before_graph.snapshot.ue_features.values
+    after_features = after_graph.snapshot.ue_features.values
+    before_mask = demand_active_ue_mask_from_features(
+        before_features,
+        action_mask_ue=before_graph.snapshot.static_meta.action_mask_ue,
+    )
+    after_mask = demand_active_ue_mask_from_features(
+        after_features,
+        action_mask_ue=after_graph.snapshot.static_meta.action_mask_ue,
+    )
+    before = compute_queue_pressure_potential(
+        before_features,
+        before_mask,
+        topk=int(topk),
+    )
+    after = compute_queue_pressure_potential(
+        after_features,
+        after_mask,
+        topk=int(topk),
+    )
+    return compute_queue_pressure_shaping(
+        before=float(before.detach().item()),
+        after=float(after.detach().item()),
+        gamma=float(gamma),
+        weight=float(weight),
     )
 
 
@@ -3312,8 +3358,17 @@ def _compute_gae(
     return advantages, returns
 
 
-def _load_checkpoint_compatible(model: nn.Module, ckpt_path: str) -> tuple[int, int]:
-    ckpt = torch.load(ckpt_path, map_location="cpu")
+def _load_checkpoint_compatible(
+    model: nn.Module,
+    ckpt_path: str,
+    *,
+    checkpoint: Mapping[str, object] | None = None,
+) -> tuple[int, int]:
+    ckpt = (
+        checkpoint
+        if checkpoint is not None
+        else torch.load(ckpt_path, map_location="cpu")
+    )
     state = ckpt.get("model_state") or ckpt.get("actor_state") or ckpt
     target_state = model.state_dict()
     compatible = {}
@@ -3912,6 +3967,20 @@ def _collect_rollout(
             sampled["action_prg_alloc"],
         )
         runner.record_transition(next_obs, float(raw_env_reward), next_info)
+        cache_next_transition = not done and (step_idx + 1) < total_env_steps
+        transition_next_graph = None
+        if cache_next_transition:
+            transition_next_graph = _graph_to_device(
+                edge_generator.build_graph(snapshot_builder.build(next_obs)),
+                device,
+            )
+        elif float(reward_cfg.get("queue_pressure_weight", 0.0)) > 0.0:
+            transition_next_graph = _graph_to_device(
+                edge_generator.build_graph(
+                    FeatureSnapshotBuilder(snapshot_builder.cfg).build(next_obs)
+                ),
+                device,
+            )
         reward_metrics = extract_reward_metrics(next_info)
         expiry_reward_rate = expiry_reward_tracker.update(reward_metrics)
         reward_metrics_for_reward = dict(reward_metrics)
@@ -4383,6 +4452,23 @@ def _collect_rollout(
             backlog_debt_coef = 0.0
             active_prg_goodput_efficiency = 0.0
             harmful_packing_penalty = 0.0
+        queue_pressure_terms = {
+            "queue_pressure_before": 0.0,
+            "queue_pressure_after": 0.0,
+            "queue_pressure_delta": 0.0,
+            "queue_pressure_reward": 0.0,
+        }
+        if float(reward_cfg.get("queue_pressure_weight", 0.0)) > 0.0:
+            if transition_next_graph is None:
+                raise RuntimeError("queue pressure requires the post-action observation graph")
+            queue_pressure_terms = _compute_queue_pressure_transition(
+                graph,
+                transition_next_graph,
+                gamma=float(reward_cfg.get("gamma", 0.99)),
+                weight=float(reward_cfg["queue_pressure_weight"]),
+                topk=int(reward_cfg.get("queue_pressure_topk", 8)),
+            )
+            reward_raw += float(queue_pressure_terms["queue_pressure_reward"])
         prg_expected_goodput_proxy_mbps_mean = _prg_feature_raw_mean(graph, 10)
         prg_low_sinr_hol_ttl_weight_mean = _prg_feature_raw_mean(graph, 11)
         if reward_norm is not None:
@@ -4396,8 +4482,10 @@ def _collect_rollout(
         next_graph = None
         next_actor_out = None
         next_value_t = None
-        if not done and (step_idx + 1) < total_env_steps:
-            next_graph = _graph_to_device(edge_generator.build_graph(snapshot_builder.build(next_obs)), device)
+        if cache_next_transition:
+            if transition_next_graph is None:
+                raise RuntimeError("cached transition graph is unavailable")
+            next_graph = transition_next_graph
             next_graph = _append_packet_tail_features(
                 next_graph,
                 per_ue_tracker,
@@ -4420,6 +4508,10 @@ def _collect_rollout(
                 next_value=next_value,
                 reward=reward,
                 reward_raw_env=float(raw_env_reward),
+                queue_pressure_before=float(queue_pressure_terms["queue_pressure_before"]),
+                queue_pressure_after=float(queue_pressure_terms["queue_pressure_after"]),
+                queue_pressure_delta=float(queue_pressure_terms["queue_pressure_delta"]),
+                queue_pressure_reward=float(queue_pressure_terms["queue_pressure_reward"]),
                 done=1.0 if done else 0.0,
                 entropy=float(sampled["entropy"]),
                 blank_ratio=float(sampled["blank_ratio"]),
@@ -4770,6 +4862,18 @@ def _collect_rollout(
         ),
         "rollout_reward_mean": float(np.mean([s.reward for s in steps])) if steps else 0.0,
         "rollout_reward_raw_env_mean": float(np.mean([s.reward_raw_env for s in steps])) if steps else 0.0,
+        "rollout_queue_pressure_before_mean": (
+            float(np.mean([s.queue_pressure_before for s in steps])) if steps else 0.0
+        ),
+        "rollout_queue_pressure_after_mean": (
+            float(np.mean([s.queue_pressure_after for s in steps])) if steps else 0.0
+        ),
+        "rollout_queue_pressure_delta_mean": (
+            float(np.mean([s.queue_pressure_delta for s in steps])) if steps else 0.0
+        ),
+        "rollout_queue_pressure_reward_mean": (
+            float(np.mean([s.queue_pressure_reward for s in steps])) if steps else 0.0
+        ),
         "rollout_blank_ratio_mean": float(np.mean([s.blank_ratio for s in steps])) if steps else 0.0,
         "rollout_post_decode_drop_ratio_mean": float(np.mean([s.post_decode_drop_ratio for s in steps])) if steps else 0.0,
         "rollout_final_blank_ratio_mean": float(np.mean([s.final_blank_ratio for s in steps])) if steps else 0.0,
@@ -6838,6 +6942,10 @@ def _write_summary(
         ),
         "write_diagnostics": int(args.write_diagnostics),
         "candidate_pfq_anchor_logit_coef": float(args.candidate_pfq_anchor_logit_coef),
+        "pfq_residual_init": int(args.pfq_residual_init),
+        "ue_feat_dim": int(args.ue_feat_dim),
+        "queue_pressure_weight": float(args.queue_pressure_weight),
+        "queue_pressure_topk": int(args.queue_pressure_topk),
         "candidate_success_aux_coef": float(args.candidate_success_aux_coef),
         "candidate_success_calib_coef": float(args.candidate_success_calib_coef),
         "candidate_success_max_calib_coef": float(args.candidate_success_max_calib_coef),
@@ -7123,6 +7231,19 @@ def parse_args() -> argparse.Namespace:
         help="additive coefficient for the UE-PRG PFQ anchor feature in candidate-head logits; 0 disables",
     )
     p.add_argument(
+        "--pfq-residual-init",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        help="initialize the candidate scorer as a zero residual around the fixed PFQ anchor",
+    )
+    p.add_argument(
+        "--ue-feat-dim",
+        type=int,
+        default=12,
+        help="UE observation width expected by the HGraph encoder",
+    )
+    p.add_argument(
         "--candidate-success-aux-coef",
         type=float,
         default=0.0,
@@ -7365,6 +7486,8 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--critic-lr", type=float, default=0.0, help="0 means fallback to max(--lr, 3e-4)")
     p.add_argument("--weight-decay", type=float, default=1e-5)
     p.add_argument("--gamma", type=float, default=0.99)
+    p.add_argument("--queue-pressure-weight", type=float, default=0.0)
+    p.add_argument("--queue-pressure-topk", type=int, default=8)
     p.add_argument("--gae-lambda", type=float, default=0.95)
     p.add_argument("--clip-eps", type=float, default=0.2)
     p.add_argument("--value-coef", type=float, default=0.5)
@@ -7860,9 +7983,45 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 
+def _validate_pfq_residual_args(args: argparse.Namespace) -> None:
+    if int(args.ue_feat_dim) <= 0:
+        raise ValueError("--ue-feat-dim must be > 0")
+    if float(args.queue_pressure_weight) < 0.0:
+        raise ValueError("--queue-pressure-weight must be >= 0")
+    if int(args.queue_pressure_topk) < 1:
+        raise ValueError("--queue-pressure-topk must be >= 1")
+    if int(args.pfq_residual_init) != 1:
+        return
+    if str(args.action_head_mode) != "candidate":
+        raise ValueError("--pfq-residual-init requires --action-head-mode candidate")
+    if str(args.candidate_policy_mode) != "direct":
+        raise ValueError("--pfq-residual-init requires --candidate-policy-mode direct")
+    if not math.isclose(
+        float(args.candidate_pfq_anchor_logit_coef),
+        1.0,
+        abs_tol=1.0e-9,
+    ):
+        raise ValueError("--pfq-residual-init requires PFQ anchor coefficient 1.0")
+    if not math.isclose(
+        float(args.candidate_success_logit_scale),
+        0.0,
+        abs_tol=1.0e-9,
+    ):
+        raise ValueError("--pfq-residual-init requires success logit scale 0.0")
+    if not math.isclose(
+        float(args.candidate_blank_success_scale),
+        0.0,
+        abs_tol=1.0e-9,
+    ):
+        raise ValueError("--pfq-residual-init requires blank success scale 0.0")
+    if int(args.ue_feat_dim) != 16:
+        raise ValueError("--pfq-residual-init requires 16 UE features")
+
+
 def main() -> int:
     args = parse_args()
     _validate_candidate_policy_mode(args)
+    _validate_pfq_residual_args(args)
     if args.sim_cwd == "":
         args.sim_cwd = None
     if args.rollout_steps < 1:
@@ -8158,6 +8317,7 @@ def main() -> int:
         up_edge_attr_dim += 1
     actor = StageBHGraphPolicy(
         HGraphModelConfig(
+            ue_feat_dim=int(args.ue_feat_dim),
             hidden_dim=int(args.hidden_dim),
             message_layers=int(args.message_layers),
             dropout=float(args.dropout),
@@ -8178,8 +8338,40 @@ def main() -> int:
 
     loaded_compatible = 0
     loaded_total = 0
+    init_checkpoint_data: Mapping[str, object] | None = None
     if args.init_checkpoint:
-        loaded_compatible, loaded_total = _load_checkpoint_compatible(actor, args.init_checkpoint)
+        loaded_checkpoint = torch.load(args.init_checkpoint, map_location="cpu")
+        if not isinstance(loaded_checkpoint, Mapping):
+            raise ValueError("--init-checkpoint must contain a mapping")
+        init_checkpoint_data = loaded_checkpoint
+        loaded_compatible, loaded_total = _load_checkpoint_compatible(
+            actor,
+            args.init_checkpoint,
+            checkpoint=init_checkpoint_data,
+        )
+    residual_initialization_applied = should_initialize_pfq_residual(
+        init_checkpoint_data,
+        enabled=bool(int(args.pfq_residual_init)),
+    )
+    if residual_initialization_applied:
+        initialize_pfq_residual_head(actor)
+    loaded_initialization = (
+        init_checkpoint_data.get("initialization")
+        if init_checkpoint_data is not None
+        else None
+    )
+    initialization_metadata: Dict[str, object]
+    if int(args.pfq_residual_init) == 1:
+        initialization_metadata = {
+            "mode": "pfq_residual",
+            "pfq_anchor_coef": float(args.candidate_pfq_anchor_logit_coef),
+            "candidate_blank_logit_bias": float(args.candidate_blank_logit_bias),
+            "applied_this_run": bool(residual_initialization_applied),
+        }
+    elif isinstance(loaded_initialization, Mapping):
+        initialization_metadata = dict(loaded_initialization)
+    else:
+        initialization_metadata = {"mode": "legacy"}
     warm_start_metrics = None
     if int(args.imitation_episodes) > 0:
         warm_start_metrics = _run_online_imitation_warm_start(
@@ -8197,6 +8389,7 @@ def main() -> int:
                 "teacher_mode": str(args.teacher_mode),
                 "warm_start_metrics": warm_start_metrics,
                 "source": "online_ppo_imitation_warm_start",
+                "initialization": initialization_metadata,
             },
             imitation_actor_init,
         )
@@ -8225,6 +8418,9 @@ def main() -> int:
     reward_norm = RunningScalarNorm() if int(args.normalize_reward) == 1 else None
 
     reward_cfg = {
+        "gamma": float(args.gamma),
+        "queue_pressure_weight": float(args.queue_pressure_weight),
+        "queue_pressure_topk": int(args.queue_pressure_topk),
         "goodput_weight": float(args.goodput_weight),
         "tb_err_weight": float(args.tb_err_weight),
         "expiry_weight": float(args.expiry_weight),
@@ -8486,6 +8682,7 @@ def main() -> int:
                 "args": vars(args),
                 "metrics": row,
                 "warm_start_metrics": warm_start_metrics,
+                "initialization": initialization_metadata,
             }
             train_checkpoint = {
                 **actor_checkpoint,
