@@ -364,7 +364,7 @@ class JointType0ActionHead(nn.Module):
                 copy_dim = min(attr_dim, int(raw_attr.shape[-1]))
                 if copy_dim > 0:
                     edge_attr[batch_idx, :, :, :copy_dim] = raw_attr[:, :, :copy_dim]
-            pfq_anchor_logits = (
+            candidate_pfq_base_logits = (
                 edge_attr[..., 5] * float(self.candidate_pfq_anchor_logit_coef)
                 if self.has_pfq_score_anchor and attr_dim >= 6
                 else torch.zeros((batch_size, n_prg_tokens, max_candidates), dtype=dtype, device=device)
@@ -372,7 +372,7 @@ class JointType0ActionHead(nn.Module):
             edge_ctx = self.candidate_edge_proj(edge_attr) if self.candidate_edge_proj is not None else torch.zeros_like(gathered_ue)
             prg_expand = prg_token_ctx.unsqueeze(2).expand(-1, -1, max_candidates, -1)
             pair_ctx = torch.cat([prg_expand, gathered_ue, edge_ctx], dim=-1)
-            candidate_service_value = self.candidate_pair_score(pair_ctx).squeeze(-1)
+            candidate_residual_logits = self.candidate_pair_score(pair_ctx).squeeze(-1)
             candidate_success_logits = self.candidate_success_score(pair_ctx).squeeze(-1)
             if self.candidate_seq_state_score is not None:
                 candidate_seq_state_weights = self.candidate_seq_state_score(pair_ctx)
@@ -384,29 +384,29 @@ class JointType0ActionHead(nn.Module):
                 )
             success_scale = float(self.candidate_success_logit_scale)
             if success_scale > 0.0:
-                candidate_logits_main = candidate_service_value + F.logsigmoid(
+                candidate_logits_main = candidate_residual_logits + F.logsigmoid(
                     candidate_success_logits * max(success_scale, 1.0e-3)
                 )
             else:
-                candidate_logits_main = candidate_service_value
-            candidate_logits_main = candidate_logits_main + pfq_anchor_logits
+                candidate_logits_main = candidate_residual_logits
+            candidate_logits_main = candidate_logits_main + candidate_pfq_base_logits
             candidate_logits_main = candidate_logits_main.masked_fill(~candidate_mask, -1.0e9)
-            candidate_service_value = candidate_service_value.masked_fill(~candidate_mask, 0.0)
+            candidate_residual_logits = candidate_residual_logits.masked_fill(~candidate_mask, 0.0)
             candidate_success_logits = candidate_success_logits.masked_fill(~candidate_mask, -1.0e9)
             candidate_seq_state_weights = candidate_seq_state_weights.masked_fill(
                 ~candidate_mask.unsqueeze(-1),
                 0.0,
             )
-            pfq_anchor_logits = pfq_anchor_logits.masked_fill(~candidate_mask, 0.0)
+            candidate_pfq_base_logits = candidate_pfq_base_logits.masked_fill(~candidate_mask, 0.0)
         else:
             candidate_logits_main = torch.empty(
                 (batch_size, n_prg_tokens, 0),
                 dtype=dtype,
                 device=device,
             )
-            candidate_service_value = candidate_logits_main
+            candidate_residual_logits = candidate_logits_main
             candidate_success_logits = candidate_logits_main
-            pfq_anchor_logits = candidate_logits_main
+            candidate_pfq_base_logits = candidate_logits_main
             candidate_seq_state_weights = torch.empty(
                 (batch_size, n_prg_tokens, 0, self.candidate_seq_state_dim),
                 dtype=dtype,
@@ -434,8 +434,10 @@ class JointType0ActionHead(nn.Module):
         return {
             "candidate_prg_logits": candidate_logits,
             "candidate_success_logits": candidate_success_logits,
-            "candidate_service_value_logits": candidate_service_value,
-            "candidate_pfq_anchor_logits": pfq_anchor_logits,
+            "candidate_residual_logits": candidate_residual_logits,
+            "candidate_pfq_base_logits": candidate_pfq_base_logits,
+            "candidate_service_value_logits": candidate_residual_logits,
+            "candidate_pfq_anchor_logits": candidate_pfq_base_logits,
             "candidate_seq_state_weights": candidate_seq_state_weights,
             "candidate_blank_success_logprob": blank_gate,
             "candidate_blank_success_margin": blank_gate,
@@ -623,6 +625,8 @@ class JointType0ActionHead(nn.Module):
         if "candidate_prg_logits" in out:
             out_single["candidate_prg_logits"] = out["candidate_prg_logits"].squeeze(0)
             out_single["candidate_success_logits"] = out["candidate_success_logits"].squeeze(0)
+            out_single["candidate_residual_logits"] = out["candidate_residual_logits"].squeeze(0)
+            out_single["candidate_pfq_base_logits"] = out["candidate_pfq_base_logits"].squeeze(0)
             out_single["candidate_service_value_logits"] = out["candidate_service_value_logits"].squeeze(0)
             out_single["candidate_pfq_anchor_logits"] = out["candidate_pfq_anchor_logits"].squeeze(0)
             out_single["candidate_seq_state_weights"] = out["candidate_seq_state_weights"].squeeze(0)
