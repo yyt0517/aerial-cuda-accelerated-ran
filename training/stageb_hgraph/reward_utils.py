@@ -31,6 +31,64 @@ REWARD_TERM_IDX_PACKET_EFFECTIVE_SERVICE_RATE_MBPS = 15
 REWARD_TERM_IDX_PACKET_EFFECTIVE_SERVICE_RATE_PER_PACKET_MEAN_MBPS = 16
 
 
+def compute_queue_pressure_potential(
+    ue_features: torch.Tensor,
+    demand_mask: torch.Tensor | None = None,
+    topk: int = 8,
+) -> torch.Tensor:
+    if ue_features.dim() != 2 or int(ue_features.shape[1]) < 16:
+        raise ValueError(
+            "queue pressure requires UE features [U,>=16], "
+            f"got {tuple(ue_features.shape)}"
+        )
+    if int(topk) <= 0:
+        raise ValueError(f"topk must be positive, got {topk}")
+    if demand_mask is None:
+        active = ue_features[:, _UE_BUFFER_IDX] > 0.0
+    else:
+        active = torch.as_tensor(
+            demand_mask,
+            dtype=torch.bool,
+            device=ue_features.device,
+        )
+        if active.shape != (ue_features.shape[0],):
+            raise ValueError(
+                "demand_mask shape mismatch: "
+                f"got={tuple(active.shape)} expected={(ue_features.shape[0],)}"
+            )
+
+    critical = torch.log1p(torch.clamp_min(ue_features[:, 12], 0.0) / 3000.0)
+    near = torch.log1p(torch.clamp_min(ue_features[:, 13], 0.0) / 3000.0)
+    aged = torch.log1p(torch.clamp_min(ue_features[:, 14], 0.0) / 3000.0)
+    gap = torch.clamp(
+        torch.clamp_min(ue_features[:, 15], 0.0) / 100.0,
+        max=4.0,
+    )
+    per_ue = 2.0 * critical + near + 0.5 * aged + 0.5 * gap
+    selected = per_ue[active]
+    if selected.numel() == 0:
+        return per_ue.sum() * 0.0
+    return selected.topk(min(int(topk), int(selected.numel()))).values.mean()
+
+
+def compute_queue_pressure_shaping(
+    *,
+    before: float,
+    after: float,
+    gamma: float,
+    weight: float,
+) -> Dict[str, float]:
+    delta = float(before) - float(gamma) * float(after)
+    reward = float(weight) * delta
+    return {
+        "queue_pressure_before": float(before),
+        "queue_pressure_after": float(after),
+        "queue_pressure_delta": delta,
+        "queue_pressure_weight": float(weight),
+        "queue_pressure_reward": reward,
+    }
+
+
 def extract_reward_metrics(info: Mapping) -> Dict[str, float]:
     reward_terms = info.get("reward_terms", (0.0,) * 17)
     try:
