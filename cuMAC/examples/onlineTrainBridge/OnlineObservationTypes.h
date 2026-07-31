@@ -13,7 +13,7 @@ namespace cumac::online {
 struct ObservationFeatureLayout {
     static constexpr uint32_t kCellFeatDim = 5U;
     static constexpr uint32_t kUeBaseFeatDim = 8U;
-    static constexpr uint32_t kUeExtraFeatDim = 4U;
+    static constexpr uint32_t kUeExtraFeatDim = 8U;
     static constexpr uint32_t kUeFeatDim = kUeBaseFeatDim + kUeExtraFeatDim;
     static constexpr uint32_t kEdgeFeatDim = 2U;
     // PRG features:

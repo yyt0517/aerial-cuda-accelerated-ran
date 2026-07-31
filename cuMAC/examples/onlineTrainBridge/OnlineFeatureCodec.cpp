@@ -252,10 +252,10 @@ void OnlineFeatureCodec::buildObservation(const cumacCellGrpUeStatus* cellGrpUeS
         ueFeatures[base + 7] = staleSlots;
         if (extras != nullptr && extras->hasUeExtra(m_nActiveUe)) {
             const size_t extraBase = static_cast<size_t>(ueIdx) * ObservationFeatureLayout::kUeExtraFeatDim;
-            ueFeatures[base + 8] = extras->ueExtraFeatures[extraBase + 0U];
-            ueFeatures[base + 9] = extras->ueExtraFeatures[extraBase + 1U];
-            ueFeatures[base + 10] = extras->ueExtraFeatures[extraBase + 2U];
-            ueFeatures[base + 11] = extras->ueExtraFeatures[extraBase + 3U];
+            for (uint32_t extraIdx = 0; extraIdx < ObservationFeatureLayout::kUeExtraFeatDim; ++extraIdx) {
+                ueFeatures[base + ObservationFeatureLayout::kUeBaseFeatDim + extraIdx] =
+                    extras->ueExtraFeatures[extraBase + extraIdx];
+            }
         }
 
         if (cellId >= 0 && static_cast<uint32_t>(cellId) < m_nCell) {

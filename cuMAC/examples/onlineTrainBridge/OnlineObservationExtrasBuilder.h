@@ -32,6 +32,8 @@ public:
         }
         m_recentSchedRatio.assign(m_nActiveUe, 0.0f);
         m_recentGoodputMbps.assign(m_nActiveUe, 0.0f);
+        m_lastServedTti.assign(m_nActiveUe, -1);
+        m_currentSnapshotTti = 0;
         m_prevPrgAssigned.assign(static_cast<size_t>(m_nCell) * m_nPrg, 0U);
         m_snapshot.ueExtraFeatures.assign(
             static_cast<size_t>(m_nActiveUe) * ObservationFeatureLayout::kUeExtraFeatDim, 0.0f);
@@ -88,6 +90,7 @@ public:
         if (trafSvc != nullptr) {
             trafSvc->GetPacketHeadStats(packetHead);
         }
+        m_currentSnapshotTti = trafSvc != nullptr ? std::max(0, trafSvc->GetCurrentTti()) : 0;
 
         std::vector<float> cellRecentGoodputMean(m_nCell, 0.0f);
         std::vector<uint32_t> cellRecentGoodputCount(m_nCell, 0U);
@@ -108,7 +111,9 @@ public:
             const size_t base = static_cast<size_t>(ueIdx) * ObservationFeatureLayout::kUeExtraFeatDim;
             float holDelayMs = 0.0f;
             float ttlSlackMs = -1.0f;
+            float pendingBytes = 0.0f;
             if (ueIdx < packetHead.size()) {
+                pendingBytes = static_cast<float>(packetHead[ueIdx].pending_bytes);
                 if (packetHead[ueIdx].hol_age_tti > 0) {
                     holDelayMs = static_cast<float>(packetHead[ueIdx].hol_age_tti) * m_slotDurationMs;
                 }
@@ -128,6 +133,18 @@ public:
             m_snapshot.ueExtraFeatures[base + 1U] = ttlSlackMs;
             m_snapshot.ueExtraFeatures[base + 2U] = std::max(0.0f, std::min(1.0f, m_recentSchedRatio[ueIdx]));
             m_snapshot.ueExtraFeatures[base + 3U] = recentDeficitNorm;
+            m_snapshot.ueExtraFeatures[base + 4U] =
+                (ttlSlackMs >= 0.0f && ttlSlackMs <= 20.0f) ? pendingBytes : 0.0f;
+            m_snapshot.ueExtraFeatures[base + 5U] =
+                (ttlSlackMs >= 0.0f && ttlSlackMs <= 60.0f) ? pendingBytes : 0.0f;
+            const float ttlMs = static_cast<float>(m_packetTtlTti) * m_slotDurationMs;
+            const float ageWeight =
+                ttlMs > 0.0f ? std::min(2.0f, std::max(0.0f, holDelayMs / ttlMs)) : 0.0f;
+            m_snapshot.ueExtraFeatures[base + 6U] = pendingBytes * ageWeight;
+            m_snapshot.ueExtraFeatures[base + 7U] =
+                m_lastServedTti[ueIdx] >= 0
+                    ? static_cast<float>(std::max(0, m_currentSnapshotTti - m_lastServedTti[ueIdx]))
+                    : static_cast<float>(m_currentSnapshotTti);
         }
 
         const uint8_t nUeAnt = std::max<uint8_t>(1U, cellGrpPrmsCpu->nUeAnt);
@@ -360,6 +377,9 @@ public:
                 (1.0f - m_recentAlpha) * m_recentSchedRatio[ueIdx] + m_recentAlpha * scheduledFlag;
             m_recentGoodputMbps[ueIdx] =
                 (1.0f - m_recentAlpha) * m_recentGoodputMbps[ueIdx] + m_recentAlpha * goodputMbps;
+            if (ueIdx < goodputBytesThisTti.size() && goodputBytesThisTti[ueIdx] > 0ULL) {
+                m_lastServedTti[ueIdx] = m_currentSnapshotTti;
+            }
         }
     }
 
@@ -382,8 +402,10 @@ private:
     float m_slotDurationMs = 0.5f;
     int m_packetTtlTti = 0;
     float m_recentAlpha = 0.05f;
+    int m_currentSnapshotTti = 0;
     std::vector<float> m_recentSchedRatio;
     std::vector<float> m_recentGoodputMbps;
+    std::vector<int> m_lastServedTti;
     std::vector<uint8_t> m_prevPrgAssigned;
     ObservationExtras m_snapshot;
 };
