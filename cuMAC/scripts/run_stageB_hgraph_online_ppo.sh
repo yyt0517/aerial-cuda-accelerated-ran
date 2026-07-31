@@ -72,6 +72,10 @@ CANDIDATE_BLANK_LOGIT_BIAS=0.0
 CANDIDATE_SUCCESS_LOGIT_SCALE=1.0
 CANDIDATE_BLANK_SUCCESS_SCALE=1.0
 CANDIDATE_PFQ_ANCHOR_LOGIT_COEF=1.0
+PFQ_RESIDUAL_INIT=0
+UE_FEAT_DIM=12
+QUEUE_PRESSURE_WEIGHT=0.0
+QUEUE_PRESSURE_TOPK=8
 CANDIDATE_SUCCESS_AUX_COEF=0.0
 CANDIDATE_SUCCESS_CALIB_COEF=0.0
 CANDIDATE_SUCCESS_MAX_CALIB_COEF=0.0
@@ -344,7 +348,7 @@ Stage-B scenario options:
   --restore-params <0|1>
 
 Online PPO options:
-  --ppo-preset <name>          none | physical_success_blankaware | physical_success_blankaware_v2 | goodput_delay_ue_rate_v1 | goodput_delay_ue_rate_v2_no_teacher | goodput_delay_rate_simple_risk_v1 | goodput_delay_rate_simple_risk_v2_fast | goodput_delay_rate_simple_risk_v3_fast | goodput_delay_rate_simple_risk_v3_tailbias_fast | goodput_delay_rate_simple_risk_v3_repair_fast | goodput_delay_rate_simple_risk_v4_marginal_fast | goodput_delay_rate_simple_risk_v5_relative_margin_fast | goodput_delay_rate_simple_risk_v6_ttl_headroom_fast | goodput_delay_rate_simple_risk_v7_risk_gate_fast | goodput_delay_rate_simple_risk_v7_budgeted_sample_fast | goodput_delay_rate_simple_risk_v7_budgeted_greedy_fast | goodput_delay_rate_simple_risk_v8_seq_budgeted_sample_fast | goodput_delay_rate_simple_risk_v8_seq_budgeted_greedy_fast | goodput_delay_rate_simple_risk_v9_reliability_gate_sample_fast | goodput_delay_rate_simple_risk_v9_reliability_gate_greedy_fast | goodput_delay_rate_simple_risk_v9b_reliability_gate_sample_fast | goodput_delay_rate_simple_risk_v9b_reliability_gate_greedy_fast | goodput_delay_rate_simple_risk_v9c_prg_efficiency_sample_fast | goodput_delay_rate_simple_risk_v9c_prg_efficiency_greedy_fast | goodput_delay_rate_simple_risk_v9d_stable_sample_fast | goodput_delay_rate_simple_risk_v9d_stable_greedy_fast | goodput_delay_rate_simple_risk_v9e_gated_fill_sample_fast | goodput_delay_rate_simple_risk_v9e_gated_fill_greedy_fast | goodput_delay_rate_simple_risk_v10_rate2_sample_fast | goodput_delay_rate_simple_risk_v10_rate2_greedy_fast | goodput_delay_rate_simple_risk_v11_rate_tail_sample_fast | goodput_delay_rate_simple_risk_v11_rate_tail_greedy_fast | goodput_delay_rate_simple_risk_v12_multiseed_rate_sample_fast | goodput_delay_rate_simple_risk_v12_multiseed_rate_greedy_fast | goodput_delay_rate_simple_risk_v12b_steady_rate_sample_fast | goodput_delay_rate_simple_risk_v12b_steady_rate_greedy_fast | goodput_delay_rate_simple_risk_v12c_steady_tail_rescue_sample_fast | goodput_delay_rate_simple_risk_v12c_steady_tail_rescue_greedy_fast | goodput_delay_rate_simple_risk_v13_ue_rate_proxy_sample_fast | goodput_delay_rate_simple_risk_v13_ue_rate_proxy_greedy_fast | goodput_delay_rate_simple_risk_v14_true_packet_rate_sample_fast | goodput_delay_rate_simple_risk_v14_true_packet_rate_greedy_fast | goodput_delay_rate_simple_risk_v14b_true_packet_tail_guard_sample_fast | goodput_delay_rate_simple_risk_v14b_true_packet_tail_guard_greedy_fast | goodput_delay_rate_simple_risk_v15_packet_tail_feature_sample_fast | goodput_delay_rate_simple_risk_v15_packet_tail_feature_greedy_fast | goodput_delay_rate_simple_risk_v16_packet_tail_strict_sample_fast | goodput_delay_rate_simple_risk_v16_packet_tail_strict_greedy_fast | goodput_delay_rate_simple_risk_v17_packet_tail_quota_greedy_fast | goodput_delay_rate_simple_risk_v18_packet_tail_quota_thick_greedy_fast | goodput_delay_rate_simple_risk_v19_packet_tail_quota_coverage_greedy_fast | goodput_delay_rate_v20_causal_direct_sample_fast | goodput_tailguard_v3_no_teacher | goodput_tailcredit_v4_no_teacher | goodput_tailcredit_expiry_v5_no_teacher | goodput_tailcredit_expiry_rescue_v6_no_teacher
+  --ppo-preset <name>          preset name (see apply_ppo_preset); causal presets include v20 direct and v21 PFQ-residual
   --out-dir <path>
   --iterations <n>
   --episode-horizon <n>
@@ -369,6 +373,10 @@ Online PPO options:
   --candidate-success-logit-scale <v>
   --candidate-blank-success-scale <v>
   --candidate-pfq-anchor-logit-coef <v>
+  --pfq-residual-init <0|1>
+  --ue-feat-dim <n>
+  --queue-pressure-weight <v>
+  --queue-pressure-topk <n>
   --candidate-success-aux-coef <v>
   --candidate-success-calib-coef <v>
   --candidate-success-max-calib-coef <v>
@@ -2044,7 +2052,7 @@ apply_ppo_preset() {
             WRITE_DIAGNOSTICS=0
             KPI_TTI_LOG_INTERVAL=0
             ;;
-        goodput_delay_rate_v20_causal_direct_sample_fast)
+        goodput_delay_rate_v20_causal_direct_sample_fast|goodput_delay_rate_v21_causal_pfq_residual_tail_sample_fast)
             # Candidate choices are the PPO action: sample the adjusted
             # distribution during rollout and evaluate it greedily.
             ACTION_HEAD_MODE="candidate"
@@ -2063,6 +2071,16 @@ apply_ppo_preset() {
             CANDIDATE_BUDGETED_RESCUE_BIAS_COEF=0.0
             CANDIDATE_BUDGETED_COMPLETION_BONUS=0.0
             CANDIDATE_BUDGETED_TAIL_QUOTA_ENABLE=0
+            if [[ "${PPO_PRESET}" == "goodput_delay_rate_v21_causal_pfq_residual_tail_sample_fast" ]]; then
+                CANDIDATE_PFQ_ANCHOR_LOGIT_COEF=1.0
+                CANDIDATE_BLANK_LOGIT_BIAS=-4.0
+                CANDIDATE_SUCCESS_LOGIT_SCALE=0.0
+                CANDIDATE_BLANK_SUCCESS_SCALE=0.0
+                PFQ_RESIDUAL_INIT=1
+                UE_FEAT_DIM=16
+                QUEUE_PRESSURE_WEIGHT=0.25
+                QUEUE_PRESSURE_TOPK=8
+            fi
             ;;
         goodput_tailguard_v3_no_teacher)
             # Simple three-signal reward:
@@ -2434,6 +2452,10 @@ while [[ $# -gt 0 ]]; do
         --candidate-success-logit-scale) CANDIDATE_SUCCESS_LOGIT_SCALE="$2"; shift 2 ;;
         --candidate-blank-success-scale) CANDIDATE_BLANK_SUCCESS_SCALE="$2"; shift 2 ;;
         --candidate-pfq-anchor-logit-coef) CANDIDATE_PFQ_ANCHOR_LOGIT_COEF="$2"; shift 2 ;;
+        --pfq-residual-init) PFQ_RESIDUAL_INIT="$2"; shift 2 ;;
+        --ue-feat-dim) UE_FEAT_DIM="$2"; shift 2 ;;
+        --queue-pressure-weight) QUEUE_PRESSURE_WEIGHT="$2"; shift 2 ;;
+        --queue-pressure-topk) QUEUE_PRESSURE_TOPK="$2"; shift 2 ;;
         --candidate-success-aux-coef) CANDIDATE_SUCCESS_AUX_COEF="$2"; shift 2 ;;
         --candidate-success-calib-coef) CANDIDATE_SUCCESS_CALIB_COEF="$2"; shift 2 ;;
         --candidate-success-max-calib-coef) CANDIDATE_SUCCESS_MAX_CALIB_COEF="$2"; shift 2 ;;
@@ -2895,6 +2917,7 @@ echo "[Stage-B HGraph] imitation_episodes=${IMITATION_EPISODES} teacher_mode=${T
 echo "[Stage-B HGraph] candidate_mode=${CANDIDATE_MODE} ue_prg_topk=${UE_PRG_TOPK} diversity_extra=${UE_PRG_DIVERSITY_EXTRA} max_prg_candidates=${MAX_PRG_CANDIDATES} action_head_mode=${ACTION_HEAD_MODE} include_pfq_score_anchor=${INCLUDE_PFQ_SCORE_ANCHOR} include_candidate_risk_features=${INCLUDE_CANDIDATE_RISK_FEATURES} candidate_blank_logit_bias=${CANDIDATE_BLANK_LOGIT_BIAS}"
 echo "[Stage-B HGraph] candidate_policy_mode=${CANDIDATE_POLICY_MODE}"
 echo "[Stage-B HGraph] candidate_success_logit_scale=${CANDIDATE_SUCCESS_LOGIT_SCALE} candidate_blank_success_scale=${CANDIDATE_BLANK_SUCCESS_SCALE} candidate_pfq_anchor_logit_coef=${CANDIDATE_PFQ_ANCHOR_LOGIT_COEF} candidate_success_aux_coef=${CANDIDATE_SUCCESS_AUX_COEF} candidate_success_calib_coef=${CANDIDATE_SUCCESS_CALIB_COEF}"
+echo "[Stage-B HGraph] pfq_residual_init=${PFQ_RESIDUAL_INIT} ue_feat_dim=${UE_FEAT_DIM} queue_pressure_weight=${QUEUE_PRESSURE_WEIGHT} queue_pressure_topk=${QUEUE_PRESSURE_TOPK}"
 echo "[Stage-B HGraph] candidate_seq_state_dim=${CANDIDATE_SEQ_STATE_DIM} candidate_seq_state_coef=${CANDIDATE_SEQ_STATE_COEF} candidate_seq_fail_risk_feature_offset=${CANDIDATE_SEQ_FAIL_RISK_FEATURE_OFFSET} candidate_seq_train_only=${CANDIDATE_SEQ_TRAIN_ONLY}"
 echo "[Stage-B HGraph] candidate_success_max_calib_coef=${CANDIDATE_SUCCESS_MAX_CALIB_COEF} candidate_success_target_eps=${CANDIDATE_SUCCESS_TARGET_EPS} pairwise_rank_coef=${CANDIDATE_PAIRWISE_RANK_COEF} pairwise_margin=${CANDIDATE_PAIRWISE_RANK_MARGIN} pairwise_min_gap=${CANDIDATE_PAIRWISE_RANK_MIN_GAP}"
 echo "[Stage-B HGraph] pairwise_weights success=${CANDIDATE_PAIRWISE_RANK_SUCCESS_WEIGHT} service=${CANDIDATE_PAIRWISE_RANK_SERVICE_WEIGHT} risk=${CANDIDATE_PAIRWISE_RANK_RISK_WEIGHT} fail_risk=${CANDIDATE_PAIRWISE_RANK_FAIL_RISK_WEIGHT} rescue=${CANDIDATE_PAIRWISE_RANK_RESCUE_WEIGHT} rescue_aux=${CANDIDATE_RESCUE_AUX_COEF} rescue_pos_weight=${CANDIDATE_RESCUE_POS_WEIGHT}"
@@ -2955,6 +2978,10 @@ CMD=(
     --candidate-success-logit-scale "${CANDIDATE_SUCCESS_LOGIT_SCALE}"
     --candidate-blank-success-scale "${CANDIDATE_BLANK_SUCCESS_SCALE}"
     --candidate-pfq-anchor-logit-coef "${CANDIDATE_PFQ_ANCHOR_LOGIT_COEF}"
+    --pfq-residual-init "${PFQ_RESIDUAL_INIT}"
+    --ue-feat-dim "${UE_FEAT_DIM}"
+    --queue-pressure-weight "${QUEUE_PRESSURE_WEIGHT}"
+    --queue-pressure-topk "${QUEUE_PRESSURE_TOPK}"
     --candidate-success-aux-coef "${CANDIDATE_SUCCESS_AUX_COEF}"
     --candidate-success-calib-coef "${CANDIDATE_SUCCESS_CALIB_COEF}"
     --candidate-success-max-calib-coef "${CANDIDATE_SUCCESS_MAX_CALIB_COEF}"

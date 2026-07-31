@@ -123,6 +123,8 @@ class RolloutStep:
     queue_pressure_after: float
     queue_pressure_delta: float
     queue_pressure_reward: float
+    candidate_residual_logits_abs_mean: float
+    candidate_pfq_base_logits_abs_mean: float
     done: float
     entropy: float
     blank_ratio: float
@@ -1572,6 +1574,31 @@ def _compute_queue_pressure_transition(
         gamma=float(gamma),
         weight=float(weight),
     )
+
+
+def _candidate_residual_logit_metrics(
+    actor_out: Mapping[str, torch.Tensor],
+) -> Dict[str, float]:
+    valid = actor_out.get("candidate_mask")
+    metrics: Dict[str, float] = {}
+    for key in (
+        "candidate_residual_logits",
+        "candidate_pfq_base_logits",
+    ):
+        values = actor_out.get(key)
+        metric_key = f"{key}_abs_mean"
+        if values is None or values.numel() == 0:
+            metrics[metric_key] = 0.0
+            continue
+        selected = values
+        if valid is not None and valid.shape == values.shape:
+            selected = values[valid.to(device=values.device, dtype=torch.bool)]
+        metrics[metric_key] = (
+            float(selected.detach().abs().mean().item())
+            if selected.numel() > 0
+            else 0.0
+        )
+    return metrics
 
 
 def _pool_actor_state(actor_out: Dict[str, torch.Tensor]) -> torch.Tensor:
@@ -3731,6 +3758,7 @@ def _collect_rollout(
                 actor_out, value = cached_actor_out, cached_value
                 cached_actor_out = None
                 cached_value = None
+            candidate_residual_metrics = _candidate_residual_logit_metrics(actor_out)
             sampled = _sample_joint_action(
                 actor,
                 actor_out,
@@ -4512,6 +4540,12 @@ def _collect_rollout(
                 queue_pressure_after=float(queue_pressure_terms["queue_pressure_after"]),
                 queue_pressure_delta=float(queue_pressure_terms["queue_pressure_delta"]),
                 queue_pressure_reward=float(queue_pressure_terms["queue_pressure_reward"]),
+                candidate_residual_logits_abs_mean=float(
+                    candidate_residual_metrics["candidate_residual_logits_abs_mean"]
+                ),
+                candidate_pfq_base_logits_abs_mean=float(
+                    candidate_residual_metrics["candidate_pfq_base_logits_abs_mean"]
+                ),
                 done=1.0 if done else 0.0,
                 entropy=float(sampled["entropy"]),
                 blank_ratio=float(sampled["blank_ratio"]),
@@ -4873,6 +4907,16 @@ def _collect_rollout(
         ),
         "rollout_queue_pressure_reward_mean": (
             float(np.mean([s.queue_pressure_reward for s in steps])) if steps else 0.0
+        ),
+        "rollout_candidate_residual_logits_abs_mean": (
+            float(np.mean([s.candidate_residual_logits_abs_mean for s in steps]))
+            if steps
+            else 0.0
+        ),
+        "rollout_candidate_pfq_base_logits_abs_mean": (
+            float(np.mean([s.candidate_pfq_base_logits_abs_mean for s in steps]))
+            if steps
+            else 0.0
         ),
         "rollout_blank_ratio_mean": float(np.mean([s.blank_ratio for s in steps])) if steps else 0.0,
         "rollout_post_decode_drop_ratio_mean": float(np.mean([s.post_decode_drop_ratio for s in steps])) if steps else 0.0,

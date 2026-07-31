@@ -151,3 +151,25 @@ def test_residual_cli_rejects_misaligned_configuration(
 
     with pytest.raises(ValueError, match=message):
         online_ppo._validate_pfq_residual_args(mutated)
+
+
+def test_initial_candidate_logit_metrics_separate_zero_residual_from_pfq_base():
+    from training.stageb_hgraph import online_ppo
+    from training.stageb_hgraph.pfq_residual import initialize_pfq_residual_head
+
+    actor = StageBHGraphPolicy(
+        HGraphModelConfig(
+            action_head_mode="candidate",
+            max_prg_candidates=2,
+            candidate_pfq_anchor_logit_coef=1.0,
+            candidate_blank_logit_bias=-4.0,
+        )
+    )
+    initialize_pfq_residual_head(actor)
+
+    metrics = online_ppo._candidate_residual_logit_metrics(
+        actor(make_candidate_graph(n_prg=2))
+    )
+
+    assert metrics["candidate_residual_logits_abs_mean"] == pytest.approx(0.0)
+    assert metrics["candidate_pfq_base_logits_abs_mean"] > 0.0

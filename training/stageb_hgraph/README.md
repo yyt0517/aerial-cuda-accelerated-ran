@@ -72,8 +72,14 @@ It is intentionally separate from `training/gnnrl/`:
   - builds the first-version `cell_features / ue_features / prg_features / static_meta`
   - current HGraph input layout is now:
     - `cell_features[C,5]`
-    - `ue_features[U,12]`
+    - `ue_features[U,16]` for the PFQ-residual path; legacy 12-feature
+      observations remain readable for old checkpoints
     - `prg_features[C*P,12]`
+  - UE features 12--15 are:
+    - `critical_ttl_backlog_bytes` (`ttl_slack <= 20 ms`)
+    - `near_ttl_backlog_bytes` (`ttl_slack <= 60 ms`)
+    - `age_weighted_backlog_bytes`
+    - `service_gap_tti`
   - consumes existing Stage-B observation dicts:
     - `obs_cell_features`
     - `obs_ue_features`
@@ -362,6 +368,51 @@ The recommended direct-PPO path is:
 - keep `post_eq_topk` candidate generation enabled
 - start from fixed-seed direct PPO first
 - only move to multi-seed after the fixed-seed run is stable
+
+The next performance path initializes the learned candidate scorer as a zero
+residual around the fixed PFQ edge anchor. It keeps decoder rescue/tail biases
+disabled and supplies unfinished-packet pressure through observation plus
+potential shaping:
+
+```text
+candidate_logit = pfq_base_logit + learned_residual_logit
+queue_pressure_credit = weight * (pressure_before - gamma * pressure_after)
+```
+
+The preset is
+`goodput_delay_rate_v21_causal_pfq_residual_tail_sample_fast`. It fixes the PFQ
+anchor coefficient at `1.0`, initializes candidate and blank residual outputs
+to zero, sets blank bias to `-4.0`, uses 16 UE features, and sets queue-pressure
+weight/top-k to `0.25/8`. Checkpoints persist
+`initialization.mode=pfq_residual`, so resumed macrocycles do not reset learned
+residual weights.
+
+Minimal causal residual smoke:
+
+```bash
+./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
+  --ppo-preset goodput_delay_rate_v21_causal_pfq_residual_tail_sample_fast \
+  --build-method cmake \
+  --build-dir build.pfq_residual_x86_64 \
+  --iterations 2 \
+  --rollout-steps 64 \
+  --episode-horizon 128 \
+  --topology-seed 41 \
+  --out-dir training/stageb_hgraph/runs/causal_residual_smoke
+```
+
+The rollout CSV records PFQ-base/residual absolute-logit means and
+queue-pressure before/after/delta/reward. The first residual mean must be zero,
+the PFQ-base mean positive, and later residual means may move after PPO updates.
+Generate the fail-closed evidence report after the smoke with:
+
+```bash
+python -m training.stageb_hgraph.residual_tail_gate \
+  --summary training/stageb_hgraph/runs/causal_residual_smoke/online_ppo_summary.json \
+  --history training/stageb_hgraph/runs/causal_residual_smoke/online_ppo_metrics.csv \
+  --source-revision "$(git rev-parse HEAD)" \
+  --out training/stageb_hgraph/runs/causal_residual_smoke/residual_tail_gate.json
+```
 
 Recommended fixed-seed smoke / first formal run:
 
