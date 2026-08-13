@@ -90,6 +90,11 @@ from training.stageb_hgraph.graph_ops import (
     type0_action_preflight_reject_counts,
 )
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy
+from training.stageb_hgraph.independent_objectives import ExpiryAwareUeWindowTracker
+from training.stageb_hgraph.independent_reward import (
+    IndependentRewardConfig,
+    compute_independent_reward,
+)
 from training.stageb_hgraph.online_imitation import OnlineEpisodeRunner, _pick_device, _set_seed
 from training.stageb_hgraph.pfq_residual import (
     initialize_pfq_residual_head,
@@ -282,6 +287,7 @@ class RolloutStep:
     candidate_policy_mode: str = "legacy"
     non_hard_override_count: float = 0.0
     action_replay_mismatch_count: float = math.nan
+    independent_reward_terms: Dict[str, float] | None = None
 
 
 _NATIVE_REJECT_INFO_KEYS = (
@@ -4002,7 +4008,10 @@ def _collect_rollout(
                 edge_generator.build_graph(snapshot_builder.build(next_obs)),
                 device,
             )
-        elif float(reward_cfg.get("queue_pressure_weight", 0.0)) > 0.0:
+        elif (
+            float(reward_cfg.get("queue_pressure_weight", 0.0)) > 0.0
+            or reward_mode == "pfq_independent"
+        ):
             transition_next_graph = _graph_to_device(
                 edge_generator.build_graph(
                     FeatureSnapshotBuilder(snapshot_builder.cfg).build(next_obs)
@@ -4221,7 +4230,53 @@ def _collect_rollout(
         rescue_miss = float(rescue_credit_stats["rescue_miss"])
         rescue_risk_topk_mean = float(rescue_credit_stats["rescue_risk_topk_mean"])
         rescue_served_ratio = float(rescue_credit_stats["rescue_served_ratio"])
-        if reward_mode == "stageb_v1":
+        independent_reward_terms: Dict[str, float] | None = None
+        if reward_mode == "pfq_independent":
+            if transition_next_graph is None:
+                raise RuntimeError("PFQ-independent reward requires the post-action observation graph")
+            treatment = str(reward_cfg["independent_treatment"])
+            independent_tracker = getattr(
+                expiry_reward_tracker,
+                "independent_ue_tracker",
+                None,
+            )
+            if treatment == "D" and (
+                independent_tracker is None
+                or int(independent_tracker.n_ue) != int(graph.snapshot.static_meta.n_ue)
+            ):
+                independent_tracker = ExpiryAwareUeWindowTracker(
+                    int(graph.snapshot.static_meta.n_ue),
+                    window_steps=int(reward_cfg.get("independent_ue_window_steps", 400)),
+                )
+                expiry_reward_tracker.independent_ue_tracker = independent_tracker
+            independent_reward_terms = compute_independent_reward(
+                graph,
+                transition_next_graph,
+                next_info,
+                independent_tracker,
+                IndependentRewardConfig(
+                    treatment=treatment,
+                    offered_bytes_per_tti=float(
+                        reward_cfg["independent_offered_bytes_per_tti"]
+                    ),
+                    gamma=float(reward_cfg.get("gamma", 0.99)),
+                    ue_window_steps=int(
+                        reward_cfg.get("independent_ue_window_steps", 400)
+                    ),
+                    delay_scale_p95=float(reward_cfg["independent_delay_scale_p95"]),
+                    ue_utility_scale_p95=float(
+                        reward_cfg["independent_ue_utility_scale_p95"]
+                    ),
+                ),
+            )
+            reward_raw = float(independent_reward_terms["reward_total"])
+            conflict_mean = _prg_feature_mean(graph, 6)
+            ici_mean = _prg_feature_mean(graph, 7)
+            urgent_backlog_penalty = 0.0
+            backlog_debt_coef = 0.0
+            active_prg_goodput_efficiency = 0.0
+            harmful_packing_penalty = 0.0
+        elif reward_mode == "stageb_v1":
             shaped = compute_stageb_v1_reward(
                 raw_env_reward=float(raw_env_reward),
                 reward_metrics=reward_metrics_for_reward,
@@ -4781,6 +4836,7 @@ def _collect_rollout(
                 action_replay_mismatch_count=float(
                     sampled.get("action_replay_mismatch_count", math.nan)
                 ),
+                independent_reward_terms=independent_reward_terms,
             )
         if is_warmup_step:
             warmup_steps_completed += 1
@@ -5412,6 +5468,21 @@ def _collect_rollout(
         "rollout_entropy_mean": float(np.mean([s.entropy for s in steps])) if steps else 0.0,
         **_action_replay_summary(steps),
     }
+    independent_term_keys = sorted(
+        {
+            key
+            for step in steps
+            for key in (step.independent_reward_terms or {})
+        }
+    )
+    for key in independent_term_keys:
+        values = [
+            float(step.independent_reward_terms[key])
+            for step in steps
+            if step.independent_reward_terms is not None
+            and key in step.independent_reward_terms
+        ]
+        summary[f"rollout_{key}_mean"] = float(np.mean(values)) if values else 0.0
     if per_ue_log_dir is not None and steps:
         per_ue_log_dir.mkdir(parents=True, exist_ok=True)
         per_ue_rows = per_ue_tracker.rows(
@@ -6969,6 +7040,14 @@ def _write_summary(
         "device": str(device),
         "reward_mode": str(args.reward_mode),
         "reward_cfg": reward_cfg,
+        "independent_treatment": str(args.independent_treatment),
+        "independent_reward_scales": str(args.independent_reward_scales),
+        "independent_offered_bytes_per_tti": float(
+            args.independent_offered_bytes_per_tti
+        ),
+        "independent_allow_noncanonical_offered_load": int(
+            args.independent_allow_noncanonical_offered_load
+        ),
         "init_checkpoint": str(args.init_checkpoint),
         "ue_prg_topk": int(args.ue_prg_topk),
         "ue_prg_diversity_extra": int(args.ue_prg_diversity_extra),
@@ -7593,6 +7672,7 @@ def parse_args() -> argparse.Namespace:
         "--reward-mode",
         choices=[
             "raw_env",
+            "pfq_independent",
             "stageb_v1",
             "stageb_blankaware",
             "stageb_tailguard_simple",
@@ -7601,6 +7681,30 @@ def parse_args() -> argparse.Namespace:
             "stageb_tailcredit_expiry_rescue_v6",
         ],
         default="stageb_v1",
+    )
+    p.add_argument(
+        "--independent-treatment",
+        choices=["A", "B", "C", "D"],
+        default="A",
+        help="locked PFQ-independent reward/initialization ablation",
+    )
+    p.add_argument(
+        "--independent-reward-scales",
+        default="",
+        help="frozen seed-41 PFQ reward_scales.json (required by pfq_independent)",
+    )
+    p.add_argument(
+        "--independent-offered-bytes-per-tti",
+        type=float,
+        default=108000.0,
+        help="offered bytes in the locked scenario",
+    )
+    p.add_argument(
+        "--independent-allow-noncanonical-offered-load",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        help="explicitly acknowledge a non-108000-byte offered load",
     )
     p.add_argument(
         "--best-metric",
@@ -8062,10 +8166,62 @@ def _validate_pfq_residual_args(args: argparse.Namespace) -> None:
         raise ValueError("--pfq-residual-init requires 16 UE features")
 
 
+def _load_independent_reward_scales(args: argparse.Namespace) -> Dict[str, float]:
+    if str(args.reward_mode) != "pfq_independent":
+        return {
+            "delay_scale_p95": 0.0,
+            "ue_utility_scale_p95": 0.0,
+        }
+    offered = float(args.independent_offered_bytes_per_tti)
+    if offered <= 0.0:
+        raise ValueError("--independent-offered-bytes-per-tti must be positive")
+    if (
+        not math.isclose(offered, 108_000.0, rel_tol=0.0, abs_tol=1.0e-6)
+        and int(args.independent_allow_noncanonical_offered_load) != 1
+    ):
+        raise ValueError(
+            "noncanonical independent offered load requires "
+            "--independent-allow-noncanonical-offered-load 1"
+        )
+    path = Path(str(args.independent_reward_scales)).expanduser()
+    if not str(args.independent_reward_scales) or not path.is_file():
+        raise ValueError(
+            "--reward-mode pfq_independent requires an existing "
+            "--independent-reward-scales JSON"
+        )
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        scales = {
+            "delay_scale_p95": float(payload["delay_scale_p95"]),
+            "ue_utility_scale_p95": float(payload["ue_utility_scale_p95"]),
+        }
+    except (KeyError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        raise ValueError(f"invalid frozen independent reward scales: {path}") from exc
+    treatment = str(args.independent_treatment)
+    # Constructing the config is the single preflight for treatment-specific scales.
+    IndependentRewardConfig(
+        treatment=treatment,
+        offered_bytes_per_tti=offered,
+        gamma=float(args.gamma),
+        delay_scale_p95=scales["delay_scale_p95"],
+        ue_utility_scale_p95=scales["ue_utility_scale_p95"],
+    )
+    manifest_path = path.with_name("reference_manifest.json")
+    if manifest_path.is_file():
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        topology_seed = int(manifest.get("scenario", {}).get("topology_seed", -1))
+        if topology_seed != 41:
+            raise ValueError(
+                f"independent reward scales must come from topology seed 41, got {topology_seed}"
+            )
+    return scales
+
+
 def main() -> int:
     args = parse_args()
     _validate_candidate_policy_mode(args)
     _validate_pfq_residual_args(args)
+    independent_scales = _load_independent_reward_scales(args)
     if args.sim_cwd == "":
         args.sim_cwd = None
     if args.rollout_steps < 1:
@@ -8463,6 +8619,19 @@ def main() -> int:
 
     reward_cfg = {
         "gamma": float(args.gamma),
+        "independent_treatment": str(args.independent_treatment),
+        "independent_reward_scales": str(args.independent_reward_scales),
+        "independent_offered_bytes_per_tti": float(
+            args.independent_offered_bytes_per_tti
+        ),
+        "independent_allow_noncanonical_offered_load": int(
+            args.independent_allow_noncanonical_offered_load
+        ),
+        "independent_delay_scale_p95": float(independent_scales["delay_scale_p95"]),
+        "independent_ue_utility_scale_p95": float(
+            independent_scales["ue_utility_scale_p95"]
+        ),
+        "independent_ue_window_steps": 400,
         "queue_pressure_weight": float(args.queue_pressure_weight),
         "queue_pressure_topk": int(args.queue_pressure_topk),
         "goodput_weight": float(args.goodput_weight),

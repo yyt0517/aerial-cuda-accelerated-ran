@@ -129,6 +129,15 @@ class ExpiryAwareUeWindowTracker:
             self.window_outcome_system_time_ms,
         )
 
+    def utility(self, demand_mask: np.ndarray) -> float:
+        """Return the current window utility without mutating its counters."""
+        active = self._array(demand_mask, "demand_mask", bool)
+        return compute_ue_expiry_aware_utility(
+            active,
+            self.window_successful_goodput_bytes,
+            self.window_outcome_system_time_ms,
+        )
+
 
 def _measured_rows(
     rows: Sequence[Mapping[str, object]],
