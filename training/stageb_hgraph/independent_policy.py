@@ -125,6 +125,7 @@ def _run_policy(
     mode: Literal["sample", "greedy"],
     generator: torch.Generator | None = None,
     stored_trace: IndependentPolicyTrace | None = None,
+    teacher_actions: tuple[torch.Tensor, torch.Tensor] | None = None,
 ) -> IndependentPolicyTrace:
     if mode not in ("sample", "greedy"):
         raise ValueError(f"independent policy mode must be sample or greedy, got {mode!r}")
@@ -143,6 +144,17 @@ def _run_policy(
         stored_order = torch.as_tensor(stored_trace.local_prg_order, device=device, dtype=torch.long)
         if not torch.equal(stored_order, local_order):
             raise ValueError("stored local PRG order does not match fixed order")
+    if stored_trace is not None and teacher_actions is not None:
+        raise ValueError("stored trace and teacher actions are mutually exclusive")
+    teacher_ue = None
+    teacher_prg = None
+    if teacher_actions is not None:
+        teacher_ue = torch.as_tensor(
+            teacher_actions[0], device=device, dtype=torch.long
+        ).reshape(meta.n_sched_ue)
+        teacher_prg = torch.as_tensor(
+            teacher_actions[1], device=device, dtype=torch.long
+        ).reshape(meta.n_cell * meta.n_prg)
 
     choices = torch.full(
         (meta.n_cell * meta.n_prg,),
@@ -198,6 +210,47 @@ def _run_policy(
                 raise ValueError(f"stored choice out of range at local PRG {local_prg}")
             if not bool(valid.gather(1, selected.unsqueeze(-1)).all().item()):
                 raise ValueError(f"stored choice is invalid at local PRG {local_prg}")
+        elif teacher_ue is not None and teacher_prg is not None:
+            selected_rows: list[int] = []
+            for cell_idx in range(meta.n_cell):
+                token_idx = int(tokens[cell_idx].item())
+                native_idx = local_prg * meta.n_cell + cell_idx
+                slot_idx = int(teacher_prg[native_idx].item())
+                if slot_idx < 0:
+                    target = packed.blank_class_index
+                else:
+                    if slot_idx >= meta.n_sched_ue:
+                        raise ValueError(f"teacher slot out of range at token {token_idx}")
+                    ue_idx = int(teacher_ue[slot_idx].item())
+                    if ue_idx < 0 or ue_idx >= meta.n_ue:
+                        raise ValueError(f"teacher slot is empty at token {token_idx}")
+                    if not bool(meta.action_mask_cell_ue[cell_idx, ue_idx].item()):
+                        raise ValueError(f"teacher UE is assigned to wrong cell at token {token_idx}")
+                    matches = torch.nonzero(
+                        packed.mask[token_idx].to(device=device)
+                        & (packed.ue_ids[token_idx].to(device=device) == ue_idx),
+                        as_tuple=False,
+                    ).flatten()
+                    if matches.numel() != 1:
+                        raise ValueError(f"teacher UE missing or duplicated at token {token_idx}")
+                    target = int(matches[0].item())
+                if not bool(valid[cell_idx, target].item()):
+                    if target < packed.blank_class_index:
+                        ue_idx = int(
+                            packed.ue_ids[token_idx, target].to(device=device).item()
+                        )
+                        raise ValueError(
+                            "teacher target is invalid at token "
+                            f"{token_idx}: cell={cell_idx} local_prg={local_prg} "
+                            f"ue={ue_idx} initial_demand={float(initial[ue_idx].item()):.6f} "
+                            f"remaining_demand={float(remaining[ue_idx].item()):.6f} "
+                            f"allocated_prgs={float(allocated[ue_idx].item()):.0f} "
+                            f"predicted_service={float(predicted[ue_idx].item()):.6f} "
+                            f"next_service={float(service[token_idx, target].item()):.6f}"
+                        )
+                    raise ValueError(f"teacher target is invalid at token {token_idx}")
+                selected_rows.append(target)
+            selected = torch.tensor(selected_rows, dtype=torch.long, device=device)
         elif mode == "sample":
             selected = torch.multinomial(probabilities, 1, generator=generator).squeeze(-1)
         else:
@@ -270,6 +323,22 @@ def replay_independent_trace(
         raise ValueError("replayed choices differ from stored choices")
     decoded = materialize_independent_choices_to_type0(graph, packed, replayed.choice)
     return replayed.logp, replayed.entropy, decoded
+
+
+def independent_teacher_trace_from_type0(
+    actor: PFQIndependentReuseActor,
+    graph: SparseEntityGraph,
+    packed: PackedPrgCandidates,
+    action_ue_select: torch.Tensor,
+    action_prg_alloc: torch.Tensor,
+) -> IndependentPolicyTrace:
+    return _run_policy(
+        actor,
+        graph,
+        packed,
+        mode="greedy",
+        teacher_actions=(action_ue_select, action_prg_alloc),
+    )
 
 
 def _validate_candidate_rows(graph: SparseEntityGraph, packed: PackedPrgCandidates) -> None:
@@ -424,6 +493,7 @@ def independent_teacher_targets_from_type0(
 __all__ = [
     "IndependentPolicyTrace",
     "estimate_candidate_service_bytes",
+    "independent_teacher_trace_from_type0",
     "independent_teacher_targets_from_type0",
     "materialize_independent_choices_to_type0",
     "replay_independent_trace",

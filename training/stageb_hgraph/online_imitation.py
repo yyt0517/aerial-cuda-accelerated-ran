@@ -38,6 +38,15 @@ from training.stageb_hgraph.graph_ops import (
     joint_candidate_targets_from_type0_actions,
     pack_prg_candidates,
 )
+from training.stageb_hgraph.independent_actor import (
+    IndependentActorConfig,
+    PFQIndependentReuseActor,
+)
+from training.stageb_hgraph.independent_policy import (
+    independent_teacher_trace_from_type0,
+    resolve_full_candidate_width,
+    select_independent_action,
+)
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy
 from training.stageb_hgraph.teacher import HeuristicTeacherConfig, build_joint_teacher
 
@@ -129,6 +138,21 @@ class OnlineEpisodeRunner:
         sim_env["CUMAC_ONLINE_PERSISTENT"] = "1" if int(self.args.online_persistent) == 1 else "0"
         sim_env.setdefault("CUMAC_COMPACT_TTI_LOG", "1")
         sim_env.setdefault("CUMAC_COMPARE_TTI_INTERVAL", "0")
+        if self.args.action_head_mode == "independent":
+            sim_env.setdefault("CUMAC_ONLINE_EXPORT_TEACHER_ACTION", "1")
+            sim_env.setdefault("CUMAC_ONLINE_EXPORT_POST_EQ_SINR", "1")
+            sim_env.setdefault("CUMAC_CELL_ASSOC_MODE", "strongest")
+            sim_env.setdefault("CUMAC_UE_PLACEMENT_MODE", "coop_boundary")
+            sim_env.setdefault("CUMAC_UE_VORONOI_CLIP", "1")
+            sim_env.setdefault("CUMAC_BS_TX_PATTERN", "omni")
+            sim_env.setdefault("CUMAC_TRAFFIC_SEED", str(int(topology_seed)))
+            sim_env.setdefault("CUMAC_TRAFFIC_ARRIVAL_RATE", "1.0")
+            sim_env.setdefault("CUMAC_PACKET_TTL_TTI", "0")
+            sim_env.setdefault("CUMAC_PACKET_TTL_MS", "200")
+            # The independent policy has a zero-slack hard service-headroom
+            # mask. Teacher collection must share that action space; the PFQ
+            # comparator calibration remains unchanged.
+            sim_env.setdefault("CUMAC_PFQ_DEMAND_CAP_SLACK_BYTES", "0")
         for key, value in self.sim_env_overrides.items():
             sim_env[key] = value
         sim_env["CUMAC_TOPOLOGY_SEED"] = str(int(topology_seed))
@@ -311,10 +335,16 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--dropout", type=float, default=0.0)
     p.add_argument(
         "--action-head-mode",
-        choices=["slot", "candidate"],
+        choices=["slot", "candidate", "independent"],
         default="slot",
-        help="slot trains legacy PRG->slot logits; candidate trains PRG->candidate UE logits before Type-0 decode",
+        help="independent trains the PFQ-free fixed-order reuse actor; other values retain legacy paths",
     )
+    p.add_argument(
+        "--candidate-mode",
+        choices=["all_demand_ues", "topk_diversity"],
+        default="all_demand_ues",
+    )
+    p.add_argument("--include-pfq-score-anchor", type=int, choices=[0, 1], default=1)
     p.add_argument("--candidate-blank-logit-bias", type=float, default=0.0)
     p.add_argument("--candidate-success-logit-scale", type=float, default=1.0)
     p.add_argument("--candidate-blank-success-scale", type=float, default=1.0)
@@ -344,6 +374,13 @@ def main() -> int:
         raise ValueError("--ue-prg-diversity-extra must be >= 0")
     if args.candidate_pfq_anchor_logit_coef < 0.0:
         raise ValueError("--candidate-pfq-anchor-logit-coef must be >= 0")
+    if args.action_head_mode == "independent":
+        if args.teacher_mode != "pfq_passthrough":
+            raise ValueError("independent BC requires --teacher-mode pfq_passthrough")
+        if args.candidate_mode != "all_demand_ues":
+            raise ValueError("independent BC requires --candidate-mode all_demand_ues")
+        if int(args.include_pfq_score_anchor) != 0:
+            raise ValueError("independent BC requires --include-pfq-score-anchor 0")
     explicit_seed_list = _parse_seed_list(args.seed_list)
     if args.topology_seed_mode == "list_cycle" and not explicit_seed_list:
         raise ValueError("--topology-seed-mode list_cycle requires --seed-list")
@@ -357,9 +394,18 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     metrics_path = out_dir / "online_imitation_metrics.jsonl"
     summary_path = out_dir / "online_imitation_summary.json"
-    ckpt_last_path = out_dir / "hgraph_imitation_last.pt"
-    ckpt_best_path = out_dir / "hgraph_imitation_best.pt"
-    max_prg_candidates = _resolve_prg_candidate_count(args.ue_prg_topk, args.ue_prg_diversity_extra)
+    independent_mode = args.action_head_mode == "independent"
+    ckpt_last_path = out_dir / (
+        "hgraph_independent_bc_last.pt" if independent_mode else "hgraph_imitation_last.pt"
+    )
+    ckpt_best_path = out_dir / (
+        "hgraph_independent_bc_best.pt" if independent_mode else "hgraph_imitation_best.pt"
+    )
+    max_prg_candidates = (
+        0
+        if independent_mode
+        else _resolve_prg_candidate_count(args.ue_prg_topk, args.ue_prg_diversity_extra)
+    )
 
     snapshot_builder = FeatureSnapshotBuilder(
         SnapshotBuilderConfig(tb_err_ema_alpha=float(args.tb_err_ema_alpha))
@@ -368,6 +414,11 @@ def main() -> int:
         EdgeGeneratorConfig(
             ue_prg_topk=int(args.ue_prg_topk),
             ue_prg_diversity_extra=int(args.ue_prg_diversity_extra),
+            candidate_mode=str(args.candidate_mode),
+            include_pfq_score_anchor=(
+                False if independent_mode else bool(int(args.include_pfq_score_anchor))
+            ),
+            include_candidate_risk_features=False,
         )
     )
     teacher = build_joint_teacher(
@@ -376,23 +427,30 @@ def main() -> int:
         max_candidates=max_prg_candidates,
     )
 
-    model = StageBHGraphPolicy(
-        HGraphModelConfig(
-            hidden_dim=int(args.hidden_dim),
-            message_layers=int(args.message_layers),
-            dropout=float(args.dropout),
-            max_prg_candidates=max_prg_candidates,
-            action_head_mode=str(args.action_head_mode),
-            candidate_blank_logit_bias=float(args.candidate_blank_logit_bias),
-            candidate_success_logit_scale=float(args.candidate_success_logit_scale),
-            candidate_blank_success_scale=float(args.candidate_blank_success_scale),
-            candidate_pfq_anchor_logit_coef=float(args.candidate_pfq_anchor_logit_coef),
+    if independent_mode:
+        model = None
+    else:
+        model = StageBHGraphPolicy(
+            HGraphModelConfig(
+                hidden_dim=int(args.hidden_dim),
+                message_layers=int(args.message_layers),
+                dropout=float(args.dropout),
+                max_prg_candidates=max_prg_candidates,
+                action_head_mode=str(args.action_head_mode),
+                candidate_blank_logit_bias=float(args.candidate_blank_logit_bias),
+                candidate_success_logit_scale=float(args.candidate_success_logit_scale),
+                candidate_blank_success_scale=float(args.candidate_blank_success_scale),
+                candidate_pfq_anchor_logit_coef=float(args.candidate_pfq_anchor_logit_coef),
+            )
+        ).to(device)
+    optimizer = (
+        None
+        if model is None
+        else torch.optim.AdamW(
+            model.parameters(),
+            lr=float(args.lr),
+            weight_decay=float(args.weight_decay),
         )
-    ).to(device)
-    optimizer = torch.optim.AdamW(
-        model.parameters(),
-        lr=float(args.lr),
-        weight_decay=float(args.weight_decay),
     )
 
     runner = OnlineEpisodeRunner(args)
@@ -418,100 +476,160 @@ def main() -> int:
                     snapshot = snapshot_builder.build(obs)
                     graph = edge_generator.build_graph(snapshot)
                     meta = graph.snapshot.static_meta
+                    if independent_mode and model is None:
+                        max_prg_candidates = resolve_full_candidate_width(graph)
+                        model = PFQIndependentReuseActor(
+                            IndependentActorConfig(
+                                hidden_dim=int(args.hidden_dim),
+                                message_layers=int(args.message_layers),
+                                dropout=float(args.dropout),
+                                max_candidates=max_prg_candidates,
+                            )
+                        ).to(device)
+                        optimizer = torch.optim.AdamW(
+                            model.parameters(),
+                            lr=float(args.lr),
+                            weight_decay=float(args.weight_decay),
+                        )
+                        print(
+                            "[online-imitation] independent full candidate width "
+                            f"resolved from static association mask: {max_prg_candidates}"
+                        )
+                    if model is None or optimizer is None:
+                        raise RuntimeError("model initialization failed")
 
                     teacher_out = teacher.label_graph(graph)
                     teacher_target_ue = teacher_out["target_ue_class"].to(device=device, dtype=torch.long)
                     teacher_target_prg = teacher_out["target_prg_class"].to(device=device, dtype=torch.long)
 
                     model.train(True)
-                    out = model(graph)
-                    ue_logits_raw = out["ue_logits"].unsqueeze(0)
-                    prg_logits_raw = out["prg_logits"].unsqueeze(0)
-
-                    action_mask_ue = (
-                        meta.action_mask_ue
-                        if meta.action_mask_ue is not None
-                        else torch.ones((meta.n_ue,), dtype=torch.bool)
-                    ).to(device=device, dtype=torch.bool).unsqueeze(0)
-                    action_mask_cell_ue = meta.action_mask_cell_ue.to(device=device, dtype=torch.bool).unsqueeze(0)
-                    action_mask_prg_cell = meta.action_mask_prg_cell.to(device=device, dtype=torch.bool).unsqueeze(0)
-
-                    ue_logits, ue_valid = apply_ue_action_mask(
-                        ue_logits_raw,
-                        action_mask_ue,
-                        n_cell=meta.n_cell,
-                        action_mask_cell_ue=action_mask_cell_ue,
-                    )
-                    ue_target, ue_bad = sanitize_targets(
-                        teacher_target_ue.unsqueeze(0),
-                        ue_valid,
-                    )
-                    if "candidate_prg_logits" in out:
+                    out: Dict[str, torch.Tensor] = {}
+                    if independent_mode:
                         packed = pack_prg_candidates(
                             graph,
-                            max_candidates=max(0, int(out["candidate_prg_logits"].shape[-1]) - 1),
+                            max_candidates=max_prg_candidates,
                             fixed_width=True,
                         )
-                        teacher_target_ue, teacher_target_prg = joint_candidate_targets_from_type0_actions(
+                        teacher_trace = independent_teacher_trace_from_type0(
+                            model,
                             graph,
                             packed,
-                            action_ue_select=teacher_out["action_ue_select"].to(device=device, dtype=torch.long),
-                            action_prg_alloc=teacher_out["action_prg_alloc"].to(device=device, dtype=torch.long),
+                            teacher_out["action_ue_select"].to(device=device, dtype=torch.long),
+                            teacher_out["action_prg_alloc"].to(device=device, dtype=torch.long),
                         )
-                        teacher_target_ue = teacher_target_ue.to(device=device, dtype=torch.long)
-                        teacher_target_prg = teacher_target_prg.to(device=device, dtype=torch.long)
-                        ue_target, ue_bad = sanitize_targets(
-                            teacher_target_ue.unsqueeze(0),
-                            ue_valid,
-                        )
-                        candidate_valid, _selected_slot_mask, _selected_ue_mask = build_prg_candidate_valid_mask(
-                            graph,
-                            packed,
-                            teacher_target_ue,
-                        )
-                        prg_valid = candidate_valid.to(device=device, dtype=torch.bool).unsqueeze(0)
-                        prg_logits = out["candidate_prg_logits"].unsqueeze(0).masked_fill(~prg_valid, -1.0e9)
+                        loss = -teacher_trace.logp
+                        prg_loss = loss
+                        ue_loss = loss * 0.0
+                        with torch.no_grad():
+                            greedy_trace, _ = select_independent_action(
+                                model,
+                                graph,
+                                packed,
+                                mode="greedy",
+                            )
+                            prg_acc = float(
+                                (greedy_trace.choice == teacher_trace.choice).float().mean().item()
+                            )
+                        ue_acc = 1.0
+                        joint_acc = prg_acc
+                        ue_legal_ratio = 1.0
+                        prg_legal_ratio = 1.0
+                        ue_bad_target_ratio = 0.0
+                        prg_bad_target_ratio = 0.0
                     else:
-                        selected_slot_mask = build_slot_selection_mask(
-                            teacher_target_ue.unsqueeze(0),
+                        out = model(graph)
+                        ue_logits_raw = out["ue_logits"].unsqueeze(0)
+                        prg_logits_raw = out["prg_logits"].unsqueeze(0)
+
+                        action_mask_ue = (
+                            meta.action_mask_ue
+                            if meta.action_mask_ue is not None
+                            else torch.ones((meta.n_ue,), dtype=torch.bool)
+                        ).to(device=device, dtype=torch.bool).unsqueeze(0)
+                        action_mask_cell_ue = meta.action_mask_cell_ue.to(device=device, dtype=torch.bool).unsqueeze(0)
+                        action_mask_prg_cell = meta.action_mask_prg_cell.to(device=device, dtype=torch.bool).unsqueeze(0)
+
+                        ue_logits, ue_valid = apply_ue_action_mask(
+                            ue_logits_raw,
                             action_mask_ue,
                             n_cell=meta.n_cell,
                             action_mask_cell_ue=action_mask_cell_ue,
                         )
-                        prg_logits, prg_valid = apply_prg_action_mask(
-                            prg_logits_raw,
-                            meta.action_mask_prg_cell.to(device=device, dtype=torch.bool).reshape(1, meta.n_cell, meta.n_prg),
-                            n_cell=meta.n_cell,
-                            action_mask_cell_ue=action_mask_cell_ue,
-                            action_mask_ue=action_mask_ue,
-                            selected_slot_mask=selected_slot_mask,
+                        ue_target, ue_bad = sanitize_targets(
+                            teacher_target_ue.unsqueeze(0),
+                            ue_valid,
                         )
-                    prg_target, prg_bad = sanitize_targets(
-                        teacher_target_prg.unsqueeze(0),
-                        prg_valid,
-                    )
+                        if "candidate_prg_logits" in out:
+                            packed = pack_prg_candidates(
+                                graph,
+                                max_candidates=max(0, int(out["candidate_prg_logits"].shape[-1]) - 1),
+                                fixed_width=True,
+                            )
+                            teacher_target_ue, teacher_target_prg = joint_candidate_targets_from_type0_actions(
+                                graph,
+                                packed,
+                                action_ue_select=teacher_out["action_ue_select"].to(device=device, dtype=torch.long),
+                                action_prg_alloc=teacher_out["action_prg_alloc"].to(device=device, dtype=torch.long),
+                            )
+                            teacher_target_ue = teacher_target_ue.to(device=device, dtype=torch.long)
+                            teacher_target_prg = teacher_target_prg.to(device=device, dtype=torch.long)
+                            ue_target, ue_bad = sanitize_targets(
+                                teacher_target_ue.unsqueeze(0),
+                                ue_valid,
+                            )
+                            candidate_valid, _selected_slot_mask, _selected_ue_mask = build_prg_candidate_valid_mask(
+                                graph,
+                                packed,
+                                teacher_target_ue,
+                            )
+                            prg_valid = candidate_valid.to(device=device, dtype=torch.bool).unsqueeze(0)
+                            prg_logits = out["candidate_prg_logits"].unsqueeze(0).masked_fill(~prg_valid, -1.0e9)
+                        else:
+                            selected_slot_mask = build_slot_selection_mask(
+                                teacher_target_ue.unsqueeze(0),
+                                action_mask_ue,
+                                n_cell=meta.n_cell,
+                                action_mask_cell_ue=action_mask_cell_ue,
+                            )
+                            prg_logits, prg_valid = apply_prg_action_mask(
+                                prg_logits_raw,
+                                meta.action_mask_prg_cell.to(device=device, dtype=torch.bool).reshape(1, meta.n_cell, meta.n_prg),
+                                n_cell=meta.n_cell,
+                                action_mask_cell_ue=action_mask_cell_ue,
+                                action_mask_ue=action_mask_ue,
+                                selected_slot_mask=selected_slot_mask,
+                            )
+                        prg_target, prg_bad = sanitize_targets(
+                            teacher_target_prg.unsqueeze(0),
+                            prg_valid,
+                        )
 
-                    ue_loss = F.cross_entropy(
-                        ue_logits.reshape(-1, meta.n_ue + 1),
-                        ue_target.reshape(-1),
-                        ignore_index=-100,
-                    )
-                    prg_loss = F.cross_entropy(
-                        prg_logits.reshape(-1, prg_logits.shape[-1]),
-                        prg_target.reshape(-1),
-                        ignore_index=-100,
-                    )
-                    loss = prg_loss + ue_loss_weight * ue_loss
+                        ue_loss = F.cross_entropy(
+                            ue_logits.reshape(-1, meta.n_ue + 1),
+                            ue_target.reshape(-1),
+                            ignore_index=-100,
+                        )
+                        prg_loss = F.cross_entropy(
+                            prg_logits.reshape(-1, prg_logits.shape[-1]),
+                            prg_target.reshape(-1),
+                            ignore_index=-100,
+                        )
+                        loss = prg_loss + ue_loss_weight * ue_loss
 
                     optimizer.zero_grad(set_to_none=True)
                     loss.backward()
                     torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=float(args.grad_clip))
                     optimizer.step()
 
-                    with torch.no_grad():
-                        ue_acc = classification_accuracy(ue_logits, ue_target, ignore_index=-100)
-                        prg_acc = classification_accuracy(prg_logits, prg_target, ignore_index=-100)
-                        joint_acc = 0.5 * (ue_acc + prg_acc)
+                    if not independent_mode:
+                        with torch.no_grad():
+                            ue_acc = classification_accuracy(ue_logits, ue_target, ignore_index=-100)
+                            prg_acc = classification_accuracy(prg_logits, prg_target, ignore_index=-100)
+                            joint_acc = 0.5 * (ue_acc + prg_acc)
+                            ue_legal_ratio = predicted_legal_ratio(ue_logits, ue_valid)
+                            prg_legal_ratio = predicted_legal_ratio(prg_logits, prg_valid)
+                            ue_bad_target_ratio = float(ue_bad.float().mean().item())
+                            prg_bad_target_ratio = float(prg_bad.float().mean().item())
 
                     assert runner.env is not None
                     next_obs, reward_raw, done, next_info = runner.env.step(
@@ -534,10 +652,10 @@ def main() -> int:
                         "ue_acc": ue_acc,
                         "prg_acc": prg_acc,
                         "joint_acc": joint_acc,
-                        "ue_legal_ratio": predicted_legal_ratio(ue_logits, ue_valid),
-                        "prg_legal_ratio": predicted_legal_ratio(prg_logits, prg_valid),
-                        "ue_bad_target_ratio": float(ue_bad.float().mean().item()),
-                        "prg_bad_target_ratio": float(prg_bad.float().mean().item()),
+                        "ue_legal_ratio": ue_legal_ratio,
+                        "prg_legal_ratio": prg_legal_ratio,
+                        "ue_bad_target_ratio": ue_bad_target_ratio,
+                        "prg_bad_target_ratio": prg_bad_target_ratio,
                         "teacher_blank_ratio": float(teacher_out["teacher_blank_ratio"].item()),
                         "reward_raw": float(reward_raw),
                         "action_head_mode": str(args.action_head_mode),
@@ -547,7 +665,11 @@ def main() -> int:
                             and int(out["candidate_pfq_anchor_logits"].numel()) > 0
                             else 0.0
                         ),
-                        "candidate_mode": graph.snapshot.static_meta.candidate_mode,
+                        "candidate_mode": (
+                            "all_demand_ues"
+                            if independent_mode
+                            else graph.snapshot.static_meta.candidate_mode
+                        ),
                         "post_eq_layer_dim": (
                             int(graph.snapshot.static_meta.post_eq_sinr.shape[-1])
                             if graph.snapshot.static_meta.post_eq_sinr is not None
@@ -618,11 +740,33 @@ def main() -> int:
                     "model_config": model.model_config_dict(),
                     "actor_state": model.state_dict(),
                     "actor_config": model.model_config_dict(),
+                    "graph_config": (
+                        {
+                            "candidate_mode": "all_demand_ues",
+                            "include_pfq_score_anchor": False,
+                            "include_candidate_risk_features": False,
+                        }
+                        if independent_mode
+                        else {
+                            "candidate_mode": str(args.candidate_mode),
+                            "include_pfq_score_anchor": bool(int(args.include_pfq_score_anchor)),
+                            "include_candidate_risk_features": False,
+                        }
+                    ),
                     "train_args": vars(args),
                     "episode": episode_idx,
                     "global_step": global_step,
                     "mean_loss": mean_loss,
                     "mean_acc": mean_acc,
+                    "teacher_collection": (
+                        {
+                            "policy": "pfq",
+                            "demand_cap_slack_bytes": 0.0,
+                            "reason": "match independent zero-slack hard headroom action space",
+                        }
+                        if independent_mode
+                        else {}
+                    ),
                 }
                 if int(args.save_every_episodes) > 0 and (episode_idx % int(args.save_every_episodes) == 0):
                     torch.save(checkpoint, ckpt_last_path)
@@ -640,6 +784,9 @@ def main() -> int:
         "device": str(device),
         "teacher_mode": args.teacher_mode,
         "action_head_mode": str(args.action_head_mode),
+        "actor_family": getattr(model, "actor_family", "legacy_stageb_hgraph"),
+        "requires_pfq_features": bool(getattr(model, "requires_pfq_features", True)),
+        "resolved_max_candidates": int(max_prg_candidates),
         "candidate_pfq_anchor_logit_coef": float(args.candidate_pfq_anchor_logit_coef),
         "sim_bin": args.sim_bin,
         "sim_args": args.sim_args,
