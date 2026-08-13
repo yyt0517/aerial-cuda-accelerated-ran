@@ -12,6 +12,7 @@ if __package__ is None or __package__ == "":
     sys.path.insert(0, _repo_root)
 
 import argparse
+import hashlib
 import json
 import os
 from collections import deque
@@ -57,6 +58,19 @@ from training.stageb_hgraph.graph_ops import (
     pack_prg_candidates,
     select_and_decode_budgeted_candidate_actions,
 )
+from training.stageb_hgraph.independent_actor import (
+    IndependentActorConfig,
+    PFQIndependentReuseActor,
+)
+from training.stageb_hgraph.independent_contract import (
+    assert_graph_tensor_equality,
+    strip_pfq_fields,
+    validate_independent_checkpoint,
+)
+from training.stageb_hgraph.independent_policy import (
+    replay_independent_trace,
+    select_independent_action,
+)
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy, build_model_from_config
 from training.stageb_hgraph.online_imitation import _pick_device, _set_seed
 from training.stageb_hgraph.online_ppo import (
@@ -66,12 +80,79 @@ from training.stageb_hgraph.online_ppo import (
     _repair_ue_action_for_coverage,
 )
 from training.stageb_hgraph.reward_utils import extract_reward_metrics
+from training.stageb_hgraph.online_protocol import VERSION
+from training.stageb_hgraph.pfq_reference_calibration import filter_outcome_samples
 
 
-def _load_actor_checkpoint(path: Path, device: torch.device) -> tuple[StageBHGraphPolicy, Dict[str, Any]]:
+def _sha256(path: Path) -> str:
+    if not path.is_file():
+        return "unavailable"
+    digest = hashlib.sha256()
+    with open(path, "rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _independent_deletion_equal(
+    actor: PFQIndependentReuseActor,
+    observation: Dict[str, Any],
+    edge_generator: SparseEdgeGenerator,
+    snapshot_cfg: SnapshotBuilderConfig,
+    device: torch.device,
+) -> bool:
+    full = _graph_to_device(
+        edge_generator.build_graph(FeatureSnapshotBuilder(snapshot_cfg).build(observation)),
+        device,
+    )
+    deleted = _graph_to_device(
+        edge_generator.build_graph(
+            FeatureSnapshotBuilder(snapshot_cfg).build(strip_pfq_fields(observation))
+        ),
+        device,
+    )
+    assert_graph_tensor_equality(full, deleted)
+    full_packed = pack_prg_candidates(
+        full, max_candidates=int(actor.cfg.max_candidates), fixed_width=True
+    )
+    deleted_packed = pack_prg_candidates(
+        deleted, max_candidates=int(actor.cfg.max_candidates), fixed_width=True
+    )
+    with torch.inference_mode():
+        full_encoded = actor.encode_graph(full)
+        deleted_encoded = actor.encode_graph(deleted)
+        if not all(torch.equal(full_encoded[key], deleted_encoded[key]) for key in full_encoded):
+            return False
+        full_trace, full_action = select_independent_action(
+            actor, full, full_packed, mode="greedy"
+        )
+        deleted_trace, deleted_action = select_independent_action(
+            actor, deleted, deleted_packed, mode="greedy"
+        )
+    return bool(
+        torch.equal(full_trace.choice, deleted_trace.choice)
+        and torch.equal(full_trace.valid_at_step, deleted_trace.valid_at_step)
+        and torch.equal(full_trace.logp, deleted_trace.logp)
+        and torch.equal(full_action.action_ue_select, deleted_action.action_ue_select)
+        and torch.equal(full_action.action_prg_alloc, deleted_action.action_prg_alloc)
+    )
+
+
+def _load_actor_checkpoint(
+    path: Path,
+    device: torch.device,
+) -> tuple[StageBHGraphPolicy | PFQIndependentReuseActor, Dict[str, Any]]:
     ckpt = torch.load(path, map_location="cpu")
     actor_cfg = ckpt.get("actor_config")
-    if isinstance(actor_cfg, dict):
+    if isinstance(actor_cfg, dict) and actor_cfg.get("actor_family") == PFQIndependentReuseActor.actor_family:
+        validate_independent_checkpoint(ckpt)
+        independent_keys = IndependentActorConfig.__dataclass_fields__
+        actor = PFQIndependentReuseActor(
+            IndependentActorConfig(
+                **{key: actor_cfg[key] for key in independent_keys if key in actor_cfg}
+            )
+        )
+    elif isinstance(actor_cfg, dict):
         actor = build_model_from_config(actor_cfg)
     else:
         actor = StageBHGraphPolicy(HGraphModelConfig())
@@ -81,6 +162,8 @@ def _load_actor_checkpoint(path: Path, device: torch.device) -> tuple[StageBHGra
         state = ckpt.get("model_state", ckpt)
     target_state = actor.state_dict()
     compatible = {k: v for k, v in state.items() if k in target_state and target_state[k].shape == v.shape}
+    if isinstance(actor, PFQIndependentReuseActor) and set(compatible) != set(target_state):
+        raise ValueError("independent checkpoint does not exactly match its actor configuration")
     actor.load_state_dict(compatible, strict=False)
     actor.to(device)
     actor.eval()
@@ -121,7 +204,7 @@ def _validate_direct_evaluation_config(args: argparse.Namespace) -> None:
 
 
 def _select_joint_action(
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     graph,
     *,
     decode_mode: str,
@@ -154,6 +237,67 @@ def _select_joint_action(
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
 ) -> Dict[str, Any]:
+    if isinstance(actor, PFQIndependentReuseActor):
+        if decode_mode != "argmax":
+            raise ValueError("independent evaluation is deterministic and requires --decode-mode argmax")
+        packed = pack_prg_candidates(
+            graph,
+            max_candidates=int(actor.cfg.max_candidates),
+            fixed_width=True,
+        )
+        with torch.inference_mode():
+            trace, decoded = select_independent_action(
+                actor,
+                graph,
+                packed,
+                mode="greedy",
+            )
+            _logp, _entropy, replayed = replay_independent_trace(
+                actor,
+                graph,
+                packed,
+                trace,
+            )
+        mismatch = int(
+            (decoded.action_ue_select != replayed.action_ue_select).sum().item()
+            + (decoded.action_prg_alloc != replayed.action_prg_alloc).sum().item()
+        )
+        chosen = decoded.chosen_ue_per_prg[decoded.chosen_ue_per_prg >= 0]
+        return {
+            "action_ue_select": decoded.action_ue_select.cpu().numpy(),
+            "action_prg_alloc": decoded.action_prg_alloc.cpu().numpy(),
+            "prg_action_class": trace.choice.detach().cpu(),
+            "independent_policy_trace": trace,
+            "blank_ratio": float(
+                (trace.choice == packed.blank_class_index).float().mean().item()
+            ),
+            "fill_ratio": float(decoded.prg_chosen_mask.float().mean().item()),
+            "cap_drop_count": 0.0,
+            "fallback_success_count": 0.0,
+            "safe_fill_count": 0.0,
+            "missed_safe_opportunity_count": 0.0,
+            "blank_budget_repair_count": 0.0,
+            "final_blank_count": float(decoded.final_blank_count),
+            "post_decode_policy_blank_count": float(decoded.final_blank_count),
+            "post_decode_no_valid_candidate_count": 0.0,
+            "post_decode_demand_cap_count": 0.0,
+            "post_decode_no_slot_count": 0.0,
+            "post_decode_other_drop_count": 0.0,
+            "slot_repair_count": 0.0,
+            "coverage_repair_count": 0.0,
+            "non_hard_override_count": 0.0,
+            "candidate_policy_mode_direct": 0.0,
+            "budgeted_changed_count": 0.0,
+            "budgeted_no_headroom_count": 0.0,
+            "budgeted_active_ue_count": 0.0,
+            "budgeted_tail_bias_coef": 0.0,
+            "budgeted_tail_bias_candidate_mean": 0.0,
+            "budgeted_tail_bias_selected_mean": 0.0,
+            "budgeted_tail_bias_active_count": 0.0,
+            "uniq_ue": float(torch.unique(chosen).numel()) if chosen.numel() else 0.0,
+            "action_replay_mismatch_count": float(mismatch),
+            "independent_mode": 1.0,
+        }
     _validate_direct_evaluation_config(
         argparse.Namespace(
             candidate_policy_mode=str(candidate_policy_mode).lower(),
@@ -503,6 +647,12 @@ def parse_args() -> argparse.Namespace:
         help="Ignore the first N evaluator steps in stats_mean_* summary fields; the environment still runs them.",
     )
     p.add_argument("--out-dir", default="")
+    p.add_argument("--sim-bin", default="", help="optional simulator binary for SHA-256 provenance")
+    p.add_argument(
+        "--outcome-samples",
+        default="",
+        help="optional packet outcome CSV produced by the same evaluator run",
+    )
     return p.parse_args()
 
 
@@ -513,11 +663,14 @@ def main() -> int:
 
     ckpt_path = Path(args.checkpoint).resolve()
     actor, ckpt = _load_actor_checkpoint(ckpt_path, device)
-    candidate_policy_mode = str(
-        _checkpoint_arg(ckpt, "candidate_policy_mode", "legacy")
-    ).lower()
-    if candidate_policy_mode not in ("legacy", "direct"):
-        raise ValueError("checkpoint candidate_policy_mode must be legacy or direct")
+    independent_mode = isinstance(actor, PFQIndependentReuseActor)
+    candidate_policy_mode = (
+        "independent"
+        if independent_mode
+        else str(_checkpoint_arg(ckpt, "candidate_policy_mode", "legacy")).lower()
+    )
+    if candidate_policy_mode not in ("legacy", "direct", "independent"):
+        raise ValueError("checkpoint candidate_policy_mode must be legacy, direct, or independent")
     ue_prg_topk = int(args.ue_prg_topk if args.ue_prg_topk is not None else _checkpoint_arg(ckpt, "ue_prg_topk", 6))
     ue_prg_diversity_extra = int(
         args.ue_prg_diversity_extra
@@ -525,7 +678,7 @@ def main() -> int:
         else _checkpoint_arg(ckpt, "ue_prg_diversity_extra", 0)
     )
     candidate_mode = "all_demand_ues"
-    if candidate_policy_mode == "direct":
+    if candidate_policy_mode in ("direct", "independent"):
         candidate_mode = str(
             _checkpoint_arg(ckpt, "candidate_mode", "all_demand_ues")
         ).lower()
@@ -714,7 +867,7 @@ def main() -> int:
         raise ValueError("--candidate-budgeted-tail-quota-enable must be 0 or 1")
     _validate_direct_evaluation_config(
         argparse.Namespace(
-            candidate_policy_mode=candidate_policy_mode,
+            candidate_policy_mode=("legacy" if independent_mode else candidate_policy_mode),
             candidate_budgeted_select_mode=candidate_budgeted_select_mode,
             candidate_budgeted_hard_cap=candidate_budgeted_hard_cap,
             candidate_blank_budget_max_per_cell=candidate_blank_budget_max_per_cell,
@@ -736,9 +889,8 @@ def main() -> int:
         out_dir = Path(args.out_dir).resolve()
         out_dir.mkdir(parents=True, exist_ok=True)
 
-    snapshot_builder = FeatureSnapshotBuilder(
-        SnapshotBuilderConfig(tb_err_ema_alpha=float(tb_err_ema_alpha))
-    )
+    snapshot_cfg = SnapshotBuilderConfig(tb_err_ema_alpha=float(tb_err_ema_alpha))
+    snapshot_builder = FeatureSnapshotBuilder(snapshot_cfg)
     up_edge_attr_dim = int(getattr(actor.cfg, "up_edge_attr_dim", 6))
     ckpt_anchor = _checkpoint_arg(ckpt, "include_pfq_score_anchor", None)
     if ckpt_anchor is not None:
@@ -780,7 +932,25 @@ def main() -> int:
     )
 
     obs, _reward0, info = env.reset(seed=int(args.seed), episode_horizon=int(args.episode_horizon))
+    deletion_equal = (
+        _independent_deletion_equal(actor, obs, edge_generator, snapshot_cfg, device)
+        if independent_mode
+        else None
+    )
     step_idx = 0
+    measured_tti_first: int | None = None
+    measured_tti_last: int | None = None
+    n_active_ue = int(info.get("n_active_ue", 0))
+    ue_measured_goodput_bytes = np.zeros((n_active_ue,), dtype=np.float64)
+    ue_measured_outcome_time_ms = np.zeros((n_active_ue,), dtype=np.float64)
+    last_delivered_time_ms = np.asarray(
+        info.get("actual_ue_packet_system_time_ms", np.zeros((n_active_ue,))),
+        dtype=np.float64,
+    ).reshape(-1)
+    last_expired_time_ms = np.asarray(
+        info.get("actual_ue_packet_expired_system_time_ms", np.zeros((n_active_ue,))),
+        dtype=np.float64,
+    ).reshape(-1)
     rows = []
     tail_rows = deque(maxlen=max(1, int(args.print_every_steps) if int(args.print_every_steps) > 0 else 1))
     sums = {
@@ -819,6 +989,14 @@ def main() -> int:
         "budgeted_tail_bias_candidate_mean": 0.0,
         "budgeted_tail_bias_selected_mean": 0.0,
         "budgeted_tail_bias_active_count": 0.0,
+        "action_replay_mismatch_count": 0.0,
+        "illegal_action_count": 0.0,
+        "packet_expired_count": 0.0,
+        "packet_expired_system_time_ms": 0.0,
+        "packet_outcome_count": 0.0,
+        "packet_outcome_system_time_ms": 0.0,
+        "packet_expiry_aware_rate_mbps": 0.0,
+        "packet_expiry_aware_rate_per_packet_mean_mbps": 0.0,
     }
     stats_sums = {key: 0.0 for key in sums}
     stats_count = 0
@@ -863,6 +1041,16 @@ def main() -> int:
                 selected["action_prg_alloc"],
             )
             reward_metrics = extract_reward_metrics(next_info)
+            delivered_time_ms = np.asarray(
+                next_info.get("actual_ue_packet_system_time_ms", last_delivered_time_ms),
+                dtype=np.float64,
+            ).reshape(-1)
+            expired_time_ms = np.asarray(
+                next_info.get(
+                    "actual_ue_packet_expired_system_time_ms", last_expired_time_ms
+                ),
+                dtype=np.float64,
+            ).reshape(-1)
             row = {
                 "step": step_idx,
                 "tti": int(next_info.get("tti", step_idx)),
@@ -881,6 +1069,26 @@ def main() -> int:
                 ),
                 "packet_effective_service_rate_per_packet_mean_mbps": float(
                     reward_metrics.get("packet_effective_service_rate_per_packet_mean_mbps", 0.0)
+                ),
+                "packet_expired_count": float(
+                    reward_metrics.get("packet_expired_count", 0.0)
+                ),
+                "packet_expired_system_time_ms": float(
+                    reward_metrics.get("packet_expired_system_time_ms", 0.0)
+                ),
+                "packet_outcome_count": float(
+                    reward_metrics.get("packet_outcome_count", 0.0)
+                ),
+                "packet_outcome_system_time_ms": float(
+                    reward_metrics.get("packet_outcome_system_time_ms", 0.0)
+                ),
+                "packet_expiry_aware_rate_mbps": float(
+                    reward_metrics.get("packet_expiry_aware_rate_mbps", 0.0)
+                ),
+                "packet_expiry_aware_rate_per_packet_mean_mbps": float(
+                    reward_metrics.get(
+                        "packet_expiry_aware_rate_per_packet_mean_mbps", 0.0
+                    )
                 ),
                 "blank_ratio": float(selected["blank_ratio"]),
                 "fill_ratio": float(selected["fill_ratio"]),
@@ -906,6 +1114,13 @@ def main() -> int:
                 "budgeted_tail_bias_candidate_mean": float(selected["budgeted_tail_bias_candidate_mean"]),
                 "budgeted_tail_bias_selected_mean": float(selected["budgeted_tail_bias_selected_mean"]),
                 "budgeted_tail_bias_active_count": float(selected["budgeted_tail_bias_active_count"]),
+                "action_replay_mismatch_count": float(
+                    selected.get("action_replay_mismatch_count", 0.0)
+                ),
+                "illegal_action_count": float(
+                    selected["post_decode_no_slot_count"]
+                    + selected["post_decode_other_drop_count"]
+                ),
             }
             if int(args.save_steps) == 1:
                 rows.append(row)
@@ -913,9 +1128,32 @@ def main() -> int:
             for key in sums:
                 sums[key] += float(row[key])
             if step_idx >= int(args.stats_warmup_steps):
+                measured_tti = int(next_info.get("tti", step_idx + 1))
+                measured_tti_first = (
+                    measured_tti if measured_tti_first is None else measured_tti_first
+                )
+                measured_tti_last = measured_tti
+                if n_active_ue > 0:
+                    goodput_ue = np.asarray(
+                        next_info.get(
+                            "actual_ue_goodput_bytes", np.zeros((n_active_ue,))
+                        ),
+                        dtype=np.float64,
+                    ).reshape(n_active_ue)
+                    if (
+                        delivered_time_ms.shape != (n_active_ue,)
+                        or expired_time_ms.shape != (n_active_ue,)
+                    ):
+                        raise ValueError("expiry-aware evaluator UE diagnostic shape mismatch")
+                    ue_measured_goodput_bytes += np.maximum(goodput_ue, 0.0)
+                    ue_measured_outcome_time_ms += np.maximum(
+                        delivered_time_ms - last_delivered_time_ms, 0.0
+                    ) + np.maximum(expired_time_ms - last_expired_time_ms, 0.0)
                 for key in stats_sums:
                     stats_sums[key] += float(row[key])
                 stats_count += 1
+            last_delivered_time_ms = delivered_time_ms
+            last_expired_time_ms = expired_time_ms
             step_idx += 1
 
             if int(args.print_every_steps) > 0 and (
@@ -977,9 +1215,52 @@ def main() -> int:
         if stats_count <= 0 or stats_sums["packet_system_time_ms"] <= 0.0
         else float((stats_sums["packet_delivered_bits"] / 1000.0) / stats_sums["packet_system_time_ms"])
     )
+    stats_outcome_delay_weighted = (
+        None
+        if stats_count <= 0 or stats_sums["packet_outcome_count"] <= 0.0
+        else float(
+            stats_sums["packet_outcome_system_time_ms"]
+            / stats_sums["packet_outcome_count"]
+        )
+    )
+    ue_rates_mbps = np.zeros_like(ue_measured_goodput_bytes)
+    ue_rate_active = ue_measured_outcome_time_ms > 0.0
+    ue_rates_mbps[ue_rate_active] = (
+        ue_measured_goodput_bytes[ue_rate_active]
+        * 8.0
+        / (ue_measured_outcome_time_ms[ue_rate_active] * 1000.0)
+    )
+    active_rates = ue_rates_mbps[ue_rate_active]
+    outcome_delay_p95_ms: float | None = None
+    outcome_sample_count = 0
+    outcome_path = Path(args.outcome_samples).resolve() if args.outcome_samples else None
+    if outcome_path is not None and outcome_path.is_file() and measured_tti_first is not None:
+        outcome_rows = filter_outcome_samples(
+            outcome_path,
+            terminal_tti_exclusive=int(measured_tti_first) - 1,
+            terminal_tti_inclusive=int(measured_tti_last),
+        )
+        delays = np.asarray(
+            [float(row["system_time_ms"]) for row in outcome_rows], dtype=np.float64
+        )
+        outcome_sample_count = int(delays.size)
+        outcome_delay_p95_ms = float(np.percentile(delays, 95)) if delays.size else None
+    sim_bin_path = Path(args.sim_bin).resolve() if args.sim_bin else None
 
     summary = {
         "checkpoint": str(ckpt_path),
+        "checkpoint_sha256": _sha256(ckpt_path),
+        "actor_family": getattr(actor, "actor_family", "legacy_stageb_hgraph"),
+        "requires_pfq_features": bool(
+            getattr(actor, "requires_pfq_features", True)
+        ),
+        "protocol_version": VERSION,
+        "sim_binary_sha256": (
+            _sha256(sim_bin_path)
+            if sim_bin_path is not None and sim_bin_path.is_file()
+            else os.environ.get("CUMAC_SIM_BINARY_SHA256", "")
+        ),
+        "independent_deletion_equal": deletion_equal,
         "decode_mode": str(args.decode_mode),
         "candidate_policy_mode": str(candidate_policy_mode),
         "ue_prg_topk": int(ue_prg_topk),
@@ -1020,6 +1301,20 @@ def main() -> int:
         "completed_steps": int(step_idx),
         "stats_warmup_steps": int(args.stats_warmup_steps),
         "stats_count": int(stats_count),
+        "measured_tti_first": measured_tti_first,
+        "measured_tti_last": measured_tti_last,
+        "packet_outcome_measured_count": outcome_sample_count,
+        "packet_outcome_delay_p95_ms": outcome_delay_p95_ms,
+        "ue_macro_expiry_aware_rate_mbps": (
+            float(active_rates.mean()) if active_rates.size else 0.0
+        ),
+        "ue_p10_expiry_aware_rate_mbps": (
+            float(np.percentile(active_rates, 10)) if active_rates.size else 0.0
+        ),
+        "ue_min_expiry_aware_rate_mbps": (
+            float(active_rates.min()) if active_rates.size else 0.0
+        ),
+        "ue_expiry_aware_rate_active_count": int(active_rates.size),
         "mean_goodput_mbps": float(sums["goodput_mbps"] / denom),
         "mean_tb_err_rate": float(sums["tb_err_rate"] / denom),
         "mean_expiry_drop_rate": float(sums["expiry_drop_rate"] / denom),
@@ -1081,6 +1376,25 @@ def main() -> int:
         "stats_mean_packet_effective_service_rate_per_packet_mean_mbps": _stats_mean(
             "packet_effective_service_rate_per_packet_mean_mbps"
         ),
+        "stats_sum_packet_expired_count": _stats_sum("packet_expired_count"),
+        "stats_sum_packet_expired_system_time_ms": _stats_sum(
+            "packet_expired_system_time_ms"
+        ),
+        "stats_sum_packet_outcome_count": _stats_sum("packet_outcome_count"),
+        "stats_sum_packet_outcome_system_time_ms": _stats_sum(
+            "packet_outcome_system_time_ms"
+        ),
+        "stats_weighted_packet_outcome_delay_mean_ms": stats_outcome_delay_weighted,
+        "stats_mean_packet_expiry_aware_rate_mbps": _stats_mean(
+            "packet_expiry_aware_rate_mbps"
+        ),
+        "stats_mean_packet_expiry_aware_rate_per_packet_mean_mbps": _stats_mean(
+            "packet_expiry_aware_rate_per_packet_mean_mbps"
+        ),
+        "stats_sum_action_replay_mismatch_count": _stats_sum(
+            "action_replay_mismatch_count"
+        ),
+        "stats_sum_illegal_action_count": _stats_sum("illegal_action_count"),
         "stats_mean_blank_ratio": _stats_mean("blank_ratio"),
         "stats_mean_fill_ratio": _stats_mean("fill_ratio"),
         "stats_mean_cap_drop_count": _stats_mean("cap_drop_count"),

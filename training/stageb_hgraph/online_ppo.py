@@ -90,7 +90,17 @@ from training.stageb_hgraph.graph_ops import (
     type0_action_preflight_reject_counts,
 )
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy
+from training.stageb_hgraph.independent_actor import (
+    IndependentActorConfig,
+    PFQIndependentReuseActor,
+)
 from training.stageb_hgraph.independent_objectives import ExpiryAwareUeWindowTracker
+from training.stageb_hgraph.independent_policy import (
+    IndependentPolicyTrace,
+    materialize_independent_choices_to_type0,
+    replay_independent_trace,
+    select_independent_action,
+)
 from training.stageb_hgraph.independent_reward import (
     IndependentRewardConfig,
     compute_independent_reward,
@@ -284,6 +294,9 @@ class RolloutStep:
     candidate_decode_goodput_target: torch.Tensor | None = None
     candidate_decode_goodput_mask: torch.Tensor | None = None
     candidate_policy_trace: CandidatePolicyTrace | None = None
+    independent_policy_trace: IndependentPolicyTrace | None = None
+    submitted_action_ue_select: torch.Tensor | None = None
+    submitted_action_prg_alloc: torch.Tensor | None = None
     candidate_policy_mode: str = "legacy"
     non_hard_override_count: float = 0.0
     action_replay_mismatch_count: float = math.nan
@@ -1218,6 +1231,65 @@ def _validate_candidate_policy_mode(args: argparse.Namespace) -> None:
         )
 
 
+def _validate_independent_ppo_args(args: argparse.Namespace) -> None:
+    if str(getattr(args, "action_head_mode", "")) != "independent":
+        return
+    required = (
+        ("reward_mode", "pfq_independent"),
+        ("candidate_mode", "all_demand_ues"),
+        ("include_pfq_score_anchor", 0),
+        ("include_candidate_risk_features", 0),
+        ("pfq_residual_init", 0),
+        ("imitation_episodes", 0),
+        ("teacher_aux_coef", 0.0),
+        ("teacher_aux_min_coef", 0.0),
+        ("slot_repair_max_per_cell", 0),
+        ("safe_fill_max_per_cell", 0),
+        ("candidate_blank_budget_max_per_cell", -1),
+        ("candidate_success_aux_coef", 0.0),
+        ("candidate_success_calib_coef", 0.0),
+        ("candidate_success_max_calib_coef", 0.0),
+        ("candidate_pairwise_rank_coef", 0.0),
+        ("candidate_rescue_aux_coef", 0.0),
+        ("candidate_decode_goodput_coef", 0.0),
+        ("candidate_argmax_decode_coef", 0.0),
+        ("candidate_blank_target_coef", 0.0),
+        ("candidate_budgeted_tail_bias_coef", 0.0),
+        ("candidate_budgeted_rescue_bias_coef", 0.0),
+        ("candidate_budgeted_completion_bonus", 0.0),
+        ("candidate_budgeted_tail_quota_enable", 0),
+        ("candidate_packet_tail_feature_enable", 0),
+    )
+    incompatible = [
+        f"{name}={getattr(args, name, None)!r} (required {expected!r})"
+        for name, expected in required
+        if getattr(args, name, None) != expected
+    ]
+    treatment = str(getattr(args, "independent_treatment", ""))
+    has_init = bool(str(getattr(args, "init_checkpoint", "")))
+    if treatment == "A" and has_init:
+        incompatible.append("treatment A requires an empty --init-checkpoint")
+    if treatment in ("B", "C", "D") and not has_init:
+        incompatible.append(f"treatment {treatment} requires the frozen BC --init-checkpoint")
+    if int(getattr(args, "max_prg_candidates", 0)) <= 0 and not has_init:
+        incompatible.append("random-init independent PPO requires --max-prg-candidates")
+    if incompatible:
+        raise ValueError(
+            "independent PPO has incompatible legacy or treatment configuration: "
+            + ", ".join(incompatible)
+        )
+
+
+def _rollout_warmup_steps_for_iteration(args: argparse.Namespace, iter_idx: int) -> int:
+    if (
+        str(getattr(args, "action_head_mode", "")) == "independent"
+        and int(getattr(args, "rollout_warmup_once", 1)) == 1
+        and int(iter_idx) > 1
+    ):
+        return 0
+    return int(args.rollout_warmup_steps)
+
+
 def _resolve_teacher_aux_coef(args: argparse.Namespace, iter_idx: int) -> float:
     base = float(getattr(args, "teacher_aux_coef", 0.0))
     if base <= 0.0 or str(args.teacher_mode) != "pfq_passthrough":
@@ -1636,13 +1708,17 @@ def _prg_feature_raw_mean(graph: SparseEntityGraph, feature_idx: int) -> float:
 
 
 def _evaluate_graph(
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     critic: GraphValueHead,
     graph: SparseEntityGraph,
     *,
     state_norm: RunningNorm | None = None,
 ) -> tuple[Dict[str, torch.Tensor], torch.Tensor]:
-    actor_out = actor.forward_graph(graph)
+    actor_out = (
+        actor.encode_graph(graph)
+        if isinstance(actor, PFQIndependentReuseActor)
+        else actor.forward_graph(graph)
+    )
     state_vec = _pool_actor_state(actor_out)
     if state_norm is not None:
         state_vec = state_norm.normalize(state_vec)
@@ -1772,7 +1848,7 @@ def _forward_joint_head_batched(
 
 
 def _evaluate_graph_batch(
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     critic: GraphValueHead,
     graphs: Sequence[SparseEntityGraph],
     *,
@@ -1780,6 +1856,16 @@ def _evaluate_graph_batch(
     slot_ue_class_for_prg: torch.Tensor | None = None,
 ) -> tuple[Dict[str, torch.Tensor], torch.Tensor]:
     _require_compatible_graph_batch(graphs)
+    if isinstance(actor, PFQIndependentReuseActor):
+        rows = [actor.encode_graph(graph) for graph in graphs]
+        actor_out = {
+            key: torch.stack([row[key] for row in rows], dim=0)
+            for key in rows[0]
+        }
+        state_vec = _pool_actor_state_batch(actor_out).detach()
+        if state_norm is not None:
+            state_vec = state_norm.normalize(state_vec)
+        return actor_out, critic(state_vec)
     device = next(actor.parameters()).device
     ref = graphs[0].snapshot.static_meta
     batch_size = len(graphs)
@@ -2780,7 +2866,34 @@ def _record_submitted_action_replay_mismatch(
 ) -> None:
     """Record replay parity for the exact direct action about to be submitted."""
 
-    if str(sampled.get("candidate_policy_mode", "legacy")).lower() != "direct":
+    policy_mode = str(sampled.get("candidate_policy_mode", "legacy")).lower()
+    if policy_mode == "independent":
+        packed = sampled.get("candidate_packed")
+        trace = sampled.get("independent_policy_trace")
+        if not isinstance(packed, PackedPrgCandidates):
+            raise ValueError("independent action replay requires carried candidate packing")
+        if not isinstance(trace, IndependentPolicyTrace):
+            raise ValueError("independent action replay requires an independent policy trace")
+        expected = materialize_independent_choices_to_type0(
+            graph,
+            packed,
+            trace.choice,
+        )
+        mismatch_count = 0
+        for submitted, replayed in (
+            (sampled["action_ue_select"], expected.action_ue_select),
+            (sampled["action_prg_alloc"], expected.action_prg_alloc),
+        ):
+            actual = torch.as_tensor(submitted, dtype=torch.long)
+            target = replayed.detach().cpu().to(dtype=torch.long)
+            mismatch_count += (
+                1
+                if actual.shape != target.shape
+                else int((actual != target).sum().item())
+            )
+        sampled["action_replay_mismatch_count"] = float(mismatch_count)
+        return
+    if policy_mode != "direct":
         return
     packed = sampled.get("candidate_packed")
     trace = sampled.get("candidate_policy_trace")
@@ -2803,7 +2916,8 @@ def _action_replay_summary(
     steps: Sequence[RolloutStep],
 ) -> Dict[str, float]:
     if not steps or not all(
-        str(getattr(step, "candidate_policy_mode", "legacy")).lower() == "direct"
+        str(getattr(step, "candidate_policy_mode", "legacy")).lower()
+        in ("direct", "independent")
         and hasattr(step, "action_replay_mismatch_count")
         for step in steps
     ):
@@ -2947,7 +3061,7 @@ def _action_logp_entropy_batch(
 
 
 def _sample_joint_action(
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     actor_out: Dict[str, torch.Tensor],
     graph: SparseEntityGraph,
     *,
@@ -2992,6 +3106,96 @@ def _sample_joint_action(
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
 ) -> Dict[str, torch.Tensor | float]:
+    if isinstance(actor, PFQIndependentReuseActor):
+        packed = pack_prg_candidates(
+            graph,
+            max_candidates=int(actor.cfg.max_candidates),
+            fixed_width=True,
+        )
+        trace, decoded = select_independent_action(
+            actor,
+            graph,
+            packed,
+            mode="sample",
+        )
+        chosen = decoded.chosen_ue_per_prg[decoded.chosen_ue_per_prg >= 0]
+        e_up = graph.edges["E_UP"].index
+        candidate_unique_ue_count = (
+            float(torch.unique(e_up[0]).numel()) if e_up.numel() else 0.0
+        )
+        demand_active = demand_active_ue_mask_from_features(
+            graph.snapshot.ue_features.values,
+            action_mask_ue=graph.snapshot.static_meta.action_mask_ue,
+        )
+        blank_ratio = float(
+            (trace.choice == packed.blank_class_index).float().mean().item()
+        )
+        fill_ratio = float(decoded.prg_chosen_mask.float().mean().item())
+        zero_budgeted = {
+            "candidate_budgeted_changed_count": 0.0,
+            "candidate_budgeted_no_headroom_count": 0.0,
+            "candidate_budgeted_active_ue_count": 0.0,
+            "candidate_budgeted_tail_bias_coef": 0.0,
+            "candidate_budgeted_tail_bias_candidate_mean": 0.0,
+            "candidate_budgeted_tail_bias_selected_mean": 0.0,
+            "candidate_budgeted_tail_bias_active_count": 0.0,
+            "candidate_budgeted_rescue_bias_coef": 0.0,
+            "candidate_budgeted_rescue_bias_candidate_mean": 0.0,
+            "candidate_budgeted_rescue_bias_selected_mean": 0.0,
+            "candidate_budgeted_rescue_bias_active_count": 0.0,
+            "candidate_budgeted_completion_bonus": 0.0,
+            "candidate_budgeted_completion_candidate_mean": 0.0,
+            "candidate_budgeted_completion_selected_mean": 0.0,
+            "candidate_budgeted_completion_active_count": 0.0,
+            "candidate_budgeted_tail_quota_enabled": 0.0,
+            "candidate_budgeted_tail_quota_candidate_mean": 0.0,
+            "candidate_budgeted_tail_quota_active_ue_count": 0.0,
+            "candidate_budgeted_tail_quota_selected_count": 0.0,
+            "candidate_budgeted_tail_quota_selected_mean": 0.0,
+            "candidate_budgeted_tail_quota_served_ue_count": 0.0,
+        }
+        return {
+            "ue_action_class": torch.full(
+                (graph.snapshot.static_meta.n_sched_ue,),
+                graph.snapshot.static_meta.n_ue,
+                dtype=torch.long,
+            ),
+            "prg_action_class": trace.choice.detach().cpu().to(torch.long),
+            "independent_policy_trace": trace,
+            "candidate_packed": packed,
+            "candidate_policy_mode": "independent",
+            "action_ue_select": decoded.action_ue_select.cpu().numpy(),
+            "action_prg_alloc": decoded.action_prg_alloc.cpu().numpy(),
+            "chosen_ue_per_prg": decoded.chosen_ue_per_prg.cpu(),
+            "prg_chosen_mask": decoded.prg_chosen_mask,
+            "blank_ratio": blank_ratio,
+            "post_decode_drop_ratio": 0.0,
+            "final_blank_ratio": 1.0 - fill_ratio,
+            "cap_drop_count": 0.0,
+            "fallback_success_count": 0.0,
+            "safe_fill_count": 0.0,
+            "missed_safe_opportunity_count": 0.0,
+            "blank_budget_repair_count": 0.0,
+            "final_blank_count": float(decoded.final_blank_count),
+            "post_decode_policy_blank_count": float(decoded.final_blank_count),
+            "post_decode_no_valid_candidate_count": 0.0,
+            "post_decode_demand_cap_count": 0.0,
+            "post_decode_no_slot_count": 0.0,
+            "post_decode_other_drop_count": 0.0,
+            "action_fill_ratio": fill_ratio,
+            "action_unique_ue_count": (
+                float(torch.unique(chosen).numel()) if chosen.numel() else 0.0
+            ),
+            "candidate_unique_ue_count": candidate_unique_ue_count,
+            "demand_active_ue_count": float(demand_active.sum().item()),
+            "candidate_coverage_ratio": candidate_unique_ue_count
+            / max(float(demand_active.sum().item()), 1.0),
+            "coverage_repair_count": 0.0,
+            "non_hard_override_count": 0.0,
+            "logp": trace.logp.detach().cpu().to(torch.float32),
+            "entropy": float(trace.entropy.item()),
+            **zero_budgeted,
+        }
     device = actor_out["ue_logits"].device
     if str(candidate_policy_mode).lower() == "direct":
         if "candidate_prg_logits" not in actor_out:
@@ -3402,8 +3606,27 @@ def _load_checkpoint_compatible(
         if checkpoint is not None
         else torch.load(ckpt_path, map_location="cpu")
     )
+    if isinstance(model, PFQIndependentReuseActor):
+        from training.stageb_hgraph.independent_contract import validate_independent_checkpoint
+
+        validate_independent_checkpoint(ckpt)
+        actor_cfg = ckpt.get("actor_config") or ckpt.get("model_config")
+        if not isinstance(actor_cfg, Mapping) or str(actor_cfg.get("actor_family", "")) != model.actor_family:
+            raise ValueError("independent initialization checkpoint actor_family mismatch")
     state = ckpt.get("model_state") or ckpt.get("actor_state") or ckpt
     target_state = model.state_dict()
+    if isinstance(model, PFQIndependentReuseActor):
+        missing = sorted(set(target_state) - set(state))
+        extra = sorted(set(state) - set(target_state))
+        shape_mismatch = sorted(
+            key for key in set(target_state) & set(state)
+            if target_state[key].shape != state[key].shape
+        )
+        if missing or extra or shape_mismatch:
+            raise ValueError(
+                "independent initialization checkpoint is not exact: "
+                f"missing={missing} extra={extra} shape_mismatch={shape_mismatch}"
+            )
     compatible = {}
     for k, v in state.items():
         if k in target_state and target_state[k].shape == v.shape:
@@ -3413,7 +3636,7 @@ def _load_checkpoint_compatible(
 
 
 def _configure_actor_trainable_params(
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     *,
     candidate_seq_train_only: bool = False,
 ) -> tuple[List[nn.Parameter], int, int]:
@@ -4831,6 +5054,13 @@ def _collect_rollout(
                 candidate_decode_goodput_target=candidate_decode_goodput_target,
                 candidate_decode_goodput_mask=candidate_decode_goodput_mask,
                 candidate_policy_trace=sampled.get("candidate_policy_trace"),
+                independent_policy_trace=sampled.get("independent_policy_trace"),
+                submitted_action_ue_select=torch.as_tensor(
+                    sampled["action_ue_select"], dtype=torch.int32
+                ).clone(),
+                submitted_action_prg_alloc=torch.as_tensor(
+                    sampled["action_prg_alloc"], dtype=torch.int16
+                ).clone(),
                 candidate_policy_mode=str(sampled.get("candidate_policy_mode", "legacy")),
                 non_hard_override_count=float(sampled.get("non_hard_override_count", 0.0)),
                 action_replay_mismatch_count=float(
@@ -5552,7 +5782,7 @@ def _collect_rollout(
 
 def _ppo_update(
     *,
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     critic: GraphValueHead,
     actor_optimizer: torch.optim.Optimizer,
     critic_optimizer: torch.optim.Optimizer,
@@ -5655,6 +5885,22 @@ def _ppo_update(
     candidate_pairwise_rank_rescue_weight: float = 0.0,
     candidate_policy_mode: str = "legacy",
 ) -> Dict[str, float]:
+    independent_mode = isinstance(actor, PFQIndependentReuseActor)
+    if independent_mode:
+        forbidden_aux = {
+            "teacher_aux_coef": teacher_aux_coef,
+            "candidate_success_aux_coef": candidate_success_aux_coef,
+            "candidate_success_calib_coef": candidate_success_calib_coef,
+            "candidate_success_max_calib_coef": candidate_success_max_calib_coef,
+            "candidate_pairwise_rank_coef": candidate_pairwise_rank_coef,
+            "candidate_rescue_aux_coef": candidate_rescue_aux_coef,
+            "candidate_decode_goodput_coef": candidate_decode_goodput_coef,
+            "candidate_argmax_decode_coef": candidate_argmax_decode_coef,
+            "candidate_blank_target_coef": candidate_blank_target_coef,
+        }
+        enabled = {name: value for name, value in forbidden_aux.items() if float(value) != 0.0}
+        if enabled:
+            raise ValueError(f"independent PPO forbids legacy auxiliary losses: {enabled}")
     if str(candidate_policy_mode).lower() == "direct":
         actor.eval()
     else:
@@ -5748,16 +5994,55 @@ def _ppo_update(
                 device=train_device, dtype=torch.long
             )
 
-            actor_out, value_pred = _evaluate_graph_batch(
-                actor,
-                critic,
-                graphs_mb,
-                state_norm=state_norm,
-                slot_ue_class_for_prg=(
-                    None if str(candidate_policy_mode).lower() == "direct" else ue_action_mb
-                ),
-            )
-            if str(candidate_policy_mode).lower() == "direct":
+            if independent_mode:
+                state_rows = []
+                logp_rows = []
+                entropy_rows = []
+                for sample_idx, graph in zip(idx, graphs_mb):
+                    trace = rollout[sample_idx].independent_policy_trace
+                    if trace is None:
+                        raise ValueError("independent PPO rollout step is missing its policy trace")
+                    packed = pack_prg_candidates(
+                        graph,
+                        max_candidates=int(actor.cfg.max_candidates),
+                        fixed_width=True,
+                    )
+                    logp, entropy_value, replayed = replay_independent_trace(
+                        actor,
+                        graph,
+                        packed,
+                        trace,
+                    )
+                    submitted_ue = rollout[sample_idx].submitted_action_ue_select
+                    submitted_prg = rollout[sample_idx].submitted_action_prg_alloc
+                    if submitted_ue is None or submitted_prg is None:
+                        raise ValueError("independent PPO rollout is missing submitted Type-0 arrays")
+                    if not torch.equal(replayed.action_ue_select.cpu(), submitted_ue.cpu()) or not torch.equal(
+                        replayed.action_prg_alloc.cpu(), submitted_prg.cpu()
+                    ):
+                        raise ValueError("independent PPO replay action mismatch")
+                    encoded = actor.encode_graph(graph)
+                    state_rows.append(_pool_actor_state(encoded).detach())
+                    logp_rows.append(logp)
+                    entropy_rows.append(entropy_value)
+                state_vec = torch.stack(state_rows, dim=0)
+                if state_norm is not None:
+                    state_vec = state_norm.normalize(state_vec)
+                value_pred = critic(state_vec)
+                new_logp = torch.stack(logp_rows)
+                entropy_vec = torch.stack(entropy_rows)
+                actor_out: Dict[str, torch.Tensor] = {}
+            else:
+                actor_out, value_pred = _evaluate_graph_batch(
+                    actor,
+                    critic,
+                    graphs_mb,
+                    state_norm=state_norm,
+                    slot_ue_class_for_prg=(
+                        None if str(candidate_policy_mode).lower() == "direct" else ue_action_mb
+                    ),
+                )
+            if not independent_mode and str(candidate_policy_mode).lower() == "direct":
                 traces = [rollout[sample_idx].candidate_policy_trace for sample_idx in idx]
                 if any(trace is None for trace in traces):
                     raise ValueError("direct candidate PPO rollout step is missing candidate_policy_trace")
@@ -5775,7 +6060,7 @@ def _ppo_update(
                     [trace for trace in traces if trace is not None],
                     direct_cfg,
                 )
-            else:
+            elif not independent_mode:
                 new_logp, entropy_vec = _action_logp_entropy_batch(
                     actor_out,
                     graphs_mb,
@@ -5820,7 +6105,7 @@ def _ppo_update(
             else:
                 value_loss = F.mse_loss(value_pred, ret_mb)
             teacher_aux_loss = torch.zeros((), dtype=torch.float32, device=train_device)
-            if teacher_aux_coef > 0.0:
+            if teacher_aux_coef > 0.0 and not independent_mode:
                 if "candidate_prg_logits" in actor_out:
                     prg_logits_masked, prg_valid = _masked_candidate_prg_logits_batch(
                         actor_out,
@@ -6523,6 +6808,19 @@ def _ppo_update(
             for name, param in actor.named_parameters():
                 if "candidate" in name and param.grad is not None:
                     candidate_grad_sq = candidate_grad_sq + param.grad.detach().float().square().sum()
+            if independent_mode:
+                independent_grad_sq = torch.zeros(
+                    (), dtype=torch.float32, device=train_device
+                )
+                for name, param in actor.named_parameters():
+                    if (
+                        name.startswith("reuse_attention")
+                        or name.startswith("ue_scorer")
+                    ) and param.grad is not None:
+                        independent_grad_sq += param.grad.detach().float().square().sum()
+                total_candidate_policy_grad_norm += float(
+                    independent_grad_sq.sqrt().item()
+                )
             total_candidate_head_grad_norm += float(candidate_grad_sq.sqrt().item())
             torch.nn.utils.clip_grad_norm_(actor.parameters(), max_norm=max_grad_norm)
             actor_optimizer.step()
@@ -6610,7 +6908,7 @@ def _ppo_update(
         "approx_kl_mean": total_approx_kl / denom,
         "candidate_head_grad_norm": total_candidate_head_grad_norm / denom,
         "ue_selector_policy_logp_included": float(
-            str(candidate_policy_mode).lower() != "direct"
+            str(candidate_policy_mode).lower() not in ("direct", "independent")
         ),
         "teacher_aux_loss": total_teacher_aux_loss / denom,
         "teacher_aux_coef": float(teacher_aux_coef),
@@ -6699,7 +6997,7 @@ def _ppo_update(
         "stopped_by_target_kl": float(stopped_by_target_kl),
         "epochs_completed": float(completed_epochs),
     }
-    if str(candidate_policy_mode).lower() == "direct":
+    if str(candidate_policy_mode).lower() in ("direct", "independent"):
         summary["candidate_policy_grad_norm"] = (
             total_candidate_policy_grad_norm / denom
         )
@@ -7288,9 +7586,9 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--max-prg-candidates", type=int, default=0, help="0 means fallback to topk+diversity width")
     p.add_argument(
         "--action-head-mode",
-        choices=["slot", "candidate"],
+        choices=["slot", "candidate", "independent"],
         default="slot",
-        help="slot keeps legacy PRG->slot logits; candidate scores PRG->candidate UE choices before Type-0 decode",
+        help="independent uses the PFQ-free fixed-order reuse actor; other modes are legacy",
     )
     p.add_argument(
         "--candidate-policy-mode",
@@ -7639,6 +7937,13 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=0,
         help="drive the environment for N steps before collecting PPO trajectory/best metrics",
+    )
+    p.add_argument(
+        "--rollout-warmup-once",
+        type=int,
+        choices=[0, 1],
+        default=1,
+        help="independent mode applies warmup only before iteration 1 when enabled",
     )
     p.add_argument("--update-log-every-minibatches", type=int, default=2)
     p.add_argument(
@@ -8221,6 +8526,7 @@ def main() -> int:
     args = parse_args()
     _validate_candidate_policy_mode(args)
     _validate_pfq_residual_args(args)
+    _validate_independent_ppo_args(args)
     independent_scales = _load_independent_reward_scales(args)
     if args.sim_cwd == "":
         args.sim_cwd = None
@@ -8497,7 +8803,22 @@ def main() -> int:
     snapshot_builder = FeatureSnapshotBuilder(
         SnapshotBuilderConfig(tb_err_ema_alpha=float(args.tb_err_ema_alpha))
     )
-    max_prg_candidates = _resolve_prg_candidate_count(args)
+    init_checkpoint_data: Mapping[str, object] | None = None
+    if args.init_checkpoint:
+        loaded_checkpoint = torch.load(args.init_checkpoint, map_location="cpu")
+        if not isinstance(loaded_checkpoint, Mapping):
+            raise ValueError("--init-checkpoint must contain a mapping")
+        init_checkpoint_data = loaded_checkpoint
+    independent_mode = str(args.action_head_mode) == "independent"
+    if independent_mode and init_checkpoint_data is not None:
+        loaded_cfg = init_checkpoint_data.get("actor_config") or init_checkpoint_data.get(
+            "model_config"
+        )
+        if not isinstance(loaded_cfg, Mapping):
+            raise ValueError("independent init checkpoint is missing actor_config")
+        max_prg_candidates = int(loaded_cfg.get("max_candidates", 0))
+    else:
+        max_prg_candidates = _resolve_prg_candidate_count(args)
     edge_generator = SparseEdgeGenerator(
         EdgeGeneratorConfig(
             ue_prg_topk=int(args.ue_prg_topk),
@@ -8515,35 +8836,45 @@ def main() -> int:
     )
     if int(args.include_pfq_score_anchor):
         up_edge_attr_dim += 1
-    actor = StageBHGraphPolicy(
-        HGraphModelConfig(
-            ue_feat_dim=int(args.ue_feat_dim),
-            hidden_dim=int(args.hidden_dim),
-            message_layers=int(args.message_layers),
-            dropout=float(args.dropout),
-            up_edge_attr_dim=up_edge_attr_dim,
-            max_prg_candidates=max_prg_candidates,
-            action_head_mode=str(args.action_head_mode),
-            candidate_blank_logit_bias=float(args.candidate_blank_logit_bias),
-            candidate_success_logit_scale=float(args.candidate_success_logit_scale),
-            candidate_blank_success_scale=float(args.candidate_blank_success_scale),
-            candidate_pfq_anchor_logit_coef=float(args.candidate_pfq_anchor_logit_coef),
-            has_pfq_score_anchor=int(args.include_pfq_score_anchor),
-            candidate_seq_state_dim=int(args.candidate_seq_state_dim),
-        )
-    ).to(device)
+    if independent_mode:
+        if max_prg_candidates <= 0:
+            raise ValueError("independent PPO could not resolve max candidate width")
+        actor = PFQIndependentReuseActor(
+            IndependentActorConfig(
+                ue_feat_dim=int(args.ue_feat_dim),
+                hidden_dim=int(args.hidden_dim),
+                message_layers=int(args.message_layers),
+                dropout=float(args.dropout),
+                up_edge_attr_dim=5,
+                max_candidates=max_prg_candidates,
+            )
+        ).to(device)
+    else:
+        actor = StageBHGraphPolicy(
+            HGraphModelConfig(
+                ue_feat_dim=int(args.ue_feat_dim),
+                hidden_dim=int(args.hidden_dim),
+                message_layers=int(args.message_layers),
+                dropout=float(args.dropout),
+                up_edge_attr_dim=up_edge_attr_dim,
+                max_prg_candidates=max_prg_candidates,
+                action_head_mode=str(args.action_head_mode),
+                candidate_blank_logit_bias=float(args.candidate_blank_logit_bias),
+                candidate_success_logit_scale=float(args.candidate_success_logit_scale),
+                candidate_blank_success_scale=float(args.candidate_blank_success_scale),
+                candidate_pfq_anchor_logit_coef=float(args.candidate_pfq_anchor_logit_coef),
+                has_pfq_score_anchor=int(args.include_pfq_score_anchor),
+                candidate_seq_state_dim=int(args.candidate_seq_state_dim),
+            )
+        ).to(device)
     critic = GraphValueHead(hidden_dim=int(args.hidden_dim)).to(device)
     actor_lr = float(args.actor_lr) if float(args.actor_lr) > 0.0 else float(args.lr)
     critic_lr = float(args.critic_lr) if float(args.critic_lr) > 0.0 else max(float(args.lr), 3.0e-4)
 
     loaded_compatible = 0
     loaded_total = 0
-    init_checkpoint_data: Mapping[str, object] | None = None
     if args.init_checkpoint:
-        loaded_checkpoint = torch.load(args.init_checkpoint, map_location="cpu")
-        if not isinstance(loaded_checkpoint, Mapping):
-            raise ValueError("--init-checkpoint must contain a mapping")
-        init_checkpoint_data = loaded_checkpoint
+        assert init_checkpoint_data is not None
         loaded_compatible, loaded_total = _load_checkpoint_compatible(
             actor,
             args.init_checkpoint,
@@ -8567,6 +8898,11 @@ def main() -> int:
             "pfq_anchor_coef": float(args.candidate_pfq_anchor_logit_coef),
             "candidate_blank_logit_bias": float(args.candidate_blank_logit_bias),
             "applied_this_run": bool(residual_initialization_applied),
+        }
+    elif independent_mode:
+        initialization_metadata = {
+            "mode": "random" if init_checkpoint_data is None else "standalone_bc",
+            "source_checkpoint": str(args.init_checkpoint),
         }
     elif isinstance(loaded_initialization, Mapping):
         initialization_metadata = dict(loaded_initialization)
@@ -8719,7 +9055,7 @@ def main() -> int:
                 critic=critic,
                 device=device,
                 rollout_steps=int(args.rollout_steps),
-                rollout_warmup_steps=int(args.rollout_warmup_steps),
+                rollout_warmup_steps=_rollout_warmup_steps_for_iteration(args, iter_idx),
                 reward_mode=str(args.reward_mode),
                 reward_cfg=reward_cfg,
                 episode_idx=iter_idx,
@@ -8868,7 +9204,9 @@ def main() -> int:
                 candidate_budgeted_tail_quota_risk_max=float(args.candidate_budgeted_tail_quota_risk_max),
                 candidate_seq_state_coef=float(args.candidate_seq_state_coef),
                 candidate_seq_fail_risk_feature_offset=int(args.candidate_seq_fail_risk_feature_offset),
-                candidate_policy_mode=str(args.candidate_policy_mode),
+                candidate_policy_mode=(
+                    "independent" if independent_mode else str(args.candidate_policy_mode)
+                ),
             )
             update_time_s = time.perf_counter() - update_t0
             iter_time_s = time.perf_counter() - iter_t0
@@ -8890,6 +9228,13 @@ def main() -> int:
                 "iter": iter_idx,
                 "actor_state": actor.state_dict(),
                 "actor_config": actor.model_config_dict(),
+                "graph_config": {
+                    "candidate_mode": str(args.candidate_mode),
+                    "include_pfq_score_anchor": bool(int(args.include_pfq_score_anchor)),
+                    "include_candidate_risk_features": bool(
+                        int(args.include_candidate_risk_features)
+                    ),
+                },
                 "reward_mode": args.reward_mode,
                 "reward_cfg": reward_cfg,
                 "args": vars(args),
