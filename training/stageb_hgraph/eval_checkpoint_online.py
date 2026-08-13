@@ -15,6 +15,7 @@ import argparse
 import hashlib
 import json
 import os
+import time
 from collections import deque
 from pathlib import Path
 from typing import Any, Dict
@@ -66,6 +67,7 @@ from training.stageb_hgraph.independent_contract import (
     assert_graph_tensor_equality,
     strip_pfq_fields,
     validate_independent_checkpoint,
+    validate_independent_graph,
 )
 from training.stageb_hgraph.independent_policy import (
     replay_independent_trace,
@@ -240,6 +242,10 @@ def _select_joint_action(
     if isinstance(actor, PFQIndependentReuseActor):
         if decode_mode != "argmax":
             raise ValueError("independent evaluation is deterministic and requires --decode-mode argmax")
+        validate_independent_graph(
+            graph,
+            max_candidates=int(actor.cfg.max_candidates),
+        )
         packed = pack_prg_candidates(
             graph,
             max_candidates=int(actor.cfg.max_candidates),
@@ -943,6 +949,8 @@ def main() -> int:
     n_active_ue = int(info.get("n_active_ue", 0))
     ue_measured_goodput_bytes = np.zeros((n_active_ue,), dtype=np.float64)
     ue_measured_outcome_time_ms = np.zeros((n_active_ue,), dtype=np.float64)
+    measured_tb_tx_count = 0.0
+    measured_tb_err_count = 0.0
     last_delivered_time_ms = np.asarray(
         info.get("actual_ue_packet_system_time_ms", np.zeros((n_active_ue,))),
         dtype=np.float64,
@@ -957,6 +965,7 @@ def main() -> int:
         "goodput_mbps": 0.0,
         "tb_err_rate": 0.0,
         "expiry_drop_rate": 0.0,
+        "expired_bytes": 0.0,
         "prg_utilization_ratio": 0.0,
         "prg_reuse_ratio": 0.0,
         "packet_completed_count": 0.0,
@@ -991,6 +1000,8 @@ def main() -> int:
         "budgeted_tail_bias_active_count": 0.0,
         "action_replay_mismatch_count": 0.0,
         "illegal_action_count": 0.0,
+        "native_reject_count": 0.0,
+        "native_reject_diagnostics_available": 0.0,
         "packet_expired_count": 0.0,
         "packet_expired_system_time_ms": 0.0,
         "packet_outcome_count": 0.0,
@@ -1051,6 +1062,25 @@ def main() -> int:
                 ),
                 dtype=np.float64,
             ).reshape(-1)
+            native_reject_available = bool(
+                next_info.get("native_reject_diagnostics_available", False)
+            )
+            if independent_mode and not native_reject_available:
+                raise RuntimeError(
+                    "independent evaluation requires native reject diagnostics"
+                )
+            native_reject_count = 0.0
+            if native_reject_available:
+                for key in (
+                    "native_reject_wrong_cell_slot_count",
+                    "native_reject_empty_slot_count",
+                    "native_reject_prg_mask_count",
+                    "native_reject_oob_slot_count",
+                    "native_reject_duplicate_ue_count",
+                ):
+                    native_reject_count += float(
+                        np.asarray(next_info[key], dtype=np.float64).sum()
+                    )
             row = {
                 "step": step_idx,
                 "tti": int(next_info.get("tti", step_idx)),
@@ -1058,6 +1088,7 @@ def main() -> int:
                 "goodput_mbps": float(reward_metrics.get("goodput_mbps", 0.0)),
                 "tb_err_rate": float(reward_metrics.get("tb_err_rate", 0.0)),
                 "expiry_drop_rate": float(reward_metrics.get("expiry_drop_rate", 0.0)),
+                "expired_bytes": float(reward_metrics.get("expired_bytes", 0.0)),
                 "prg_utilization_ratio": float(reward_metrics.get("prg_utilization_ratio", 0.0)),
                 "prg_reuse_ratio": float(reward_metrics.get("prg_reuse_ratio", 0.0)),
                 "packet_completed_count": float(reward_metrics.get("packet_completed_count", 0.0)),
@@ -1120,6 +1151,11 @@ def main() -> int:
                 "illegal_action_count": float(
                     selected["post_decode_no_slot_count"]
                     + selected["post_decode_other_drop_count"]
+                    + native_reject_count
+                ),
+                "native_reject_count": native_reject_count,
+                "native_reject_diagnostics_available": float(
+                    native_reject_available
                 ),
             }
             if int(args.save_steps) == 1:
@@ -1149,6 +1185,16 @@ def main() -> int:
                     ue_measured_outcome_time_ms += np.maximum(
                         delivered_time_ms - last_delivered_time_ms, 0.0
                     ) + np.maximum(expired_time_ms - last_expired_time_ms, 0.0)
+                    tb_tx = np.asarray(
+                        next_info.get("actual_ue_tb_tx_count", np.zeros((n_active_ue,))),
+                        dtype=np.float64,
+                    ).reshape(n_active_ue)
+                    tb_err = np.asarray(
+                        next_info.get("actual_ue_tb_err_count", np.zeros((n_active_ue,))),
+                        dtype=np.float64,
+                    ).reshape(n_active_ue)
+                    measured_tb_tx_count += float(np.maximum(tb_tx, 0.0).sum())
+                    measured_tb_err_count += float(np.maximum(tb_err, 0.0).sum())
                 for key in stats_sums:
                     stats_sums[key] += float(row[key])
                 stats_count += 1
@@ -1234,6 +1280,10 @@ def main() -> int:
     outcome_delay_p95_ms: float | None = None
     outcome_sample_count = 0
     outcome_path = Path(args.outcome_samples).resolve() if args.outcome_samples else None
+    if outcome_path is not None and not outcome_path.is_file():
+        deadline = time.monotonic() + 10.0
+        while time.monotonic() < deadline and not outcome_path.is_file():
+            time.sleep(0.05)
     if outcome_path is not None and outcome_path.is_file() and measured_tti_first is not None:
         outcome_rows = filter_outcome_samples(
             outcome_path,
@@ -1359,6 +1409,14 @@ def main() -> int:
         "stats_mean_goodput_mbps": _stats_mean("goodput_mbps"),
         "stats_mean_tb_err_rate": _stats_mean("tb_err_rate"),
         "stats_mean_expiry_drop_rate": _stats_mean("expiry_drop_rate"),
+        "stats_sum_expired_bytes": _stats_sum("expired_bytes"),
+        "measured_tb_tx_count": measured_tb_tx_count,
+        "measured_tb_err_count": measured_tb_err_count,
+        "measured_tb_bler": (
+            measured_tb_err_count / measured_tb_tx_count
+            if measured_tb_tx_count > 0.0
+            else None
+        ),
         "stats_mean_prg_utilization_ratio": _stats_mean("prg_utilization_ratio"),
         "stats_mean_prg_reuse_ratio": _stats_mean("prg_reuse_ratio"),
         "stats_sum_packet_completed_count": _stats_sum("packet_completed_count"),
@@ -1395,6 +1453,10 @@ def main() -> int:
             "action_replay_mismatch_count"
         ),
         "stats_sum_illegal_action_count": _stats_sum("illegal_action_count"),
+        "stats_sum_native_reject_count": _stats_sum("native_reject_count"),
+        "stats_mean_native_reject_diagnostics_available": _stats_mean(
+            "native_reject_diagnostics_available"
+        ),
         "stats_mean_blank_ratio": _stats_mean("blank_ratio"),
         "stats_mean_fill_ratio": _stats_mean("fill_ratio"),
         "stats_mean_cap_drop_count": _stats_mean("cap_drop_count"),
