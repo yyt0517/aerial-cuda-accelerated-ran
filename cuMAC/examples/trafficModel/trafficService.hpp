@@ -149,6 +149,24 @@ public:
     {
         return radio_rsrc->GetLastPacketServiceRateStats();
     }
+    void GetPacketOutcomeDelayStats(PacketOutcomeDelaySummary& total,
+                                    std::vector<PacketOutcomeDelaySummary>& per_flow) const
+    {
+        radio_rsrc->GetPacketOutcomeDelayStats(total, per_flow);
+    }
+    void GetPacketExpiryAwareRateStats(PacketExpiryAwareRateSummary& total,
+                                       std::vector<PacketExpiryAwareRateSummary>& per_flow) const
+    {
+        radio_rsrc->GetPacketExpiryAwareRateStats(total, per_flow);
+    }
+    PacketExpiryAwareRateSummary GetLastPacketExpiryAwareRateStats() const
+    {
+        return radio_rsrc->GetLastPacketExpiryAwareRateStats();
+    }
+    void GetPacketOutcomeSamples(std::vector<PacketOutcomeSample>& samples) const
+    {
+        radio_rsrc->GetPacketOutcomeSamples(samples);
+    }
     void GetPacketHeadStats(std::vector<PacketHeadSummary>& per_flow) const
     {
         radio_rsrc->GetPacketHeadStats(per_flow, generator->GetLastTti());

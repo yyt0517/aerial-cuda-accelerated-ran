@@ -59,6 +59,41 @@ struct PacketServiceRateSummary
     double packet_effective_service_rate_per_packet_mean_mbps = 0.0;
 };
 
+struct PacketOutcomeDelaySummary
+{
+    unsigned long long delivered_packets = 0;
+    unsigned long long expired_packets = 0;
+    unsigned long long outcome_packets = 0;
+    unsigned long long pending_packets = 0;
+    double mean_delay_ms = 0.0;
+    double p50_delay_ms = 0.0;
+    double p90_delay_ms = 0.0;
+    double p95_delay_ms = 0.0;
+    double max_delay_ms = 0.0;
+};
+
+struct PacketExpiryAwareRateSummary
+{
+    unsigned long long delivered_packets = 0;
+    unsigned long long expired_packets = 0;
+    unsigned long long pending_packets = 0;
+    unsigned long long total_delivered_bits = 0;
+    double delivered_packet_system_time_ms = 0.0;
+    double expired_packet_system_time_ms = 0.0;
+    double outcome_packet_system_time_ms = 0.0;
+    double packet_expiry_aware_rate_mbps = 0.0;
+    double packet_expiry_aware_rate_per_packet_mean_mbps = 0.0;
+};
+
+struct PacketOutcomeSample
+{
+    uint32_t flow_id = 0;
+    uint64_t packet_id = 0;
+    int terminal_tti = -1;
+    bool expired = false;
+    double system_time_ms = 0.0;
+};
+
 struct PacketHeadSummary
 {
     unsigned long long pending_bytes = 0;
@@ -235,6 +270,7 @@ protected:
         double arrival_time_ms = 0.0;
         double finish_time_ms = 0.0;
         bool delivered = false;
+        bool expired = false;
     };
 
     struct MacPacketQueueEntry {
@@ -246,10 +282,13 @@ protected:
     std::vector<std::deque<MacPacketQueueEntry>> mac_packet_queues;
     std::vector<std::vector<PacketLifecycleRecord>> packet_lifecycle_records;
     std::vector<std::vector<double>> served_packet_delay_ms;
+    std::vector<std::vector<double>> outcome_packet_delay_ms;
+    std::vector<PacketOutcomeSample> packet_outcome_samples;
     std::vector<unsigned long long> delivered_packets_per_flow;
     std::vector<unsigned long long> delivered_bits_per_flow;
     std::vector<double> packet_system_time_ms_per_flow;
     std::vector<double> packet_rate_mbps_sum_per_flow;
+    std::vector<double> expired_packet_system_time_ms_per_flow;
     double slot_duration_ms = 0.5;
     int max_packet_age_tti = 0;
     uint64_t next_packet_id = 1ULL;
@@ -262,7 +301,10 @@ protected:
     unsigned long long last_expired_bytes = 0;
     unsigned long long last_expired_packets = 0;
     PacketServiceRateSummary last_packet_service_rate;
+    PacketExpiryAwareRateSummary last_packet_expiry_aware_rate;
     double last_packet_rate_mbps_sum = 0.0;
+    double last_packet_expiry_aware_rate_mbps_sum = 0.0;
+    double total_expired_packet_system_time_ms = 0.0;
     std::vector<unsigned long long> expired_bytes_per_flow;
     std::vector<unsigned long long> expired_packets_per_flow;
 
@@ -303,6 +345,17 @@ protected:
         return packet_rate_mbps_sum / static_cast<double>(delivered_packets);
     }
 
+    static double computeMeanOutcomeRateMbps(double packet_rate_mbps_sum,
+                                             unsigned long long delivered_packets,
+                                             unsigned long long expired_packets)
+    {
+        const unsigned long long outcome_packets = delivered_packets + expired_packets;
+        if (outcome_packets == 0ULL) {
+            return 0.0;
+        }
+        return packet_rate_mbps_sum / static_cast<double>(outcome_packets);
+    }
+
     static double percentile_ms(const std::vector<double>& values, double p)
     {
         if (values.empty()) {
@@ -339,10 +392,13 @@ public:
         mac_packet_queues.assign(config.size(), {});
         packet_lifecycle_records.assign(config.size(), {});
         served_packet_delay_ms.assign(config.size(), {});
+        outcome_packet_delay_ms.assign(config.size(), {});
+        packet_outcome_samples.clear();
         delivered_packets_per_flow.assign(config.size(), 0ULL);
         delivered_bits_per_flow.assign(config.size(), 0ULL);
         packet_system_time_ms_per_flow.assign(config.size(), 0.0);
         packet_rate_mbps_sum_per_flow.assign(config.size(), 0.0);
+        expired_packet_system_time_ms_per_flow.assign(config.size(), 0.0);
         next_packet_id = 1ULL;
         total_delivered_packets = 0ULL;
         total_delivered_bits = 0ULL;
@@ -352,10 +408,13 @@ public:
         expired_packets_per_flow.assign(config.size(), 0ULL);
         total_expired_bytes = 0ULL;
         total_expired_packets = 0ULL;
+        total_expired_packet_system_time_ms = 0.0;
         last_expired_bytes = 0ULL;
         last_expired_packets = 0ULL;
         last_packet_service_rate = PacketServiceRateSummary {};
+        last_packet_expiry_aware_rate = PacketExpiryAwareRateSummary {};
         last_packet_rate_mbps_sum = 0.0;
+        last_packet_expiry_aware_rate_mbps_sum = 0.0;
     }
     void SetSlotDurationMs(double value_ms)
     {
@@ -375,6 +434,8 @@ public:
     {
         last_expired_bytes = 0ULL;
         last_expired_packets = 0ULL;
+        last_packet_expiry_aware_rate = PacketExpiryAwareRateSummary {};
+        last_packet_expiry_aware_rate_mbps_sum = 0.0;
         if (max_packet_age_tti <= 0 || current_tti <= 0) {
             return;
         }
@@ -384,7 +445,7 @@ public:
             auto& queue = mac_packet_queues[i];
             while (!queue.empty()) {
                 const auto& entry = queue.front();
-                const auto& pkt = packet_lifecycle_records[i][entry.record_index];
+                auto& pkt = packet_lifecycle_records[i][entry.record_index];
                 const int packet_age_tti = std::max(1, current_tti - pkt.arrival_tti + 1);
                 if (packet_age_tti <= max_packet_age_tti) {
                     break;
@@ -394,6 +455,21 @@ public:
                 total_expired_packets += 1ULL;
                 last_expired_packets += 1ULL;
                 expired_packets_per_flow[i] += 1ULL;
+                const int terminal_tti = pkt.arrival_tti + max_packet_age_tti - 1;
+                pkt.finish_tti = terminal_tti;
+                pkt.finish_time_ms = pkt.arrival_time_ms +
+                                     static_cast<double>(max_packet_age_tti) * slot_duration_ms;
+                pkt.expired = true;
+                const double packet_system_time_ms =
+                    normalizePacketSystemTimeMs(pkt.finish_time_ms - pkt.arrival_time_ms);
+                outcome_packet_delay_ms[i].push_back(packet_system_time_ms);
+                expired_packet_system_time_ms_per_flow[i] += packet_system_time_ms;
+                total_expired_packet_system_time_ms += packet_system_time_ms;
+                last_packet_expiry_aware_rate.expired_packets += 1ULL;
+                last_packet_expiry_aware_rate.expired_packet_system_time_ms += packet_system_time_ms;
+                last_packet_expiry_aware_rate.outcome_packet_system_time_ms += packet_system_time_ms;
+                packet_outcome_samples.push_back(
+                    {static_cast<uint32_t>(i), pkt.packet_id, terminal_tti, true, packet_system_time_ms});
                 if (expired_bytes > 0ULL) {
                     total_expired_bytes += expired_bytes;
                     last_expired_bytes += expired_bytes;
@@ -500,10 +576,19 @@ public:
                     total_delivered_bits += delivered_bits;
                     total_packet_system_time_ms += packet_system_time_ms;
                     total_packet_rate_mbps_sum += packet_rate_mbps;
+                    outcome_packet_delay_ms[i].push_back(packet_system_time_ms);
                     last_packet_service_rate.delivered_packets += 1ULL;
                     last_packet_service_rate.total_delivered_bits += delivered_bits;
                     last_packet_service_rate.total_packet_system_time_ms += packet_system_time_ms;
                     last_packet_rate_mbps_sum += packet_rate_mbps;
+                    last_packet_expiry_aware_rate.delivered_packets += 1ULL;
+                    last_packet_expiry_aware_rate.total_delivered_bits += delivered_bits;
+                    last_packet_expiry_aware_rate.delivered_packet_system_time_ms += packet_system_time_ms;
+                    last_packet_expiry_aware_rate.outcome_packet_system_time_ms += packet_system_time_ms;
+                    last_packet_expiry_aware_rate_mbps_sum += packet_rate_mbps;
+                    packet_outcome_samples.push_back(
+                        {static_cast<uint32_t>(i), record.packet_id, current_tti + 1, false,
+                         packet_system_time_ms});
                     queue.pop_front();
                 }
             }
@@ -516,6 +601,14 @@ public:
                                            last_packet_service_rate.total_packet_system_time_ms);
         last_packet_service_rate.packet_effective_service_rate_per_packet_mean_mbps =
             computeMeanPacketRateMbps(last_packet_rate_mbps_sum, last_packet_service_rate.delivered_packets);
+        last_packet_expiry_aware_rate.pending_packets = last_packet_service_rate.pending_packets;
+        last_packet_expiry_aware_rate.packet_expiry_aware_rate_mbps =
+            computePacketEffectiveRateMbps(last_packet_expiry_aware_rate.total_delivered_bits,
+                                           last_packet_expiry_aware_rate.outcome_packet_system_time_ms);
+        last_packet_expiry_aware_rate.packet_expiry_aware_rate_per_packet_mean_mbps =
+            computeMeanOutcomeRateMbps(last_packet_expiry_aware_rate_mbps_sum,
+                                       last_packet_expiry_aware_rate.delivered_packets,
+                                       last_packet_expiry_aware_rate.expired_packets);
     }
     void GetPacketDelayStats(PacketDelaySummary& total, std::vector<PacketDelaySummary>& per_flow) const
     {
@@ -558,6 +651,52 @@ public:
     {
         per_flow_delays = served_packet_delay_ms;
     }
+    void GetPacketOutcomeDelayStats(PacketOutcomeDelaySummary& total,
+                                    std::vector<PacketOutcomeDelaySummary>& per_flow) const
+    {
+        total = PacketOutcomeDelaySummary {};
+        per_flow.assign(mac_packet_queues.size(), {});
+        std::vector<double> all_delays;
+        for (size_t i = 0; i < mac_packet_queues.size(); ++i) {
+            auto& summary = per_flow[i];
+            const auto& delays = outcome_packet_delay_ms[i];
+            summary.delivered_packets = delivered_packets_per_flow[i];
+            summary.expired_packets = expired_packets_per_flow[i];
+            summary.outcome_packets = summary.delivered_packets + summary.expired_packets;
+            summary.pending_packets = static_cast<unsigned long long>(mac_packet_queues[i].size());
+            if (!delays.empty()) {
+                double sum = 0.0;
+                for (const double value : delays) {
+                    sum += value;
+                }
+                summary.mean_delay_ms = sum / static_cast<double>(delays.size());
+                summary.p50_delay_ms = percentile_ms(delays, 50.0);
+                summary.p90_delay_ms = percentile_ms(delays, 90.0);
+                summary.p95_delay_ms = percentile_ms(delays, 95.0);
+                summary.max_delay_ms = percentile_ms(delays, 100.0);
+                all_delays.insert(all_delays.end(), delays.begin(), delays.end());
+            }
+            total.delivered_packets += summary.delivered_packets;
+            total.expired_packets += summary.expired_packets;
+            total.outcome_packets += summary.outcome_packets;
+            total.pending_packets += summary.pending_packets;
+        }
+        if (!all_delays.empty()) {
+            double sum = 0.0;
+            for (const double value : all_delays) {
+                sum += value;
+            }
+            total.mean_delay_ms = sum / static_cast<double>(all_delays.size());
+            total.p50_delay_ms = percentile_ms(all_delays, 50.0);
+            total.p90_delay_ms = percentile_ms(all_delays, 90.0);
+            total.p95_delay_ms = percentile_ms(all_delays, 95.0);
+            total.max_delay_ms = percentile_ms(all_delays, 100.0);
+        }
+    }
+    void GetPacketOutcomeSamples(std::vector<PacketOutcomeSample>& samples) const
+    {
+        samples = packet_outcome_samples;
+    }
     void GetPacketServiceRateStats(PacketServiceRateSummary& total,
                                    std::vector<PacketServiceRateSummary>& per_flow) const
     {
@@ -590,6 +729,56 @@ public:
     PacketServiceRateSummary GetLastPacketServiceRateStats() const
     {
         return last_packet_service_rate;
+    }
+    void GetPacketExpiryAwareRateStats(PacketExpiryAwareRateSummary& total,
+                                       std::vector<PacketExpiryAwareRateSummary>& per_flow) const
+    {
+        total = PacketExpiryAwareRateSummary {};
+        per_flow.assign(mac_packet_queues.size(), {});
+        for (size_t i = 0; i < mac_packet_queues.size(); ++i) {
+            auto& summary = per_flow[i];
+            summary.delivered_packets = delivered_packets_per_flow[i];
+            summary.expired_packets = expired_packets_per_flow[i];
+            summary.pending_packets = static_cast<unsigned long long>(mac_packet_queues[i].size());
+            summary.total_delivered_bits = delivered_bits_per_flow[i];
+            summary.delivered_packet_system_time_ms = packet_system_time_ms_per_flow[i];
+            summary.expired_packet_system_time_ms = expired_packet_system_time_ms_per_flow[i];
+            summary.outcome_packet_system_time_ms = summary.delivered_packet_system_time_ms +
+                                                    summary.expired_packet_system_time_ms;
+            summary.packet_expiry_aware_rate_mbps =
+                computePacketEffectiveRateMbps(summary.total_delivered_bits,
+                                               summary.outcome_packet_system_time_ms);
+            summary.packet_expiry_aware_rate_per_packet_mean_mbps =
+                computeMeanOutcomeRateMbps(packet_rate_mbps_sum_per_flow[i],
+                                           summary.delivered_packets,
+                                           summary.expired_packets);
+
+            total.delivered_packets += summary.delivered_packets;
+            total.expired_packets += summary.expired_packets;
+            total.pending_packets += summary.pending_packets;
+            total.total_delivered_bits += summary.total_delivered_bits;
+            total.delivered_packet_system_time_ms += summary.delivered_packet_system_time_ms;
+            total.expired_packet_system_time_ms += summary.expired_packet_system_time_ms;
+            total.outcome_packet_system_time_ms += summary.outcome_packet_system_time_ms;
+        }
+        total.delivered_packets = total_delivered_packets;
+        total.expired_packets = total_expired_packets;
+        total.total_delivered_bits = total_delivered_bits;
+        total.delivered_packet_system_time_ms = total_packet_system_time_ms;
+        total.expired_packet_system_time_ms = total_expired_packet_system_time_ms;
+        total.outcome_packet_system_time_ms = total.delivered_packet_system_time_ms +
+                                              total.expired_packet_system_time_ms;
+        total.packet_expiry_aware_rate_mbps =
+            computePacketEffectiveRateMbps(total.total_delivered_bits,
+                                           total.outcome_packet_system_time_ms);
+        total.packet_expiry_aware_rate_per_packet_mean_mbps =
+            computeMeanOutcomeRateMbps(total_packet_rate_mbps_sum,
+                                       total.delivered_packets,
+                                       total.expired_packets);
+    }
+    PacketExpiryAwareRateSummary GetLastPacketExpiryAwareRateStats() const
+    {
+        return last_packet_expiry_aware_rate;
     }
     void GetPacketHeadStats(std::vector<PacketHeadSummary>& per_flow, int current_tti) const
     {

@@ -18,3 +18,13 @@ add_executable(${ProjectId})
 target_sources(${ProjectId} PRIVATE main.cpp trafficGenerator.cpp)
 target_include_directories(${ProjectId} PRIVATE ${HDF5_CXX_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/../src/)
 target_link_libraries(${ProjectId} PRIVATE cumac ${HDF5_CXX_LIBRARIES})
+
+if (ENABLE_TESTS)
+    add_executable(trafficPacketAccountingTest)
+    target_sources(trafficPacketAccountingTest PRIVATE trafficPacketAccountingTest.cpp)
+    target_include_directories(
+        trafficPacketAccountingTest
+        PRIVATE ${HDF5_CXX_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/../src/)
+    target_link_libraries(trafficPacketAccountingTest PRIVATE cumac ${HDF5_CXX_LIBRARIES})
+    add_test(NAME trafficPacketAccountingTest COMMAND trafficPacketAccountingTest)
+endif()
