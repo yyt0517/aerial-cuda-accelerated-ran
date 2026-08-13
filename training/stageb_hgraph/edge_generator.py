@@ -12,6 +12,15 @@ from .types import EdgeSet, GraphFeatureSnapshot, SparseEntityGraph
 
 CANDIDATE_RISK_FEATURE_DIM = 24
 
+_BASE_UE_PRG_EDGE_FEATURE_NAMES = (
+    "quality_db",
+    "quality_gap_db",
+    "urgency",
+    "service_debt",
+    "prg_risk",
+)
+_PFQ_ANCHOR_FEATURE_NAME = "pfq_score_anchor"
+
 
 @dataclass(frozen=True)
 class EdgeGeneratorConfig:
@@ -31,6 +40,18 @@ class EdgeGeneratorConfig:
 class SparseEdgeGenerator:
     def __init__(self, cfg: EdgeGeneratorConfig | None = None):
         self.cfg = cfg or EdgeGeneratorConfig()
+
+    @property
+    def ue_prg_edge_feature_names(self) -> tuple[str, ...]:
+        names = list(_BASE_UE_PRG_EDGE_FEATURE_NAMES)
+        if self.cfg.include_pfq_score_anchor:
+            names.append(_PFQ_ANCHOR_FEATURE_NAME)
+        if self.cfg.include_candidate_risk_features:
+            names.extend(
+                f"candidate_risk_{idx}"
+                for idx in range(max(0, int(self.cfg.candidate_risk_feature_dim)))
+            )
+        return tuple(names)
 
     def build_graph(self, snapshot: GraphFeatureSnapshot) -> SparseEntityGraph:
         edges = self.build_edges(snapshot)
@@ -184,7 +205,11 @@ class SparseEdgeGenerator:
                         )
                     )
         index = torch.tensor([src, dst], dtype=torch.long) if src else torch.zeros((2, 0), dtype=torch.long)
-        attr = torch.tensor(edge_attr, dtype=torch.float32) if edge_attr else None
+        attr = (
+            torch.tensor(edge_attr, dtype=torch.float32)
+            if edge_attr
+            else torch.zeros((0, len(self.ue_prg_edge_feature_names)), dtype=torch.float32)
+        )
         return EdgeSet(name="E_UP", src_type="ue", dst_type="prg", index=index, attr=attr)
 
     def _build_ue_prg_edges_post_eq(self, snapshot: GraphFeatureSnapshot) -> EdgeSet:
@@ -306,7 +331,11 @@ class SparseEdgeGenerator:
                         )
                     )
         index = torch.tensor([src, dst], dtype=torch.long) if src else torch.zeros((2, 0), dtype=torch.long)
-        attr = torch.tensor(edge_attr, dtype=torch.float32) if edge_attr else None
+        attr = (
+            torch.tensor(edge_attr, dtype=torch.float32)
+            if edge_attr
+            else torch.zeros((0, len(self.ue_prg_edge_feature_names)), dtype=torch.float32)
+        )
         return EdgeSet(name="E_UP", src_type="ue", dst_type="prg", index=index, attr=attr)
 
     def _select_post_eq_candidates(

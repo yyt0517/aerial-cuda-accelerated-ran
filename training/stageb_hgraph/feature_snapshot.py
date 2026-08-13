@@ -270,3 +270,33 @@ class FeatureSnapshotBuilder:
             elif n_cell > 0:
                 serving_cell[ue_idx] = 0
         return serving_cell
+
+
+def actor_visible_snapshot_tensors(
+    snapshot: GraphFeatureSnapshot,
+) -> dict[str, torch.Tensor]:
+    """Return the exact snapshot tensors available to an actor.
+
+    Teacher actions are deliberately excluded: they are supervision metadata,
+    never graph inputs. Keeping this list explicit makes the PFQ-field deletion
+    test fail closed if actor-visible state is expanded later.
+    """
+    meta = snapshot.static_meta
+    tensors = {
+        "cell_features": snapshot.cell_features.values,
+        "ue_features": snapshot.ue_features.values,
+        "prg_features": snapshot.prg_features.values,
+        "action_mask_cell_ue": meta.action_mask_cell_ue,
+        "action_mask_prg_cell": meta.action_mask_prg_cell,
+        "cell_adjacency": meta.cell_adjacency,
+        "ue_serving_cell": meta.ue_serving_cell,
+        "prg_owner_cell": meta.prg_owner_cell,
+        "prg_local_index": meta.prg_local_index,
+    }
+    if meta.action_mask_ue is not None:
+        tensors["action_mask_ue"] = meta.action_mask_ue
+    if meta.cell_edge_attr is not None:
+        tensors["cell_edge_attr"] = meta.cell_edge_attr
+    if meta.post_eq_sinr is not None:
+        tensors["post_eq_sinr"] = meta.post_eq_sinr
+    return tensors
