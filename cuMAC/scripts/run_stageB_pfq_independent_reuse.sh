@@ -194,7 +194,7 @@ run_pilot() {
         --imitation-episodes 0 --slot-repair-max-per-cell 0 --safe-fill-max-per-cell 0 \
         --candidate-blank-budget-max-per-cell -1 --candidate-checkpoint-interval 4 \
         --candidate-checkpoint-require-gate 0 --hidden-dim 128 --message-layers 2 \
-        --dropout 0 --early-stop-patience 0 --best-metric goodput \
+        --ue-feat-dim 16 --dropout 0 --early-stop-patience 0 --best-metric goodput \
         --sim-env "CUMAC_PACKET_DELAY_SAMPLES=1" \
         --sim-env "CUMAC_PACKET_OUTCOME_SAMPLES_CSV=${phase_dir}/packet_outcome_samples.csv" \
         "${init_args[@]}"
@@ -202,6 +202,7 @@ run_pilot() {
 
 evaluate_checkpoint() {
     local checkpoint="$1" seed="$2" warmup="$3" measure="$4" eval_dir="$5"
+    local normalize_gate="${6:-1}"
     local socket="/tmp/cumac_independent_eval_${seed}_$$.sock"
     local outcome_csv="${eval_dir}/packet_outcome_samples.csv"
     mkdir -p "${eval_dir}"
@@ -231,8 +232,10 @@ evaluate_checkpoint() {
         echo "checkpoint evaluation failed: eval_rc=${eval_rc} sim_rc=${sim_rc}; ${eval_dir}" >&2
         exit 1
     fi
-    "${PYTHON_BIN}" -m training.stageb_hgraph.independent_gate normalize-eval \
-        --summary "${eval_dir}/eval_summary.json" --out "${eval_dir}/gate_metrics.json"
+    if [[ "${normalize_gate}" == "1" ]]; then
+        "${PYTHON_BIN}" -m training.stageb_hgraph.independent_gate normalize-eval \
+            --summary "${eval_dir}/eval_summary.json" --out "${eval_dir}/gate_metrics.json"
+    fi
 }
 
 run_validity() {
@@ -249,39 +252,101 @@ run_validity() {
         --teacher-mode pfq_passthrough --hidden-dim 128 --message-layers 2 \
         --dropout 0 --print-every "${STEPS}"
     local checkpoint="${phase_dir}/bc/hgraph_independent_bc_last.pt"
-    evaluate_checkpoint "${checkpoint}" 41 0 "${STEPS}" "${phase_dir}/greedy"
-    "${PYTHON_BIN}" - "${phase_dir}/greedy/eval_summary.json" "${phase_dir}/validity_gate.json" <<'PY'
+    # A 32-update BC checkpoint may be blank under argmax.  This pass therefore
+    # audits the deterministic action path without pretending it is a KPI run.
+    evaluate_checkpoint "${checkpoint}" 41 0 "${STEPS}" "${phase_dir}/greedy" 0
+    "${PYTHON_BIN}" - "${phase_dir}/greedy/eval_summary.json" "${phase_dir}/validity_gate.json" "${STEPS}" <<'PY'
 import json, math, sys
 summary = json.load(open(sys.argv[1], encoding="utf-8"))
+expected_steps = int(sys.argv[3])
 checks = {
-    "completed_steps": summary.get("completed_steps", 0) > 0,
+    "completed_steps": summary.get("completed_steps") == expected_steps,
     "action_replay_exact": summary.get("stats_sum_action_replay_mismatch_count") == 0,
     "actions_legal": summary.get("stats_sum_illegal_action_count") == 0,
     "pfq_deletion_exact": summary.get("independent_deletion_equal") is True,
     "no_fallback": summary.get("stats_mean_fallback_success_count") == 0,
     "no_safe_fill": summary.get("stats_mean_safe_fill_count") == 0,
     "no_slot_repair": summary.get("stats_mean_slot_repair_count") == 0,
-    "ea_diagnostics_nonempty": summary.get("packet_outcome_measured_count", 0) > 0,
-    "finite_metrics": all(math.isfinite(float(summary[k])) for k in (
-        "stats_mean_goodput_mbps", "stats_mean_tb_err_rate", "stats_mean_expiry_drop_rate")),
 }
 report = {"passed": all(checks.values()), "checks": checks}
 open(sys.argv[2], "w", encoding="utf-8").write(json.dumps(report, indent=2, sort_keys=True) + "\n")
 if not report["passed"]: raise SystemExit(1)
 PY
+    local scales="${phase_dir}/sampled_calibration/reward_scales.json"
+    "${PYTHON_BIN}" -m training.stageb_hgraph.pfq_reference_calibration \
+        --sim-bin "${SIM_BIN}" --sim-args "${SIM_ARGS}" --sim-cwd "${ROOT_DIR}" \
+        --topology-seed 41 --traffic-seed 41 --warmup-steps 16 --measure-steps 16 \
+        --out-dir "${phase_dir}/sampled_calibration"
+    "${PYTHON_BIN}" -m training.stageb_hgraph.online_ppo \
+        --sim-bin "${SIM_BIN}" --sim-args "${SIM_ARGS}" --sim-cwd "${ROOT_DIR}" \
+        --socket-path "/tmp/cumac_independent_validity_ppo.sock" \
+        --online-persistent 1 --episode-horizon 4000 --rollout-steps "${STEPS}" --iterations 1 \
+        --rollout-warmup-steps 0 --rollout-warmup-once 1 \
+        --topology-seed 41 --topology-seed-mode fixed --seed 41 --device auto \
+        --out-dir "${phase_dir}/sampled" --action-head-mode independent \
+        --candidate-mode all_demand_ues --include-pfq-score-anchor 0 \
+        --include-candidate-risk-features 0 --pfq-residual-init 0 \
+        --reward-mode pfq_independent --independent-treatment B \
+        --independent-reward-scales "${scales}" --init-checkpoint "${checkpoint}" \
+        --teacher-mode none --teacher-aux-coef 0 --teacher-aux-min-coef 0 \
+        --imitation-episodes 0 --slot-repair-max-per-cell 0 --safe-fill-max-per-cell 0 \
+        --candidate-blank-budget-max-per-cell -1 --hidden-dim 128 --message-layers 2 \
+        --ue-feat-dim 16 --dropout 0 --update-epochs 1 --minibatch-size "${STEPS}" \
+        --early-stop-patience 0 --write-diagnostics 1 --print-every-iters 1 \
+        --sim-env "CUMAC_PACKET_DELAY_SAMPLES=1" \
+        --sim-env "CUMAC_PACKET_OUTCOME_SAMPLES_CSV=${phase_dir}/sampled/packet_outcome_samples.csv"
+    "${PYTHON_BIN}" - "${phase_dir}/sampled/online_ppo_metrics.csv" "${phase_dir}/sampled_validity_gate.json" <<'PY'
+import csv, json, math, sys
+row = list(csv.DictReader(open(sys.argv[1], encoding="utf-8")))[-1]
+def f(key): return float(row[key])
+zero_fields = (
+    "rollout_action_replay_mismatch_count_mean",
+    "rollout_native_reject_wrong_cell_slot_count_mean",
+    "rollout_native_reject_empty_slot_count_mean",
+    "rollout_native_reject_prg_mask_count_mean",
+    "rollout_native_reject_oob_slot_count_mean",
+    "rollout_native_reject_duplicate_ue_count_mean",
+    "rollout_python_preflight_wrong_cell_slot_count_mean",
+    "rollout_python_preflight_empty_slot_count_mean",
+    "rollout_python_preflight_prg_mask_count_mean",
+    "rollout_python_preflight_oob_slot_count_mean",
+    "rollout_python_preflight_duplicate_ue_count_mean",
+    "rollout_fallback_success_count_mean",
+    "rollout_safe_fill_count_mean",
+    "rollout_blank_budget_repair_count_mean",
+    "rollout_coverage_repair_count_mean",
+)
+checks = {
+    "zero_replay_reject_repair_fallback": all(f(key) == 0.0 for key in zero_fields),
+    "native_diagnostics_complete": f("rollout_native_reject_diagnostics_available_mean") == 1.0,
+    "python_preflight_complete": f("rollout_python_preflight_diagnostics_available_mean") == 1.0,
+    "expiry_aware_ue_diagnostics_complete": f("rollout_actual_ue_packet_diagnostics_available_mean") == 1.0,
+    "sampled_actions_nonempty": f("rollout_action_fill_ratio_mean") > 0.0,
+    "finite_reward": math.isfinite(f("rollout_reward_mean")),
+    "finite_entropy": math.isfinite(f("rollout_entropy_mean")) and f("rollout_entropy_mean") > 0.0,
+    "finite_policy_gradient": math.isfinite(f("candidate_policy_grad_norm")) and f("candidate_policy_grad_norm") > 0.0,
+    "finite_ea_raw_reward_terms": all(math.isfinite(f(key)) for key in (
+        "rollout_reward_goodput_raw_mean", "rollout_reward_failed_raw_mean", "rollout_reward_expired_raw_mean")),
+}
+report = {"passed": all(checks.values()), "checks": checks, "evidence": {key: f(key) for key in zero_fields + ("rollout_action_fill_ratio_mean", "rollout_reward_mean", "rollout_entropy_mean", "candidate_policy_grad_norm")}}
+open(sys.argv[2], "w", encoding="utf-8").write(json.dumps(report, indent=2, sort_keys=True) + "\n")
+if not report["passed"]: raise SystemExit(1)
+PY
     "${PYTHON_BIN}" - "${checkpoint}" "${phase_dir}/bc/online_imitation_summary.json" "${phase_dir}/sampled_policy_validity.json" <<'PY'
 import json, math, sys, torch
+from dataclasses import replace
 from training.stageb_hgraph.independent_actor import IndependentActorConfig, PFQIndependentReuseActor
-from training.stageb_hgraph.independent_policy import replay_independent_trace, select_independent_action
+from training.stageb_hgraph.independent_policy import replay_independent_trace, resolve_full_candidate_width, select_independent_action
 from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder
 from training.stageb_hgraph.graph_ops import pack_prg_candidates
 from training.stageb_hgraph.tests.graph_fixtures import make_candidate_observation
 checkpoint = torch.load(sys.argv[1], map_location="cpu")
 cfg = IndependentActorConfig(**{k: v for k, v in checkpoint["actor_config"].items() if k in IndependentActorConfig.__dataclass_fields__})
+graph = SparseEdgeGenerator(EdgeGeneratorConfig(candidate_mode="all_demand_ues", include_pfq_score_anchor=False, include_candidate_risk_features=False)).build_graph(FeatureSnapshotBuilder().build(make_candidate_observation(n_prg=3, ue_feat_dim=16)))
+cfg = replace(cfg, max_candidates=resolve_full_candidate_width(graph))
 actor = PFQIndependentReuseActor(cfg)
 actor.load_state_dict(checkpoint["actor_state"], strict=True)
-graph = SparseEdgeGenerator(EdgeGeneratorConfig(candidate_mode="all_demand_ues", include_pfq_score_anchor=False, include_candidate_risk_features=False)).build_graph(FeatureSnapshotBuilder().build(make_candidate_observation(n_prg=3, ue_feat_dim=16)))
 packed = pack_prg_candidates(graph, max_candidates=cfg.max_candidates, fixed_width=True)
 trace, action = select_independent_action(actor, graph, packed, mode="sample")
 logp, entropy, replayed = replay_independent_trace(actor, graph, packed, trace)
@@ -290,10 +355,10 @@ loss.backward()
 grad = sum(float(p.grad.square().sum()) for n, p in actor.named_parameters() if p.grad is not None and (n.startswith("reuse_attention") or n.startswith("ue_scorer"))) ** 0.5
 report = {
     "sampled_trace_replay_exact": bool(torch.equal(action.action_ue_select, replayed.action_ue_select) and torch.equal(action.action_prg_alloc, replayed.action_prg_alloc)),
-    "finite_logp": math.isfinite(float(logp)),
-    "finite_entropy": math.isfinite(float(entropy)),
+    "finite_logp": math.isfinite(float(logp.detach())),
+    "finite_entropy": math.isfinite(float(entropy.detach())),
     "reuse_attention_and_scorer_grad_norm": grad,
-    "passed": grad > 0 and math.isfinite(float(logp)) and math.isfinite(float(entropy)) and torch.equal(action.action_ue_select, replayed.action_ue_select) and torch.equal(action.action_prg_alloc, replayed.action_prg_alloc),
+    "passed": grad > 0 and math.isfinite(float(logp.detach())) and math.isfinite(float(entropy.detach())) and torch.equal(action.action_ue_select, replayed.action_ue_select) and torch.equal(action.action_prg_alloc, replayed.action_prg_alloc),
 }
 open(sys.argv[3], "w", encoding="utf-8").write(json.dumps(report, indent=2, sort_keys=True) + "\n")
 if not report["passed"]: raise SystemExit(1)

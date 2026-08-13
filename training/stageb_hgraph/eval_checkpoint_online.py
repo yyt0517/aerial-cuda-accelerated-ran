@@ -938,11 +938,21 @@ def main() -> int:
     )
 
     obs, _reward0, info = env.reset(seed=int(args.seed), episode_horizon=int(args.episode_horizon))
-    deletion_equal = (
-        _independent_deletion_equal(actor, obs, edge_generator, snapshot_cfg, device)
-        if independent_mode
-        else None
-    )
+    deletion_test_device = ""
+    if independent_mode:
+        # CUDA sparse reductions may differ by a few ULPs between identical
+        # forward passes.  The independence contract is a bitwise test, so run
+        # this one-time audit on the deterministic CPU path, then restore the
+        # requested evaluation device.
+        deletion_device = torch.device("cpu")
+        actor.to(deletion_device)
+        deletion_equal = _independent_deletion_equal(
+            actor, obs, edge_generator, snapshot_cfg, deletion_device
+        )
+        actor.to(device)
+        deletion_test_device = str(deletion_device)
+    else:
+        deletion_equal = None
     step_idx = 0
     measured_tti_first: int | None = None
     measured_tti_last: int | None = None
@@ -1311,6 +1321,7 @@ def main() -> int:
             else os.environ.get("CUMAC_SIM_BINARY_SHA256", "")
         ),
         "independent_deletion_equal": deletion_equal,
+        "independent_deletion_test_device": deletion_test_device,
         "decode_mode": str(args.decode_mode),
         "candidate_policy_mode": str(candidate_policy_mode),
         "ue_prg_topk": int(ue_prg_topk),
