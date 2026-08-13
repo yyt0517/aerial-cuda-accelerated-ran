@@ -10,8 +10,8 @@
 namespace cumac::online {
 
 constexpr uint32_t kMagic = 0x524c4e4fU; // "ONLR"
-constexpr uint16_t kVersion = 11U;
-constexpr uint32_t kRewardTerms = 17U;
+constexpr uint16_t kVersion = 12U;
+constexpr uint32_t kRewardTerms = 23U;
 constexpr uint32_t kStateFlagHasPostEqSinr = 1U << 0;
 constexpr uint32_t kStateFlagHasTeacherAction = 1U << 1;
 constexpr uint32_t kStateFlagHasActualUeDiagnostics = 1U << 2;

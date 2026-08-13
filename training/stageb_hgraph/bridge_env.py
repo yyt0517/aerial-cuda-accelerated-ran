@@ -183,6 +183,11 @@ class BridgeEnvClient:
         actual_ue_packet_system_time_ms = None
         actual_ue_packet_service_rate_mbps = None
         actual_ue_packet_service_rate_per_packet_mean_mbps = None
+        actual_ue_packet_expired_packets = None
+        actual_ue_packet_expired_system_time_ms = None
+        actual_ue_packet_outcome_system_time_ms = None
+        actual_ue_packet_expiry_aware_rate_mbps = None
+        actual_ue_packet_expiry_aware_rate_per_packet_mean_mbps = None
         if header.state_flags & STATE_FLAG_HAS_ACTUAL_UE_PACKET_DIAGNOSTICS:
             actual_ue_packet_delivered_packets = take(_I32, dims.n_active_ue, (dims.n_active_ue,))
             actual_ue_packet_pending_packets = take(_I32, dims.n_active_ue, (dims.n_active_ue,))
@@ -190,6 +195,15 @@ class BridgeEnvClient:
             actual_ue_packet_system_time_ms = take(_F32, dims.n_active_ue, (dims.n_active_ue,))
             actual_ue_packet_service_rate_mbps = take(_F32, dims.n_active_ue, (dims.n_active_ue,))
             actual_ue_packet_service_rate_per_packet_mean_mbps = take(
+                _F32,
+                dims.n_active_ue,
+                (dims.n_active_ue,),
+            )
+            actual_ue_packet_expired_packets = take(_I32, dims.n_active_ue, (dims.n_active_ue,))
+            actual_ue_packet_expired_system_time_ms = take(_F32, dims.n_active_ue, (dims.n_active_ue,))
+            actual_ue_packet_outcome_system_time_ms = take(_F32, dims.n_active_ue, (dims.n_active_ue,))
+            actual_ue_packet_expiry_aware_rate_mbps = take(_F32, dims.n_active_ue, (dims.n_active_ue,))
+            actual_ue_packet_expiry_aware_rate_per_packet_mean_mbps = take(
                 _F32,
                 dims.n_active_ue,
                 (dims.n_active_ue,),
@@ -244,6 +258,9 @@ class BridgeEnvClient:
                 header.state_flags & STATE_FLAG_HAS_ACTUAL_UE_DIAGNOSTICS
             ),
             "actual_ue_packet_diagnostics_available": bool(
+                header.state_flags & STATE_FLAG_HAS_ACTUAL_UE_PACKET_DIAGNOSTICS
+            ),
+            "actual_ue_packet_expiry_aware_diagnostics_available": bool(
                 header.state_flags & STATE_FLAG_HAS_ACTUAL_UE_PACKET_DIAGNOSTICS
             ),
         }
@@ -321,6 +338,25 @@ class BridgeEnvClient:
                     ),
                     "actual_ue_packet_service_rate_per_packet_mean_mbps": (
                         actual_ue_packet_service_rate_per_packet_mean_mbps.astype(
+                            np.float32,
+                            copy=False,
+                        )
+                    ),
+                    "actual_ue_packet_expired_packets": actual_ue_packet_expired_packets.astype(
+                        np.int32,
+                        copy=False,
+                    ),
+                    "actual_ue_packet_expired_system_time_ms": (
+                        actual_ue_packet_expired_system_time_ms.astype(np.float32, copy=False)
+                    ),
+                    "actual_ue_packet_outcome_system_time_ms": (
+                        actual_ue_packet_outcome_system_time_ms.astype(np.float32, copy=False)
+                    ),
+                    "actual_ue_packet_expiry_aware_rate_mbps": (
+                        actual_ue_packet_expiry_aware_rate_mbps.astype(np.float32, copy=False)
+                    ),
+                    "actual_ue_packet_expiry_aware_rate_per_packet_mean_mbps": (
+                        actual_ue_packet_expiry_aware_rate_per_packet_mean_mbps.astype(
                             np.float32,
                             copy=False,
                         )

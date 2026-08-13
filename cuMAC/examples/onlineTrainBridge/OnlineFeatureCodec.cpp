@@ -366,7 +366,13 @@ OnlineFeatureCodec::RewardTerms OnlineFeatureCodec::buildReward(const cumacCellG
                                                                 float packetDeliveredBits,
                                                                 float packetSystemTimeMs,
                                                                 float packetEffectiveServiceRateMbps,
-                                                                float packetEffectiveServiceRatePerPacketMeanMbps) const
+                                                                float packetEffectiveServiceRatePerPacketMeanMbps,
+                                                                float packetExpiredCount,
+                                                                float packetExpiredSystemTimeMs,
+                                                                float packetOutcomeCount,
+                                                                float packetOutcomeSystemTimeMs,
+                                                                float packetExpiryAwareRateMbps,
+                                                                float packetExpiryAwareRatePerPacketMeanMbps) const
 {
     RewardTerms terms;
     if (cellGrpUeStatusCpu == nullptr) {
@@ -409,6 +415,12 @@ OnlineFeatureCodec::RewardTerms OnlineFeatureCodec::buildReward(const cumacCellG
     terms.packetSystemTimeMs = clampNonNeg(packetSystemTimeMs);
     terms.packetEffectiveServiceRateMbps = clampNonNeg(packetEffectiveServiceRateMbps);
     terms.packetEffectiveServiceRatePerPacketMeanMbps = clampNonNeg(packetEffectiveServiceRatePerPacketMeanMbps);
+    terms.packetExpiredCount = clampNonNeg(packetExpiredCount);
+    terms.packetExpiredSystemTimeMs = clampNonNeg(packetExpiredSystemTimeMs);
+    terms.packetOutcomeCount = clampNonNeg(packetOutcomeCount);
+    terms.packetOutcomeSystemTimeMs = clampNonNeg(packetOutcomeSystemTimeMs);
+    terms.packetExpiryAwareRateMbps = clampNonNeg(packetExpiryAwareRateMbps);
+    terms.packetExpiryAwareRatePerPacketMeanMbps = clampNonNeg(packetExpiryAwareRatePerPacketMeanMbps);
     terms.fairnessJain = (sumGoodputBytesSq > 0.0)
                              ? static_cast<float>(
                                    (sumGoodputBytes * sumGoodputBytes) /

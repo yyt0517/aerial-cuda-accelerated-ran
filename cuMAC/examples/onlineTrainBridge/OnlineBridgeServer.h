@@ -54,6 +54,11 @@ struct StepState {
     std::vector<float> actualUePacketSystemTimeMs;
     std::vector<float> actualUePacketServiceRateMbps;
     std::vector<float> actualUePacketServiceRatePerPacketMeanMbps;
+    std::vector<int32_t> actualUePacketExpiredPackets;
+    std::vector<float> actualUePacketExpiredSystemTimeMs;
+    std::vector<float> actualUePacketOutcomeSystemTimeMs;
+    std::vector<float> actualUePacketExpiryAwareRateMbps;
+    std::vector<float> actualUePacketExpiryAwareRatePerPacketMeanMbps;
 };
 
 class OnlineBridgeServer {

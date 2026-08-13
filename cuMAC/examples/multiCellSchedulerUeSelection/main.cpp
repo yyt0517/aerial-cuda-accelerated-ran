@@ -194,6 +194,27 @@ unsigned long long writePacketDelaySamplesCsv(
     return rows;
 }
 
+unsigned long long writePacketOutcomeSamplesCsv(
+    const std::string& path,
+    const std::vector<PacketOutcomeSample>& samples)
+{
+    if (path.empty()) {
+        return 0ULL;
+    }
+    std::ofstream out(path);
+    if (!out) {
+        fprintf(stderr, "WARNING: failed to open packet outcome sample CSV for writing: %s\n", path.c_str());
+        return 0ULL;
+    }
+    out << "ue_id,packet_id,terminal_tti,outcome,system_time_ms\n";
+    out << std::fixed << std::setprecision(6);
+    for (const auto& sample : samples) {
+        out << sample.flow_id << ',' << sample.packet_id << ',' << sample.terminal_tti << ','
+            << (sample.expired ? "expired" : "delivered") << ',' << sample.system_time_ms << '\n';
+    }
+    return static_cast<unsigned long long>(samples.size());
+}
+
 struct PrgUsageStats {
     unsigned long long allocatedPrgCount = 0ULL;
     unsigned long long usedPrgCount = 0ULL;
@@ -496,7 +517,12 @@ cumac::online::StepState buildOnlineState(int tti,
                                           const std::vector<float>& actualUePacketDeliveredBits,
                                           const std::vector<float>& actualUePacketSystemTimeMs,
                                           const std::vector<float>& actualUePacketServiceRateMbps,
-                                          const std::vector<float>& actualUePacketServiceRatePerPacketMeanMbps)
+                                          const std::vector<float>& actualUePacketServiceRatePerPacketMeanMbps,
+                                          const std::vector<int32_t>& actualUePacketExpiredPackets,
+                                          const std::vector<float>& actualUePacketExpiredSystemTimeMs,
+                                          const std::vector<float>& actualUePacketOutcomeSystemTimeMs,
+                                          const std::vector<float>& actualUePacketExpiryAwareRateMbps,
+                                          const std::vector<float>& actualUePacketExpiryAwareRatePerPacketMeanMbps)
 {
     cumac::online::StepState state;
     state.header.tti = tti;
@@ -519,6 +545,12 @@ cumac::online::StepState buildOnlineState(int tti,
     state.header.rewardTerms[14] = reward.packetSystemTimeMs;
     state.header.rewardTerms[15] = reward.packetEffectiveServiceRateMbps;
     state.header.rewardTerms[16] = reward.packetEffectiveServiceRatePerPacketMeanMbps;
+    state.header.rewardTerms[17] = reward.packetExpiredCount;
+    state.header.rewardTerms[18] = reward.packetExpiredSystemTimeMs;
+    state.header.rewardTerms[19] = reward.packetOutcomeCount;
+    state.header.rewardTerms[20] = reward.packetOutcomeSystemTimeMs;
+    state.header.rewardTerms[21] = reward.packetExpiryAwareRateMbps;
+    state.header.rewardTerms[22] = reward.packetExpiryAwareRatePerPacketMeanMbps;
     state.header.dims.nCell = codec.nCell();
     state.header.dims.nActiveUe = codec.nActiveUe();
     state.header.dims.nSchedUe = codec.nSchedUe();
@@ -581,7 +613,12 @@ cumac::online::StepState buildOnlineState(int tti,
         actualUePacketDeliveredBits.size() == codec.nActiveUe() &&
         actualUePacketSystemTimeMs.size() == codec.nActiveUe() &&
         actualUePacketServiceRateMbps.size() == codec.nActiveUe() &&
-        actualUePacketServiceRatePerPacketMeanMbps.size() == codec.nActiveUe();
+        actualUePacketServiceRatePerPacketMeanMbps.size() == codec.nActiveUe() &&
+        actualUePacketExpiredPackets.size() == codec.nActiveUe() &&
+        actualUePacketExpiredSystemTimeMs.size() == codec.nActiveUe() &&
+        actualUePacketOutcomeSystemTimeMs.size() == codec.nActiveUe() &&
+        actualUePacketExpiryAwareRateMbps.size() == codec.nActiveUe() &&
+        actualUePacketExpiryAwareRatePerPacketMeanMbps.size() == codec.nActiveUe();
     if (hasActualUePacketDiagnostics) {
         state.header.stateFlags |= cumac::online::kStateFlagHasActualUePacketDiagnostics;
     }
@@ -627,6 +664,12 @@ cumac::online::StepState buildOnlineState(int tti,
         state.actualUePacketSystemTimeMs = actualUePacketSystemTimeMs;
         state.actualUePacketServiceRateMbps = actualUePacketServiceRateMbps;
         state.actualUePacketServiceRatePerPacketMeanMbps = actualUePacketServiceRatePerPacketMeanMbps;
+        state.actualUePacketExpiredPackets = actualUePacketExpiredPackets;
+        state.actualUePacketExpiredSystemTimeMs = actualUePacketExpiredSystemTimeMs;
+        state.actualUePacketOutcomeSystemTimeMs = actualUePacketOutcomeSystemTimeMs;
+        state.actualUePacketExpiryAwareRateMbps = actualUePacketExpiryAwareRateMbps;
+        state.actualUePacketExpiryAwareRatePerPacketMeanMbps =
+            actualUePacketExpiryAwareRatePerPacketMeanMbps;
     }
     return state;
 }
@@ -912,6 +955,8 @@ int main(int argc, char* argv[])
   const bool packetDelaySamplesEnabled = getEnvInt("CUMAC_PACKET_DELAY_SAMPLES", 0) != 0;
   const std::string packetDelaySamplesCsv =
       getEnvString("CUMAC_PACKET_DELAY_SAMPLES_CSV", "packet_delay_samples.csv");
+  const std::string packetOutcomeSamplesCsv =
+      getEnvString("CUMAC_PACKET_OUTCOME_SAMPLES_CSV", "packet_outcome_samples.csv");
   const float trafficArrivalRate = getEnvFloat("CUMAC_TRAFFIC_ARRIVAL_RATE", 1.0f);
   const int packetTtlTtiEnv = getEnvInt("CUMAC_PACKET_TTL_TTI", 0);
   const float packetTtlMsEnv = getEnvFloat("CUMAC_PACKET_TTL_MS", 0.0f);
@@ -1555,6 +1600,11 @@ int main(int argc, char* argv[])
             std::vector<float>{},
             std::vector<float>{},
             std::vector<float>{},
+            std::vector<float>{},
+            std::vector<int32_t>{},
+            std::vector<float>{},
+            std::vector<float>{},
+            std::vector<float>{},
             std::vector<float>{});
         if (!onlineBridge->sendResetRsp(resetState)) {
           fprintf(stderr, "ERROR: Failed to send online reset response.\n");
@@ -2018,6 +2068,8 @@ int main(int argc, char* argv[])
                     std::max(0.0, std::min(1.0, static_cast<double>(totalExpiredBytes) / static_cast<double>(totalGeneratedBytes))))
               : 0.0f;
       const PacketServiceRateSummary packetServiceRateThisTti = trafSvc->GetLastPacketServiceRateStats();
+      const PacketExpiryAwareRateSummary packetExpiryAwareRateThisTti =
+          trafSvc->GetLastPacketExpiryAwareRateStats();
       const cumac::online::OnlineFeatureCodec::RewardTerms reward = onlineCodec.buildReward(
           net->cellGrpUeStatusCpu.get(),
           servedBytesThisTti,
@@ -2036,7 +2088,15 @@ int main(int argc, char* argv[])
           static_cast<float>(packetServiceRateThisTti.total_delivered_bits),
           static_cast<float>(packetServiceRateThisTti.total_packet_system_time_ms),
           static_cast<float>(packetServiceRateThisTti.packet_effective_service_rate_mbps),
-          static_cast<float>(packetServiceRateThisTti.packet_effective_service_rate_per_packet_mean_mbps));
+          static_cast<float>(packetServiceRateThisTti.packet_effective_service_rate_per_packet_mean_mbps),
+          static_cast<float>(packetExpiryAwareRateThisTti.expired_packets),
+          static_cast<float>(packetExpiryAwareRateThisTti.expired_packet_system_time_ms),
+          static_cast<float>(packetExpiryAwareRateThisTti.delivered_packets +
+                             packetExpiryAwareRateThisTti.expired_packets),
+          static_cast<float>(packetExpiryAwareRateThisTti.outcome_packet_system_time_ms),
+          static_cast<float>(packetExpiryAwareRateThisTti.packet_expiry_aware_rate_mbps),
+          static_cast<float>(
+              packetExpiryAwareRateThisTti.packet_expiry_aware_rate_per_packet_mean_mbps));
       std::vector<float> actualUeServedBytes(static_cast<size_t>(nActiveUe), 0.0F);
       std::vector<float> actualUeGoodputBytes(static_cast<size_t>(nActiveUe), 0.0F);
       for (int ueId = 0; ueId < nActiveUe; ++ueId) {
@@ -2046,12 +2106,22 @@ int main(int argc, char* argv[])
       PacketServiceRateSummary packetServiceRateCumulativeTotal;
       std::vector<PacketServiceRateSummary> uePacketServiceRateCumulative;
       trafSvc->GetPacketServiceRateStats(packetServiceRateCumulativeTotal, uePacketServiceRateCumulative);
+      PacketExpiryAwareRateSummary packetExpiryAwareRateCumulativeTotal;
+      std::vector<PacketExpiryAwareRateSummary> uePacketExpiryAwareRateCumulative;
+      trafSvc->GetPacketExpiryAwareRateStats(
+          packetExpiryAwareRateCumulativeTotal, uePacketExpiryAwareRateCumulative);
       std::vector<int32_t> actualUePacketDeliveredPackets(static_cast<size_t>(nActiveUe), 0);
       std::vector<int32_t> actualUePacketPendingPackets(static_cast<size_t>(nActiveUe), 0);
       std::vector<float> actualUePacketDeliveredBits(static_cast<size_t>(nActiveUe), 0.0F);
       std::vector<float> actualUePacketSystemTimeMs(static_cast<size_t>(nActiveUe), 0.0F);
       std::vector<float> actualUePacketServiceRateMbps(static_cast<size_t>(nActiveUe), 0.0F);
       std::vector<float> actualUePacketServiceRatePerPacketMeanMbps(static_cast<size_t>(nActiveUe), 0.0F);
+      std::vector<int32_t> actualUePacketExpiredPackets(static_cast<size_t>(nActiveUe), 0);
+      std::vector<float> actualUePacketExpiredSystemTimeMs(static_cast<size_t>(nActiveUe), 0.0F);
+      std::vector<float> actualUePacketOutcomeSystemTimeMs(static_cast<size_t>(nActiveUe), 0.0F);
+      std::vector<float> actualUePacketExpiryAwareRateMbps(static_cast<size_t>(nActiveUe), 0.0F);
+      std::vector<float> actualUePacketExpiryAwareRatePerPacketMeanMbps(
+          static_cast<size_t>(nActiveUe), 0.0F);
       for (int ueId = 0; ueId < nActiveUe; ++ueId) {
         const size_t idx = static_cast<size_t>(ueId);
         if (idx >= uePacketServiceRateCumulative.size()) {
@@ -2071,6 +2141,21 @@ int main(int argc, char* argv[])
         actualUePacketServiceRateMbps[idx] = static_cast<float>(s.packet_effective_service_rate_mbps);
         actualUePacketServiceRatePerPacketMeanMbps[idx] =
             static_cast<float>(s.packet_effective_service_rate_per_packet_mean_mbps);
+        if (idx < uePacketExpiryAwareRateCumulative.size()) {
+          const PacketExpiryAwareRateSummary& ea = uePacketExpiryAwareRateCumulative[idx];
+          actualUePacketExpiredPackets[idx] = static_cast<int32_t>(
+              std::min<unsigned long long>(
+                  ea.expired_packets,
+                  static_cast<unsigned long long>(std::numeric_limits<int32_t>::max())));
+          actualUePacketExpiredSystemTimeMs[idx] =
+              static_cast<float>(ea.expired_packet_system_time_ms);
+          actualUePacketOutcomeSystemTimeMs[idx] =
+              static_cast<float>(ea.outcome_packet_system_time_ms);
+          actualUePacketExpiryAwareRateMbps[idx] =
+              static_cast<float>(ea.packet_expiry_aware_rate_mbps);
+          actualUePacketExpiryAwareRatePerPacketMeanMbps[idx] =
+              static_cast<float>(ea.packet_expiry_aware_rate_per_packet_mean_mbps);
+        }
       }
       const cumac::online::StepState stepState = buildOnlineState(
           t + 1,
@@ -2107,7 +2192,12 @@ int main(int argc, char* argv[])
           actualUePacketDeliveredBits,
           actualUePacketSystemTimeMs,
           actualUePacketServiceRateMbps,
-          actualUePacketServiceRatePerPacketMeanMbps);
+          actualUePacketServiceRatePerPacketMeanMbps,
+          actualUePacketExpiredPackets,
+          actualUePacketExpiredSystemTimeMs,
+          actualUePacketOutcomeSystemTimeMs,
+          actualUePacketExpiryAwareRateMbps,
+          actualUePacketExpiryAwareRatePerPacketMeanMbps);
       if (!onlineBridge->sendStepRsp(stepState)) {
         fprintf(stderr, "ERROR: Failed to send online step response.\n");
         return 1;
@@ -2190,8 +2280,15 @@ int main(int argc, char* argv[])
     std::vector<PacketDelaySummary> perFlowPacketDelay;
     PacketServiceRateSummary trafficPacketServiceRate;
     std::vector<PacketServiceRateSummary> perFlowPacketServiceRate;
+    PacketOutcomeDelaySummary trafficPacketOutcomeDelay;
+    std::vector<PacketOutcomeDelaySummary> perFlowPacketOutcomeDelay;
+    PacketExpiryAwareRateSummary trafficPacketExpiryAwareRate;
+    std::vector<PacketExpiryAwareRateSummary> perFlowPacketExpiryAwareRate;
     trafSvc->GetPacketDelayStats(trafficPacketDelay, perFlowPacketDelay);
     trafSvc->GetPacketServiceRateStats(trafficPacketServiceRate, perFlowPacketServiceRate);
+    trafSvc->GetPacketOutcomeDelayStats(trafficPacketOutcomeDelay, perFlowPacketOutcomeDelay);
+    trafSvc->GetPacketExpiryAwareRateStats(
+        trafficPacketExpiryAwareRate, perFlowPacketExpiryAwareRate);
 
     unsigned long long mac_buffer_bytes = 0;
     for (int uIdx = 0; uIdx < totNumActiveUesConst; uIdx++) {
@@ -2238,6 +2335,26 @@ int main(int argc, char* argv[])
            trafficPacketServiceRate.total_packet_system_time_ms,
            trafficPacketServiceRate.packet_effective_service_rate_mbps,
            trafficPacketServiceRate.packet_effective_service_rate_per_packet_mean_mbps);
+    printf("TRAFFIC_PKT_OUTCOME_DELAY delivered_pkt_count=%llu expired_pkt_count=%llu outcome_pkt_count=%llu pending_pkt_count=%llu mean_ms=%.6f p50_ms=%.6f p90_ms=%.6f p95_ms=%.6f max_ms=%.6f\n",
+           trafficPacketOutcomeDelay.delivered_packets,
+           trafficPacketOutcomeDelay.expired_packets,
+           trafficPacketOutcomeDelay.outcome_packets,
+           trafficPacketOutcomeDelay.pending_packets,
+           trafficPacketOutcomeDelay.mean_delay_ms,
+           trafficPacketOutcomeDelay.p50_delay_ms,
+           trafficPacketOutcomeDelay.p90_delay_ms,
+           trafficPacketOutcomeDelay.p95_delay_ms,
+           trafficPacketOutcomeDelay.max_delay_ms);
+    printf("TRAFFIC_PKT_RATE_EA delivered_pkt_count=%llu expired_pkt_count=%llu pending_pkt_count=%llu total_delivered_bits=%llu delivered_packet_system_time_ms=%.6f expired_packet_system_time_ms=%.6f outcome_packet_system_time_ms=%.6f r_pkt_ea_mbps=%.6f r_pkt_ea_per_packet_mean_mbps=%.6f\n",
+           trafficPacketExpiryAwareRate.delivered_packets,
+           trafficPacketExpiryAwareRate.expired_packets,
+           trafficPacketExpiryAwareRate.pending_packets,
+           trafficPacketExpiryAwareRate.total_delivered_bits,
+           trafficPacketExpiryAwareRate.delivered_packet_system_time_ms,
+           trafficPacketExpiryAwareRate.expired_packet_system_time_ms,
+           trafficPacketExpiryAwareRate.outcome_packet_system_time_ms,
+           trafficPacketExpiryAwareRate.packet_expiry_aware_rate_mbps,
+           trafficPacketExpiryAwareRate.packet_expiry_aware_rate_per_packet_mean_mbps);
   } else {
     printf("TRAFFIC_KPI flows=0 generated_pkts=0 generated_bytes=0 accepted_bytes=0 dropped_bytes=0 flow_queued_bytes=0 mac_buffer_bytes=0 served_bytes_est=0\n");
     printf("TRAFFIC_KPI offered_mbps=0.000000 served_mbps_est=0.000000 drop_rate=0.000000 queue_delay_est_ms=0.000000\n");
@@ -2245,6 +2362,8 @@ int main(int argc, char* argv[])
     printf("TRAFFIC_EXPIRY expired_bytes=0 expired_packets=0 expiry_drop_rate=0.000000\n");
     printf("TRAFFIC_PKT_DELAY served_pkt_count=0 pending_pkt_count=0 mean_ms=0.000000 p50_ms=0.000000 p90_ms=0.000000 p95_ms=0.000000 max_ms=0.000000\n");
     printf("TRAFFIC_PKT_RATE delivered_pkt_count=0 total_delivered_bits=0 total_packet_system_time_ms=0.000000 r_pkt_mbps=0.000000 r_pkt_per_packet_mean_mbps=0.000000\n");
+    printf("TRAFFIC_PKT_OUTCOME_DELAY delivered_pkt_count=0 expired_pkt_count=0 outcome_pkt_count=0 pending_pkt_count=0 mean_ms=0.000000 p50_ms=0.000000 p90_ms=0.000000 p95_ms=0.000000 max_ms=0.000000\n");
+    printf("TRAFFIC_PKT_RATE_EA delivered_pkt_count=0 expired_pkt_count=0 pending_pkt_count=0 total_delivered_bits=0 delivered_packet_system_time_ms=0.000000 expired_packet_system_time_ms=0.000000 outcome_packet_system_time_ms=0.000000 r_pkt_ea_mbps=0.000000 r_pkt_ea_per_packet_mean_mbps=0.000000\n");
   }
 
   std::vector<unsigned long long> ueGeneratedBytes;
@@ -2257,10 +2376,17 @@ int main(int argc, char* argv[])
   std::vector<PacketDelaySummary> uePacketDelay;
   PacketServiceRateSummary trafficPacketServiceRateSummary;
   std::vector<PacketServiceRateSummary> uePacketServiceRate;
+  PacketOutcomeDelaySummary trafficPacketOutcomeDelaySummary;
+  std::vector<PacketOutcomeDelaySummary> uePacketOutcomeDelay;
+  PacketExpiryAwareRateSummary trafficPacketExpiryAwareRateSummary;
+  std::vector<PacketExpiryAwareRateSummary> uePacketExpiryAwareRate;
   trafSvc->GetPerFlowStats(ueGeneratedBytes, ueAcceptedBytes, ueDroppedBytes, ueFlowQueuedBytes);
   trafSvc->GetPerFlowExpiryStats(ueExpiredBytes, ueExpiredPackets);
   trafSvc->GetPacketDelayStats(trafficPacketDelaySummary, uePacketDelay);
   trafSvc->GetPacketServiceRateStats(trafficPacketServiceRateSummary, uePacketServiceRate);
+  trafSvc->GetPacketOutcomeDelayStats(trafficPacketOutcomeDelaySummary, uePacketOutcomeDelay);
+  trafSvc->GetPacketExpiryAwareRateStats(
+      trafficPacketExpiryAwareRateSummary, uePacketExpiryAwareRate);
 
   std::vector<int> ueCellId(nActiveUe, -1);
   std::vector<int> ueLocalId(nActiveUe, -1);
@@ -2293,6 +2419,8 @@ int main(int argc, char* argv[])
   printf("UE_GOODPUT_HEADER ue_id goodput_bytes goodput_mbps\n");
   printf("UE_PKT_DELAY_HEADER ue_id served_pkt_count pending_pkt_count packet_delay_mean_ms packet_delay_p50_ms packet_delay_p90_ms packet_delay_p95_ms packet_delay_max_ms\n");
   printf("UE_PKT_RATE_HEADER ue_id delivered_pkt_count pending_pkt_count total_delivered_bits total_packet_system_time_ms packet_effective_service_rate_mbps packet_effective_service_rate_per_packet_mean_mbps\n");
+  printf("UE_PKT_OUTCOME_DELAY_HEADER ue_id delivered_pkt_count expired_pkt_count outcome_pkt_count pending_pkt_count outcome_delay_mean_ms outcome_delay_p50_ms outcome_delay_p90_ms outcome_delay_p95_ms outcome_delay_max_ms\n");
+  printf("UE_PKT_RATE_EA_HEADER ue_id delivered_pkt_count expired_pkt_count pending_pkt_count total_delivered_bits delivered_packet_system_time_ms expired_packet_system_time_ms outcome_packet_system_time_ms packet_expiry_aware_rate_mbps packet_expiry_aware_rate_per_packet_mean_mbps\n");
   for (int ueId = 0; ueId < nActiveUe; ++ueId) {
     const double avgMcsTxOnly = ueMcsCnt[ueId] > 0 ? (ueMcsSum[ueId] / static_cast<double>(ueMcsCnt[ueId])) : -1.0;
     const int kpiTtiCount = std::max(1, executedTtiCount);
@@ -2392,6 +2520,36 @@ int main(int argc, char* argv[])
            pktRateSummary.total_packet_system_time_ms,
            pktRateSummary.packet_effective_service_rate_mbps,
            pktRateSummary.packet_effective_service_rate_per_packet_mean_mbps);
+    const PacketOutcomeDelaySummary pktOutcomeSummary =
+        ueId < static_cast<int>(uePacketOutcomeDelay.size())
+            ? uePacketOutcomeDelay[ueId]
+            : PacketOutcomeDelaySummary {};
+    printf("UE_PKT_OUTCOME_DELAY ue_id=%d delivered_pkt_count=%llu expired_pkt_count=%llu outcome_pkt_count=%llu pending_pkt_count=%llu outcome_delay_mean_ms=%.6f outcome_delay_p50_ms=%.6f outcome_delay_p90_ms=%.6f outcome_delay_p95_ms=%.6f outcome_delay_max_ms=%.6f\n",
+           ueId,
+           pktOutcomeSummary.delivered_packets,
+           pktOutcomeSummary.expired_packets,
+           pktOutcomeSummary.outcome_packets,
+           pktOutcomeSummary.pending_packets,
+           pktOutcomeSummary.mean_delay_ms,
+           pktOutcomeSummary.p50_delay_ms,
+           pktOutcomeSummary.p90_delay_ms,
+           pktOutcomeSummary.p95_delay_ms,
+           pktOutcomeSummary.max_delay_ms);
+    const PacketExpiryAwareRateSummary pktExpiryAwareRateSummary =
+        ueId < static_cast<int>(uePacketExpiryAwareRate.size())
+            ? uePacketExpiryAwareRate[ueId]
+            : PacketExpiryAwareRateSummary {};
+    printf("UE_PKT_RATE_EA ue_id=%d delivered_pkt_count=%llu expired_pkt_count=%llu pending_pkt_count=%llu total_delivered_bits=%llu delivered_packet_system_time_ms=%.6f expired_packet_system_time_ms=%.6f outcome_packet_system_time_ms=%.6f packet_expiry_aware_rate_mbps=%.6f packet_expiry_aware_rate_per_packet_mean_mbps=%.6f\n",
+           ueId,
+           pktExpiryAwareRateSummary.delivered_packets,
+           pktExpiryAwareRateSummary.expired_packets,
+           pktExpiryAwareRateSummary.pending_packets,
+           pktExpiryAwareRateSummary.total_delivered_bits,
+           pktExpiryAwareRateSummary.delivered_packet_system_time_ms,
+           pktExpiryAwareRateSummary.expired_packet_system_time_ms,
+           pktExpiryAwareRateSummary.outcome_packet_system_time_ms,
+           pktExpiryAwareRateSummary.packet_expiry_aware_rate_mbps,
+           pktExpiryAwareRateSummary.packet_expiry_aware_rate_per_packet_mean_mbps);
   }
 
   if (packetDelaySamplesEnabled) {
@@ -2402,6 +2560,13 @@ int main(int argc, char* argv[])
     printf("TRAFFIC_PKT_DELAY_SAMPLES_CSV path=%s rows=%llu\n",
            packetDelaySamplesCsv.c_str(),
            sampleRows);
+    std::vector<PacketOutcomeSample> outcomeSamples;
+    trafSvc->GetPacketOutcomeSamples(outcomeSamples);
+    const unsigned long long outcomeSampleRows =
+        writePacketOutcomeSamplesCsv(packetOutcomeSamplesCsv, outcomeSamples);
+    printf("TRAFFIC_PKT_OUTCOME_SAMPLES_CSV path=%s rows=%llu\n",
+           packetOutcomeSamplesCsv.c_str(),
+           outcomeSampleRows);
   }
 
   if (saveTv == 1) {

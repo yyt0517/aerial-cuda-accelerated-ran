@@ -29,6 +29,12 @@ REWARD_TERM_IDX_PACKET_DELIVERED_BITS = 13
 REWARD_TERM_IDX_PACKET_SYSTEM_TIME_MS = 14
 REWARD_TERM_IDX_PACKET_EFFECTIVE_SERVICE_RATE_MBPS = 15
 REWARD_TERM_IDX_PACKET_EFFECTIVE_SERVICE_RATE_PER_PACKET_MEAN_MBPS = 16
+REWARD_TERM_IDX_PACKET_EXPIRED_COUNT = 17
+REWARD_TERM_IDX_PACKET_EXPIRED_SYSTEM_TIME_MS = 18
+REWARD_TERM_IDX_PACKET_OUTCOME_COUNT = 19
+REWARD_TERM_IDX_PACKET_OUTCOME_SYSTEM_TIME_MS = 20
+REWARD_TERM_IDX_PACKET_EXPIRY_AWARE_RATE_MBPS = 21
+REWARD_TERM_IDX_PACKET_EXPIRY_AWARE_RATE_PER_PACKET_MEAN_MBPS = 22
 
 
 def compute_queue_pressure_potential(
@@ -90,7 +96,7 @@ def compute_queue_pressure_shaping(
 
 
 def extract_reward_metrics(info: Mapping) -> Dict[str, float]:
-    reward_terms = info.get("reward_terms", (0.0,) * 17)
+    reward_terms = info.get("reward_terms", (0.0,) * 23)
     try:
         throughput_mbps = float(reward_terms[REWARD_TERM_IDX_THROUGHPUT_MBPS])
         total_buffer_mb = float(reward_terms[REWARD_TERM_IDX_TOTAL_BUFFER_MB])
@@ -126,6 +132,26 @@ def extract_reward_metrics(info: Mapping) -> Dict[str, float]:
             else 0.0
         )
         packet_delay_mean_ms = packet_system_time_ms / max(packet_completed_count, 1.0)
+        packet_expired_count = (
+            float(reward_terms[REWARD_TERM_IDX_PACKET_EXPIRED_COUNT]) if len(reward_terms) >= 18 else 0.0
+        )
+        packet_expired_system_time_ms = (
+            float(reward_terms[REWARD_TERM_IDX_PACKET_EXPIRED_SYSTEM_TIME_MS]) if len(reward_terms) >= 19 else 0.0
+        )
+        packet_outcome_count = (
+            float(reward_terms[REWARD_TERM_IDX_PACKET_OUTCOME_COUNT]) if len(reward_terms) >= 20 else 0.0
+        )
+        packet_outcome_system_time_ms = (
+            float(reward_terms[REWARD_TERM_IDX_PACKET_OUTCOME_SYSTEM_TIME_MS]) if len(reward_terms) >= 21 else 0.0
+        )
+        packet_expiry_aware_rate_mbps = (
+            float(reward_terms[REWARD_TERM_IDX_PACKET_EXPIRY_AWARE_RATE_MBPS]) if len(reward_terms) >= 22 else 0.0
+        )
+        packet_expiry_aware_rate_per_packet_mean_mbps = (
+            float(reward_terms[REWARD_TERM_IDX_PACKET_EXPIRY_AWARE_RATE_PER_PACKET_MEAN_MBPS])
+            if len(reward_terms) >= 23
+            else 0.0
+        )
     except Exception:
         throughput_mbps = 0.0
         total_buffer_mb = 0.0
@@ -145,6 +171,12 @@ def extract_reward_metrics(info: Mapping) -> Dict[str, float]:
         packet_effective_service_rate_mbps = 0.0
         packet_effective_service_rate_per_packet_mean_mbps = 0.0
         packet_delay_mean_ms = 0.0
+        packet_expired_count = 0.0
+        packet_expired_system_time_ms = 0.0
+        packet_outcome_count = 0.0
+        packet_outcome_system_time_ms = 0.0
+        packet_expiry_aware_rate_mbps = 0.0
+        packet_expiry_aware_rate_per_packet_mean_mbps = 0.0
 
     return {
         "goodput_mbps": goodput_mbps,
@@ -165,6 +197,12 @@ def extract_reward_metrics(info: Mapping) -> Dict[str, float]:
         "packet_delay_mean_ms": packet_delay_mean_ms,
         "packet_effective_service_rate_mbps": packet_effective_service_rate_mbps,
         "packet_effective_service_rate_per_packet_mean_mbps": packet_effective_service_rate_per_packet_mean_mbps,
+        "packet_expired_count": packet_expired_count,
+        "packet_expired_system_time_ms": packet_expired_system_time_ms,
+        "packet_outcome_count": packet_outcome_count,
+        "packet_outcome_system_time_ms": packet_outcome_system_time_ms,
+        "packet_expiry_aware_rate_mbps": packet_expiry_aware_rate_mbps,
+        "packet_expiry_aware_rate_per_packet_mean_mbps": packet_expiry_aware_rate_per_packet_mean_mbps,
     }
 
 

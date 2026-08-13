@@ -50,6 +50,12 @@ public:
         float packetSystemTimeMs = 0.0F;
         float packetEffectiveServiceRateMbps = 0.0F;
         float packetEffectiveServiceRatePerPacketMeanMbps = 0.0F;
+        float packetExpiredCount = 0.0F;
+        float packetExpiredSystemTimeMs = 0.0F;
+        float packetOutcomeCount = 0.0F;
+        float packetOutcomeSystemTimeMs = 0.0F;
+        float packetExpiryAwareRateMbps = 0.0F;
+        float packetExpiryAwareRatePerPacketMeanMbps = 0.0F;
     };
 
     bool initialize(const cumacCellGrpPrms* cellGrpPrmsCpu);
@@ -104,7 +110,13 @@ public:
                             float packetDeliveredBits,
                             float packetSystemTimeMs,
                             float packetEffectiveServiceRateMbps,
-                            float packetEffectiveServiceRatePerPacketMeanMbps) const;
+                            float packetEffectiveServiceRatePerPacketMeanMbps,
+                            float packetExpiredCount,
+                            float packetExpiredSystemTimeMs,
+                            float packetOutcomeCount,
+                            float packetOutcomeSystemTimeMs,
+                            float packetExpiryAwareRateMbps,
+                            float packetExpiryAwareRatePerPacketMeanMbps) const;
 
 private:
     uint32_t m_nCell = 0U;

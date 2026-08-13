@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: Apache-2.0
 
 import argparse
+import csv
 import json
 import math
 import re
@@ -459,6 +460,48 @@ def parse_traffic_packet_service_rate_kpi(log_text: str):
     }
 
 
+def parse_traffic_packet_outcome_delay_kpi(log_text: str):
+    matches = re.findall(
+        r"TRAFFIC_PKT_OUTCOME_DELAY delivered_pkt_count=(\d+)\s+expired_pkt_count=(\d+)\s+outcome_pkt_count=(\d+)\s+pending_pkt_count=(\d+)\s+mean_ms=([0-9eE+\-\.]+)\s+p50_ms=([0-9eE+\-\.]+)\s+p90_ms=([0-9eE+\-\.]+)\s+p95_ms=([0-9eE+\-\.]+)\s+max_ms=([0-9eE+\-\.]+)",
+        log_text,
+    )
+    if not matches:
+        return None
+    m = matches[-1]
+    return {
+        "packet_outcome_delivered_pkt_count": int(m[0]),
+        "packet_outcome_expired_pkt_count": int(m[1]),
+        "packet_outcome_count": int(m[2]),
+        "packet_outcome_pending_pkt_count": int(m[3]),
+        "packet_outcome_delay_mean_ms": float(m[4]),
+        "packet_outcome_delay_p50_ms": float(m[5]),
+        "packet_outcome_delay_p90_ms": float(m[6]),
+        "packet_outcome_delay_p95_ms": float(m[7]),
+        "packet_outcome_delay_max_ms": float(m[8]),
+    }
+
+
+def parse_traffic_packet_expiry_aware_rate_kpi(log_text: str):
+    matches = re.findall(
+        r"TRAFFIC_PKT_RATE_EA delivered_pkt_count=(\d+)\s+expired_pkt_count=(\d+)\s+pending_pkt_count=(\d+)\s+total_delivered_bits=(\d+)\s+delivered_packet_system_time_ms=([0-9eE+\-\.]+)\s+expired_packet_system_time_ms=([0-9eE+\-\.]+)\s+outcome_packet_system_time_ms=([0-9eE+\-\.]+)\s+r_pkt_ea_mbps=([0-9eE+\-\.]+)\s+r_pkt_ea_per_packet_mean_mbps=([0-9eE+\-\.]+)",
+        log_text,
+    )
+    if not matches:
+        return None
+    m = matches[-1]
+    return {
+        "packet_expiry_aware_delivered_pkt_count": int(m[0]),
+        "packet_expiry_aware_expired_pkt_count": int(m[1]),
+        "packet_expiry_aware_pending_pkt_count": int(m[2]),
+        "packet_expiry_aware_total_delivered_bits": int(m[3]),
+        "packet_expiry_aware_delivered_system_time_ms": float(m[4]),
+        "packet_expiry_aware_expired_system_time_ms": float(m[5]),
+        "packet_expiry_aware_outcome_system_time_ms": float(m[6]),
+        "packet_expiry_aware_rate_mbps": float(m[7]),
+        "packet_expiry_aware_rate_per_packet_mean_mbps": float(m[8]),
+    }
+
+
 def count_csv_data_rows(path: Path):
     try:
         with open(path, "r", encoding="utf-8") as f:
@@ -491,6 +534,67 @@ def parse_traffic_packet_delay_samples_kpi(log_text: str, out_dir: Path):
             "packet_delay_samples_rows": row_count,
         }
     return None
+
+
+def parse_traffic_packet_outcome_samples_kpi(log_text: str, out_dir: Path):
+    matches = re.findall(
+        r"TRAFFIC_PKT_OUTCOME_SAMPLES_CSV\s+path=(\S+)\s+rows=(\d+)",
+        log_text,
+    )
+    if matches:
+        raw_path, rows = matches[-1]
+        sample_path = Path(raw_path)
+        if not sample_path.is_absolute():
+            sample_path = out_dir / sample_path
+        return {
+            "packet_outcome_samples_csv": str(sample_path),
+            "packet_outcome_samples_rows": int(rows),
+        }
+
+    default_path = out_dir / "packet_outcome_samples.csv"
+    if default_path.exists():
+        return {
+            "packet_outcome_samples_csv": str(default_path),
+            "packet_outcome_samples_rows": count_csv_data_rows(default_path),
+        }
+    return None
+
+
+def compute_packet_outcome_sample_window_stats(
+    path: Path,
+    *,
+    terminal_tti_exclusive: int,
+    terminal_tti_inclusive: int,
+):
+    delays = []
+    expired_count = 0
+    delivered_count = 0
+    with open(path, "r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        expected = {"ue_id", "packet_id", "terminal_tti", "outcome", "system_time_ms"}
+        if reader.fieldnames is None or set(reader.fieldnames) != expected:
+            raise ValueError(f"unexpected packet outcome sample columns: {reader.fieldnames}")
+        for row in reader:
+            terminal_tti = int(row["terminal_tti"])
+            if not (int(terminal_tti_exclusive) < terminal_tti <= int(terminal_tti_inclusive)):
+                continue
+            outcome = row["outcome"]
+            if outcome == "expired":
+                expired_count += 1
+            elif outcome == "delivered":
+                delivered_count += 1
+            else:
+                raise ValueError(f"unknown packet outcome: {outcome}")
+            delays.append(float(row["system_time_ms"]))
+    return {
+        "packet_outcome_measured_count": len(delays),
+        "packet_outcome_measured_delivered_count": delivered_count,
+        "packet_outcome_measured_expired_count": expired_count,
+        "packet_outcome_measured_mean_ms": mean(delays) if delays else 0.0,
+        "packet_outcome_measured_p95_ms": pct(delays, 95),
+        "packet_outcome_terminal_tti_exclusive": int(terminal_tti_exclusive),
+        "packet_outcome_terminal_tti_inclusive": int(terminal_tti_inclusive),
+    }
 
 
 def parse_prg_utilization_kpi(log_text: str):
@@ -670,6 +774,46 @@ def parse_ue_packet_service_rate_kpi(log_text: str):
     return rows
 
 
+def parse_ue_packet_outcome_delay_kpi(log_text: str):
+    pat = re.compile(
+        r"UE_PKT_OUTCOME_DELAY\s+ue_id=(\d+)\s+delivered_pkt_count=(\d+)\s+expired_pkt_count=(\d+)\s+outcome_pkt_count=(\d+)\s+pending_pkt_count=(\d+)\s+outcome_delay_mean_ms=([0-9eE+\-\.]+)\s+outcome_delay_p50_ms=([0-9eE+\-\.]+)\s+outcome_delay_p90_ms=([0-9eE+\-\.]+)\s+outcome_delay_p95_ms=([0-9eE+\-\.]+)\s+outcome_delay_max_ms=([0-9eE+\-\.]+)"
+    )
+    rows = {}
+    for m in pat.finditer(log_text):
+        rows[int(m.group(1))] = {
+            "packet_outcome_delivered_pkt_count": int(m.group(2)),
+            "packet_outcome_expired_pkt_count": int(m.group(3)),
+            "packet_outcome_count": int(m.group(4)),
+            "packet_outcome_pending_pkt_count": int(m.group(5)),
+            "packet_outcome_delay_mean_ms": float(m.group(6)),
+            "packet_outcome_delay_p50_ms": float(m.group(7)),
+            "packet_outcome_delay_p90_ms": float(m.group(8)),
+            "packet_outcome_delay_p95_ms": float(m.group(9)),
+            "packet_outcome_delay_max_ms": float(m.group(10)),
+        }
+    return rows
+
+
+def parse_ue_packet_expiry_aware_rate_kpi(log_text: str):
+    pat = re.compile(
+        r"UE_PKT_RATE_EA\s+ue_id=(\d+)\s+delivered_pkt_count=(\d+)\s+expired_pkt_count=(\d+)\s+pending_pkt_count=(\d+)\s+total_delivered_bits=(\d+)\s+delivered_packet_system_time_ms=([0-9eE+\-\.]+)\s+expired_packet_system_time_ms=([0-9eE+\-\.]+)\s+outcome_packet_system_time_ms=([0-9eE+\-\.]+)\s+packet_expiry_aware_rate_mbps=([0-9eE+\-\.]+)\s+packet_expiry_aware_rate_per_packet_mean_mbps=([0-9eE+\-\.]+)"
+    )
+    rows = {}
+    for m in pat.finditer(log_text):
+        rows[int(m.group(1))] = {
+            "packet_expiry_aware_delivered_pkt_count": int(m.group(2)),
+            "packet_expiry_aware_expired_pkt_count": int(m.group(3)),
+            "packet_expiry_aware_pending_pkt_count": int(m.group(4)),
+            "packet_expiry_aware_total_delivered_bits": int(m.group(5)),
+            "packet_expiry_aware_delivered_system_time_ms": float(m.group(6)),
+            "packet_expiry_aware_expired_system_time_ms": float(m.group(7)),
+            "packet_expiry_aware_outcome_system_time_ms": float(m.group(8)),
+            "packet_expiry_aware_rate_mbps": float(m.group(9)),
+            "packet_expiry_aware_rate_per_packet_mean_mbps": float(m.group(10)),
+        }
+    return rows
+
+
 def parse_ue_goodput_kpi(log_text: str):
     pat = re.compile(
         r"UE_GOODPUT\s+ue_id=(\d+)\s+goodput_bytes=(\d+)\s+goodput_mbps=([0-9eE+\-\.]+)"
@@ -715,6 +859,17 @@ def merge_ue_packet_service_rate(ue_kpi, ue_packet_service_rate):
         row["packet_effective_service_rate_per_packet_mean_mbps"] = pkt.get(
             "packet_effective_service_rate_per_packet_mean_mbps"
         )
+    return ue_kpi
+
+
+def merge_ue_packet_outcome_metrics(ue_kpi, ue_packet_outcome_delay, ue_packet_expiry_aware_rate):
+    for row in ue_kpi:
+        delay = ue_packet_outcome_delay.get(row["ue_id"])
+        rate = ue_packet_expiry_aware_rate.get(row["ue_id"])
+        if delay is not None:
+            row.update(delay)
+        if rate is not None:
+            row.update(rate)
     return ue_kpi
 
 
@@ -816,6 +971,21 @@ def summarize_global_kpi(ue_kpi, cell_kpi, traffic_kpi=None, bandwidth_hz=None, 
         float(r["packet_effective_service_rate_per_packet_mean_mbps"])
         for r in ue_kpi
         if r.get("packet_effective_service_rate_per_packet_mean_mbps") is not None
+    ]
+    ue_packet_expiry_aware_rate_values = [
+        float(r["packet_expiry_aware_rate_mbps"])
+        for r in ue_kpi
+        if r.get("packet_expiry_aware_rate_mbps") is not None
+    ]
+    ue_packet_outcome_delay_mean_values = [
+        float(r["packet_outcome_delay_mean_ms"])
+        for r in ue_kpi
+        if r.get("packet_outcome_delay_mean_ms") is not None
+    ]
+    ue_packet_outcome_delay_p95_values = [
+        float(r["packet_outcome_delay_p95_ms"])
+        for r in ue_kpi
+        if r.get("packet_outcome_delay_p95_ms") is not None
     ]
 
     ue_count = len(ue_kpi)
@@ -929,6 +1099,21 @@ def summarize_global_kpi(ue_kpi, cell_kpi, traffic_kpi=None, bandwidth_hz=None, 
         ),
         "ue_macro_packet_effective_service_rate_per_packet_mean_mbps": (
             mean(ue_packet_effective_per_packet_rate_values) if ue_packet_effective_per_packet_rate_values else None
+        ),
+        "ue_macro_packet_expiry_aware_rate_mbps": (
+            mean(ue_packet_expiry_aware_rate_values) if ue_packet_expiry_aware_rate_values else None
+        ),
+        "ue_p10_packet_expiry_aware_rate_mbps": (
+            pct(ue_packet_expiry_aware_rate_values, 10) if ue_packet_expiry_aware_rate_values else None
+        ),
+        "ue_min_packet_expiry_aware_rate_mbps": (
+            min(ue_packet_expiry_aware_rate_values) if ue_packet_expiry_aware_rate_values else None
+        ),
+        "ue_macro_packet_outcome_delay_mean_ms": (
+            mean(ue_packet_outcome_delay_mean_values) if ue_packet_outcome_delay_mean_values else None
+        ),
+        "ue_p95_packet_outcome_delay_p95_ms": (
+            pct(ue_packet_outcome_delay_p95_values, 95) if ue_packet_outcome_delay_p95_values else None
         ),
         "ue_count": ue_count,
     }
@@ -1062,6 +1247,9 @@ def main():
         traffic_packet_delay_kpi = parse_traffic_packet_delay_kpi(log_text)
         traffic_packet_service_rate_kpi = parse_traffic_packet_service_rate_kpi(log_text)
         traffic_packet_delay_samples_kpi = parse_traffic_packet_delay_samples_kpi(log_text, out_dir)
+        traffic_packet_outcome_delay_kpi = parse_traffic_packet_outcome_delay_kpi(log_text)
+        traffic_packet_expiry_aware_rate_kpi = parse_traffic_packet_expiry_aware_rate_kpi(log_text)
+        traffic_packet_outcome_samples_kpi = parse_traffic_packet_outcome_samples_kpi(log_text, out_dir)
         prg_kpi = parse_prg_utilization_kpi(log_text)
         if traffic_kpi is not None and traffic_goodput_kpi is not None:
             traffic_kpi.update(traffic_goodput_kpi)
@@ -1073,10 +1261,21 @@ def main():
             traffic_kpi.update(traffic_packet_service_rate_kpi)
         if traffic_kpi is not None and traffic_packet_delay_samples_kpi is not None:
             traffic_kpi.update(traffic_packet_delay_samples_kpi)
+        if traffic_kpi is not None and traffic_packet_outcome_delay_kpi is not None:
+            traffic_kpi.update(traffic_packet_outcome_delay_kpi)
+        if traffic_kpi is not None and traffic_packet_expiry_aware_rate_kpi is not None:
+            traffic_kpi.update(traffic_packet_expiry_aware_rate_kpi)
+        if traffic_kpi is not None and traffic_packet_outcome_samples_kpi is not None:
+            traffic_kpi.update(traffic_packet_outcome_samples_kpi)
         ue_kpi = parse_ue_kpi(log_text)
         ue_kpi = merge_ue_goodput(ue_kpi, parse_ue_goodput_kpi(log_text))
         ue_kpi = merge_ue_packet_delay(ue_kpi, parse_ue_packet_delay_kpi(log_text))
         ue_kpi = merge_ue_packet_service_rate(ue_kpi, parse_ue_packet_service_rate_kpi(log_text))
+        ue_kpi = merge_ue_packet_outcome_metrics(
+            ue_kpi,
+            parse_ue_packet_outcome_delay_kpi(log_text),
+            parse_ue_packet_expiry_aware_rate_kpi(log_text),
+        )
         throughput_summary = {
             "instantaneous_mbps_cpu": basic_stats([x / 1e6 for x in sum_ins_cpu]),
             "instantaneous_mbps_gpu": basic_stats(throughput_ins_mbps),
@@ -1205,6 +1404,8 @@ def main():
     traffic_kpi.setdefault("packet_delay_max_ms", 0.0)
     traffic_kpi.setdefault("packet_delay_samples_csv", None)
     traffic_kpi.setdefault("packet_delay_samples_rows", None)
+    traffic_kpi.setdefault("packet_outcome_samples_csv", None)
+    traffic_kpi.setdefault("packet_outcome_samples_rows", None)
     if traffic_kpi.get("packet_delay_samples_csv") is None:
         default_packet_delay_samples = out_dir / "packet_delay_samples.csv"
         if default_packet_delay_samples.exists():
@@ -1218,6 +1419,11 @@ def main():
     traffic_kpi.setdefault("packet_effective_service_rate_per_packet_mean_mbps", 0.0)
     traffic_kpi.setdefault("ue_macro_packet_effective_service_rate_mbps", None)
     traffic_kpi.setdefault("ue_macro_packet_effective_service_rate_per_packet_mean_mbps", None)
+    traffic_kpi.setdefault("packet_outcome_count", None)
+    traffic_kpi.setdefault("packet_outcome_delay_mean_ms", None)
+    traffic_kpi.setdefault("packet_outcome_delay_p95_ms", None)
+    traffic_kpi.setdefault("packet_expiry_aware_rate_mbps", None)
+    traffic_kpi.setdefault("packet_expiry_aware_rate_per_packet_mean_mbps", None)
     traffic_kpi.setdefault("expired_bytes", 0)
     traffic_kpi.setdefault("expired_packets", 0)
     traffic_kpi.setdefault("expiry_drop_rate", 0.0)
