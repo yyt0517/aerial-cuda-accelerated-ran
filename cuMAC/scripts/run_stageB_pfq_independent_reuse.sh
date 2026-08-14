@@ -553,7 +553,6 @@ run_hierarchical_decode_smoke() {
     evaluate_checkpoint "${checkpoint}" 41 2 4 "${phase_dir}" 0 1 hierarchical_argmax
     "${PYTHON_BIN}" - "${phase_dir}/eval_summary.json" <<'PY'
 import json
-import math
 import sys
 
 summary = json.load(open(sys.argv[1], encoding="utf-8"))
@@ -570,7 +569,7 @@ try:
     failed = float(summary["stats_sum_failed_bytes"])
     rescues = float(summary["diagnostic_fragmentation_rescue_count"])
     counterfactual = float(summary["diagnostic_fragmentation_blank_count"])
-    checks["byte_identity"] = math.isclose(scheduled, goodput + failed, rel_tol=0.0, abs_tol=1.0e-6)
+    checks["byte_identity"] = scheduled == goodput + failed
     checks["all_counterfactual_fragmentation_rescued"] = rescues == counterfactual
 except (KeyError, TypeError, ValueError):
     checks["byte_identity"] = False

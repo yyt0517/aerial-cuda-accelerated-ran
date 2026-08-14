@@ -163,6 +163,7 @@ def test_report_valid_but_falsified_below_control_goodput() -> None:
         ("treatment", "stats_sum_action_replay_mismatch_count", 1.0, "replay"),
         ("treatment", "stats_sum_illegal_action_count", 1.0, "illegal"),
         ("treatment", "stats_sum_failed_bytes", 999.0, "byte identity"),
+        ("treatment", "stats_sum_failed_bytes", 999.9999995, "byte identity"),
         ("control", "stats_mean_ue_goodput_mbps", 1547.836998, "frozen control"),
     ],
 )

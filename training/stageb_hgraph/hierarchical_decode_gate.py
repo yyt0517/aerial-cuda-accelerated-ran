@@ -104,7 +104,7 @@ def _validate_summary(summary: Mapping[str, object], label: str, decode_mode: st
     scheduled = _finite_number(summary, "stats_sum_scheduled_bytes", label)
     goodput = _finite_number(summary, "stats_sum_ue_goodput_bytes", label)
     failed = _finite_number(summary, "stats_sum_failed_bytes", label)
-    if not math.isclose(scheduled, goodput + failed, rel_tol=0.0, abs_tol=1.0e-6):
+    if scheduled != goodput + failed:
         raise ValueError(f"{label} byte identity failed")
 
 
