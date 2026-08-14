@@ -13,6 +13,7 @@ _CHECKPOINT_SHA256 = "c3f2399f94e4dc8930f9b17313acff0727d3a8bdc916ba3cc31e88665a
 _SIM_BINARY_SHA256 = "3ca2aeb195430e9851a3f7be483b28832ad666c12981354e8e7e4280c00bf15c"
 _SCENARIO_ID = "coop_boundary-3c36ue-17prg-type0-svd-p3000-load1-ttl200-seed41"
 _DECISION_COUNT = 26112.0
+_PRGS_PER_CELL = 17.0
 _POSITIVE_STRATA = ("1_2", "3_5", "ge_6")
 _RAW_KEYS = (
     "ue_tti_count",
@@ -73,6 +74,12 @@ _BOUNDED_FEATURE_MEANS = (
     "p_best_ue_mean",
 )
 _NONNEGATIVE_FEATURE_MEANS = ("quality_gap_db_mean", "ue_tb_err_last_mean")
+_FEATURE_MEANS = (
+    "quality_db_mean",
+    *_NONNEGATIVE_FEATURE_MEANS,
+    *_BOUNDED_FEATURE_MEANS,
+)
+_ADDITIVE_RAW_KEYS = tuple(key for key in _RAW_KEYS if key != "tti_count")
 _PER_TTI_METRICS = (
     "predicted_service_bytes_per_planned_prg",
     "scheduled_bytes_per_actual_prg",
@@ -229,13 +236,8 @@ def _validate_ratio(
 
 
 def _validate_feature_means(row: Mapping[str, object], label: str, *, populated: bool) -> None:
-    feature_metrics = (
-        "quality_db_mean",
-        *_NONNEGATIVE_FEATURE_MEANS,
-        *_BOUNDED_FEATURE_MEANS,
-    )
     if not populated:
-        for key in feature_metrics:
+        for key in _FEATURE_MEANS:
             if row.get(key) is not None:
                 raise ValueError(f"{label} {key} must be null for an empty cohort")
         return
@@ -326,6 +328,114 @@ def _direction_counts(
     return counts
 
 
+def _validate_cross_level_reconciliation(
+    summary: Mapping[str, object],
+    cohorts: Mapping[str, object],
+    strata: Mapping[str, object],
+    depletion: Mapping[str, object],
+) -> None:
+    for cohort_name in ("rescue_exposed", "ordinary_service"):
+        parent = _mapping(cohorts.get(cohort_name), cohort_name)
+        children = [
+            _mapping(
+                _mapping(strata.get(stratum), f"stratum {stratum}").get(cohort_name),
+                f"stratum {stratum} {cohort_name}",
+            )
+            for stratum in ("zero", *_POSITIVE_STRATA)
+        ]
+        for key in _ADDITIVE_RAW_KEYS:
+            child_sum = sum(
+                _finite(child, key, f"stratum {stratum} {cohort_name}")
+                for stratum, child in zip(("zero", *_POSITIVE_STRATA), children)
+            )
+            if child_sum != _finite(parent, key, cohort_name):
+                raise ValueError(
+                    f"{cohort_name} strata {key} sum does not match parent cohort"
+                )
+
+        planned = _finite(parent, "planned_prg_count", cohort_name)
+        if planned > 0.0:
+            for key in _FEATURE_MEANS:
+                weighted_sum = math.fsum(
+                    _finite(child, key, f"stratum {stratum} {cohort_name}")
+                    * _finite(
+                        child,
+                        "planned_prg_count",
+                        f"stratum {stratum} {cohort_name}",
+                    )
+                    for stratum, child in zip(("zero", *_POSITIVE_STRATA), children)
+                    if _finite(
+                        child,
+                        "planned_prg_count",
+                        f"stratum {stratum} {cohort_name}",
+                    )
+                    > 0.0
+                )
+                parent_mean = _finite(parent, key, cohort_name)
+                if not math.isclose(
+                    parent_mean,
+                    weighted_sum / planned,
+                    rel_tol=1e-12,
+                    abs_tol=1e-12,
+                ):
+                    raise ValueError(
+                        f"{cohort_name} strata {key} weighted mean does not match parent cohort"
+                    )
+
+    for cohort_key, summary_key in (
+        ("scheduled_bytes", "stats_sum_scheduled_bytes"),
+        ("goodput_bytes", "stats_sum_ue_goodput_bytes"),
+        ("failed_bytes", "stats_sum_failed_bytes"),
+        ("tb_tx_count", "measured_tb_tx_count"),
+        ("tb_err_count", "measured_tb_err_count"),
+    ):
+        cohort_sum = sum(
+            _finite(
+                _mapping(cohorts.get(cohort_name), cohort_name),
+                cohort_key,
+                cohort_name,
+            )
+            for cohort_name in ("rescue_exposed", "ordinary_service")
+        )
+        if cohort_sum != _finite(summary, summary_key, "summary"):
+            raise ValueError(
+                f"cohort {cohort_key} sum does not match top-level {summary_key}"
+            )
+
+    if _finite(depletion, "rescue_count", "depletion") != _finite(
+        summary, "diagnostic_fragmentation_rescue_count", "summary"
+    ):
+        raise ValueError("depletion rescue count does not match top-level rescue count")
+    if _finite(depletion, "cell_tti_count", "depletion") * _PRGS_PER_CELL != _finite(
+        summary, "diagnostic_decision_count", "summary"
+    ):
+        raise ValueError("depletion cell-TTI count does not match decision count")
+    if sum(
+        _finite(depletion, key, "depletion")
+        for key in (
+            "decisions_before_or_without_prior_rescue",
+            "decisions_after_prior_rescue",
+        )
+    ) != _finite(summary, "diagnostic_decision_count", "summary"):
+        raise ValueError("depletion decision counts do not match top-level decision count")
+    if sum(
+        _finite(depletion, key, "depletion")
+        for key in (
+            "forced_before_or_without_prior_rescue",
+            "forced_after_prior_rescue",
+        )
+    ) != _finite(summary, "diagnostic_selected_forced_blank_count", "summary"):
+        raise ValueError("depletion forced Blank counts do not match top-level total")
+    if sum(
+        _finite(depletion, key, "depletion")
+        for key in (
+            "conservative_before_or_without_prior_rescue",
+            "conservative_after_prior_rescue",
+        )
+    ) != _finite(summary, "diagnostic_selected_conservative_blank_count", "summary"):
+        raise ValueError("depletion conservative Blank counts do not match top-level total")
+
+
 def _validate_diagnostics(summary: Mapping[str, object]) -> tuple[
     Mapping[str, object],
     Mapping[str, object],
@@ -393,6 +503,7 @@ def _validate_diagnostics(summary: Mapping[str, object]) -> tuple[
     )
     if rescued_sum != _finite(summary, "diagnostic_fragmentation_rescue_count", "summary"):
         raise ValueError("cohort rescued PRG sum does not match diagnostic rescue count")
+    _validate_cross_level_reconciliation(summary, cohorts, strata, depletion)
     return diagnostics, rescue, ordinary, strata, per_tti
 
 

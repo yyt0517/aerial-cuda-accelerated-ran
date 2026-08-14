@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+from copy import deepcopy
 
 import pytest
 
@@ -15,6 +16,34 @@ from training.stageb_hgraph.rescue_cohort_gate import (
 CHECKPOINT = "c3f2399f94e4dc8930f9b17313acff0727d3a8bdc916ba3cc31e88665a1d92cc"
 SIMULATOR = "3ca2aeb195430e9851a3f7be483b28832ad666c12981354e8e7e4280c00bf15c"
 SCENARIO = "coop_boundary-3c36ue-17prg-type0-svd-p3000-load1-ttl200-seed41"
+STRATA = ("zero", "1_2", "3_5", "ge_6")
+ADDITIVE_RAW = (
+    "ue_tti_count",
+    "planned_prg_count",
+    "rescued_prg_count",
+    "accepted_prg_count",
+    "actual_prg_count",
+    "predicted_service_bytes",
+    "scheduled_bytes",
+    "goodput_bytes",
+    "failed_bytes",
+    "tb_tx_count",
+    "tb_err_count",
+    "early_rescue_count",
+    "middle_rescue_count",
+    "late_rescue_count",
+)
+FEATURE_MEANS = (
+    "quality_db_mean",
+    "quality_gap_db_mean",
+    "prg_risk_mean",
+    "ue_tb_err_last_mean",
+    "remaining_demand_ratio_mean",
+    "success_proxy_mean",
+    "p_blank_mean",
+    "p_service_mean",
+    "p_best_ue_mean",
+)
 
 
 def _cohort(
@@ -147,7 +176,7 @@ def _summary() -> dict[str, object]:
                 success_proxy=0.7,
             ),
         }
-    return {
+    summary = {
         "checkpoint_sha256": CHECKPOINT,
         "sim_binary_sha256": SIMULATOR,
         "decode_mode": "hierarchical_argmax",
@@ -178,7 +207,7 @@ def _summary() -> dict[str, object]:
             "actual_prg_strata": strata,
             "per_tti_comparisons": _per_tti(),
             "depletion": {
-                "cell_tti_count": 30,
+                "cell_tti_count": 1536,
                 "rescue_count": 4728,
                 "decisions_before_or_without_prior_rescue": 12000,
                 "decisions_after_prior_rescue": 14112,
@@ -189,6 +218,8 @@ def _summary() -> dict[str, object]:
             },
         },
     }
+    _sync_cross_levels(summary)
+    return summary
 
 
 def _manifest() -> dict[str, object]:
@@ -204,11 +235,11 @@ def _manifest() -> dict[str, object]:
     }
 
 
-def _reference() -> dict[str, object]:
-    summary = _summary()
-    summary.pop("rescue_cohort_diagnostics")
-    summary.pop("rescue_cohort_diagnostics_enabled")
-    return summary
+def _reference(summary: dict[str, object] | None = None) -> dict[str, object]:
+    result = deepcopy(_summary() if summary is None else summary)
+    result.pop("rescue_cohort_diagnostics")
+    result.pop("rescue_cohort_diagnostics_enabled")
+    return result
 
 
 def _ratio(numerator: float, denominator: float) -> float | None:
@@ -238,6 +269,67 @@ def _sync_derived(row: dict[str, object]) -> None:
     )
 
 
+def _sync_parent_rows(summary: dict[str, object]) -> None:
+    diagnostics = summary["rescue_cohort_diagnostics"]
+    for cohort_name, parent in diagnostics["cohorts"].items():
+        children = [
+            diagnostics["actual_prg_strata"][stratum][cohort_name]
+            for stratum in STRATA
+        ]
+        for key in ADDITIVE_RAW:
+            parent[key] = sum(float(child[key]) for child in children)
+        planned = float(parent["planned_prg_count"])
+        for key in FEATURE_MEANS:
+            parent[key] = (
+                None
+                if planned == 0.0
+                else sum(
+                    float(child[key]) * float(child["planned_prg_count"])
+                    for child in children
+                    if child[key] is not None
+                )
+                / planned
+            )
+        _sync_derived(parent)
+
+
+def _sync_cross_levels(summary: dict[str, object]) -> None:
+    _sync_parent_rows(summary)
+    diagnostics = summary["rescue_cohort_diagnostics"]
+    cohorts = diagnostics["cohorts"]
+    summary["stats_sum_scheduled_bytes"] = sum(
+        float(row["scheduled_bytes"]) for row in cohorts.values()
+    )
+    summary["stats_sum_ue_goodput_bytes"] = sum(
+        float(row["goodput_bytes"]) for row in cohorts.values()
+    )
+    summary["stats_sum_failed_bytes"] = sum(
+        float(row["failed_bytes"]) for row in cohorts.values()
+    )
+    summary["measured_tb_tx_count"] = sum(
+        float(row["tb_tx_count"]) for row in cohorts.values()
+    )
+    summary["measured_tb_err_count"] = sum(
+        float(row["tb_err_count"]) for row in cohorts.values()
+    )
+    summary["diagnostic_fragmentation_rescue_count"] = sum(
+        float(row["rescued_prg_count"]) for row in cohorts.values()
+    )
+    planned = sum(float(row["planned_prg_count"]) for row in cohorts.values())
+    summary["diagnostic_selected_conservative_blank_count"] = (
+        float(summary["diagnostic_decision_count"])
+        - planned
+        - float(summary["diagnostic_selected_forced_blank_count"])
+        - float(summary["diagnostic_selected_fragmentation_blank_count"])
+    )
+    depletion = diagnostics["depletion"]
+    depletion["rescue_count"] = summary["diagnostic_fragmentation_rescue_count"]
+    depletion["conservative_after_prior_rescue"] = (
+        float(summary["diagnostic_selected_conservative_blank_count"])
+        - float(depletion["conservative_before_or_without_prior_rescue"])
+    )
+
+
 def _set_predicted_per_planned(row: dict[str, object], value: float) -> None:
     row["predicted_service_bytes"] = value * float(row["planned_prg_count"])
     _sync_derived(row)
@@ -264,23 +356,18 @@ def _set_tb_error_ratio(row: dict[str, object], value: float) -> None:
     _sync_derived(row)
 
 
-def _set_retention(
-    row: dict[str, object], planned_to_accepted: float, accepted_to_actual: float
-) -> None:
-    row["accepted_prg_count"] = float(row["planned_prg_count"]) * planned_to_accepted
-    row["actual_prg_count"] = float(row["accepted_prg_count"]) * accepted_to_actual
-    _sync_derived(row)
-
-
 def _acceptance_summary() -> dict[str, object]:
     summary = _summary()
-    cohorts = summary["rescue_cohort_diagnostics"]["cohorts"]
-    for row in cohorts.values():
-        row["success_proxy_mean"] = 0.5
-        _set_failed_ratio(row, 0.1)
-        _set_tb_error_ratio(row, 0.1)
-        _set_predicted_per_planned(row, 100.0)
-        _set_scheduled_per_actual(row, 100.0)
+    strata = summary["rescue_cohort_diagnostics"]["actual_prg_strata"]
+    for pair in strata.values():
+        for row in pair.values():
+            row["success_proxy_mean"] = 0.5
+            _set_failed_ratio(row, 0.1)
+            _set_tb_error_ratio(row, 0.1)
+            _set_predicted_per_planned(row, 100.0)
+            if float(row["actual_prg_count"]) > 0.0:
+                _set_scheduled_per_actual(row, 100.0)
+    _sync_cross_levels(summary)
     return summary
 
 
@@ -315,9 +402,9 @@ def test_report_rejects_wrong_identity_window_or_action_invariance(
 def test_report_rejects_failed_byte_identity() -> None:
     """Catches transmission bytes that do not account exactly."""
     summary = _summary()
-    summary["stats_sum_failed_bytes"] = 5855911.0
+    summary["stats_sum_failed_bytes"] = float(summary["stats_sum_failed_bytes"]) - 1.0
     reference = _reference()
-    reference["stats_sum_failed_bytes"] = 5855911.0
+    reference["stats_sum_failed_bytes"] = summary["stats_sum_failed_bytes"]
 
     with pytest.raises(ValueError, match="byte identity"):
         build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=reference)
@@ -379,8 +466,9 @@ def test_report_rejects_cohort_rescue_sum_mismatch() -> None:
     """Catches a nested cohort that loses a rescued planned PRG."""
     summary = _summary()
     diagnostics = summary["rescue_cohort_diagnostics"]
-    diagnostics["cohorts"]["rescue_exposed"]["rescued_prg_count"] = 4727
-    diagnostics["cohorts"]["rescue_exposed"]["early_rescue_count"] = 4727
+    row = diagnostics["cohorts"]["rescue_exposed"]
+    row["rescued_prg_count"] = float(row["rescued_prg_count"]) - 1.0
+    row["early_rescue_count"] = float(row["early_rescue_count"]) - 1.0
 
     with pytest.raises(ValueError, match="rescued PRG"):
         build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=_reference())
@@ -416,6 +504,87 @@ def test_report_reconciles_nested_byte_identity_in_positive_stratum() -> None:
 
     with pytest.raises(ValueError, match="stratum 3_5.*byte identity"):
         build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=_reference())
+
+
+def test_report_rejects_classification_changing_self_consistent_stratum_tamper() -> None:
+    """Catches internally valid stratum edits that can change the selected mechanism."""
+    summary = _summary()
+    baseline = build_rescue_cohort_report(
+        summary, manifest=_manifest(), frozen_reference=_reference()
+    )
+    assert baseline["classification"] == "reliability_supported"
+    row = summary["rescue_cohort_diagnostics"]["actual_prg_strata"]["3_5"][
+        "rescue_exposed"
+    ]
+    _set_failed_ratio(row, 0.05)
+    _set_tb_error_ratio(row, 0.05)
+
+    with pytest.raises(ValueError, match="strata .*parent cohort"):
+        tampered = build_rescue_cohort_report(
+            summary, manifest=_manifest(), frozen_reference=_reference()
+        )
+        assert tampered["classification"] == "service_value_supported"
+
+
+def test_report_rejects_stratum_feature_mean_not_weighted_into_parent() -> None:
+    """Catches classification-driving feature tampering without emitted raw feature sums."""
+    summary = _summary()
+    row = summary["rescue_cohort_diagnostics"]["actual_prg_strata"]["3_5"][
+        "rescue_exposed"
+    ]
+    row["success_proxy_mean"] = 0.9
+
+    with pytest.raises(ValueError, match="strata success_proxy_mean.*parent cohort"):
+        build_rescue_cohort_report(
+            summary, manifest=_manifest(), frozen_reference=_reference()
+        )
+
+
+@pytest.mark.parametrize("total", ("scheduled_bytes", "tb_err_count"))
+def test_report_rejects_cohorts_reconciled_to_each_other_but_not_top_level(total: str) -> None:
+    """Catches nested cohort evidence that no longer describes the frozen behavior totals."""
+    summary = _summary()
+    row = summary["rescue_cohort_diagnostics"]["actual_prg_strata"]["1_2"][
+        "rescue_exposed"
+    ]
+    if total == "scheduled_bytes":
+        _set_scheduled_per_actual(row, 71.0)
+    else:
+        row["tb_err_count"] = float(row["tb_err_count"]) + 1.0
+        _sync_derived(row)
+    _sync_parent_rows(summary)
+
+    with pytest.raises(ValueError, match=rf"cohort {total} sum.*top-level"):
+        build_rescue_cohort_report(
+            summary, manifest=_manifest(), frozen_reference=_reference()
+        )
+
+
+@pytest.mark.parametrize(
+    ("key", "match"),
+    [
+        ("rescue_count", "depletion rescue count.*top-level"),
+        ("cell_tti_count", "depletion cell-TTI count.*decision count"),
+        ("decisions_after_prior_rescue", "depletion decision counts.*top-level"),
+        ("forced_after_prior_rescue", "depletion forced Blank counts.*top-level"),
+        (
+            "conservative_after_prior_rescue",
+            "depletion conservative Blank counts.*top-level",
+        ),
+    ],
+)
+def test_report_rejects_depletion_totals_that_do_not_reconcile(
+    key: str, match: str
+) -> None:
+    """Catches auxiliary depletion counts detached from their decision/Blank totals."""
+    summary = _summary()
+    depletion = summary["rescue_cohort_diagnostics"]["depletion"]
+    depletion[key] = float(depletion[key]) + 1.0
+
+    with pytest.raises(ValueError, match=match):
+        build_rescue_cohort_report(
+            summary, manifest=_manifest(), frozen_reference=_reference()
+        )
 
 
 @pytest.mark.parametrize(
@@ -521,23 +690,29 @@ def test_ordered_reliability_classification_and_report_payload() -> None:
         "rescue_lower": 1,
         "equal": 0,
     }
-    assert report["cohort_deltas"]["success_proxy_mean"] == pytest.approx(-0.3)
-    assert report["cohorts"]["rescue_exposed"]["planned_prg_count"] == 6000
+    assert report["cohort_deltas"]["success_proxy_mean"] == pytest.approx(
+        -0.3004860804242156
+    )
+    assert report["cohorts"]["rescue_exposed"]["planned_prg_count"] == 124
     assert report["per_tti_consistency"]["failed_byte_ratio"]["paired_tti_count"] == 8
-    assert report["depletion"]["rescue_count"] == 4728
+    assert report["depletion"]["rescue_count"] == 32
     assert "UE x TTI" in report["evidence_boundary"]
 
 
 def test_ordered_service_value_classification() -> None:
     """Catches lower service value being hidden behind comparable reliability."""
     summary = _summary()
-    cohorts = summary["rescue_cohort_diagnostics"]["cohorts"]
-    for row in cohorts.values():
-        row["success_proxy_mean"] = 0.7
-        _set_failed_ratio(row, 0.1)
-        _set_tb_error_ratio(row, 0.1)
+    strata = summary["rescue_cohort_diagnostics"]["actual_prg_strata"]
+    for pair in strata.values():
+        for row in pair.values():
+            row["success_proxy_mean"] = 0.7
+            _set_failed_ratio(row, 0.1)
+            _set_tb_error_ratio(row, 0.1)
+    _sync_cross_levels(summary)
 
-    report = build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=_reference())
+    report = build_rescue_cohort_report(
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
+    )
 
     assert report["classification"] == "service_value_supported"
     assert report["hypothesis_supported"] is True
@@ -550,7 +725,9 @@ def test_ordered_acceptance_classification_is_not_hypothesis_support() -> None:
     """Catches a pipeline-retention loss being mislabeled as low service value."""
     summary = _acceptance_summary()
 
-    report = build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=_reference())
+    report = build_rescue_cohort_report(
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
+    )
 
     assert report["classification"] == "acceptance_supported"
     assert report["hypothesis_supported"] is False
@@ -569,7 +746,7 @@ def test_acceptance_requires_per_tti_mean_to_match_overall_loss_direction() -> N
     comparison["direction_agreement_fraction"] = 0.75
 
     report = build_rescue_cohort_report(
-        summary, manifest=_manifest(), frozen_reference=_reference()
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
     )
 
     assert report["classification"] == "inconclusive"
@@ -587,7 +764,7 @@ def test_zero_paired_retention_comparisons_are_no_acceptance_evidence() -> None:
         }
 
     report = build_rescue_cohort_report(
-        summary, manifest=_manifest(), frozen_reference=_reference()
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
     )
 
     assert report["classification"] == "inconclusive"
@@ -596,15 +773,12 @@ def test_zero_paired_retention_comparisons_are_no_acceptance_evidence() -> None:
 def test_conflicting_directions_are_inconclusive() -> None:
     """Catches weak or conflicting evidence being promoted to a mechanism."""
     summary = _acceptance_summary()
-    cohorts = summary["rescue_cohort_diagnostics"]["cohorts"]
-    for row in cohorts.values():
-        _set_retention(row, 0.9, 0.8)
-    _set_predicted_per_planned(cohorts["rescue_exposed"], 90.0)
-    _set_predicted_per_planned(cohorts["ordinary_service"], 100.0)
-    _set_scheduled_per_actual(cohorts["rescue_exposed"], 110.0)
-    _set_scheduled_per_actual(cohorts["ordinary_service"], 100.0)
+    comparisons = summary["rescue_cohort_diagnostics"]["per_tti_comparisons"]
+    comparisons["planned_to_accepted_ratio"]["mean_delta_rescue_minus_ordinary"] = 0.1
 
-    report = build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=_reference())
+    report = build_rescue_cohort_report(
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
+    )
 
     assert report["classification"] == "inconclusive"
     assert report["hypothesis_supported"] is False
@@ -616,28 +790,28 @@ def test_conflicting_directions_are_inconclusive() -> None:
 def test_service_value_requires_two_strata_where_both_metrics_are_lower() -> None:
     """Catches separate one-metric stratum wins being combined into false support."""
     summary = _summary()
-    cohorts = summary["rescue_cohort_diagnostics"]["cohorts"]
-    for row in cohorts.values():
-        row["success_proxy_mean"] = 0.5
-        _set_failed_ratio(row, 0.1)
-        _set_tb_error_ratio(row, 0.1)
-        _set_retention(row, 0.9, 0.8)
-    _set_predicted_per_planned(cohorts["rescue_exposed"], 80.0)
-    _set_predicted_per_planned(cohorts["ordinary_service"], 100.0)
-    _set_scheduled_per_actual(cohorts["rescue_exposed"], 80.0)
-    _set_scheduled_per_actual(cohorts["ordinary_service"], 100.0)
+    diagnostics = summary["rescue_cohort_diagnostics"]
+    for pair in diagnostics["actual_prg_strata"].values():
+        for row in pair.values():
+            row["success_proxy_mean"] = 0.5
+            _set_failed_ratio(row, 0.1)
+            _set_tb_error_ratio(row, 0.1)
     for stratum in ("1_2", "3_5", "ge_6"):
         pair = summary["rescue_cohort_diagnostics"]["actual_prg_strata"][stratum]
-        _set_predicted_per_planned(
-            pair["rescue_exposed"], 80.0 if stratum == "1_2" else 110.0
-        )
+        _set_predicted_per_planned(pair["rescue_exposed"], 80.0)
         _set_predicted_per_planned(pair["ordinary_service"], 100.0)
         _set_scheduled_per_actual(
-            pair["rescue_exposed"], 80.0 if stratum == "3_5" else 110.0
+            pair["rescue_exposed"], 80.0 if stratum == "3_5" else 105.0
         )
         _set_scheduled_per_actual(pair["ordinary_service"], 100.0)
+    diagnostics["per_tti_comparisons"]["planned_to_accepted_ratio"][
+        "mean_delta_rescue_minus_ordinary"
+    ] = 0.1
+    _sync_cross_levels(summary)
 
-    report = build_rescue_cohort_report(summary, manifest=_manifest(), frozen_reference=_reference())
+    report = build_rescue_cohort_report(
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
+    )
 
     assert report["classification"] == "inconclusive"
 
@@ -673,9 +847,10 @@ def test_unpopulated_positive_stratum_keeps_null_ratios_out_of_evidence() -> Non
             "p_best_ue_mean",
         ):
             row[metric] = None
+    _sync_cross_levels(summary)
 
     report = build_rescue_cohort_report(
-        summary, manifest=_manifest(), frozen_reference=_reference()
+        summary, manifest=_manifest(), frozen_reference=_reference(summary)
     )
 
     assert report["classification"] == "reliability_supported"

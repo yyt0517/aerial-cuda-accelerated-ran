@@ -53,4 +53,3 @@ def test_rescue_cohort_phases_use_only_the_approved_evaluation_windows() -> None
     assert formal_body.count(
         'evaluate_checkpoint "${checkpoint}" 41 1000 512 "${phase_dir}" 0 1 hierarchical_argmax'
     ) == 1
-
