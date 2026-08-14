@@ -55,6 +55,24 @@ _STRATUM_METRICS = (
     "failed_byte_ratio",
     "tb_error_ratio",
 )
+_DERIVED_RATIOS = (
+    ("predicted_service_bytes_per_planned_prg", "predicted_service_bytes", "planned_prg_count"),
+    ("scheduled_bytes_per_actual_prg", "scheduled_bytes", "actual_prg_count"),
+    ("goodput_bytes_per_actual_prg", "goodput_bytes", "actual_prg_count"),
+    ("failed_byte_ratio", "failed_bytes", "scheduled_bytes"),
+    ("tb_error_ratio", "tb_err_count", "tb_tx_count"),
+    ("planned_to_accepted_ratio", "accepted_prg_count", "planned_prg_count"),
+    ("accepted_to_actual_ratio", "actual_prg_count", "accepted_prg_count"),
+)
+_BOUNDED_FEATURE_MEANS = (
+    "prg_risk_mean",
+    "remaining_demand_ratio_mean",
+    "success_proxy_mean",
+    "p_blank_mean",
+    "p_service_mean",
+    "p_best_ue_mean",
+)
+_NONNEGATIVE_FEATURE_MEANS = ("quality_gap_db_mean", "ue_tb_err_last_mean")
 _PER_TTI_METRICS = (
     "predicted_service_bytes_per_planned_prg",
     "scheduled_bytes_per_actual_prg",
@@ -153,6 +171,22 @@ def _validate_identity(
         _equal(manifest.get(key), expected, f"manifest {description} hash does not match frozen value")
         _equal(frozen.get(key), expected, f"reference {description} hash does not match frozen value")
 
+    _equal(
+        frozen.get("decode_mode"),
+        "hierarchical_argmax",
+        "reference decode must equal hierarchical_argmax",
+    )
+    _equal(frozen.get("completed_steps"), 1512, "reference completed_steps must equal 1512")
+    _equal(frozen.get("stats_warmup_steps"), 1000, "reference warmup must equal 1000")
+    _equal(frozen.get("stats_count"), 512, "reference stats_count must equal 512")
+    _equal(
+        (frozen.get("measured_tti_first"), frozen.get("measured_tti_last")),
+        (1001, 1512),
+        "reference measured TTI window must equal 1001..1512",
+    )
+    if _finite(frozen, "diagnostic_decision_count", "reference") != _DECISION_COUNT:
+        raise ValueError(f"reference diagnostic decision count must equal {_DECISION_COUNT}")
+
     scheduled = _finite(summary, "stats_sum_scheduled_bytes", "summary")
     goodput = _finite(summary, "stats_sum_ue_goodput_bytes", "summary")
     failed = _finite(summary, "stats_sum_failed_bytes", "summary")
@@ -168,7 +202,10 @@ def _validate_identity(
         "checkpoint_sha256": _CHECKPOINT_SHA256,
         "sim_binary_sha256": _SIM_BINARY_SHA256,
         "scenario_id": _SCENARIO_ID,
+        "decode_mode": "hierarchical_argmax",
         "seed": 41,
+        "a8_iteration": 8,
+        "completed_steps": 1512,
         "warmup_ttis": 1000,
         "measure_ttis": 512,
         "measured_tti_first": 1001,
@@ -177,15 +214,90 @@ def _validate_identity(
     }
 
 
-def _validate_cohort(row: Mapping[str, object], label: str, *, positive: bool) -> None:
+def _validate_ratio(
+    row: Mapping[str, object], key: str, numerator_key: str, denominator_key: str, label: str
+) -> None:
+    numerator = _nonnegative(row, numerator_key, label)
+    denominator = _nonnegative(row, denominator_key, label)
+    expected = None if denominator == 0.0 else numerator / denominator
+    reported = row.get(key)
+    if expected is None:
+        if reported is not None:
+            raise ValueError(f"{label} {key} must be null for an empty denominator")
+    elif _finite(row, key, label) != expected:
+        raise ValueError(f"{label} {key} does not match raw sums")
+
+
+def _validate_feature_means(row: Mapping[str, object], label: str, *, populated: bool) -> None:
+    feature_metrics = (
+        "quality_db_mean",
+        *_NONNEGATIVE_FEATURE_MEANS,
+        *_BOUNDED_FEATURE_MEANS,
+    )
+    if not populated:
+        for key in feature_metrics:
+            if row.get(key) is not None:
+                raise ValueError(f"{label} {key} must be null for an empty cohort")
+        return
+    _finite(row, "quality_db_mean", label)
+    for key in _NONNEGATIVE_FEATURE_MEANS:
+        _nonnegative(row, key, label)
+    for key in _BOUNDED_FEATURE_MEANS:
+        value = _finite(row, key, label)
+        if not 0.0 <= value <= 1.0:
+            raise ValueError(f"{label} {key} must be in [0, 1]")
+
+
+def _validate_stratum_bounds(row: Mapping[str, object], label: str, stratum: str) -> None:
+    count = _nonnegative(row, "ue_tti_count", label)
+    actual = _nonnegative(row, "actual_prg_count", label)
+    if stratum == "zero":
+        valid = actual == 0.0
+    elif stratum == "1_2":
+        valid = count <= actual <= 2.0 * count
+    elif stratum == "3_5":
+        valid = 3.0 * count <= actual <= 5.0 * count
+    else:
+        valid = actual >= 6.0 * count
+    if not valid:
+        raise ValueError(f"{label} actual PRG count violates {stratum} bounds")
+
+
+def _validate_cohort(
+    row: Mapping[str, object], label: str, *, stratum: str | None = None
+) -> None:
     for key in _RAW_KEYS:
         _nonnegative(row, key, label)
-    if positive and _finite(row, "ue_tti_count", label) > 0.0:
-        for key in _STRATUM_METRICS:
-            _finite(row, key, label)
-    for key in _DELTA_METRICS:
-        if not positive and key not in row:
-            raise ValueError(f"{label} missing {key}")
+    count = _finite(row, "ue_tti_count", label)
+    planned = _finite(row, "planned_prg_count", label)
+    accepted = _finite(row, "accepted_prg_count", label)
+    actual = _finite(row, "actual_prg_count", label)
+    scheduled = _finite(row, "scheduled_bytes", label)
+    goodput = _finite(row, "goodput_bytes", label)
+    failed = _finite(row, "failed_bytes", label)
+    if _finite(row, "tti_count", label) > count:
+        raise ValueError(f"{label} tti_count exceeds UE x TTI count")
+    if count > 0.0 and planned <= 0.0:
+        raise ValueError(f"{label} populated cohort must have planned PRGs")
+    if accepted > planned or actual > accepted:
+        raise ValueError(f"{label} PRG retention counts are inconsistent")
+    if goodput > scheduled or scheduled != goodput + failed:
+        raise ValueError(f"{label} byte identity failed")
+    if _finite(row, "tb_err_count", label) > _finite(row, "tb_tx_count", label):
+        raise ValueError(f"{label} TB error count exceeds transmissions")
+    if _finite(row, "rescued_prg_count", label) > planned:
+        raise ValueError(f"{label} rescued PRGs exceed planned PRGs")
+    phase_rescues = sum(
+        _finite(row, key, label)
+        for key in ("early_rescue_count", "middle_rescue_count", "late_rescue_count")
+    )
+    if phase_rescues != _finite(row, "rescued_prg_count", label):
+        raise ValueError(f"{label} rescue phase counts do not reconcile")
+    for key, numerator, denominator in _DERIVED_RATIOS:
+        _validate_ratio(row, key, numerator, denominator, label)
+    _validate_feature_means(row, label, populated=planned > 0.0)
+    if stratum is not None:
+        _validate_stratum_bounds(row, label, stratum)
 
 
 def _direction_counts(
@@ -229,8 +341,8 @@ def _validate_diagnostics(summary: Mapping[str, object]) -> tuple[
     _equal(set(cohorts), {"rescue_exposed", "ordinary_service"}, "cohort names mismatch")
     rescue = _mapping(cohorts.get("rescue_exposed"), "rescue_exposed")
     ordinary = _mapping(cohorts.get("ordinary_service"), "ordinary_service")
-    _validate_cohort(rescue, "rescue_exposed", positive=False)
-    _validate_cohort(ordinary, "ordinary_service", positive=False)
+    _validate_cohort(rescue, "rescue_exposed")
+    _validate_cohort(ordinary, "ordinary_service")
     for key in _DELTA_METRICS:
         _finite(rescue, key, "rescue_exposed")
         _finite(ordinary, key, "ordinary_service")
@@ -241,15 +353,14 @@ def _validate_diagnostics(summary: Mapping[str, object]) -> tuple[
     _equal(set(zero_pair), {"rescue_exposed", "ordinary_service"}, "stratum zero cohort names mismatch")
     for cohort_name in ("rescue_exposed", "ordinary_service"):
         zero_row = _mapping(zero_pair.get(cohort_name), f"stratum zero {cohort_name}")
-        for key in _RAW_KEYS:
-            _nonnegative(zero_row, key, f"stratum zero {cohort_name}")
+        _validate_cohort(zero_row, f"stratum zero {cohort_name}", stratum="zero")
     for name in _POSITIVE_STRATA:
         pair = _mapping(strata.get(name), f"stratum {name}")
         _equal(set(pair), {"rescue_exposed", "ordinary_service"}, f"stratum {name} cohort names mismatch")
         rescue_row = _mapping(pair.get("rescue_exposed"), f"stratum {name} rescue_exposed")
         ordinary_row = _mapping(pair.get("ordinary_service"), f"stratum {name} ordinary_service")
-        _validate_cohort(rescue_row, f"stratum {name} rescue_exposed", positive=True)
-        _validate_cohort(ordinary_row, f"stratum {name} ordinary_service", positive=True)
+        _validate_cohort(rescue_row, f"stratum {name} rescue_exposed", stratum=name)
+        _validate_cohort(ordinary_row, f"stratum {name} ordinary_service", stratum=name)
 
     per_tti = _mapping(diagnostics.get("per_tti_comparisons"), "per_tti_comparisons")
     for metric in _PER_TTI_METRICS:
@@ -326,8 +437,12 @@ def _classify(
 
     for metric in ("planned_to_accepted_ratio", "accepted_to_actual_ratio"):
         item = _mapping(per_tti.get(metric), f"per-TTI {metric}")
+        paired = _finite(item, "paired_tti_count", f"per-TTI {metric}")
+        if paired == 0.0:
+            continue
         if (
             _finite(rescue, metric, "rescue_exposed") < _finite(ordinary, metric, "ordinary_service")
+            and _finite(item, "mean_delta_rescue_minus_ordinary", f"per-TTI {metric}") < 0.0
             and _finite(item, "direction_agreement_fraction", f"per-TTI {metric}") > 0.5
         ):
             return "acceptance_supported"
@@ -402,6 +517,8 @@ def _markdown(report: Mapping[str, object]) -> str:
         f"- Checkpoint SHA-256: `{identity['checkpoint_sha256']}`",
         f"- Simulator SHA-256: `{identity['sim_binary_sha256']}`",
         f"- Scenario/seed: `{identity['scenario_id']}` / `{identity['seed']}`",
+        f"- Decode/A8 iteration: `{identity['decode_mode']}` / `{identity['a8_iteration']}`",
+        f"- Completed steps/decisions: `{identity['completed_steps']}` / `{identity['diagnostic_decision_count']}`",
         f"- Window: warmup `{identity['warmup_ttis']}`, measured `{identity['measure_ttis']}` "
         f"(TTI `{identity['measured_tti_first']}..{identity['measured_tti_last']}`)",
         "",
