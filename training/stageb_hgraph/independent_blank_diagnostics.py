@@ -582,10 +582,15 @@ class IndependentPolicyDiagnostics:
     margin_valid: torch.Tensor
     selected_blank: torch.Tensor
     greedy_blank: torch.Tensor
+    changed_from_greedy: torch.Tensor
     forced_blank: torch.Tensor
     learned_blank: torch.Tensor
     fragmentation_blank: torch.Tensor
+    fragmentation_rescued: torch.Tensor
     conservative_blank: torch.Tensor
+    selected_forced_blank: torch.Tensor
+    selected_fragmentation_blank: torch.Tensor
+    selected_conservative_blank: torch.Tensor
 
 
 def _detached_vector(tensor: torch.Tensor) -> torch.Tensor:
@@ -644,7 +649,9 @@ def compute_independent_policy_diagnostics(
         torch.zeros_like(p_blank),
     )
 
-    greedy_blank = adjusted_logits.argmax(dim=-1) == blank_class_index
+    greedy_selected = adjusted_logits.argmax(dim=-1)
+    changed_from_greedy = selected != greedy_selected
+    greedy_blank = greedy_selected == blank_class_index
     selected_blank = selected == blank_class_index
     forced_blank = greedy_blank & ~margin_valid
     learned_blank = greedy_blank & margin_valid
@@ -670,6 +677,10 @@ def compute_independent_policy_diagnostics(
     p_service = raw_p_service.clamp(0.0, 1.0)
     fragmentation_blank = learned_blank & (p_service > p_blank)
     conservative_blank = learned_blank & (p_blank >= p_service)
+    fragmentation_rescued = fragmentation_blank & ~selected_blank
+    selected_forced_blank = forced_blank & selected_blank
+    selected_fragmentation_blank = fragmentation_blank & selected_blank
+    selected_conservative_blank = conservative_blank & selected_blank
     _require(torch.equal(learned_blank, fragmentation_blank | conservative_blank), "learned Blank must partition")
     _require(not (fragmentation_blank & conservative_blank).any().item(), "Blank classes must be disjoint")
     _require(
@@ -686,10 +697,15 @@ def compute_independent_policy_diagnostics(
         margin_valid=_detached_vector(margin_valid),
         selected_blank=_detached_vector(selected_blank),
         greedy_blank=_detached_vector(greedy_blank),
+        changed_from_greedy=_detached_vector(changed_from_greedy),
         forced_blank=_detached_vector(forced_blank),
         learned_blank=_detached_vector(learned_blank),
         fragmentation_blank=_detached_vector(fragmentation_blank),
+        fragmentation_rescued=_detached_vector(fragmentation_rescued),
         conservative_blank=_detached_vector(conservative_blank),
+        selected_forced_blank=_detached_vector(selected_forced_blank),
+        selected_fragmentation_blank=_detached_vector(selected_fragmentation_blank),
+        selected_conservative_blank=_detached_vector(selected_conservative_blank),
     )
 
 
@@ -731,15 +747,34 @@ def summarize_independent_policy_diagnostics(
     summary = {
         "decision_count": denominator,
         "selected_blank_ratio": float(diagnostics.selected_blank.sum().item()) / denominator,
+        "changed_from_greedy_count": float(diagnostics.changed_from_greedy.sum().item()),
+        "changed_from_greedy_ratio": float(diagnostics.changed_from_greedy.sum().item()) / denominator,
         f"{classification_prefix}greedy_blank_ratio": float(diagnostics.greedy_blank.sum().item()) / denominator,
         f"{classification_prefix}forced_blank_ratio": float(diagnostics.forced_blank.sum().item()) / denominator,
         f"{classification_prefix}learned_blank_ratio": float(learned_count) / denominator,
         f"{classification_prefix}fragmentation_blank_ratio": float(diagnostics.fragmentation_blank.sum().item()) / denominator,
+        "fragmentation_blank_count": float(diagnostics.fragmentation_blank.sum().item()),
+        "fragmentation_rescue_count": float(diagnostics.fragmentation_rescued.sum().item()),
+        "fragmentation_rescue_ratio": float(diagnostics.fragmentation_rescued.sum().item()) / denominator,
         f"{classification_prefix}conservative_blank_ratio": float(diagnostics.conservative_blank.sum().item()) / denominator,
         f"{classification_prefix}fragmentation_share_among_learned_blank": (
             float(diagnostics.fragmentation_blank.sum().item()) / learned_count if learned_count else 0.0
         ),
         f"{classification_prefix}learned_blank_count": float(learned_count),
+        "selected_forced_blank_count": float(diagnostics.selected_forced_blank.sum().item()),
+        "selected_forced_blank_ratio": float(diagnostics.selected_forced_blank.sum().item()) / denominator,
+        "selected_fragmentation_blank_count": float(
+            diagnostics.selected_fragmentation_blank.sum().item()
+        ),
+        "selected_fragmentation_blank_ratio": float(
+            diagnostics.selected_fragmentation_blank.sum().item()
+        ) / denominator,
+        "selected_conservative_blank_count": float(
+            diagnostics.selected_conservative_blank.sum().item()
+        ),
+        "selected_conservative_blank_ratio": float(
+            diagnostics.selected_conservative_blank.sum().item()
+        ) / denominator,
         "mean_valid_ue_count": float(diagnostics.valid_ue_count.float().mean().item()),
         "valid_margin_count": float(valid_margins.numel()),
     }

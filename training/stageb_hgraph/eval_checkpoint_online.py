@@ -109,6 +109,8 @@ def _independent_deletion_equal(
     edge_generator: SparseEdgeGenerator,
     snapshot_cfg: SnapshotBuilderConfig,
     device: torch.device,
+    *,
+    mode: str,
 ) -> bool:
     full = _graph_to_device(
         edge_generator.build_graph(FeatureSnapshotBuilder(snapshot_cfg).build(observation)),
@@ -133,10 +135,10 @@ def _independent_deletion_equal(
         if not all(torch.equal(full_encoded[key], deleted_encoded[key]) for key in full_encoded):
             return False
         full_trace, full_action = select_independent_action(
-            actor, full, full_packed, mode="greedy"
+            actor, full, full_packed, mode=mode
         )
         deleted_trace, deleted_action = select_independent_action(
-            actor, deleted, deleted_packed, mode="greedy"
+            actor, deleted, deleted_packed, mode=mode
         )
     return bool(
         torch.equal(full_trace.choice, deleted_trace.choice)
@@ -249,9 +251,21 @@ def _select_joint_action(
 ) -> Dict[str, Any]:
     if independent_policy_diagnostics and not isinstance(actor, PFQIndependentReuseActor):
         raise ValueError("independent policy diagnostics require an independent actor")
+    if (
+        decode_mode == "hierarchical_argmax"
+        and not isinstance(actor, PFQIndependentReuseActor)
+    ):
+        raise ValueError("--decode-mode hierarchical_argmax requires an independent actor")
     if isinstance(actor, PFQIndependentReuseActor):
-        if decode_mode != "argmax":
-            raise ValueError("independent evaluation is deterministic and requires --decode-mode argmax")
+        independent_decode_modes = {
+            "argmax": "greedy",
+            "hierarchical_argmax": "hierarchical_greedy",
+        }
+        if decode_mode not in independent_decode_modes:
+            raise ValueError(
+                "independent evaluation is deterministic and requires --decode-mode "
+                "argmax or hierarchical_argmax"
+            )
         validate_independent_graph(
             graph,
             max_candidates=int(actor.cfg.max_candidates),
@@ -266,7 +280,7 @@ def _select_joint_action(
                 actor,
                 graph,
                 packed,
-                mode="greedy",
+                mode=independent_decode_modes[decode_mode],
                 collect_diagnostics=independent_policy_diagnostics,
             )
             _logp, _entropy, replayed = replay_independent_trace(
@@ -594,7 +608,11 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--ue-prg-topk", type=int, default=None, help="Default: checkpoint args, else 6")
     p.add_argument("--ue-prg-diversity-extra", type=int, default=None, help="Default: checkpoint args, else 0")
     p.add_argument("--tb-err-ema-alpha", type=float, default=None, help="Default: checkpoint args, else 0.10")
-    p.add_argument("--decode-mode", choices=["argmax", "sample"], default="argmax")
+    p.add_argument(
+        "--decode-mode",
+        choices=["argmax", "hierarchical_argmax", "sample"],
+        default="argmax",
+    )
     p.add_argument(
         "--independent-policy-diagnostics",
         type=int,
@@ -691,6 +709,20 @@ def main() -> int:
     independent_policy_diagnostics = bool(args.independent_policy_diagnostics)
     if independent_policy_diagnostics and not independent_mode:
         raise ValueError("independent policy diagnostics require an independent actor")
+    if independent_mode:
+        independent_decode_mode = {
+            "argmax": "greedy",
+            "hierarchical_argmax": "hierarchical_greedy",
+        }.get(str(args.decode_mode))
+        if independent_decode_mode is None:
+            raise ValueError(
+                "independent evaluation is deterministic and requires --decode-mode "
+                "argmax or hierarchical_argmax"
+            )
+    else:
+        if str(args.decode_mode) == "hierarchical_argmax":
+            raise ValueError("--decode-mode hierarchical_argmax requires an independent actor")
+        independent_decode_mode = None
     candidate_policy_mode = (
         "independent"
         if independent_mode
@@ -968,7 +1000,12 @@ def main() -> int:
         deletion_device = torch.device("cpu")
         actor.to(deletion_device)
         deletion_equal = _independent_deletion_equal(
-            actor, obs, edge_generator, snapshot_cfg, deletion_device
+            actor,
+            obs,
+            edge_generator,
+            snapshot_cfg,
+            deletion_device,
+            mode=str(independent_decode_mode),
         )
         actor.to(device)
         deletion_test_device = str(deletion_device)

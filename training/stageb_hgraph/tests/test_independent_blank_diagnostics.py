@@ -190,6 +190,49 @@ def test_classifies_fragmentation_conservatism_forced_and_service() -> None:
     assert not bool((diag.fragmentation_blank & diag.conservative_blank).any())
 
 
+def test_fragmentation_rescue_and_selected_blank_subclasses_are_observable() -> None:
+    """Catches treating flat-argmax causes as the hierarchical selected action."""
+    adjusted = torch.tensor([
+        [math.log(0.30), math.log(0.30), math.log(0.40)],
+        [math.log(0.20), math.log(0.20), math.log(0.60)],
+        [-1.0e9, -1.0e9, 0.00],
+        [math.log(0.25), math.log(0.25), math.log(0.50)],
+    ])
+    valid_main = torch.tensor([
+        [True, True],
+        [True, True],
+        [False, False],
+        [True, True],
+    ])
+    selected = torch.tensor([0, 2, 2, 2])
+    diag = compute_independent_policy_diagnostics(
+        adjusted_logits=adjusted,
+        probabilities=torch.softmax(adjusted, dim=-1),
+        valid_main=valid_main,
+        selected=selected,
+        blank_class_index=2,
+    )
+
+    assert diag.changed_from_greedy.tolist() == [True, False, False, False]
+    assert diag.fragmentation_rescued.tolist() == [True, False, False, False]
+    assert diag.selected_forced_blank.tolist() == [False, False, True, False]
+    assert diag.selected_fragmentation_blank.tolist() == [False, False, False, False]
+    assert diag.selected_conservative_blank.tolist() == [False, True, False, True]
+
+    summary = summarize_independent_policy_diagnostics(diag, classification_prefix="shadow_")
+    assert summary["fragmentation_blank_count"] == 1.0
+    assert summary["fragmentation_rescue_count"] == 1.0
+    assert summary["selected_fragmentation_blank_count"] == 0.0
+    assert summary["changed_from_greedy_count"] == 1.0
+    assert summary["changed_from_greedy_ratio"] == 0.25
+    assert summary["fragmentation_rescue_ratio"] == 0.25
+    assert summary["selected_forced_blank_count"] == 1.0
+    assert summary["selected_forced_blank_ratio"] == 0.25
+    assert summary["selected_fragmentation_blank_ratio"] == 0.0
+    assert summary["selected_conservative_blank_count"] == 2.0
+    assert summary["selected_conservative_blank_ratio"] == 0.5
+
+
 def test_accepts_one_float32_epsilon_service_reduction_overshoot() -> None:
     """A valid float32 softmax may sum the valid service classes just above one."""
     adjusted = torch.tensor([[

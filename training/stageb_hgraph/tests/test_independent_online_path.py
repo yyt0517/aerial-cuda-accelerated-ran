@@ -19,6 +19,7 @@ from training.stageb_hgraph.independent_policy import (
     IndependentPolicyTrace,
     replay_independent_trace,
 )
+from training.stageb_hgraph.graph_ops import type0_action_preflight_reject_counts
 from training.stageb_hgraph.online_ppo import (
     GraphValueHead,
     _evaluate_graph,
@@ -147,6 +148,149 @@ def test_deterministic_evaluator_collects_independent_policy_diagnostics() -> No
     trace = selected["independent_policy_trace"]
     assert trace.diagnostics is not None
     assert trace.diagnostics.valid_ue_count.numel() == 9
+
+
+@pytest.mark.parametrize(
+    ("decode_mode", "expected_internal_mode"),
+    [("argmax", "greedy"), ("hierarchical_argmax", "hierarchical_greedy")],
+)
+def test_independent_deterministic_evaluator_routes_requested_decode_mode(
+    monkeypatch,
+    decode_mode: str,
+    expected_internal_mode: str,
+) -> None:
+    """Catches evaluation silently using flat argmax for hierarchical requests."""
+    from training.stageb_hgraph import eval_checkpoint_online
+
+    original = eval_checkpoint_online.select_independent_action
+    observed_modes: list[str] = []
+
+    def select_with_mode_spy(*args, **kwargs):
+        observed_modes.append(kwargs["mode"])
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(eval_checkpoint_online, "select_independent_action", select_with_mode_spy)
+    graph = _graph()
+    selected = eval_checkpoint_online._select_joint_action(
+        _actor(),
+        graph,
+        decode_mode=decode_mode,
+        candidate_policy_mode="independent",
+    )
+
+    assert observed_modes == [expected_internal_mode]
+    assert selected["action_replay_mismatch_count"] == 0.0
+    assert all(
+        int(reject.sum().item()) == 0
+        for reject in type0_action_preflight_reject_counts(
+            graph,
+            torch.as_tensor(selected["action_ue_select"]),
+            torch.as_tensor(selected["action_prg_alloc"]),
+        ).values()
+    )
+
+
+def test_evaluator_cli_accepts_hierarchical_argmax(monkeypatch) -> None:
+    from training.stageb_hgraph import eval_checkpoint_online
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "eval_checkpoint_online.py",
+            "--checkpoint",
+            "actor.pt",
+            "--socket-path",
+            "bridge.sock",
+            "--decode-mode",
+            "hierarchical_argmax",
+        ],
+    )
+
+    assert eval_checkpoint_online.parse_args().decode_mode == "hierarchical_argmax"
+
+
+def test_nonindependent_hierarchical_argmax_rejects_before_simulator_start(
+    monkeypatch,
+    tmp_path,
+) -> None:
+    from training.stageb_hgraph import eval_checkpoint_online
+
+    class SimulatorMustNotStart:
+        def __init__(self, *_args, **_kwargs) -> None:
+            pytest.fail("simulator startup was reached before decode validation")
+
+    monkeypatch.setattr(eval_checkpoint_online, "BridgeEnvClient", SimulatorMustNotStart)
+    monkeypatch.setattr(eval_checkpoint_online, "_load_actor_checkpoint", lambda *_args: (object(), {}))
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "eval_checkpoint_online.py",
+            "--checkpoint",
+            str(tmp_path / "candidate.pt"),
+            "--socket-path",
+            "simulator-must-not-start.sock",
+            "--decode-mode",
+            "hierarchical_argmax",
+            "--device",
+            "cpu",
+        ],
+    )
+
+    with pytest.raises(ValueError, match="hierarchical_argmax.*independent"):
+        eval_checkpoint_online.main()
+
+
+def test_nonindependent_decode_path_rejects_hierarchical_argmax() -> None:
+    from training.stageb_hgraph.eval_checkpoint_online import _select_joint_action
+
+    with pytest.raises(ValueError, match="hierarchical_argmax.*independent"):
+        _select_joint_action(object(), object(), decode_mode="hierarchical_argmax")
+
+
+def test_independent_sample_evaluation_remains_rejected() -> None:
+    from training.stageb_hgraph.eval_checkpoint_online import _select_joint_action
+
+    with pytest.raises(ValueError, match="deterministic"):
+        _select_joint_action(
+            _actor(),
+            _graph(),
+            decode_mode="sample",
+            candidate_policy_mode="independent",
+        )
+
+
+def test_pfq_deletion_equality_uses_hierarchical_treatment_mode(monkeypatch) -> None:
+    """Catches the deletion audit defaulting to greedy under a hierarchical request."""
+    from training.stageb_hgraph import eval_checkpoint_online
+
+    original = eval_checkpoint_online.select_independent_action
+    observed_modes: list[str] = []
+
+    def select_with_mode_spy(*args, **kwargs):
+        observed_modes.append(kwargs["mode"])
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(eval_checkpoint_online, "select_independent_action", select_with_mode_spy)
+    observation = make_candidate_observation(n_prg=3, ue_feat_dim=16)
+    edge_generator = SparseEdgeGenerator(
+        EdgeGeneratorConfig(
+            candidate_mode="all_demand_ues",
+            include_pfq_score_anchor=False,
+            include_candidate_risk_features=False,
+        )
+    )
+
+    assert eval_checkpoint_online._independent_deletion_equal(
+        _actor().eval(),
+        observation,
+        edge_generator,
+        eval_checkpoint_online.SnapshotBuilderConfig(),
+        torch.device("cpu"),
+        mode="hierarchical_greedy",
+    )
+    assert observed_modes == ["hierarchical_greedy", "hierarchical_greedy"]
 
 
 def test_deterministic_evaluator_rejects_diagnostics_for_non_independent_actor() -> None:
