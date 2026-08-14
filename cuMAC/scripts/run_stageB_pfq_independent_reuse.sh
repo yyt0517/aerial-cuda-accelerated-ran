@@ -29,7 +29,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 case "${PHASE}" in
-    build|pfq-reference|validity|bc|pilot-A|pilot-B|pilot-C|pilot-D|select-and-eval-seed41|blank-diagnostics-seed41|paired-seeds-41-43) ;;
+    build|pfq-reference|validity|bc|pilot-A|pilot-B|pilot-C|pilot-D|select-and-eval-seed41|blank-diagnostics-seed41|hierarchical-decode-smoke|hierarchical-decode-seed41|paired-seeds-41-43) ;;
     *) echo "unsupported phase: ${PHASE}" >&2; exit 2 ;;
 esac
 [[ "${STEPS}" =~ ^[1-9][0-9]*$ ]] || { echo "--steps must be a positive integer" >&2; exit 2; }
@@ -204,6 +204,7 @@ evaluate_checkpoint() {
     local checkpoint="$1" seed="$2" warmup="$3" measure="$4" eval_dir="$5"
     local normalize_gate="${6:-1}"
     local diagnostics="${7:-0}"
+    local decode_mode="${8:-argmax}"
     local socket="/tmp/cumac_independent_eval_${seed}_$$.sock"
     mkdir -p "${eval_dir}"
     eval_dir="$(cd "${eval_dir}" && pwd -P)"
@@ -227,7 +228,7 @@ evaluate_checkpoint() {
     "${PYTHON_BIN}" -m training.stageb_hgraph.eval_checkpoint_online \
         --checkpoint "${checkpoint}" --socket-path "${socket}" \
         --episode-horizon "$((warmup + measure))" --max-steps "$((warmup + measure))" \
-        --stats-warmup-steps "${warmup}" --decode-mode argmax --seed "${seed}" \
+        --stats-warmup-steps "${warmup}" --decode-mode "${decode_mode}" --seed "${seed}" \
         --sample-seed "${seed}" --device auto --print-every-steps 500 --save-steps 0 \
         --sim-bin "${SIM_BIN}" --outcome-samples "${outcome_csv}" --out-dir "${eval_dir}" \
         --independent-policy-diagnostics "${diagnostics}" \
@@ -543,6 +544,103 @@ PY
         --markdown-out "${phase_dir}/blank_diagnostic_report.md"
 }
 
+run_hierarchical_decode_smoke() {
+    require_binary
+    local checkpoint="${OUT_DIR}/pilot-A/candidate_checkpoints/ppo_actor_iter_0008.pt"
+    require_file "${checkpoint}"
+    local phase_dir="${OUT_DIR}/hierarchical_decode_smoke"
+    write_run_manifest "${phase_dir}" "A8 hierarchical decode smoke: seed 41, 2 warmup + 4 measured TTIs"
+    evaluate_checkpoint "${checkpoint}" 41 2 4 "${phase_dir}" 0 1 hierarchical_argmax
+    "${PYTHON_BIN}" - "${phase_dir}/eval_summary.json" <<'PY'
+import json
+import math
+import sys
+
+summary = json.load(open(sys.argv[1], encoding="utf-8"))
+checks = {
+    "measured_ttis": summary.get("stats_count") == 4,
+    "diagnostic_decisions": summary.get("diagnostic_decision_count") == 204.0,
+    "zero_replay": summary.get("stats_sum_action_replay_mismatch_count") == 0.0,
+    "zero_illegal": summary.get("stats_sum_illegal_action_count") == 0.0,
+    "zero_selected_fragmentation_blank": summary.get("diagnostic_selected_fragmentation_blank_count") == 0.0,
+}
+try:
+    scheduled = float(summary["stats_sum_scheduled_bytes"])
+    goodput = float(summary["stats_sum_ue_goodput_bytes"])
+    failed = float(summary["stats_sum_failed_bytes"])
+    rescues = float(summary["diagnostic_fragmentation_rescue_count"])
+    counterfactual = float(summary["diagnostic_fragmentation_blank_count"])
+    checks["byte_identity"] = math.isclose(scheduled, goodput + failed, rel_tol=0.0, abs_tol=1.0e-6)
+    checks["all_counterfactual_fragmentation_rescued"] = rescues == counterfactual
+except (KeyError, TypeError, ValueError):
+    checks["byte_identity"] = False
+    checks["all_counterfactual_fragmentation_rescued"] = False
+if not all(checks.values()):
+    raise SystemExit(f"hierarchical decode smoke gate failed: {checks}")
+PY
+}
+
+run_hierarchical_decode_seed41() {
+    require_binary
+    local checkpoint="${OUT_DIR}/pilot-A/candidate_checkpoints/ppo_actor_iter_0008.pt"
+    local control_summary="${OUT_DIR}/blank_diagnostics_seed41/A8/eval_summary.json"
+    local control_manifest="${OUT_DIR}/blank_diagnostics_seed41/run_manifest.json"
+    require_file "${checkpoint}"
+    require_file "${control_summary}"
+    require_file "${control_manifest}"
+
+    local phase_dir="${OUT_DIR}/hierarchical_decode_seed41"
+    local manifest="${phase_dir}/run_manifest.json"
+    "${PYTHON_BIN}" - "${manifest}" "${RESUME}" "${SCENARIO_ID}" "${checkpoint}" "${SIM_BIN}" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+
+manifest_text, resume_text, scenario_id, checkpoint_text, simulator_text = sys.argv[1:]
+manifest = pathlib.Path(manifest_text)
+checkpoint = pathlib.Path(checkpoint_text)
+simulator = pathlib.Path(simulator_text)
+
+def sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+payload = {
+    "phase": "hierarchical-decode-seed41",
+    "scenario_id": scenario_id,
+    "seed": 41,
+    "warmup_ttis": 1000,
+    "measure_ttis": 512,
+    "a8_iteration": 8,
+    "checkpoint_sha256": sha256(checkpoint),
+    "sim_binary_sha256": sha256(simulator),
+}
+if manifest.parent.is_dir() and any(manifest.parent.iterdir()) and not manifest.is_file():
+    raise SystemExit(f"existing output directory has no compatible run manifest: {manifest.parent}")
+if manifest.is_file():
+    if resume_text != "1":
+        raise SystemExit(f"output exists; pass --resume only for an identical manifest: {manifest.parent}")
+    if json.loads(manifest.read_text(encoding="utf-8")) != payload:
+        raise SystemExit("resume manifest differs from current hierarchical decode inputs")
+else:
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+PY
+
+    evaluate_checkpoint "${checkpoint}" 41 1000 512 "${phase_dir}" 0 1 hierarchical_argmax
+    "${PYTHON_BIN}" -m training.stageb_hgraph.hierarchical_decode_gate \
+        --control "${control_summary}" \
+        --treatment "${phase_dir}/eval_summary.json" \
+        --control-manifest "${control_manifest}" \
+        --treatment-manifest "${manifest}" \
+        --json-out "${phase_dir}/hierarchical_decode_report.json" \
+        --markdown-out "${phase_dir}/hierarchical_decode_report.md"
+}
+
 run_paired_seeds() {
     require_file "${OUT_DIR}/seed41_selection/treatment_comparison.json"
     local winner
@@ -591,5 +689,7 @@ case "${PHASE}" in
     pilot-D) run_pilot D ;;
     select-and-eval-seed41) run_select_seed41 ;;
     blank-diagnostics-seed41) run_blank_diagnostics_seed41 ;;
+    hierarchical-decode-smoke) run_hierarchical_decode_smoke ;;
+    hierarchical-decode-seed41) run_hierarchical_decode_seed41 ;;
     paired-seeds-41-43) run_paired_seeds ;;
 esac
