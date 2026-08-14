@@ -232,6 +232,47 @@ def test_choose_b_subject_breaks_goodput_ties_by_lower_iteration() -> None:
     assert blank_diagnostics.choose_b_diagnostic_iteration(selection) == 4
 
 
+def test_choose_b_subject_ignores_valid_off_cadence_candidate() -> None:
+    valid_metrics = {
+        "action_replay_mismatch_count": 0.0,
+        "illegal_action_count": 0.0,
+        "independent_deletion_equal": True,
+    }
+    selection = {
+        "selected_iteration": None,
+        "candidates": {
+            "5": {
+                "present": True,
+                "metrics": {**valid_metrics, "goodput_mbps": 9999.0},
+            },
+            "8": {
+                "present": True,
+                "metrics": {**valid_metrics, "goodput_mbps": 1520.0},
+            },
+        },
+    }
+    assert blank_diagnostics.choose_b_diagnostic_iteration(selection) == 8
+
+
+def test_choose_b_subject_rejects_off_cadence_only_fallback() -> None:
+    selection = {
+        "selected_iteration": None,
+        "candidates": {
+            "5": {
+                "present": True,
+                "metrics": {
+                    "goodput_mbps": 9999.0,
+                    "action_replay_mismatch_count": 0.0,
+                    "illegal_action_count": 0.0,
+                    "independent_deletion_equal": True,
+                },
+            },
+        },
+    }
+    with pytest.raises(ValueError, match="no valid fallback"):
+        blank_diagnostics.choose_b_diagnostic_iteration(selection)
+
+
 @pytest.mark.parametrize(
     "selection",
     [

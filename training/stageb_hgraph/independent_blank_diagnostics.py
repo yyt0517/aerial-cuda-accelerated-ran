@@ -12,6 +12,8 @@ from typing import Mapping, Sequence
 import numpy as np
 import torch
 
+from .independent_gate import CHECKPOINT_ITERATIONS
+
 
 _TOLERANCE = 1.0e-6
 _DIAGNOSTIC_LABELS = {"A4", "A8", "B"}
@@ -82,6 +84,8 @@ def choose_b_diagnostic_iteration(selection: Mapping[str, object]) -> int:
         try:
             iteration = _positive_iteration(int(iteration_text), "candidate iteration")
         except (TypeError, ValueError):
+            continue
+        if iteration not in CHECKPOINT_ITERATIONS:
             continue
         if not isinstance(candidate, Mapping) or candidate.get("present") is not True:
             continue
