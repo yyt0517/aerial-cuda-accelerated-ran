@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import sys
+
 import numpy as np
 import pytest
 import torch
@@ -9,6 +11,9 @@ from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder
 from training.stageb_hgraph.independent_actor import (
     IndependentActorConfig,
     PFQIndependentReuseActor,
+)
+from training.stageb_hgraph.independent_blank_diagnostics import (
+    summarize_independent_policy_diagnostics,
 )
 from training.stageb_hgraph.independent_policy import (
     IndependentPolicyTrace,
@@ -74,6 +79,7 @@ def test_rollout_action_stores_trace_exact_arrays_and_replays_without_mismatch()
         graph,
         independent_policy_diagnostics=False,
     )
+    rng_off = torch.random.get_rng_state()
     torch.manual_seed(23)
     sampled = _sample_joint_action(
         actor,
@@ -81,17 +87,110 @@ def test_rollout_action_stores_trace_exact_arrays_and_replays_without_mismatch()
         graph,
         independent_policy_diagnostics=True,
     )
+    rng_on = torch.random.get_rng_state()
     _record_submitted_action_replay_mismatch(graph, sampled)
 
-    assert isinstance(sampled["independent_policy_trace"], IndependentPolicyTrace)
-    assert sampled_off["independent_policy_trace"].diagnostics is None
-    assert sampled["independent_policy_trace"].diagnostics is not None
+    trace_off = sampled_off["independent_policy_trace"]
+    trace = sampled["independent_policy_trace"]
+    assert isinstance(trace, IndependentPolicyTrace)
+    assert trace_off.diagnostics is None
+    assert trace.diagnostics is not None
+    assert trace.diagnostics.valid_ue_count.numel() == 9
     assert np.array_equal(sampled_off["action_ue_select"], sampled["action_ue_select"])
     assert np.array_equal(sampled_off["action_prg_alloc"], sampled["action_prg_alloc"])
+    assert torch.equal(trace_off.choice, trace.choice)
+    assert torch.equal(trace_off.logp, trace.logp)
+    assert torch.equal(trace_off.entropy, trace.entropy)
+    assert torch.equal(rng_off, rng_on)
     assert sampled["candidate_policy_mode"] == "independent"
     assert sampled["action_replay_mismatch_count"] == 0.0
     assert np.asarray(sampled["action_ue_select"]).shape == (6,)
     assert np.asarray(sampled["action_prg_alloc"]).shape == (9,)
+
+    summary = summarize_independent_policy_diagnostics(
+        trace.diagnostics,
+        classification_prefix="shadow_",
+    )
+    assert "shadow_greedy_blank_ratio" in summary
+    assert "shadow_forced_blank_ratio" in summary
+    assert "shadow_learned_blank_ratio" in summary
+    assert "shadow_fragmentation_blank_ratio" in summary
+    assert "shadow_conservative_blank_ratio" in summary
+
+    _, _, replayed = replay_independent_trace(
+        actor,
+        graph,
+        sampled["candidate_packed"],
+        trace,
+    )
+    assert np.array_equal(
+        replayed.action_ue_select.cpu().numpy(),
+        sampled["action_ue_select"],
+    )
+    assert np.array_equal(
+        replayed.action_prg_alloc.cpu().numpy(),
+        sampled["action_prg_alloc"],
+    )
+
+
+def test_deterministic_evaluator_collects_independent_policy_diagnostics() -> None:
+    from training.stageb_hgraph.eval_checkpoint_online import _select_joint_action
+
+    selected = _select_joint_action(
+        _actor(),
+        _graph(),
+        decode_mode="argmax",
+        candidate_policy_mode="independent",
+        independent_policy_diagnostics=True,
+    )
+
+    trace = selected["independent_policy_trace"]
+    assert trace.diagnostics is not None
+    assert trace.diagnostics.valid_ue_count.numel() == 9
+
+
+def test_deterministic_evaluator_rejects_diagnostics_for_non_independent_actor() -> None:
+    from training.stageb_hgraph.eval_checkpoint_online import _select_joint_action
+
+    with pytest.raises(ValueError, match="independent actor"):
+        _select_joint_action(
+            object(),
+            object(),
+            decode_mode="argmax",
+            independent_policy_diagnostics=True,
+        )
+
+
+def test_online_clis_accept_independent_policy_diagnostics_flag(monkeypatch) -> None:
+    from training.stageb_hgraph import eval_checkpoint_online, online_ppo
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "online_ppo.py",
+            "--sim-bin",
+            "simulator",
+            "--independent-policy-diagnostics",
+            "1",
+        ],
+    )
+    assert online_ppo.parse_args().independent_policy_diagnostics == 1
+
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "eval_checkpoint_online.py",
+            "--checkpoint",
+            "actor.pt",
+            "--socket-path",
+            "bridge.sock",
+            "--independent-policy-diagnostics",
+            "1",
+        ],
+    )
+    assert eval_checkpoint_online.parse_args().independent_policy_diagnostics == 1
 
 
 def test_independent_replay_policy_gradient_reaches_attention_and_ue_scorer() -> None:

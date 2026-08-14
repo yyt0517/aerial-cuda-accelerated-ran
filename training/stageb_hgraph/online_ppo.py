@@ -94,6 +94,10 @@ from training.stageb_hgraph.independent_actor import (
     IndependentActorConfig,
     PFQIndependentReuseActor,
 )
+from training.stageb_hgraph.independent_blank_diagnostics import (
+    concatenate_independent_policy_diagnostics,
+    summarize_independent_policy_diagnostics,
+)
 from training.stageb_hgraph.independent_objectives import ExpiryAwareUeWindowTracker
 from training.stageb_hgraph.independent_policy import (
     IndependentPolicyTrace,
@@ -3901,7 +3905,7 @@ def _collect_rollout(
     runner: OnlineEpisodeRunner,
     snapshot_builder: FeatureSnapshotBuilder,
     edge_generator: SparseEdgeGenerator,
-    actor: StageBHGraphPolicy,
+    actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     critic: GraphValueHead,
     device: torch.device,
     rollout_steps: int,
@@ -3919,6 +3923,7 @@ def _collect_rollout(
     expiry_reward_tracker: ExpiryRewardWindowTracker | None = None,
     slot_repair_max_per_cell: int = 0,
     slot_repair_min_backlog_bytes: float = 1.0,
+    independent_policy_diagnostics: bool = False,
 ) -> tuple[List[RolloutStep], Dict[str, float], PerUeDiagnosticsTracker, ExpiryRewardWindowTracker]:
     actor.eval()
     critic.eval()
@@ -4092,6 +4097,7 @@ def _collect_rollout(
                 candidate_seq_fail_risk_feature_offset=int(
                     getattr(runner.args, "candidate_seq_fail_risk_feature_offset", -1)
                 ),
+                independent_policy_diagnostics=independent_policy_diagnostics,
             )
 
         python_preflight_counts = {
@@ -5700,6 +5706,29 @@ def _collect_rollout(
         "rollout_entropy_mean": float(np.mean([s.entropy for s in steps])) if steps else 0.0,
         **_action_replay_summary(steps),
     }
+    if independent_policy_diagnostics and isinstance(actor, PFQIndependentReuseActor):
+        diagnostics = []
+        for step in steps:
+            trace = step.independent_policy_trace
+            if trace is None or trace.diagnostics is None:
+                raise ValueError("independent rollout is missing policy diagnostics")
+            diagnostics.append(trace.diagnostics)
+        if diagnostics:
+            rollout_diagnostics = concatenate_independent_policy_diagnostics(diagnostics)
+            expected_decisions = len(steps) * int(n_cell) * int(graph.snapshot.static_meta.n_prg)
+            actual_decisions = int(rollout_diagnostics.valid_ue_count.numel())
+            if actual_decisions != expected_decisions:
+                raise ValueError(
+                    "independent rollout diagnostic decision count mismatch: "
+                    f"got={actual_decisions} expected={expected_decisions}"
+                )
+            rollout_diag = summarize_independent_policy_diagnostics(
+                rollout_diagnostics,
+                classification_prefix="shadow_",
+            )
+            summary.update(
+                {f"rollout_independent_{key}": value for key, value in rollout_diag.items()}
+            )
     independent_term_keys = sorted(
         {
             key
@@ -7593,6 +7622,13 @@ def parse_args() -> argparse.Namespace:
         help="independent uses the PFQ-free fixed-order reuse actor; other modes are legacy",
     )
     p.add_argument(
+        "--independent-policy-diagnostics",
+        type=int,
+        choices=(0, 1),
+        default=0,
+        help="collect detached PFQ-independent Blank diagnostics without changing actions",
+    )
+    p.add_argument(
         "--candidate-policy-mode",
         choices=["legacy", "direct"],
         default="legacy",
@@ -9071,6 +9107,7 @@ def main() -> int:
                 expiry_reward_tracker=expiry_reward_tracker,
                 slot_repair_max_per_cell=int(args.slot_repair_max_per_cell),
                 slot_repair_min_backlog_bytes=float(args.slot_repair_min_backlog_bytes),
+                independent_policy_diagnostics=bool(args.independent_policy_diagnostics),
             )
             collect_time_s = time.perf_counter() - collect_t0
 

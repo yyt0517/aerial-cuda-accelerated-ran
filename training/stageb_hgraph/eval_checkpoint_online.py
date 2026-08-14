@@ -63,6 +63,12 @@ from training.stageb_hgraph.independent_actor import (
     IndependentActorConfig,
     PFQIndependentReuseActor,
 )
+from training.stageb_hgraph.independent_blank_diagnostics import (
+    IndependentPolicyDiagnostics,
+    concatenate_independent_policy_diagnostics,
+    extract_failed_transmission_bytes,
+    summarize_independent_policy_diagnostics,
+)
 from training.stageb_hgraph.independent_contract import (
     assert_graph_tensor_equality,
     strip_pfq_fields,
@@ -238,7 +244,10 @@ def _select_joint_action(
     candidate_budgeted_tail_quota_enable: int = 0,
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
+    independent_policy_diagnostics: bool = False,
 ) -> Dict[str, Any]:
+    if independent_policy_diagnostics and not isinstance(actor, PFQIndependentReuseActor):
+        raise ValueError("independent policy diagnostics require an independent actor")
     if isinstance(actor, PFQIndependentReuseActor):
         if decode_mode != "argmax":
             raise ValueError("independent evaluation is deterministic and requires --decode-mode argmax")
@@ -257,6 +266,7 @@ def _select_joint_action(
                 graph,
                 packed,
                 mode="greedy",
+                collect_diagnostics=independent_policy_diagnostics,
             )
             _logp, _entropy, replayed = replay_independent_trace(
                 actor,
@@ -584,6 +594,13 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--ue-prg-diversity-extra", type=int, default=None, help="Default: checkpoint args, else 0")
     p.add_argument("--tb-err-ema-alpha", type=float, default=None, help="Default: checkpoint args, else 0.10")
     p.add_argument("--decode-mode", choices=["argmax", "sample"], default="argmax")
+    p.add_argument(
+        "--independent-policy-diagnostics",
+        type=int,
+        choices=(0, 1),
+        default=0,
+        help="collect detached PFQ-independent Blank diagnostics without changing actions",
+    )
     p.add_argument("--slot-repair-max-per-cell", type=int, default=None, help="Default: checkpoint args, else 0")
     p.add_argument("--slot-repair-min-backlog-bytes", type=float, default=None, help="Default: checkpoint args, else 1.0")
     p.add_argument("--safe-fill-max-per-cell", type=int, default=None, help="Default: checkpoint args, else 0")
@@ -670,6 +687,9 @@ def main() -> int:
     ckpt_path = Path(args.checkpoint).resolve()
     actor, ckpt = _load_actor_checkpoint(ckpt_path, device)
     independent_mode = isinstance(actor, PFQIndependentReuseActor)
+    independent_policy_diagnostics = bool(args.independent_policy_diagnostics)
+    if independent_policy_diagnostics and not independent_mode:
+        raise ValueError("independent policy diagnostics require an independent actor")
     candidate_policy_mode = (
         "independent"
         if independent_mode
@@ -961,6 +981,18 @@ def main() -> int:
     ue_measured_outcome_time_ms = np.zeros((n_active_ue,), dtype=np.float64)
     measured_tb_tx_count = 0.0
     measured_tb_err_count = 0.0
+    eval_diagnostics: list[IndependentPolicyDiagnostics] | None = (
+        [] if independent_policy_diagnostics else None
+    )
+    stats_sum_scheduled_bytes: np.float64 | None = (
+        np.float64(0.0) if independent_policy_diagnostics else None
+    )
+    stats_sum_ue_goodput_bytes: np.float64 | None = (
+        np.float64(0.0) if independent_policy_diagnostics else None
+    )
+    stats_sum_failed_bytes: np.float64 | None = (
+        np.float64(0.0) if independent_policy_diagnostics else None
+    )
     last_delivered_time_ms = np.asarray(
         info.get("actual_ue_packet_system_time_ms", np.zeros((n_active_ue,))),
         dtype=np.float64,
@@ -1056,6 +1088,7 @@ def main() -> int:
                 candidate_budgeted_tail_quota_enable=int(candidate_budgeted_tail_quota_enable),
                 candidate_seq_state_coef=float(candidate_seq_state_coef),
                 candidate_seq_fail_risk_feature_offset=int(candidate_seq_fail_risk_feature_offset),
+                independent_policy_diagnostics=independent_policy_diagnostics,
             )
             next_obs, raw_reward, done, next_info = env.step(
                 selected["action_ue_select"],
@@ -1179,6 +1212,25 @@ def main() -> int:
                     measured_tti if measured_tti_first is None else measured_tti_first
                 )
                 measured_tti_last = measured_tti
+                if eval_diagnostics is not None:
+                    trace = selected.get("independent_policy_trace")
+                    diagnostic = getattr(trace, "diagnostics", None)
+                    if diagnostic is None:
+                        raise ValueError("independent evaluation is missing policy diagnostics")
+                    eval_diagnostics.append(diagnostic)
+                    transmission = extract_failed_transmission_bytes(
+                        next_info,
+                        expected_n_ue=n_active_ue,
+                    )
+                    if (
+                        stats_sum_scheduled_bytes is None
+                        or stats_sum_ue_goodput_bytes is None
+                        or stats_sum_failed_bytes is None
+                    ):
+                        raise RuntimeError("independent byte accumulators are unavailable")
+                    stats_sum_scheduled_bytes += np.float64(transmission["scheduled_bytes"])
+                    stats_sum_ue_goodput_bytes += np.float64(transmission["goodput_bytes"])
+                    stats_sum_failed_bytes += np.float64(transmission["failed_bytes"])
                 if n_active_ue > 0:
                     goodput_ue = np.asarray(
                         next_info.get(
@@ -1250,6 +1302,62 @@ def main() -> int:
 
     def _stats_sum(key: str):
         return None if stats_count <= 0 else float(stats_sums[key])
+
+    diagnostic_summary: dict[str, float] | None = None
+    transmission_summary: dict[str, float | int] | None = None
+    if eval_diagnostics is not None:
+        if stats_count <= 0 or not eval_diagnostics:
+            raise ValueError("independent diagnostics require at least one measured TTI")
+        eval_diag = concatenate_independent_policy_diagnostics(eval_diagnostics)
+        expected_decisions = (
+            stats_count
+            * int(graph.snapshot.static_meta.n_cell)
+            * int(graph.snapshot.static_meta.n_prg)
+        )
+        actual_decisions = int(eval_diag.valid_ue_count.numel())
+        if actual_decisions != expected_decisions:
+            raise ValueError(
+                "independent evaluation diagnostic decision count mismatch: "
+                f"got={actual_decisions} expected={expected_decisions}"
+            )
+        if (
+            stats_sum_scheduled_bytes is None
+            or stats_sum_ue_goodput_bytes is None
+            or stats_sum_failed_bytes is None
+        ):
+            raise RuntimeError("independent byte accumulators are unavailable")
+        diagnostic_summary = summarize_independent_policy_diagnostics(
+            eval_diag,
+            classification_prefix="",
+        )
+        stats_mean_scheduled_mbps = float(
+            stats_sum_scheduled_bytes / np.float64(stats_count) * np.float64(0.016)
+        )
+        stats_mean_ue_goodput_mbps = float(
+            stats_sum_ue_goodput_bytes / np.float64(stats_count) * np.float64(0.016)
+        )
+        stats_failed_mbps = float(
+            stats_sum_failed_bytes / np.float64(stats_count) * np.float64(0.016)
+        )
+        existing_goodput_mbps = _stats_mean("goodput_mbps")
+        if existing_goodput_mbps is None:
+            raise ValueError("measured-window goodput is unavailable")
+        goodput_tolerance = max(1.0e-6, 1.0e-9 * abs(existing_goodput_mbps))
+        if abs(stats_mean_ue_goodput_mbps - existing_goodput_mbps) > goodput_tolerance:
+            raise ValueError(
+                "measured-window UE goodput does not match existing goodput: "
+                f"ue={stats_mean_ue_goodput_mbps} existing={existing_goodput_mbps} "
+                f"tolerance={goodput_tolerance}"
+            )
+        transmission_summary = {
+            "independent_policy_diagnostics_enabled": 1,
+            "stats_sum_scheduled_bytes": float(stats_sum_scheduled_bytes),
+            "stats_sum_ue_goodput_bytes": float(stats_sum_ue_goodput_bytes),
+            "stats_sum_failed_bytes": float(stats_sum_failed_bytes),
+            "stats_mean_scheduled_mbps": stats_mean_scheduled_mbps,
+            "stats_mean_ue_goodput_mbps": stats_mean_ue_goodput_mbps,
+            "stats_failed_mbps": stats_failed_mbps,
+        }
 
     mean_packet_delay_weighted = (
         float(sums["packet_system_time_ms"] / max(sums["packet_completed_count"], 1.0))
@@ -1494,6 +1602,11 @@ def main() -> int:
         "stats_mean_budgeted_tail_bias_active_count": _stats_mean("budgeted_tail_bias_active_count"),
         "actor_config": ckpt.get("actor_config", {}),
     }
+    if diagnostic_summary is not None and transmission_summary is not None:
+        summary.update(
+            {f"diagnostic_{key}": value for key, value in diagnostic_summary.items()}
+        )
+        summary.update(transmission_summary)
 
     if out_dir is not None:
         (out_dir / "eval_summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

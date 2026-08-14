@@ -2,13 +2,68 @@ from __future__ import annotations
 
 import math
 
+import numpy as np
 import pytest
 import torch
 
 from training.stageb_hgraph.independent_blank_diagnostics import (
     compute_independent_policy_diagnostics,
+    extract_failed_transmission_bytes,
     summarize_independent_policy_diagnostics,
 )
+
+
+def test_extract_failed_transmission_bytes_is_exact() -> None:
+    metrics = extract_failed_transmission_bytes(
+        {
+            "actual_ue_served_bytes": np.array([3000.0, 6000.0]),
+            "actual_ue_goodput_bytes": np.array([3000.0, 3000.0]),
+        },
+        expected_n_ue=2,
+    )
+    assert metrics == {
+        "scheduled_bytes": 9000.0,
+        "goodput_bytes": 6000.0,
+        "failed_bytes": 3000.0,
+    }
+
+
+@pytest.mark.parametrize(
+    "info",
+    [
+        {"actual_ue_goodput_bytes": np.array([1.0, 1.0])},
+        {"actual_ue_served_bytes": np.array([1.0, 1.0])},
+        {
+            "actual_ue_served_bytes": np.array([1.0]),
+            "actual_ue_goodput_bytes": np.array([1.0, 1.0]),
+        },
+        {
+            "actual_ue_served_bytes": np.array([1.0, -1.0]),
+            "actual_ue_goodput_bytes": np.array([1.0, 0.0]),
+        },
+        {
+            "actual_ue_served_bytes": np.array([1.0, 1.0]),
+            "actual_ue_goodput_bytes": np.array([1.0, np.inf]),
+        },
+        {
+            "actual_ue_served_bytes": np.array([1.0, 1.0]),
+            "actual_ue_goodput_bytes": np.array([1.0, 1.0000011]),
+        },
+    ],
+    ids=[
+        "missing-scheduled",
+        "missing-goodput",
+        "wrong-shape",
+        "negative",
+        "non-finite",
+        "goodput-exceeds-scheduled",
+    ],
+)
+def test_extract_failed_transmission_bytes_rejects_invalid_protocol_evidence(
+    info: dict[str, object],
+) -> None:
+    with pytest.raises(ValueError):
+        extract_failed_transmission_bytes(info, expected_n_ue=2)
 
 
 def test_classifies_fragmentation_conservatism_forced_and_service() -> None:

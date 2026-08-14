@@ -3,12 +3,47 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, fields
-from typing import Sequence
+from typing import Mapping, Sequence
 
+import numpy as np
 import torch
 
 
 _TOLERANCE = 1.0e-6
+
+
+def extract_failed_transmission_bytes(
+    info: Mapping[str, object],
+    *,
+    expected_n_ue: int,
+) -> dict[str, float]:
+    """Return exact scheduled, goodput, and failed-attempt bytes for one TTI."""
+    required = ("actual_ue_served_bytes", "actual_ue_goodput_bytes")
+    missing = [key for key in required if key not in info]
+    if missing:
+        raise ValueError(f"missing protocol byte arrays: {', '.join(missing)}")
+
+    arrays: dict[str, np.ndarray] = {}
+    for key in required:
+        try:
+            values = np.asarray(info[key], dtype=np.float64).reshape((expected_n_ue,))
+        except (TypeError, ValueError) as exc:
+            raise ValueError(f"{key} must reshape to ({expected_n_ue},)") from exc
+        if not np.isfinite(values).all():
+            raise ValueError(f"{key} must contain only finite values")
+        if np.any(values < 0.0):
+            raise ValueError(f"{key} must contain only non-negative values")
+        arrays[key] = values
+
+    scheduled_bytes = np.sum(arrays["actual_ue_served_bytes"], dtype=np.float64)
+    goodput_bytes = np.sum(arrays["actual_ue_goodput_bytes"], dtype=np.float64)
+    if goodput_bytes > scheduled_bytes + _TOLERANCE:
+        raise ValueError("goodput bytes must not exceed scheduled bytes")
+    return {
+        "scheduled_bytes": float(scheduled_bytes),
+        "goodput_bytes": float(goodput_bytes),
+        "failed_bytes": float(max(scheduled_bytes - goodput_bytes, 0.0)),
+    }
 
 
 @dataclass(frozen=True)
