@@ -89,6 +89,12 @@ def test_report_supports_valid_treatment_at_or_above_control_goodput() -> None:
         "treatment": 1547.837,
         "delta": 0.0,
     }
+    assert report["control_goodput_mbps"] == 1547.837
+    assert report["treatment_goodput_mbps"] == 1547.837
+    assert report["delta_goodput_mbps"] == 0.0
+    assert report["treatment_selected_fragmentation_blank_count"] == 0.0
+    assert report["treatment_fragmentation_rescue_count"] == 5.0
+    assert report["treatment_counterfactual_fragmentation_blank_count"] == 5.0
     assert report["treatment"]["fragmentation"]["rescue"]["count"] == 5.0
     assert "not attributed" in str(report["limitation"])
     markdown = _markdown(report)

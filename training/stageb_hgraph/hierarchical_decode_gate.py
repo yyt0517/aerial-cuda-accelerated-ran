@@ -214,6 +214,12 @@ def build_hierarchical_decode_report(
     return {
         "valid": True,
         "hypothesis_supported": treatment_goodput >= control_goodput,
+        "control_goodput_mbps": control_goodput,
+        "treatment_goodput_mbps": treatment_goodput,
+        "delta_goodput_mbps": delta,
+        "treatment_selected_fragmentation_blank_count": selected_fragmentation,
+        "treatment_fragmentation_rescue_count": rescue,
+        "treatment_counterfactual_fragmentation_blank_count": counterfactual,
         "authoritative_goodput_mbps": {
             "control": control_goodput,
             "treatment": treatment_goodput,
