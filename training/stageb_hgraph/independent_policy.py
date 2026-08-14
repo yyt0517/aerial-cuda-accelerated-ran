@@ -19,6 +19,11 @@ from .independent_blank_diagnostics import (
     concatenate_independent_policy_diagnostics,
     compute_independent_policy_diagnostics,
 )
+from .rescue_cohort_diagnostics import (
+    RescueDecisionDiagnostics,
+    build_rescue_decision_diagnostics,
+    concatenate_rescue_decision_diagnostics,
+)
 from .types import SparseEntityGraph
 
 
@@ -30,6 +35,7 @@ class IndependentPolicyTrace:
     logp: torch.Tensor
     entropy: torch.Tensor
     diagnostics: IndependentPolicyDiagnostics | None = None
+    rescue_diagnostics: RescueDecisionDiagnostics | None = None
 
 
 def resolve_full_candidate_width(graph: SparseEntityGraph) -> int:
@@ -208,6 +214,7 @@ def _run_policy(
     logps: list[torch.Tensor] = []
     entropies: list[torch.Tensor] = []
     diagnostic_rows: list[IndependentPolicyDiagnostics] = []
+    rescue_diagnostic_rows: list[RescueDecisionDiagnostics] = []
     for local_prg in range(meta.n_prg):
         tokens = torch.arange(meta.n_cell, device=device, dtype=torch.long) * meta.n_prg + local_prg
         sequence_features, valid_main = _candidate_state(
@@ -306,13 +313,24 @@ def _run_policy(
             selected = adjusted.argmax(dim=-1)
 
         if collect_diagnostics:
-            diagnostic_rows.append(
-                compute_independent_policy_diagnostics(
-                    adjusted_logits=adjusted,
-                    probabilities=probabilities,
-                    valid_main=valid_main,
+            diagnostic_row = compute_independent_policy_diagnostics(
+                adjusted_logits=adjusted,
+                probabilities=probabilities,
+                valid_main=valid_main,
+                selected=selected,
+                blank_class_index=packed.blank_class_index,
+            )
+            diagnostic_rows.append(diagnostic_row)
+            rescue_diagnostic_rows.append(
+                build_rescue_decision_diagnostics(
+                    graph=graph,
+                    packed=packed,
+                    token_indices=tokens,
+                    local_prg=local_prg,
                     selected=selected,
-                    blank_class_index=packed.blank_class_index,
+                    service_bytes=service,
+                    sequential_features=sequence_features,
+                    policy_diagnostics=diagnostic_row,
                 )
             )
 
@@ -347,6 +365,11 @@ def _run_policy(
         entropy=torch.cat(entropies).mean(),
         diagnostics=(
             concatenate_independent_policy_diagnostics(diagnostic_rows)
+            if collect_diagnostics
+            else None
+        ),
+        rescue_diagnostics=(
+            concatenate_rescue_decision_diagnostics(rescue_diagnostic_rows)
             if collect_diagnostics
             else None
         ),

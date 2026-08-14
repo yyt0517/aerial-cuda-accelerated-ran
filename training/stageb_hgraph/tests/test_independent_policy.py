@@ -202,8 +202,8 @@ def test_rollout_replay_exact_trace_and_action(mode: str) -> None:
     assert bool(torch.isfinite(actor.raw_logits.grad).all().item())
 
 
-@pytest.mark.parametrize("mode", ["sample", "greedy"])
-def test_diagnostic_collection_is_action_and_rng_invariant(mode: str) -> None:
+@pytest.mark.parametrize("mode", ["sample", "greedy", "hierarchical_greedy"])
+def test_diagnostic_invariance_preserves_action_and_rng(mode: str) -> None:
     graph = _small_demand_graph(n_prg=3)
     actor = RecordingActor(n_prg=3)
     packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
@@ -229,7 +229,14 @@ def test_diagnostic_collection_is_action_and_rng_invariant(mode: str) -> None:
 
     assert trace_off.diagnostics is None
     assert trace_on.diagnostics is not None
+    assert trace_off.rescue_diagnostics is None
+    assert trace_on.rescue_diagnostics is not None
     assert trace_on.diagnostics.valid_ue_count.numel() == 3 * 3
+    assert trace_on.rescue_diagnostics.selected_ue.numel() == graph.snapshot.n_cell * graph.snapshot.n_prg
+    assert torch.equal(
+        trace_on.rescue_diagnostics.fragmentation_rescued,
+        trace_on.diagnostics.fragmentation_rescued,
+    )
     assert torch.equal(trace_off.choice, trace_on.choice)
     assert torch.equal(trace_off.valid_at_step, trace_on.valid_at_step)
     assert torch.equal(trace_off.logp, trace_on.logp)
