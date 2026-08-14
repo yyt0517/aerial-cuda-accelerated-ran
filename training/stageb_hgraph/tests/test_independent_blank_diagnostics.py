@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 import torch
 
+from training.stageb_hgraph import independent_blank_diagnostics as blank_diagnostics
 from training.stageb_hgraph.independent_blank_diagnostics import (
     compute_independent_policy_diagnostics,
     extract_failed_transmission_bytes,
@@ -64,6 +65,40 @@ def test_extract_failed_transmission_bytes_rejects_invalid_protocol_evidence(
 ) -> None:
     with pytest.raises(ValueError):
         extract_failed_transmission_bytes(info, expected_n_ue=2)
+
+
+@pytest.mark.parametrize(
+    ("derived_goodput_mbps", "existing_goodput_mbps"),
+    [
+        (np.nan, 1.0),
+        (np.inf, 1.0),
+        (-np.inf, 1.0),
+        (1.0, np.nan),
+        (1.0, np.inf),
+        (1.0, -np.inf),
+    ],
+)
+def test_validate_measured_window_goodput_rejects_nonfinite_values(
+    derived_goodput_mbps: float,
+    existing_goodput_mbps: float,
+) -> None:
+    with pytest.raises(ValueError, match="finite"):
+        blank_diagnostics.validate_measured_window_goodput_mbps(
+            derived_goodput_mbps=derived_goodput_mbps,
+            existing_goodput_mbps=existing_goodput_mbps,
+        )
+
+
+def test_validate_measured_window_goodput_uses_tight_tolerance() -> None:
+    blank_diagnostics.validate_measured_window_goodput_mbps(
+        derived_goodput_mbps=1000.0000005,
+        existing_goodput_mbps=1000.0,
+    )
+    with pytest.raises(ValueError, match="does not match"):
+        blank_diagnostics.validate_measured_window_goodput_mbps(
+            derived_goodput_mbps=1000.000002,
+            existing_goodput_mbps=1000.0,
+        )
 
 
 def test_classifies_fragmentation_conservatism_forced_and_service() -> None:

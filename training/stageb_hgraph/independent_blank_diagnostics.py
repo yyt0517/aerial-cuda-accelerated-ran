@@ -12,6 +12,23 @@ import torch
 _TOLERANCE = 1.0e-6
 
 
+def validate_measured_window_goodput_mbps(
+    *,
+    derived_goodput_mbps: float,
+    existing_goodput_mbps: float,
+) -> None:
+    """Require finite, numerically equal goodput from the two measured sources."""
+    if not np.isfinite(derived_goodput_mbps) or not np.isfinite(existing_goodput_mbps):
+        raise ValueError("measured-window goodput values must be finite")
+    tolerance = max(1.0e-6, 1.0e-9 * abs(existing_goodput_mbps))
+    if abs(derived_goodput_mbps - existing_goodput_mbps) > tolerance:
+        raise ValueError(
+            "measured-window UE goodput does not match existing goodput: "
+            f"ue={derived_goodput_mbps} existing={existing_goodput_mbps} "
+            f"tolerance={tolerance}"
+        )
+
+
 def extract_failed_transmission_bytes(
     info: Mapping[str, object],
     *,

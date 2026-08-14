@@ -68,6 +68,7 @@ from training.stageb_hgraph.independent_blank_diagnostics import (
     concatenate_independent_policy_diagnostics,
     extract_failed_transmission_bytes,
     summarize_independent_policy_diagnostics,
+    validate_measured_window_goodput_mbps,
 )
 from training.stageb_hgraph.independent_contract import (
     assert_graph_tensor_equality,
@@ -1342,13 +1343,10 @@ def main() -> int:
         existing_goodput_mbps = _stats_mean("goodput_mbps")
         if existing_goodput_mbps is None:
             raise ValueError("measured-window goodput is unavailable")
-        goodput_tolerance = max(1.0e-6, 1.0e-9 * abs(existing_goodput_mbps))
-        if abs(stats_mean_ue_goodput_mbps - existing_goodput_mbps) > goodput_tolerance:
-            raise ValueError(
-                "measured-window UE goodput does not match existing goodput: "
-                f"ue={stats_mean_ue_goodput_mbps} existing={existing_goodput_mbps} "
-                f"tolerance={goodput_tolerance}"
-            )
+        validate_measured_window_goodput_mbps(
+            derived_goodput_mbps=stats_mean_ue_goodput_mbps,
+            existing_goodput_mbps=existing_goodput_mbps,
+        )
         transmission_summary = {
             "independent_policy_diagnostics_enabled": 1,
             "stats_sum_scheduled_bytes": float(stats_sum_scheduled_bytes),
