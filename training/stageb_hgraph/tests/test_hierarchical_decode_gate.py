@@ -146,6 +146,54 @@ def test_report_valid_but_falsified_below_control_goodput() -> None:
     assert report["authoritative_goodput_mbps"]["delta"] == pytest.approx(-0.001)
 
 
+def test_report_supports_treatment_at_frozen_floor_with_control_above_floor() -> None:
+    """Catches comparing treatment with tolerated control instead of frozen floor."""
+    control = _summary(decode_mode="argmax", goodput_mbps=1547.8370005)
+    treatment = _summary(decode_mode="hierarchical_argmax", goodput_mbps=1547.837)
+
+    report = build_hierarchical_decode_report(
+        control,
+        treatment,
+        control_manifest=_manifest(),
+        treatment_manifest=_manifest(),
+    )
+
+    assert report["valid"] is True
+    assert report["hypothesis_supported"] is True
+
+
+def test_report_falsifies_treatment_below_frozen_floor_with_control_below_floor() -> None:
+    """Catches treating treatment above tolerated control as support below frozen floor."""
+    control = _summary(decode_mode="argmax", goodput_mbps=1547.8369995)
+    treatment = _summary(decode_mode="hierarchical_argmax", goodput_mbps=1547.83699975)
+
+    report = build_hierarchical_decode_report(
+        control,
+        treatment,
+        control_manifest=_manifest(),
+        treatment_manifest=_manifest(),
+    )
+
+    assert report["valid"] is True
+    assert report["hypothesis_supported"] is False
+
+
+def test_report_derives_missing_control_counterfactual_count_from_ratio() -> None:
+    """Catches dropping recoverable control counterfactual counts from the report."""
+    control = _summary(decode_mode="argmax", goodput_mbps=1547.837)
+    control["diagnostic_fragmentation_blank_ratio"] = 4194.0 / 26112.0
+    control.pop("diagnostic_fragmentation_blank_count")
+
+    report = build_hierarchical_decode_report(
+        control,
+        _summary(decode_mode="hierarchical_argmax", goodput_mbps=1547.837),
+        control_manifest=_manifest(),
+        treatment_manifest=_manifest(),
+    )
+
+    assert report["control"]["fragmentation"]["counterfactual"]["count"] == 4194.0
+
+
 @pytest.mark.parametrize(
     ("target", "key", "value", "match"),
     [

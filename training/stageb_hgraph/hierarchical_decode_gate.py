@@ -112,9 +112,9 @@ def _subject_report(summary: Mapping[str, object], label: str) -> dict[str, obje
     decisions = _finite_number(summary, "diagnostic_decision_count", label)
     def ratio_and_count(ratio_key: str, count_key: str | None = None) -> dict[str, float | None]:
         ratio = _reported_number(summary, ratio_key, label)
-        count = _reported_number(summary, count_key, label) if count_key else (
-            None if ratio is None else ratio * decisions
-        )
+        count = _reported_number(summary, count_key, label) if count_key else None
+        if count is None and ratio is not None:
+            count = ratio * decisions
         return {"count": count, "ratio": ratio}
 
     return {
@@ -213,7 +213,7 @@ def build_hierarchical_decode_report(
     delta = treatment_goodput - control_goodput
     return {
         "valid": True,
-        "hypothesis_supported": treatment_goodput >= control_goodput,
+        "hypothesis_supported": treatment_goodput >= _FROZEN_CONTROL_GOODPUT_MBPS,
         "control_goodput_mbps": control_goodput,
         "treatment_goodput_mbps": treatment_goodput,
         "delta_goodput_mbps": delta,
