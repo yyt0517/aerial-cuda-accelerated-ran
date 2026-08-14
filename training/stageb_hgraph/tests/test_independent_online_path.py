@@ -193,6 +193,42 @@ def test_online_clis_accept_independent_policy_diagnostics_flag(monkeypatch) -> 
     assert eval_checkpoint_online.parse_args().independent_policy_diagnostics == 1
 
 
+def test_online_ppo_rejects_diagnostics_for_non_independent_actor_before_simulator_start(
+    monkeypatch,
+    tmp_path,
+) -> None:
+    from training.stageb_hgraph import online_ppo
+
+    class SimulatorMustNotStart:
+        def __init__(self, _args) -> None:
+            pytest.fail("simulator startup was reached before diagnostics validation")
+
+    monkeypatch.setattr(online_ppo, "OnlineEpisodeRunner", SimulatorMustNotStart)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "online_ppo.py",
+            "--sim-bin",
+            "simulator-must-not-start",
+            "--action-head-mode",
+            "candidate",
+            "--independent-policy-diagnostics",
+            "1",
+            "--device",
+            "cpu",
+            "--out-dir",
+            str(tmp_path / "run"),
+        ],
+    )
+
+    with pytest.raises(
+        ValueError,
+        match="--independent-policy-diagnostics requires --action-head-mode independent",
+    ):
+        online_ppo.main()
+
+
 def test_independent_replay_policy_gradient_reaches_attention_and_ue_scorer() -> None:
     torch.manual_seed(17)
     actor = _actor()

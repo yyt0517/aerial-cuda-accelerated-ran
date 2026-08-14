@@ -357,28 +357,104 @@ def _render_blank_diagnostic_markdown(report: Mapping[str, object]) -> str:
     b_selection = report["b_selection"]
     supported = hypothesis["supported"]
     conclusion = "inconclusive" if supported is None else ("supported" if supported else "not supported")
+
+    def exact_number(value: object) -> str:
+        number = float(value)
+        return str(int(number)) if number.is_integer() else repr(number)
+
     lines = [
         "# Independent Blank Diagnostic Report",
         "",
-        "| Subject | Iteration | Forced | Learned | Fragmentation | Conservative | Frag / learned | Scheduled Mbps | Goodput Mbps | Failed Mbps | TB errors / tx | BLER |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "## Blank composition",
+        "",
+        "| Subject | Iteration | Selected | Greedy | Forced | Learned | Fragmentation | Conservative | Frag / learned |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for label in ("A4", "A8", "B"):
         subject = subjects[label]
         blank = subject["blank_composition"]
+        lines.append(
+            f"| {label} | {subject['iteration']} | {blank['selected_ratio']:.6f} | "
+            f"{blank['greedy_ratio']:.6f} | {blank['forced_ratio']:.6f} | "
+            f"{blank['learned_ratio']:.6f} | {blank['fragmentation_ratio']:.6f} | "
+            f"{blank['conservative_ratio']:.6f} | "
+            f"{blank['fragmentation_share_among_learned']:.6f} |"
+        )
+
+    lines.extend([
+        "",
+        "## Probability and margin distributions",
+        "",
+        "| Subject | Distribution | Mean | P10 | P50 | P90 |",
+        "|---|---|---:|---:|---:|---:|",
+    ])
+    for label in ("A4", "A8", "B"):
+        distributions = subjects[label]["distributions"]
+        for distribution_name in ("p_blank", "p_service", "p_best_ue", "blank_margin"):
+            distribution = distributions[distribution_name]
+            lines.append(
+                f"| {label} | {distribution_name} | {distribution['mean']:.6f} | "
+                f"{distribution['p10']:.6f} | {distribution['p50']:.6f} | "
+                f"{distribution['p90']:.6f} |"
+            )
+
+    lines.extend([
+        "",
+        "## Transmission accounting",
+        "",
+        "| Subject | Scheduled bytes | Goodput bytes | Failed-transmission bytes | Scheduled Mbps | Goodput Mbps | Failed-transmission Mbps | TB errors / tx | BLER |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ])
+    for label in ("A4", "A8", "B"):
+        subject = subjects[label]
+        byte_sums = subject["transmission_bytes"]
         mbps = subject["transmission_mbps"]
         tb = subject["tb"]
         lines.append(
-            f"| {label} | {subject['iteration']} | {blank['forced_ratio']:.6f} | "
-            f"{blank['learned_ratio']:.6f} | {blank['fragmentation_ratio']:.6f} | "
-            f"{blank['conservative_ratio']:.6f} | "
-            f"{blank['fragmentation_share_among_learned']:.6f} | "
+            f"| {label} | {exact_number(byte_sums['scheduled'])} | "
+            f"{exact_number(byte_sums['goodput'])} | {exact_number(byte_sums['failed'])} | "
             f"{mbps['scheduled']:.6f} | {mbps['goodput']:.6f} | {mbps['failed']:.6f} | "
-            f"{tb['error_count']:.0f} / {tb['tx_count']:.0f} | {tb['bler']:.6f} |"
+            f"{exact_number(tb['error_count'])} / {exact_number(tb['tx_count'])} | "
+            f"{tb['bler']:.6f} |"
         )
     lines.extend([
         "",
-        f"- B formal gate promoted this subject: `{str(b_selection['formal_gate_promoted']).lower()}`",
+        "Failed-transmission bytes and Mbps represent scheduled transmission failures, not packet expiry.",
+        "",
+        "## Artifact identity",
+        "",
+        "| Subject | Checkpoint SHA-256 | Simulator SHA-256 |",
+        "|---|---|---|",
+    ])
+    for label in ("A4", "A8", "B"):
+        subject = subjects[label]
+        lines.append(
+            f"| {label} | `{subject['checkpoint_sha256']}` | "
+            f"`{subject['sim_binary_sha256']}` |"
+        )
+
+    formal_iteration = b_selection["formal_selected_iteration"]
+    formatted_formal_iteration = "none" if formal_iteration is None else str(formal_iteration)
+    if b_selection["formal_gate_promoted"]:
+        b_rationale = f"formal gate promoted iteration `{b_selection['iteration']}`."
+    elif formal_iteration is None:
+        b_rationale = (
+            "the formal gate promoted no checkpoint; "
+            f"iteration `{b_selection['iteration']}` is the highest-goodput valid "
+            "checkpoint-cadence fallback."
+        )
+    else:
+        b_rationale = (
+            f"formal gate selected iteration `{formal_iteration}`; diagnostic iteration "
+            f"`{b_selection['iteration']}` is a fallback."
+        )
+    lines.extend([
+        "",
+        "## Conclusion",
+        "",
+        f"- B diagnostic iteration: `{b_selection['iteration']}`",
+        f"- B formal selected iteration: `{formatted_formal_iteration}`",
+        f"- B selection rationale: {b_rationale}",
         f"- H_frag on A8: **{conclusion}** "
         f"(learned={hypothesis['learned_blank_count']:.0f}, "
         f"fragmentation share={hypothesis['fragmentation_share_among_learned_blank']:.6f})",

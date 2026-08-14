@@ -1236,7 +1236,15 @@ def _validate_candidate_policy_mode(args: argparse.Namespace) -> None:
 
 
 def _validate_independent_ppo_args(args: argparse.Namespace) -> None:
-    if str(getattr(args, "action_head_mode", "")) != "independent":
+    action_head_mode = str(getattr(args, "action_head_mode", ""))
+    if (
+        int(getattr(args, "independent_policy_diagnostics", 0)) == 1
+        and action_head_mode != "independent"
+    ):
+        raise ValueError(
+            "--independent-policy-diagnostics requires --action-head-mode independent"
+        )
+    if action_head_mode != "independent":
         return
     required = (
         ("reward_mode", "pfq_independent"),

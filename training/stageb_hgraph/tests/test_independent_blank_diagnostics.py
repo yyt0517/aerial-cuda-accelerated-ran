@@ -547,6 +547,14 @@ def test_blank_report_marks_fallback_b_as_not_formally_promoted() -> None:
         "formal_selected_iteration": None,
         "formal_gate_promoted": False,
     }
+    markdown = blank_diagnostics._render_blank_diagnostic_markdown(report)
+    assert "- B diagnostic iteration: `8`" in markdown
+    assert "- B formal selected iteration: `none`" in markdown
+    assert (
+        "- B selection rationale: the formal gate promoted no checkpoint; "
+        "iteration `8` is the highest-goodput valid checkpoint-cadence fallback."
+        in markdown
+    )
 
 
 def test_blank_report_checks_forced_blank_before_policy_parameterization() -> None:
@@ -695,4 +703,47 @@ def test_blank_diagnostic_cli_selects_b_and_writes_both_reports(tmp_path: Path) 
     assert json.loads(json_out.read_text(encoding="utf-8"))["valid"] is True
     markdown = markdown_out.read_text(encoding="utf-8")
     assert "# Independent Blank Diagnostic Report" in markdown
+    assert "## Blank composition" in markdown
+    assert (
+        "| A4 | 4 | 0.191483 | 0.191483 | 0.038297 | 0.153186 | "
+        "0.107230 | 0.045956 | 0.700000 |" in markdown
+    )
+    assert (
+        "| A8 | 8 | 0.191483 | 0.191483 | 0.038297 | 0.153186 | "
+        "0.091912 | 0.061275 | 0.600000 |" in markdown
+    )
+    assert (
+        "| B | 4 | 0.191483 | 0.191483 | 0.038297 | 0.153186 | "
+        "0.061275 | 0.091912 | 0.400000 |" in markdown
+    )
+
+    assert "## Probability and margin distributions" in markdown
+    for label in ("A4", "A8", "B"):
+        assert f"| {label} | p_blank | 0.250000 | 0.050000 | 0.200000 | 0.550000 |" in markdown
+        assert f"| {label} | p_service | 0.750000 | 0.450000 | 0.800000 | 0.950000 |" in markdown
+        assert f"| {label} | p_best_ue | 0.450000 | 0.200000 | 0.450000 | 0.700000 |" in markdown
+        assert f"| {label} | blank_margin | -0.500000 | -2.000000 | -0.400000 | 0.800000 |" in markdown
+
+    assert "## Transmission accounting" in markdown
+    for label in ("A4", "A8", "B"):
+        assert (
+            f"| {label} | 100000 | 80000 | 20000 | 3.125000 | 2.500000 | "
+            "0.625000 | 100 / 1000 | 0.100000 |" in markdown
+        )
+    assert (
+        "Failed-transmission bytes and Mbps represent scheduled transmission "
+        "failures, not packet expiry." in markdown
+    )
+
+    assert "## Artifact identity" in markdown
+    assert "| A4 | `a4-hash` | `sim-hash` |" in markdown
+    assert "| A8 | `a8-hash` | `sim-hash` |" in markdown
+    assert "| B | `b-hash` | `sim-hash` |" in markdown
+    assert "- B diagnostic iteration: `4`" in markdown
+    assert "- B formal selected iteration: `4`" in markdown
+    assert "- B selection rationale: formal gate promoted iteration `4`." in markdown
     assert "H_frag on A8" in markdown
+    assert (
+        "Next experiment: Test a minimal hierarchical Serve/Blank -> UE action "
+        "head with matched PPO log-probability." in markdown
+    )
