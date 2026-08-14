@@ -190,6 +190,88 @@ def test_classifies_fragmentation_conservatism_forced_and_service() -> None:
     assert not bool((diag.fragmentation_blank & diag.conservative_blank).any())
 
 
+def test_accepts_one_float32_epsilon_service_reduction_overshoot() -> None:
+    """A valid float32 softmax may sum the valid service classes just above one."""
+    adjusted = torch.tensor([[
+        4.342998504638672,
+        -4.97344446182251,
+        -7.302927494049072,
+        6.091166019439697,
+        -2.5201714038848877,
+        12.424532890319824,
+        8.097794532775879,
+        -4.578446388244629,
+        -2.7105801105499268,
+        2.073176622390747,
+        -10.496687889099121,
+        -4.6770243644714355,
+        8.363064765930176,
+        -7.6468353271484375,
+    ]], dtype=torch.float32)
+    probabilities = torch.log_softmax(adjusted, dim=-1).exp()
+    valid_main = torch.ones((1, 13), dtype=torch.bool)
+    raw_p_service = probabilities[:, :-1].sum(dim=-1)
+    assert raw_p_service.item() == 1.0 + torch.finfo(torch.float32).eps
+
+    diag = compute_independent_policy_diagnostics(
+        adjusted_logits=adjusted,
+        probabilities=probabilities,
+        valid_main=valid_main,
+        selected=adjusted.argmax(dim=-1),
+        blank_class_index=13,
+    )
+
+    assert 0.0 <= diag.p_service.item() <= 1.0
+    assert diag.p_service.item() == 1.0
+    assert torch.allclose(diag.p_blank + diag.p_service, torch.ones(1), atol=1.0e-6, rtol=0.0)
+    assert diag.greedy_blank.tolist() == [False]
+    assert diag.learned_blank.tolist() == [False]
+    assert diag.fragmentation_blank.tolist() == [False]
+    assert diag.conservative_blank.tolist() == [False]
+
+
+def test_rejects_material_service_reduction_overshoot() -> None:
+    adjusted = torch.zeros((1, 4), dtype=torch.float32)
+    probabilities = torch.tensor([[1.0, 2.0e-6, 0.0, 0.0]], dtype=torch.float32)
+
+    with pytest.raises(ValueError, match="p_service.*tolerance"):
+        compute_independent_policy_diagnostics(
+            adjusted_logits=adjusted,
+            probabilities=probabilities,
+            valid_main=torch.ones((1, 3), dtype=torch.bool),
+            selected=torch.tensor([0]),
+            blank_class_index=3,
+        )
+
+
+def test_rejects_material_blank_service_mass_mismatch() -> None:
+    adjusted = torch.zeros((1, 3), dtype=torch.float32)
+    probabilities = torch.tensor([[0.8, 0.0, 0.1]], dtype=torch.float32)
+
+    with pytest.raises(ValueError, match=r"p_blank \+ p_service must equal one"):
+        compute_independent_policy_diagnostics(
+            adjusted_logits=adjusted,
+            probabilities=probabilities,
+            valid_main=torch.ones((1, 2), dtype=torch.bool),
+            selected=torch.tensor([0]),
+            blank_class_index=2,
+        )
+
+
+@pytest.mark.parametrize("invalid_probability", [math.nan, math.inf])
+def test_rejects_nonfinite_diagnostic_probability(invalid_probability: float) -> None:
+    probabilities = torch.tensor([[invalid_probability, 0.0, 1.0]], dtype=torch.float32)
+
+    with pytest.raises(ValueError, match="probabilities must be finite"):
+        compute_independent_policy_diagnostics(
+            adjusted_logits=torch.zeros((1, 3), dtype=torch.float32),
+            probabilities=probabilities,
+            valid_main=torch.ones((1, 2), dtype=torch.bool),
+            selected=torch.tensor([2]),
+            blank_class_index=2,
+        )
+
+
 def test_summary_uses_all_decisions_and_excludes_forced_blank_margins() -> None:
     """Catches incorrect denominators, NaN empty shares, or forced-row margin quantiles."""
     adjusted = torch.tensor([

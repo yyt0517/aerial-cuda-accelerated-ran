@@ -559,7 +559,7 @@ def compute_independent_policy_diagnostics(
     valid_ue_count = valid_main.sum(dim=-1)
     margin_valid = valid_ue_count > 0
     p_blank = probabilities[:, blank_class_index]
-    p_service = probabilities[:, :blank_class_index].masked_fill(~valid_main, 0.0).sum(dim=-1)
+    raw_p_service = probabilities[:, :blank_class_index].masked_fill(~valid_main, 0.0).sum(dim=-1)
     p_best_ue = probabilities[:, :blank_class_index].masked_fill(~valid_main, 0.0).max(dim=-1).values
     best_valid_logit = adjusted_logits[:, :blank_class_index].masked_fill(~valid_main, -torch.inf).max(dim=-1).values
     blank_margin = torch.where(
@@ -572,17 +572,28 @@ def compute_independent_policy_diagnostics(
     selected_blank = selected == blank_class_index
     forced_blank = greedy_blank & ~margin_valid
     learned_blank = greedy_blank & margin_valid
-    fragmentation_blank = learned_blank & (p_service > p_blank)
-    conservative_blank = learned_blank & (p_blank >= p_service)
 
-    _require(torch.isfinite(p_service).all().item(), "p_service must be finite")
+    _require(torch.isfinite(raw_p_service).all().item(), "p_service must be finite")
     _require(torch.isfinite(p_best_ue).all().item(), "p_best_ue must be finite")
     _require(torch.isfinite(blank_margin).all().item(), "blank_margin must be finite")
     _require(((p_blank >= 0.0) & (p_blank <= 1.0)).all().item(), "p_blank must be in [0,1]")
-    _require(((p_service >= 0.0) & (p_service <= 1.0)).all().item(), "p_service must be in [0,1]")
+    _require(
+        ((raw_p_service >= -_TOLERANCE) & (raw_p_service <= 1.0 + _TOLERANCE)).all().item(),
+        "p_service must be in [0,1] within tolerance",
+    )
     _require(((p_best_ue >= 0.0) & (p_best_ue <= 1.0)).all().item(), "p_best_ue must be in [0,1]")
-    _require(torch.allclose(p_blank + p_service, torch.ones_like(p_blank), atol=_TOLERANCE, rtol=0.0), "p_blank + p_service must equal one")
-    _require((p_best_ue <= p_service + _TOLERANCE).all().item(), "p_best_ue must not exceed p_service")
+    _require(
+        torch.allclose(p_blank + raw_p_service, torch.ones_like(p_blank), atol=_TOLERANCE, rtol=0.0),
+        "p_blank + p_service must equal one",
+    )
+    _require(
+        (p_best_ue <= raw_p_service + _TOLERANCE).all().item(),
+        "p_best_ue must not exceed p_service",
+    )
+
+    p_service = raw_p_service.clamp(0.0, 1.0)
+    fragmentation_blank = learned_blank & (p_service > p_blank)
+    conservative_blank = learned_blank & (p_blank >= p_service)
     _require(torch.equal(learned_blank, fragmentation_blank | conservative_blank), "learned Blank must partition")
     _require(not (fragmentation_blank & conservative_blank).any().item(), "Blank classes must be disjoint")
     _require(
