@@ -29,7 +29,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 case "${PHASE}" in
-    build|pfq-reference|validity|bc|pilot-A|pilot-B|pilot-C|pilot-D|select-and-eval-seed41|blank-diagnostics-seed41|hierarchical-decode-smoke|hierarchical-decode-seed41|paired-seeds-41-43) ;;
+    build|pfq-reference|validity|bc|pilot-A|pilot-B|pilot-C|pilot-D|select-and-eval-seed41|blank-diagnostics-seed41|hierarchical-decode-smoke|hierarchical-decode-seed41|rescue-cohort-smoke|rescue-cohort-seed41|paired-seeds-41-43) ;;
     *) echo "unsupported phase: ${PHASE}" >&2; exit 2 ;;
 esac
 [[ "${STEPS}" =~ ^[1-9][0-9]*$ ]] || { echo "--steps must be a positive integer" >&2; exit 2; }
@@ -640,6 +640,118 @@ PY
         --markdown-out "${phase_dir}/hierarchical_decode_report.md"
 }
 
+write_rescue_cohort_manifest() {
+    local phase_dir="$1" checkpoint="$2" warmup="$3" measure="$4"
+    local manifest="${phase_dir}/run_manifest.json"
+    "${PYTHON_BIN}" - "${manifest}" "${RESUME}" "${PHASE}" "$(source_revision)" \
+        "${SCENARIO_ID}" "${warmup}" "${measure}" \
+        "$(sha256_file "${checkpoint}")" "$(sha256_file "${SIM_BIN}")" <<'PY'
+import json
+import pathlib
+import sys
+
+(
+    manifest_text, resume_text, phase, source_revision, scenario_id,
+    warmup_text, measure_text, checkpoint_hash, simulator_hash,
+) = sys.argv[1:]
+manifest = pathlib.Path(manifest_text)
+payload = {
+    "phase": phase,
+    "scenario_id": scenario_id,
+    "seed": 41,
+    "warmup_ttis": int(warmup_text),
+    "measure_ttis": int(measure_text),
+    "a8_iteration": 8,
+    "checkpoint_sha256": checkpoint_hash,
+    "sim_binary_sha256": simulator_hash,
+    "source_revision": source_revision,
+}
+if manifest.parent.is_dir() and any(manifest.parent.iterdir()) and not manifest.is_file():
+    raise SystemExit(f"existing output directory has no compatible run manifest: {manifest.parent}")
+if manifest.is_file():
+    if resume_text != "1":
+        raise SystemExit(f"output exists; pass --resume only for an identical manifest: {manifest.parent}")
+    if json.loads(manifest.read_text(encoding="utf-8")) != payload:
+        raise SystemExit("resume manifest differs from current rescue cohort inputs")
+else:
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+PY
+}
+
+run_rescue_cohort_smoke() {
+    require_binary
+    local checkpoint="${OUT_DIR}/pilot-A/candidate_checkpoints/ppo_actor_iter_0008.pt"
+    require_file "${checkpoint}"
+    local phase_dir="${OUT_DIR}/rescue_cohort_smoke"
+    write_rescue_cohort_manifest "${phase_dir}" "${checkpoint}" 2 4
+    evaluate_checkpoint "${checkpoint}" 41 2 4 "${phase_dir}" 0 1 hierarchical_argmax
+    "${PYTHON_BIN}" - "${phase_dir}/eval_summary.json" <<'PY'
+import json
+import math
+import sys
+
+summary = json.load(open(sys.argv[1], encoding="utf-8"))
+checks = {
+    "measured_ttis": summary.get("stats_count") == 4,
+    "diagnostic_decisions": summary.get("diagnostic_decision_count") == 204.0,
+    "zero_replay": summary.get("stats_sum_action_replay_mismatch_count") == 0.0,
+    "zero_illegal": summary.get("stats_sum_illegal_action_count") == 0.0,
+    "diagnostics_enabled": summary.get("rescue_cohort_diagnostics_enabled") == 1,
+}
+try:
+    scheduled = float(summary["stats_sum_scheduled_bytes"])
+    goodput = float(summary["stats_sum_ue_goodput_bytes"])
+    failed = float(summary["stats_sum_failed_bytes"])
+    diagnostics = summary["rescue_cohort_diagnostics"]
+    checks["byte_identity"] = scheduled == goodput + failed
+    checks["schema_version"] = diagnostics.get("schema_version") == 1
+    cohorts = diagnostics["cohorts"]
+    checks["cohort_names"] = set(cohorts) == {"rescue_exposed", "ordinary_service"}
+    raw_keys = (
+        "ue_tti_count", "tti_count", "planned_prg_count", "rescued_prg_count",
+        "accepted_prg_count", "actual_prg_count", "predicted_service_bytes",
+        "scheduled_bytes", "goodput_bytes", "failed_bytes", "tb_tx_count",
+        "tb_err_count", "early_rescue_count", "middle_rescue_count",
+        "late_rescue_count",
+    )
+    checks["raw_denominators"] = all(
+        isinstance(row, dict)
+        and all(
+            isinstance(row.get(key), (int, float))
+            and not isinstance(row.get(key), bool)
+            and math.isfinite(float(row[key]))
+            and float(row[key]) >= 0.0
+            for key in raw_keys
+        )
+        for row in cohorts.values()
+    )
+    rescued = sum(float(row["rescued_prg_count"]) for row in cohorts.values())
+    checks["rescued_prgs"] = rescued == float(summary["diagnostic_fragmentation_rescue_count"])
+except (AttributeError, KeyError, TypeError, ValueError):
+    checks["cohort_schema"] = False
+if not all(checks.values()):
+    raise SystemExit(f"rescue cohort smoke gate failed: {checks}")
+PY
+}
+
+run_rescue_cohort_seed41() {
+    require_binary
+    local checkpoint="${OUT_DIR}/pilot-A/candidate_checkpoints/ppo_actor_iter_0008.pt"
+    local frozen_reference="${OUT_DIR}/hierarchical_decode_seed41/eval_summary.json"
+    require_file "${checkpoint}"
+    require_file "${frozen_reference}"
+    local phase_dir="${OUT_DIR}/rescue_cohort_seed41"
+    write_rescue_cohort_manifest "${phase_dir}" "${checkpoint}" 1000 512
+    evaluate_checkpoint "${checkpoint}" 41 1000 512 "${phase_dir}" 0 1 hierarchical_argmax
+    "${PYTHON_BIN}" -m training.stageb_hgraph.rescue_cohort_gate \
+        --summary "${phase_dir}/eval_summary.json" \
+        --manifest "${phase_dir}/run_manifest.json" \
+        --frozen-reference "${OUT_DIR}/hierarchical_decode_seed41/eval_summary.json" \
+        --json-out "${phase_dir}/rescue_cohort_report.json" \
+        --markdown-out "${phase_dir}/rescue_cohort_report.md"
+}
+
 run_paired_seeds() {
     require_file "${OUT_DIR}/seed41_selection/treatment_comparison.json"
     local winner
@@ -690,5 +802,7 @@ case "${PHASE}" in
     blank-diagnostics-seed41) run_blank_diagnostics_seed41 ;;
     hierarchical-decode-smoke) run_hierarchical_decode_smoke ;;
     hierarchical-decode-seed41) run_hierarchical_decode_seed41 ;;
+    rescue-cohort-smoke) run_rescue_cohort_smoke ;;
+    rescue-cohort-seed41) run_rescue_cohort_seed41 ;;
     paired-seeds-41-43) run_paired_seeds ;;
 esac
