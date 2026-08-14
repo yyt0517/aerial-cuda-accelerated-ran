@@ -382,6 +382,26 @@ def _validate_cross_level_reconciliation(
                         f"{cohort_name} strata {key} weighted mean does not match parent cohort"
                     )
 
+    planned_and_blank = sum(
+        _finite(
+            _mapping(cohorts.get(cohort_name), cohort_name),
+            "planned_prg_count",
+            cohort_name,
+        )
+        for cohort_name in ("rescue_exposed", "ordinary_service")
+    ) + sum(
+        _finite(summary, key, "summary")
+        for key in (
+            "diagnostic_selected_forced_blank_count",
+            "diagnostic_selected_fragmentation_blank_count",
+            "diagnostic_selected_conservative_blank_count",
+        )
+    )
+    if planned_and_blank != _finite(summary, "diagnostic_decision_count", "summary"):
+        raise ValueError(
+            "planned PRGs and selected Blank counts do not match decision count"
+        )
+
     for cohort_key, summary_key in (
         ("scheduled_bytes", "stats_sum_scheduled_bytes"),
         ("goodput_bytes", "stats_sum_ue_goodput_bytes"),

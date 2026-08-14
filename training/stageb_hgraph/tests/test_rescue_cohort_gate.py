@@ -526,6 +526,26 @@ def test_report_rejects_classification_changing_self_consistent_stratum_tamper()
         assert tampered["classification"] == "service_value_supported"
 
 
+def test_report_rejects_planned_prgs_plus_blank_decision_mismatch() -> None:
+    """Catches planned service and Blank totals exceeding the frozen decision count."""
+    summary = _summary()
+    row = summary["rescue_cohort_diagnostics"]["actual_prg_strata"]["3_5"][
+        "rescue_exposed"
+    ]
+    predicted_per_planned = float(row["predicted_service_bytes_per_planned_prg"])
+    row["planned_prg_count"] = float(row["planned_prg_count"]) + 1000.0
+    row["predicted_service_bytes"] = (
+        predicted_per_planned * float(row["planned_prg_count"])
+    )
+    _sync_derived(row)
+    _sync_parent_rows(summary)
+
+    with pytest.raises(ValueError, match="planned PRGs and selected Blank.*decision count"):
+        build_rescue_cohort_report(
+            summary, manifest=_manifest(), frozen_reference=_reference()
+        )
+
+
 def test_report_rejects_stratum_feature_mean_not_weighted_into_parent() -> None:
     """Catches classification-driving feature tampering without emitted raw feature sums."""
     summary = _summary()
