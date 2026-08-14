@@ -150,6 +150,27 @@ def test_deterministic_evaluator_collects_independent_policy_diagnostics() -> No
     assert trace.diagnostics.valid_ue_count.numel() == 9
 
 
+def test_deterministic_evaluator_exposes_materialized_chosen_ue_vector_for_diagnostics() -> None:
+    """Catches cohort collection reconstructing a different action than the submitted one."""
+    from training.stageb_hgraph.eval_checkpoint_online import _select_joint_action
+
+    selected = _select_joint_action(
+        _actor(),
+        _graph(),
+        decode_mode="hierarchical_argmax",
+        candidate_policy_mode="independent",
+        independent_policy_diagnostics=True,
+    )
+
+    chosen = selected["decoded_chosen_ue_per_prg"]
+    assert isinstance(chosen, torch.Tensor)
+    assert chosen.device.type == "cpu"
+    assert chosen.shape == (9,)
+    assert int((chosen >= 0).sum().item()) == int(
+        (~selected["independent_policy_trace"].diagnostics.selected_blank).sum().item()
+    )
+
+
 @pytest.mark.parametrize(
     ("decode_mode", "expected_internal_mode"),
     [("argmax", "greedy"), ("hierarchical_argmax", "hierarchical_greedy")],

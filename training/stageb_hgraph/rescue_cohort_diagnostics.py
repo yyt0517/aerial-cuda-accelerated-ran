@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, fields
-from typing import Sequence
+from typing import Mapping, Sequence
 
 import torch
 
@@ -31,6 +31,48 @@ class RescueDecisionDiagnostics:
     p_service: torch.Tensor
     p_best_ue: torch.Tensor
     success_proxy: torch.Tensor
+
+
+@dataclass(frozen=True)
+class RescueUeTtiRow:
+    tti: int
+    ue: int
+    rescue_exposed: bool
+    planned_prg_count: int
+    rescued_prg_count: int
+    accepted_prg_count: int
+    actual_prg_count: int
+    predicted_service_bytes: float
+    scheduled_bytes: float
+    goodput_bytes: float
+    tb_tx_count: int
+    tb_err_count: int
+    quality_db_sum: float
+    quality_gap_db_sum: float
+    prg_risk_sum: float
+    ue_tb_err_last_sum: float
+    remaining_demand_ratio_sum: float
+    success_proxy_sum: float
+    p_blank_sum: float
+    p_service_sum: float
+    p_best_ue_sum: float
+    early_rescue_count: int
+    middle_rescue_count: int
+    late_rescue_count: int
+
+
+@dataclass(frozen=True)
+class RescueCellTtiRow:
+    tti: int
+    cell: int
+    rescue_count: int
+    first_rescue_local_prg: int
+    decisions_before_or_without_prior_rescue: int
+    decisions_after_prior_rescue: int
+    forced_before_or_without_prior_rescue: int
+    forced_after_prior_rescue: int
+    conservative_before_or_without_prior_rescue: int
+    conservative_after_prior_rescue: int
 
 
 def _require(condition: bool, message: str) -> None:
@@ -184,3 +226,272 @@ def concatenate_rescue_decision_diagnostics(
     lengths = {tensor.numel() for tensor in values.values()}
     _require(len(lengths) == 1, "rescue diagnostics fields must have equal lengths")
     return RescueDecisionDiagnostics(**values)
+
+
+def _outcome_vector(info: Mapping[str, object], name: str, n_ue: int) -> torch.Tensor:
+    _require(name in info, f"missing required rescue outcome {name}")
+    value = torch.as_tensor(info[name]).detach().cpu()
+    _require(value.shape == (n_ue,), f"rescue outcome {name} shape mismatch")
+    _require(value.dtype is not torch.bool, f"rescue outcome {name} must be numeric")
+    value = value.to(dtype=torch.float64)
+    _require(torch.isfinite(value).all().item(), f"rescue outcome {name} must be finite")
+    _require((value >= 0).all().item(), f"rescue outcome {name} must be non-negative")
+    return value
+
+
+def _count_vector(info: Mapping[str, object], name: str, n_ue: int) -> torch.Tensor:
+    value = _outcome_vector(info, name, n_ue)
+    _require(torch.equal(value, value.round()), f"rescue outcome {name} must be integral")
+    return value.to(dtype=torch.long)
+
+
+def _ratio(numerator: float | int, denominator: float | int) -> float | None:
+    return None if denominator == 0 else float(numerator) / float(denominator)
+
+
+def _validate_join_decisions(
+    decisions: RescueDecisionDiagnostics,
+    chosen_ue_per_prg: torch.Tensor,
+    *,
+    n_ue: int,
+    n_cell: int,
+    n_prg: int,
+) -> tuple[torch.Tensor, dict[str, torch.Tensor]]:
+    expected = n_cell * n_prg
+    _require(n_ue >= 0 and n_cell > 0 and n_prg > 0, "invalid rescue join dimensions")
+    values = {field.name: _detached_vector(getattr(decisions, field.name)) for field in fields(decisions)}
+    _require(all(value.shape == (expected,) for value in values.values()), "rescue decision shape mismatch")
+    chosen = torch.as_tensor(chosen_ue_per_prg).detach().cpu()
+    _require(chosen.shape == (expected,), "chosen_ue_per_prg shape mismatch")
+    _require(chosen.dtype is not torch.bool, "chosen_ue_per_prg must be numeric")
+    chosen = chosen.to(dtype=torch.float64)
+    _require(torch.isfinite(chosen).all().item(), "chosen_ue_per_prg must be finite")
+    _require(torch.equal(chosen, chosen.round()), "chosen_ue_per_prg must be integral")
+    chosen = chosen.to(dtype=torch.long)
+    _require(((chosen >= -1) & (chosen < n_ue)).all().item(), "chosen_ue_per_prg UE is out of range")
+
+    selected_nonblank = values["selected_nonblank"].to(dtype=torch.bool)
+    selected_ue = values["selected_ue"].to(dtype=torch.long)
+    cell_index = values["cell_index"].to(dtype=torch.long)
+    local_prg_index = values["local_prg_index"].to(dtype=torch.long)
+    _require(((cell_index >= 0) & (cell_index < n_cell)).all().item(), "rescue decision cell is out of range")
+    _require(((local_prg_index >= 0) & (local_prg_index < n_prg)).all().item(), "rescue decision local PRG is out of range")
+    _require(((selected_ue[selected_nonblank] >= 0) & (selected_ue[selected_nonblank] < n_ue)).all().item(), "rescue decision UE is out of range")
+    _require((selected_ue[~selected_nonblank] == -1).all().item(), "Blank rescue decision must have UE -1")
+    tokens = cell_index * n_prg + local_prg_index
+    _require(torch.unique(tokens).numel() == expected, "rescue decision tokens must be unique")
+    _require(torch.equal(torch.sort(tokens).values, torch.arange(expected)), "rescue decision tokens must cover action")
+    expected_chosen = torch.full_like(chosen, -1)
+    expected_chosen[tokens[selected_nonblank]] = selected_ue[selected_nonblank]
+    _require(torch.equal(chosen, expected_chosen), "rescue decisions do not reconstruct chosen UE action")
+    _require((~values["fragmentation_rescued"].to(dtype=torch.bool) | selected_nonblank).all().item(), "rescued decision must be nonblank")
+    for name in (
+        "estimated_service_bytes", "quality_db", "quality_gap_db", "prg_risk", "ue_tb_err_last",
+        "remaining_demand_ratio", "p_blank", "p_service", "p_best_ue", "success_proxy",
+    ):
+        _require(torch.isfinite(values[name].to(dtype=torch.float64)).all().item(), f"rescue decision {name} must be finite")
+    _require((values["estimated_service_bytes"].to(dtype=torch.float64)[selected_nonblank] >= 0).all().item(), "estimated service bytes must be non-negative")
+    return chosen, values
+
+
+def join_rescue_cohort_tti(
+    decisions: RescueDecisionDiagnostics,
+    *,
+    chosen_ue_per_prg: torch.Tensor,
+    info: Mapping[str, object],
+    n_ue: int,
+    n_cell: int,
+    n_prg: int,
+    tti: int,
+) -> tuple[list[RescueUeTtiRow], list[RescueCellTtiRow]]:
+    """Join one action's planned decisions to the simulator's UE-level outcome."""
+    _chosen, values = _validate_join_decisions(
+        decisions, chosen_ue_per_prg, n_ue=n_ue, n_cell=n_cell, n_prg=n_prg
+    )
+    accepted = _count_vector(info, "accepted_pre_pdsch_ue_prg_count", n_ue)
+    actual = _count_vector(info, "actual_ue_prg_count", n_ue)
+    scheduled = _outcome_vector(info, "actual_ue_served_bytes", n_ue)
+    goodput = _outcome_vector(info, "actual_ue_goodput_bytes", n_ue)
+    tb_tx = _count_vector(info, "actual_ue_tb_tx_count", n_ue)
+    tb_err = _count_vector(info, "actual_ue_tb_err_count", n_ue)
+    _require((goodput <= scheduled).all().item(), "goodput bytes exceed scheduled bytes")
+    _require((tb_err <= tb_tx).all().item(), "tb_err exceeds tb_tx")
+
+    selected = values["selected_nonblank"].to(dtype=torch.bool)
+    selected_ue = values["selected_ue"].to(dtype=torch.long)
+    rescued = values["fragmentation_rescued"].to(dtype=torch.bool)
+    planned_by_ue = torch.bincount(selected_ue[selected], minlength=n_ue)
+    evidence = accepted + actual + scheduled.ne(0).to(dtype=torch.long) + goodput.ne(0).to(dtype=torch.long) + tb_tx + tb_err
+    _require(((planned_by_ue > 0) | (evidence == 0)).all().item(), "unplanned UE has nonzero actual evidence")
+    _require((accepted <= planned_by_ue).all().item(), "accepted PRGs exceed planned PRGs")
+    _require((actual <= accepted).all().item(), "actual PRGs exceed accepted PRGs")
+
+    ue_rows: list[RescueUeTtiRow] = []
+    scalar_fields = (
+        "estimated_service_bytes", "quality_db", "quality_gap_db", "prg_risk", "ue_tb_err_last",
+        "remaining_demand_ratio", "success_proxy", "p_blank", "p_service", "p_best_ue",
+    )
+    for ue in torch.nonzero(planned_by_ue > 0, as_tuple=False).flatten().tolist():
+        mask = selected & (selected_ue == ue)
+        rescue_mask = mask & rescued
+        local = values["local_prg_index"].to(dtype=torch.long)[rescue_mask]
+        sums = {name: float(values[name].to(dtype=torch.float64)[mask].sum().item()) for name in scalar_fields}
+        ue_rows.append(RescueUeTtiRow(
+            tti=int(tti), ue=int(ue), rescue_exposed=bool(rescue_mask.any().item()),
+            planned_prg_count=int(mask.sum().item()), rescued_prg_count=int(rescue_mask.sum().item()),
+            accepted_prg_count=int(accepted[ue].item()), actual_prg_count=int(actual[ue].item()),
+            predicted_service_bytes=sums["estimated_service_bytes"], scheduled_bytes=float(scheduled[ue].item()),
+            goodput_bytes=float(goodput[ue].item()), tb_tx_count=int(tb_tx[ue].item()), tb_err_count=int(tb_err[ue].item()),
+            quality_db_sum=sums["quality_db"], quality_gap_db_sum=sums["quality_gap_db"],
+            prg_risk_sum=sums["prg_risk"], ue_tb_err_last_sum=sums["ue_tb_err_last"],
+            remaining_demand_ratio_sum=sums["remaining_demand_ratio"], success_proxy_sum=sums["success_proxy"],
+            p_blank_sum=sums["p_blank"], p_service_sum=sums["p_service"], p_best_ue_sum=sums["p_best_ue"],
+            early_rescue_count=int((local <= 5).sum().item()),
+            middle_rescue_count=int(((local >= 6) & (local <= 11)).sum().item()),
+            late_rescue_count=int(((local >= 12) & (local <= 16)).sum().item()),
+        ))
+
+    cell_rows: list[RescueCellTtiRow] = []
+    cell_index = values["cell_index"].to(dtype=torch.long)
+    local_index = values["local_prg_index"].to(dtype=torch.long)
+    forced = values["selected_forced_blank"].to(dtype=torch.bool)
+    conservative = values["selected_conservative_blank"].to(dtype=torch.bool)
+    for cell in range(n_cell):
+        cell_mask = cell_index == cell
+        cell_rescue_local = local_index[cell_mask & rescued]
+        first_rescue = int(cell_rescue_local.min().item()) if cell_rescue_local.numel() else -1
+        before = after = forced_before = forced_after = conservative_before = conservative_after = 0
+        for local_prg in range(n_prg):
+            index = torch.nonzero(cell_mask & (local_index == local_prg), as_tuple=False).flatten()
+            _require(index.numel() == 1, "rescue decision cell-local PRG is missing")
+            decision = int(index.item())
+            has_prior_rescue = first_rescue >= 0 and first_rescue < local_prg
+            if has_prior_rescue:
+                after += 1
+                forced_after += int(forced[decision].item())
+                conservative_after += int(conservative[decision].item())
+            else:
+                before += 1
+                forced_before += int(forced[decision].item())
+                conservative_before += int(conservative[decision].item())
+        cell_rows.append(RescueCellTtiRow(
+            tti=int(tti), cell=cell, rescue_count=int((cell_mask & rescued).sum().item()),
+            first_rescue_local_prg=first_rescue,
+            decisions_before_or_without_prior_rescue=before, decisions_after_prior_rescue=after,
+            forced_before_or_without_prior_rescue=forced_before, forced_after_prior_rescue=forced_after,
+            conservative_before_or_without_prior_rescue=conservative_before,
+            conservative_after_prior_rescue=conservative_after,
+        ))
+    return ue_rows, cell_rows
+
+
+def _summarize_rows(rows: Sequence[RescueUeTtiRow]) -> dict[str, float | int | None]:
+    planned = sum(row.planned_prg_count for row in rows)
+    accepted = sum(row.accepted_prg_count for row in rows)
+    actual = sum(row.actual_prg_count for row in rows)
+    scheduled = sum(row.scheduled_bytes for row in rows)
+    goodput = sum(row.goodput_bytes for row in rows)
+    tb_tx = sum(row.tb_tx_count for row in rows)
+    sums = {
+        "ue_tti_count": len(rows), "tti_count": len({row.tti for row in rows}),
+        "planned_prg_count": planned, "rescued_prg_count": sum(row.rescued_prg_count for row in rows),
+        "accepted_prg_count": accepted, "actual_prg_count": actual,
+        "predicted_service_bytes": float(sum(row.predicted_service_bytes for row in rows)),
+        "scheduled_bytes": float(scheduled), "goodput_bytes": float(goodput),
+        "failed_bytes": float(scheduled - goodput), "tb_tx_count": tb_tx,
+        "tb_err_count": sum(row.tb_err_count for row in rows),
+        "early_rescue_count": sum(row.early_rescue_count for row in rows),
+        "middle_rescue_count": sum(row.middle_rescue_count for row in rows),
+        "late_rescue_count": sum(row.late_rescue_count for row in rows),
+    }
+    result: dict[str, float | int | None] = dict(sums)
+    result.update({
+        "predicted_service_bytes_per_planned_prg": _ratio(sums["predicted_service_bytes"], planned),
+        "scheduled_bytes_per_actual_prg": _ratio(scheduled, actual),
+        "goodput_bytes_per_actual_prg": _ratio(goodput, actual),
+        "failed_byte_ratio": _ratio(scheduled - goodput, scheduled),
+        "tb_error_ratio": _ratio(sums["tb_err_count"], tb_tx),
+        "planned_to_accepted_ratio": _ratio(accepted, planned),
+        "accepted_to_actual_ratio": _ratio(actual, accepted),
+        "quality_db_mean": _ratio(sum(row.quality_db_sum for row in rows), planned),
+        "quality_gap_db_mean": _ratio(sum(row.quality_gap_db_sum for row in rows), planned),
+        "prg_risk_mean": _ratio(sum(row.prg_risk_sum for row in rows), planned),
+        "ue_tb_err_last_mean": _ratio(sum(row.ue_tb_err_last_sum for row in rows), planned),
+        "remaining_demand_ratio_mean": _ratio(sum(row.remaining_demand_ratio_sum for row in rows), planned),
+        "success_proxy_mean": _ratio(sum(row.success_proxy_sum for row in rows), planned),
+        "p_blank_mean": _ratio(sum(row.p_blank_sum for row in rows), planned),
+        "p_service_mean": _ratio(sum(row.p_service_sum for row in rows), planned),
+        "p_best_ue_mean": _ratio(sum(row.p_best_ue_sum for row in rows), planned),
+    })
+    return result
+
+
+def _per_tti_comparisons(ue_rows: Sequence[RescueUeTtiRow]) -> dict[str, dict[str, float | int | None]]:
+    metric_names = (
+        "predicted_service_bytes_per_planned_prg", "scheduled_bytes_per_actual_prg",
+        "goodput_bytes_per_actual_prg", "failed_byte_ratio", "tb_error_ratio",
+        "planned_to_accepted_ratio", "accepted_to_actual_ratio",
+    )
+    by_tti = sorted({row.tti for row in ue_rows})
+    result: dict[str, dict[str, float | int | None]] = {}
+    for metric in metric_names:
+        deltas: list[float] = []
+        for tti in by_tti:
+            rescue = _summarize_rows([row for row in ue_rows if row.tti == tti and row.rescue_exposed])[metric]
+            ordinary = _summarize_rows([row for row in ue_rows if row.tti == tti and not row.rescue_exposed])[metric]
+            if rescue is not None and ordinary is not None:
+                deltas.append(float(rescue) - float(ordinary))
+        mean_delta = None if not deltas else float(sum(deltas) / len(deltas))
+        if mean_delta is None:
+            agreement = None
+        elif mean_delta == 0.0:
+            agreement = float(sum(delta == 0.0 for delta in deltas) / len(deltas))
+        else:
+            agreement = float(sum((delta > 0.0) == (mean_delta > 0.0) for delta in deltas) / len(deltas))
+        result[metric] = {
+            "mean_delta_rescue_minus_ordinary": mean_delta,
+            "paired_tti_count": len(deltas),
+            "direction_agreement_fraction": agreement,
+        }
+    return result
+
+
+def summarize_rescue_cohorts(
+    ue_rows: Sequence[RescueUeTtiRow],
+    cell_rows: Sequence[RescueCellTtiRow],
+) -> dict[str, object]:
+    """Summarize measured-window cohorts using sums and explicit denominators."""
+    cohorts = {
+        "rescue_exposed": _summarize_rows([row for row in ue_rows if row.rescue_exposed]),
+        "ordinary_service": _summarize_rows([row for row in ue_rows if not row.rescue_exposed]),
+    }
+    strata = {
+        "zero": lambda count: count == 0,
+        "1_2": lambda count: 1 <= count <= 2,
+        "3_5": lambda count: 3 <= count <= 5,
+        "ge_6": lambda count: count >= 6,
+    }
+    actual_prg_strata = {
+        name: {
+            "rescue_exposed": _summarize_rows([row for row in ue_rows if row.rescue_exposed and predicate(row.actual_prg_count)]),
+            "ordinary_service": _summarize_rows([row for row in ue_rows if not row.rescue_exposed and predicate(row.actual_prg_count)]),
+        }
+        for name, predicate in strata.items()
+    }
+    return {
+        "schema_version": 1,
+        "unit": "ue_tti",
+        "cohorts": cohorts,
+        "actual_prg_strata": actual_prg_strata,
+        "per_tti_comparisons": _per_tti_comparisons(ue_rows),
+        "depletion": {
+            "cell_tti_count": len(cell_rows),
+            "rescue_count": sum(row.rescue_count for row in cell_rows),
+            "decisions_before_or_without_prior_rescue": sum(row.decisions_before_or_without_prior_rescue for row in cell_rows),
+            "decisions_after_prior_rescue": sum(row.decisions_after_prior_rescue for row in cell_rows),
+            "forced_before_or_without_prior_rescue": sum(row.forced_before_or_without_prior_rescue for row in cell_rows),
+            "forced_after_prior_rescue": sum(row.forced_after_prior_rescue for row in cell_rows),
+            "conservative_before_or_without_prior_rescue": sum(row.conservative_before_or_without_prior_rescue for row in cell_rows),
+            "conservative_after_prior_rescue": sum(row.conservative_after_prior_rescue for row in cell_rows),
+        },
+    }

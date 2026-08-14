@@ -80,6 +80,12 @@ from training.stageb_hgraph.independent_policy import (
     replay_independent_trace,
     select_independent_action,
 )
+from training.stageb_hgraph.rescue_cohort_diagnostics import (
+    RescueCellTtiRow,
+    RescueUeTtiRow,
+    join_rescue_cohort_tti,
+    summarize_rescue_cohorts,
+)
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy, build_model_from_config
 from training.stageb_hgraph.online_imitation import _pick_device, _set_seed
 from training.stageb_hgraph.online_ppo import (
@@ -297,6 +303,7 @@ def _select_joint_action(
         return {
             "action_ue_select": decoded.action_ue_select.cpu().numpy(),
             "action_prg_alloc": decoded.action_prg_alloc.cpu().numpy(),
+            "decoded_chosen_ue_per_prg": decoded.chosen_ue_per_prg.detach().cpu(),
             "prg_action_class": trace.choice.detach().cpu(),
             "independent_policy_trace": trace,
             "blank_ratio": float(
@@ -1022,6 +1029,12 @@ def main() -> int:
     eval_diagnostics: list[IndependentPolicyDiagnostics] | None = (
         [] if independent_policy_diagnostics else None
     )
+    rescue_ue_rows: list[RescueUeTtiRow] | None = (
+        [] if independent_policy_diagnostics else None
+    )
+    rescue_cell_rows: list[RescueCellTtiRow] | None = (
+        [] if independent_policy_diagnostics else None
+    )
     stats_sum_scheduled_bytes: np.float64 | None = (
         np.float64(0.0) if independent_policy_diagnostics else None
     )
@@ -1256,6 +1269,24 @@ def main() -> int:
                     if diagnostic is None:
                         raise ValueError("independent evaluation is missing policy diagnostics")
                     eval_diagnostics.append(diagnostic)
+                    rescue_diagnostics = getattr(trace, "rescue_diagnostics", None)
+                    chosen_ue_per_prg = selected.get("decoded_chosen_ue_per_prg")
+                    if rescue_diagnostics is None or chosen_ue_per_prg is None:
+                        raise ValueError("independent evaluation is missing rescue cohort diagnostics")
+                    meta = graph.snapshot.static_meta
+                    step_ue_rows, step_cell_rows = join_rescue_cohort_tti(
+                        rescue_diagnostics,
+                        chosen_ue_per_prg=torch.as_tensor(chosen_ue_per_prg),
+                        info=next_info,
+                        n_ue=int(meta.n_ue),
+                        n_cell=int(meta.n_cell),
+                        n_prg=int(meta.n_prg),
+                        tti=measured_tti,
+                    )
+                    if rescue_ue_rows is None or rescue_cell_rows is None:
+                        raise RuntimeError("rescue cohort accumulators are unavailable")
+                    rescue_ue_rows.extend(step_ue_rows)
+                    rescue_cell_rows.extend(step_cell_rows)
                     transmission = extract_failed_transmission_bytes(
                         next_info,
                         expected_n_ue=n_active_ue,
@@ -1342,7 +1373,7 @@ def main() -> int:
         return None if stats_count <= 0 else float(stats_sums[key])
 
     diagnostic_summary: dict[str, float] | None = None
-    transmission_summary: dict[str, float | int] | None = None
+    transmission_summary: dict[str, Any] | None = None
     if eval_diagnostics is not None:
         if stats_count <= 0 or not eval_diagnostics:
             raise ValueError("independent diagnostics require at least one measured TTI")
@@ -1357,6 +1388,22 @@ def main() -> int:
             raise ValueError(
                 "independent evaluation diagnostic decision count mismatch: "
                 f"got={actual_decisions} expected={expected_decisions}"
+            )
+        if rescue_ue_rows is None or rescue_cell_rows is None:
+            raise RuntimeError("rescue cohort accumulators are unavailable")
+        rescued_prgs = sum(row.rescued_prg_count for row in rescue_ue_rows)
+        expected_rescued_prgs = int(eval_diag.fragmentation_rescued.sum().item())
+        if rescued_prgs != expected_rescued_prgs:
+            raise ValueError(
+                "rescue cohort rescued PRG count mismatch: "
+                f"got={rescued_prgs} expected={expected_rescued_prgs}"
+            )
+        planned_prgs = sum(row.planned_prg_count for row in rescue_ue_rows)
+        expected_planned_prgs = int((~eval_diag.selected_blank).sum().item())
+        if planned_prgs != expected_planned_prgs:
+            raise ValueError(
+                "rescue cohort planned PRG count mismatch: "
+                f"got={planned_prgs} expected={expected_planned_prgs}"
             )
         if (
             stats_sum_scheduled_bytes is None
@@ -1393,6 +1440,11 @@ def main() -> int:
             "stats_mean_ue_goodput_mbps": stats_mean_ue_goodput_mbps,
             "stats_failed_mbps": stats_failed_mbps,
         }
+        transmission_summary["rescue_cohort_diagnostics_enabled"] = 1
+        transmission_summary["rescue_cohort_diagnostics"] = summarize_rescue_cohorts(
+            rescue_ue_rows,
+            rescue_cell_rows,
+        )
 
     mean_packet_delay_weighted = (
         float(sums["packet_system_time_ms"] / max(sums["packet_completed_count"], 1.0))
