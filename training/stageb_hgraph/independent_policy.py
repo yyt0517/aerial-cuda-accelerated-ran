@@ -14,6 +14,11 @@ from .graph_ops import (
     type0_action_preflight_reject_counts,
 )
 from .independent_actor import PFQIndependentReuseActor
+from .independent_blank_diagnostics import (
+    IndependentPolicyDiagnostics,
+    concatenate_independent_policy_diagnostics,
+    compute_independent_policy_diagnostics,
+)
 from .types import SparseEntityGraph
 
 
@@ -24,6 +29,7 @@ class IndependentPolicyTrace:
     valid_at_step: torch.Tensor
     logp: torch.Tensor
     entropy: torch.Tensor
+    diagnostics: IndependentPolicyDiagnostics | None = None
 
 
 def resolve_full_candidate_width(graph: SparseEntityGraph) -> int:
@@ -124,6 +130,7 @@ def _run_policy(
     *,
     mode: Literal["sample", "greedy"],
     generator: torch.Generator | None = None,
+    collect_diagnostics: bool = False,
     stored_trace: IndependentPolicyTrace | None = None,
     teacher_actions: tuple[torch.Tensor, torch.Tensor] | None = None,
 ) -> IndependentPolicyTrace:
@@ -165,6 +172,7 @@ def _run_policy(
     masks: list[torch.Tensor] = []
     logps: list[torch.Tensor] = []
     entropies: list[torch.Tensor] = []
+    diagnostic_rows: list[IndependentPolicyDiagnostics] = []
     for local_prg in range(meta.n_prg):
         tokens = torch.arange(meta.n_cell, device=device, dtype=torch.long) * meta.n_prg + local_prg
         sequence_features, valid_main = _candidate_state(
@@ -256,6 +264,17 @@ def _run_policy(
         else:
             selected = adjusted.argmax(dim=-1)
 
+        if collect_diagnostics:
+            diagnostic_rows.append(
+                compute_independent_policy_diagnostics(
+                    adjusted_logits=adjusted,
+                    probabilities=probabilities,
+                    valid_main=valid_main,
+                    selected=selected,
+                    blank_class_index=packed.blank_class_index,
+                )
+            )
+
         choices[tokens] = selected
         masks.append(valid)
         logps.append(logp_all.gather(1, selected.unsqueeze(-1)).squeeze(-1))
@@ -285,6 +304,11 @@ def _run_policy(
         valid_at_step=torch.stack(masks).detach(),
         logp=torch.cat(logps).mean(),
         entropy=torch.cat(entropies).mean(),
+        diagnostics=(
+            concatenate_independent_policy_diagnostics(diagnostic_rows)
+            if collect_diagnostics
+            else None
+        ),
     )
 
 
@@ -294,6 +318,7 @@ def select_independent_action(
     packed: PackedPrgCandidates,
     mode: Literal["sample", "greedy"],
     generator: torch.Generator | None = None,
+    collect_diagnostics: bool = False,
 ) -> tuple[IndependentPolicyTrace, DecodedType0Action]:
     trace = _run_policy(
         actor,
@@ -301,6 +326,7 @@ def select_independent_action(
         packed,
         mode=mode,
         generator=generator,
+        collect_diagnostics=collect_diagnostics,
     )
     decoded = materialize_independent_choices_to_type0(graph, packed, trace.choice)
     return trace, decoded

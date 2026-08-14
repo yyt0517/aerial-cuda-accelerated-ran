@@ -67,10 +67,27 @@ def test_rollout_action_stores_trace_exact_arrays_and_replays_without_mismatch()
     graph = _graph()
     actor_out, _ = _evaluate_graph(actor, critic, graph)
 
-    sampled = _sample_joint_action(actor, actor_out, graph)
+    torch.manual_seed(23)
+    sampled_off = _sample_joint_action(
+        actor,
+        actor_out,
+        graph,
+        independent_policy_diagnostics=False,
+    )
+    torch.manual_seed(23)
+    sampled = _sample_joint_action(
+        actor,
+        actor_out,
+        graph,
+        independent_policy_diagnostics=True,
+    )
     _record_submitted_action_replay_mismatch(graph, sampled)
 
     assert isinstance(sampled["independent_policy_trace"], IndependentPolicyTrace)
+    assert sampled_off["independent_policy_trace"].diagnostics is None
+    assert sampled["independent_policy_trace"].diagnostics is not None
+    assert np.array_equal(sampled_off["action_ue_select"], sampled["action_ue_select"])
+    assert np.array_equal(sampled_off["action_prg_alloc"], sampled["action_prg_alloc"])
     assert sampled["candidate_policy_mode"] == "independent"
     assert sampled["action_replay_mismatch_count"] == 0.0
     assert np.asarray(sampled["action_ue_select"]).shape == (6,)

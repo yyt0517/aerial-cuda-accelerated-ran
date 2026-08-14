@@ -116,6 +116,55 @@ def test_rollout_replay_exact_trace_and_action(mode: str) -> None:
     assert bool(torch.isfinite(actor.raw_logits.grad).all().item())
 
 
+@pytest.mark.parametrize("mode", ["sample", "greedy"])
+def test_diagnostic_collection_is_action_and_rng_invariant(mode: str) -> None:
+    graph = _small_demand_graph(n_prg=3)
+    actor = RecordingActor(n_prg=3)
+    packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    generator_off = torch.Generator().manual_seed(29) if mode == "sample" else None
+    generator_on = torch.Generator().manual_seed(29) if mode == "sample" else None
+
+    trace_off, action_off = select_independent_action(
+        actor,
+        graph,
+        packed,
+        mode=mode,
+        generator=generator_off,
+        collect_diagnostics=False,
+    )
+    trace_on, action_on = select_independent_action(
+        actor,
+        graph,
+        packed,
+        mode=mode,
+        generator=generator_on,
+        collect_diagnostics=True,
+    )
+
+    assert trace_off.diagnostics is None
+    assert trace_on.diagnostics is not None
+    assert trace_on.diagnostics.valid_ue_count.numel() == 3 * 3
+    assert torch.equal(trace_off.choice, trace_on.choice)
+    assert torch.equal(trace_off.valid_at_step, trace_on.valid_at_step)
+    assert torch.equal(trace_off.logp, trace_on.logp)
+    assert torch.equal(trace_off.entropy, trace_on.entropy)
+    assert torch.equal(action_off.action_ue_select, action_on.action_ue_select)
+    assert torch.equal(action_off.action_prg_alloc, action_on.action_prg_alloc)
+    if mode == "sample":
+        assert torch.equal(generator_off.get_state(), generator_on.get_state())
+
+    replay_logp, replay_entropy, replay_action = replay_independent_trace(
+        actor,
+        graph,
+        packed,
+        trace_on,
+    )
+    assert torch.equal(replay_logp, trace_on.logp)
+    assert torch.equal(replay_entropy, trace_on.entropy)
+    assert torch.equal(replay_action.action_ue_select, action_on.action_ue_select)
+    assert torch.equal(replay_action.action_prg_alloc, action_on.action_prg_alloc)
+
+
 def test_replay_rejects_stored_mask_or_action_mismatch() -> None:
     graph = _small_demand_graph(n_prg=3)
     actor = RecordingActor(n_prg=3)

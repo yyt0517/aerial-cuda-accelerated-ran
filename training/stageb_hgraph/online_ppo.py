@@ -3105,6 +3105,7 @@ def _sample_joint_action(
     candidate_budgeted_tail_quota_risk_max: float = 0.70,
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
+    independent_policy_diagnostics: bool = False,
 ) -> Dict[str, torch.Tensor | float]:
     if isinstance(actor, PFQIndependentReuseActor):
         packed = pack_prg_candidates(
@@ -3117,6 +3118,7 @@ def _sample_joint_action(
             graph,
             packed,
             mode="sample",
+            collect_diagnostics=independent_policy_diagnostics,
         )
         chosen = decoded.chosen_ue_per_prg[decoded.chosen_ue_per_prg >= 0]
         e_up = graph.edges["E_UP"].index
