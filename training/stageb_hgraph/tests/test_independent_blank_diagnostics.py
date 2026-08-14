@@ -93,15 +93,42 @@ def test_validate_measured_window_goodput_rejects_nonfinite_values(
         )
 
 
-def test_validate_measured_window_goodput_uses_tight_tolerance() -> None:
+def test_validate_measured_window_goodput_accepts_live_float32_rounding() -> None:
     blank_diagnostics.validate_measured_window_goodput_mbps(
-        derived_goodput_mbps=1000.0000005,
+        derived_goodput_mbps=840.0,
+        existing_goodput_mbps=839.9999694824219,
+    )
+
+
+def test_validate_measured_window_goodput_accepts_at_most_one_float32_ulp() -> None:
+    blank_diagnostics.validate_measured_window_goodput_mbps(
+        derived_goodput_mbps=1000.00006103515625,
         existing_goodput_mbps=1000.0,
     )
     with pytest.raises(ValueError, match="does not match"):
         blank_diagnostics.validate_measured_window_goodput_mbps(
-            derived_goodput_mbps=1000.000002,
+            derived_goodput_mbps=1000.0001220703125,
             existing_goodput_mbps=1000.0,
+        )
+
+
+def test_validate_measured_window_goodput_retains_absolute_floor() -> None:
+    blank_diagnostics.validate_measured_window_goodput_mbps(
+        derived_goodput_mbps=0.0000005,
+        existing_goodput_mbps=0.0,
+    )
+    with pytest.raises(ValueError, match="does not match"):
+        blank_diagnostics.validate_measured_window_goodput_mbps(
+            derived_goodput_mbps=0.000002,
+            existing_goodput_mbps=0.0,
+        )
+
+
+def test_validate_measured_window_goodput_rejects_large_magnitude_mismatch() -> None:
+    with pytest.raises(ValueError, match="does not match"):
+        blank_diagnostics.validate_measured_window_goodput_mbps(
+            derived_goodput_mbps=1.0e300,
+            existing_goodput_mbps=1.0000000001e300,
         )
 
 

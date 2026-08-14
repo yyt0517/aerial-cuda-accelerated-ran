@@ -442,7 +442,16 @@ def validate_measured_window_goodput_mbps(
     """Require finite, numerically equal goodput from the two measured sources."""
     if not np.isfinite(derived_goodput_mbps) or not np.isfinite(existing_goodput_mbps):
         raise ValueError("measured-window goodput values must be finite")
-    tolerance = max(1.0e-6, 1.0e-9 * abs(existing_goodput_mbps))
+    float32_max = float(np.finfo(np.float32).max)
+    magnitude = min(
+        max(abs(derived_goodput_mbps), abs(existing_goodput_mbps)),
+        float32_max,
+    )
+    magnitude32 = np.float32(magnitude)
+    direction = np.float32(-np.inf if magnitude32 == np.float32(float32_max) else np.inf)
+    adjacent32 = np.nextafter(magnitude32, direction, dtype=np.float32)
+    float32_ulp = abs(float(adjacent32) - float(magnitude32))
+    tolerance = max(1.0e-6, float32_ulp)
     if abs(derived_goodput_mbps - existing_goodput_mbps) > tolerance:
         raise ValueError(
             "measured-window UE goodput does not match existing goodput: "

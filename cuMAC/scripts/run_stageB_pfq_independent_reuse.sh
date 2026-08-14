@@ -205,17 +205,23 @@ evaluate_checkpoint() {
     local normalize_gate="${6:-1}"
     local diagnostics="${7:-0}"
     local socket="/tmp/cumac_independent_eval_${seed}_$$.sock"
-    local outcome_csv="${eval_dir}/packet_outcome_samples.csv"
     mkdir -p "${eval_dir}"
-    env CUMAC_ONLINE_BRIDGE=1 CUMAC_ONLINE_SOCKET="${socket}" CUMAC_ONLINE_PERSISTENT=1 \
-        CUMAC_ONLINE_EXPORT_TEACHER_ACTION=1 CUMAC_ONLINE_EXPORT_POST_EQ_SINR=1 \
-        CUMAC_CELL_ASSOC_MODE=strongest CUMAC_UE_PLACEMENT_MODE=coop_boundary \
-        CUMAC_UE_VORONOI_CLIP=1 CUMAC_BS_TX_PATTERN=omni \
-        CUMAC_TOPOLOGY_SEED="${seed}" CUMAC_TRAFFIC_SEED="${seed}" \
-        CUMAC_TRAFFIC_ARRIVAL_RATE=1.0 CUMAC_PACKET_TTL_TTI=0 CUMAC_PACKET_TTL_MS=200 \
-        CUMAC_COMPACT_TTI_LOG=1 CUMAC_PROGRESS_TTI_INTERVAL=0 CUMAC_COMPARE_TTI_INTERVAL=0 \
-        CUMAC_PACKET_DELAY_SAMPLES=1 CUMAC_PACKET_OUTCOME_SAMPLES_CSV="${outcome_csv}" \
-        CUMAC_EXEC_MODE=both "${SIM_BIN}" ${SIM_ARGS} > "${eval_dir}/sim.log" 2>&1 &
+    eval_dir="$(cd "${eval_dir}" && pwd -P)"
+    local outcome_csv="${eval_dir}/packet_outcome_samples.csv"
+    local packet_delay_csv="${eval_dir}/packet_delay_samples.csv"
+    (
+        cd "${eval_dir}"
+        env CUMAC_ONLINE_BRIDGE=1 CUMAC_ONLINE_SOCKET="${socket}" CUMAC_ONLINE_PERSISTENT=1 \
+            CUMAC_ONLINE_EXPORT_TEACHER_ACTION=1 CUMAC_ONLINE_EXPORT_POST_EQ_SINR=1 \
+            CUMAC_CELL_ASSOC_MODE=strongest CUMAC_UE_PLACEMENT_MODE=coop_boundary \
+            CUMAC_UE_VORONOI_CLIP=1 CUMAC_BS_TX_PATTERN=omni \
+            CUMAC_TOPOLOGY_SEED="${seed}" CUMAC_TRAFFIC_SEED="${seed}" \
+            CUMAC_TRAFFIC_ARRIVAL_RATE=1.0 CUMAC_PACKET_TTL_TTI=0 CUMAC_PACKET_TTL_MS=200 \
+            CUMAC_COMPACT_TTI_LOG=1 CUMAC_PROGRESS_TTI_INTERVAL=0 CUMAC_COMPARE_TTI_INTERVAL=0 \
+            CUMAC_PACKET_DELAY_SAMPLES=1 CUMAC_PACKET_DELAY_SAMPLES_CSV="${packet_delay_csv}" \
+            CUMAC_PACKET_OUTCOME_SAMPLES_CSV="${outcome_csv}" \
+            CUMAC_EXEC_MODE=both "${SIM_BIN}" ${SIM_ARGS}
+    ) > "${eval_dir}/sim.log" 2>&1 &
     local sim_pid=$!
     set +e
     "${PYTHON_BIN}" -m training.stageb_hgraph.eval_checkpoint_online \
