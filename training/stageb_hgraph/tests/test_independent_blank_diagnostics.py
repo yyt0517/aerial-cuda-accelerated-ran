@@ -124,11 +124,31 @@ def test_validate_measured_window_goodput_retains_absolute_floor() -> None:
         )
 
 
-def test_validate_measured_window_goodput_rejects_large_magnitude_mismatch() -> None:
+@pytest.mark.parametrize(
+    ("derived_goodput_mbps", "existing_goodput_mbps"),
+    [
+        (1.0e40, 1.000000002e40),
+        (1.0e40, 1.0),
+        (1.0, 1.0e40),
+    ],
+    ids=["review-neighborhood", "derived-out-of-range", "existing-out-of-range"],
+)
+def test_validate_measured_window_goodput_rejects_values_outside_float32_range(
+    derived_goodput_mbps: float,
+    existing_goodput_mbps: float,
+) -> None:
+    with pytest.raises(ValueError, match="within finite float32 range"):
+        blank_diagnostics.validate_measured_window_goodput_mbps(
+            derived_goodput_mbps=derived_goodput_mbps,
+            existing_goodput_mbps=existing_goodput_mbps,
+        )
+
+
+def test_validate_measured_window_goodput_float32_max_tolerance_is_finite() -> None:
     with pytest.raises(ValueError, match="does not match"):
         blank_diagnostics.validate_measured_window_goodput_mbps(
-            derived_goodput_mbps=1.0e300,
-            existing_goodput_mbps=1.0000000001e300,
+            derived_goodput_mbps=3.4028234663852886e38,
+            existing_goodput_mbps=0.0,
         )
 
 

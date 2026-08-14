@@ -443,10 +443,12 @@ def validate_measured_window_goodput_mbps(
     if not np.isfinite(derived_goodput_mbps) or not np.isfinite(existing_goodput_mbps):
         raise ValueError("measured-window goodput values must be finite")
     float32_max = float(np.finfo(np.float32).max)
-    magnitude = min(
-        max(abs(derived_goodput_mbps), abs(existing_goodput_mbps)),
-        float32_max,
-    )
+    if (
+        abs(derived_goodput_mbps) > float32_max
+        or abs(existing_goodput_mbps) > float32_max
+    ):
+        raise ValueError("measured-window goodput values must be within finite float32 range")
+    magnitude = max(abs(derived_goodput_mbps), abs(existing_goodput_mbps))
     magnitude32 = np.float32(magnitude)
     direction = np.float32(-np.inf if magnitude32 == np.float32(float32_max) else np.inf)
     adjacent32 = np.nextafter(magnitude32, direction, dtype=np.float32)
