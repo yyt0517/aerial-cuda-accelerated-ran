@@ -2,7 +2,7 @@
 
 **Date:** 2026-08-14
 **Mode:** Research-first, behavior-invariant diagnostic
-**Status:** Approved in conversation; pending written-spec review
+**Status:** Approved
 
 ## Research question
 
