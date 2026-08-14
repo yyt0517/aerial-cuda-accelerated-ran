@@ -29,7 +29,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 case "${PHASE}" in
-    build|pfq-reference|validity|bc|pilot-A|pilot-B|pilot-C|pilot-D|select-and-eval-seed41|paired-seeds-41-43) ;;
+    build|pfq-reference|validity|bc|pilot-A|pilot-B|pilot-C|pilot-D|select-and-eval-seed41|blank-diagnostics-seed41|paired-seeds-41-43) ;;
     *) echo "unsupported phase: ${PHASE}" >&2; exit 2 ;;
 esac
 [[ "${STEPS}" =~ ^[1-9][0-9]*$ ]] || { echo "--steps must be a positive integer" >&2; exit 2; }
@@ -203,6 +203,7 @@ run_pilot() {
 evaluate_checkpoint() {
     local checkpoint="$1" seed="$2" warmup="$3" measure="$4" eval_dir="$5"
     local normalize_gate="${6:-1}"
+    local diagnostics="${7:-0}"
     local socket="/tmp/cumac_independent_eval_${seed}_$$.sock"
     local outcome_csv="${eval_dir}/packet_outcome_samples.csv"
     mkdir -p "${eval_dir}"
@@ -223,6 +224,7 @@ evaluate_checkpoint() {
         --stats-warmup-steps "${warmup}" --decode-mode argmax --seed "${seed}" \
         --sample-seed "${seed}" --device auto --print-every-steps 500 --save-steps 0 \
         --sim-bin "${SIM_BIN}" --outcome-samples "${outcome_csv}" --out-dir "${eval_dir}" \
+        --independent-policy-diagnostics "${diagnostics}" \
         > "${eval_dir}/eval.log" 2>&1
     local eval_rc=$?
     wait "${sim_pid}"
@@ -409,6 +411,132 @@ PY
     return "${gate_rc}"
 }
 
+run_blank_diagnostics_seed41() {
+    require_binary
+    local a_selection="${OUT_DIR}/pilot-A/checkpoint_selection.json"
+    local b_selection="${OUT_DIR}/pilot-B/checkpoint_selection.json"
+    require_file "${a_selection}"
+    require_file "${b_selection}"
+
+    local b_iteration
+    b_iteration="$("${PYTHON_BIN}" -m training.stageb_hgraph.independent_blank_diagnostics select-b \
+        --selection "${b_selection}")"
+    [[ "${b_iteration}" =~ ^[1-9][0-9]*$ ]] || { echo "invalid B diagnostic iteration: ${b_iteration}" >&2; exit 2; }
+    local b_iteration_padded
+    printf -v b_iteration_padded '%04d' "${b_iteration}"
+
+    local a4_checkpoint="${OUT_DIR}/pilot-A/candidate_checkpoints/ppo_actor_iter_0004.pt"
+    local a8_checkpoint="${OUT_DIR}/pilot-A/candidate_checkpoints/ppo_actor_iter_0008.pt"
+    local b_checkpoint="${OUT_DIR}/pilot-B/candidate_checkpoints/ppo_actor_iter_${b_iteration_padded}.pt"
+    local a4_formal_summary="${OUT_DIR}/pilot-A/candidate_eval/iter-0004/eval_summary.json"
+    local a8_formal_summary="${OUT_DIR}/pilot-A/candidate_eval/iter-0008/eval_summary.json"
+    local b_formal_summary="${OUT_DIR}/pilot-B/candidate_eval/iter-${b_iteration_padded}/eval_summary.json"
+    require_file "${a4_checkpoint}"
+    require_file "${a8_checkpoint}"
+    require_file "${b_checkpoint}"
+    require_file "${a4_formal_summary}"
+    require_file "${a8_formal_summary}"
+    require_file "${b_formal_summary}"
+
+    local phase_dir="${OUT_DIR}/blank_diagnostics_seed41"
+    local manifest="${phase_dir}/run_manifest.json"
+    "${PYTHON_BIN}" - "${manifest}" "${RESUME}" "$(source_revision)" "${SCENARIO_ID}" \
+        "${SIM_BIN}" "${a_selection}" "${b_selection}" "${b_iteration}" \
+        "${a4_checkpoint}" "${a4_formal_summary}" \
+        "${a8_checkpoint}" "${a8_formal_summary}" \
+        "${b_checkpoint}" "${b_formal_summary}" <<'PY'
+import hashlib
+import json
+import pathlib
+import sys
+
+(
+    manifest_text, resume_text, source_revision, scenario_id, sim_text,
+    a_selection_text, b_selection_text, b_iteration_text,
+    a4_checkpoint_text, a4_summary_text,
+    a8_checkpoint_text, a8_summary_text,
+    b_checkpoint_text, b_summary_text,
+) = sys.argv[1:]
+manifest = pathlib.Path(manifest_text)
+simulator = pathlib.Path(sim_text)
+b_iteration = int(b_iteration_text)
+
+def sha256(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+simulator_hash = sha256(simulator)
+subjects = {}
+for label, iteration, checkpoint_text, summary_text in (
+    ("A4", 4, a4_checkpoint_text, a4_summary_text),
+    ("A8", 8, a8_checkpoint_text, a8_summary_text),
+    ("B", b_iteration, b_checkpoint_text, b_summary_text),
+):
+    checkpoint = pathlib.Path(checkpoint_text)
+    formal_summary_path = pathlib.Path(summary_text)
+    formal_summary = json.loads(formal_summary_path.read_text(encoding="utf-8"))
+    if formal_summary.get("sim_binary_sha256") != simulator_hash:
+        raise SystemExit(
+            f"{label} formal simulator hash does not match current binary: "
+            f"{formal_summary.get('sim_binary_sha256')!r} != {simulator_hash!r}"
+        )
+    checkpoint_hash = sha256(checkpoint)
+    if formal_summary.get("checkpoint_sha256") != checkpoint_hash:
+        raise SystemExit(
+            f"{label} formal checkpoint hash does not match current checkpoint: "
+            f"{formal_summary.get('checkpoint_sha256')!r} != {checkpoint_hash!r}"
+        )
+    subjects[label] = {
+        "iteration": iteration,
+        "checkpoint": str(checkpoint),
+        "checkpoint_sha256": checkpoint_hash,
+        "formal_eval_summary": str(formal_summary_path),
+    }
+
+payload = {
+    "phase": "blank-diagnostics-seed41",
+    "source_revision": source_revision,
+    "scenario_id": scenario_id,
+    "simulator": str(simulator),
+    "sim_binary_sha256": simulator_hash,
+    "seed": 41,
+    "warmup_ttis": 1000,
+    "measure_ttis": 512,
+    "subjects": subjects,
+    "formal_selection_paths": {
+        "A": a_selection_text,
+        "B": b_selection_text,
+    },
+}
+if manifest.parent.is_dir() and any(manifest.parent.iterdir()) and not manifest.is_file():
+    raise SystemExit(f"existing output directory has no compatible run manifest: {manifest.parent}")
+if manifest.is_file():
+    if resume_text != "1":
+        raise SystemExit(f"output exists; pass --resume only for an identical manifest: {manifest.parent}")
+    old = json.loads(manifest.read_text(encoding="utf-8"))
+    if old != payload:
+        raise SystemExit("resume manifest differs from current diagnostic inputs")
+else:
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+PY
+
+    evaluate_checkpoint "${a4_checkpoint}" 41 1000 512 "${phase_dir}/A4" 0 1
+    evaluate_checkpoint "${a8_checkpoint}" 41 1000 512 "${phase_dir}/A8" 0 1
+    evaluate_checkpoint "${b_checkpoint}" 41 1000 512 "${phase_dir}/B" 0 1
+    "${PYTHON_BIN}" -m training.stageb_hgraph.independent_blank_diagnostics report \
+        --a4 "${phase_dir}/A4/eval_summary.json" \
+        --a8 "${phase_dir}/A8/eval_summary.json" \
+        --b "${phase_dir}/B/eval_summary.json" \
+        --b-iteration "${b_iteration}" \
+        --b-selection "${b_selection}" \
+        --json-out "${phase_dir}/blank_diagnostic_report.json" \
+        --markdown-out "${phase_dir}/blank_diagnostic_report.md"
+}
+
 run_paired_seeds() {
     require_file "${OUT_DIR}/seed41_selection/treatment_comparison.json"
     local winner
@@ -456,5 +584,6 @@ case "${PHASE}" in
     pilot-C) run_pilot C ;;
     pilot-D) run_pilot D ;;
     select-and-eval-seed41) run_select_seed41 ;;
+    blank-diagnostics-seed41) run_blank_diagnostics_seed41 ;;
     paired-seeds-41-43) run_paired_seeds ;;
 esac

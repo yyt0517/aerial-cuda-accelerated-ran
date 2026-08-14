@@ -2,7 +2,11 @@
 
 from __future__ import annotations
 
+import argparse
+import json
+import math
 from dataclasses import dataclass, fields
+from pathlib import Path
 from typing import Mapping, Sequence
 
 import numpy as np
@@ -10,6 +14,420 @@ import torch
 
 
 _TOLERANCE = 1.0e-6
+_DIAGNOSTIC_LABELS = {"A4", "A8", "B"}
+_DIAGNOSTIC_DECISIONS = 512 * 51
+_BLANK_FIELDS = (
+    "diagnostic_selected_blank_ratio",
+    "diagnostic_greedy_blank_ratio",
+    "diagnostic_forced_blank_ratio",
+    "diagnostic_learned_blank_ratio",
+    "diagnostic_fragmentation_blank_ratio",
+    "diagnostic_conservative_blank_ratio",
+    "diagnostic_fragmentation_share_among_learned_blank",
+    "diagnostic_learned_blank_count",
+    "diagnostic_mean_valid_ue_count",
+    "diagnostic_valid_margin_count",
+    "diagnostic_p_blank_mean",
+    "diagnostic_p_blank_p10",
+    "diagnostic_p_blank_p50",
+    "diagnostic_p_blank_p90",
+    "diagnostic_p_service_mean",
+    "diagnostic_p_service_p10",
+    "diagnostic_p_service_p50",
+    "diagnostic_p_service_p90",
+    "diagnostic_p_best_ue_mean",
+    "diagnostic_p_best_ue_p10",
+    "diagnostic_p_best_ue_p50",
+    "diagnostic_p_best_ue_p90",
+    "diagnostic_blank_margin_mean",
+    "diagnostic_blank_margin_p10",
+    "diagnostic_blank_margin_p50",
+    "diagnostic_blank_margin_p90",
+)
+
+
+def _positive_iteration(value: object, name: str) -> int:
+    if isinstance(value, bool) or not isinstance(value, int) or value <= 0:
+        raise ValueError(f"{name} must be a positive integer")
+    return value
+
+
+def _finite_number(summary: Mapping[str, object], key: str, label: str) -> float:
+    value = summary.get(key)
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError(f"{label} {key} must be a finite number")
+    result = float(value)
+    if not math.isfinite(result):
+        raise ValueError(f"{label} {key} must be finite")
+    return result
+
+
+def _close(left: float, right: float) -> bool:
+    return math.isclose(left, right, rel_tol=1.0e-12, abs_tol=1.0e-9)
+
+
+def choose_b_diagnostic_iteration(selection: Mapping[str, object]) -> int:
+    """Choose the formal B subject, or the best valid formal fallback candidate."""
+    if "selected_iteration" not in selection:
+        raise ValueError("B selection is missing selected_iteration")
+    selected = selection["selected_iteration"]
+    if selected is not None:
+        return _positive_iteration(selected, "selected_iteration")
+
+    candidates = selection.get("candidates")
+    if not isinstance(candidates, Mapping) or not candidates:
+        raise ValueError("B selection has no fallback candidates")
+    valid: list[tuple[float, int]] = []
+    for iteration_text, candidate in candidates.items():
+        try:
+            iteration = _positive_iteration(int(iteration_text), "candidate iteration")
+        except (TypeError, ValueError):
+            continue
+        if not isinstance(candidate, Mapping) or candidate.get("present") is not True:
+            continue
+        metrics = candidate.get("metrics")
+        if not isinstance(metrics, Mapping):
+            continue
+        try:
+            goodput = _finite_number(metrics, "goodput_mbps", f"B{iteration}")
+            replay = _finite_number(metrics, "action_replay_mismatch_count", f"B{iteration}")
+            illegal = _finite_number(metrics, "illegal_action_count", f"B{iteration}")
+        except ValueError:
+            continue
+        if (
+            replay == 0.0
+            and illegal == 0.0
+            and metrics.get("independent_deletion_equal") is True
+        ):
+            valid.append((goodput, iteration))
+    if not valid:
+        raise ValueError("B selection has no valid fallback diagnostic candidate")
+    return min(valid, key=lambda item: (-item[0], item[1]))[1]
+
+
+def _validate_diagnostic_summary(
+    label: str,
+    summary: Mapping[str, object],
+) -> dict[str, object]:
+    if summary.get("decode_mode") != "argmax":
+        raise ValueError(f"{label} diagnostic evaluation must use argmax")
+    if summary.get("actor_family") != "pfq_independent_reuse_v1":
+        raise ValueError(f"{label} diagnostic evaluation must use the independent actor")
+    if summary.get("requires_pfq_features") is not False:
+        raise ValueError(f"{label} actor must be PFQ-independent")
+    if summary.get("independent_deletion_equal") is not True:
+        raise ValueError(f"{label} PFQ-field deletion identity failed")
+    if summary.get("independent_policy_diagnostics_enabled") != 1:
+        raise ValueError(f"{label} independent diagnostics are not enabled")
+    if summary.get("stats_count") != 512:
+        raise ValueError(f"{label} diagnostic stats_count must equal 512")
+    if (summary.get("measured_tti_first"), summary.get("measured_tti_last")) != (1001, 1512):
+        raise ValueError(f"{label} measured TTI window must equal 1001--1512")
+    decisions = _finite_number(summary, "diagnostic_decision_count", label)
+    if decisions != float(_DIAGNOSTIC_DECISIONS):
+        raise ValueError(f"{label} diagnostic decision count must equal {_DIAGNOSTIC_DECISIONS}")
+    replay = _finite_number(summary, "stats_sum_action_replay_mismatch_count", label)
+    if replay != 0.0:
+        raise ValueError(f"{label} replay mismatch sum must equal zero")
+    illegal = _finite_number(summary, "stats_sum_illegal_action_count", label)
+    if illegal != 0.0:
+        raise ValueError(f"{label} illegal action sum must equal zero")
+
+    blank_values = {key: _finite_number(summary, key, label) for key in _BLANK_FIELDS}
+    ratio_keys = (
+        "diagnostic_selected_blank_ratio",
+        "diagnostic_greedy_blank_ratio",
+        "diagnostic_forced_blank_ratio",
+        "diagnostic_learned_blank_ratio",
+        "diagnostic_fragmentation_blank_ratio",
+        "diagnostic_conservative_blank_ratio",
+        "diagnostic_fragmentation_share_among_learned_blank",
+    )
+    if any(not 0.0 <= blank_values[key] <= 1.0 for key in ratio_keys):
+        raise ValueError(f"{label} Blank ratios must be finite values in [0,1]")
+    for prefix in ("diagnostic_p_blank", "diagnostic_p_service", "diagnostic_p_best_ue"):
+        if any(not 0.0 <= blank_values[f"{prefix}_{suffix}"] <= 1.0 for suffix in ("mean", "p10", "p50", "p90")):
+            raise ValueError(f"{label} probability summaries must be finite values in [0,1]")
+    learned_count = blank_values["diagnostic_learned_blank_count"]
+    valid_margin_count = blank_values["diagnostic_valid_margin_count"]
+    if not 0.0 <= learned_count <= decisions or not 0.0 <= valid_margin_count <= decisions:
+        raise ValueError(f"{label} diagnostic counts are outside the measured decision window")
+
+    selected = blank_values["diagnostic_selected_blank_ratio"]
+    greedy = blank_values["diagnostic_greedy_blank_ratio"]
+    forced = blank_values["diagnostic_forced_blank_ratio"]
+    learned = blank_values["diagnostic_learned_blank_ratio"]
+    fragmentation = blank_values["diagnostic_fragmentation_blank_ratio"]
+    conservative = blank_values["diagnostic_conservative_blank_ratio"]
+    fragmentation_share = blank_values["diagnostic_fragmentation_share_among_learned_blank"]
+    if not _close(selected, greedy):
+        raise ValueError(f"{label} deterministic selected/greedy Blank identity failed")
+    if not _close(greedy, forced + learned):
+        raise ValueError(f"{label} forced/learned Blank identity failed")
+    if not _close(learned, fragmentation + conservative):
+        raise ValueError(f"{label} fragmentation/conservative Blank identity failed")
+    if not _close(learned_count, learned * decisions):
+        raise ValueError(f"{label} learned Blank count identity failed")
+    expected_share = fragmentation / learned if learned_count > 0.0 else 0.0
+    if not _close(fragmentation_share, expected_share):
+        raise ValueError(f"{label} learned Blank fragmentation share identity failed")
+
+    byte_keys = (
+        "stats_sum_scheduled_bytes",
+        "stats_sum_ue_goodput_bytes",
+        "stats_sum_failed_bytes",
+    )
+    byte_values = {key: _finite_number(summary, key, label) for key in byte_keys}
+    if any(value < 0.0 for value in byte_values.values()):
+        raise ValueError(f"{label} measured byte values must be non-negative")
+    if not _close(
+        byte_values["stats_sum_scheduled_bytes"],
+        byte_values["stats_sum_ue_goodput_bytes"] + byte_values["stats_sum_failed_bytes"],
+    ):
+        raise ValueError(f"{label} scheduled/goodput/failed byte identity failed")
+
+    mbps_keys = (
+        "stats_mean_scheduled_mbps",
+        "stats_mean_ue_goodput_mbps",
+        "stats_failed_mbps",
+    )
+    mbps_values = {key: _finite_number(summary, key, label) for key in mbps_keys}
+    if any(value < 0.0 for value in mbps_values.values()):
+        raise ValueError(f"{label} measured Mbps values must be non-negative")
+    if not _close(
+        mbps_values["stats_mean_scheduled_mbps"],
+        mbps_values["stats_mean_ue_goodput_mbps"] + mbps_values["stats_failed_mbps"],
+    ):
+        raise ValueError(f"{label} scheduled/goodput/failed Mbps identity failed")
+    for byte_key, mbps_key in zip(byte_keys, mbps_keys):
+        if not _close(byte_values[byte_key] / 512.0 * 0.016, mbps_values[mbps_key]):
+            raise ValueError(f"{label} measured byte/Mbps conversion identity failed")
+
+    tb_tx = _finite_number(summary, "measured_tb_tx_count", label)
+    tb_err = _finite_number(summary, "measured_tb_err_count", label)
+    tb_bler = _finite_number(summary, "measured_tb_bler", label)
+    if tb_tx <= 0.0 or tb_err < 0.0 or tb_err > tb_tx or not 0.0 <= tb_bler <= 1.0:
+        raise ValueError(f"{label} measured TB counts are invalid")
+    if not _close(tb_bler, tb_err / tb_tx):
+        raise ValueError(f"{label} measured TB identity failed")
+
+    checkpoint_hash = summary.get("checkpoint_sha256")
+    sim_hash = summary.get("sim_binary_sha256")
+    if not isinstance(checkpoint_hash, str) or not checkpoint_hash:
+        raise ValueError(f"{label} checkpoint hash is missing")
+    if not isinstance(sim_hash, str) or not sim_hash:
+        raise ValueError(f"{label} simulator hash is missing")
+
+    def distribution(prefix: str) -> dict[str, float]:
+        return {
+            suffix: blank_values[f"diagnostic_{prefix}_{suffix}"]
+            for suffix in ("mean", "p10", "p50", "p90")
+        }
+
+    return {
+        "checkpoint_sha256": checkpoint_hash,
+        "sim_binary_sha256": sim_hash,
+        "blank_composition": {
+            "selected_ratio": selected,
+            "greedy_ratio": greedy,
+            "forced_ratio": forced,
+            "learned_ratio": learned,
+            "fragmentation_ratio": fragmentation,
+            "conservative_ratio": conservative,
+            "fragmentation_share_among_learned": fragmentation_share,
+            "learned_count": learned_count,
+        },
+        "distributions": {
+            "p_blank": distribution("p_blank"),
+            "p_service": distribution("p_service"),
+            "p_best_ue": distribution("p_best_ue"),
+            "blank_margin": distribution("blank_margin"),
+        },
+        "transmission_bytes": {
+            "scheduled": byte_values["stats_sum_scheduled_bytes"],
+            "goodput": byte_values["stats_sum_ue_goodput_bytes"],
+            "failed": byte_values["stats_sum_failed_bytes"],
+        },
+        "transmission_mbps": {
+            "scheduled": mbps_values["stats_mean_scheduled_mbps"],
+            "goodput": mbps_values["stats_mean_ue_goodput_mbps"],
+            "failed": mbps_values["stats_failed_mbps"],
+        },
+        "tb": {"tx_count": tb_tx, "error_count": tb_err, "bler": tb_bler},
+    }
+
+
+def build_blank_diagnostic_report(
+    *,
+    summaries: Mapping[str, Mapping[str, object]],
+    b_iteration: int,
+    b_formal_selection: Mapping[str, object],
+) -> dict[str, object]:
+    """Validate fixed-window evidence and build the diagnostic conclusion."""
+    if set(summaries) != _DIAGNOSTIC_LABELS:
+        raise ValueError("diagnostic summary labels must be exactly A4, A8, and B")
+    b_iteration = _positive_iteration(b_iteration, "B diagnostic iteration")
+    subjects = {
+        label: _validate_diagnostic_summary(label, summaries[label])
+        for label in ("A4", "A8", "B")
+    }
+    simulator_hashes = {subject["sim_binary_sha256"] for subject in subjects.values()}
+    if len(simulator_hashes) != 1:
+        raise ValueError("diagnostic summaries must use one identical nonempty simulator hash")
+
+    if "selected_iteration" not in b_formal_selection:
+        raise ValueError("B formal selection is missing selected_iteration")
+    formal_iteration_raw = b_formal_selection["selected_iteration"]
+    formal_iteration = (
+        None
+        if formal_iteration_raw is None
+        else _positive_iteration(formal_iteration_raw, "formal B selected_iteration")
+    )
+    subjects["A4"].update({"iteration": 4, "role": "positive_control"})
+    subjects["A8"].update({"iteration": 8, "role": "primary_hypothesis_subject"})
+    subjects["B"].update({"iteration": b_iteration, "role": "B_comparison"})
+
+    a8 = subjects["A8"]["blank_composition"]
+    learned_count = float(a8["learned_count"])
+    fragmentation_share = float(a8["fragmentation_share_among_learned"])
+    if learned_count == 0.0:
+        hypothesis: dict[str, object] = {
+            "name": "H_frag",
+            "subject": "A8",
+            "supported": None,
+            "reason": "no learned Blank decisions",
+            "learned_blank_count": learned_count,
+            "fragmentation_share_among_learned_blank": fragmentation_share,
+        }
+    else:
+        hypothesis = {
+            "name": "H_frag",
+            "subject": "A8",
+            "supported": fragmentation_share > 0.5,
+            "learned_blank_count": learned_count,
+            "fragmentation_share_among_learned_blank": fragmentation_share,
+        }
+
+    forced = float(a8["forced_ratio"])
+    fragmentation = float(a8["fragmentation_ratio"])
+    conservative = float(a8["conservative_ratio"])
+    if forced > 0.0 and forced >= max(fragmentation, conservative):
+        next_experiment = (
+            "Inspect candidate validity and sequential demand estimation before any policy change."
+        )
+    elif learned_count > 0.0 and fragmentation_share > 0.5:
+        next_experiment = (
+            "Test a minimal hierarchical Serve/Blank -> UE action head with matched PPO log-probability."
+        )
+    else:
+        next_experiment = (
+            "Retain the flat categorical and test learned conservatism evidence "
+            "(reward/BC calibration) without forced fill."
+        )
+
+    return {
+        "valid": True,
+        "window": {
+            "seed": 41,
+            "warmup_ttis": 1000,
+            "measured_ttis": 512,
+            "measured_tti_first": 1001,
+            "measured_tti_last": 1512,
+            "decision_count_per_subject": _DIAGNOSTIC_DECISIONS,
+            "sim_binary_sha256": next(iter(simulator_hashes)),
+        },
+        "subjects": subjects,
+        "b_selection": {
+            "iteration": b_iteration,
+            "formal_selected_iteration": formal_iteration,
+            "formal_gate_promoted": formal_iteration is not None and formal_iteration == b_iteration,
+        },
+        "hypothesis": hypothesis,
+        "next_experiment": next_experiment,
+    }
+
+
+def _render_blank_diagnostic_markdown(report: Mapping[str, object]) -> str:
+    subjects = report["subjects"]
+    hypothesis = report["hypothesis"]
+    b_selection = report["b_selection"]
+    supported = hypothesis["supported"]
+    conclusion = "inconclusive" if supported is None else ("supported" if supported else "not supported")
+    lines = [
+        "# Independent Blank Diagnostic Report",
+        "",
+        "| Subject | Iteration | Forced | Learned | Fragmentation | Conservative | Frag / learned | Scheduled Mbps | Goodput Mbps | Failed Mbps | TB errors / tx | BLER |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+    ]
+    for label in ("A4", "A8", "B"):
+        subject = subjects[label]
+        blank = subject["blank_composition"]
+        mbps = subject["transmission_mbps"]
+        tb = subject["tb"]
+        lines.append(
+            f"| {label} | {subject['iteration']} | {blank['forced_ratio']:.6f} | "
+            f"{blank['learned_ratio']:.6f} | {blank['fragmentation_ratio']:.6f} | "
+            f"{blank['conservative_ratio']:.6f} | "
+            f"{blank['fragmentation_share_among_learned']:.6f} | "
+            f"{mbps['scheduled']:.6f} | {mbps['goodput']:.6f} | {mbps['failed']:.6f} | "
+            f"{tb['error_count']:.0f} / {tb['tx_count']:.0f} | {tb['bler']:.6f} |"
+        )
+    lines.extend([
+        "",
+        f"- B formal gate promoted this subject: `{str(b_selection['formal_gate_promoted']).lower()}`",
+        f"- H_frag on A8: **{conclusion}** "
+        f"(learned={hypothesis['learned_blank_count']:.0f}, "
+        f"fragmentation share={hypothesis['fragmentation_share_among_learned_blank']:.6f})",
+    ])
+    if hypothesis.get("reason"):
+        lines.append(f"- H_frag reason: {hypothesis['reason']}")
+    lines.extend(["", f"Next experiment: {report['next_experiment']}", ""])
+    return "\n".join(lines)
+
+
+def _load_json_mapping(path: Path) -> Mapping[str, object]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, Mapping):
+        raise ValueError(f"{path} must contain a JSON object")
+    return payload
+
+
+def _main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    select_parser = subparsers.add_parser("select-b")
+    select_parser.add_argument("--selection", type=Path, required=True)
+    report_parser = subparsers.add_parser("report")
+    report_parser.add_argument("--a4", type=Path, required=True)
+    report_parser.add_argument("--a8", type=Path, required=True)
+    report_parser.add_argument("--b", type=Path, required=True)
+    report_parser.add_argument("--b-iteration", type=int, required=True)
+    report_parser.add_argument("--b-selection", type=Path, required=True)
+    report_parser.add_argument("--json-out", type=Path, required=True)
+    report_parser.add_argument("--markdown-out", type=Path, required=True)
+    args = parser.parse_args(argv)
+
+    if args.command == "select-b":
+        print(choose_b_diagnostic_iteration(_load_json_mapping(args.selection)))
+        return 0
+
+    report = build_blank_diagnostic_report(
+        summaries={
+            "A4": _load_json_mapping(args.a4),
+            "A8": _load_json_mapping(args.a8),
+            "B": _load_json_mapping(args.b),
+        },
+        b_iteration=args.b_iteration,
+        b_formal_selection=_load_json_mapping(args.b_selection),
+    )
+    args.json_out.parent.mkdir(parents=True, exist_ok=True)
+    args.markdown_out.parent.mkdir(parents=True, exist_ok=True)
+    args.json_out.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    args.markdown_out.write_text(_render_blank_diagnostic_markdown(report), encoding="utf-8")
+    return 0
 
 
 def validate_measured_window_goodput_mbps(
@@ -232,3 +650,7 @@ def summarize_independent_policy_diagnostics(
     else:
         _distribution_summary(valid_margins, "blank_margin", summary)
     return summary
+
+
+if __name__ == "__main__":
+    raise SystemExit(_main())
