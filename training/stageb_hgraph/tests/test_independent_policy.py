@@ -6,8 +6,12 @@ import pytest
 import torch
 from torch import nn
 
-from training.stageb_hgraph.graph_ops import pack_prg_candidates
+from training.stageb_hgraph.graph_ops import (
+    pack_prg_candidates,
+    type0_action_preflight_reject_counts,
+)
 from training.stageb_hgraph.independent_policy import (
+    _select_hierarchical_greedy,
     estimate_candidate_service_bytes,
     replay_independent_trace,
     resolve_full_candidate_width,
@@ -46,6 +50,88 @@ def _small_demand_graph(n_prg: int = 3):
     return make_candidate_graph(
         n_prg=n_prg,
         backlog_bytes=(100.0, 100.0, 100.0, 100.0, 100.0, 100.0),
+    )
+
+
+def test_hierarchical_greedy_rescues_fragmentation_and_selects_best_valid_ue() -> None:
+    adjusted = torch.log(torch.tensor([[0.30, 0.30, 0.40]]))
+    valid_main = torch.tensor([[True, True]])
+
+    selected = _select_hierarchical_greedy(adjusted, valid_main, blank_class_index=2)
+
+    assert adjusted.argmax(dim=-1).item() == 2
+    assert selected.tolist() == [0]
+
+
+def test_hierarchical_greedy_keeps_conservative_blank_and_tie_blank() -> None:
+    adjusted = torch.log(torch.tensor([[0.20, 0.20, 0.60], [0.25, 0.25, 0.50]]))
+    valid_main = torch.tensor([[True, True], [True, True]])
+
+    selected = _select_hierarchical_greedy(adjusted, valid_main, blank_class_index=2)
+
+    assert selected.tolist() == [2, 2]
+
+
+def test_hierarchical_greedy_forces_blank_without_valid_ue() -> None:
+    adjusted = torch.tensor([[8.0, 4.0, 0.0]])
+    valid_main = torch.tensor([[False, False]])
+
+    selected = _select_hierarchical_greedy(adjusted, valid_main, blank_class_index=2)
+
+    assert selected.tolist() == [2]
+
+
+def test_hierarchical_greedy_excludes_invalid_high_logit() -> None:
+    adjusted = torch.tensor([[8.0, 2.0, 1.0]])
+    valid_main = torch.tensor([[False, True]])
+
+    selected = _select_hierarchical_greedy(adjusted, valid_main, blank_class_index=2)
+
+    assert selected.tolist() == [1]
+
+
+def test_hierarchical_factorization_matches_flat_logp_entropy_and_trace() -> None:
+    adjusted = torch.log(torch.tensor([[0.25, 0.35, 0.40]]))
+    valid_main = torch.tensor([[True, True]])
+    selected_ue = _select_hierarchical_greedy(adjusted, valid_main, blank_class_index=2)
+    flat_logp = torch.log_softmax(adjusted, dim=-1)
+    flat_prob = flat_logp.exp()
+    p_service = flat_prob[:, :2].masked_fill(~valid_main, 0).sum(-1)
+    conditional = flat_prob[:, :2] / p_service.unsqueeze(-1)
+    hierarchical_group_entropy = -(
+        p_service * p_service.log() + flat_prob[:, 2] * flat_logp[:, 2]
+    )
+    conditional_entropy = -(conditional * conditional.log()).sum(-1)
+
+    assert torch.allclose(
+        p_service.log() + conditional.gather(1, selected_ue.unsqueeze(-1)).squeeze(-1).log(),
+        flat_logp.gather(1, selected_ue.unsqueeze(-1)).squeeze(-1),
+        atol=1e-6,
+        rtol=0.0,
+    )
+    assert torch.allclose(
+        hierarchical_group_entropy + p_service * conditional_entropy,
+        -(flat_prob * flat_logp).sum(-1),
+        atol=1e-6,
+        rtol=0.0,
+    )
+
+    graph = _small_demand_graph(n_prg=1)
+    actor = RecordingActor(n_prg=1)
+    packed = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    with torch.no_grad():
+        actor.raw_logits[0].copy_(adjusted.expand_as(actor.raw_logits[0]))
+    trace, action = select_independent_action(actor, graph, packed, mode="hierarchical_greedy")
+
+    assert torch.allclose(trace.logp, flat_logp.gather(1, selected_ue.unsqueeze(-1)).squeeze(-1).mean())
+    assert torch.allclose(trace.entropy, (-(flat_prob * flat_logp).sum(-1)).mean())
+    assert all(
+        int(reject.sum().item()) == 0
+        for reject in type0_action_preflight_reject_counts(
+            graph,
+            action.action_ue_select,
+            action.action_prg_alloc,
+        ).values()
     )
 
 

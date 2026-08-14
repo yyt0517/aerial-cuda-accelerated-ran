@@ -123,19 +123,54 @@ def _validate_policy_inputs(
         )
 
 
+def _select_hierarchical_greedy(
+    adjusted_logits: torch.Tensor,
+    valid_main: torch.Tensor,
+    blank_class_index: int,
+) -> torch.Tensor:
+    """Choose aggregate Serve strictly over Blank, then the best valid UE."""
+    if adjusted_logits.dim() != 2:
+        raise ValueError("hierarchical logits must be rank-2")
+    if (
+        blank_class_index <= 0
+        or blank_class_index != adjusted_logits.shape[1] - 1
+        or valid_main.shape != (adjusted_logits.shape[0], blank_class_index)
+        or valid_main.dtype is not torch.bool
+        or valid_main.device != adjusted_logits.device
+    ):
+        raise ValueError("hierarchical logits, mask, or blank index mismatch")
+    if not bool(torch.isfinite(adjusted_logits[:, blank_class_index]).all().item()):
+        raise ValueError("hierarchical blank logits must be finite")
+    if not bool(torch.isfinite(adjusted_logits[:, :blank_class_index][valid_main]).all().item()):
+        raise ValueError("hierarchical valid UE logits must be finite")
+
+    service_logits = adjusted_logits[:, :blank_class_index].masked_fill(~valid_main, -torch.inf)
+    serve_logit = torch.logsumexp(service_logits, dim=-1)
+    best_ue = service_logits.argmax(dim=-1)
+    has_valid = valid_main.any(dim=-1)
+    return torch.where(
+        has_valid & (serve_logit > adjusted_logits[:, blank_class_index]),
+        best_ue,
+        torch.full_like(best_ue, blank_class_index),
+    )
+
+
 def _run_policy(
     actor: PFQIndependentReuseActor,
     graph: SparseEntityGraph,
     packed: PackedPrgCandidates,
     *,
-    mode: Literal["sample", "greedy"],
+    mode: Literal["sample", "greedy", "hierarchical_greedy"],
     generator: torch.Generator | None = None,
     collect_diagnostics: bool = False,
     stored_trace: IndependentPolicyTrace | None = None,
     teacher_actions: tuple[torch.Tensor, torch.Tensor] | None = None,
 ) -> IndependentPolicyTrace:
-    if mode not in ("sample", "greedy"):
-        raise ValueError(f"independent policy mode must be sample or greedy, got {mode!r}")
+    if mode not in ("sample", "greedy", "hierarchical_greedy"):
+        raise ValueError(
+            "independent policy mode must be sample, greedy, or hierarchical_greedy, "
+            f"got {mode!r}"
+        )
     _validate_policy_inputs(actor, graph, packed)
     meta = graph.snapshot.static_meta
     device = next(actor.parameters()).device
@@ -261,6 +296,12 @@ def _run_policy(
             selected = torch.tensor(selected_rows, dtype=torch.long, device=device)
         elif mode == "sample":
             selected = torch.multinomial(probabilities, 1, generator=generator).squeeze(-1)
+        elif mode == "hierarchical_greedy":
+            selected = _select_hierarchical_greedy(
+                adjusted,
+                valid_main,
+                packed.blank_class_index,
+            )
         else:
             selected = adjusted.argmax(dim=-1)
 
@@ -316,7 +357,7 @@ def select_independent_action(
     actor: PFQIndependentReuseActor,
     graph: SparseEntityGraph,
     packed: PackedPrgCandidates,
-    mode: Literal["sample", "greedy"],
+    mode: Literal["sample", "greedy", "hierarchical_greedy"],
     generator: torch.Generator | None = None,
     collect_diagnostics: bool = False,
 ) -> tuple[IndependentPolicyTrace, DecodedType0Action]:
