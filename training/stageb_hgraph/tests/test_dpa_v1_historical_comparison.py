@@ -1,3 +1,5 @@
+import csv
+import json
 import math
 from pathlib import Path
 
@@ -5,7 +7,9 @@ import pytest
 
 from training.stageb_hgraph.dpa_v1_historical_comparison import (
     WindowSpec,
+    _aggregate_rows,
     classify_scorecard,
+    materialize_historical_grid,
     parse_v9c_steady_blocks,
     resolve_recorded_path,
     summarize_dpa_window,
@@ -130,6 +134,9 @@ def test_seed_summary_requires_the_frozen_structural_contract():
         "independent_headroom_accounting": "ctbs-v1",
         "independent_non_starvation_guard": "off",
         "candidate_truncation": "forbidden",
+        "candidate_width_policy": "runtime_topology",
+        "topology_candidate_width": 16,
+        "runtime_candidate_width": 16,
         "candidate_truncation_count": 0,
         "stats_sum_candidate_truncation_count": 0.0,
         "stats_sum_action_replay_mismatch_count": 0.0,
@@ -138,9 +145,13 @@ def test_seed_summary_requires_the_frozen_structural_contract():
         "ctbs_mcs_mismatch_count": 0,
         "ctbs_layer_mismatch_count": 0,
         "ctbs_tbs_mismatch_count": 0,
+        "ctbs_mask_trigger_count_by_local_prg": [0] * 17,
+        "ctbs_selected_count_by_local_prg": [0] * 17,
+        "ctbs_valid_candidate_count_by_local_prg": [0] * 17,
     }
     observed = validate_seed_summary(
         summary,
+        independent_runtime_candidate_width_request=0,
         expected_hashes={
             "checkpoint_file": "checkpoint",
             "actor_state": "actor-state",
@@ -153,9 +164,149 @@ def test_seed_summary_requires_the_frozen_structural_contract():
     with pytest.raises(ValueError, match="guard_off"):
         validate_seed_summary(
             summary,
+            independent_runtime_candidate_width_request=0,
             expected_hashes={
                 "checkpoint_file": "checkpoint",
                 "actor_state": "actor-state",
                 "simulator": "simulator",
             },
         )
+
+
+def test_seed_summary_rejects_padded_width_and_non_17_prg_evidence():
+    summary = {
+        "completed_steps": 4000,
+        "stats_warmup_steps": 1000,
+        "stats_count": 3000,
+        "checkpoint_sha256": "checkpoint",
+        "actor_state_dict_sha256": "actor-state",
+        "sim_binary_sha256": "simulator",
+        "decode_mode": "argmax",
+        "independent_headroom_accounting": "ctbs-v1",
+        "independent_non_starvation_guard": "off",
+        "candidate_truncation": "forbidden",
+        "candidate_width_policy": "runtime_topology",
+        "topology_candidate_width": 16,
+        "runtime_candidate_width": 17,
+        "candidate_truncation_count": 0,
+        "stats_sum_candidate_truncation_count": 0.0,
+        "stats_sum_action_replay_mismatch_count": 0.0,
+        "stats_sum_illegal_action_count": 0.0,
+        "ctbs_mask_reactivation_count": 0,
+        "ctbs_mcs_mismatch_count": 0,
+        "ctbs_layer_mismatch_count": 0,
+        "ctbs_tbs_mismatch_count": 0,
+        "ctbs_mask_trigger_count_by_local_prg": [0] * 17,
+        "ctbs_selected_count_by_local_prg": [0] * 17,
+        "ctbs_valid_candidate_count_by_local_prg": [0] * 17,
+    }
+    hashes = {
+        "checkpoint_file": "checkpoint",
+        "actor_state": "actor-state",
+        "simulator": "simulator",
+    }
+    with pytest.raises(ValueError, match="candidate_width_topology_resolved"):
+        validate_seed_summary(
+            summary,
+            independent_runtime_candidate_width_request=0,
+            expected_hashes=hashes,
+        )
+
+    summary["runtime_candidate_width"] = 16
+    summary["ctbs_mask_trigger_count_by_local_prg"] = [0] * 16
+    with pytest.raises(ValueError, match="prg_decision_count_17"):
+        validate_seed_summary(
+            summary,
+            independent_runtime_candidate_width_request=0,
+            expected_hashes=hashes,
+        )
+
+    summary["ctbs_mask_trigger_count_by_local_prg"] = [0] * 17
+    with pytest.raises(ValueError, match="candidate_width_request_zero"):
+        validate_seed_summary(
+            summary,
+            independent_runtime_candidate_width_request=17,
+            expected_hashes=hashes,
+        )
+
+
+def test_historical_grid_serializes_unavailable_values_as_null_and_csv_empty(tmp_path):
+    rows = [
+        {
+            "arm": "pfq_historical",
+            "seed": 41,
+            "window": "full_4000",
+            "metric": "goodput_mbps",
+            "value": 1500.0,
+            "unit": "Mbps",
+            "direction": "higher_better",
+            "source_artifact": "/source/pfq.json",
+            "comparison_scope": "historical_same_seed_cohort_full_4000",
+        },
+        {
+            "arm": "pfq_historical",
+            "seed": 41,
+            "window": "full_4000",
+            "metric": "bler",
+            "value": None,
+            "unit": "ratio",
+            "direction": "lower_better",
+            "source_artifact": "/source/pfq.json",
+            "comparison_scope": "historical_same_seed_cohort_full_4000",
+        }
+    ]
+    materialized = materialize_historical_grid(
+        rows,
+        arm="pfq_historical",
+        seeds=[41],
+        source_notes={
+            "full_4000": "unavailable: not present in PFQ JSON",
+            "steady_3000": "unavailable: no preserved PFQ steady trace",
+        },
+    )
+    missing = next(
+        row
+        for row in materialized
+        if row["window"] == "steady_3000" and row["metric"] == "goodput_mbps"
+    )
+    assert missing["value"] is None
+    assert missing["comparison_scope"] == "unavailable_historical_metric"
+    assert missing["source_artifact"] == "unavailable: no preserved PFQ steady trace"
+
+    unavailable_full = next(
+        row
+        for row in materialized
+        if row["window"] == "full_4000" and row["metric"] == "bler"
+    )
+    assert unavailable_full["value"] is None
+    assert unavailable_full["comparison_scope"] == "unavailable_historical_metric"
+    assert unavailable_full["source_artifact"] == "unavailable: not present in PFQ JSON"
+
+    json_path = tmp_path / "rows.json"
+    json_path.write_text(json.dumps(materialized), encoding="utf-8")
+    assert next(
+        row
+        for row in json.loads(json_path.read_text(encoding="utf-8"))
+        if row["window"] == "steady_3000" and row["metric"] == "goodput_mbps"
+    )["value"] is None
+
+    csv_path = tmp_path / "rows.csv"
+    with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rows[0]))
+        writer.writeheader()
+        writer.writerows(materialized)
+    with csv_path.open("r", encoding="utf-8", newline="") as handle:
+        serialized = list(csv.DictReader(handle))
+    assert next(
+        row
+        for row in serialized
+        if row["window"] == "steady_3000" and row["metric"] == "goodput_mbps"
+    )["value"] == ""
+
+    aggregate = next(
+        row
+        for row in _aggregate_rows(materialized)
+        if row["window"] == "steady_3000" and row["metric"] == "goodput_mbps"
+    )
+    assert aggregate["count"] == 0
+    assert aggregate["mean"] is None

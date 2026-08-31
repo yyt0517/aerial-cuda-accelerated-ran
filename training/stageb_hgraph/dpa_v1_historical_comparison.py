@@ -229,8 +229,14 @@ def classify_scorecard(report: Mapping[str, object]) -> str:
 def validate_seed_summary(
     summary: Mapping[str, object],
     *,
+    independent_runtime_candidate_width_request: int,
     expected_hashes: Mapping[str, str],
 ) -> dict[str, bool]:
+    prg_vectors = (
+        summary.get("ctbs_mask_trigger_count_by_local_prg"),
+        summary.get("ctbs_selected_count_by_local_prg"),
+        summary.get("ctbs_valid_candidate_count_by_local_prg"),
+    )
     checks = {
         "completed_steps": int(summary.get("completed_steps", -1)) == 4000,
         "stats_warmup_steps": int(summary.get("stats_warmup_steps", -1)) == 1000,
@@ -246,6 +252,21 @@ def validate_seed_summary(
         "guard_off": summary.get("independent_non_starvation_guard") == "off",
         "candidate_truncation_forbidden": summary.get("candidate_truncation")
         == "forbidden",
+        "candidate_width_request_zero": int(
+            independent_runtime_candidate_width_request
+        )
+        == 0,
+        "candidate_width_policy_runtime_topology": summary.get(
+            "candidate_width_policy"
+        )
+        == "runtime_topology",
+        "candidate_width_topology_resolved": int(
+            summary.get("runtime_candidate_width", -1)
+        )
+        == int(summary.get("topology_candidate_width", -2)),
+        "prg_decision_count_17": all(
+            isinstance(vector, list) and len(vector) == 17 for vector in prg_vectors
+        ),
         "candidate_truncation_zero": int(
             summary.get("candidate_truncation_count", -1)
         )
@@ -585,6 +606,7 @@ def run_preflight(args: argparse.Namespace) -> None:
         },
         "decode_mode": "argmax",
         "headroom_accounting": "ctbs-v1",
+        "independent_runtime_candidate_width_request": 0,
         "guard_mode": "off",
         "guard_enabled": False,
         "hashes": hashes,
@@ -749,7 +771,11 @@ def run_extract_seed(args: argparse.Namespace) -> None:
         for name in ("checkpoint_file", "actor_state", "simulator")
     }
     structural_checks = validate_seed_summary(
-        eval_summary, expected_hashes=expected_hashes
+        eval_summary,
+        independent_runtime_candidate_width_request=int(
+            manifest.get("independent_runtime_candidate_width_request", -1)
+        ),
+        expected_hashes=expected_hashes,
     )
     exit_codes = _validate_exit_codes(actor_dir / "exit_codes.txt")
     eval_steps_path = actor_dir / "eval_steps.jsonl"
@@ -898,6 +924,52 @@ def _normalized_row(
     }
 
 
+def materialize_historical_grid(
+    rows: Sequence[Mapping[str, object]],
+    *,
+    arm: str,
+    seeds: Sequence[int],
+    source_notes: Mapping[str, str],
+) -> list[dict[str, object]]:
+    result: list[dict[str, object]] = []
+    for row in rows:
+        normalized = dict(row)
+        window = str(normalized["window"])
+        if str(normalized["arm"]) == arm and normalized.get("value") is None:
+            if window not in source_notes:
+                raise ValueError(f"missing unavailable source note for {arm} {window}")
+            normalized["source_artifact"] = source_notes[window]
+            normalized["comparison_scope"] = "unavailable_historical_metric"
+        result.append(normalized)
+    existing = {
+        (str(row["arm"]), int(row["seed"]), str(row["window"]), str(row["metric"]))
+        for row in result
+    }
+    for seed in seeds:
+        for window in ("full_4000", "steady_3000"):
+            if window not in source_notes:
+                raise ValueError(f"missing unavailable source note for {arm} {window}")
+            for metric, (unit, direction) in METRIC_META.items():
+                key = (arm, int(seed), window, metric)
+                if key in existing:
+                    continue
+                result.append(
+                    _normalized_row(
+                        arm=arm,
+                        seed=int(seed),
+                        window=window,
+                        metric=metric,
+                        value=None,
+                        unit=unit,
+                        direction=direction,
+                        source_artifact=source_notes[window],
+                        comparison_scope="unavailable_historical_metric",
+                    )
+                )
+                existing.add(key)
+    return result
+
+
 def _dpa_rows(seed_metrics: Mapping[str, object], source: Path) -> list[dict[str, object]]:
     seed = int(seed_metrics["seed"])
     windows = seed_metrics["windows"]
@@ -996,7 +1068,22 @@ def _pfq_rows(pfq_root: Path, seeds: Sequence[int]) -> tuple[list[dict[str, obje
                     comparison_scope="historical_same_seed_cohort_full_4000",
                 )
             )
-    return rows, sources
+    return (
+        materialize_historical_grid(
+            rows,
+            arm="pfq_historical",
+            seeds=seeds,
+            source_notes={
+                "full_4000": (
+                    "unavailable: metric is not present in the per-seed PFQ comparison JSON"
+                ),
+                "steady_3000": (
+                    "unavailable: PFQ has no preserved equivalent post-1000 per-TTI trace"
+                ),
+            },
+        ),
+        sources,
+    )
 
 
 V9C_EVAL_FIELDS = {
@@ -1115,7 +1202,22 @@ def _v9c_rows(
             )
     if sorted(sources) != list(SEEDS):
         raise ValueError("v9c sources do not cover seeds 41--50")
-    return rows, sources
+    return (
+        materialize_historical_grid(
+            rows,
+            arm="v9c_historical",
+            seeds=SEEDS,
+            source_notes={
+                "full_4000": (
+                    "unavailable: metric is not present in the recorded v9c evaluator/KPI artifacts"
+                ),
+                "steady_3000": (
+                    "unavailable: metric is not emitted by the preserved v9c 500-TTI block logs"
+                ),
+            },
+        ),
+        sources,
+    )
 
 
 def _write_csv(path: Path, rows: Sequence[Mapping[str, object]], fields: Sequence[str]) -> None:
@@ -1500,8 +1602,6 @@ def run_aggregate(args: argparse.Namespace) -> None:
                     )
                     for metric in headline_metrics
                 }
-                if arm == "pfq_historical" and window == "steady_3000":
-                    continue
                 arm_payload[window] = values
             seed_payload[arm] = arm_payload
         headline_by_seed[str(seed)] = seed_payload
