@@ -1,8 +1,15 @@
 import math
+from pathlib import Path
+
+import pytest
 
 from training.stageb_hgraph.dpa_v1_historical_comparison import (
     WindowSpec,
+    classify_scorecard,
+    parse_v9c_steady_blocks,
+    resolve_recorded_path,
     summarize_dpa_window,
+    validate_seed_summary,
 )
 
 
@@ -70,3 +77,85 @@ def test_steady_window_includes_expired_outcomes_and_detects_zero_service():
     assert result["ue_goodput_mean_mbps"] == 16.0
     assert result["ue_goodput_jain"] == 0.5
     assert result["ue_expiry_aware_rate_min_mbps"] == 0.0
+
+
+def test_resolve_recorded_container_path_under_supplied_legacy_root(tmp_path):
+    target = tmp_path / "output" / "run" / "kpi_summary.json"
+    target.parent.mkdir(parents=True)
+    target.write_text("{}\n", encoding="utf-8")
+    assert resolve_recorded_path(
+        "/opt/nvidia/cuBB/output/run/kpi_summary.json",
+        legacy_root=tmp_path,
+    ) == target
+
+
+def test_v9c_steady_parser_drops_the_first_two_500_tti_blocks(tmp_path):
+    log = tmp_path / "checkpoint_eval.log"
+    log.write_text(
+        "\n".join(
+            f"[hgraph-eval] tti={tti:04d} goodput={1000 + tti / 10:.4f} "
+            f"tb_err=0.1000 blank=0.2000 fill=0.8000 uniq_ue=30.00"
+            for tti in range(500, 4001, 500)
+        ) + "\n",
+        encoding="utf-8",
+    )
+    result = parse_v9c_steady_blocks(log, first_tti=1001, last_tti=4000)
+    assert result["block_count"] == 6
+    assert result["source_block_end_ttis"] == [1500, 2000, 2500, 3000, 3500, 4000]
+    assert result["goodput_mbps"] == 1275.0
+    assert result["tb_err_rate"] == 0.1
+    assert result["prg_utilization_ratio"] == 0.8
+
+
+def test_classification_prioritizes_starvation_over_mean_goodput_gain():
+    report = {
+        "structural_valid": True,
+        "dpa_full_mean": {"goodput_mbps": 1600.0, "bler": 0.10, "expiry_drop_rate": 0.0},
+        "pfq_full_mean": {"goodput_mbps": 1500.0, "bler": 0.11, "expiry_drop_rate": 0.001},
+        "v9c_full_mean": {"goodput_mbps": 1490.0},
+        "dpa_service_health": {"zero_service_seed_ues": [{"seed": 45, "ue_id": 4}], "ttl_streak_seed_ues": []},
+    }
+    assert classify_scorecard(report) == "cross_layout_service_failed_starvation"
+
+
+def test_seed_summary_requires_the_frozen_structural_contract():
+    summary = {
+        "completed_steps": 4000,
+        "stats_warmup_steps": 1000,
+        "stats_count": 3000,
+        "checkpoint_sha256": "checkpoint",
+        "actor_state_dict_sha256": "actor-state",
+        "sim_binary_sha256": "simulator",
+        "decode_mode": "argmax",
+        "independent_headroom_accounting": "ctbs-v1",
+        "independent_non_starvation_guard": "off",
+        "candidate_truncation": "forbidden",
+        "candidate_truncation_count": 0,
+        "stats_sum_candidate_truncation_count": 0.0,
+        "stats_sum_action_replay_mismatch_count": 0.0,
+        "stats_sum_illegal_action_count": 0.0,
+        "ctbs_mask_reactivation_count": 0,
+        "ctbs_mcs_mismatch_count": 0,
+        "ctbs_layer_mismatch_count": 0,
+        "ctbs_tbs_mismatch_count": 0,
+    }
+    observed = validate_seed_summary(
+        summary,
+        expected_hashes={
+            "checkpoint_file": "checkpoint",
+            "actor_state": "actor-state",
+            "simulator": "simulator",
+        },
+    )
+    assert all(observed.values())
+
+    summary["independent_non_starvation_guard"] = "ctbs-blank-v1"
+    with pytest.raises(ValueError, match="guard_off"):
+        validate_seed_summary(
+            summary,
+            expected_hashes={
+                "checkpoint_file": "checkpoint",
+                "actor_state": "actor-state",
+                "simulator": "simulator",
+            },
+        )
