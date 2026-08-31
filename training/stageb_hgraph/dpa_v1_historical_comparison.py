@@ -627,7 +627,20 @@ def run_preflight(args: argparse.Namespace) -> None:
             ),
         },
     }
-    _write_json(Path(args.out).resolve(), manifest)
+    out = Path(args.out).resolve()
+    if args.verify_only:
+        if not out.is_file():
+            raise ValueError(f"verify-only manifest is missing or not a file: {out}")
+        try:
+            recorded_manifest = _read_json(out)
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError(f"verify-only manifest has malformed JSON: {out}") from exc
+        if not isinstance(recorded_manifest, Mapping):
+            raise ValueError(f"verify-only manifest is not a JSON mapping: {out}")
+        if recorded_manifest != manifest:
+            raise ValueError("verify-only manifest does not match recomputed manifest")
+        return
+    _write_json(out, manifest)
 
 
 def _load_csv_rows(path: Path) -> list[dict[str, str]]:
@@ -1677,6 +1690,11 @@ def _build_parser() -> argparse.ArgumentParser:
     preflight.add_argument("--v9c-root", required=True)
     preflight.add_argument("--pfq-root", required=True)
     preflight.add_argument("--out", required=True)
+    preflight.add_argument(
+        "--verify-only",
+        action="store_true",
+        help="recompute frozen provenance and require an unchanged matching manifest",
+    )
     preflight.set_defaults(func=run_preflight)
 
     extract = subparsers.add_parser(

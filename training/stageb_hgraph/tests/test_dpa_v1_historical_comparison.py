@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from training.stageb_hgraph import dpa_v1_historical_comparison as comparison
 from training.stageb_hgraph.dpa_v1_historical_comparison import (
     WindowSpec,
     _aggregate_rows,
@@ -15,6 +16,84 @@ from training.stageb_hgraph.dpa_v1_historical_comparison import (
     summarize_dpa_window,
     validate_seed_summary,
 )
+
+
+def test_preflight_verify_only_checks_manifest_without_rewriting(tmp_path, monkeypatch):
+    comparison_path = tmp_path / "v9c_compare.json"
+    comparison_path.write_text(
+        json.dumps(
+            {
+                "source_runs": [
+                    {"seed": seed, "model_path": "/recorded/v9c_checkpoint.pt"}
+                    for seed in range(41, 51)
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(
+        comparison,
+        "_find_frozen_file",
+        lambda *_args: comparison_path,
+    )
+    monkeypatch.setattr(
+        comparison,
+        "resolve_recorded_path",
+        lambda *_args, **_kwargs: tmp_path / "v9c_checkpoint.pt",
+    )
+    monkeypatch.setattr(
+        comparison,
+        "_hash_record",
+        lambda path, expected: {
+            "path": str(Path(path).resolve()),
+            "sha256": expected,
+            "expected_sha256": expected,
+        },
+    )
+    monkeypatch.setattr(
+        comparison,
+        "_checkpoint_actor_state_sha256",
+        lambda _path: comparison.FROZEN_HASHES["actor_state"],
+    )
+
+    out = tmp_path / "campaign_manifest.json"
+    shared = [
+        "--worktree-root",
+        str(tmp_path / "worktree"),
+        "--legacy-root",
+        str(tmp_path / "legacy"),
+        "--checkpoint",
+        str(tmp_path / "actor.pt"),
+        "--sim-bin",
+        str(tmp_path / "simulator"),
+        "--v9c-root",
+        str(tmp_path / "v9c"),
+        "--pfq-root",
+        str(tmp_path / "pfq"),
+        "--out",
+        str(out),
+    ]
+    parser = comparison._build_parser()
+    comparison.run_preflight(parser.parse_args(["preflight", *shared]))
+    before_contents = out.read_text(encoding="utf-8")
+    before_mtime_ns = out.stat().st_mtime_ns
+
+    verify_args = parser.parse_args(["preflight", "--verify-only", *shared])
+    comparison.run_preflight(verify_args)
+    assert out.read_text(encoding="utf-8") == before_contents
+    assert out.stat().st_mtime_ns == before_mtime_ns
+
+    out.unlink()
+    with pytest.raises(ValueError, match="missing or not a file"):
+        comparison.run_preflight(verify_args)
+
+    out.write_text("not JSON", encoding="utf-8")
+    with pytest.raises(ValueError, match="malformed JSON"):
+        comparison.run_preflight(verify_args)
+
+    out.write_text("{}", encoding="utf-8")
+    with pytest.raises(ValueError, match="does not match recomputed manifest"):
+        comparison.run_preflight(verify_args)
 
 
 def _service(tti, ue_id, backlog, scheduled, successful, expired=0, prgs=0):
