@@ -9,6 +9,7 @@
 - [当前综合实验报告](stageB_boundary_intelligent_algorithm_experiment_report.md)：修正验证与新的 PFQ/RRQ 基线。
 - [DPA 算法结构说明](../docs/superpowers/specs/2026-08-13-pfq-independent-reuse-actor-design.md)：保留算法契约，不代表历史 checkpoint 已在新环境验收。
 - [训练代码说明](../training/stageb_hgraph/README.md)。
+- [下一轮实验计划（待确认）](../docs/superpowers/plans/2026-09-20-corrected-uniform-baselines-dpa.md)：uniform UE，seed42/43 × PF/RR/PFQ/RRQ，完整原始/聚合 CSV，新 BC 与 DPA Full。
 
 ## 历史入口
 

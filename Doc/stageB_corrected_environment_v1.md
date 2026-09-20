@@ -35,6 +35,8 @@
 - libcumac SHA-256：`079f4c72ca94358a410584fe1a666914a5da4041acbc4085fada50957363692e`。
 - [版本快照](../output/pfq_independent_reuse/versions/stageb_corrected_2026_09_20_v1/README.md)保存二进制、共享库、tracked source patch、变更/新增源码 overlay 和逐文件哈希。不是完整容器快照；容器、依赖及构建配置仍须一并记录。
 
+后续提交记录：修正源码、必要依赖、归档与小型验证证据已提交为 `7f3b700c6147c1ff738188d837c6c8b99623110b`。上面的 dirty/base 描述保留为采集快照时的历史身份；新实验以该提交为代码基底，再记录后续参数/导出改动。此次提交核验：Stage-B 与 cuMAC/scripts Python tests 共 `757 passed, 6 subtests passed`（GPU/slot 项读取既有真实运行证据），两个 C++ accounting/units 检查通过。仅更新一处旧评估器测试的图 fixture，不改变运行逻辑；未重跑仿真。原始大数据、checkpoint 和构建二进制留在本地归档，没有进入 Git。
+
 当前有效短基线为 [seed42 PFQ/RRQ](../output/pfq_independent_reuse/formal/seed42_pfq_rrq_corrected_v1/report.md)：1000 warmup + 4000 measured，offered 1729.548 Mbps，goodput 分别 1388.113 / 1197.038 Mbps。两者仍有过期，不代表负载已被稳定承载。此版本尚无重新训练并验收的 DPA checkpoint。
 
 ## 4. 历史材料归档政策
@@ -60,6 +62,8 @@
 6. 单位不变量、slot 不变量、GPU 原始计数/MCS 检查通过，只表明已测范围正确；新增模式/拓扑需要相应验证。性能证据不能混合修正前后结果。
 
 当前未证实：修正环境中的 DPA 优势、组件贡献、7cell 泛化、零过期、GPU-only 性能改善及生产级正确性。
+
+下一轮的[随机 UE seed42/43 四基线与 DPA Full 计划](../docs/superpowers/plans/2026-09-20-corrected-uniform-baselines-dpa.md)目前为待确认草案，不是启动许可。
 
 ## 6. 后续复核：goodput 与 completion 的统计边界
 
