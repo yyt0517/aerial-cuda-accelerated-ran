@@ -89,9 +89,20 @@ struct PacketOutcomeSample
 {
     uint32_t flow_id = 0;
     uint64_t packet_id = 0;
+    int arrival_tti = -1;
+    uint32_t packet_size_bytes = 0;
+    uint32_t remaining_bytes_at_terminal = 0;
     int terminal_tti = -1;
     bool expired = false;
     double system_time_ms = 0.0;
+};
+
+struct PacketOfferSample
+{
+    uint32_t flow_id = 0;
+    uint64_t packet_id = 0;
+    int arrival_tti = -1;
+    uint32_t packet_size_bytes = 0;
 };
 
 struct PacketHeadSummary
@@ -469,7 +480,9 @@ public:
                 last_packet_expiry_aware_rate.expired_packet_system_time_ms += packet_system_time_ms;
                 last_packet_expiry_aware_rate.outcome_packet_system_time_ms += packet_system_time_ms;
                 packet_outcome_samples.push_back(
-                    {static_cast<uint32_t>(i), pkt.packet_id, terminal_tti, true, packet_system_time_ms});
+                    {static_cast<uint32_t>(i), pkt.packet_id, pkt.arrival_tti,
+                     pkt.packet_size_bytes, entry.remaining_bytes, terminal_tti, true,
+                     packet_system_time_ms});
                 if (expired_bytes > 0ULL) {
                     total_expired_bytes += expired_bytes;
                     last_expired_bytes += expired_bytes;
@@ -587,7 +600,8 @@ public:
                     last_packet_expiry_aware_rate.outcome_packet_system_time_ms += packet_system_time_ms;
                     last_packet_expiry_aware_rate_mbps_sum += packet_rate_mbps;
                     packet_outcome_samples.push_back(
-                        {static_cast<uint32_t>(i), record.packet_id, current_tti + 1, false,
+                        {static_cast<uint32_t>(i), record.packet_id, record.arrival_tti,
+                         record.packet_size_bytes, 0U, current_tti + 1, false,
                          packet_system_time_ms});
                     queue.pop_front();
                 }
@@ -837,11 +851,15 @@ private:
     int last_tti;
     unsigned long long total_generated_bytes;
     unsigned long long total_generated_pkts;
+    uint64_t next_offered_packet_id;
+    std::vector<PacketOfferSample> packet_offer_samples;
+    bool packet_offer_audit_enabled = false;
 public:
     TrafficGenerator(TrafficConfig& config) : gen(rd()) {
         last_tti = 0;
         total_generated_bytes = 0;
         total_generated_pkts = 0;
+        next_offered_packet_id = 1ULL;
         Configure(config);
     }
     void Attach(TrafficObserver* observer){
@@ -853,6 +871,8 @@ public:
         auto flow_cfgs =  config.GetFlowCfgs();
         total_generated_bytes = 0;
         total_generated_pkts = 0;
+        next_offered_packet_id = 1ULL;
+        packet_offer_samples.clear();
         pending_traffic.resize(flow_cfgs.size());
         pkt_size_dist.resize(flow_cfgs.size());
         arrival_dist.resize(flow_cfgs.size());
@@ -914,6 +934,11 @@ public:
                 if (pkt_bytes < 0) {
                     pkt_bytes = 0;
                 }
+                if (packet_offer_audit_enabled) {
+                    packet_offer_samples.push_back(
+                        {static_cast<uint32_t>(i), next_offered_packet_id++, last_tti,
+                         static_cast<uint32_t>(pkt_bytes)});
+                }
                 current_flow.packet_bytes.push_back(pkt_bytes);
                 num_step_bytes += pkt_bytes;
             }
@@ -944,5 +969,15 @@ public:
     }
     unsigned long long GetTotalGeneratedBytes() const { return total_generated_bytes; }
     unsigned long long GetTotalGeneratedPkts() const { return total_generated_pkts; }
+    void SetPacketOfferAuditEnabled(bool enabled)
+    {
+        packet_offer_audit_enabled = enabled;
+        next_offered_packet_id = 1ULL;
+        packet_offer_samples.clear();
+    }
+    void GetPacketOfferSamples(std::vector<PacketOfferSample>& samples) const
+    {
+        samples = packet_offer_samples;
+    }
     int GetLastTti() const { return last_tti; }
 };

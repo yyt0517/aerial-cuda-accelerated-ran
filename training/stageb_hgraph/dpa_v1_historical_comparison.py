@@ -373,7 +373,9 @@ def summarize_dpa_window(
         outcomes_by_ue[int(row["ue_id"])].append(row)
 
     ue_rates: list[float] = []
-    for rows in outcomes_by_ue.values():
+    no_outcome_ue_count = 0
+    for ue_id in sorted(by_ue):
+        rows = outcomes_by_ue.get(ue_id, [])
         terminal_rows = [
             row
             for row in rows
@@ -388,6 +390,9 @@ def summarize_dpa_window(
         if outcome_time_ms > 0.0:
             # bytes * 8 / milliseconds / 1000 = megabits/second
             ue_rates.append(delivered_bytes * 8.0 / (outcome_time_ms * 1000.0))
+        else:
+            ue_rates.append(0.0)
+            no_outcome_ue_count += 1
 
     return {
         "window": window.label,
@@ -420,6 +425,8 @@ def summarize_dpa_window(
         "ue_expiry_aware_rate_mean_mbps": float(np.mean(ue_rates)) if ue_rates else 0.0,
         "ue_expiry_aware_rate_p10_mbps": _pct(ue_rates, 10),
         "ue_expiry_aware_rate_min_mbps": min(ue_rates, default=0.0),
+        "ue_expiry_aware_rate_ue_count": len(ue_rates),
+        "ue_expiry_aware_rate_no_outcome_ue_count": no_outcome_ue_count,
         "zero_scheduled_dequeue_ue_ids": zero_service_ids,
         "max_backlogged_zero_dequeue_streak_tti": max_streak,
         "metric_units": {

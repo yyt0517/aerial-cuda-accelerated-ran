@@ -12,13 +12,15 @@ if __package__ is None or __package__ == "":
     sys.path.insert(0, _repo_root)
 
 import argparse
+import csv
 import hashlib
 import json
 import os
 import time
 from collections import deque
+from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Sequence
 
 import numpy as np
 import torch
@@ -42,7 +44,52 @@ def _configure_torch_threads_from_env() -> None:
 
 _configure_torch_threads_from_env()
 
+
+def _count_candidate_mask_reactivations(
+    valid_at_step: torch.Tensor,
+    candidate_ue_ids_at_step: torch.Tensor,
+    *,
+    n_ue: int,
+) -> int:
+    """Count invalid-to-valid transitions after aligning candidate columns by UE."""
+    valid = torch.as_tensor(valid_at_step, dtype=torch.bool).detach().cpu()
+    ue_ids = torch.as_tensor(candidate_ue_ids_at_step, dtype=torch.long).detach().cpu()
+    if valid.ndim != 3:
+        raise ValueError("candidate mask trace must have shape [PRG, cell, class]")
+    if ue_ids.shape != valid.shape:
+        raise ValueError("candidate UE identities must match the mask trace shape")
+    if n_ue <= 0:
+        raise ValueError("candidate mask reactivation audit requires at least one UE")
+    if valid.shape[0] < 2:
+        return 0
+    valid_by_ue = torch.zeros(
+        (valid.shape[0], valid.shape[1], int(n_ue)), dtype=torch.bool
+    )
+    for prg in range(valid.shape[0]):
+        for cell in range(valid.shape[1]):
+            keep = valid[prg, cell] & (ue_ids[prg, cell] >= 0)
+            row_ids = ue_ids[prg, cell, keep]
+            if bool((row_ids >= n_ue).any().item()):
+                raise ValueError("candidate UE identity is out of range")
+            if row_ids.unique().numel() != row_ids.numel():
+                raise ValueError("candidate UE identity is duplicated within a row")
+            valid_by_ue[prg, cell, row_ids] = True
+    return int(((~valid_by_ue[:-1]) & valid_by_ue[1:]).sum().item())
+
 from training.stageb_hgraph.bridge_env import BridgeEnvClient, BridgeEnvConfig
+from training.stageb_hgraph.ctbs_headroom import (
+    CtbsHeadroomInputs,
+    compare_ctbs_reference_labels,
+)
+from training.stageb_hgraph.ctbs_non_starvation_guard import (
+    MAXIMUM_OVERRIDES_PER_CELL_PER_TTI,
+    MAXIMUM_SCHEDULED_DEQUEUE_ADEQUACY,
+    MINIMUM_LOG1P_DRAIN_PRESSURE,
+    MINIMUM_TTL_NORMALIZED_SERVICE_AGE,
+    CtbsNonStarvationGuardConfig,
+    guard_diagnostics_to_rows,
+    summarize_guard_diagnostics,
+)
 from training.stageb_hgraph.candidate_policy import (
     CandidatePolicyConfig,
     select_candidate_policy_action,
@@ -72,19 +119,55 @@ from training.stageb_hgraph.independent_blank_diagnostics import (
 )
 from training.stageb_hgraph.independent_contract import (
     assert_graph_tensor_equality,
+    candidate_truncation_count,
+    resolve_runtime_candidate_contract,
+    state_dict_sha256,
     strip_pfq_fields,
     validate_independent_checkpoint,
     validate_independent_graph,
 )
 from training.stageb_hgraph.independent_policy import (
+    W0_V2_CHOSEN_LOGPROB_ATOL,
+    W0_V2_VALID_LOGITS_ATOL,
+    compare_candidate_padding_fp32_equivalence,
+    compare_candidate_padding_semantics,
     replay_independent_trace,
+    resolve_full_candidate_width,
     select_independent_action,
 )
 from training.stageb_hgraph.rescue_cohort_diagnostics import (
     RescueCellTtiRow,
+    RescueDecisionDiagnostics,
     RescueUeTtiRow,
+    concatenate_rescue_decision_diagnostics,
     join_rescue_cohort_tti,
+    summarize_local_prg_phy_interference,
     summarize_rescue_cohorts,
+)
+from training.stageb_hgraph.phy_tbs_alignment_audit import (
+    PHY_TBS_AUDIT_V1_PROTOCOL_ID,
+    PHY_TBS_AUDIT_V2_CPU_OLLA_PROTOCOL_ID,
+    PhyTbsAuditUeTtiRow,
+    PhyTbsConfig,
+    join_phy_tbs_alignment_tti,
+    summarize_phy_tbs_alignment_audit,
+)
+from training.stageb_hgraph.service_accounting_audit import (
+    NEW_TRANSMISSION_QUEUE_DEQUEUE,
+    ServiceAccountingUeTtiRow,
+    join_service_accounting_tti,
+    summarize_service_accounting_audit,
+)
+from training.stageb_hgraph.blank_expiry_attribution_audit import (
+    FROZEN_B4_STATE_DICT_SHA256,
+    V1_PROTOCOL_ID,
+    V2_FULL_HORIZON_PROTOCOL_ID,
+    BlankExpiryTtiTrace,
+    build_atomic_exposures,
+    build_blank_expiry_attribution_report,
+    decision_diagnostics_to_rows,
+    packet_lifecycle_rows,
+    read_formal_expired_packets,
 )
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy, build_model_from_config
 from training.stageb_hgraph.online_imitation import _pick_device, _set_seed
@@ -117,6 +200,7 @@ def _independent_deletion_equal(
     device: torch.device,
     *,
     mode: str,
+    runtime_candidate_width: int | None = None,
 ) -> bool:
     full = _graph_to_device(
         edge_generator.build_graph(FeatureSnapshotBuilder(snapshot_cfg).build(observation)),
@@ -129,12 +213,13 @@ def _independent_deletion_equal(
         device,
     )
     assert_graph_tensor_equality(full, deleted)
-    full_packed = pack_prg_candidates(
-        full, max_candidates=int(actor.cfg.max_candidates), fixed_width=True
+    width = (
+        int(runtime_candidate_width)
+        if runtime_candidate_width is not None
+        else resolve_full_candidate_width(full)
     )
-    deleted_packed = pack_prg_candidates(
-        deleted, max_candidates=int(actor.cfg.max_candidates), fixed_width=True
-    )
+    full_packed = pack_prg_candidates(full, max_candidates=width, fixed_width=True)
+    deleted_packed = pack_prg_candidates(deleted, max_candidates=width, fixed_width=True)
     with torch.inference_mode():
         full_encoded = actor.encode_graph(full)
         deleted_encoded = actor.encode_graph(deleted)
@@ -220,6 +305,217 @@ def _validate_direct_evaluation_config(args: argparse.Namespace) -> None:
         )
 
 
+_GUARD_TRACE_CSV_FIELDS = (
+    "tti",
+    "cell_index",
+    "local_prg_index",
+    "blank_class_index",
+    "actor_choice",
+    "executed_choice",
+    "guard_override",
+    "selected_class",
+    "selected_ue",
+    "candidate_was_valid",
+    "log1p_drain_pressure",
+    "scheduled_dequeue_adequacy",
+    "ttl_normalized_service_age",
+    "ctbs_capacity_before_bytes",
+    "ctbs_capacity_after_bytes",
+    "reason",
+)
+_GUARD_FORMAL_ACTION_TTIS = 5000
+_GUARD_FORMAL_N_CELL = 3
+_GUARD_FORMAL_N_PRG = 17
+_GUARD_FORMAL_DECISIONS_PER_TTI = 51
+_GUARD_FORMAL_FULL_DECISION_COUNT = 255000
+_GUARD_FORMAL_MEASURED_DECISION_COUNT = 204000
+
+
+def _validate_non_starvation_guard_startup(
+    *,
+    guard_mode: str,
+    max_steps: int,
+    episode_horizon: int,
+) -> None:
+    if guard_mode == "off":
+        return
+    if guard_mode != "ctbs-blank-v1":
+        raise ValueError("unknown independent non-starvation guard mode")
+    if int(max_steps) != _GUARD_FORMAL_ACTION_TTIS:
+        raise ValueError("ctbs-blank-v1 requires --max-steps 5000")
+    if int(episode_horizon) != _GUARD_FORMAL_ACTION_TTIS:
+        raise ValueError("ctbs-blank-v1 requires --episode-horizon 5000")
+
+
+def _validate_non_starvation_guard_topology(
+    *,
+    guard_mode: str,
+    n_cell: int,
+    n_prg: int,
+) -> None:
+    if guard_mode == "off":
+        return
+    if guard_mode != "ctbs-blank-v1":
+        raise ValueError("unknown independent non-starvation guard mode")
+    n_cell_value = int(n_cell)
+    n_prg_value = int(n_prg)
+    if (n_cell_value, n_prg_value) != (
+        _GUARD_FORMAL_N_CELL,
+        _GUARD_FORMAL_N_PRG,
+    ) or n_cell_value * n_prg_value != _GUARD_FORMAL_DECISIONS_PER_TTI:
+        raise ValueError(
+            "ctbs-blank-v1 requires the frozen topology of 3 cells and 17 local "
+            "PRGs (51 decisions per action TTI)"
+        )
+
+
+def _validate_non_starvation_guard_completion(
+    *,
+    guard_mode: str,
+    completed_action_ttis: int,
+    full_rows: Sequence[object],
+    measured_rows: Sequence[object],
+) -> None:
+    if guard_mode == "off":
+        return
+    if guard_mode != "ctbs-blank-v1":
+        raise ValueError("unknown independent non-starvation guard mode")
+    if int(completed_action_ttis) != _GUARD_FORMAL_ACTION_TTIS:
+        raise RuntimeError("ctbs-blank-v1 requires exactly 5000 completed action TTIs")
+    if len(full_rows) != _GUARD_FORMAL_FULL_DECISION_COUNT:
+        raise RuntimeError(
+            "ctbs-blank-v1 full trace must contain exactly 255000 decisions: "
+            f"got={len(full_rows)}"
+        )
+    if len(measured_rows) != _GUARD_FORMAL_MEASURED_DECISION_COUNT:
+        raise RuntimeError(
+            "ctbs-blank-v1 measured trace must contain exactly 204000 decisions: "
+            f"got={len(measured_rows)}"
+        )
+
+
+def _guard_diagnostics_to_validated_rows(
+    *,
+    tti: int,
+    trace,
+    n_cell: int,
+    n_prg: int,
+) -> list[dict[str, object]]:
+    diagnostics = getattr(trace, "guard_diagnostics", None)
+    if diagnostics is None:
+        raise RuntimeError("ctbs-blank-v1 step is missing guard diagnostics")
+    expected_count = int(n_cell) * int(n_prg)
+    for field_name in diagnostics.__dataclass_fields__:
+        values = getattr(diagnostics, field_name, None)
+        if not isinstance(values, torch.Tensor) or values.ndim != 1:
+            raise RuntimeError(
+                "ctbs-blank-v1 guard diagnostics field is not a vector: "
+                f"{field_name}"
+            )
+        if int(values.numel()) != expected_count:
+            raise RuntimeError(
+                "ctbs-blank-v1 guard diagnostics field length mismatch: "
+                f"field={field_name} got={values.numel()} expected={expected_count}"
+            )
+    rows = guard_diagnostics_to_rows(tti=int(tti), diagnostics=diagnostics)
+    if len(rows) != expected_count:
+        raise RuntimeError(
+            "ctbs-blank-v1 guard decision count mismatch: "
+            f"got={len(rows)} expected={expected_count}"
+        )
+    expected_coordinates = {
+        (cell, local_prg)
+        for local_prg in range(int(n_prg))
+        for cell in range(int(n_cell))
+    }
+    coordinates = {
+        (int(row["cell_index"]), int(row["local_prg_index"])) for row in rows
+    }
+    if coordinates != expected_coordinates:
+        raise RuntimeError("ctbs-blank-v1 guard decision coordinates are incomplete")
+
+    overrides_by_cell: dict[int, int] = {}
+    for row in rows:
+        if not bool(row["guard_override"]):
+            if int(row["actor_choice"]) != int(row["executed_choice"]):
+                raise ValueError(
+                    "ctbs-blank-v1 changed a choice without an override diagnostic"
+                )
+            continue
+        cell = int(row["cell_index"])
+        overrides_by_cell[cell] = overrides_by_cell.get(cell, 0) + 1
+
+    if max(overrides_by_cell.values(), default=0) > MAXIMUM_OVERRIDES_PER_CELL_PER_TTI:
+        raise ValueError("ctbs-blank-v1 exceeded one override per cell/TTI")
+
+    for row in rows:
+        if not bool(row["guard_override"]):
+            continue
+        actor_choice = int(row["actor_choice"])
+        executed_choice = int(row["executed_choice"])
+        blank_class_index = int(row["blank_class_index"])
+        if actor_choice != blank_class_index:
+            raise ValueError("ctbs-blank-v1 violated the Blank-only override contract")
+        if executed_choice == blank_class_index or actor_choice == executed_choice:
+            raise ValueError("ctbs-blank-v1 override did not execute a nonblank choice")
+        if not bool(row["candidate_was_valid"]):
+            raise ValueError("ctbs-blank-v1 override selected an invalid candidate")
+        if int(row["ctbs_capacity_after_bytes"]) <= int(
+            row["ctbs_capacity_before_bytes"]
+        ):
+            raise ValueError("ctbs-blank-v1 override requires a positive CTBS capacity delta")
+    return rows
+
+
+def _build_non_starvation_guard_summary(
+    *,
+    guard_mode: str,
+    full_rows: list[dict[str, object]],
+    measured_rows: list[dict[str, object]],
+) -> dict[str, object]:
+    if guard_mode not in ("off", "ctbs-blank-v1"):
+        raise ValueError("unknown independent non-starvation guard mode")
+    if guard_mode == "off" and (full_rows or measured_rows):
+        raise ValueError("guard-off evaluation must not accumulate guard rows")
+    return {
+        "independent_non_starvation_guard": guard_mode,
+        "non_starvation_guard_config": {
+            "minimum_log1p_drain_pressure": MINIMUM_LOG1P_DRAIN_PRESSURE,
+            "maximum_scheduled_dequeue_adequacy": (
+                MAXIMUM_SCHEDULED_DEQUEUE_ADEQUACY
+            ),
+            "minimum_ttl_normalized_service_age": (
+                MINIMUM_TTL_NORMALIZED_SERVICE_AGE
+            ),
+            "maximum_overrides_per_cell_per_tti": (
+                MAXIMUM_OVERRIDES_PER_CELL_PER_TTI
+            ),
+            "override_nonblank": False,
+            "require_positive_ctbs_capacity_delta": True,
+        },
+        "guard_full_summary": summarize_guard_diagnostics(full_rows),
+        "guard_measured_summary": summarize_guard_diagnostics(measured_rows),
+    }
+
+
+def _write_non_starvation_guard_trace(
+    path: Path,
+    rows: list[dict[str, object]],
+    *,
+    guard_mode: str,
+) -> None:
+    if guard_mode == "off":
+        if rows:
+            raise ValueError("guard-off evaluation must not write guard rows")
+        return
+    if guard_mode != "ctbs-blank-v1":
+        raise ValueError("unknown independent non-starvation guard mode")
+    with path.open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.DictWriter(handle, fieldnames=_GUARD_TRACE_CSV_FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 def _select_joint_action(
     actor: StageBHGraphPolicy | PFQIndependentReuseActor,
     graph,
@@ -254,7 +550,28 @@ def _select_joint_action(
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
     independent_policy_diagnostics: bool = False,
+    collect_blank_expiry_attribution: bool = False,
+    independent_runtime_candidate_width: int | None = None,
+    ctbs_headroom_inputs: CtbsHeadroomInputs | None = None,
+    independent_non_starvation_guard: str = "off",
 ) -> Dict[str, Any]:
+    guard_mode = str(independent_non_starvation_guard)
+    if guard_mode not in ("off", "ctbs-blank-v1"):
+        raise ValueError(
+            "independent non-starvation guard must be off or ctbs-blank-v1"
+        )
+    guard_config = CtbsNonStarvationGuardConfig(
+        enabled=guard_mode == "ctbs-blank-v1"
+    )
+    if guard_config.enabled:
+        if not isinstance(actor, PFQIndependentReuseActor):
+            raise ValueError("ctbs-blank-v1 requires an independent actor")
+        if decode_mode != "argmax":
+            raise ValueError("ctbs-blank-v1 requires --decode-mode argmax")
+        if not independent_policy_diagnostics:
+            raise ValueError("ctbs-blank-v1 requires independent policy diagnostics")
+        if ctbs_headroom_inputs is None:
+            raise ValueError("ctbs-blank-v1 requires real CTBS headroom inputs")
     if independent_policy_diagnostics and not isinstance(actor, PFQIndependentReuseActor):
         raise ValueError("independent policy diagnostics require an independent actor")
     if (
@@ -272,15 +589,25 @@ def _select_joint_action(
                 "independent evaluation is deterministic and requires --decode-mode "
                 "argmax or hierarchical_argmax"
             )
+        runtime_width = (
+            int(independent_runtime_candidate_width)
+            if independent_runtime_candidate_width is not None
+            else resolve_full_candidate_width(graph)
+        )
         validate_independent_graph(
             graph,
-            max_candidates=int(actor.cfg.max_candidates),
+            max_candidates=runtime_width,
         )
         packed = pack_prg_candidates(
             graph,
-            max_candidates=int(actor.cfg.max_candidates),
+            max_candidates=runtime_width,
             fixed_width=True,
         )
+        truncation_count = candidate_truncation_count(graph, packed)
+        if truncation_count:
+            raise ValueError(
+                f"independent candidate truncation is forbidden: count={truncation_count}"
+            )
         with torch.inference_mode():
             trace, decoded = select_independent_action(
                 actor,
@@ -288,6 +615,9 @@ def _select_joint_action(
                 packed,
                 mode=independent_decode_modes[decode_mode],
                 collect_diagnostics=independent_policy_diagnostics,
+                collect_blank_expiry_attribution=collect_blank_expiry_attribution,
+                ctbs_headroom_inputs=ctbs_headroom_inputs,
+                non_starvation_guard=guard_config,
             )
             _logp, _entropy, replayed = replay_independent_trace(
                 actor,
@@ -306,6 +636,11 @@ def _select_joint_action(
             "decoded_chosen_ue_per_prg": decoded.chosen_ue_per_prg.detach().cpu(),
             "prg_action_class": trace.choice.detach().cpu(),
             "independent_policy_trace": trace,
+            "candidate_ue_ids_at_step": packed.ue_ids.reshape(
+                graph.snapshot.static_meta.n_cell,
+                graph.snapshot.static_meta.n_prg,
+                packed.max_candidates,
+            ).permute(1, 0, 2).detach().cpu(),
             "blank_ratio": float(
                 (trace.choice == packed.blank_class_index).float().mean().item()
             ),
@@ -334,6 +669,8 @@ def _select_joint_action(
             "budgeted_tail_bias_active_count": 0.0,
             "uniq_ue": float(torch.unique(chosen).numel()) if chosen.numel() else 0.0,
             "action_replay_mismatch_count": float(mismatch),
+            "runtime_candidate_width": int(runtime_width),
+            "candidate_truncation_count": float(truncation_count),
             "independent_mode": 1.0,
         }
     _validate_direct_evaluation_config(
@@ -627,6 +964,78 @@ def parse_args() -> argparse.Namespace:
         default=0,
         help="collect detached PFQ-independent Blank diagnostics without changing actions",
     )
+    p.add_argument(
+        "--independent-headroom-accounting",
+        choices=("raw-v1", "ctbs-v1"),
+        default="raw-v1",
+        help="B4 sequential headroom treatment; ctbs-v1 requires the causal pre-action handshake",
+    )
+    p.add_argument(
+        "--independent-non-starvation-guard",
+        choices=("off", "ctbs-blank-v1"),
+        default="off",
+        help="frozen blank-only CTBS non-starvation guard; evaluation only",
+    )
+    p.add_argument(
+        "--independent-service-accounting-audit",
+        type=int,
+        choices=(0, 1),
+        default=0,
+        help="apply the frozen read-only scheduled/raw service audit to measured TTIs",
+    )
+    p.add_argument(
+        "--independent-phy-tbs-alignment-audit",
+        type=int,
+        choices=(0, 1),
+        default=0,
+        help="apply the frozen read-only decision-time PHY/TBS reconstruction audit",
+    )
+    p.add_argument(
+        "--independent-blank-expiry-attribution-audit",
+        type=int,
+        choices=(0, 1),
+        default=0,
+        help="collect the frozen read-only expired-packet exposure attribution audit",
+    )
+    p.add_argument(
+        "--blank-expiry-trace-first-tti",
+        type=int,
+        default=602,
+        help="first action TTI retained for full expired-packet lifecycle coverage",
+    )
+    p.add_argument(
+        "--independent-blank-expiry-attribution-protocol",
+        choices=(V1_PROTOCOL_ID, V2_FULL_HORIZON_PROTOCOL_ID),
+        default=V1_PROTOCOL_ID,
+        help="versioned window and reporting contract for Blank-expiry attribution",
+    )
+    p.add_argument(
+        "--independent-phy-tbs-alignment-protocol",
+        choices=(
+            PHY_TBS_AUDIT_V1_PROTOCOL_ID,
+            PHY_TBS_AUDIT_V2_CPU_OLLA_PROTOCOL_ID,
+        ),
+        default=PHY_TBS_AUDIT_V1_PROTOCOL_ID,
+        help="versioned causal-input and gate contract for the read-only PHY/TBS audit",
+    )
+    p.add_argument(
+        "--independent-runtime-candidate-width",
+        type=int,
+        default=0,
+        help="0 resolves width from full association topology; a positive value is a fail-closed padding width",
+    )
+    p.add_argument(
+        "--independent-equivalence-reference-width",
+        type=int,
+        default=0,
+        help="positive width enables per-step semantic comparison against the runtime width",
+    )
+    p.add_argument(
+        "--independent-equivalence-protocol",
+        choices=("bitwise-w0-v1", "fp32-w0-v2"),
+        default="bitwise-w0-v1",
+        help="cross-width numerical protocol; W0-v2 freezes FP32 tolerances while keeping discrete gates exact",
+    )
     p.add_argument("--slot-repair-max-per-cell", type=int, default=None, help="Default: checkpoint args, else 0")
     p.add_argument("--slot-repair-min-backlog-bytes", type=float, default=None, help="Default: checkpoint args, else 1.0")
     p.add_argument("--safe-fill-max-per-cell", type=int, default=None, help="Default: checkpoint args, else 0")
@@ -705,6 +1114,38 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 
+def _merge_w0_v2_equivalence_reports(
+    aggregate: dict[str, bool | float | int] | None,
+    step: dict[str, bool | float | int],
+) -> dict[str, bool | float | int]:
+    if aggregate is None:
+        return dict(step)
+    merged = dict(aggregate)
+    for key in (
+        "candidate_choice_equal",
+        "mask_equal",
+        "type0_action_equal",
+        "extra_padding_invalid",
+        "bitwise_mean_logprob_equal",
+        "valid_logits_within_tolerance",
+        "chosen_logprob_within_tolerance",
+        "passed",
+    ):
+        merged[key] = bool(aggregate[key]) and bool(step[key])
+    for key in ("valid_logits_max_abs_diff", "chosen_logprob_max_abs_diff"):
+        merged[key] = max(float(aggregate[key]), float(step[key]))
+    for key in (
+        "reference_replay_mismatch_count",
+        "runtime_replay_mismatch_count",
+        "nan_or_inf_count",
+    ):
+        merged[key] = int(aggregate[key]) + int(step[key])
+    for key in ("valid_logits_atol", "chosen_logprob_atol"):
+        if float(aggregate[key]) != float(step[key]):
+            raise ValueError(f"W0-v2 tolerance changed during evaluation: {key}")
+    return merged
+
+
 def main() -> int:
     args = parse_args()
     _set_seed(int(args.sample_seed))
@@ -714,8 +1155,70 @@ def main() -> int:
     actor, ckpt = _load_actor_checkpoint(ckpt_path, device)
     independent_mode = isinstance(actor, PFQIndependentReuseActor)
     independent_policy_diagnostics = bool(args.independent_policy_diagnostics)
+    service_accounting_audit_enabled = bool(
+        args.independent_service_accounting_audit
+    )
+    phy_tbs_alignment_audit_enabled = bool(
+        args.independent_phy_tbs_alignment_audit
+    )
+    blank_expiry_audit_enabled = bool(
+        args.independent_blank_expiry_attribution_audit
+    )
+    blank_expiry_trace_first_tti = int(args.blank_expiry_trace_first_tti)
+    blank_expiry_attribution_protocol = str(
+        args.independent_blank_expiry_attribution_protocol
+    )
+    phy_tbs_alignment_protocol = str(
+        args.independent_phy_tbs_alignment_protocol
+    )
+    independent_headroom_accounting = str(args.independent_headroom_accounting)
+    ctbs_enabled = independent_headroom_accounting == "ctbs-v1"
+    guard_mode = str(args.independent_non_starvation_guard)
+    guard_config = CtbsNonStarvationGuardConfig(
+        enabled=guard_mode == "ctbs-blank-v1"
+    )
+    if guard_config.enabled:
+        if not independent_mode:
+            raise ValueError("ctbs-blank-v1 requires an independent actor")
+        if str(args.decode_mode) != "argmax":
+            raise ValueError("ctbs-blank-v1 requires --decode-mode argmax")
+        if not ctbs_enabled:
+            raise ValueError(
+                "ctbs-blank-v1 requires --independent-headroom-accounting ctbs-v1"
+            )
+        if not independent_policy_diagnostics:
+            raise ValueError(
+                "ctbs-blank-v1 requires --independent-policy-diagnostics 1"
+            )
+    _validate_non_starvation_guard_startup(
+        guard_mode=guard_mode,
+        max_steps=int(args.max_steps),
+        episode_horizon=int(args.episode_horizon),
+    )
     if independent_policy_diagnostics and not independent_mode:
         raise ValueError("independent policy diagnostics require an independent actor")
+    if service_accounting_audit_enabled and not independent_policy_diagnostics:
+        raise ValueError(
+            "service accounting audit requires independent policy diagnostics"
+        )
+    if phy_tbs_alignment_audit_enabled and not independent_policy_diagnostics:
+        raise ValueError(
+            "PHY/TBS alignment audit requires independent policy diagnostics"
+        )
+    if blank_expiry_audit_enabled and not independent_policy_diagnostics:
+        raise ValueError(
+            "Blank-expiry attribution audit requires independent policy diagnostics"
+        )
+    if blank_expiry_audit_enabled and not ctbs_enabled:
+        raise ValueError("Blank-expiry attribution audit requires B4-CTBS-v1")
+    if blank_expiry_audit_enabled and not args.outcome_samples:
+        raise ValueError("Blank-expiry attribution audit requires --outcome-samples")
+    if blank_expiry_audit_enabled and blank_expiry_trace_first_tti != 602:
+        raise ValueError("frozen Blank-expiry audit requires trace_first_tti=602")
+    if ctbs_enabled and not independent_mode:
+        raise ValueError("CTBS headroom accounting requires an independent actor")
+    if ctbs_enabled and not independent_policy_diagnostics:
+        raise ValueError("B4-CTBS-v1 requires independent policy diagnostics")
     if independent_mode:
         independent_decode_mode = {
             "argmax": "greedy",
@@ -954,6 +1457,10 @@ def main() -> int:
     if args.out_dir:
         out_dir = Path(args.out_dir).resolve()
         out_dir.mkdir(parents=True, exist_ok=True)
+    if guard_config.enabled and out_dir is None:
+        raise ValueError("ctbs-blank-v1 requires --out-dir for the fixed trace CSV")
+    if blank_expiry_audit_enabled and out_dir is None:
+        raise ValueError("Blank-expiry attribution audit requires --out-dir")
 
     snapshot_cfg = SnapshotBuilderConfig(tb_err_ema_alpha=float(tb_err_ema_alpha))
     snapshot_builder = FeatureSnapshotBuilder(snapshot_cfg)
@@ -994,10 +1501,100 @@ def main() -> int:
         BridgeEnvConfig(
             socket_path=str(args.socket_path),
             connect_timeout_s=float(args.connect_timeout_s),
+            enable_ctbs=ctbs_enabled,
         )
     )
 
     obs, _reward0, info = env.reset(seed=int(args.seed), episode_horizon=int(args.episode_horizon))
+    runtime_harq_enabled = int(info.get("harq_enabled", -1))
+    ctbs_config: PhyTbsConfig | None = None
+    ctbs_config_sha256: str | None = None
+    if ctbs_enabled:
+        if runtime_harq_enabled != 0:
+            raise ValueError("B4-CTBS-v1 requires runtime HARQ to be disabled")
+        if not bool(info.get("ctbs_config_available", False)):
+            raise ValueError("B4-CTBS-v1 reset did not provide a TBS configuration")
+        ctbs_config = PhyTbsConfig.from_vector(info["ctbs_config"])
+        ctbs_config_sha256 = str(info["ctbs_config_sha256"])
+    if service_accounting_audit_enabled and runtime_harq_enabled != 0:
+        raise ValueError(
+            "service accounting audit requires runtime HARQ to be explicitly disabled"
+        )
+    if phy_tbs_alignment_audit_enabled and runtime_harq_enabled != 0:
+        raise ValueError(
+            "PHY/TBS alignment audit requires runtime HARQ to be explicitly disabled"
+        )
+    initial_graph = edge_generator.build_graph(snapshot_builder.build(obs))
+    try:
+        _validate_non_starvation_guard_topology(
+            guard_mode=guard_mode,
+            n_cell=int(initial_graph.snapshot.static_meta.n_cell),
+            n_prg=int(initial_graph.snapshot.static_meta.n_prg),
+        )
+    except Exception:
+        env.close()
+        raise
+    serving_cell_by_ue: tuple[int, ...] = ()
+    if blank_expiry_audit_enabled:
+        initial_association = initial_graph.snapshot.static_meta.action_mask_cell_ue.to(
+            dtype=torch.bool
+        ).detach().cpu()
+        serving_cell_by_ue = tuple(
+            int(torch.nonzero(initial_association[:, ue], as_tuple=False).flatten().item())
+            for ue in range(initial_graph.snapshot.static_meta.n_ue)
+        )
+    checkpoint_actor_config = ckpt.get("actor_config", {})
+    if not isinstance(checkpoint_actor_config, dict):
+        checkpoint_actor_config = {}
+    runtime_contract = None
+    association_candidate_counts: list[int] | None = None
+    actor_state_hash = ""
+    equivalence_reference_width = int(args.independent_equivalence_reference_width)
+    equivalence_protocol = str(args.independent_equivalence_protocol)
+    if independent_mode:
+        runtime_contract = resolve_runtime_candidate_contract(
+            initial_graph,
+            checkpoint_actor_config,
+            requested_width=int(args.independent_runtime_candidate_width),
+        )
+        association_candidate_counts = [
+            int(value)
+            for value in initial_graph.snapshot.static_meta.action_mask_cell_ue.to(
+                dtype=torch.int64
+            ).sum(dim=1).tolist()
+        ]
+        checkpoint_state = ckpt.get("actor_state")
+        if checkpoint_state is None:
+            checkpoint_state = ckpt.get("model_state", ckpt)
+        actor_state_hash = state_dict_sha256(checkpoint_state)
+        if (
+            blank_expiry_audit_enabled
+            and actor_state_hash != FROZEN_B4_STATE_DICT_SHA256
+        ):
+            raise ValueError(
+                "Blank-expiry audit frozen B4 state-dict hash mismatch: "
+                f"got={actor_state_hash} expected={FROZEN_B4_STATE_DICT_SHA256}"
+            )
+        if equivalence_reference_width < 0:
+            raise ValueError("independent equivalence reference width must be non-negative")
+        if equivalence_reference_width:
+            if equivalence_reference_width >= runtime_contract.runtime_candidate_width:
+                raise ValueError(
+                    "equivalence reference width must be smaller than runtime candidate width"
+                )
+            resolve_runtime_candidate_contract(
+                initial_graph,
+                checkpoint_actor_config,
+                requested_width=equivalence_reference_width,
+            )
+        elif equivalence_protocol == "fp32-w0-v2":
+            raise ValueError("fp32-w0-v2 requires an equivalence reference width")
+    elif (
+        int(args.independent_runtime_candidate_width)
+        or equivalence_reference_width
+        or equivalence_protocol != "bitwise-w0-v1"
+    ):
+        raise ValueError("independent candidate width flags require an independent actor")
     deletion_test_device = ""
     if independent_mode:
         # CUDA sparse reductions may differ by a few ULPs between identical
@@ -1013,6 +1610,7 @@ def main() -> int:
             snapshot_cfg,
             deletion_device,
             mode=str(independent_decode_mode),
+            runtime_candidate_width=runtime_contract.runtime_candidate_width,
         )
         actor.to(device)
         deletion_test_device = str(deletion_device)
@@ -1029,12 +1627,26 @@ def main() -> int:
     eval_diagnostics: list[IndependentPolicyDiagnostics] | None = (
         [] if independent_policy_diagnostics else None
     )
+    rescue_decision_rows: list[RescueDecisionDiagnostics] | None = (
+        [] if independent_policy_diagnostics else None
+    )
     rescue_ue_rows: list[RescueUeTtiRow] | None = (
         [] if independent_policy_diagnostics else None
     )
     rescue_cell_rows: list[RescueCellTtiRow] | None = (
         [] if independent_policy_diagnostics else None
     )
+    service_accounting_rows: list[ServiceAccountingUeTtiRow] | None = (
+        [] if service_accounting_audit_enabled else None
+    )
+    phy_tbs_alignment_rows: list[PhyTbsAuditUeTtiRow] | None = (
+        [] if phy_tbs_alignment_audit_enabled else None
+    )
+    blank_expiry_traces: list[BlankExpiryTtiTrace] | None = (
+        [] if blank_expiry_audit_enabled else None
+    )
+    guard_full_rows: list[dict[str, object]] = []
+    guard_measured_rows: list[dict[str, object]] = []
     stats_sum_scheduled_bytes: np.float64 | None = (
         np.float64(0.0) if independent_policy_diagnostics else None
     )
@@ -1092,6 +1704,7 @@ def main() -> int:
         "budgeted_tail_bias_selected_mean": 0.0,
         "budgeted_tail_bias_active_count": 0.0,
         "action_replay_mismatch_count": 0.0,
+        "candidate_truncation_count": 0.0,
         "illegal_action_count": 0.0,
         "native_reject_count": 0.0,
         "native_reject_diagnostics_available": 0.0,
@@ -1104,9 +1717,94 @@ def main() -> int:
     }
     stats_sums = {key: 0.0 for key in sums}
     stats_count = 0
+    equivalence_report: dict[str, bool | float | int] | None = None
+    equivalence_steps = 0
+    ctbs_snapshot_count = 0
+    ctbs_snapshot_id_first: int | None = None
+    ctbs_snapshot_id_last: int | None = None
+    ctbs_mcs_mismatch_count = 0
+    ctbs_layer_mismatch_count = 0
+    ctbs_tbs_mismatch_count = 0
+    ctbs_reference_label_deletion_equal = True
+    ctbs_raw_selected_service_bytes_sum = 0.0
+    ctbs_capacity_decrease_count = 0
+    ctbs_remaining_rebound_count = 0
+    ctbs_mask_reactivation_count = 0
+    ctbs_n_prg = (
+        int(initial_graph.snapshot.static_meta.n_prg) if ctbs_enabled else 0
+    )
+    ctbs_mask_trigger_count_by_local_prg = [0 for _ in range(ctbs_n_prg)]
+    ctbs_selected_count_by_local_prg = [0 for _ in range(ctbs_n_prg)]
+    ctbs_valid_candidate_count_by_local_prg = [0 for _ in range(ctbs_n_prg)]
     try:
         while True:
             graph = _graph_to_device(edge_generator.build_graph(snapshot_builder.build(obs)), device)
+            action_meta = graph.snapshot.static_meta
+            _validate_non_starvation_guard_topology(
+                guard_mode=guard_mode,
+                n_cell=int(action_meta.n_cell),
+                n_prg=int(action_meta.n_prg),
+            )
+            ctbs_inputs: CtbsHeadroomInputs | None = None
+            if ctbs_enabled:
+                if ctbs_config is None or ctbs_config_sha256 is None:
+                    raise RuntimeError("B4-CTBS-v1 reset configuration disappeared")
+                pre_action = env.request_pre_action_snapshot(
+                    expected_tti=int(info["tti"]),
+                )
+                ctbs_inputs = CtbsHeadroomInputs.from_arrays(
+                    tti=pre_action.tti,
+                    snapshot_id=pre_action.snapshot_id,
+                    config_sha256=pre_action.config_sha256,
+                    config=ctbs_config,
+                    ue_ids=pre_action.ue_ids,
+                    serving_cell=pre_action.serving_cell,
+                    wb_sinr_first_layer_db=pre_action.wb_sinr_first_layer_db,
+                    olla_delta=pre_action.olla_delta,
+                    olla_delta_up=pre_action.olla_delta_up,
+                    olla_delta_down=pre_action.olla_delta_down,
+                    prior_tb_err=pre_action.prior_tb_err,
+                    prg_layer_cap=pre_action.prg_layer_cap,
+                )
+            if independent_mode and equivalence_reference_width:
+                if equivalence_protocol == "fp32-w0-v2":
+                    step_equivalence = compare_candidate_padding_fp32_equivalence(
+                        actor,
+                        graph,
+                        reference_width=equivalence_reference_width,
+                        padded_width=runtime_contract.runtime_candidate_width,
+                        mode=str(independent_decode_mode),
+                        valid_logits_atol=W0_V2_VALID_LOGITS_ATOL,
+                        chosen_logprob_atol=W0_V2_CHOSEN_LOGPROB_ATOL,
+                    )
+                    equivalence_report = _merge_w0_v2_equivalence_reports(
+                        equivalence_report,
+                        step_equivalence,
+                    )
+                    step_passed = bool(step_equivalence["passed"])
+                else:
+                    step_equivalence = compare_candidate_padding_semantics(
+                        actor,
+                        graph,
+                        reference_width=equivalence_reference_width,
+                        padded_width=runtime_contract.runtime_candidate_width,
+                        mode=str(independent_decode_mode),
+                    )
+                    equivalence_report = (
+                        dict(step_equivalence)
+                        if equivalence_report is None
+                        else {
+                            key: bool(equivalence_report[key] and step_equivalence[key])
+                            for key in equivalence_report
+                        }
+                    )
+                    step_passed = all(bool(value) for value in step_equivalence.values())
+                equivalence_steps += 1
+                if not step_passed:
+                    raise RuntimeError(
+                        f"candidate padding failed {equivalence_protocol}: "
+                        f"{step_equivalence}"
+                    )
             selected = _select_joint_action(
                 actor,
                 graph,
@@ -1140,11 +1838,179 @@ def main() -> int:
                 candidate_seq_state_coef=float(candidate_seq_state_coef),
                 candidate_seq_fail_risk_feature_offset=int(candidate_seq_fail_risk_feature_offset),
                 independent_policy_diagnostics=independent_policy_diagnostics,
+                collect_blank_expiry_attribution=(
+                    blank_expiry_audit_enabled
+                    and (step_idx + 1) >= blank_expiry_trace_first_tti
+                ),
+                independent_runtime_candidate_width=(
+                    runtime_contract.runtime_candidate_width
+                    if runtime_contract is not None
+                    else None
+                ),
+                ctbs_headroom_inputs=ctbs_inputs,
+                independent_non_starvation_guard=guard_mode,
             )
+            if guard_config.enabled:
+                meta = graph.snapshot.static_meta
+                action_tti = step_idx + 1
+                step_guard_rows = _guard_diagnostics_to_validated_rows(
+                    tti=action_tti,
+                    trace=selected.get("independent_policy_trace"),
+                    n_cell=int(meta.n_cell),
+                    n_prg=int(meta.n_prg),
+                )
+                guard_full_rows.extend(step_guard_rows)
+                if 1001 <= action_tti <= 5000:
+                    guard_measured_rows.extend(step_guard_rows)
             next_obs, raw_reward, done, next_info = env.step(
                 selected["action_ue_select"],
                 selected["action_prg_alloc"],
             )
+            if ctbs_inputs is not None:
+                required_reference_labels = (
+                    "actual_ue_mcs",
+                    "actual_ue_layer",
+                    "actual_ue_tbs_capacity_bytes",
+                )
+                missing_labels = [
+                    name for name in required_reference_labels if name not in next_info
+                ]
+                if missing_labels:
+                    raise RuntimeError(
+                        "B4-CTBS-v1 post-action reference labels are missing: "
+                        + ", ".join(missing_labels)
+                    )
+                parity = compare_ctbs_reference_labels(
+                    ctbs_inputs,
+                    chosen_ue_per_prg=selected["decoded_chosen_ue_per_prg"],
+                    actual_mcs=next_info["actual_ue_mcs"],
+                    actual_layer=next_info["actual_ue_layer"],
+                    actual_tbs_capacity_bytes=next_info[
+                        "actual_ue_tbs_capacity_bytes"
+                    ],
+                    n_cell=int(graph.snapshot.static_meta.n_cell),
+                    n_prg=int(graph.snapshot.static_meta.n_prg),
+                )
+                ctbs_snapshot_count += 1
+                ctbs_snapshot_id_first = (
+                    ctbs_inputs.snapshot_id
+                    if ctbs_snapshot_id_first is None
+                    else ctbs_snapshot_id_first
+                )
+                ctbs_snapshot_id_last = ctbs_inputs.snapshot_id
+                ctbs_mcs_mismatch_count += parity.mcs_mismatch_count
+                ctbs_layer_mismatch_count += parity.layer_mismatch_count
+                ctbs_tbs_mismatch_count += parity.tbs_mismatch_count
+                ctbs_reference_label_deletion_equal = bool(
+                    ctbs_reference_label_deletion_equal
+                    and parity.reference_label_deletion_equal
+                )
+                if not parity.all_exact:
+                    raise RuntimeError(
+                        "B4-CTBS-v1 pre-action reconstruction mismatch: "
+                        f"tti={ctbs_inputs.tti} snapshot_id={ctbs_inputs.snapshot_id} "
+                        f"mcs={parity.mcs_mismatch_count} "
+                        f"layer={parity.layer_mismatch_count} "
+                        f"tbs={parity.tbs_mismatch_count}"
+                    )
+                if step_idx >= int(args.stats_warmup_steps):
+                    trace = selected["independent_policy_trace"]
+                    ctbs_diag = trace.ctbs_diagnostics
+                    if ctbs_diag is None:
+                        raise RuntimeError("B4-CTBS-v1 trace is missing CTBS diagnostics")
+                    ctbs_mask_reactivation_count += _count_candidate_mask_reactivations(
+                        trace.valid_at_step[:, :, :-1],
+                        selected["candidate_ue_ids_at_step"],
+                        n_ue=int(graph.snapshot.static_meta.n_ue),
+                    )
+                    selected_mask = ctbs_diag.selected_nonblank.to(dtype=torch.bool)
+                    ctbs_raw_selected_service_bytes_sum += float(
+                        ctbs_diag.raw_service_bytes[selected_mask].sum().item()
+                    )
+                    ctbs_capacity_decrease_count += int(
+                        (
+                            selected_mask
+                            & (
+                                ctbs_diag.cumulative_tbs_after_bytes
+                                < ctbs_diag.cumulative_tbs_before_bytes
+                            )
+                        ).sum().item()
+                    )
+                    ctbs_remaining_rebound_count += int(
+                        (
+                            selected_mask
+                            & (
+                                ctbs_diag.remaining_after_bytes
+                                > ctbs_diag.remaining_before_bytes
+                            )
+                        ).sum().item()
+                    )
+                    exhausted = (
+                        selected_mask
+                        & (ctbs_diag.remaining_before_bytes > 0.0)
+                        & (ctbs_diag.remaining_after_bytes <= 0.0)
+                    )
+                    for local_prg in range(len(ctbs_mask_trigger_count_by_local_prg)):
+                        local = ctbs_diag.local_prg_index == local_prg
+                        ctbs_mask_trigger_count_by_local_prg[local_prg] += int(
+                            (exhausted & local).sum().item()
+                        )
+                        ctbs_selected_count_by_local_prg[local_prg] += int(
+                            (selected_mask & local).sum().item()
+                        )
+                        ctbs_valid_candidate_count_by_local_prg[local_prg] += int(
+                            trace.valid_at_step[local_prg, :, :-1].sum().item()
+                        )
+            if blank_expiry_audit_enabled and (step_idx + 1) >= blank_expiry_trace_first_tti:
+                trace_tti = int(next_info.get("tti", step_idx + 1))
+                if trace_tti != step_idx + 1:
+                    raise RuntimeError(
+                        "Blank-expiry audit action/response TTI mismatch: "
+                        f"step={step_idx + 1} response={trace_tti}"
+                    )
+                policy_trace = selected.get("independent_policy_trace")
+                decision_diagnostics = getattr(
+                    policy_trace, "blank_expiry_diagnostics", None
+                )
+                if decision_diagnostics is None or blank_expiry_traces is None:
+                    raise RuntimeError(
+                        "Blank-expiry audit decision diagnostics are missing"
+                    )
+
+                def audit_tuple(name: str, dtype, *, integer: bool = False):
+                    values = np.asarray(next_info.get(name), dtype=dtype).reshape(-1)
+                    if values.shape != (n_active_ue,):
+                        raise RuntimeError(
+                            f"Blank-expiry audit {name} shape mismatch: {values.shape}"
+                        )
+                    if not np.isfinite(values).all() or (values < 0).any():
+                        raise RuntimeError(
+                            f"Blank-expiry audit {name} values are invalid"
+                        )
+                    if integer and not np.equal(values, np.floor(values)).all():
+                        raise RuntimeError(
+                            f"Blank-expiry audit {name} must be integral"
+                        )
+                    return tuple(int(value) if integer else float(value) for value in values)
+
+                blank_expiry_traces.append(
+                    BlankExpiryTtiTrace(
+                        tti=trace_tti,
+                        decisions=decision_diagnostics,
+                        actual_ue_served_bytes=audit_tuple(
+                            "actual_ue_served_bytes", np.float64
+                        ),
+                        actual_ue_goodput_bytes=audit_tuple(
+                            "actual_ue_goodput_bytes", np.float64
+                        ),
+                        actual_ue_tb_tx_count=audit_tuple(
+                            "actual_ue_tb_tx_count", np.float64, integer=True
+                        ),
+                        actual_ue_tb_err_count=audit_tuple(
+                            "actual_ue_tb_err_count", np.float64, integer=True
+                        ),
+                    )
+                )
             reward_metrics = extract_reward_metrics(next_info)
             delivered_time_ms = np.asarray(
                 next_info.get("actual_ue_packet_system_time_ms", last_delivered_time_ms),
@@ -1242,6 +2108,9 @@ def main() -> int:
                 "action_replay_mismatch_count": float(
                     selected.get("action_replay_mismatch_count", 0.0)
                 ),
+                "candidate_truncation_count": float(
+                    selected.get("candidate_truncation_count", 0.0)
+                ),
                 "illegal_action_count": float(
                     selected["post_decode_no_slot_count"]
                     + selected["post_decode_other_drop_count"]
@@ -1273,6 +2142,9 @@ def main() -> int:
                     chosen_ue_per_prg = selected.get("decoded_chosen_ue_per_prg")
                     if rescue_diagnostics is None or chosen_ue_per_prg is None:
                         raise ValueError("independent evaluation is missing rescue cohort diagnostics")
+                    if rescue_decision_rows is None:
+                        raise RuntimeError("rescue decision diagnostics accumulator is unavailable")
+                    rescue_decision_rows.append(rescue_diagnostics)
                     meta = graph.snapshot.static_meta
                     step_ue_rows, step_cell_rows = join_rescue_cohort_tti(
                         rescue_diagnostics,
@@ -1287,6 +2159,43 @@ def main() -> int:
                         raise RuntimeError("rescue cohort accumulators are unavailable")
                     rescue_ue_rows.extend(step_ue_rows)
                     rescue_cell_rows.extend(step_cell_rows)
+                    if service_accounting_audit_enabled:
+                        service_diagnostics = getattr(
+                            trace, "service_accounting_diagnostics", None
+                        )
+                        if service_diagnostics is None or service_accounting_rows is None:
+                            raise ValueError(
+                                "independent evaluation is missing service accounting diagnostics"
+                            )
+                        service_accounting_rows.extend(
+                            join_service_accounting_tti(
+                                service_diagnostics,
+                                info=next_info,
+                                n_ue=int(meta.n_ue),
+                                n_cell=int(meta.n_cell),
+                                n_prg=int(meta.n_prg),
+                                tti=measured_tti,
+                            )
+                        )
+                    if phy_tbs_alignment_audit_enabled:
+                        service_diagnostics = getattr(
+                            trace, "service_accounting_diagnostics", None
+                        )
+                        if service_diagnostics is None or phy_tbs_alignment_rows is None:
+                            raise ValueError(
+                                "independent evaluation is missing PHY/TBS audit diagnostics"
+                            )
+                        phy_tbs_alignment_rows.extend(
+                            join_phy_tbs_alignment_tti(
+                                service_diagnostics,
+                                info=next_info,
+                                n_ue=int(meta.n_ue),
+                                n_cell=int(meta.n_cell),
+                                n_prg=int(meta.n_prg),
+                                tti=measured_tti,
+                                protocol_id=phy_tbs_alignment_protocol,
+                            )
+                        )
                     transmission = extract_failed_transmission_bytes(
                         next_info,
                         expected_n_ue=n_active_ue,
@@ -1365,6 +2274,13 @@ def main() -> int:
     finally:
         env.close()
 
+    _validate_non_starvation_guard_completion(
+        guard_mode=guard_mode,
+        completed_action_ttis=step_idx,
+        full_rows=guard_full_rows,
+        measured_rows=guard_measured_rows,
+    )
+
     denom = max(step_idx, 1)
     def _stats_mean(key: str):
         return None if stats_count <= 0 else float(stats_sums[key] / float(stats_count))
@@ -1374,6 +2290,8 @@ def main() -> int:
 
     diagnostic_summary: dict[str, float] | None = None
     transmission_summary: dict[str, Any] | None = None
+    service_accounting_report: dict[str, object] | None = None
+    phy_tbs_alignment_report: dict[str, object] | None = None
     if eval_diagnostics is not None:
         if stats_count <= 0 or not eval_diagnostics:
             raise ValueError("independent diagnostics require at least one measured TTI")
@@ -1389,7 +2307,11 @@ def main() -> int:
                 "independent evaluation diagnostic decision count mismatch: "
                 f"got={actual_decisions} expected={expected_decisions}"
             )
-        if rescue_ue_rows is None or rescue_cell_rows is None:
+        if (
+            rescue_ue_rows is None
+            or rescue_cell_rows is None
+            or rescue_decision_rows is None
+        ):
             raise RuntimeError("rescue cohort accumulators are unavailable")
         rescued_prgs = sum(row.rescued_prg_count for row in rescue_ue_rows)
         expected_rescued_prgs = int(eval_diag.fragmentation_rescued.sum().item())
@@ -1445,6 +2367,34 @@ def main() -> int:
             rescue_ue_rows,
             rescue_cell_rows,
         )
+        transmission_summary["local_prg_phy_interference_diagnostics"] = (
+            summarize_local_prg_phy_interference(
+                concatenate_rescue_decision_diagnostics(rescue_decision_rows),
+                n_cell=int(graph.snapshot.static_meta.n_cell),
+                n_prg=int(graph.snapshot.static_meta.n_prg),
+            )
+        )
+        if service_accounting_audit_enabled:
+            if service_accounting_rows is None:
+                raise RuntimeError("service accounting audit rows are unavailable")
+            service_accounting_report = summarize_service_accounting_audit(
+                service_accounting_rows,
+                scheduled_bytes_semantics=NEW_TRANSMISSION_QUEUE_DEQUEUE,
+                per_prg_scheduled_bytes_available=False,
+            )
+            transmission_summary["service_accounting_audit"] = (
+                service_accounting_report
+            )
+        if phy_tbs_alignment_audit_enabled:
+            if phy_tbs_alignment_rows is None:
+                raise RuntimeError("PHY/TBS alignment audit rows are unavailable")
+            phy_tbs_alignment_report = summarize_phy_tbs_alignment_audit(
+                phy_tbs_alignment_rows,
+                protocol_id=phy_tbs_alignment_protocol,
+            )
+            transmission_summary["phy_tbs_alignment_audit"] = (
+                phy_tbs_alignment_report
+            )
 
     mean_packet_delay_weighted = (
         float(sums["packet_system_time_ms"] / max(sums["packet_completed_count"], 1.0))
@@ -1484,6 +2434,10 @@ def main() -> int:
     active_rates = ue_rates_mbps[ue_rate_active]
     outcome_delay_p95_ms: float | None = None
     outcome_sample_count = 0
+    blank_expiry_attribution_report: dict[str, object] | None = None
+    blank_expiry_decision_output_rows: list[dict[str, object]] | None = None
+    blank_expiry_packet_output_rows: list[dict[str, object]] | None = None
+    blank_expiry_atomic_output_rows: list[dict[str, object]] | None = None
     outcome_path = Path(args.outcome_samples).resolve() if args.outcome_samples else None
     if outcome_path is not None and not outcome_path.is_file():
         deadline = time.monotonic() + 10.0
@@ -1500,6 +2454,71 @@ def main() -> int:
         )
         outcome_sample_count = int(delays.size)
         outcome_delay_p95_ms = float(np.percentile(delays, 95)) if delays.size else None
+    if blank_expiry_audit_enabled:
+        if outcome_path is None or not outcome_path.is_file():
+            raise RuntimeError("Blank-expiry attribution outcome CSV is unavailable")
+        frozen_measured_window = {
+            V1_PROTOCOL_ID: (1001, 1512),
+            V2_FULL_HORIZON_PROTOCOL_ID: (1001, 5000),
+        }[blank_expiry_attribution_protocol]
+        if (measured_tti_first, measured_tti_last) != frozen_measured_window:
+            raise RuntimeError(
+                "frozen Blank-expiry attribution window mismatch: "
+                f"observed={(measured_tti_first, measured_tti_last)} "
+                f"expected={frozen_measured_window}"
+            )
+        if blank_expiry_traces is None:
+            raise RuntimeError("Blank-expiry attribution traces are unavailable")
+        expected_trace_count = measured_tti_last - blank_expiry_trace_first_tti + 1
+        if len(blank_expiry_traces) != expected_trace_count:
+            raise RuntimeError(
+                "Blank-expiry attribution trace coverage mismatch: "
+                f"got={len(blank_expiry_traces)} expected={expected_trace_count}"
+            )
+        formal_packets = read_formal_expired_packets(
+            outcome_path,
+            measured_tti_first=measured_tti_first,
+            measured_tti_last=measured_tti_last,
+            trace_first_tti=blank_expiry_trace_first_tti,
+        )
+        atomic_exposures = build_atomic_exposures(
+            packets=formal_packets,
+            traces=blank_expiry_traces,
+            serving_cell_by_ue=serving_cell_by_ue,
+            n_cell=int(initial_graph.snapshot.static_meta.n_cell),
+            n_prg=int(initial_graph.snapshot.static_meta.n_prg),
+        )
+        blank_expiry_attribution_report = build_blank_expiry_attribution_report(
+            packets=formal_packets,
+            exposures=atomic_exposures,
+            measured_tti_first=measured_tti_first,
+            measured_tti_last=measured_tti_last,
+            trace_first_tti=blank_expiry_trace_first_tti,
+            n_prg=int(initial_graph.snapshot.static_meta.n_prg),
+            protocol_id=blank_expiry_attribution_protocol,
+        )
+        blank_expiry_attribution_report["audit_status"] = "PASS"
+        blank_expiry_attribution_report["interpretation"] = (
+            "read-only exposure attribution; cell-PRG records are not causal effects"
+        )
+        blank_expiry_decision_output_rows = [
+            row
+            for trace in blank_expiry_traces
+            for row in decision_diagnostics_to_rows(
+                tti=trace.tti,
+                diagnostics=trace.decisions,
+            )
+        ]
+        blank_expiry_packet_output_rows = packet_lifecycle_rows(
+            packets=formal_packets,
+            traces=blank_expiry_traces,
+            serving_cell_by_ue=serving_cell_by_ue,
+            n_cell=int(initial_graph.snapshot.static_meta.n_cell),
+            n_prg=int(initial_graph.snapshot.static_meta.n_prg),
+        )
+        blank_expiry_atomic_output_rows = [
+            asdict(exposure) for exposure in atomic_exposures
+        ]
     sim_bin_path = Path(args.sim_bin).resolve() if args.sim_bin else None
 
     summary = {
@@ -1510,6 +2529,7 @@ def main() -> int:
             getattr(actor, "requires_pfq_features", True)
         ),
         "protocol_version": VERSION,
+        "runtime_harq_enabled": runtime_harq_enabled,
         "sim_binary_sha256": (
             _sha256(sim_bin_path)
             if sim_bin_path is not None and sim_bin_path.is_file()
@@ -1517,11 +2537,99 @@ def main() -> int:
         ),
         "independent_deletion_equal": deletion_equal,
         "independent_deletion_test_device": deletion_test_device,
+        "independent_headroom_accounting": independent_headroom_accounting,
+        "ctbs_pre_action_handshake_enabled": ctbs_enabled,
+        "ctbs_config_sha256": ctbs_config_sha256,
+        "ctbs_snapshot_count": ctbs_snapshot_count,
+        "ctbs_snapshot_id_first": ctbs_snapshot_id_first,
+        "ctbs_snapshot_id_last": ctbs_snapshot_id_last,
+        "ctbs_mcs_mismatch_count": ctbs_mcs_mismatch_count,
+        "ctbs_layer_mismatch_count": ctbs_layer_mismatch_count,
+        "ctbs_tbs_mismatch_count": ctbs_tbs_mismatch_count,
+        "ctbs_reference_label_deletion_equal": (
+            ctbs_reference_label_deletion_equal if ctbs_enabled else None
+        ),
+        "ctbs_raw_selected_service_bytes_sum": ctbs_raw_selected_service_bytes_sum,
+        "ctbs_capacity_decrease_count": ctbs_capacity_decrease_count,
+        "ctbs_remaining_rebound_count": ctbs_remaining_rebound_count,
+        "ctbs_mask_reactivation_count": ctbs_mask_reactivation_count,
+        "ctbs_mask_trigger_count_by_local_prg": ctbs_mask_trigger_count_by_local_prg,
+        "ctbs_selected_count_by_local_prg": ctbs_selected_count_by_local_prg,
+        "ctbs_valid_candidate_count_by_local_prg": (
+            ctbs_valid_candidate_count_by_local_prg
+        ),
         "decode_mode": str(args.decode_mode),
         "candidate_policy_mode": str(candidate_policy_mode),
+        "independent_service_accounting_audit_enabled": int(
+            service_accounting_audit_enabled
+        ),
+        "independent_phy_tbs_alignment_audit_enabled": int(
+            phy_tbs_alignment_audit_enabled
+        ),
+        "independent_phy_tbs_alignment_protocol": phy_tbs_alignment_protocol,
+        "independent_blank_expiry_attribution_audit_enabled": int(
+            blank_expiry_audit_enabled
+        ),
+        "blank_expiry_trace_first_tti": (
+            blank_expiry_trace_first_tti if blank_expiry_audit_enabled else None
+        ),
+        "blank_expiry_trace_count": (
+            len(blank_expiry_traces)
+            if blank_expiry_traces is not None
+            else None
+        ),
+        "blank_expiry_attribution_status": (
+            blank_expiry_attribution_report.get("audit_status")
+            if blank_expiry_attribution_report is not None
+            else None
+        ),
+        "blank_expiry_attribution_classification": (
+            blank_expiry_attribution_report.get("formal_conclusion")
+            if blank_expiry_attribution_report is not None
+            else None
+        ),
         "ue_prg_topk": int(ue_prg_topk),
         "ue_prg_diversity_extra": int(ue_prg_diversity_extra),
         "candidate_mode": str(candidate_mode),
+        "candidate_width_policy": (
+            runtime_contract.candidate_width_policy if runtime_contract is not None else None
+        ),
+        "candidate_truncation": (
+            runtime_contract.candidate_truncation if runtime_contract is not None else None
+        ),
+        "training_observed_max_candidates": (
+            runtime_contract.training_observed_max_candidates
+            if runtime_contract is not None
+            else None
+        ),
+        "topology_candidate_width": (
+            runtime_contract.topology_candidate_width if runtime_contract is not None else None
+        ),
+        "runtime_candidate_width": (
+            runtime_contract.runtime_candidate_width if runtime_contract is not None else None
+        ),
+        "association_candidate_counts": association_candidate_counts,
+        "candidate_full_coverage": True if independent_mode else None,
+        "candidate_truncation_count": int(sums["candidate_truncation_count"]),
+        "actor_state_dict_sha256": actor_state_hash if independent_mode else None,
+        "candidate_width_equivalence_reference_width": (
+            equivalence_reference_width if equivalence_reference_width else None
+        ),
+        "candidate_width_equivalence_protocol": (
+            equivalence_protocol if equivalence_reference_width else None
+        ),
+        "candidate_width_valid_logits_atol": (
+            W0_V2_VALID_LOGITS_ATOL
+            if equivalence_reference_width and equivalence_protocol == "fp32-w0-v2"
+            else None
+        ),
+        "candidate_width_chosen_logprob_atol": (
+            W0_V2_CHOSEN_LOGPROB_ATOL
+            if equivalence_reference_width and equivalence_protocol == "fp32-w0-v2"
+            else None
+        ),
+        "candidate_width_equivalence_steps": int(equivalence_steps),
+        "candidate_width_equivalence": equivalence_report,
         "include_pfq_score_anchor": int(include_pfq_score_anchor),
         "include_candidate_risk_features": int(include_candidate_risk_features),
         "candidate_risk_feature_dim": int(candidate_risk_feature_dim),
@@ -1658,6 +2766,9 @@ def main() -> int:
         "stats_sum_action_replay_mismatch_count": _stats_sum(
             "action_replay_mismatch_count"
         ),
+        "stats_sum_candidate_truncation_count": _stats_sum(
+            "candidate_truncation_count"
+        ),
         "stats_sum_illegal_action_count": _stats_sum("illegal_action_count"),
         "stats_sum_native_reject_count": _stats_sum("native_reject_count"),
         "stats_mean_native_reject_diagnostics_available": _stats_mean(
@@ -1689,14 +2800,109 @@ def main() -> int:
         "stats_mean_budgeted_tail_bias_active_count": _stats_mean("budgeted_tail_bias_active_count"),
         "actor_config": ckpt.get("actor_config", {}),
     }
+    summary.update(
+        _build_non_starvation_guard_summary(
+            guard_mode=guard_mode,
+            full_rows=guard_full_rows,
+            measured_rows=guard_measured_rows,
+        )
+    )
     if diagnostic_summary is not None and transmission_summary is not None:
         summary.update(
             {f"diagnostic_{key}": value for key, value in diagnostic_summary.items()}
         )
         summary.update(transmission_summary)
 
+    if blank_expiry_attribution_report is not None:
+        runtime_gates = {
+            "candidate_truncation_count_zero": int(summary["candidate_truncation_count"]) == 0,
+            "replay_mismatch_count_zero": float(
+                summary["stats_sum_action_replay_mismatch_count"] or 0.0
+            ) == 0.0,
+            "illegal_action_count_zero": float(
+                summary["stats_sum_illegal_action_count"] or 0.0
+            ) == 0.0,
+            "pfq_field_deletion_equality": summary["independent_deletion_equal"] is True,
+            "full_candidate_coverage": summary["candidate_full_coverage"] is True,
+            "state_dict_hash_exact": actor_state_hash == FROZEN_B4_STATE_DICT_SHA256,
+            "ctbs_mcs_parity_exact": ctbs_mcs_mismatch_count == 0,
+            "ctbs_layer_parity_exact": ctbs_layer_mismatch_count == 0,
+            "ctbs_tbs_parity_exact": ctbs_tbs_mismatch_count == 0,
+            "ctbs_reference_label_deletion_equality": (
+                ctbs_reference_label_deletion_equal is True
+            ),
+            "lifecycle_coverage_complete": bool(
+                blank_expiry_attribution_report["coverage"]["complete"]
+            ),
+            "unclassified_count_zero": int(
+                blank_expiry_attribution_report["coverage"]["unclassified_count"]
+            ) == 0,
+        }
+        blank_expiry_attribution_report["runtime_gates"] = runtime_gates
+        blank_expiry_attribution_report["frozen_state_dict_sha256"] = (
+            FROZEN_B4_STATE_DICT_SHA256
+        )
+        blank_expiry_attribution_report["observed_state_dict_sha256"] = actor_state_hash
+        blank_expiry_attribution_report["audit_status"] = (
+            "PASS" if all(runtime_gates.values()) else "FAIL"
+        )
+        summary["blank_expiry_attribution_status"] = (
+            blank_expiry_attribution_report["audit_status"]
+        )
+        if blank_expiry_attribution_report["audit_status"] != "PASS":
+            raise RuntimeError(
+                "Blank-expiry attribution runtime Gate failed: "
+                f"{runtime_gates}"
+            )
+
     if out_dir is not None:
         (out_dir / "eval_summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        _write_non_starvation_guard_trace(
+            out_dir / "non_starvation_guard_trace.csv",
+            guard_full_rows,
+            guard_mode=guard_mode,
+        )
+        if service_accounting_report is not None:
+            (out_dir / "service_accounting_audit.json").write_text(
+                json.dumps(service_accounting_report, indent=2, ensure_ascii=False)
+                + "\n",
+                encoding="utf-8",
+            )
+        if phy_tbs_alignment_report is not None:
+            (out_dir / "phy_tbs_alignment_audit.json").write_text(
+                json.dumps(phy_tbs_alignment_report, indent=2, ensure_ascii=False)
+                + "\n",
+                encoding="utf-8",
+            )
+            if phy_tbs_alignment_rows is None:
+                raise RuntimeError("PHY/TBS audit rows disappeared before output")
+            with (out_dir / "phy_tbs_alignment_rows.jsonl").open(
+                "w", encoding="utf-8"
+            ) as handle:
+                for audit_row in phy_tbs_alignment_rows:
+                    handle.write(
+                        json.dumps(asdict(audit_row), ensure_ascii=False) + "\n"
+                    )
+        if blank_expiry_attribution_report is not None:
+            (out_dir / "blank_expiry_attribution_audit.json").write_text(
+                json.dumps(
+                    blank_expiry_attribution_report,
+                    indent=2,
+                    ensure_ascii=False,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            for filename, output_rows in (
+                ("blank_expiry_decision_rows.jsonl", blank_expiry_decision_output_rows),
+                ("blank_expiry_packet_lifecycle_rows.jsonl", blank_expiry_packet_output_rows),
+                ("blank_expiry_atomic_exposures.jsonl", blank_expiry_atomic_output_rows),
+            ):
+                if output_rows is None:
+                    raise RuntimeError(f"Blank-expiry output rows disappeared: {filename}")
+                with (out_dir / filename).open("w", encoding="utf-8") as handle:
+                    for output_row in output_rows:
+                        handle.write(json.dumps(output_row, ensure_ascii=False) + "\n")
         if int(args.save_steps) == 1:
             with open(out_dir / "eval_steps.jsonl", "w", encoding="utf-8") as f:
                 for row in rows:

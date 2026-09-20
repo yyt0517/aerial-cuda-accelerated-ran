@@ -16,6 +16,7 @@
  */
 
 #include "cumac.h"
+#include <cstdlib>
 
 // cuMAC namespace
 namespace cumac {
@@ -67,7 +68,11 @@ roundRobinSchedulerCpu::~roundRobinSchedulerCpu() {}
 
 void roundRobinSchedulerCpu::roundRobinSchedulerCpu_type0()
 {
-    std::srand(unsigned(std::time(0)));
+    // Audit-only control of the random stream; allocation/shuffle rules unchanged.
+    const char* auditSeed = std::getenv("CUMAC_RR_AUDIT_SEED");
+    static unsigned auditInvocation = 0;
+    std::srand(auditSeed ? static_cast<unsigned>(std::strtoul(auditSeed, nullptr, 10)) + auditInvocation++
+                        : unsigned(std::time(0)));
 
     for (int cellIdx = 0; cellIdx < pCpuDynDesc->nCell; cellIdx++) {
         int cIdx = pCpuDynDesc->cellId[cellIdx]; // real cell ID among all cells in the network

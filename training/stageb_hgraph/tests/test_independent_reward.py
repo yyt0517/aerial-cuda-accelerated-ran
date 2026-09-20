@@ -10,6 +10,7 @@ import pytest
 from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder
 from training.stageb_hgraph.independent_objectives import (
+    DeadlineTailPressureTracker,
     ExpiryAwareUeWindowTracker,
     compute_ue_expiry_aware_utility,
 )
@@ -82,6 +83,131 @@ def test_base_reward_is_capacity_normalized_goodput_minus_failures_and_expiry() 
     assert failed["reward_total"] == pytest.approx((105_000.0 - 3000.0) / 108_000.0)
     assert expired["reward_expired_weighted"] == pytest.approx(-2.0 * 3000.0 / 108_000.0)
     assert expired["reward_total"] == pytest.approx(1.0 - 2.0 * 3000.0 / 108_000.0)
+
+
+def test_deadline_tail_uses_scheduled_service_and_unit_log_pressure() -> None:
+    before = _graph_with_debt(0.0)
+    after = _graph_with_debt(0.0)
+    before.snapshot.ue_features.values[:, 0] = 3000.0
+    after.snapshot.ue_features.values[:, 0] = 0.0
+    before.snapshot.ue_features.values[:, 9] = 100.0
+    after.snapshot.ue_features.values[:, 9] = 100.0
+    tracker = DeadlineTailPressureTracker(n_ue=6, window_steps=100)
+    result = compute_independent_reward(
+        before,
+        after,
+        _info(goodput_bytes=108_000.0, scheduled_bytes=108_000.0),
+        tracker,
+        _cfg("E"),
+    )
+
+    assert result["reward_deadline_tail_enabled"] == 1.0
+    assert result["reward_deadline_tail_phi_before"] > result["reward_deadline_tail_phi_after"]
+    assert result["reward_deadline_tail_phi_delta"] > 0.0
+    assert result["reward_deadline_tail_eta"] == pytest.approx(0.25)
+    assert result["reward_deadline_tail_history_steps"] == pytest.approx(1.0)
+
+
+def test_deadline_tail_does_not_use_successful_bytes_for_service_history() -> None:
+    graph = _graph_with_debt(0.0)
+    graph.snapshot.ue_features.values[:, 0] = 3000.0
+    graph.snapshot.ue_features.values[:, 9] = 100.0
+    tracker = DeadlineTailPressureTracker(n_ue=6, window_steps=100)
+    result = compute_independent_reward(
+        graph,
+        graph,
+        _info(goodput_bytes=0.0, scheduled_bytes=108_000.0),
+        tracker,
+        _cfg("E"),
+    )
+
+    assert result["reward_scheduled_bytes"] == pytest.approx(108_000.0)
+    assert result["reward_goodput_bytes"] == pytest.approx(0.0)
+    assert result["reward_deadline_tail_phi_after"] < result["reward_deadline_tail_phi_before"]
+
+
+def test_deadline_tail_rate_uses_expired_outcome_time_for_worst_ue() -> None:
+    graph = _graph_with_debt(0.0)
+    graph.snapshot.ue_features.values[:, 0] = 3000.0
+    graph.snapshot.ue_features.values[:, 9] = 100.0
+
+    delivered_info = _info()
+    delivered_info["actual_ue_packet_system_time_ms"] = np.full((6,), 10.0)
+    delivered_info["actual_ue_packet_expired_system_time_ms"] = np.zeros((6,))
+    delivered = compute_independent_reward(
+        graph,
+        graph,
+        delivered_info,
+        DeadlineTailPressureTracker(n_ue=6, window_steps=100),
+        _cfg("E"),
+    )
+
+    expired_info = _info()
+    expired_info["actual_ue_packet_system_time_ms"] = np.full((6,), 10.0)
+    expired_info["actual_ue_packet_expired_system_time_ms"] = np.array(
+        [0.0, 0.0, 0.0, 0.0, 0.0, 200.0]
+    )
+    expired = compute_independent_reward(
+        graph,
+        graph,
+        expired_info,
+        DeadlineTailPressureTracker(n_ue=6, window_steps=100),
+        _cfg("E"),
+    )
+
+    assert delivered["reward_deadline_tail_rate_enabled"] == 1.0
+    assert delivered["reward_deadline_tail_rate_after"] > expired[
+        "reward_deadline_tail_rate_after"
+    ]
+    assert 0.0 < delivered["reward_deadline_tail_rate_weighted"] < 1.0
+    assert expired["reward_deadline_tail_rate_weighted"] < delivered[
+        "reward_deadline_tail_rate_weighted"
+    ]
+
+
+def test_remove_deadline_reward_subtracts_exactly_expiry_phi_and_expiry_utility() -> None:
+    """Catches retaining any deadline-derived term in the reproduction ablation."""
+    before = _graph_with_debt(0.0)
+    after = _graph_with_debt(0.0)
+    before.snapshot.ue_features.values[:, 0] = 3000.0
+    after.snapshot.ue_features.values[:, 0] = 0.0
+    before.snapshot.ue_features.values[:, 9] = 100.0
+    after.snapshot.ue_features.values[:, 9] = 100.0
+    info = _info(
+        goodput_bytes=105_000.0,
+        scheduled_bytes=108_000.0,
+        expired_bytes=3000.0,
+    )
+    standard = compute_independent_reward(
+        before,
+        after,
+        info,
+        DeadlineTailPressureTracker(n_ue=6, window_steps=100),
+        _cfg("E"),
+    )
+    ablated = compute_independent_reward(
+        before,
+        after,
+        info,
+        DeadlineTailPressureTracker(n_ue=6, window_steps=100),
+        _cfg("E", remove_deadline_reward=True),
+    )
+
+    removed = (
+        standard["reward_expired_weighted"]
+        + standard["reward_deadline_tail_weighted"]
+        + standard["reward_deadline_tail_rate_weighted"]
+    )
+    assert ablated["reward_total"] == pytest.approx(standard["reward_total"] - removed)
+    assert ablated["reward_base"] == pytest.approx((105_000.0 - 3000.0) / 108_000.0)
+    assert ablated["reward_removed_deadline_contribution"] == pytest.approx(removed)
+    assert ablated["reward_expired_bytes"] == pytest.approx(3000.0)
+    assert ablated["reward_deadline_tail_phi_delta"] == pytest.approx(
+        standard["reward_deadline_tail_phi_delta"]
+    )
+    assert ablated["reward_deadline_tail_rate_delta"] == pytest.approx(
+        standard["reward_deadline_tail_rate_delta"]
+    )
 
 
 def test_delay_debt_reduction_is_positive_and_clipped_by_frozen_scale() -> None:

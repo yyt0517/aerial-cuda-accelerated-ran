@@ -1,0 +1,265 @@
+{
+  "date": "2026-09-20",
+  "status": "complete",
+  "root": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor",
+  "current_formal_entries": [
+    "gpu_mcs_sync_v1",
+    "mcs_capacity_units_audit_v1",
+    "phy_slot_invariance_v1",
+    "seed42_pfq_rrq_corrected_v1"
+  ],
+  "documents": [
+    {
+      "original": "README.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/README.md",
+      "sha256": "e7bb1b120d107fd0bf9029310dd357c6df493c0ea94c9e554c945c3403f347e6"
+    },
+    {
+      "original": "training/stageb_hgraph/README.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/training/stageb_hgraph/README.md",
+      "sha256": "0ae601976e5ee791b39cfd8e56f4661ac89947fe5883c870b8c531f417c541f4"
+    },
+    {
+      "original": "Doc/README.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/README.md",
+      "sha256": "cd4e7aa155f4ace714f042416ff96c39c69a53064088ed9f2e7143b73eae8a46"
+    },
+    {
+      "original": "Doc/capacity_units_bytes_v2_migration.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/capacity_units_bytes_v2_migration.md",
+      "sha256": "6d80e7d80a12fa4384c53e0a9665d061f83977961a03f222b0e280cac41ea100"
+    },
+    {
+      "original": "Doc/current_stageB_effective_configuration.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/current_stageB_effective_configuration.md",
+      "sha256": "77a6f00dae4fed9885bea0f7d31c7cade20bfe833e608e045b8db44223917b4d"
+    },
+    {
+      "original": "Doc/dpa_checkpoint_adaptation_ablation.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/dpa_checkpoint_adaptation_ablation.md",
+      "sha256": "430891e4ac5b42591933d8fcb75e80a5d9a6cfcb9e6bb2a2e299086cf0ecf2cb"
+    },
+    {
+      "original": "Doc/dpa_equal_budget_ablation_experiment.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/dpa_equal_budget_ablation_experiment.md",
+      "sha256": "a5526c4c5547c89a388404bc4b3db21793c56e795235e6f0e2bb9d303f434395"
+    },
+    {
+      "original": "Doc/dpa_training_reproduction_ablation_v1_history.json",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/dpa_training_reproduction_ablation_v1_history.json",
+      "sha256": "ce2ac52b3e2ac8b5f15ebab7ebc071e0e1d5006dd31c1a56c356577e15984247"
+    },
+    {
+      "original": "Doc/dpa_training_reproduction_ablation_v1_preflight.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/dpa_training_reproduction_ablation_v1_preflight.md",
+      "sha256": "33236ab060e9056d4fdee908d2c733feb5ea8738638da36cef928f0af20ae52f"
+    },
+    {
+      "original": "Doc/dpa_training_reproduction_ablation_v1_protocol.json",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/dpa_training_reproduction_ablation_v1_protocol.json",
+      "sha256": "3b541ebdd39a83e34c47b67c0f01b40c0f26d3356a6e5614214318df0c9190b6"
+    },
+    {
+      "original": "Doc/stageB_7cell_tar_gnn_pfq_design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/stageB_7cell_tar_gnn_pfq_design.md",
+      "sha256": "7ad8b89fe3aa6b685d3e7bb8d3a440c0ed43de59f719c5d27dcebd4cf7d0b474"
+    },
+    {
+      "original": "Doc/stageB_boundary_intelligent_algorithm_experiment_report.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/stageB_boundary_intelligent_algorithm_experiment_report.md",
+      "sha256": "b01cc0ace437b995a506b00068568f01da01b084b80a252276da2a27140088a2"
+    },
+    {
+      "original": "Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md",
+      "sha256": "68c6a2be334397d85c40f5066c8c3c3406dd9b58d4c2bb09fbd0314f332f8c46"
+    },
+    {
+      "original": "Doc/stageB_packet_delay_distribution_analysis.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/Doc/stageB_packet_delay_distribution_analysis.md",
+      "sha256": "45eb2f598fbcd91dc4ba130db4b46fa568c03a9d902c06755bf4258c6a06b111"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-17-stageb-baseline-verification-report.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-17-stageb-baseline-verification-report.md",
+      "sha256": "3f77d3a8a8795247ba6cd1d470ab64d7846bf950f8aecf0827ce745fb2851360"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-adaptive-bucket-training.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-adaptive-bucket-training.md",
+      "sha256": "9a553f0d3119ab78aa332eefc567c125c7da2833b08aedd6c41cbdf8460cc27b"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-canonical-deployment-parity.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-canonical-deployment-parity.md",
+      "sha256": "41a62acf4008a30a9b8cda58875f7320be0198e895e883e5314828494d1dc311"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-causal-action-alignment.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-causal-action-alignment.md",
+      "sha256": "ae7c6ca2c77541b033db2768c63763853e33722f5284903865cc2fb26d900544"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-causal-evidence-round3.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-causal-evidence-round3.md",
+      "sha256": "3d14dd69c3c780d455f0e6cdd91cd999b3fe7382740f72b7854a2df8c93a1100"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-pfq-residual-tail-credit.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-pfq-residual-tail-credit.md",
+      "sha256": "d7b77639b1c4d0d1e1a1b71311f2c7188efc55f0811adbdcd6f59f0ea78debdd"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-ppo-delivery-roadmap.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-ppo-delivery-roadmap.md",
+      "sha256": "f0953272871aa9a536fb5a9844a28d2b273d6894053a32f475e1e4befca3d99f"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-07-30-stageb-hgraph-prg-granularity-ablation.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-07-30-stageb-hgraph-prg-granularity-ablation.md",
+      "sha256": "7de376d654a8e8c090419711515b0a9b0a7c136766d44b65590c606bbb94546b"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-13-pfq-independent-blank-diagnostics.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-13-pfq-independent-blank-diagnostics.md",
+      "sha256": "ddb0733a237d7cf7966dec10fee0eeb6528d4da828216e4e53f73d247a3e6750"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-13-pfq-independent-reuse-actor.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-13-pfq-independent-reuse-actor.md",
+      "sha256": "c20c8a74b729199b1e3471154de0d0d90d9de2750ccd5970547a0d202830e28f"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-14-pfq-independent-hierarchical-decode.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-14-pfq-independent-hierarchical-decode.md",
+      "sha256": "2fdaf09049f4befb793f620f207646c73bfad9d37aad1915b9e98be7cbc53592"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-14-pfq-independent-rescue-cohort-diagnostics.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-14-pfq-independent-rescue-cohort-diagnostics.md",
+      "sha256": "e7bf1da864a4428b973bd8896aa54f51b3bae46103f848b70706d2bdbb8f2ca3"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-24-seed42-phy-tbs-alignment-audit.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-24-seed42-phy-tbs-alignment-audit.md",
+      "sha256": "abc1d05c8e495a071169ffa6a9a05cb40c7c28cd9f6fc81905bf178687ed53bb"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-25-seed42-cell2-ue2-service-balance-audit.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-25-seed42-cell2-ue2-service-balance-audit.md",
+      "sha256": "2d8438f1b45c4536353f39c680856032c7c443f9cbbe328c27e5cdefc88e7325"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-26-deadline-tail-collapse-pause-eval.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-26-deadline-tail-collapse-pause-eval.md",
+      "sha256": "34877e79ae6884491d39ad2958049176cfed9548ea7c5fe0c40c8822933a8d92"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-27-iter8-seed48-seed51-frozen-generalization.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-27-iter8-seed48-seed51-frozen-generalization.md",
+      "sha256": "2c6ad07dc3f2c941a5b198a47966a164136ef71ad32ce590c413d79e1df4a5c1"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-27-seed45-dimensionless-service-features.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-27-seed45-dimensionless-service-features.md",
+      "sha256": "829a462a5f794dd77469c161d3b528d9a7cbf519cd1928da2595e14c4d4755d2"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-31-dpa-v1-seed41-50-historical-comparison.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-31-dpa-v1-seed41-50-historical-comparison.md",
+      "sha256": "438c78455c47a17d3d6594b75b418e83f120b1e4acf2f89db5ed2d2740eaf51b"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-08-31-iter8-ctbs-legal-non-starvation-guard.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-31-iter8-ctbs-legal-non-starvation-guard.md",
+      "sha256": "a73095a14552d86717998a135744538a01c097d45d1cd6fe8ce330ba4e00b8e2"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-09-01-dpa-v1-pfq-aligned-expiry-aware-comparison.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-09-01-dpa-v1-pfq-aligned-expiry-aware-comparison.md",
+      "sha256": "bfc4f53f23137dafa2d631a4d521a5c12377a1fefe2822d75964a7e64f30b8f5"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-09-08-dpa-equal-budget-ablation.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-09-08-dpa-equal-budget-ablation.md",
+      "sha256": "4a3a3aefb8f872a293e50478c88d20c9845411ea15b332e68eb5e012181d720d"
+    },
+    {
+      "original": "docs/superpowers/plans/2026-09-11-dpa-training-reproduction-ablation.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-09-11-dpa-training-reproduction-ablation.md",
+      "sha256": "2855824264cf457b18d964ea373a3b6e9096ac85833026e5f6633d562dbe002e"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-07-17-stageb-baseline-verification-report-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-07-17-stageb-baseline-verification-report-design.md",
+      "sha256": "4fe871c0ff60b99e5cbbfbe12300d63004bae124e5fafbfa499623c2a132f568"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-07-21-stageb-dual-package-delivery-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-07-21-stageb-dual-package-delivery-design.md",
+      "sha256": "24b5b33506269aa7cf1cb9aa2297bd95ee38cf1a16718d5df6e9aa829823007b"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-07-30-stageb-hgraph-causal-evidence-round3-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-07-30-stageb-hgraph-causal-evidence-round3-design.md",
+      "sha256": "2aef0f4699ceb655a520fc0aa2466c331bb01e7db80ebf8afc44d4538761b148"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-07-30-stageb-hgraph-ppo-architecture-alignment-bucket-training-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-07-30-stageb-hgraph-ppo-architecture-alignment-bucket-training-design.md",
+      "sha256": "0b3c23febe65cc416bdcae4d0801230d99bb6be9b91b186d543b80eb6591dd1d"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-12-pfq-v2-marginal-expected-delivery-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-12-pfq-v2-marginal-expected-delivery-design.md",
+      "sha256": "4d6bddb3bf5eba8132a38b6cc7ac43e15511dcb192bb363452054318a338660b"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-13-pfq-independent-blank-diagnostics-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-13-pfq-independent-blank-diagnostics-design.md",
+      "sha256": "b1e4c1ddb92b0a741a00d6a6c8a765e98cdacb09491fcdb029958c7c7197dc3e"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-13-pfq-independent-reuse-actor-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-13-pfq-independent-reuse-actor-design.md",
+      "sha256": "2a5dc04b27acb93dc531dde37e6b46084e796b0fe2bdfd579010b38c84cfae34"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-14-pfq-independent-hierarchical-decode-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-14-pfq-independent-hierarchical-decode-design.md",
+      "sha256": "807d008b2d5d4fd0cd7b872cb43a20faae86ea07082ba8ba11050bc48823dbe2"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-14-pfq-independent-rescue-cohort-diagnostics-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-14-pfq-independent-rescue-cohort-diagnostics-design.md",
+      "sha256": "2bddd2b01c5a4ab24f55fda6995efe98f2c30a179c79a999c1402d606c242722"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-27-iter8-seed48-seed51-frozen-generalization-protocol.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-27-iter8-seed48-seed51-frozen-generalization-protocol.md",
+      "sha256": "4870c87e19a3c0ac2fbf77dfb9a84d55f9d8d7982153c9e1f3fa56587ae7c375"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-27-seed45-dimensionless-service-features-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-27-seed45-dimensionless-service-features-design.md",
+      "sha256": "e51a8b4b10c320a6e80b0b9f4bc697a97c5ef1d29d711bf3d0c6446f62995ddf"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-28-iter8-ctbs-legal-non-starvation-guard-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-28-iter8-ctbs-legal-non-starvation-guard-design.md",
+      "sha256": "524de87b8ccf5781d7c0b47339b7b88f3703943242f59433868ddcbc197e4f50"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-08-31-dpa-v1-seed41-50-historical-comparison-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-31-dpa-v1-seed41-50-historical-comparison-design.md",
+      "sha256": "6d07c5098d097062ea35424512ed9387180f8382e549b8f7b98106e71161ff50"
+    },
+    {
+      "original": "docs/superpowers/specs/2026-09-01-dpa-v1-pfq-aligned-expiry-aware-comparison-design.md",
+      "archive": "Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-09-01-dpa-v1-pfq-aligned-expiry-aware-comparison-design.md",
+      "sha256": "e5503d28d32ee8b46eb2d3f20afcb8f770bb48facc3c182128ba73bcbc601690"
+    }
+  ],
+  "regular_files": 7780,
+  "total_bytes": 12374575291
+}

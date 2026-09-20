@@ -51,6 +51,13 @@ mcsSelectionLUTCpu::mcsSelectionLUTCpu(cumacCellGrpPrms*   cellGrpPrms)
     }
 }
 
+void mcsSelectionLUTCpu::copyOllaParamsForAudit(std::vector<ollaParam>* output) const
+{
+    if (output != nullptr) {
+        *output = ollaParamArr;
+    }
+}
+
 void mcsSelectionLUTCpu::setup(cumacCellGrpUeStatus*  cellGrpUeStatus,
                                cumacSchdSol*          schdSol,
                                cumacCellGrpPrms*      cellGrpPrms)

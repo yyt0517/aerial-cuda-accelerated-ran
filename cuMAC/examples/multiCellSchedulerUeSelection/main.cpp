@@ -32,7 +32,10 @@
 #include "../customScheduler/Type0SlotLayout.h"
 #include "../rlReplay/ReplayWriter.h"
 #include "trafficModel/trafficService.hpp"
+#include "trafficModel/serviceBalanceTrace.hpp"
+#include "trafficModel/trafficGranularityProfile.hpp"
 #include <algorithm>
+#include <array>
 #include <cctype>
 #include <cmath>
 #include <cstdlib>
@@ -206,11 +209,35 @@ unsigned long long writePacketOutcomeSamplesCsv(
         fprintf(stderr, "WARNING: failed to open packet outcome sample CSV for writing: %s\n", path.c_str());
         return 0ULL;
     }
-    out << "ue_id,packet_id,terminal_tti,outcome,system_time_ms\n";
+    out << "ue_id,packet_id,arrival_tti,packet_size_bytes,remaining_bytes_at_terminal,"
+           "terminal_tti,outcome,system_time_ms\n";
     out << std::fixed << std::setprecision(6);
     for (const auto& sample : samples) {
-        out << sample.flow_id << ',' << sample.packet_id << ',' << sample.terminal_tti << ','
-            << (sample.expired ? "expired" : "delivered") << ',' << sample.system_time_ms << '\n';
+        out << sample.flow_id << ',' << sample.packet_id << ',' << sample.arrival_tti << ','
+            << sample.packet_size_bytes << ',' << sample.remaining_bytes_at_terminal << ','
+            << sample.terminal_tti << ',' << (sample.expired ? "expired" : "delivered")
+            << ',' << sample.system_time_ms << '\n';
+    }
+    return static_cast<unsigned long long>(samples.size());
+}
+
+unsigned long long writePacketOfferSamplesCsv(
+    const std::string& path,
+    const std::vector<PacketOfferSample>& samples,
+    int ttlTti)
+{
+    if (path.empty()) {
+        return 0ULL;
+    }
+    std::ofstream out(path);
+    if (!out) {
+        fprintf(stderr, "ERROR: failed to open offered packet sample CSV for writing: %s\n", path.c_str());
+        return 0ULL;
+    }
+    out << "ue_id,packet_id,arrival_tti,packet_size_bytes,ttl_tti\n";
+    for (const auto& sample : samples) {
+        out << sample.flow_id << ',' << sample.packet_id << ',' << sample.arrival_tti << ','
+            << sample.packet_size_bytes << ',' << ttlTti << '\n';
     }
     return static_cast<unsigned long long>(samples.size());
 }
@@ -286,6 +313,37 @@ std::vector<int32_t> countAssignedPrgsPerActiveUe(const cumacSchdSol* schdSol, c
         }
     }
     return uePrgCount;
+}
+
+std::vector<uint8_t> assignedLocalPrgMaskPerActiveUe(
+    const cumacSchdSol* schdSol,
+    const cumacCellGrpPrms* cellGrpPrms)
+{
+    std::vector<uint8_t> mask;
+    if (schdSol == nullptr || cellGrpPrms == nullptr ||
+        schdSol->setSchdUePerCellTTI == nullptr || schdSol->allocSol == nullptr ||
+        cellGrpPrms->allocType != 0U) {
+        return mask;
+    }
+    const uint32_t nActiveUe = cellGrpPrms->nActiveUe;
+    const uint32_t nPrg = cellGrpPrms->nPrbGrp;
+    const uint32_t totalCells = cellGrpPrms->totNumCell;
+    mask.assign(static_cast<size_t>(nActiveUe) * nPrg, 0U);
+    for (uint32_t localPrg = 0; localPrg < nPrg; ++localPrg) {
+        for (uint32_t cell = 0; cell < totalCells; ++cell) {
+            const size_t allocIdx = static_cast<size_t>(localPrg) * totalCells + cell;
+            const int16_t slot = schdSol->allocSol[allocIdx];
+            if (slot < 0 || static_cast<uint32_t>(slot) >= cellGrpPrms->nUe) {
+                continue;
+            }
+            const uint16_t activeUe = schdSol->setSchdUePerCellTTI[slot];
+            if (activeUe == 0xFFFF || activeUe >= nActiveUe) {
+                continue;
+            }
+            mask[static_cast<size_t>(activeUe) * nPrg + localPrg] = 1U;
+        }
+    }
+    return mask;
 }
 
 PrgUsageStats computePrgUsageStats(const cumacSchdSol* schdSol, const cumacCellGrpPrms* cellGrpPrms)
@@ -483,6 +541,88 @@ void applyOnlineActionToSchedule(const cumac::online::StepAction& action,
     CUDA_CHECK_ERR(cudaStreamSynchronize(stream));
 }
 
+std::vector<float> decisionPreWbSinrFirstLayerDb(const cumacCellGrpPrms* cellGrpPrms)
+{
+    if (cellGrpPrms == nullptr || cellGrpPrms->wbSinr == nullptr) {
+        return {};
+    }
+    const uint8_t nUeAnt = std::max<uint8_t>(1U, cellGrpPrms->nUeAnt);
+    std::vector<float> result(cellGrpPrms->nActiveUe, 0.0F);
+    for (uint32_t ue = 0; ue < cellGrpPrms->nActiveUe; ++ue) {
+        const float linear = cellGrpPrms->wbSinr[static_cast<size_t>(ue) * nUeAnt];
+        result[ue] = static_cast<float>(
+            10.0 * std::log10(static_cast<double>(linear)));
+    }
+    return result;
+}
+
+std::vector<int32_t> decisionPreTbErr(const cumacCellGrpUeStatus* ueStatus, uint32_t nActiveUe)
+{
+    if (ueStatus == nullptr || ueStatus->tbErrLastActUe == nullptr) {
+        return {};
+    }
+    std::vector<int32_t> result(nActiveUe, -1);
+    for (uint32_t ue = 0; ue < nActiveUe; ++ue) {
+        result[ue] = static_cast<int32_t>(ueStatus->tbErrLastActUe[ue]);
+    }
+    return result;
+}
+
+std::vector<uint8_t> decisionPrePrgLayerCap(const cumacCellGrpPrms* cellGrpPrms,
+                                            uint8_t effectiveLayerCap)
+{
+    if (cellGrpPrms == nullptr || cellGrpPrms->sinVal_actUe == nullptr) {
+        return {};
+    }
+    const uint8_t nLayer = std::max<uint8_t>(1U, cellGrpPrms->nUeAnt);
+    const size_t count = static_cast<size_t>(cellGrpPrms->nActiveUe) * cellGrpPrms->nPrbGrp;
+    std::vector<uint8_t> result(count, 1U);
+    for (uint32_t ue = 0; ue < cellGrpPrms->nActiveUe; ++ue) {
+        for (uint32_t prg = 0; prg < cellGrpPrms->nPrbGrp; ++prg) {
+            const size_t base =
+                (static_cast<size_t>(ue) * cellGrpPrms->nPrbGrp + prg) * nLayer;
+            const float threshold = cellGrpPrms->sinVal_actUe[base] * cellGrpPrms->sinValThr;
+            uint8_t layers = 1U;
+            if (threshold > 0.0F) {
+                for (int layer = static_cast<int>(nLayer) - 1; layer >= 1; --layer) {
+                    if (cellGrpPrms->sinVal_actUe[base + static_cast<size_t>(layer)] >= threshold) {
+                        layers = static_cast<uint8_t>(layer + 1);
+                        break;
+                    }
+                }
+            }
+            result[static_cast<size_t>(ue) * cellGrpPrms->nPrbGrp + prg] =
+                std::min(layers, effectiveLayerCap);
+        }
+    }
+    return result;
+}
+
+void actualMcsAndLayerByActiveUe(const cumacSchdSol* schdSol,
+                                 uint32_t nSchedUe,
+                                 uint32_t nActiveUe,
+                                 std::vector<int32_t>* actualMcs,
+                                 std::vector<int32_t>* actualLayer)
+{
+    if (actualMcs == nullptr || actualLayer == nullptr) {
+        return;
+    }
+    actualMcs->assign(nActiveUe, -1);
+    actualLayer->assign(nActiveUe, -1);
+    if (schdSol == nullptr || schdSol->setSchdUePerCellTTI == nullptr ||
+        schdSol->mcsSelSol == nullptr || schdSol->layerSelSol == nullptr) {
+        return;
+    }
+    for (uint32_t slot = 0; slot < nSchedUe; ++slot) {
+        const uint16_t activeUe = schdSol->setSchdUePerCellTTI[slot];
+        if (activeUe == 0xFFFF || activeUe >= nActiveUe) {
+            continue;
+        }
+        (*actualMcs)[activeUe] = static_cast<int32_t>(schdSol->mcsSelSol[slot]);
+        (*actualLayer)[activeUe] = static_cast<int32_t>(schdSol->layerSelSol[slot]);
+    }
+}
+
 cumac::online::StepState buildOnlineState(int tti,
                                           bool done,
                                           const cumac::online::OnlineFeatureCodec& codec,
@@ -522,7 +662,20 @@ cumac::online::StepState buildOnlineState(int tti,
                                           const std::vector<float>& actualUePacketExpiredSystemTimeMs,
                                           const std::vector<float>& actualUePacketOutcomeSystemTimeMs,
                                           const std::vector<float>& actualUePacketExpiryAwareRateMbps,
-                                          const std::vector<float>& actualUePacketExpiryAwareRatePerPacketMeanMbps)
+                                          const std::vector<float>& actualUePacketExpiryAwareRatePerPacketMeanMbps,
+                                          const std::vector<uint8_t>& acceptedPrePdschUePrgMask,
+                                          const std::vector<uint8_t>& actualUePrgMask,
+                                          const std::vector<float>& decisionPreWbSinrFirstLayerDbValues,
+                                          const std::vector<float>& decisionPreOllaDelta,
+                                          const std::vector<float>& decisionPreOllaDeltaUp,
+                                          const std::vector<float>& decisionPreOllaDeltaDown,
+                                          const std::vector<int32_t>& decisionPreTbErrValues,
+                                          const std::vector<uint8_t>& decisionPrePrgLayerCapValues,
+                                          const std::vector<float>& phyTbsConfig,
+                                          const std::vector<int32_t>& phyTbsAuditProvenance,
+                                          const std::vector<int32_t>& actualUeMcs,
+                                          const std::vector<int32_t>& actualUeLayer,
+                                          const std::vector<int32_t>& actualUeTbsCapacityBytes)
 {
     cumac::online::StepState state;
     state.header.tti = tti;
@@ -569,6 +722,7 @@ cumac::online::StepState buildOnlineState(int tti,
                   postEqSinr.size() /
                   (static_cast<size_t>(codec.nActiveUe()) * static_cast<size_t>(codec.nPrg())))
             : 0U;
+    state.header.dims.harqEnabled = codec.harqEnabled();
     state.header.stateFlags = 0U;
     if (!postEqSinr.empty()) {
         state.header.stateFlags |= cumac::online::kStateFlagHasPostEqSinr;
@@ -622,6 +776,31 @@ cumac::online::StepState buildOnlineState(int tti,
     if (hasActualUePacketDiagnostics) {
         state.header.stateFlags |= cumac::online::kStateFlagHasActualUePacketDiagnostics;
     }
+    const size_t expectedUePrgMaskSize =
+        static_cast<size_t>(codec.nActiveUe()) * static_cast<size_t>(codec.nPrg());
+    const bool hasUePrgSetDiagnostics =
+        acceptedPrePdschUePrgMask.size() == expectedUePrgMaskSize &&
+        actualUePrgMask.size() == expectedUePrgMaskSize;
+    if (hasUePrgSetDiagnostics) {
+        state.header.stateFlags |= cumac::online::kStateFlagHasUePrgSetDiagnostics;
+    }
+    const bool hasPhyTbsAuditDiagnostics =
+        decisionPreWbSinrFirstLayerDbValues.size() == codec.nActiveUe() &&
+        decisionPreOllaDelta.size() == codec.nActiveUe() &&
+        decisionPreOllaDeltaUp.size() == codec.nActiveUe() &&
+        decisionPreOllaDeltaDown.size() == codec.nActiveUe() &&
+        decisionPreTbErrValues.size() == codec.nActiveUe() &&
+        decisionPrePrgLayerCapValues.size() == expectedUePrgMaskSize &&
+        phyTbsConfig.size() == 6U &&
+        phyTbsAuditProvenance.size() == 2U &&
+        phyTbsAuditProvenance[0] == cumac::online::kPhyTbsOllaSourceCpu &&
+        phyTbsAuditProvenance[1] == cumac::online::kPhyTbsCapturePhasePreActionPreMcs &&
+        actualUeMcs.size() == codec.nActiveUe() &&
+        actualUeLayer.size() == codec.nActiveUe() &&
+        actualUeTbsCapacityBytes.size() == codec.nActiveUe();
+    if (hasPhyTbsAuditDiagnostics) {
+        state.header.stateFlags |= cumac::online::kStateFlagHasPhyTbsAuditDiagnostics;
+    }
 
     state.obsCellFeatures = obsCell;
     state.obsUeFeatures = obsUe;
@@ -670,6 +849,23 @@ cumac::online::StepState buildOnlineState(int tti,
         state.actualUePacketExpiryAwareRateMbps = actualUePacketExpiryAwareRateMbps;
         state.actualUePacketExpiryAwareRatePerPacketMeanMbps =
             actualUePacketExpiryAwareRatePerPacketMeanMbps;
+    }
+    if (hasUePrgSetDiagnostics) {
+        state.acceptedPrePdschUePrgMask = acceptedPrePdschUePrgMask;
+        state.actualUePrgMask = actualUePrgMask;
+    }
+    if (hasPhyTbsAuditDiagnostics) {
+        state.decisionPreWbSinrFirstLayerDb = decisionPreWbSinrFirstLayerDbValues;
+        state.decisionPreOllaDelta = decisionPreOllaDelta;
+        state.decisionPreOllaDeltaUp = decisionPreOllaDeltaUp;
+        state.decisionPreOllaDeltaDown = decisionPreOllaDeltaDown;
+        state.decisionPreTbErr = decisionPreTbErrValues;
+        state.decisionPrePrgLayerCap = decisionPrePrgLayerCapValues;
+        state.phyTbsConfig = phyTbsConfig;
+        state.phyTbsAuditProvenance = phyTbsAuditProvenance;
+        state.actualUeMcs = actualUeMcs;
+        state.actualUeLayer = actualUeLayer;
+        state.actualUeTbsCapacityBytes = actualUeTbsCapacityBytes;
     }
     return state;
 }
@@ -957,7 +1153,26 @@ int main(int argc, char* argv[])
       getEnvString("CUMAC_PACKET_DELAY_SAMPLES_CSV", "packet_delay_samples.csv");
   const std::string packetOutcomeSamplesCsv =
       getEnvString("CUMAC_PACKET_OUTCOME_SAMPLES_CSV", "packet_outcome_samples.csv");
+  const std::string serviceBalanceTraceCsv =
+      getEnvString("CUMAC_SERVICE_BALANCE_TRACE_CSV", "");
+  const std::string offeredPacketSamplesCsv =
+      getEnvString("CUMAC_TRAFFIC_OFFERED_SAMPLES_CSV", "");
+  const int serviceBalanceTraceFirstTti =
+      getEnvInt("CUMAC_SERVICE_BALANCE_TRACE_FIRST_TTI", 602);
+  const bool serviceBalanceAuditEnabled =
+      !serviceBalanceTraceCsv.empty() || !offeredPacketSamplesCsv.empty();
+  if (serviceBalanceAuditEnabled &&
+      (serviceBalanceTraceCsv.empty() || offeredPacketSamplesCsv.empty())) {
+      fprintf(stderr,
+              "ERROR: service-balance audit requires both trace and offered-packet CSV paths.\n");
+      return 1;
+  }
+  if (serviceBalanceAuditEnabled && serviceBalanceTraceFirstTti <= 0) {
+      fprintf(stderr, "ERROR: service-balance trace first TTI must be positive.\n");
+      return 1;
+  }
   const float trafficArrivalRate = getEnvFloat("CUMAC_TRAFFIC_ARRIVAL_RATE", 1.0f);
+  const std::string trafficProfile = getEnvString("CUMAC_TRAFFIC_PROFILE", "homogeneous");
   const int packetTtlTtiEnv = getEnvInt("CUMAC_PACKET_TTL_TTI", 0);
   const float packetTtlMsEnv = getEnvFloat("CUMAC_PACKET_TTL_MS", 0.0f);
   const int topologySeedForRun = getEnvInt("CUMAC_TOPOLOGY_SEED", seedConst);
@@ -976,6 +1191,13 @@ int main(int argc, char* argv[])
   const bool onlinePersistentMode = onlineBridgeEnabled && (getEnvInt("CUMAC_ONLINE_PERSISTENT", 1) != 0);
   const bool onlineExportPostEqSinr =
       onlineBridgeEnabled && (getEnvInt("CUMAC_ONLINE_EXPORT_POST_EQ_SINR", 0) != 0);
+  const bool onlineExportPhyTbsAudit =
+      onlineBridgeEnabled && (getEnvInt("CUMAC_ONLINE_EXPORT_PHY_TBS_AUDIT", 0) != 0);
+  if (serviceBalanceAuditEnabled && (!onlineBridgeEnabled || !onlineExportPhyTbsAudit)) {
+      fprintf(stderr,
+              "ERROR: service-balance audit requires online bridge and PHY/TBS audit labels.\n");
+      return 1;
+  }
   const bool onlineExportTeacher =
       onlineBridgeEnabled && (getEnvInt("CUMAC_ONLINE_EXPORT_TEACHER_ACTION", 0) != 0);
   const std::string onlineRewardModeStr = getEnvString("CUMAC_ONLINE_REWARD_MODE", "goodput_only");
@@ -1111,19 +1333,43 @@ int main(int argc, char* argv[])
 
 
   // Initialize traffic service
-  printf("Traffic configuration: active_ue_percent=%.3f packet_bytes=%.3f arrival_rate_pkt_per_tti=%.3f\n",
-         percent_ue_traffic, packetSizeBytes, trafficArrivalRate);
-  TrafficType basic_traffic(packetSizeBytes, 0, trafficArrivalRate);
   int traffic_num_flows = static_cast<int>(totNumUesConst * percent_ue_traffic / 100.0);
   traffic_num_flows = std::max(0, std::min(traffic_num_flows, static_cast<int>(net->cellGrpPrmsGpu.get()->nActiveUe)));
   if (percent_ue_traffic > 0.0f && traffic_num_flows == 0) {
     traffic_num_flows = 1;
   }
-  TrafficConfig traf_cfg(basic_traffic, traffic_num_flows);
+  std::vector<TrafficGranularityFlowSpec> trafficFlowSpecs;
+  try {
+    trafficFlowSpecs = buildTrafficGranularityProfile(
+        trafficProfile, traffic_num_flows, packetSizeBytes, trafficArrivalRate);
+  } catch (const std::invalid_argument& error) {
+    fprintf(stderr, "ERROR: invalid traffic profile: %s\n", error.what());
+    return 1;
+  }
+  std::vector<TrafficType> trafficTypes;
+  trafficTypes.reserve(trafficFlowSpecs.size());
+  int highFrequencyShortFlows = 0;
+  int lowFrequencyLargeFlows = 0;
+  for (const auto& flow : trafficFlowSpecs) {
+    trafficTypes.emplace_back(flow.packetSizeBytes, 0.0F, flow.arrivalRatePacketsPerTti);
+    highFrequencyShortFlows += flow.classLabel == "high_frequency_short" ? 1 : 0;
+    lowFrequencyLargeFlows += flow.classLabel == "low_frequency_large" ? 1 : 0;
+  }
+  printf("Traffic configuration: profile=%s active_ue_percent=%.3f flows=%d "
+         "expected_offered_bytes_per_tti=%.3f high_frequency_short_flows=%d "
+         "low_frequency_large_flows=%d\n",
+         trafficProfile.c_str(),
+         percent_ue_traffic,
+         traffic_num_flows,
+         expectedOfferedBytesPerTti(trafficFlowSpecs),
+         highFrequencyShortFlows,
+         lowFrequencyLargeFlows);
+  TrafficConfig traf_cfg(trafficTypes);
   //TrafficType low_traffic(100, 0, 1);
   //traf_cfg.AddFlows(low_traffic,totNumUesConst/2);
   std::unique_ptr<TrafficService> trafSvc = std::make_unique<TrafficService>(traf_cfg,net->cellGrpUeStatusCpu.get(),net->cellGrpUeStatusGpu.get());
   trafSvc->Seed(trafficSeed);
+  trafSvc->SetPacketOfferAuditEnabled(serviceBalanceAuditEnabled);
   printf("Traffic RNG seed: traffic_seed=%d topology_seed=%d source=%s\n",
          trafficSeed,
          topologySeedForRun,
@@ -1200,6 +1446,12 @@ int main(int argc, char* argv[])
   cumac::online::OnlineFeatureCodec onlineCodec;
   cumac::online::ObservationExtrasBuilder onlineObsExtrasBuilder;
   cumac::online::ResetReqPayload resetReq {};
+  bool onlineCtbsEnabled = false;
+  std::vector<float> onlineCtbsResetConfig;
+  std::array<uint8_t, 32> onlineCtbsConfigHash {};
+  bool onlineCtbsConfigHashBound = false;
+  int64_t onlineCtbsNextSnapshotId = 1;
+  int64_t onlineCtbsLastConsumedSnapshotId = 0;
   int onlineEpisodeHorizon = numSimChnRlz;
   if (!onlineObsExtrasBuilder.initialize(net->cellGrpPrmsCpu.get())) {
     fprintf(stderr, "ERROR: Failed to initialize online observation extras builder.\n");
@@ -1225,6 +1477,10 @@ int main(int argc, char* argv[])
     if (!onlineBridge->recvResetReq(&resetReq)) {
       fprintf(stderr, "ERROR: Online bridge failed to receive reset request.\n");
       return 1;
+    }
+    onlineCtbsEnabled = (resetReq.flags & cumac::online::kResetFlagEnableCtbs) != 0U;
+    if (onlineCtbsEnabled) {
+      printf("Online bridge CTBS pre-action handshake enabled\n");
     }
     const int requestedHorizon = std::max(1, resetReq.episodeHorizon);
     onlineEpisodeHorizon = onlinePersistentMode
@@ -1318,6 +1574,28 @@ int main(int argc, char* argv[])
   std::vector<unsigned long long> macBufferBeforeSched(nActiveUe, 0ULL);
   std::vector<unsigned long long> servedBytesThisTti(nActiveUe, 0ULL);
   std::vector<unsigned long long> goodputBytesThisTti(nActiveUe, 0ULL);
+  std::ofstream serviceBalanceTrace;
+  std::ofstream channelFingerprintTrace;
+  std::vector<unsigned long long> serviceBalancePreviousGenerated(nActiveUe, 0ULL);
+  std::vector<unsigned long long> serviceBalancePreviousAccepted(nActiveUe, 0ULL);
+  std::vector<unsigned long long> serviceBalancePreviousRejected(nActiveUe, 0ULL);
+  std::vector<unsigned long long> serviceBalancePreviousExpired(nActiveUe, 0ULL);
+  std::vector<unsigned long long> serviceBalancePreviousPostQueue(nActiveUe, 0ULL);
+  if (serviceBalanceAuditEnabled) {
+    serviceBalanceTrace.open(serviceBalanceTraceCsv);
+    if (!serviceBalanceTrace) {
+      fprintf(stderr, "ERROR: failed to open service-balance trace CSV: %s\n",
+              serviceBalanceTraceCsv.c_str());
+      return 1;
+    }
+    writeServiceBalanceTraceHeader(serviceBalanceTrace);
+    channelFingerprintTrace.open(serviceBalanceTraceCsv + ".channel.csv");
+    if (!channelFingerprintTrace) {
+      fprintf(stderr, "ERROR: cannot open raw channel fingerprint trace.\n");
+      return 1;
+    }
+    channelFingerprintTrace << "tti,raw_cfr_fnv1a64\n";
+  }
   unsigned long long totalAllocatedPrgCount = 0ULL;
   unsigned long long totalPrgCapacity = 0ULL;
   int executedTtiCount = 0;
@@ -1479,6 +1757,10 @@ int main(int argc, char* argv[])
       }
     }
 
+    if (serviceBalanceAuditEnabled) {
+      channelFingerprintTrace << (t + 1) << ',' << net->rawChannelFingerprint() << '\n';
+    }
+
     // setup API 
     stageTrace(t, "before_setup_api");
     net->setupAPI(cuStrmMain);
@@ -1543,8 +1825,29 @@ int main(int argc, char* argv[])
     std::vector<uint8_t> onlineMaskUe;
     std::vector<uint8_t> onlineMaskCellUe;
     std::vector<uint8_t> onlineMaskPrg;
+    std::vector<float> onlineDecisionPreWbSinrFirstLayerDb;
+    std::vector<float> onlineDecisionPreOllaDelta;
+    std::vector<float> onlineDecisionPreOllaDeltaUp;
+    std::vector<float> onlineDecisionPreOllaDeltaDown;
+    std::vector<int32_t> onlineDecisionPreTbErr;
+    std::vector<uint8_t> onlineDecisionPrePrgLayerCap;
+    std::vector<float> onlinePhyTbsConfig;
+    std::vector<int32_t> onlinePhyTbsAuditProvenance;
+    std::vector<float> serviceBalancePreHolDelayMs(static_cast<size_t>(nActiveUe), -1.0F);
+    std::vector<float> serviceBalancePreTtlSlackMs(static_cast<size_t>(nActiveUe), -1.0F);
     const cumac::online::ObservationExtras& onlineObsExtras =
         onlineObsExtrasBuilder.buildSnapshot(net->cellGrpUeStatusCpu.get(), net->cellGrpPrmsCpu.get(), trafSvc.get());
+    if (serviceBalanceAuditEnabled &&
+        onlineObsExtras.hasUeExtra(static_cast<uint32_t>(nActiveUe))) {
+      for (int ue = 0; ue < nActiveUe; ++ue) {
+        const size_t base = static_cast<size_t>(ue) *
+                            cumac::online::ObservationFeatureLayout::kUeExtraFeatDim;
+        serviceBalancePreHolDelayMs[static_cast<size_t>(ue)] =
+            onlineObsExtras.ueExtraFeatures[base + 0U];
+        serviceBalancePreTtlSlackMs[static_cast<size_t>(ue)] =
+            onlineObsExtras.ueExtraFeatures[base + 1U];
+      }
+    }
     if (customUePrgScheduler) {
       customUePrgScheduler->setObservationExtras(onlineObsExtras);
     }
@@ -1563,9 +1866,43 @@ int main(int argc, char* argv[])
           net->cellGrpUeStatusCpu.get(), net->cellGrpPrmsCpu.get(), onlineMaskUe, onlineMaskCellUe, onlineMaskPrg);
       captureOnlineTeacherAction();
 
+      if (onlineExportPhyTbsAudit || onlineCtbsEnabled) {
+        net->copySinValActUeGpu2Cpu(cuStrmMain);
+        std::vector<cumac::ollaParam> ollaParams;
+        mcsSelCpu->copyOllaParamsForAudit(&ollaParams);
+        const uint8_t effectiveLayerCap =
+            cumac::resolveEffectiveLayerCapForAudit(net->cellGrpPrmsCpu.get()->nUeAnt);
+        onlineDecisionPreWbSinrFirstLayerDb =
+            decisionPreWbSinrFirstLayerDb(net->cellGrpPrmsCpu.get());
+        onlineDecisionPreTbErr = decisionPreTbErr(
+            net->cellGrpUeStatusCpu.get(), net->cellGrpPrmsCpu.get()->nActiveUe);
+        onlineDecisionPrePrgLayerCap =
+            decisionPrePrgLayerCap(net->cellGrpPrmsCpu.get(), effectiveLayerCap);
+        onlineDecisionPreOllaDelta.assign(ollaParams.size(), 0.0F);
+        onlineDecisionPreOllaDeltaUp.assign(ollaParams.size(), 0.0F);
+        onlineDecisionPreOllaDeltaDown.assign(ollaParams.size(), 0.0F);
+        for (size_t ue = 0; ue < ollaParams.size(); ++ue) {
+          onlineDecisionPreOllaDelta[ue] = ollaParams[ue].delta;
+          onlineDecisionPreOllaDeltaUp[ue] = ollaParams[ue].delta_up;
+          onlineDecisionPreOllaDeltaDown[ue] = ollaParams[ue].delta_down;
+        }
+        onlinePhyTbsConfig = {
+            static_cast<float>(net->cellGrpPrmsCpu.get()->mcsSelLutType),
+            net->cellGrpPrmsCpu.get()->mcsSelSinrCapThr,
+            net->cellGrpPrmsCpu.get()->sinValThr,
+            static_cast<float>(nPrbsPerGrpConst),
+            static_cast<float>(pdschNrOfDataSymb),
+            static_cast<float>(effectiveLayerCap),
+        };
+        onlinePhyTbsAuditProvenance = {
+            cumac::online::kPhyTbsOllaSourceCpu,
+            cumac::online::kPhyTbsCapturePhasePreActionPreMcs,
+        };
+      }
+
       if (!onlineResetSent) {
         const cumac::online::OnlineFeatureCodec::RewardTerms zeroReward {};
-        const cumac::online::StepState resetState = buildOnlineState(
+        cumac::online::StepState resetState = buildOnlineState(
             t,
             false,
             onlineCodec,
@@ -1605,7 +1942,29 @@ int main(int argc, char* argv[])
             std::vector<float>{},
             std::vector<float>{},
             std::vector<float>{},
-            std::vector<float>{});
+            std::vector<float>{},
+            std::vector<uint8_t>{},
+            std::vector<uint8_t>{},
+            std::vector<float>{},
+            std::vector<float>{},
+            std::vector<float>{},
+            std::vector<float>{},
+            std::vector<int32_t>{},
+            std::vector<uint8_t>{},
+            std::vector<float>{},
+            std::vector<int32_t>{},
+            std::vector<int32_t>{},
+            std::vector<int32_t>{},
+            std::vector<int32_t>{});
+        if (onlineCtbsEnabled) {
+          if (onlinePhyTbsConfig.size() != 6U) {
+            fprintf(stderr, "ERROR: CTBS reset is missing the six-value TBS configuration.\n");
+            return 1;
+          }
+          onlineCtbsResetConfig = onlinePhyTbsConfig;
+          resetState.header.stateFlags |= cumac::online::kStateFlagHasCtbsConfig;
+          resetState.ctbsConfig = onlineCtbsResetConfig;
+        }
         if (!onlineBridge->sendResetRsp(resetState)) {
           fprintf(stderr, "ERROR: Failed to send online reset response.\n");
           return 1;
@@ -1621,6 +1980,80 @@ int main(int argc, char* argv[])
 
     cumac::Type0RejectDiagnostics nativeRejectDiag;
     if (onlineBridgeEnabled) {
+      int64_t actionSnapshotId = 0;
+      if (onlineCtbsEnabled) {
+        if (onlinePhyTbsConfig != onlineCtbsResetConfig) {
+          onlineBridge->sendError(-80, "CTBS TBS configuration changed after reset");
+          fprintf(stderr, "ERROR: CTBS TBS configuration changed after reset.\n");
+          return 1;
+        }
+        cumac::online::PreActionRequest preActionReq;
+        bool preActionCloseReq = false;
+        if (!onlineBridge->recvPreActionReq(&preActionReq, &preActionCloseReq)) {
+          fprintf(stderr, "ERROR: Failed to receive CTBS pre-action request.\n");
+          return 1;
+        }
+        if (preActionCloseReq) {
+          onlineCloseRequested = true;
+          break;
+        }
+        if (preActionReq.tti != t) {
+          onlineBridge->sendError(-81, "CTBS pre-action request TTI mismatch");
+          fprintf(stderr, "ERROR: CTBS pre-action request TTI mismatch.\n");
+          return 1;
+        }
+        if (!onlineCtbsConfigHashBound) {
+          onlineCtbsConfigHash = preActionReq.configHash;
+          onlineCtbsConfigHashBound = true;
+        } else if (preActionReq.configHash != onlineCtbsConfigHash) {
+          onlineBridge->sendError(-82, "CTBS config hash changed during run");
+          fprintf(stderr, "ERROR: CTBS config hash changed during run.\n");
+          return 1;
+        }
+
+        cumac::online::PreActionSnapshot snapshot;
+        snapshot.header.tti = t;
+        snapshot.header.snapshotId = onlineCtbsNextSnapshotId++;
+        snapshot.header.nActiveUe = net->cellGrpPrmsCpu.get()->nActiveUe;
+        snapshot.header.nPrg = net->cellGrpPrmsCpu.get()->nPrbGrp;
+        std::copy(
+            onlineCtbsConfigHash.begin(),
+            onlineCtbsConfigHash.end(),
+            std::begin(snapshot.header.configHash));
+        snapshot.ueIds.resize(snapshot.header.nActiveUe);
+        snapshot.servingCell.assign(snapshot.header.nActiveUe, -1);
+        for (uint32_t ue = 0; ue < snapshot.header.nActiveUe; ++ue) {
+          snapshot.ueIds[ue] = static_cast<int32_t>(ue);
+          int servingCell = -1;
+          for (uint32_t cell = 0; cell < net->cellGrpPrmsCpu.get()->nCell; ++cell) {
+            if (assocToCellOnline(net->cellGrpPrmsCpu.get(), cell, ue)) {
+              if (servingCell >= 0) {
+                onlineBridge->sendError(-83, "CTBS UE has multiple serving cells");
+                fprintf(stderr, "ERROR: CTBS UE has multiple serving cells.\n");
+                return 1;
+              }
+              servingCell = static_cast<int>(cell);
+            }
+          }
+          if (servingCell < 0) {
+            onlineBridge->sendError(-84, "CTBS UE has no serving cell");
+            fprintf(stderr, "ERROR: CTBS UE has no serving cell.\n");
+            return 1;
+          }
+          snapshot.servingCell[ue] = servingCell;
+        }
+        snapshot.wbSinrFirstLayerDb = onlineDecisionPreWbSinrFirstLayerDb;
+        snapshot.ollaDelta = onlineDecisionPreOllaDelta;
+        snapshot.ollaDeltaUp = onlineDecisionPreOllaDeltaUp;
+        snapshot.ollaDeltaDown = onlineDecisionPreOllaDeltaDown;
+        snapshot.priorTbErr = onlineDecisionPreTbErr;
+        snapshot.prgLayerCap = onlineDecisionPrePrgLayerCap;
+        if (!onlineBridge->sendPreActionRsp(snapshot)) {
+          fprintf(stderr, "ERROR: Failed to send CTBS pre-action response.\n");
+          return 1;
+        }
+        actionSnapshotId = snapshot.header.snapshotId;
+      }
       cumac::online::StepAction actionReq;
       bool closeReq = false;
       if (!onlineBridge->recvStepReq(&actionReq, &closeReq)) {
@@ -1630,6 +2063,19 @@ int main(int argc, char* argv[])
       if (closeReq) {
         onlineCloseRequested = true;
         break;
+      }
+      if (onlineCtbsEnabled) {
+        if (actionReq.stepIdx != t || actionReq.snapshotId != actionSnapshotId ||
+            actionReq.snapshotId <= onlineCtbsLastConsumedSnapshotId) {
+          onlineBridge->sendError(-85, "CTBS StepReq snapshot binding mismatch");
+          fprintf(stderr, "ERROR: CTBS StepReq snapshot binding mismatch.\n");
+          return 1;
+        }
+        onlineCtbsLastConsumedSnapshotId = actionReq.snapshotId;
+      } else if (actionReq.snapshotId != 0) {
+        onlineBridge->sendError(-86, "snapshot ID supplied while CTBS is disabled");
+        fprintf(stderr, "ERROR: Snapshot ID supplied while CTBS is disabled.\n");
+        return 1;
       }
       const std::vector<uint8_t>& actionMaskUeForThisRequest =
           (onlinePendingActionMaskUe.size() == static_cast<size_t>(net->cellGrpPrmsCpu.get()->nActiveUe))
@@ -1816,11 +2262,19 @@ int main(int argc, char* argv[])
     std::cout<<"PRB scheduling solution computed"<<std::endl;
 
     std::vector<int32_t> acceptedPrePdschUePrgCount;
+    std::vector<uint8_t> acceptedPrePdschUePrgMask;
     if (onlineBridgeEnabled) {
       acceptedPrePdschUePrgCount =
           countAssignedPrgsPerActiveUe(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
+      acceptedPrePdschUePrgMask =
+          assignedLocalPrgMaskPerActiveUe(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
     }
     std::vector<int32_t> actualUePrgCount(static_cast<size_t>(nActiveUe), 0);
+    std::vector<uint8_t> actualUePrgMask;
+    std::vector<int32_t> actualUeMcs;
+    std::vector<int32_t> actualUeLayer;
+    std::vector<int32_t> actualUeTbsCapacityBytes;
+    std::vector<uint32_t> actualUeTbsCapacityBits;
 
 #ifdef PDSCH_
     // run GPU layer selection
@@ -1852,10 +2306,91 @@ int main(int argc, char* argv[])
       copyGpuSchedulingSolutionToCpu(net->schdSolCpu.get(), net->schdSolGpu.get(), net->cellGrpPrmsCpu.get(), cuStrmMain);
     }
 
+    // Controlled PHY-only audit: CPU-selected canonical MCS/layers are held
+    // identical on both paths, independently of native GPU link adaptation.
+    if (getEnvInt("CUMAC_PHY_AUDIT_COMMON_MCS", 0) != 0) {
+      if (!onlineBridgeEnabled || !serviceBalanceAuditEnabled || !type0AllUeScheduling) {
+        throw std::runtime_error("common MCS audit requires online Type-0 service audit");
+      }
+      CUDA_CHECK_ERR(cudaMemcpy(net->schdSolGpu->mcsSelSol, net->schdSolCpu->mcsSelSol,
+                               nUeSched * sizeof(int16_t), cudaMemcpyHostToDevice));
+      CUDA_CHECK_ERR(cudaMemcpy(net->schdSolGpu->layerSelSol, net->schdSolCpu->layerSelSol,
+                               nUeSched * sizeof(uint8_t), cudaMemcpyHostToDevice));
+    }
+
+    // Metamorphic PHY audit: preserve UE/PRG/MCS/layers; only rename valid slots
+    // within each serving cell AFTER the scheduler and link adaptation finished.
+    // Off by default; not a different scheduling policy.
+    if (getEnvInt("CUMAC_PHY_AUDIT_PERMUTE_SLOTS", 0) != 0) {
+      if (!onlineBridgeEnabled || !serviceBalanceAuditEnabled || !type0AllUeScheduling) {
+        throw std::runtime_error("slot permutation audit requires online Type-0 service audit");
+      }
+      auto* sol = net->schdSolCpu.get();
+      const auto* prm = net->cellGrpPrmsCpu.get();
+      std::vector<int> oldToNew(nUeSched);
+      for (int slot = 0; slot < nUeSched; ++slot) oldToNew[slot] = slot;
+      for (uint32_t cell = 0; cell < prm->nCell; ++cell) {
+        std::vector<int> slots;
+        for (int slot = 0; slot < nUeSched; ++slot) {
+          const auto ue = sol->setSchdUePerCellTTI[slot];
+          if (ue < nActiveUe && assocToCellOnline(prm, cell, ue)) slots.push_back(slot);
+        }
+        for (size_t i = 0; i < slots.size(); ++i) oldToNew[slots[i]] = slots[slots.size()-1-i];
+      }
+      const std::vector<uint16_t> ueMap(sol->setSchdUePerCellTTI, sol->setSchdUePerCellTTI + nUeSched);
+      const std::vector<int16_t> mcs(sol->mcsSelSol, sol->mcsSelSol + nUeSched);
+      const std::vector<uint8_t> layers(sol->layerSelSol, sol->layerSelSol + nUeSched);
+      std::vector<int16_t> gpuMcs(nUeSched), permutedGpuMcs(nUeSched);
+      std::vector<uint8_t> gpuLayers(nUeSched), permutedGpuLayers(nUeSched);
+      CUDA_CHECK_ERR(cudaMemcpy(gpuMcs.data(), net->schdSolGpu->mcsSelSol,
+                               nUeSched * sizeof(int16_t), cudaMemcpyDeviceToHost));
+      CUDA_CHECK_ERR(cudaMemcpy(gpuLayers.data(), net->schdSolGpu->layerSelSol,
+                               nUeSched * sizeof(uint8_t), cudaMemcpyDeviceToHost));
+      for (int slot = 0; slot < nUeSched; ++slot) {
+        sol->setSchdUePerCellTTI[oldToNew[slot]] = ueMap[slot];
+        sol->mcsSelSol[oldToNew[slot]] = mcs[slot];
+        sol->layerSelSol[oldToNew[slot]] = layers[slot];
+        permutedGpuMcs[oldToNew[slot]] = gpuMcs[slot];
+        permutedGpuLayers[oldToNew[slot]] = gpuLayers[slot];
+      }
+      for (uint32_t i = 0; i < prm->totNumCell * prm->nPrbGrp; ++i) {
+        if (sol->allocSol[i] >= 0) sol->allocSol[i] = oldToNew.at(sol->allocSol[i]);
+      }
+      // The online path installs identical CPU/GPU actions. Copy the permuted
+      // slot arrays, then regenerate slot-indexed channels/precoders and state.
+      CUDA_CHECK_ERR(cudaMemcpy(net->schdSolGpu->setSchdUePerCellTTI, sol->setSchdUePerCellTTI,
+                               nUeSched * sizeof(uint16_t), cudaMemcpyHostToDevice));
+      CUDA_CHECK_ERR(cudaMemcpy(net->schdSolGpu->allocSol, sol->allocSol,
+                               prm->totNumCell * prm->nPrbGrp * sizeof(int16_t), cudaMemcpyHostToDevice));
+      CUDA_CHECK_ERR(cudaMemcpy(net->schdSolGpu->mcsSelSol, permutedGpuMcs.data(),
+                               nUeSched * sizeof(int16_t), cudaMemcpyHostToDevice));
+      CUDA_CHECK_ERR(cudaMemcpy(net->schdSolGpu->layerSelSol, permutedGpuLayers.data(),
+                               nUeSched * sizeof(uint8_t), cudaMemcpyHostToDevice));
+      net->ueDownSelectGpu();
+      net->ueDownSelectCpu();
+      CUDA_CHECK_ERR(cudaStreamSynchronize(cuStrmMain));
+    }
+
     ttiPrgUsage = computePrgUsageStats(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
     totalAllocatedPrgCount += ttiPrgUsage.allocatedPrgCount;
     prgCountPerSchedSlot = countAssignedPrgsPerSchedSlot(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
     actualUePrgCount = countAssignedPrgsPerActiveUe(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
+    actualUePrgMask = assignedLocalPrgMaskPerActiveUe(
+        net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
+    if (onlineExportPhyTbsAudit || onlineCtbsEnabled) {
+      actualMcsAndLayerByActiveUe(
+          net->schdSolCpu.get(),
+          static_cast<uint32_t>(nUeSched),
+          static_cast<uint32_t>(nActiveUe),
+          &actualUeMcs,
+          &actualUeLayer);
+      const std::vector<uint32_t> capacities = net->scheduledTbsCapacityByActiveUe();
+      actualUeTbsCapacityBits = net->scheduledTbsCapacityBitsByActiveUe();
+      actualUeTbsCapacityBytes.assign(capacities.size(), 0);
+      for (size_t ue = 0; ue < capacities.size(); ++ue) {
+        actualUeTbsCapacityBytes[ue] = static_cast<int32_t>(capacities[ue]);
+      }
+    }
     totalPrgCapacity += static_cast<unsigned long long>(net->cellGrpPrmsCpu.get()->totNumCell) *
                         static_cast<unsigned long long>(net->cellGrpPrmsCpu.get()->nPrbGrp);
 
@@ -2003,9 +2538,126 @@ int main(int argc, char* argv[])
       }
     }
 
+    if (serviceBalanceAuditEnabled) {
+      std::vector<unsigned long long> generated;
+      std::vector<unsigned long long> accepted;
+      std::vector<unsigned long long> rejected;
+      std::vector<unsigned long long> flowQueued;
+      std::vector<unsigned long long> expired;
+      std::vector<unsigned long long> expiredPackets;
+      trafSvc->GetPerFlowStats(generated, accepted, rejected, flowQueued);
+      trafSvc->GetPerFlowExpiryStats(expired, expiredPackets);
+      const size_t expectedUe = static_cast<size_t>(nActiveUe);
+      const size_t expectedUePrg = expectedUe * static_cast<size_t>(net->cellGrpPrmsCpu.get()->nPrbGrp);
+      if (generated.size() != expectedUe || accepted.size() != expectedUe ||
+          rejected.size() != expectedUe || expired.size() != expectedUe ||
+          actualUePrgCount.size() != expectedUe || actualUePrgMask.size() != expectedUePrg ||
+          actualUeMcs.size() != expectedUe || actualUeLayer.size() != expectedUe ||
+          actualUeTbsCapacityBytes.size() != expectedUe ||
+          actualUeTbTxCount.size() != expectedUe || actualUeTbErrCount.size() != expectedUe) {
+        fprintf(stderr, "ERROR: service-balance audit diagnostics are incomplete at TTI %d.\n", t + 1);
+        return 1;
+      }
+      for (int ue = 0; ue < nActiveUe; ++ue) {
+        const size_t idx = static_cast<size_t>(ue);
+        if (generated[idx] < serviceBalancePreviousGenerated[idx] ||
+            accepted[idx] < serviceBalancePreviousAccepted[idx] ||
+            rejected[idx] < serviceBalancePreviousRejected[idx] ||
+            expired[idx] < serviceBalancePreviousExpired[idx]) {
+          fprintf(stderr, "ERROR: service-balance cumulative traffic counter regressed.\n");
+          return 1;
+        }
+        ServiceBalanceTraceRow row;
+        row.tti = t + 1;
+        row.ueId = ue;
+        for (uint32_t cell = 0; cell < net->cellGrpPrmsCpu.get()->nCell; ++cell) {
+          if (assocToCellOnline(net->cellGrpPrmsCpu.get(), cell, static_cast<uint32_t>(ue))) {
+            if (row.servingCell >= 0) {
+              fprintf(stderr, "ERROR: service-balance UE has multiple serving cells.\n");
+              return 1;
+            }
+            row.servingCell = static_cast<int>(cell);
+          }
+        }
+        if (row.servingCell < 0) {
+          fprintf(stderr, "ERROR: service-balance UE has no serving cell.\n");
+          return 1;
+        }
+        row.offeredBytes = generated[idx] - serviceBalancePreviousGenerated[idx];
+        row.acceptedBytes = accepted[idx] - serviceBalancePreviousAccepted[idx];
+        row.rejectedBytes = rejected[idx] - serviceBalancePreviousRejected[idx];
+        row.expiredBytes = expired[idx] - serviceBalancePreviousExpired[idx];
+        row.previousPostQueueBytes = serviceBalancePreviousPostQueue[idx];
+        row.preQueueBytes = macBufferBeforeSched[idx];
+        row.scheduledDequeueBytes = servedBytesThisTti[idx];
+        row.postQueueBytes = static_cast<unsigned long long>(
+            net->cellGrpUeStatusCpu.get()->bufferSize[ue]);
+        row.successfulBytes = goodputBytesThisTti[idx];
+        if (row.successfulBytes > row.scheduledDequeueBytes) {
+          fprintf(stderr, "ERROR: service-balance successful bytes exceed scheduled dequeue.\n");
+          return 1;
+        }
+        row.failedBytes = row.scheduledDequeueBytes - row.successfulBytes;
+        if (idx < onlineMaskUe.size() && onlineMaskUe[idx] != 0U) {
+          const size_t cellBase = static_cast<size_t>(row.servingCell) *
+                                  static_cast<size_t>(net->cellGrpPrmsCpu.get()->nPrbGrp);
+          for (uint32_t prg = 0; prg < net->cellGrpPrmsCpu.get()->nPrbGrp; ++prg) {
+            if (cellBase + prg < onlineMaskPrg.size() && onlineMaskPrg[cellBase + prg] != 0U) {
+              row.demandValidPrgCount += 1U;
+            }
+          }
+        }
+        row.actualPrgCount = static_cast<uint32_t>(std::max(0, actualUePrgCount[idx]));
+        for (uint32_t prg = 0; prg < net->cellGrpPrmsCpu.get()->nPrbGrp; ++prg) {
+          if (actualUePrgMask[idx * net->cellGrpPrmsCpu.get()->nPrbGrp + prg] != 0U) {
+            row.actualPrgMask |= (1U << prg);
+          }
+        }
+        row.tbsCapacityBytes = static_cast<uint64_t>(std::max(0, actualUeTbsCapacityBytes[idx]));
+        row.tbsCapacityBits = actualUeTbsCapacityBits.at(idx);
+        row.mcs = actualUeMcs[idx];
+        row.layer = actualUeLayer[idx];
+        row.tbTxCount = static_cast<uint32_t>(std::max(0, actualUeTbTxCount[idx]));
+        row.tbErrCount = static_cast<uint32_t>(std::max(0, actualUeTbErrCount[idx]));
+        row.holDelayMs = serviceBalancePreHolDelayMs[idx];
+        row.ttlSlackMs = serviceBalancePreTtlSlackMs[idx];
+        for (int slot = 0; slot < nUeSched; ++slot) {
+          if (net->schdSolCpu->setSchdUePerCellTTI[slot] == ue) {
+            row.schedSlot = slot;
+            const auto cpu = net->getLastPhySinrAndBler(slot, false);
+            const auto gpu = net->getLastPhySinrAndBler(slot, true);
+            row.phySinrDbCpu = cpu.first;
+            row.predictedBlerCpu = cpu.second;
+            row.phySinrDbGpu = gpu.first;
+            row.predictedBlerGpu = gpu.second;
+            break;
+          }
+        }
+        if (!row.conservationHolds()) {
+          fprintf(stderr, "ERROR: service-balance byte conservation failed at TTI %d UE %d.\n",
+                  row.tti, row.ueId);
+          return 1;
+        }
+        if (row.tti >= serviceBalanceTraceFirstTti &&
+            !writeServiceBalanceTraceRow(serviceBalanceTrace, row)) {
+          fprintf(stderr, "ERROR: failed to write service-balance trace row.\n");
+          return 1;
+        }
+        serviceBalancePreviousGenerated[idx] = generated[idx];
+        serviceBalancePreviousAccepted[idx] = accepted[idx];
+        serviceBalancePreviousRejected[idx] = rejected[idx];
+        serviceBalancePreviousExpired[idx] = expired[idx];
+        serviceBalancePreviousPostQueue[idx] = row.postQueueBytes;
+      }
+    }
+
     executedTtiCount = t + 1;
 
-    onlineObsExtrasBuilder.observeTtiResult(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get(), goodputBytesThisTti);
+    onlineObsExtrasBuilder.observeTtiResult(
+        net->schdSolCpu.get(),
+        net->cellGrpPrmsCpu.get(),
+        servedBytesThisTti,
+        goodputBytesThisTti);
 
     if (onlineBridgeEnabled) {
       std::vector<float> nextObsCell;
@@ -2197,7 +2849,20 @@ int main(int argc, char* argv[])
           actualUePacketExpiredSystemTimeMs,
           actualUePacketOutcomeSystemTimeMs,
           actualUePacketExpiryAwareRateMbps,
-          actualUePacketExpiryAwareRatePerPacketMeanMbps);
+          actualUePacketExpiryAwareRatePerPacketMeanMbps,
+          acceptedPrePdschUePrgMask,
+          actualUePrgMask,
+          onlineDecisionPreWbSinrFirstLayerDb,
+          onlineDecisionPreOllaDelta,
+          onlineDecisionPreOllaDeltaUp,
+          onlineDecisionPreOllaDeltaDown,
+          onlineDecisionPreTbErr,
+          onlineDecisionPrePrgLayerCap,
+          onlinePhyTbsConfig,
+          onlinePhyTbsAuditProvenance,
+          actualUeMcs,
+          actualUeLayer,
+          actualUeTbsCapacityBytes);
       if (!onlineBridge->sendStepRsp(stepState)) {
         fprintf(stderr, "ERROR: Failed to send online step response.\n");
         return 1;
@@ -2567,6 +3232,25 @@ int main(int argc, char* argv[])
     printf("TRAFFIC_PKT_OUTCOME_SAMPLES_CSV path=%s rows=%llu\n",
            packetOutcomeSamplesCsv.c_str(),
            outcomeSampleRows);
+  }
+  if (serviceBalanceAuditEnabled) {
+    serviceBalanceTrace.flush();
+    if (!serviceBalanceTrace) {
+      fprintf(stderr, "ERROR: failed to flush service-balance trace CSV.\n");
+      return 1;
+    }
+    std::vector<PacketOfferSample> offerSamples;
+    trafSvc->GetPacketOfferSamples(offerSamples);
+    const unsigned long long offerRows = writePacketOfferSamplesCsv(
+        offeredPacketSamplesCsv, offerSamples, effectivePacketTtlTti);
+    if (offerRows != offerSamples.size()) {
+      fprintf(stderr, "ERROR: failed to write complete offered packet sample CSV.\n");
+      return 1;
+    }
+    printf("TRAFFIC_OFFERED_SAMPLES_CSV path=%s rows=%llu\n",
+           offeredPacketSamplesCsv.c_str(), offerRows);
+    printf("SERVICE_BALANCE_TRACE_CSV path=%s first_tti=%d\n",
+           serviceBalanceTraceCsv.c_str(), serviceBalanceTraceFirstTti);
   }
 
   if (saveTv == 1) {

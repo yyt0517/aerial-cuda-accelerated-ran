@@ -22,6 +22,7 @@
  #include "H5Cpp.h"
  #include "parameters.h"
  #include <cmath>
+ #include <utility>
  #include "curand_kernel.h"
  #include "fading_chan.cuh"
 
@@ -125,6 +126,7 @@ namespace cumac {
 
     // copy computed SVD precoders from GPU mem to CPU mem for CPU version single cell PF scheduler
     void copyPrdMatGpu2Cpu(cudaStream_t strm);
+    void copySinValActUeGpu2Cpu(cudaStream_t strm);
     // copy cell association results to CPU
     void copyCellAssocResGpu2Cpu(cudaStream_t strm);
     // compare CPU and GPU solutions of single-cell scheduler
@@ -151,11 +153,18 @@ namespace cumac {
     void ueDownSelectCpu();
     void cpySinrGpu2Cpu();
     float getPredictedBlerCpu(int schedUeIdx, int slotIdx) const;
+    std::pair<float, float> getLastPhySinrAndBler(int schedSlot, bool gpu) const;
+    std::vector<uint32_t> scheduledTbsCapacityByActiveUe() const;
+    std::vector<uint32_t> scheduledTbsCapacityBitsByActiveUe() const;
+    uint64_t rawChannelFingerprint() const;
     void testChannGen();
     void writeToFileLargeNumActUe();
     void writetoFileLargeNumActUe_short();
 
  private:
+
+    std::vector<std::pair<float, float>> lastPhyDiagnosticsCpu;
+    std::vector<std::pair<float, float>> lastPhyDiagnosticsGpu;
 
    const bool m_en_traffic_gen;
 
@@ -350,7 +359,7 @@ namespace cumac {
     void popHfrToPerUeBuffer();
     // PDSCH parameters
     uint16_t m_pdschNrOfDataSymb;
-    uint32_t determineTbsPdsch(int rbSize, int nDataSymb, int nrOfLayers, float codeRate, int qam);
+    uint32_t determineTbsPdsch(int rbSize, int nDataSymb, int nrOfLayers, float codeRate, int qam) const;
 
     // GPU TDL channel
     std::unique_ptr<tdlConfig_t> m_tdlCfg = nullptr; // TDL configuration struct

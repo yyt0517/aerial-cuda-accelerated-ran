@@ -1,0 +1,395 @@
+{
+  "version_id": "stageb_corrected_2026_09_20_v1",
+  "git_base": "f567a839e07ba5f622b54fbacd388ecf9427411e",
+  "dirty_worktree": true,
+  "note": "Research environment version, not a Git commit or a validated DPA checkpoint.",
+  "source_overlay": [
+    {
+      "path": "cuMAC/examples/multiCellSchedulerUeSelection/main.cpp",
+      "sha256": "017e340fd723d54759a754137c2ec7e5badca623e6c2df647109ababe1ab40e1"
+    },
+    {
+      "path": "cuMAC/examples/network.cu",
+      "sha256": "7bfeecd1108d5fbd173edaedc11f9c1a3137c176373493828deb7449c2b74152"
+    },
+    {
+      "path": "cuMAC/examples/network.h",
+      "sha256": "8c516285f7363e76d8fbd6ab668e3bce06745ac1c58e039e1022998b5224a170"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/DeadlineServiceFeatures.h",
+      "sha256": "101c187cc3e22d543800e4e58fc964e617deba69360f8fc04f6ec26a3bd10b99"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/OnlineBridgeServer.cpp",
+      "sha256": "ef181c20767584a471b867c4cc0c9aea80e8b8d80ac64367d926659e48d571d4"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/OnlineBridgeServer.h",
+      "sha256": "67fbe57c5263a2fe5dbcf213456c19ba3d4ea6a612022a6e720d49e07854772a"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp",
+      "sha256": "f0e86540d5c38eae91bbf5e165df20d789561d41d5f4ee566efc98636bb54661"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.h",
+      "sha256": "581d8240c7b361bf87d401cbf374a85d0f634912286209ba1941666280b00a6e"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h",
+      "sha256": "09f335bdfb6f2885a13621e6149d8d617023d048a6dbf8db02d428534f228977"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/OnlineProtocol.h",
+      "sha256": "775186fc23b77b96241e701a2b1bb376af0407be2c428ac1cb0d88e9bef790db"
+    },
+    {
+      "path": "cuMAC/examples/onlineTrainBridge/deadlineServiceFeaturesTest.cpp",
+      "sha256": "5f6e173828837b3df916b3106d9e93a729fa9a9f5820b10454711fad79c05b23"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/CMakeLists.txt",
+      "sha256": "95aed144aa8dab9a1b5cce48e7ef0dff0f081884d12672cd838830036fa25470"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/serviceBalanceTrace.hpp",
+      "sha256": "f93ab20e893ada18a01ee36b055d49d60f0b47dd18c11911769bf38f40d42c7f"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/tbsUnitsTest.cpp",
+      "sha256": "28ac66b87df654838127df5576253ecd1f94a081deddc75f97b80b87066b94e2"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/trafficGenerator.hpp",
+      "sha256": "47c2ca42f08bb45ea88d63377acd0a10f366676d397b9b26457611f1ce442ce2"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/trafficGranularityProfile.hpp",
+      "sha256": "e8ee1ba381c468f422328012706eed93f703623b88661f9aae35b5a10c1ce244"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/trafficGranularityProfileTest.cpp",
+      "sha256": "28daf1c1a19111273de0c39360290ee626585bb2d376f591dca3b0136a28bda5"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/trafficPacketAccountingTest.cpp",
+      "sha256": "3c6422204846638fd3e4895be96a6d9464cedb1853d80a2272f5a07bcc2cd8aa"
+    },
+    {
+      "path": "cuMAC/examples/trafficModel/trafficService.hpp",
+      "sha256": "2e754d7b1ddf3ee0ee5eb9713a76c63cfa7d5428c2237e43574a93869d1f547f"
+    },
+    {
+      "path": "cuMAC/scripts/run_stageB_pfq_independent_reuse.sh",
+      "sha256": "e3486cc178cede47ec44b1cb91548fa641fa3a9fe3e20d110f14acaa7cc29e48"
+    },
+    {
+      "path": "cuMAC/scripts/summarize_stageA_kpi.py",
+      "sha256": "c5a9314a5cba299aaa7f1a01a805ac9674c37ad28672c07103d5cda1c8ebfbdb"
+    },
+    {
+      "path": "cuMAC/scripts/tests/test_summarize_stageA_expiry_aware.py",
+      "sha256": "0e58cd470b71067adf99658e3aa89f03a56ecc6c68dcd27b27e4a1a1cbcd5a70"
+    },
+    {
+      "path": "cuMAC/src/4T4R/mcsSelectionLUT.cu",
+      "sha256": "6b195d2cc45671e95fbd063ec34d91d17eb91e691a7f3e873bbfa7c7a94da8f7"
+    },
+    {
+      "path": "cuMAC/src/4T4R/mcsSelectionLUT.cuh",
+      "sha256": "1a928a898773f461d9ff203dbe1849962f0a230284ebbbefff0069fd231b6333"
+    },
+    {
+      "path": "cuMAC/src/4T4R/mcsSelectionLUTCpu.cpp",
+      "sha256": "9be1ba758f4e1229796b7dba1cc2c0f035f6bce62099faa6f082a7fb01719d01"
+    },
+    {
+      "path": "cuMAC/src/4T4R/mcsSelectionLUTCpu.h",
+      "sha256": "625ec16b161af1ddfb345d9ab11f8b8c023ea78660cf6f61510e82d3255295a9"
+    },
+    {
+      "path": "cuMAC/src/4T4R/multiCellLayerSel.cu",
+      "sha256": "1b9e8dfe6a7813efe09ef91e1cefaa480e6fc0c4dbcd96b3d9671e37313205e5"
+    },
+    {
+      "path": "cuMAC/src/4T4R/multiCellLayerSel.cuh",
+      "sha256": "c75c10e51670760c8b1a031fc24113da75a30886c8acc1c72c3d9d6bbed519dc"
+    },
+    {
+      "path": "cuMAC/src/4T4R/roundRobinSchedulerCpu.cpp",
+      "sha256": "fc51273d89f89361512e90c704132c6cca2b53769673fa397f2e70e504ed0654"
+    },
+    {
+      "path": "training/stageb_hgraph/blank_expiry_attribution_audit.py",
+      "sha256": "6c0a907a567d4aad1480bbc917e9d9ab790606fa87383755e221349acef41945"
+    },
+    {
+      "path": "training/stageb_hgraph/bridge_env.py",
+      "sha256": "de8c654d2c1c8f323780bfe686876a37e6672084e19fda00354e42d05e2a3498"
+    },
+    {
+      "path": "training/stageb_hgraph/capacity_units_decision_probe.py",
+      "sha256": "249474ae1d9d2be49a55b75ca0b83f9c78684429ff6b6bc954d8f98bbeeee83a"
+    },
+    {
+      "path": "training/stageb_hgraph/ctbs_headroom.py",
+      "sha256": "d80a45f7be75dc21e365b78a81587cf63dea0b65537e9d8a9b043a6f68e924ad"
+    },
+    {
+      "path": "training/stageb_hgraph/ctbs_non_starvation_guard.py",
+      "sha256": "860de769d81b521476ae397315a5f1c4f4a0994211c6a0dd8473e080b3d11f39"
+    },
+    {
+      "path": "training/stageb_hgraph/ctbs_non_starvation_guard_audit.py",
+      "sha256": "354034e7d67a5d78ad4fcbb14af5664d6ad093dfdbdf52f8e20a66292b693136"
+    },
+    {
+      "path": "training/stageb_hgraph/deadline_tail_observation_probe.py",
+      "sha256": "d1b0ac2050fbefae5c5fe68323efd234888aba0bbfe26ff0282bb9b892f10c0e"
+    },
+    {
+      "path": "training/stageb_hgraph/dpa_ablation_experiment.py",
+      "sha256": "8ab35c0dff12250bb707e825e4d8187f1eb2fae50c40e7d3429bd1420b1b2df6"
+    },
+    {
+      "path": "training/stageb_hgraph/dpa_reproduction_experiment.py",
+      "sha256": "18ccb04e77e8b633c59d3510dd520375067c3ce40414a5e3e4874babfb78e13e"
+    },
+    {
+      "path": "training/stageb_hgraph/dpa_reproduction_mechanisms.py",
+      "sha256": "4b1c6faa584b4dd63d0eea7ad289bfd4a90c58d1582c4b30d3bc3c156dfe0ac6"
+    },
+    {
+      "path": "training/stageb_hgraph/dpa_v1_historical_comparison.py",
+      "sha256": "9795679ad1c9957d017edba062084f1144a40e7548520c0a693eedfe06f85abb"
+    },
+    {
+      "path": "training/stageb_hgraph/eval_checkpoint_online.py",
+      "sha256": "61cb19c5b19233569c424f9b7d76d45c40377efa79badc82a9aec2f2ac8f9d53"
+    },
+    {
+      "path": "training/stageb_hgraph/expiry_ranking_null_audit.py",
+      "sha256": "2601aaa1494fef33b2bccf7c960c6ed4a443b34441bd4eded4d9296d76e230d3"
+    },
+    {
+      "path": "training/stageb_hgraph/feature_snapshot.py",
+      "sha256": "bb1cb4f740ceee229d5f0823633d5dc9dd680bc4515f7176a3a1c2f35f8958bf"
+    },
+    {
+      "path": "training/stageb_hgraph/granularity_experiment.py",
+      "sha256": "f3d3a715057db17902fd767d0a3be4087b0c09818f33452288adc9220e0af339"
+    },
+    {
+      "path": "training/stageb_hgraph/independent_actor.py",
+      "sha256": "7fea942c53f3be953a05dd3359fde0a256745d27a37dcf908210b95658bffad4"
+    },
+    {
+      "path": "training/stageb_hgraph/independent_contract.py",
+      "sha256": "d87998ed9610d133b682b600df03bd40c44593d1764aa3af3f8b102cb3c0abfc"
+    },
+    {
+      "path": "training/stageb_hgraph/independent_gate.py",
+      "sha256": "0ae3f447edf856bf4e710ea459ba0e8f7339c3a2b7d93128cffde06bfa0053b0"
+    },
+    {
+      "path": "training/stageb_hgraph/independent_objectives.py",
+      "sha256": "ea05e8fe03570217a154476ebf8076c0cd9f54a33aa887d8a855316a99bd406a"
+    },
+    {
+      "path": "training/stageb_hgraph/independent_policy.py",
+      "sha256": "8447650b35e0fa91fbec3f7891ab9d89da4a75023def97956820f36401b8012e"
+    },
+    {
+      "path": "training/stageb_hgraph/independent_reward.py",
+      "sha256": "d9d49eaab8306b86130b59b276bfc70f7be307388b0c6a0c8710e98f82346220"
+    },
+    {
+      "path": "training/stageb_hgraph/online_imitation.py",
+      "sha256": "34d86da10887dfbd1be3b77914ec11795e0e54b24452ab2fd91c2d8555b103dd"
+    },
+    {
+      "path": "training/stageb_hgraph/online_ppo.py",
+      "sha256": "b40f3b45701375b06584cbc9dd9b77722d2a994354753a93ca77ab15a89551ba"
+    },
+    {
+      "path": "training/stageb_hgraph/online_protocol.py",
+      "sha256": "5b124f3343735fc23102ab2a0b78c3378c625bc83b48ec24fa644a1380d6e6de"
+    },
+    {
+      "path": "training/stageb_hgraph/pfq_dpa_aligned_comparison.py",
+      "sha256": "2364da5be7000eee097c264c0c325e9d671835eacb22848c32fc9777c4fe9e2e"
+    },
+    {
+      "path": "training/stageb_hgraph/pfq_reference_calibration.py",
+      "sha256": "75d751dc29fb20bb804a1bb9345c90f421355b02c1948bae1dc40ce374b2cfe4"
+    },
+    {
+      "path": "training/stageb_hgraph/phy_tbs_alignment_audit.py",
+      "sha256": "b210487be6367613dfc2524853e20bd8d57a50373003550cd21b1dab79f42f97"
+    },
+    {
+      "path": "training/stageb_hgraph/rescue_cohort_diagnostics.py",
+      "sha256": "abc89da5eb0beac20836e9a55e5ae1fc062a7cb6e85fbbcf3b2e98299c58f992"
+    },
+    {
+      "path": "training/stageb_hgraph/same_state_four_action_attribution.py",
+      "sha256": "f694c9579a1bd7792b565c5e1e61c5454e55dc45e388071d73d171aa47fa882f"
+    },
+    {
+      "path": "training/stageb_hgraph/same_state_scheduler_feasibility_spike.py",
+      "sha256": "283726b1af0084389b965b1d4aaa41908863d9f78882342a0a1339780eebeca4"
+    },
+    {
+      "path": "training/stageb_hgraph/seed45_starvation_audit.py",
+      "sha256": "22b3ec97f0ef5737f518d7cd0b9766b42eb53e314136ef1120e383ac40a9a775"
+    },
+    {
+      "path": "training/stageb_hgraph/service_accounting_audit.py",
+      "sha256": "647e51c0652aee21752b99a32f52f7c9f61d17dc94f7fef4e5365793be0726e2"
+    },
+    {
+      "path": "training/stageb_hgraph/service_balance_audit.py",
+      "sha256": "e33627d6f9d3241fc5a6f0bd9d7ee327d28be0d6a9b0e954ca94a0e826ea65f0"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_blank_expiry_attribution_audit.py",
+      "sha256": "e9efb056729f484283aab61c8a548a10d259fe39077414e1f026b5ea61f2e03f"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_candidate_width_compatibility_runner.py",
+      "sha256": "c7ce7febe315344d0aa12cede407cf4517cf4c15930a813a36af2992ee93e4bc"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_capacity_units_decision_probe.py",
+      "sha256": "6e90bc716954d86fae8ad5d845dee83be29b0dfd6b172f0a30fc4cadda0751ee"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_ctbs_headroom.py",
+      "sha256": "0d6790b3357d5db7d7eab4697e62f185c7111e44d9e552ecbbf8c143da4e8d43"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_ctbs_non_starvation_guard.py",
+      "sha256": "daa2a2c39f14e714ab268139ebbf467bae858f49d8477eb7aabd9c866f88a33a"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_ctbs_non_starvation_guard_audit.py",
+      "sha256": "c534de5f92be52f3ca5b3eb925b56d770111814e73784a805bb9fbf515c7c5a2"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_deadline_tail_observation_probe.py",
+      "sha256": "2ea21d8f443100d94afa6dbb0721be9907a6c814eb53bb973109485efa55f260"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_dpa_ablation.py",
+      "sha256": "840725e23fc28dc6e05fc7aa2c3a490484f065deabe39fd15bf679a88d08860c"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_dpa_reproduction_experiment.py",
+      "sha256": "756b350b4a745b201a9d6cfc332a270c891c1488d27e4ef9a8fd651b42ddbaad"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_dpa_reproduction_mechanisms.py",
+      "sha256": "ba9de53a5dfd03b02e528e5c5760df1da8c48b9ce18ae989dec93114227ccbc7"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_dpa_v1_historical_comparison.py",
+      "sha256": "211575eebcd2b54adf392753474da62898f2564de9f408ca30c105b3fb2d4751"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_expiry_ranking_null_audit.py",
+      "sha256": "cea7fc05ceb1b398157ce7e5ed94f570c7513bc56fc1ead1009a4166480cbce4"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_feature_snapshot.py",
+      "sha256": "efa0f6a4b37abc683ba30f3cb94b66091b81b6a5e98db468c4eac6d3dd5c6545"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_gpu_mcs_sync_probe.py",
+      "sha256": "4351b97d441161e5f23e4a25daedabac7bdf9676976c8619acdca8c61f4a47e5"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_granularity_experiment.py",
+      "sha256": "7e5e893ae8b27b3433456672bb6f55e38f0fffe1f4076254195dff6f376d6a13"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_actor.py",
+      "sha256": "ef9f8cae0159b108a17393162f3b1bb91269368d8eccfead308c9659b253797e"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_bc_dataset.py",
+      "sha256": "04e2bff87a71d787a62d9a2986617398fba9db6d7ca3c9008fbfe82e758a64cd"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_contract.py",
+      "sha256": "f29c4297913950f998c5bf45c82f87874fba2b5f7cca13ad465c3dbc18b8b47e"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_gate.py",
+      "sha256": "be0c0d88fa946000265aa64f9534a5770dbef9fdd6d53c322847158321a23f8f"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_online_path.py",
+      "sha256": "a8ae2ec856572798bbe97ae10ce69ee8f2576932ce2beff7d9661713023b32f0"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_policy.py",
+      "sha256": "01003d610790703c1152f8104a3760abd6defe772d5d48d9504596aeab690c3c"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_independent_reward.py",
+      "sha256": "81a9ee7c3e6d7ec7bad864e06c0d185752b860ec9a1d38fc083072a7e9c34c87"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_online_protocol_expiry_aware.py",
+      "sha256": "718c393dcb7a842be307e6df37ec26db5fe148a429b0c8d9cdb0edd612742670"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_pfq_dpa_aligned_comparison.py",
+      "sha256": "af72a71fd65b7604ec7f1b0dc56f984b0cd5df9d7032ec6bbe027dd34c3cfda0"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_pfq_reference_calibration.py",
+      "sha256": "91f5c35b44b76041497cd4c497e79240876fe5e719a31b1a93c6a98a0ea0b143"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_phy_slot_invariance.py",
+      "sha256": "60b579b208d7f201f6c60c6f1a484812f442c5f25463a0bea13e1520a7a3d04e"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_phy_tbs_alignment_audit.py",
+      "sha256": "13b14f47e6f9998e97fdd68196616f53141cade022f43702625ac67c2a0cb3c4"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_rescue_cohort_diagnostics.py",
+      "sha256": "c9a780180c1b75908d71f6ae14510303836d92afdbe24a3a51c9fdf83b8bbe27"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_same_state_four_action_attribution.py",
+      "sha256": "8dba82e1c8acd5a904a645ef6d13fa27742939732cac859412848e0821b7b5a2"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_same_state_scheduler_feasibility_spike.py",
+      "sha256": "afbfcd495bb41f7b6bf91e4a93bd537ebc58a9d9466870925305670ef77fa8f3"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_seed45_starvation_audit.py",
+      "sha256": "3db10d6aa8f9e00ad10714aa86196935c82cba9986772f4d12d87c1849bddbef"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_service_accounting_audit.py",
+      "sha256": "2502c69e885e594c2faa64fbcc584619c57434d0c55871aa14a49c71dd8e8b65"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_service_balance_audit.py",
+      "sha256": "3429c8f53a7d1e2cee71b3a86179ce682c8d297a644b82e2118fbca935ccd641"
+    },
+    {
+      "path": "training/stageb_hgraph/tests/test_training_reproduction_interfaces.py",
+      "sha256": "26f5f9995c2453d949e9a13f8c8922946bea9c99e1ee91c8e79f18b5cdf7b392"
+    }
+  ],
+  "tracked_patch_sha256": "36ae451eaf82a7db9256f7130f3334eb701bae84ef2ff8d2b7eb95387f8acc89",
+  "simulator_sha256": "b0e56c8b851603a920467d8ca2c2e24e554b4048a207204ee985abedd9a73644",
+  "libcumac_sha256": "079f4c72ca94358a410584fe1a666914a5da4041acbc4085fada50957363692e"
+}

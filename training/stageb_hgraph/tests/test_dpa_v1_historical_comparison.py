@@ -162,6 +162,51 @@ def test_steady_window_includes_expired_outcomes_and_detects_zero_service():
     assert result["ue_expiry_aware_rate_min_mbps"] == 0.0
 
 
+def test_expiry_aware_rate_includes_all_active_ues():
+    rows = [
+        _service(1, 0, 3000, 3000, 3000, prgs=1),
+        _service(1, 1, 3000, 0, 0),
+        _service(1, 2, 3000, 0, 0),
+    ]
+    outcomes = [
+        {
+            "terminal_tti": 1,
+            "ue_id": 0,
+            "outcome": "delivered",
+            "packet_size_bytes": 3000,
+            "system_time_ms": 1.0,
+        },
+        {
+            "terminal_tti": 1,
+            "ue_id": 1,
+            "outcome": "expired",
+            "packet_size_bytes": 3000,
+            "system_time_ms": 200.0,
+        },
+    ]
+    summary = {
+        "mean_goodput_mbps": 24.0,
+        "mean_tb_err_rate": 0.0,
+        "mean_expiry_drop_rate": 1.0 / 3.0,
+        "mean_prg_utilization_ratio": 1.0 / 51.0,
+        "mean_blank_ratio": 50.0 / 51.0,
+    }
+
+    result = summarize_dpa_window(
+        eval_summary=summary,
+        service_rows=rows,
+        outcome_rows=outcomes,
+        window=WindowSpec("full_4000", 1, 1),
+        slot_duration_s=0.0005,
+    )
+
+    assert result["ue_expiry_aware_rate_mean_mbps"] == pytest.approx(8.0)
+    assert result["ue_expiry_aware_rate_p10_mbps"] == 0.0
+    assert result["ue_expiry_aware_rate_min_mbps"] == 0.0
+    assert result["ue_expiry_aware_rate_ue_count"] == 3
+    assert result["ue_expiry_aware_rate_no_outcome_ue_count"] == 1
+
+
 def test_resolve_recorded_container_path_under_supplied_legacy_root(tmp_path):
     target = tmp_path / "output" / "run" / "kpi_summary.json"
     target.parent.mkdir(parents=True)

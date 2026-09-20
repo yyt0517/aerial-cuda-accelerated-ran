@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "question": "GPU fixed-input count/MCS synchronization and CPU service isolation",
+  "training_resumed": false,
+  "checks": {
+    "pf": {
+      "kernel_inputs_identical": true,
+      "cpu_metrics_identical": true,
+      "cpu_service_trace_identical_rows": 180000,
+      "changed_gpu_predicted_bler_rows": 0,
+      "unit_checked_rows": 360000
+    },
+    "rr": {
+      "kernel_inputs_identical": true,
+      "cpu_metrics_identical": true,
+      "cpu_service_trace_identical_rows": 180000,
+      "changed_gpu_predicted_bler_rows": 0,
+      "unit_checked_rows": 360000
+    }
+  }
+}

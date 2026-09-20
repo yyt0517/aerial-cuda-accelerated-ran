@@ -1,810 +1,262 @@
-# Stage-B Sparse Entity Graph Stack
+# Stage-B Sparse Entity Graph / DPA-v1
 
-This directory is the graph stack for Stage-B scheduler research. The current execution plan is the 7-cell TAR-GNN-PFQ design; the older 3-cell HGraph runs are retained as implementation and mechanism references.
+This directory contains the Stage-B research stack. **2026-09-20 validity reset:** TBS bits/bytes, PHY slot indexing and GPU MCS initialization synchronization have been corrected. Previous DPA training/performance/ablation records are historical. There is no newly trained and accepted checkpoint for the corrected environment. The historical DPA-v1 compatibility class/family names remain `PFQIndependentReuseActor` and `pfq_independent_reuse_v1`.
 
-Canonical docs:
+Read the [three-fix record and fresh-data requirements](../../Doc/stageB_corrected_environment_v1.md) first. Do not resume old campaigns, reuse old BC/replay/normalizers by default, or divide old capacity fields by eight to manufacture new trajectories. Pin both simulator and shared-library hashes; old launcher defaults are not proof of a corrected build.
 
-- `Doc/README.md`
-- `Doc/stageB_boundary_intelligent_algorithm_experiment_report.md`
-- `Doc/current_stageB_effective_configuration.md`
-- `Doc/stageB_packet_delay_distribution_analysis.md`
-- `Doc/stageB_7cell_tar_gnn_pfq_design.md`
-- `Doc/archive/hgraph_experiments/stageB_hgraph_3cell_retrospective_20260605.md`
+Canonical documents:
 
-Current active target:
+- [DPA-v1 main design](../../docs/superpowers/specs/2026-08-13-pfq-independent-reuse-actor-design.md)
+- [DPA/PFQ/RRQ integrated experiment report](../../Doc/stageB_boundary_intelligent_algorithm_experiment_report.md)
+- [Effective configuration and metric semantics](../../Doc/current_stageB_effective_configuration.md)
+- [Document index](../../Doc/README.md)
 
-- `3cell + 36UE + RBG16 + SVD + TTL200ms`
-- `ue-placement=coop_boundary`
-- `cell-assoc-mode=strongest`
-- `cell_radius=500`, therefore `ISD/site_spacing=1000m`
-- no explicit `shadow_seed`; simulator log must show `shadow_seed=legacy_shared_rng`
-- `packet_size_bytes=3000`
-- `traffic_arrival_rate=1.0`
-- native gate:
-  - `output/stageB_rrq_pfq_multiseed_compare_coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41_s50`
-  - PFQ mean goodput `1520.536 Mbps`, TB BLER `11.778%`, expiry `0.017%`, packet p95 `25.650 ms`
-- training goal: use HGraphPPO to beat boundary PFQ reliable goodput without worsening BLER/expiry; packet delay is a secondary guard because completed-packet delay rises when old packets are rescued
+This README describes code ownership and the current execution contract. It does not duplicate experiment tables.
 
-Current long-term 7-cell target:
-
-- `7cell + 84UE + RBG16 + SVD + TTL200ms`
-- `packet_size_bytes=3000`
-- `traffic_arrival_rate=0.85`
-- target: increase `goodput`, clearly reduce `packet_delay_p95`, and increase packet effective service rate against PFQ
-
-Current 3-cell coop-boundary follow-up:
-
-- canonical doc section: `Doc/stageB_7cell_tar_gnn_pfq_design.md`, section `1`
-- scenario: `3cell + ue-placement=coop_boundary + cell-assoc-mode=strongest + SVD + TTL200ms`
-- fixed radius: `cellRadius=500 (ISD=1000m)` for direct comparison with the uniform ISD1000 result
-- `cellRadius=250 (ISD=500m)` is now diagnostic only
-- traffic: `packet_size_bytes=3000`, `traffic_arrival_rate=1.0`
-- topology/traffic/shadow: use `legacyshadow` in labels when no `--shadow-seed` is passed, for example `coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41`
-- required signal path: raw/postEq SINR export through `CUMAC_ONLINE_EXPORT_POST_EQ_SINR=1`
-- required PRG features: postEq SINR `top1/p10/mean`, `backlog_weighted_expected_goodput_mbps`, and `low_sinr_hol_ttl_weight`
-- training goal: use HGraph+RL to exceed the stronger same-scenario native reference by converting pending backlog into reliable goodput, not by merely increasing raw PRG utilization
-
-`coop_center`, `coop_boundary nominal`, fixed `shadow41`, and `ISD500` runs are retained as mechanism references only. New formal runs should not use those labels unless the experiment is explicitly diagnostic.
-
-Retained 3-cell reference run: `training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation`.
-
-Current run-directory hygiene:
-
-- keep directories with checkpoints, gate summaries, KPI CSV/JSON, or documented mechanism value
-- remove smoke/skip/build-only artifacts once the result has been superseded
-- remove failed launch directories with no checkpoint and no summary
-- remove `__pycache__` directories
-- new run labels must include placement, association, shadow policy, radius, horizon, warmup, and seed, for example `coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41`
-
-It is intentionally separate from `training/gnnrl/`:
-
-- reuse the Stage-B simulator scenario/build flow
-- do not reuse the old GNN+RL model/training scripts as the implementation base
-- keep the first-version scope fixed to:
-  - `Cell / UE / P_{i,g}` nodes
-  - `Cell-Cell / Cell-UE / Cell-PRG / UE-PRG / PRG-PRG` edges
-  - template encoders implemented as structured MLPs
-  - one later hetero-graph message-passing layer
-
-## Current module boundary
-
-- `feature_snapshot.py`
-  - builds the first-version `cell_features / ue_features / prg_features / static_meta`
-  - current HGraph input layout is now:
-    - `cell_features[C,5]`
-    - `ue_features[U,16]` for the PFQ-residual path; legacy 12-feature
-      observations remain readable for old checkpoints
-    - `prg_features[C*P,12]`
-  - UE features 12--15 are:
-    - `critical_ttl_backlog_bytes` (`ttl_slack <= 20 ms`)
-    - `near_ttl_backlog_bytes` (`ttl_slack <= 60 ms`)
-    - `age_weighted_backlog_bytes`
-    - `service_gap_tti`
-  - consumes existing Stage-B observation dicts:
-    - `obs_cell_features`
-    - `obs_ue_features`
-    - `obs_prg_features`
-    - optional `post_eq_sinr` with shape `[active_ue, prg, layer]`
-    - `action_mask_ue`
-    - `action_mask_cell_ue`
-    - `action_mask_prg_cell`
-- `template_encoders.py`
-  - `CellTemplateEncoder`
-  - `UeTemplateEncoder`
-  - `PrgTemplateEncoder`
-  - these are structured encoders, not layer-internal GNNs
-- `edge_generator.py`
-  - builds `E_CC / E_CU / E_CP / E_UP / E_PP`
-  - keeps `Cell-PRG` as static affiliation edges
-  - supports two `UE-PRG` modes:
-    - post-eq candidate edges when raw `post_eq_sinr` is exported by the online bridge
-    - shared-pool candidate edges when only compact observation features are available
-- `mask_checker.py`
-  - validates graph legality and mask alignment
-- `sanity_logger.py`
-  - emits per-TTI graph statistics for static/dynamic sanity checks
-- `graph_ops.py`
-  - still keeps `UE-PRG` packing utilities for graph-side heuristic labeling/debug
-  - now primarily provides `joint` Type-0 target/decode helpers for `slot -> UE` and `PRG -> slot`
-- `model.py`
-  - `StageBHGraphPolicy`
-  - uses `Cell / UE / PRG` template encoders plus one sparse hetero message-passing stack
-  - exposes a `joint` Type-0 action head:
-    - `slot -> UE`
-    - `PRG -> slot`
-- `teacher.py`
-  - supports:
-    - `pfq_passthrough` from the online bridge
-    - `heuristic_graph` as a fallback/debug teacher
-- `reward_utils.py`
-  - reward-term decoding from the online bridge
-  - first PPO shaping helper for the Stage-B v1 reward
-- `online_ppo.py`
-  - first online PPO fine-tuning entry for the sparse entity graph stack
-  - supports warm-start from the imitation checkpoint
-  - also supports direct PPO from scratch without imitation initialization
-- `export_onnx.py` / `check_onnx_consistency.py`
-  - fixed `3cell/36UE/17PRG` deployment export and PyTorch-vs-ONNX validation
-  - `--output-mode logits` keeps the legacy `ue_logits/prg_logits` ABI
-  - `--output-mode action` adds `obs_post_eq_sinr` and emits `action_ue_select/action_prg_alloc`
-  - action-mode C++ finalization handles Type-0 legality, demand-cap, and fallback
-
-## Reuse strategy
-
-Recommended reuse boundary:
-
-1. Keep `cuMAC/scripts/run_stageB_main_experiment.sh` as the canonical Stage-B scenario/build/run entry.
-2. Use the new independent launcher:
-   - `cuMAC/scripts/run_stageB_hgraph_online_sanity.sh`
-3. Keep this stack separate from `cuMAC/scripts/run_stageB_online_train.sh` and `training/gnnrl/*`.
-4. Use the current online bridge observation path first, because it already exposes `obs_prg_features`.
-
-Current validated runtime boundary:
-
-- fixed seed + `online_persistent=1`
-  - the simulator is now reused as one continuous online stream across PPO iterations
-  - this is the recommended first formal-training path
-- `--sim-env`
-  - may be repeated
-  - all simulator env entries are preserved, including:
-    - `CUMAC_ONLINE_EXPORT_POST_EQ_SINR=1`
-    - reward mode
-    - TTL
-    - topology/runtime overrides
-
-## Independent online entry
-
-The new online entry point is:
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_online_sanity.sh \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --baseline-scheduler pfq \
-  --episode-horizon 400 \
-  --max-steps 400 \
-  --episodes 1 \
-  --action-source noop
-```
-
-This launcher:
-
-- reuses Stage-B scenario/build arguments
-- builds the simulator through `run_stageB_main_experiment.sh --build-only 1`
-- launches a separate sparse-graph sanity runner instead of PPO
-- defaults to `--precoding svd` so HGraph runs align with the current SVD baseline unless you override it
-- enables raw `postEqSinr` export for HGraph through `CUMAC_ONLINE_EXPORT_POST_EQ_SINR=1`; this switches `E_UP` from `shared_cell_pool` to real per-PRG Top-K UE candidates
-- writes:
-  - `graph_sanity_tti_stats.jsonl`
-  - `graph_sanity_summary.json`
-
-The per-TTI sanity rows now include dynamic PRG feature statistics, so you can
-inspect time variation directly from the first online sanity run:
-
-- `prg_prev_assigned_ratio`
-- `prg_top1_sinr_db_mean/p10/p50/p90`
-- `prg_top2_gap_db_mean/p50/p90`
-- `prg_neighbor_max_top1_sinr_db_mean/p50/p90`
-- `prg_same_prg_conflict_ratio_mean/p90/max`
-- `prg_ici_proxy_mean/p90/max`
-- `candidate_mode`
-- `post_eq_layer_dim`
-
-To validate action-history-dependent PRG features such as `prevPrgAssigned`,
-switch the sanity runner from `noop` to `random_legal`:
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_online_sanity.sh \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --baseline-scheduler pfq \
-  --episode-horizon 400 \
-  --max-steps 400 \
-  --episodes 1 \
-  --action-source random_legal \
-  --random-blank-prob 0.25 \
-  --random-seed 1234
-```
-
-Current action-source choices:
-
-- `noop`
-  - keeps all slots / PRGs blank
-  - best for pure graph legality sanity
-- `random_legal`
-  - fills legal slots with random associated live UEs
-  - assigns each legal PRG to a random same-cell slot with configurable blank probability
-  - useful for validating `prevPrgAssigned` and other action-history-dependent PRG features
-
-## Important current caveat
-
-Current replay v2 does not persist `obs_prg_features`.
-
-That means:
-
-- graph sanity based on the full `Cell / UE / PRG` state is easiest to start from the online bridge
-- offline imitation with PRG nodes will either need:
-  - a small replay schema upgrade to write PRG features, or
-  - the current online PFQ teacher passthrough path
-
-This caveat is a data-interface gap, not a blocker for the overall architecture.
-
-## First warm-start training path
-
-The first runnable training path now exists as a separate online imitation entry:
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_online_imitation.sh \
-  --build-method cmake \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --baseline-scheduler pfq \
-  --episode-horizon 400 \
-  --max-steps 400 \
-  --episodes 10 \
-  --hidden-dim 128 \
-  --message-layers 2 \
-  --lr 3e-4 \
-  --out-dir training/stageb_hgraph/runs/online_imitation_seed42
-```
-
-Current warm-start scope:
-
-- model side:
-  - `CellTemplateEncoder`
-  - `UeTemplateEncoder`
-  - `PrgTemplateEncoder`
-  - sparse hetero encoder on `Cell-Cell / Cell-UE / Cell-PRG / UE-PRG / PRG-PRG`
-  - `joint` Type-0 action head (`slot -> UE` + `PRG -> slot`)
-- training side:
-  - online imitation
-  - teacher forcing through the bridge
-  - native `PFQ teacher passthrough` as the recommended warm-start source
-  - heuristic graph teacher as an optional fallback/debug source
-
-Important current boundary:
-
-- first warm start now prefers the bridge-exported PFQ reference action itself
-- the heuristic graph teacher is kept mainly for ablations/debug when you explicitly select `--teacher-mode heuristic_graph`
-- this keeps the first warm-start path aligned with the native baseline while preserving the independent HGraph codebase
-
-## PPO fine-tuning path
-
-After warm start is verified, the next entry point is:
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
-  --build-method cmake \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --baseline-scheduler pfq \
-  --episode-horizon 400 \
-  --rollout-steps 400 \
-  --iterations 50 \
-  --hidden-dim 128 \
-  --message-layers 2 \
-  --init-checkpoint training/stageb_hgraph/runs/online_imitation_seed42/hgraph_imitation_best.pt \
-  --out-dir training/stageb_hgraph/runs/online_ppo_seed42
-```
-
-Current PPO boundary:
-
-- actor:
-  - reuses `StageBHGraphPolicy`
-  - in the supported direct path, samples each packed candidate identity from
-    the same cap/penalty-adjusted distribution whose log-probability PPO trains
-  - materializes those sampled identities exactly into the native Type-0 action
-  - the older `slot -> UE`, then `PRG -> slot` policy/decode path remains only
-    for checkpoint and experiment reproducibility
-- critic:
-  - uses pooled graph embeddings from the actor encoder
-- reward:
-  - supports `raw_env`
-  - supports `stageb_v1` shaping:
-    - goodput positive term
-    - TB error / expiry penalties
-    - conflict / ICI penalties
-    - urgent backlog penalty
-  - supports `stageb_blankaware` shaping:
-    - mirrors the latest `gnnrl` blank-aware reward intent
-    - goodput positive term
-    - active-PRG goodput efficiency bonus
-    - TB error / expiry penalties
-    - harmful packing penalty based on `throughput-goodput`, utilization, and reuse
-    - small fairness tie-breaker
-
-Why PPO is still the first recommended RL step here:
-
-- it fits the current online bridge and on-policy rollout loop naturally
-- it handles masked discrete actions cleanly once the policy is factorized by PRG token
-- it benefits directly from the imitation checkpoint as a warm start
-- it is usually a safer first online baseline than more sample-efficient but more brittle off-policy alternatives
-
-What PPO is not claiming here:
-
-- it is not guaranteed to be the globally best RL algorithm for this problem
-- it is the most practical first RL continuation for the current first-version stack
-
-## Direct PPO path
-
-Direct candidate mode now owns the PPO action contract. Rollout samples the
-adjusted candidate distribution, PPO replays that exact trace, and deterministic
-checkpoint evaluation greedily selects from the same distribution with the same
-demand-cap slack, hard cap, usage penalty, over-cap penalty, and first-service
-bonus. Legacy mode remains available only to reproduce older checkpoints and
-experiments.
-
-The recommended direct-PPO path is:
-
-- keep the current HGraph encoder stack
-- use the candidate action head and `candidate_policy_mode=direct`
-- disable UE-slot coverage repair, safe fill, blank-budget repair, tail/rescue
-  bias, completion bonus, and tail quota so no post-policy mechanism changes the
-  sampled identities
-- keep `post_eq_topk` candidate generation enabled
-- start from fixed-seed direct PPO first
-- only move to multi-seed after the fixed-seed run is stable
-
-The next performance path initializes the learned candidate scorer as a zero
-residual around the fixed PFQ edge anchor. It keeps decoder rescue/tail biases
-disabled and supplies unfinished-packet pressure through observation plus
-potential shaping:
+## Historical frozen identity — not validated in the corrected environment
 
 ```text
-candidate_logit = pfq_base_logit + learned_residual_logit
-queue_pressure_credit = weight * (pressure_before - gamma * pressure_after)
+reporting name:       DPA-v1
+actor class:          PFQIndependentReuseActor
+actor family:         pfq_independent_reuse_v1
+checkpoint:           output/pfq_independent_reuse/formal/
+                      deadline_dimensionless_features_seed45_v1/
+                      train_attempt2/ppo_actor_last.pt
+file SHA-256:         94a2e40f0c0a56632e0c0ca63af4fa54d894d35aea38c2dd34afc0cfeadf2d7a
+tensor SHA-256:       6039c59e92ecda5ed75731fef86b71f567fe0c227142d9ed267434934b1e56be
+selection:            deterministic argmax
+headroom:             CTBS-v1 cumulative TBS
+non-starvation guard: off
+online PFQ features:  none
 ```
 
-The preset is
-`goodput_delay_rate_v21_causal_pfq_residual_tail_sample_fast`. It fixes the PFQ
-anchor coefficient at `1.0`, initializes candidate and blank residual outputs
-to zero, sets blank bias to `-4.0`, uses 16 UE features, and sets queue-pressure
-weight/top-k to `0.25/8`. Checkpoints persist
-`initialization.mode=pfq_residual`, so resumed macrocycles do not reset learned
-residual weights.
+Changing feature slots, CTBS semantics, reuse-group update order, guard mode, or candidate truncation policy creates a different treatment even if the checkpoint file is unchanged.
 
-Minimal causal residual smoke:
+## Current runtime scope
+
+The corrected seed42 PFQ/RRQ baseline uses (this is not a DPA validation):
+
+- `3cell / 36UE / 17 local PRGs`
+- `coop_boundary` UE placement and `strongest` association
+- `cell_radius=500 m`, `site_spacing=1000 m`
+- legacy shared shadow RNG
+- Rayleigh + SVD + Type-0 allocation
+- packet TTL `200 ms`
+- `1000 warmup + 4000 measured` TTI, measured TTI 1001–5000
+
+Build identity and results: [effective configuration](../../Doc/current_stageB_effective_configuration.md). Old identity and experiment documentation are preserved in the [pre-correction archive](../../Doc/archive/pre_correction_2026_09_20/README.md). Algorithm contracts below remain design/implementation descriptions, not performance claims.
+
+The older 7cell/TAR-GNN material is retained as historical design context. DPA-v1 has not yet established a 7cell/84UE performance result.
+
+## Online decision contract
+
+For every TTI, the independent policy:
+
+1. consumes one causal pre-action snapshot;
+2. builds Cell, UE, and Cell-PRG entities plus sparse relations;
+3. encodes the graph and applies cross-cell attention within each local-PRG reuse group;
+4. visits local PRGs in fixed order `0..16`;
+5. scores all cells in a reuse group from the same pre-update state;
+6. chooses one associated UE or Blank per `(cell, local PRG)`;
+7. updates cumulative CTBS headroom only after all cells in that reuse group have been scored;
+8. materializes the result into a legal native Type-0 action.
+
+Candidate packing covers the full runtime association width. Demand and legality are applied through fail-closed masks; silent candidate truncation is forbidden. The actor may choose the same UE on multiple local PRGs in one TTI.
+
+PFQ score, rank, action, and teacher labels must not enter online actor-visible tensors. They are allowed only as offline supervision ancestry or baseline outputs.
+
+## Feature layout
+
+### Cell `[C, 5]`
+
+```text
+0 cell_load_bytes
+1 active_ue_count
+2 mean_wb_sinr_lin
+3 mean_avg_rate_mbps
+4 tb_err_rate
+```
+
+Slot 4 is the bridge's current-snapshot cell TB-error rate. `FeatureSnapshotBuilder` currently updates a private `_cell_tb_err_ema`, but does not substitute that EMA into `cell_values`; do not describe the actor input as an EMA without changing and re-evaluating the implementation.
+
+### UE `[U, 16]`
+
+```text
+ 0 buffer_bytes
+ 1 avg_rate_mbps
+ 2 wb_sinr_lin
+ 3 cqi
+ 4 ri
+ 5 tb_err_last
+ 6 new_data_flag
+ 7 stale_slots
+ 8 hol_delay_ms
+ 9 ttl_slack_ms
+10 recent_scheduled_ratio
+11 recent_goodput_deficit_norm
+12 log1p_drain_pressure
+13 scheduled_dequeue_adequacy
+14 ttl_normalized_service_age
+15 reserved_zero
+```
+
+The DPA-v1 deadline/service slots are:
+
+```text
+S_hat(t+1) = 0.95*S_hat(t) + 0.05*scheduled_dequeue_bytes(t)
+slack      = max(TTL slack in TTI, 1)
+pressure   = Q / (S_hat*slack + 1)
+
+f12 = log1p(pressure)
+f13 = clip(S_hat*slack/max(Q,1), 0, 1)
+f14 = clip(service_age_tti/packet_ttl_tti, 0, 1)
+f15 = 0
+```
+
+The current `TTL=200 ms` and `TTI=0.5 ms` give `packet_ttl_tti=400`. All four slots are zero when `Q=0`. The previous meanings `critical_ttl_backlog`, `near_ttl_backlog`, `age_weighted_backlog`, and raw `service_gap` are obsolete for DPA-v1 checkpoints.
+
+### Cell-PRG `[C*P, 12]`
+
+```text
+ 0 top1_sinr_db
+ 1 top2_gap_db
+ 2 prev_prg_assigned
+ 3 prev_prg_reuse_ratio
+ 4 neighbor_max_top1_sinr_db
+ 5 neighbor_mean_top1_sinr_db
+ 6 same_prg_conflict_ratio
+ 7 ici_proxy
+ 8 post_eq_p10_sinr_db
+ 9 post_eq_mean_sinr_db
+10 backlog_weighted_expected_goodput_mbps
+11 low_sinr_hol_ttl_weight
+```
+
+### Sequential candidate features `[C, K, 3]`
+
+```text
+remaining_demand / initial_demand
+allocated_prgs / 17
+predicted_or_cumulative_service / initial_demand
+```
+
+Under current DPA-v1, remaining demand is governed by the causal CTBS-v1 state.
+
+## Active modules
+
+- `independent_actor.py`
+  - `IndependentActorConfig`: feature dims `5/16/12`, hidden `128`, 2 message layers, 4 reuse-attention heads, dropout 0.
+  - `PFQIndependentReuseActor`: graph encoding, same-local-PRG reuse attention, UE/Blank scoring.
+- `independent_policy.py`
+  - full-width candidate validation;
+  - fixed reuse-group argmax decode;
+  - sequential state and CTBS integration;
+  - deterministic replay and Type-0 materialization.
+- `feature_snapshot.py`
+  - exact actor-visible feature names and runtime topology metadata;
+  - exclusion of teacher actions from actor-visible tensors.
+- `ctbs_headroom.py`
+  - causal MCS reconstruction from pre-action OLLA/WB-SINR/prior-TB state;
+  - cumulative TBS recomputation as local PRGs are assigned;
+  - corrected raw-TBS bits to byte-headroom conversion; verify independently that `8 * dequeue_bytes <= raw_TBS_bits`;
+  - post-action reference comparison for audit only.
+- `independent_reward.py`
+  - independent treatments A--E;
+  - frozen DPA-v1 checkpoint uses treatment E (deadline-tail potential + tail-rate utility).
+- `independent_objectives.py`
+  - deadline pressure and expiry-aware UE-window trackers.
+- `graph_ops.py`, `edge_generator.py`, `mask_checker.py`
+  - candidate packing, graph construction, action legality, and legacy/shared utilities.
+- `bridge_env.py`
+  - Python side of the online bridge observation/action exchange.
+- `pfq_dpa_aligned_comparison.py`
+  - strict same-binary/same-stream DPA/PFQ aggregation.
+- `granularity_experiment.py`
+  - fixed-expected-load homogeneous/mixed DPA/PFQ/RRQ aggregation.
+- `dpa_v1_historical_comparison.py`
+  - windowed expiry-aware metrics and historical-report utilities.
+
+`estimate_candidate_service_bytes()` remains available for legacy/diagnostic paths. It is not the current CTBS-v1 cumulative-TBS contract.
+
+The older `StageBHGraphPolicy`, joint `slot -> UE / PRG -> slot` head, behavior-cloning path, and fixed-shape ONNX export remain in this directory for historical experiments. Their README-era commands must not be interpreted as DPA-v1 reproduction instructions.
+
+## Historical training identity
+
+The historical frozen checkpoint is iter8 initialized from the earlier deadline-tail-rate checkpoint. Its base reward is normalized goodput minus failed service minus twice expired bytes, with treatment-E deadline-tail and tail-rate terms. This records ancestry, not a new-environment training prescription:
+
+```text
+goodput_weight                 = 1.0
+failed_weight                  = 1.0
+expired_weight                 = 2.0
+deadline_tail_eta              = 0.25
+deadline_tail_window_steps     = 100
+deadline_tail_tail_fraction    = 0.10
+deadline_tail_rate_weight      = 0.25
+deadline_tail_rate_tail_fraction = 0.10
+```
+
+Treatments A--D are retained for ablation and compatibility; they are not the frozen DPA-v1 treatment.
+
+## Evaluation evidence
+
+Historical outputs below are now compatibility links into `output/pfq_independent_reuse/archive/pre_correction_2026_09_20/formal/`. They are not current performance evidence:
+
+```text
+output/pfq_independent_reuse/formal/
+  dpa_v1_pfq_seed41_50_aligned_expiry_aware_v1/
+    final_report.json
+    aggregate_comparison.{json,csv}
+    per_seed_comparison.{json,csv}
+
+  granularity_newseed_stage1_v1/
+    campaign_report_10seed.json
+    seed101..seed110/
+
+  iter8_dimensionless_frozen_generalization_seed48_seed51_v1/
+    final_report.json
+
+  iter8_ctbs_legal_non_starvation_guard_seed51_v1/
+    final_report.json
+```
+
+The packet-granularity `campaign_report.json` and `campaign_report_3seed.json` files are intermediate historical snapshots; `campaign_report_10seed.json` is the historical final aggregation. None establishes corrected-environment performance.
+
+The old seed51 guard experiment produced zero overrides. This does not establish a non-starvation guarantee in the corrected environment. Current corrected baseline results are in [seed42 PFQ/RRQ](../../output/pfq_independent_reuse/formal/seed42_pfq_rrq_corrected_v1/report.md); there is no newly trained and accepted DPA result yet.
+
+## Focused validation
+
+Run the report/aggregation checks inside the experiment container:
 
 ```bash
-./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
-  --ppo-preset goodput_delay_rate_v21_causal_pfq_residual_tail_sample_fast \
-  --build-method cmake \
-  --build-dir build.pfq_residual_x86_64 \
-  --iterations 2 \
-  --rollout-steps 64 \
-  --episode-horizon 128 \
-  --topology-seed 41 \
-  --out-dir training/stageb_hgraph/runs/causal_residual_smoke
+python -m pytest -q \
+  training/stageb_hgraph/tests/test_dpa_v1_historical_comparison.py \
+  training/stageb_hgraph/tests/test_pfq_dpa_aligned_comparison.py \
+  training/stageb_hgraph/tests/test_granularity_experiment.py
 ```
 
-The rollout CSV records PFQ-base/residual absolute-logit means and
-queue-pressure before/after/delta/reward. The first residual mean must be zero,
-the PFQ-base mean positive, and later residual means may move after PPO updates.
-Generate the fail-closed evidence report after the smoke with:
+Historical documentation audit on 2026-09-07: `19 passed in 1.49s`. These aggregation tests do not certify physical units, slot invariance or GPU MCS correctness. See the [three-fix verification evidence](../../Doc/stageB_corrected_environment_v1.md).
 
-```bash
-python -m training.stageb_hgraph.residual_tail_gate \
-  --summary training/stageb_hgraph/runs/causal_residual_smoke/online_ppo_summary.json \
-  --history training/stageb_hgraph/runs/causal_residual_smoke/online_ppo_metrics.csv \
-  --source-revision "$(git rev-parse HEAD)" \
-  --out training/stageb_hgraph/runs/causal_residual_smoke/residual_tail_gate.json
+For implementation changes, also select the smallest relevant fail-closed tests from:
+
+```text
+test_independent_actor.py
+test_independent_policy.py
+test_independent_online_path.py
+test_independent_pfq_deletion.py
+test_independent_materializer.py
+test_independent_reward.py
 ```
 
-Recommended fixed-seed smoke / first formal run:
+## Research boundary
 
-```bash
-CUDA_VISIBLE_DEVICES=1 ./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
-  --ppo-preset goodput_delay_rate_v20_causal_direct_sample_fast \
-  --build-method skip \
-  --tti 4000 \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --topology-seed-mode fixed \
-  --baseline-scheduler pfq \
-  --online-persistent 1 \
-  --episode-horizon 512 \
-  --rollout-steps 512 \
-  --iterations 20 \
-  --ue-prg-topk 6 \
-  --hidden-dim 192 \
-  --message-layers 3 \
-  --device cuda \
-  --lr 1.5e-4 \
-  --actor-lr 1.0e-4 \
-  --critic-lr 3.0e-4 \
-  --weight-decay 1e-5 \
-  --entropy-coef 0.004 \
-  --target-kl 0.05 \
-  --update-epochs 2 \
-  --minibatch-size 256 \
-  --reward-mode stageb_blankaware \
-  --rollout-log-every-steps 500 \
-  --update-log-every-minibatches 2 \
-  --best-metric goodput \
-  --early-stop-patience 0 \
-  --sim-env CUDA_VISIBLE_DEVICES=0 \
-  --out-dir training/stageb_hgraph/runs/online_ppo_seed42_svd_blankaware_gpu_split_fix
-```
+The online PFQ-independent design and legality/replay contracts remain research mechanisms. Valid corrected-environment evidence currently covers the documented units/slot/GPU checks and the single-seed PFQ/RRQ baseline, within their stated scope.
 
-This GPU split means:
+Not supported today:
 
-- trainer runs on GPU1 through outer-shell `CUDA_VISIBLE_DEVICES=1`
-- simulator runs on GPU0 through `--sim-env CUDA_VISIBLE_DEVICES=0`
+- corrected-environment DPA superiority or attention/deadline component gains;
+- zero expiry for every seed/profile;
+- an effective non-starvation safety guard;
+- 7cell/84UE generalization;
+- production-grade robustness or real-time deployment qualification.
 
-This is process-level split execution, not one PPO update being data-parallel over two GPUs.
-
-Current online PPO logging / checkpoint behavior:
-
-- every `rollout-log-every-steps` TTI, PPO prints one rollout heartbeat line
-- every `update-log-every-minibatches` minibatches, PPO prints one PPO-update heartbeat line
-- every PPO iteration, PPO prints:
-  - rollout summary
-  - `collect_time_s`
-  - `update_time_s`
-  - `iter_time_s`
-- checkpoints:
-  - `ppo_actor_last.pt`
-  - `ppo_actor_best.pt`
-  - `ppo_actor_threshold_best.pt`
-  - `ppo_actor_absolute_best.pt`
-  - `ppo_train_last.pt`
-  - `ppo_train_best.pt`
-  - `ppo_train_threshold_best.pt`
-  - `ppo_train_absolute_best.pt`
-- `ppo_actor_best.pt` and `ppo_train_best.pt` are backward-compatible aliases of the threshold-best checkpoints
-- threshold-best means:
-  - a checkpoint is only promoted when it improves the selected best metric by at least `early-stop-min-delta`
-  - this is the checkpoint family used by early stop
-- absolute-best means:
-  - the true peak of the selected best metric, regardless of `early-stop-min-delta`
-  - this is the recommended checkpoint family for final offline / multi-seed evaluation
-- best-checkpoint selection is controlled by `--best-metric {reward,goodput}`
-- recommended current defaults:
-  - `--best-metric goodput`
-  - `--early-stop-patience 60`
-  - `--early-stop-min-delta 1.0`
-  - `--early-stop-warmup-iters 50`
-- if the immediate goal is to retrain a clean new model under the current validated Stage-B setup, the recommended choice is:
-  - keep the training/evaluation traffic aligned:
-    - `3000 bytes / packet`
-    - `1 pkt / TTI`
-    - `TTL = 200 ms`
-    - `3cell`
-    - `36 UE`
-    - `precoding = svd`
-  - disable early stop:
-    - `--early-stop-patience 0`
-- early stop is optional and disabled when `--early-stop-patience 0`
-
-## Absolute Best vs Threshold Best
-
-At the current code stage, the PPO runner tracks two notions of "best":
-
-- `threshold_best`
-  - used for early-stop semantics
-  - only updates when `score > threshold_best_score + early_stop_min_delta`
-- `absolute_best`
-  - updates whenever `score > absolute_best_score`
-  - ignores `early_stop_min_delta`
-
-This solves the common case where:
-
-- training really does reach a slightly higher goodput later
-- but the improvement is smaller than `early_stop_min_delta`
-- so threshold-best stays at an earlier iteration while absolute-best moves forward
-
-For final model reporting and RRQ/PFQ comparison, prefer:
-
-- `ppo_actor_absolute_best.pt`
-
-For reproducing the exact early-stop-selected checkpoint, use:
-
-- `ppo_actor_threshold_best.pt`
-
-## Multi-Seed Best-Checkpoint Evaluation
-
-To evaluate one fixed HGraph checkpoint with the same multi-topology-seed averaging style used by RRQ/PFQ, use:
-
-The wrapper default decode path is now `argmax`, which matches the deterministic deployment-style policy. Use `--decode-mode sample` only for stochastic-policy ablation.
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_checkpoint_multi_seed_compare.sh \
-  --build-method skip \
-  --seed-list 41,42,43 \
-  --checkpoint-path training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation/ppo_actor_absolute_best.pt \
-  --model-label hgraph_v33_absbest \
-  --baseline-mean-root output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443 \
-  --decode-mode argmax \
-  --eval-episode-horizon 4000 \
-  --eval-device cuda \
-  --eval-print-every-steps 500 \
-  --sim-env CUDA_VISIBLE_DEVICES=0 \
-  --eval-env CUDA_VISIBLE_DEVICES=1 \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --exec-mode both \
-  --precoding svd \
-  --baseline-scheduler pfq \
-  --compact-output 1 \
-  --compact-tti-log 1 \
-  --progress-tti 0 \
-  --kpi-tti-log 100 \
-  --compare-tti 0 \
-  --tti 4000 \
-  --compare-output-dir output/stageB_hgraph_v33_absbest_multiseed_compare
-```
-
-This wrapper:
-
-- runs the canonical Stage-B main experiment once per topology seed
-- uses `--online-bridge 1` and drives actions from the chosen checkpoint
-- collects the real per-seed `kpi_summary.json`
-- aggregates the final HGraph mean/std/min/max with the same manifest-style flow used by the RRQ/PFQ comparison scripts
-- should use the same traffic/scenario parameters as training when your first goal is model-quality validation
-- should only switch to a different traffic profile such as `2000 bytes / 0.5 pkt` if you explicitly want apples-to-apples comparison against a baseline produced under that different traffic configuration
-
-## Fixed-Shape ONNX/TRT Deployment Export
-
-For the first real-time deployment path, export the retained HGraph actor as a fixed `3cell / 36UE / 17PRG` ONNX model:
-
-```bash
-.venv/bin/python training/stageb_hgraph/export_onnx.py --output-mode action --check
-```
-
-This writes:
-
-- `training/stageb_hgraph/exports/hgraph_3cell_36ue_17prg_action_posteq.onnx`
-- `training/stageb_hgraph/exports/hgraph_3cell_36ue_17prg_action_posteq.onnx.metadata.json`
-
-The preferred deployment ABI is now `action` mode. It moves the Python evaluator's masked argmax and Type-0 action composition into the exported graph, then lets C++ do only final legality/demand/fallback cleanup.
-
-- inputs:
-  - `obs_cell_features [1,3,5]`
-  - `obs_ue_features [1,36,12]`
-  - `obs_prg_features [1,3,17,12]`
-  - `obs_post_eq_sinr [1,36,17]`
-  - `obs_edge_index [1,6,2]`
-  - `obs_edge_attr [1,6,2]`
-  - `action_mask_ue [1,36]`
-  - `action_mask_cell_ue [1,3,36]`
-- outputs:
-  - `action_ue_select [1,36]`
-  - `action_prg_alloc [1,51]`
-
-The legacy `logits` ABI is still available when needed:
-
-```bash
-.venv/bin/python training/stageb_hgraph/export_onnx.py --output-mode logits --check
-```
-
-That path writes `hgraph_3cell_36ue_17prg_argmax.onnx` and keeps the old `ue_logits/prg_logits` outputs for C++ masked decode experiments.
-
-To re-check an already exported model:
-
-```bash
-.venv/bin/python training/stageb_hgraph/check_onnx_consistency.py --output-mode action
-```
-
-To run it through the C++ runtime path, pass the action ONNX as the `gnnrl_model` policy model:
-
-```bash
-./cuMAC/scripts/run_stageB_main_experiment.sh \
-  --build-method skip \
-  --custom-ue-prg 1 \
-  --custom-policy gnnrl_model \
-  --model-path training/stageb_hgraph/exports/hgraph_3cell_36ue_17prg_action_posteq.onnx \
-  --gnnrl-model-output-mode action \
-  --gnnrl-model-use-post-eq-input 1 \
-  --gnnrl-model-decode-mode argmax \
-  --gnnrl-model-strict 1 \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --exec-mode both \
-  --tti 4000
-```
-
-For the seed42 smoke run with a 1000-TTI warm-start horizon and 4000 measured-horizon intent, use 5000 total TTI:
-
-```bash
-./cuMAC/scripts/run_stageB_main_experiment.sh \
-  --build-method cmake \
-  --custom-ue-prg 1 \
-  --custom-policy gnnrl_model \
-  --model-path training/stageb_hgraph/exports/hgraph_3cell_36ue_17prg_action_posteq.onnx \
-  --gnnrl-model-output-mode action \
-  --gnnrl-model-use-post-eq-input 1 \
-  --gnnrl-model-decode-mode argmax \
-  --gnnrl-model-strict 1 \
-  --topology-scenario 3cell \
-  --topology-seed 42 \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --exec-mode both \
-  --tti 5000 \
-  --compact-output 0 \
-  --tag hgraph_action_s42_warmup1000
-```
-
-Important caveat: the current Stage-B main KPI summary still accumulates over the full run. The `warmup1000` tag and `--tti 5000` layout are useful for controlled runs, but strict warmup-excluded KPI still requires a future `--stats-warmup-tti 1000` counter/snapshot path.
-
-Latest seed42 action-mode smoke result:
-
-| Metric | HGraph action s42 | PFQ s42 | RRQ s42 |
-|---|---:|---:|---:|
-| `traffic.served_mbps_est` | 1736.670 | 1734.346 | 1725.653 |
-| `traffic.goodput_mbps` | 1555.805 | 1548.486 | 1548.063 |
-| `global_kpi.global_tb_bler` | 0.105984 | 0.108009 | 0.108990 |
-| `global_kpi.ue_goodput_jain` | 0.998669 | 0.998616 | 0.998790 |
-| `global_kpi.ue_goodput_p5_mbps` | 40.209 | 39.604 | 40.306 |
-| `global_kpi.prg_utilization_ratio` | 0.603208 | 0.906142 | 0.866892 |
-| `traffic.packet_delay_mean_ms` | 2.353 | 0.692 | 0.685 |
-| `traffic.packet_delay_p95_ms` | 6.500 | 2.000 | 1.500 |
-
-Interpretation: the final action path is now functionally credible. It matches or slightly beats PFQ on throughput, goodput, BLER, fairness, and p5 goodput for seed42, but it does so with much lower PRG utilization and scheduling frequency. The remaining deployment-quality gap is therefore mostly packet-delay/service-regularity, not aggregate rate.
-
-## Latest validated smoke status
-
-The latest fixed-seed smoke has already validated the following:
-
-- simulator-side configuration is aligned:
-  - `online raw postEqSinr export=on`
-  - `online reward mode=goodput_reliability_blankaware`
-  - `precoding=svd`
-  - `TTL = 200 ms`
-  - topology placement and tx pattern are aligned with the intended Stage-B scenario
-- PPO-side runtime is aligned:
-  - `posteqL = 4`
-  - persistent stream shows `continue` instead of relaunching every iteration
-- latest smoke tail reached approximately:
-  - `goodput = 1500.84 Mbps`
-  - `tb_err = 0.092`
-  - `blank = 0.046`
-  - `fill = 0.954`
-
-This means the current first-version stack has passed the key smoke gates needed for formal fixed-seed training.
-
-## Current recommendation
-
-The current recommendation is to retrain one new model from scratch under the validated Stage-B training configuration, then evaluate the final `absolute_best` checkpoint with three topology seeds under the same traffic setting.
-
-Recommended rebuild:
-
-```bash
-./cuMAC/scripts/run_stageB_main_experiment.sh \
-  --build-only 1 \
-  --build-method cmake \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --topology-seed 42 \
-  --baseline-scheduler pfq \
-  --exec-mode both \
-  --precoding svd
-```
-
-Recommended fresh formal training:
-
-```bash
-CUDA_VISIBLE_DEVICES=1 ./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
-  --build-method skip \
-  --tti 4000 \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --topology-seed-mode fixed \
-  --baseline-scheduler pfq \
-  --online-persistent 1 \
-  --episode-horizon 1024 \
-  --rollout-steps 1024 \
-  --iterations 300 \
-  --ue-prg-topk 6 \
-  --hidden-dim 192 \
-  --message-layers 3 \
-  --dropout 0.0 \
-  --device cuda \
-  --lr 1.5e-4 \
-  --actor-lr 1.0e-4 \
-  --critic-lr 3.0e-4 \
-  --weight-decay 1e-5 \
-  --gamma 0.99 \
-  --gae-lambda 0.95 \
-  --clip-eps 0.2 \
-  --value-coef 0.5 \
-  --entropy-coef 0.004 \
-  --target-kl 0.05 \
-  --update-epochs 4 \
-  --minibatch-size 256 \
-  --reward-mode stageb_blankaware \
-  --rollout-log-every-steps 500 \
-  --update-log-every-minibatches 2 \
-  --best-metric goodput \
-  --early-stop-patience 0 \
-  --print-every-iters 1 \
-  --sim-env CUDA_VISIBLE_DEVICES=0 \
-  --out-dir training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation
-```
-
-Recommended matching evaluation style:
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_checkpoint_multi_seed_compare.sh \
-  --seed-list 41,42,43 \
-  --checkpoint-path training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation/ppo_actor_absolute_best.pt \
-  --model-label hgraph_v33_absbest \
-  --baseline-mean-root output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443 \
-  --build-method skip \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --fading-mode 0 \
-  --cdl-profiles NA \
-  --cdl-delay-spreads 0 \
-  --tti 4000 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --progress-tti 1000 \
-  --kpi-tti-log 0 \
-  --compare-tti 0 \
-  --compact-output 1 \
-  --exec-mode both \
-  --precoding svd \
-  --decode-mode argmax \
-  --eval-episode-horizon 4000 \
-  --eval-device cuda \
-  --eval-print-every-steps 500 \
-  --sim-env CUDA_VISIBLE_DEVICES=0 \
-  --eval-env CUDA_VISIBLE_DEVICES=1 \
-  --compare-output-dir output/stageB_hgraph_v33_absbest_multiseed_compare
-```
+Next experiments must pin corrected code, recalibrate baselines, collect fresh BC, and validate a reproducible Full with independent argmax evaluation before paired ablations. Old training is not resumed by this documentation update.

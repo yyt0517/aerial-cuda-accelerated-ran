@@ -8,7 +8,7 @@ from dataclasses import dataclass
 from typing import Tuple
 
 MAGIC = 0x524C4E4F  # "ONLR"
-VERSION = 12
+VERSION = 16
 REWARD_TERM_COUNT = 23
 STATE_FLAG_HAS_POST_EQ_SINR = 1 << 0
 STATE_FLAG_HAS_TEACHER_ACTION = 1 << 1
@@ -17,6 +17,15 @@ STATE_FLAG_HAS_ACCEPTED_PRE_PDSCH_UE_DIAGNOSTICS = 1 << 3
 STATE_FLAG_HAS_NATIVE_REJECT_DIAGNOSTICS = 1 << 4
 STATE_FLAG_HAS_NATIVE_SLOT_LAYOUT_DIAGNOSTICS = 1 << 5
 STATE_FLAG_HAS_ACTUAL_UE_PACKET_DIAGNOSTICS = 1 << 6
+STATE_FLAG_HAS_UE_PRG_SET_DIAGNOSTICS = 1 << 7
+STATE_FLAG_HAS_PHY_TBS_AUDIT_DIAGNOSTICS = 1 << 8
+STATE_FLAG_HAS_CTBS_CONFIG = 1 << 9
+
+# Serialized with PHY/TBS audit diagnostics. These codes are part of the
+# experiment contract and make source/timing fail-closed in the Python reader.
+PHY_TBS_OLLA_SOURCE_CPU = 1
+PHY_TBS_CAPTURE_PHASE_PRE_ACTION_PRE_MCS = 1
+RESET_FLAG_ENABLE_CTBS = 1 << 0
 
 MSG_RESET_REQ = 1
 MSG_RESET_RSP = 2
@@ -25,11 +34,15 @@ MSG_STEP_RSP = 4
 MSG_CLOSE_REQ = 5
 MSG_CLOSE_RSP = 6
 MSG_ERROR_RSP = 7
+MSG_PRE_ACTION_REQ = 8
+MSG_PRE_ACTION_RSP = 9
 
 HEADER_STRUCT = struct.Struct("<IHHI")
 RESET_REQ_STRUCT = struct.Struct("<iiI")
-STEP_REQ_HEAD_STRUCT = struct.Struct("<iII")
-STATE_HEAD_STRUCT = struct.Struct("<iB3x" + ("f" * (1 + REWARD_TERM_COUNT)) + "IIIIIIIIIIIII" + "I")
+STEP_REQ_HEAD_STRUCT = struct.Struct("<iqII")
+PRE_ACTION_REQ_STRUCT = struct.Struct("<i32s")
+PRE_ACTION_RSP_HEAD_STRUCT = struct.Struct("<iqIIii32s")
+STATE_HEAD_STRUCT = struct.Struct("<iB3x" + ("f" * (1 + REWARD_TERM_COUNT)) + "IIIIIIIIIIIIII" + "I")
 ERROR_HEAD_STRUCT = struct.Struct("<iI")
 
 
@@ -48,6 +61,7 @@ class EnvDims:
     edge_feat_dim: int
     prg_feat_dim: int
     post_eq_layer_dim: int
+    harq_enabled: int
 
 
 @dataclass(frozen=True)
@@ -77,8 +91,31 @@ def pack_reset_req(seed: int, episode_horizon: int, flags: int = 0) -> bytes:
     return RESET_REQ_STRUCT.pack(int(seed), int(episode_horizon), int(flags))
 
 
-def pack_step_req(step_idx: int, action_ue: bytes, action_prg: bytes, ue_len: int, prg_len: int) -> bytes:
-    return STEP_REQ_HEAD_STRUCT.pack(int(step_idx), int(ue_len), int(prg_len)) + action_ue + action_prg
+def pack_step_req(
+    step_idx: int,
+    action_ue: bytes,
+    action_prg: bytes,
+    ue_len: int,
+    prg_len: int,
+    *,
+    snapshot_id: int = 0,
+) -> bytes:
+    return STEP_REQ_HEAD_STRUCT.pack(
+        int(step_idx),
+        int(snapshot_id),
+        int(ue_len),
+        int(prg_len),
+    ) + action_ue + action_prg
+
+
+def pack_pre_action_req(tti: int, config_sha256: str) -> bytes:
+    try:
+        digest = bytes.fromhex(str(config_sha256))
+    except ValueError as exc:
+        raise ValueError("CTBS config hash must be hexadecimal") from exc
+    if len(digest) != 32:
+        raise ValueError("CTBS config hash must contain 32 bytes")
+    return PRE_ACTION_REQ_STRUCT.pack(int(tti), digest)
 
 
 def unpack_state_header(payload: bytes) -> Tuple[StateHeader, int]:
@@ -103,6 +140,7 @@ def unpack_state_header(payload: bytes) -> Tuple[StateHeader, int]:
         edge_feat_dim,
         prg_feat_dim,
         post_eq_layer_dim,
+        harq_enabled,
         state_flags,
     ) = vals[3 + REWARD_TERM_COUNT :]
     dims = EnvDims(
@@ -119,6 +157,7 @@ def unpack_state_header(payload: bytes) -> Tuple[StateHeader, int]:
         edge_feat_dim=int(edge_feat_dim),
         prg_feat_dim=int(prg_feat_dim),
         post_eq_layer_dim=int(post_eq_layer_dim),
+        harq_enabled=int(harq_enabled),
     )
     header = StateHeader(
         tti=tti,

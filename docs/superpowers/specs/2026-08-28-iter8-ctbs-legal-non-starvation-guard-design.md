@@ -1,4 +1,8 @@
+> 历史材料，2026-09-20 起不作为修正环境的性能证据或续跑许可。见[三项修正与新实验要求](../../../Doc/stageB_corrected_environment_v1.md)；[修正前原文](../../../Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-28-iter8-ctbs-legal-non-starvation-guard-design.md)保留当时状态。
+
 # Iter8 CTBS-Legal Non-Starvation Guard V1 Design
+
+> Status: completed historical experiment protocol. The seed51 run produced zero legal overrides (`insufficient_blank_opportunities`); the current DPA-v1 deployment keeps the guard off. See the [integrated report](../../../Doc/stageB_boundary_intelligent_algorithm_experiment_report.md) and [main design](./2026-08-13-pfq-independent-reuse-actor-design.md).
 
 ## Research question
 

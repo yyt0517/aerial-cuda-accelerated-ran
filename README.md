@@ -77,11 +77,18 @@ source .venv/bin/activate
 
 Run subsequent `cuMAC/scripts/*stageB*` and `training/stageb_hgraph/*` commands from the activated shell.
 
-Current local Stage-B planning docs:
+**Research validity reset — 2026-09-20:** TBS bits/bytes, PHY slot indexing, and GPU MCS initialization synchronization have been corrected. Earlier training and performance/ablation results are historical, not validated results for the corrected environment. There is no newly trained and accepted DPA checkpoint yet. Do not resume old queues or rescale old trajectories for reuse.
 
-- `Doc/README.md`
-- `Doc/current_stageB_effective_configuration.md`
-- `Doc/stageB_7cell_tar_gnn_pfq_design.md`
+Current local Stage-B documents:
+
+- [Three-fix record, evidence boundary and new experiment requirements](Doc/stageB_corrected_environment_v1.md)
+- [Document index](Doc/README.md)
+- [Corrected build identity and configuration](Doc/current_stageB_effective_configuration.md)
+- [Current verification and corrected PFQ/RRQ results](Doc/stageB_boundary_intelligent_algorithm_experiment_report.md)
+- [DPA algorithm structure (historical checkpoint, not revalidated performance)](docs/superpowers/specs/2026-08-13-pfq-independent-reuse-actor-design.md)
+- [Pre-correction documents, raw data and checkpoint archive](Doc/archive/pre_correction_2026_09_20/README.md)
+
+Old script defaults are not a corrected-build guarantee. New campaigns must pin simulator/library hashes, collect fresh data and recalibrate baselines; see the three-fix record before running anything.
 
 ### Further Information
 

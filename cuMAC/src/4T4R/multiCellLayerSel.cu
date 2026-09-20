@@ -98,6 +98,11 @@ static __device__ __forceinline__ uint8_t clampSelectedLayers(uint8_t layers, ui
 
 } // namespace
 
+uint8_t resolveEffectiveLayerCapForAudit(const uint8_t maxSupportedLayers)
+{
+   return resolveEffectiveLayerCap(maxSupportedLayers);
+}
+
  multiCellLayerSel::multiCellLayerSel(cumacCellGrpPrms* cellGrpPrms)
  {
     Asim = 0;

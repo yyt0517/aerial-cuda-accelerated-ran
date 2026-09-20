@@ -572,7 +572,7 @@ def compute_packet_outcome_sample_window_stats(
     with open(path, "r", encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
         expected = {"ue_id", "packet_id", "terminal_tti", "outcome", "system_time_ms"}
-        if reader.fieldnames is None or set(reader.fieldnames) != expected:
+        if reader.fieldnames is None or not expected.issubset(set(reader.fieldnames)):
             raise ValueError(f"unexpected packet outcome sample columns: {reader.fieldnames}")
         for row in reader:
             terminal_tti = int(row["terminal_tti"])

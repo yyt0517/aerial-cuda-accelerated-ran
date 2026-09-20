@@ -45,12 +45,13 @@ UE_PKT_RATE_EA ue_id=4 delivered_pkt_count=5 expired_pkt_count=1 pending_pkt_cou
             out_dir = Path(tmp)
             csv_path = out_dir / "packet_outcome_samples.csv"
             csv_path.write_text(
-                "ue_id,packet_id,terminal_tti,outcome,system_time_ms\n"
-                "0,1,1000,delivered,1.0\n"
-                "0,2,1001,delivered,20.0\n"
-                "1,3,2500,expired,200.0\n"
-                "2,4,5000,delivered,100.0\n"
-                "2,5,5001,expired,200.0\n",
+                "ue_id,packet_id,arrival_tti,packet_size_bytes,remaining_bytes_at_terminal,"
+                "terminal_tti,outcome,system_time_ms\n"
+                "0,1,601,3000,0,1000,delivered,1.0\n"
+                "0,2,602,3000,0,1001,delivered,20.0\n"
+                "1,3,2101,3000,1200,2500,expired,200.0\n"
+                "2,4,4601,3000,0,5000,delivered,100.0\n"
+                "2,5,4602,3000,3000,5001,expired,200.0\n",
                 encoding="utf-8",
             )
             log = f"TRAFFIC_PKT_OUTCOME_SAMPLES_CSV path={csv_path.name} rows=5\n"

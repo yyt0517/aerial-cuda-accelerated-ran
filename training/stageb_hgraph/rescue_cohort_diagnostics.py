@@ -228,6 +228,115 @@ def concatenate_rescue_decision_diagnostics(
     return RescueDecisionDiagnostics(**values)
 
 
+def summarize_local_prg_phy_interference(
+    decisions: RescueDecisionDiagnostics,
+    *,
+    n_cell: int,
+    n_prg: int,
+) -> dict[str, object]:
+    """Summarize detached selected-PHY and reuse evidence by local PRG."""
+    _require(n_cell > 0 and n_prg > 0, "local-PRG diagnostic dimensions must be positive")
+    values = {
+        field.name: _detached_vector(getattr(decisions, field.name))
+        for field in fields(decisions)
+    }
+    lengths = {value.numel() for value in values.values()}
+    _require(len(lengths) == 1, "local-PRG diagnostic fields must have equal lengths")
+    decision_count = next(iter(lengths))
+    decisions_per_tti = n_cell * n_prg
+    _require(
+        decision_count > 0 and decision_count % decisions_per_tti == 0,
+        "local-PRG diagnostic decision count does not cover whole TTIs",
+    )
+    tti_count = decision_count // decisions_per_tti
+    expected_local = torch.arange(n_prg).repeat_interleave(n_cell)
+    expected_cell = torch.arange(n_cell).repeat(n_prg)
+    local_by_tti = values["local_prg_index"].to(dtype=torch.long).reshape(
+        tti_count, decisions_per_tti
+    )
+    cell_by_tti = values["cell_index"].to(dtype=torch.long).reshape(
+        tti_count, decisions_per_tti
+    )
+    _require(
+        torch.equal(local_by_tti, expected_local.unsqueeze(0).expand_as(local_by_tti)),
+        "local-PRG diagnostic ordering mismatch",
+    )
+    _require(
+        torch.equal(cell_by_tti, expected_cell.unsqueeze(0).expand_as(cell_by_tti)),
+        "local-PRG diagnostic cell ordering mismatch",
+    )
+    selected_by_tti = values["selected_nonblank"].to(dtype=torch.bool).reshape(
+        tti_count, n_prg, n_cell
+    )
+
+    def selected_mean(name: str, mask: torch.Tensor) -> float | None:
+        selected_values = values[name].to(dtype=torch.float64)[mask]
+        return None if selected_values.numel() == 0 else float(selected_values.mean().item())
+
+    rows: list[dict[str, object]] = []
+    local_flat = values["local_prg_index"].to(dtype=torch.long)
+    selected_flat = values["selected_nonblank"].to(dtype=torch.bool)
+    for local_prg in range(n_prg):
+        local_mask = local_flat == local_prg
+        selected_mask = local_mask & selected_flat
+        selected_count = int(selected_mask.sum().item())
+        local_decisions = int(local_mask.sum().item())
+        reuse = selected_by_tti[:, local_prg, :].sum(dim=1)
+        rows.append(
+            {
+                "local_prg": local_prg,
+                "decision_count": local_decisions,
+                "selected_count": selected_count,
+                "forced_blank_count": int(
+                    values["selected_forced_blank"]
+                    .to(dtype=torch.bool)[local_mask]
+                    .sum()
+                    .item()
+                ),
+                "conservative_blank_count": int(
+                    values["selected_conservative_blank"]
+                    .to(dtype=torch.bool)[local_mask]
+                    .sum()
+                    .item()
+                ),
+                "blank_ratio": float(1.0 - selected_count / local_decisions),
+                "reuse_count_mean": float(reuse.to(dtype=torch.float64).mean().item()),
+                "reuse_cardinality_tti_count": {
+                    str(cardinality): int((reuse == cardinality).sum().item())
+                    for cardinality in range(n_cell + 1)
+                },
+                "selected_quality_db_mean": selected_mean("quality_db", selected_mask),
+                "selected_quality_gap_db_mean": selected_mean(
+                    "quality_gap_db", selected_mask
+                ),
+                "selected_prg_risk_mean": selected_mean("prg_risk", selected_mask),
+                "selected_predicted_service_bytes_mean": selected_mean(
+                    "estimated_service_bytes", selected_mask
+                ),
+                "selected_success_proxy_mean": selected_mean(
+                    "success_proxy", selected_mask
+                ),
+                "p_blank_mean": float(
+                    values["p_blank"].to(dtype=torch.float64)[local_mask].mean().item()
+                ),
+                "p_service_mean": float(
+                    values["p_service"].to(dtype=torch.float64)[local_mask].mean().item()
+                ),
+                "p_best_ue_mean": float(
+                    values["p_best_ue"].to(dtype=torch.float64)[local_mask].mean().item()
+                ),
+            }
+        )
+    return {
+        "schema_version": 1,
+        "unit": "local_prg_decision",
+        "tti_count": tti_count,
+        "n_cell": n_cell,
+        "n_prg": n_prg,
+        "local_prgs": rows,
+    }
+
+
 def _outcome_vector(info: Mapping[str, object], name: str, n_ue: int) -> torch.Tensor:
     _require(name in info, f"missing required rescue outcome {name}")
     value = torch.as_tensor(info[name]).detach().cpu()

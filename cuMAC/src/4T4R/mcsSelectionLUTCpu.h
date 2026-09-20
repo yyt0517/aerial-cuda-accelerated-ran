@@ -77,6 +77,9 @@ public:
     // for debugging
     void debugLog();
 
+    // Read-only research instrumentation for the exact CPU MCS path.
+    void copyOllaParamsForAudit(std::vector<ollaParam>* output) const;
+
 private:
     // CPU matrix operation algorithms
     std::unique_ptr<cpuMatAlg> matAlg;

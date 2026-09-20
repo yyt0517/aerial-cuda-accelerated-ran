@@ -1,3 +1,5 @@
+> 历史材料，2026-09-20 起不作为修正环境的性能证据或续跑许可。见[三项修正与新实验要求](../../../Doc/stageB_corrected_environment_v1.md)；[修正前原文](../../../Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-07-30-stageb-hgraph-ppo-architecture-alignment-bucket-training-design.md)保留当时状态。
+
 # Stage-B HGraph+PPO 架构对齐与分桶训练设计
 
 ## 1. 背景与目标

@@ -21,6 +21,7 @@ from .independent_objectives import (
     compute_delay_debt_potential,
 )
 from .online_protocol import VERSION
+from .reward_utils import extract_reward_metrics
 
 MEASURED_TERMINAL_TTI_EXCLUSIVE = 1000
 FORMAL_WARMUP_STEPS = 1000
@@ -47,6 +48,43 @@ _SCENARIO_KEYS = {
 _CANONICAL_DIMS = {"n_cell": 3, "n_active_ue": 36, "n_prg": 17}
 
 
+def traffic_profile_metadata(profile: str) -> dict[str, object]:
+    if profile == "homogeneous":
+        return {
+            "traffic_profile": profile,
+            "packet_size_bytes": 3000,
+            "packets_per_ue_tti": 1.0,
+            "expected_offered_bytes_per_tti": 108000.0,
+            "flow_classes": {
+                "homogeneous": {
+                    "ue_ids": list(range(36)),
+                    "packet_size_bytes": 3000,
+                    "arrival_rate_packets_per_tti": 1.0,
+                }
+            },
+        }
+    if profile == "mixed_granularity_v1":
+        return {
+            "traffic_profile": profile,
+            "packet_size_bytes": [1500, 12000],
+            "packets_per_ue_tti": [2.0, 0.25],
+            "expected_offered_bytes_per_tti": 108000.0,
+            "flow_classes": {
+                "high_frequency_short": {
+                    "ue_ids": list(range(0, 36, 2)),
+                    "packet_size_bytes": 1500,
+                    "arrival_rate_packets_per_tti": 2.0,
+                },
+                "low_frequency_large": {
+                    "ue_ids": list(range(1, 36, 2)),
+                    "packet_size_bytes": 12000,
+                    "arrival_rate_packets_per_tti": 0.25,
+                },
+            },
+        }
+    raise ValueError(f"unknown traffic profile: {profile}")
+
+
 def validate_reference_manifest(manifest: Mapping[str, object]) -> None:
     for key in ("binary_sha256", "source_revision", "protocol_version", "scenario"):
         if key not in manifest:
@@ -70,6 +108,42 @@ def validate_observed_scenario(info: Mapping[str, object]) -> None:
         raise RuntimeError(
             f"canonical scenario mismatch: observed={observed} expected={_CANONICAL_DIMS}"
         )
+
+
+def pfq_schedule_structure_metrics(
+    action_prg_alloc: np.ndarray,
+    info: Mapping[str, object],
+) -> dict[str, float]:
+    """Record PFQ PRG opportunity diagnostics without changing any gate."""
+    action = np.asarray(action_prg_alloc).reshape(-1)
+    if action.size == 0:
+        raise ValueError("PFQ PRG allocation must be non-empty")
+    filled = action >= 0
+    reward_metrics = extract_reward_metrics(info)
+    n_cell = int(info.get("n_cell", 0))
+    n_prg = int(info.get("n_prg", 0))
+    if n_cell <= 0 or n_prg <= 0 or action.size != n_cell * n_prg:
+        raise ValueError(
+            "PFQ PRG allocation size must match observed n_cell*n_prg"
+        )
+    native_by_local_prg = filled.reshape(n_prg, n_cell)
+    metrics = {
+        "blank_ratio": float(1.0 - filled.mean()),
+        "prg_opportunity_count": float(filled.sum()),
+        "prg_utilization_ratio": float(
+            reward_metrics["prg_utilization_ratio"]
+        ),
+        "prg_reuse_ratio": float(reward_metrics["prg_reuse_ratio"]),
+    }
+    metrics.update(
+        {
+            f"local_prg_{local_prg:02d}_opportunity_count": float(
+                native_by_local_prg[local_prg].sum()
+            )
+            for local_prg in range(n_prg)
+        }
+    )
+    return metrics
 
 
 def build_reference_summary(
@@ -202,17 +276,47 @@ def _extend_ld_library_path(env: dict[str, str], sim_bin: Path) -> None:
         env["LD_LIBRARY_PATH"] = ":".join(lib_dirs + ([current] if current else []))
 
 
+def build_service_balance_audit_env(
+    out_dir: Path | str, *, trace_first_tti: int
+) -> dict[str, str]:
+    if int(trace_first_tti) <= 0:
+        raise ValueError("service-balance trace first TTI must be positive")
+    root = Path(out_dir)
+    return {
+        "CUMAC_ONLINE_EXPORT_PHY_TBS_AUDIT": "1",
+        "CUMAC_SERVICE_BALANCE_TRACE_CSV": str(root / "service_balance_trace.csv"),
+        "CUMAC_SERVICE_BALANCE_TRACE_FIRST_TTI": str(int(trace_first_tti)),
+        "CUMAC_TRAFFIC_OFFERED_SAMPLES_CSV": str(root / "traffic_offered_packets.csv"),
+    }
+
+
+def packet_ttl_env(ttl_ms: float) -> dict[str, str]:
+    if not np.isfinite(ttl_ms) or ttl_ms <= 0:
+        raise ValueError("packet TTL must be positive and finite")
+    return {"CUMAC_PACKET_TTL_MS": str(float(ttl_ms)), "CUMAC_PACKET_TTL_TTI": "0"}
+
+
 def _parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Calibrate PFQ-independent objectives on PFQ pass-through")
+    parser = argparse.ArgumentParser(description="Run a native scheduler through the online bridge")
     parser.add_argument("--sim-bin", required=True)
     parser.add_argument("--sim-args", default="-d 1 -b 2 -f 0 -x 0 -g 100 -r 3000")
     parser.add_argument("--sim-cwd", default="")
     parser.add_argument("--topology-seed", type=int, default=41)
     parser.add_argument("--traffic-seed", type=int, default=41)
+    parser.add_argument("--packet-ttl-ms", type=float, default=200.0)
+    parser.add_argument(
+        "--traffic-profile",
+        choices=("homogeneous", "mixed_granularity_v1"),
+        default="homogeneous",
+    )
+    parser.add_argument("--reference-policy", choices=("pf", "pfq", "rr", "rrq"), default="pfq")
     parser.add_argument("--warmup-steps", type=int, default=FORMAL_WARMUP_STEPS)
     parser.add_argument("--measure-steps", type=int, default=FORMAL_MEASURE_STEPS)
     parser.add_argument("--out-dir", required=True)
     parser.add_argument("--formal", action="store_true")
+    parser.add_argument("--service-balance-audit", action="store_true")
+    parser.add_argument("--mechanism-snapshots", action="store_true")
+    parser.add_argument("--service-balance-trace-first-tti", type=int, default=602)
     return parser.parse_args()
 
 
@@ -224,6 +328,8 @@ def main() -> None:
     ):
         raise ValueError("formal calibration requires exactly 1000 warmup + 4000 measured TTIs")
     total_steps = int(args.warmup_steps) + int(args.measure_steps)
+    if args.mechanism_snapshots and (total_steps != 4000 or args.reference_policy != "pfq"):
+        raise ValueError("mechanism capture requires PFQ with exactly 4000 total TTI")
     if total_steps <= 0:
         raise ValueError("calibration horizon must be positive")
 
@@ -250,9 +356,9 @@ def main() -> None:
             "CUMAC_UE_PLACEMENT_MODE": "coop_boundary",
             "CUMAC_UE_VORONOI_CLIP": "1",
             "CUMAC_BS_TX_PATTERN": "omni",
-            "CUMAC_PACKET_TTL_MS": "200",
-            "CUMAC_PACKET_TTL_TTI": "0",
+            **packet_ttl_env(args.packet_ttl_ms),
             "CUMAC_TRAFFIC_ARRIVAL_RATE": "1.0",
+            "CUMAC_TRAFFIC_PROFILE": args.traffic_profile,
             "CUMAC_COMPACT_TTI_LOG": "1",
             "CUMAC_PROGRESS_TTI_INTERVAL": "0",
             "CUMAC_COMPARE_TTI_INTERVAL": "0",
@@ -260,6 +366,13 @@ def main() -> None:
             "CUMAC_ONLINE_REWARD_MODE": "goodput_only",
         }
     )
+    if args.service_balance_audit:
+        env.update(
+            build_service_balance_audit_env(
+                out_dir,
+                trace_first_tti=args.service_balance_trace_first_tti,
+            )
+        )
     _extend_ld_library_path(env, sim_bin)
     command = [str(sim_bin), *shlex.split(args.sim_args)]
     rows: list[dict[str, object]] = []
@@ -273,7 +386,12 @@ def main() -> None:
             stdout=log_handle,
             stderr=subprocess.STDOUT,
         )
-        client = BridgeEnvClient(BridgeEnvConfig(socket_path=socket_path, connect_timeout_s=60.0))
+        client = BridgeEnvClient(BridgeEnvConfig(socket_path=socket_path, connect_timeout_s=60.0,
+                                               enable_ctbs=args.mechanism_snapshots))
+        capture = None
+        if args.mechanism_snapshots:
+            from .dpa_reproduction_mechanisms import ReferenceCapture
+            capture = ReferenceCapture(out_dir / "snapshots", client)
         try:
             obs, _, info = client.reset(seed=args.traffic_seed, episode_horizon=total_steps)
             if "teacher_action_ue_select" not in obs or "teacher_action_prg_alloc" not in obs:
@@ -286,8 +404,12 @@ def main() -> None:
             for step in range(total_steps):
                 action_ue = np.asarray(obs["teacher_action_ue_select"], dtype=np.int32)
                 action_prg = np.asarray(obs["teacher_action_prg_alloc"], dtype=np.int16)
+                if capture is not None:
+                    capture.observe(step + 1, obs, info, action_ue, action_prg)
                 before = compute_delay_debt_potential(snapshot_builder.build(obs))
                 obs, _, done, info = client.step(action_ue, action_prg)
+                if capture is not None:
+                    capture.after_step(action_ue, action_prg, info)
                 if not info.get("actual_ue_packet_expiry_aware_diagnostics_available", False):
                     raise RuntimeError("PFQ calibration requires expiry-aware per-UE diagnostics")
                 after = compute_delay_debt_potential(snapshot_builder.build(obs))
@@ -342,6 +464,7 @@ def main() -> None:
                         "ue_window_outcome_system_time_ms": (
                             tracker.window_outcome_system_time_ms.tolist()
                         ),
+                        **pfq_schedule_structure_metrics(action_prg, info),
                     }
                 )
                 previous_utility = utility
@@ -411,6 +534,8 @@ def main() -> None:
         / (measured_outcome_time[active_ue] * 1000.0)
     )
     summary["protocol_version"] = VERSION
+    summary["reference_policy"] = args.reference_policy
+    summary["traffic_profile"] = args.traffic_profile
     summary["goodput_mbps"] = float(summary["goodput_bytes_mean"]) * 0.016
     measured_tb_tx_count = float(sum(row["tb_tx_count"] for row in measured_rows))
     measured_tb_err_count = float(sum(row["tb_err_count"] for row in measured_rows))
@@ -421,8 +546,12 @@ def main() -> None:
         if measured_tb_tx_count > 0.0
         else None
     )
+    if capture is not None:
+        capture.finalize()
+    profile_metadata = traffic_profile_metadata(args.traffic_profile)
     summary["expiry_rate"] = float(
-        summary["expired_bytes_mean"] / (36.0 * 3000.0)
+        summary["expired_bytes_mean"]
+        / float(profile_metadata["expected_offered_bytes_per_tti"])
     )
     summary["ue_macro_ea_rate_mbps"] = (
         float(ue_ea_rates[active_ue].mean()) if np.any(active_ue) else 0.0
@@ -466,10 +595,10 @@ def main() -> None:
             "prbs_per_prg": 16,
             "allocation_type": 0,
             "precoding": "svd",
-            "packet_size_bytes": 3000,
-            "packets_per_ue_tti": 1.0,
-            "packet_ttl_ms": 200.0,
+            "packet_ttl_ms": float(args.packet_ttl_ms),
+            **profile_metadata,
         },
+        "reference_policy": args.reference_policy,
         "command": command,
         "warmup_steps": int(args.warmup_steps),
         "measure_steps": int(args.measure_steps),

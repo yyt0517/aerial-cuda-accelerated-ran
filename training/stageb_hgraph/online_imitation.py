@@ -4,14 +4,15 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import shlex
 import subprocess
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, fields, is_dataclass, replace
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Any, Dict, Iterator, List, Mapping, Optional
 
 import numpy as np
 import torch
@@ -31,6 +32,7 @@ from training.gnnrl.masks import (
     sanitize_targets,
 )
 from training.stageb_hgraph.bridge_env import BridgeEnvClient, BridgeEnvConfig
+from training.stageb_hgraph.ctbs_headroom import CtbsHeadroomInputs, CtbsHeadroomState, compare_ctbs_reference_labels
 from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder, SnapshotBuilderConfig
 from training.stageb_hgraph.graph_ops import (
@@ -43,12 +45,470 @@ from training.stageb_hgraph.independent_actor import (
     PFQIndependentReuseActor,
 )
 from training.stageb_hgraph.independent_policy import (
+    IndependentPolicyTrace,
+    _run_policy,
+    independent_teacher_targets_from_type0,
     independent_teacher_trace_from_type0,
+    replay_independent_trace,
     resolve_full_candidate_width,
     select_independent_action,
 )
 from training.stageb_hgraph.model import HGraphModelConfig, StageBHGraphPolicy
+from training.stageb_hgraph.phy_tbs_alignment_audit import PhyTbsConfig
 from training.stageb_hgraph.teacher import HeuristicTeacherConfig, build_joint_teacher
+from training.stageb_hgraph.types import SparseEntityGraph
+
+
+_INDEPENDENT_BC_DATASET_SCHEMA = "independent-bc-ctbs-physical-bytes-v2"
+_INDEPENDENT_BC_METADATA_KEYS = {
+    "feature_stage",
+    "headroom_accounting",
+    "teacher_policy",
+    "candidate_mode",
+    "include_pfq_score_anchor",
+    "actor_family",
+    "collection_ablation",
+    "topology_seed_mode",
+    "topology_seed",
+    "model_seed",
+    "expected_episode_count",
+    "expected_steps_per_episode",
+    "expected_record_count",
+}
+
+
+def _canonical_json_bytes(value: object) -> bytes:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode(
+        "utf-8"
+    )
+
+
+def _validate_independent_bc_metadata(
+    metadata: object,
+    initial_actor_sha256: object,
+) -> Dict[str, object]:
+    if not isinstance(metadata, Mapping):
+        raise ValueError("independent BC dataset metadata contract is missing")
+    missing = sorted(_INDEPENDENT_BC_METADATA_KEYS - set(metadata))
+    if missing:
+        raise ValueError(f"independent BC dataset metadata contract missing: {missing}")
+    result = dict(metadata)
+    if result["feature_stage"] not in {"legacy", "dimensionless"}:
+        raise ValueError("independent BC dataset feature_stage must be legacy or dimensionless")
+    expected = {
+        "headroom_accounting": "ctbs-v1",
+        "teacher_policy": "pfq_passthrough",
+        "candidate_mode": "all_demand_ues",
+        "include_pfq_score_anchor": False,
+        "actor_family": PFQIndependentReuseActor.actor_family,
+        "collection_ablation": "full",
+        "topology_seed_mode": "fixed",
+    }
+    for key, value in expected.items():
+        if result[key] != value:
+            raise ValueError(
+                f"independent BC dataset metadata {key} mismatch: "
+                f"got={result[key]!r} expected={value!r}"
+            )
+    for key in (
+        "topology_seed",
+        "model_seed",
+        "expected_episode_count",
+        "expected_steps_per_episode",
+        "expected_record_count",
+    ):
+        if int(result[key]) <= 0:
+            raise ValueError(f"independent BC dataset metadata {key} must be positive")
+        result[key] = int(result[key])
+    if result["expected_record_count"] != (
+        result["expected_episode_count"] * result["expected_steps_per_episode"]
+    ):
+        raise ValueError("independent BC dataset expected_record_count is inconsistent")
+    digest = str(initial_actor_sha256)
+    if len(digest) != 64:
+        raise ValueError("independent BC dataset initial actor hash is invalid")
+    try:
+        bytes.fromhex(digest)
+    except ValueError as exc:
+        raise ValueError("independent BC dataset initial actor hash is invalid") from exc
+    return result
+
+
+def _validate_independent_bc_step_sequence(
+    rows: List[Mapping[str, object]],
+    metadata: Mapping[str, object],
+) -> None:
+    expected_count = int(metadata["expected_record_count"])
+    steps_per_episode = int(metadata["expected_steps_per_episode"])
+    if len(rows) != expected_count:
+        raise ValueError(
+            "independent BC dataset expected_record_count mismatch: "
+            f"got={len(rows)} expected={expected_count}"
+        )
+    first_tti: Dict[int, int] = {}
+    for index, row in enumerate(rows):
+        expected_episode = index // steps_per_episode + 1
+        expected_step = index % steps_per_episode
+        episode = int(row.get("episode", -1))
+        step = int(row.get("step", -1))
+        global_step = int(row.get("global_step", -1))
+        tti = int(row.get("tti", -1))
+        if (episode, step, global_step) != (expected_episode, expected_step, index):
+            raise ValueError(
+                "independent BC dataset episode/step/global-step continuity mismatch "
+                f"at record {index}"
+            )
+        first_tti.setdefault(episode, tti)
+        if tti != first_tti[episode] + step:
+            raise ValueError(f"independent BC dataset TTI continuity mismatch at record {index}")
+        if bool(row.get("done", False)) and step < steps_per_episode - 1:
+            raise ValueError(f"independent BC dataset early done at record {index}")
+
+
+def _sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def _model_tensor_sha256(model: torch.nn.Module) -> str:
+    digest = hashlib.sha256()
+    for name, tensor in sorted(model.state_dict().items()):
+        value = tensor.detach().cpu().contiguous()
+        digest.update(name.encode("utf-8"))
+        digest.update(str(value.dtype).encode("ascii"))
+        digest.update(str(tuple(value.shape)).encode("ascii"))
+        digest.update(value.numpy().tobytes())
+    return digest.hexdigest()
+
+
+def _cpu_detached(value: Any) -> Any:
+    if isinstance(value, torch.Tensor):
+        return value.detach().cpu().clone()
+    if isinstance(value, np.ndarray):
+        return value.copy()
+    if is_dataclass(value) and not isinstance(value, type):
+        return type(value)(
+            **{field.name: _cpu_detached(getattr(value, field.name)) for field in fields(value)}
+        )
+    if isinstance(value, dict):
+        return {key: _cpu_detached(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_cpu_detached(item) for item in value]
+    if isinstance(value, tuple):
+        return tuple(_cpu_detached(item) for item in value)
+    return value
+
+
+def _align_ctbs_teacher(graph, action_ue, action_prg, inputs):
+    """BC-only deterministic prefix pruning; never relax the actor's legal mask."""
+    meta=graph.snapshot.static_meta
+    ue=torch.as_tensor(action_ue).reshape(meta.n_sched_ue)
+    raw=torch.as_tensor(action_prg).reshape(meta.n_prg*meta.n_cell)
+    aligned=raw.clone()
+    states={}; dropped=[]
+    for prg in range(meta.n_prg):
+        for cell in range(meta.n_cell):
+            index=prg*meta.n_cell+cell; slot=int(raw[index])
+            if slot==-1:continue
+            if not 0<=slot<meta.n_sched_ue:raise ValueError('teacher slot out of range')
+            if not bool(meta.action_mask_prg_cell[cell,prg]):
+                raise ValueError('teacher PRG unavailable')
+            target=int(ue[slot])
+            if not 0<=target<meta.n_ue:raise ValueError('teacher UE out of range')
+            if inputs.serving_cell[target]!=cell or not bool(meta.action_mask_cell_ue[cell,target]):
+                raise ValueError('teacher serving cell mismatch')
+            if target not in states:
+                states[target]=CtbsHeadroomState(float(graph.snapshot.ue_features.values[target,0]),
+                    inputs.reconstructed_mcs_for_ue(target),inputs.config)
+            state=states[target]
+            # Only trim surplus after a genuinely allocated prefix. Invalid initial
+            # demand/schedulability still fails the canonical policy trace below.
+            if state.selected_local_prgs and state.remaining_demand_bytes<=0:
+                aligned[index]=-1; dropped.append(index)
+            else:
+                states[target]=state.with_selected_prg(prg,layer_cap=inputs.prg_layer_cap[target][prg])
+    return aligned,{'version':'ctbs_prefix_prune_v1','raw_action_prg':raw.cpu().tolist(),
+                    'dropped_native_indices':dropped,'dropped_count':len(dropped)}
+
+
+def _canonical_independent_teacher_trace(
+    actor: PFQIndependentReuseActor,
+    graph: SparseEntityGraph,
+    packed,
+    teacher_action_ue: torch.Tensor,
+    teacher_action_prg: torch.Tensor,
+    ctbs_headroom_inputs: CtbsHeadroomInputs,
+) -> IndependentPolicyTrace:
+    """Build a policy-RNG-independent, replayable CTBS-v1 teacher trace."""
+    was_training = actor.training
+    actor.train(False)
+    try:
+        with torch.no_grad():
+            trace = _run_policy(
+                actor,
+                graph,
+                packed,
+                mode="greedy",
+                teacher_actions=(teacher_action_ue, teacher_action_prg),
+                ctbs_headroom_inputs=ctbs_headroom_inputs,
+            )
+    finally:
+        actor.train(was_training)
+    zero = torch.zeros((), dtype=torch.float32)
+    return _cpu_detached(
+        replace(
+            trace,
+            logp=zero,
+            entropy=zero,
+            diagnostics=None,
+            rescue_diagnostics=None,
+            service_accounting_diagnostics=None,
+            raw_logits_at_step=None,
+            chosen_logprob_at_step=None,
+            ctbs_diagnostics=None,
+            blank_expiry_diagnostics=None,
+        )
+    )
+
+
+def _independent_bc_train_step(
+    actor: PFQIndependentReuseActor,
+    optimizer: torch.optim.Optimizer,
+    graph: SparseEntityGraph,
+    teacher_trace: IndependentPolicyTrace,
+    grad_clip: float,
+    *,
+    update: bool = True,
+) -> Dict[str, float]:
+    actor.train(True)
+    logp, _entropy, _decoded = replay_independent_trace(
+        actor,
+        graph,
+        pack_prg_candidates(
+            graph,
+            max_candidates=int(actor.cfg.max_candidates),
+            fixed_width=True,
+        ),
+        teacher_trace,
+    )
+    loss = -logp
+    grad_norm = 0.0
+    if update:
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        grad_norm = float(
+            torch.nn.utils.clip_grad_norm_(actor.parameters(), max_norm=float(grad_clip))
+        )
+        optimizer.step()
+    return {"loss": float(loss.detach().item()), "grad_norm": float(grad_norm)}
+
+
+class IndependentBcDatasetWriter:
+    def __init__(
+        self,
+        directory: Path | str,
+        *,
+        initial_actor_sha256: str,
+        metadata: Mapping[str, object],
+    ) -> None:
+        self.directory = Path(directory).resolve()
+        if self.directory.exists() and any(self.directory.iterdir()):
+            raise ValueError(f"dataset output directory must be empty: {self.directory}")
+        self.directory.mkdir(parents=True, exist_ok=True)
+        self.records: List[Dict[str, object]] = []
+        self.initial_actor_sha256 = str(initial_actor_sha256)
+        self.metadata = _validate_independent_bc_metadata(
+            metadata, self.initial_actor_sha256
+        )
+        self.step_metadata: List[Mapping[str, object]] = []
+
+    def write(
+        self,
+        *,
+        graph: SparseEntityGraph,
+        teacher_trace: IndependentPolicyTrace,
+        teacher_action_ue: torch.Tensor,
+        teacher_action_prg: torch.Tensor,
+        next_obs: Mapping[str, object],
+        next_info: Mapping[str, object],
+        step_metadata: Mapping[str, object],
+    ) -> None:
+        index = len(self.records)
+        name = f"step_{index:08d}.pt"
+        record = {
+            "schema": _INDEPENDENT_BC_DATASET_SCHEMA,
+            "index": index,
+            "graph": _cpu_detached(graph),
+            "teacher_trace": _cpu_detached(teacher_trace),
+            "teacher_action_ue": _cpu_detached(teacher_action_ue.to(dtype=torch.long)),
+            "teacher_action_prg": _cpu_detached(teacher_action_prg.to(dtype=torch.long)),
+            "next_obs": _cpu_detached(dict(next_obs)),
+            "next_info": _cpu_detached(dict(next_info)),
+            "metadata": dict(step_metadata),
+        }
+        path = self.directory / name
+        torch.save(record, path)
+        self.records.append({"file": name, "sha256": _sha256_file(path)})
+        self.step_metadata.append(dict(step_metadata))
+
+    def finalize(self, *, max_candidates: int) -> Dict[str, object]:
+        if not self.records:
+            raise ValueError("cannot finalize an empty independent BC dataset")
+        _validate_independent_bc_step_sequence(self.step_metadata, self.metadata)
+        dataset_digest = hashlib.sha256()
+        dataset_digest.update(_canonical_json_bytes(self.metadata))
+        for record in self.records:
+            dataset_digest.update(bytes.fromhex(str(record["sha256"])))
+        manifest: Dict[str, object] = {
+            "schema": _INDEPENDENT_BC_DATASET_SCHEMA,
+            "count": len(self.records),
+            "records": self.records,
+            "dataset_sha256": dataset_digest.hexdigest(),
+            "initial_actor_sha256": self.initial_actor_sha256,
+            "max_candidates": int(max_candidates),
+            "metadata": self.metadata,
+        }
+        manifest["manifest_sha256"] = hashlib.sha256(
+            _canonical_json_bytes(manifest)
+        ).hexdigest()
+        (self.directory / "manifest.json").write_text(
+            json.dumps(manifest, ensure_ascii=True, indent=2),
+            encoding="utf-8",
+        )
+        return manifest
+
+
+class IndependentBcDatasetReader:
+    def __init__(
+        self,
+        directory: Path | str,
+        *,
+        expected_metadata: Mapping[str, object] | None = None,
+    ) -> None:
+        self.directory = Path(directory).resolve()
+        manifest_path = self.directory / "manifest.json"
+        if not manifest_path.is_file():
+            raise ValueError(f"independent BC dataset manifest is missing: {manifest_path}")
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise ValueError("independent BC dataset manifest is malformed") from exc
+        if not isinstance(manifest, dict) or manifest.get("schema") != _INDEPENDENT_BC_DATASET_SCHEMA:
+            raise ValueError("independent BC dataset manifest schema mismatch")
+        records = manifest.get("records")
+        if not isinstance(records, list) or int(manifest.get("count", -1)) != len(records) or not records:
+            raise ValueError("independent BC dataset manifest count is invalid")
+        dataset_digest = hashlib.sha256()
+        for index, entry in enumerate(records):
+            if not isinstance(entry, dict) or entry.get("file") != f"step_{index:08d}.pt":
+                raise ValueError("independent BC dataset record sequence is malformed")
+            path = self.directory / str(entry["file"])
+            if not path.is_file() or _sha256_file(path) != str(entry.get("sha256", "")):
+                raise ValueError(f"independent BC dataset record hash mismatch: {path}")
+            dataset_digest.update(bytes.fromhex(str(entry["sha256"])))
+        metadata = _validate_independent_bc_metadata(
+            manifest.get("metadata"), manifest.get("initial_actor_sha256")
+        )
+        expected_count = int(metadata["expected_record_count"])
+        if len(records) != expected_count:
+            raise ValueError(
+                "independent BC dataset expected_record_count mismatch: "
+                f"got={len(records)} expected={expected_count}"
+            )
+        if expected_metadata is not None:
+            for key, expected_value in expected_metadata.items():
+                if metadata.get(key) != expected_value:
+                    raise ValueError(
+                        f"independent BC dataset expected metadata {key} mismatch: "
+                        f"got={metadata.get(key)!r} expected={expected_value!r}"
+                    )
+        dataset_digest = hashlib.sha256()
+        dataset_digest.update(_canonical_json_bytes(metadata))
+        for entry in records:
+            dataset_digest.update(bytes.fromhex(str(entry["sha256"])))
+        if dataset_digest.hexdigest() != str(manifest.get("dataset_sha256", "")):
+            raise ValueError("independent BC dataset aggregate hash mismatch")
+        manifest_without_hash = dict(manifest)
+        manifest_sha256 = str(manifest_without_hash.pop("manifest_sha256", ""))
+        if hashlib.sha256(_canonical_json_bytes(manifest_without_hash)).hexdigest() != manifest_sha256:
+            raise ValueError("independent BC dataset manifest hash mismatch")
+        if int(manifest.get("max_candidates", 0)) <= 0:
+            raise ValueError("independent BC dataset max_candidates is invalid")
+        self.manifest = manifest
+        self.records = records
+
+    def __iter__(self) -> Iterator[Dict[str, object]]:
+        step_rows: List[Mapping[str, object]] = []
+        for index, entry in enumerate(self.records):
+            record = torch.load(
+                self.directory / str(entry["file"]),
+                map_location="cpu",
+                weights_only=False,
+            )
+            if (
+                not isinstance(record, dict)
+                or record.get("schema") != _INDEPENDENT_BC_DATASET_SCHEMA
+                or int(record.get("index", -1)) != index
+                or not isinstance(record.get("graph"), SparseEntityGraph)
+                or not isinstance(record.get("teacher_trace"), IndependentPolicyTrace)
+                or not isinstance(record.get("next_obs"), Mapping)
+                or not isinstance(record.get("next_info"), Mapping)
+            ):
+                raise ValueError(f"independent BC dataset record {index} is malformed")
+            graph = record["graph"]
+            trace = record["teacher_trace"]
+            metadata = record.get("metadata")
+            if not isinstance(metadata, Mapping):
+                raise ValueError(f"independent BC dataset record {index} metadata is malformed")
+            if trace.ctbs_headroom_inputs is None or int(trace.ctbs_headroom_inputs.tti) != int(
+                metadata.get("tti", -1)
+            ):
+                raise ValueError(
+                    f"independent BC dataset record {index} CTBS tuple TTI mismatch"
+                )
+            if int(metadata.get("topology_seed", -1)) != int(self.manifest["metadata"]["topology_seed"]):
+                raise ValueError(f"independent BC dataset record {index} topology seed mismatch")
+            if int(metadata.get("episode_seed", -1)) != int(self.manifest["metadata"]["topology_seed"]):
+                raise ValueError(f"independent BC dataset record {index} episode seed mismatch")
+            expected_tail = (
+                ("critical_ttl_backlog_bytes", "near_ttl_backlog_bytes", "age_weighted_backlog_bytes", "service_gap_tti")
+                if self.manifest["metadata"]["feature_stage"] == "legacy"
+                else ("log1p_drain_pressure", "scheduled_dequeue_adequacy", "ttl_normalized_service_age", "reserved_zero")
+            )
+            if tuple(graph.snapshot.ue_features.names[12:16]) != expected_tail:
+                raise ValueError(f"independent BC dataset record {index} feature stage mismatch")
+            edge_attr = graph.edges["E_UP"].attr
+            if edge_attr is None or edge_attr.dim() != 2 or int(edge_attr.shape[1]) != 5:
+                raise ValueError(f"independent BC dataset record {index} E_UP schema mismatch")
+            stored_ue = torch.as_tensor(record.get("teacher_action_ue"), dtype=torch.long)
+            stored_prg = torch.as_tensor(record.get("teacher_action_prg"), dtype=torch.long)
+            packed = pack_prg_candidates(
+                graph,
+                max_candidates=int(self.manifest["max_candidates"]),
+                fixed_width=True,
+            )
+            try:
+                teacher_choice = independent_teacher_targets_from_type0(
+                    graph,
+                    packed,
+                    stored_ue,
+                    stored_prg,
+                    trace.valid_at_step,
+                )
+            except ValueError as exc:
+                raise ValueError(
+                    f"independent BC dataset record {index} teacher actions disagree with frozen trace"
+                ) from exc
+            if not torch.equal(teacher_choice.cpu(), trace.choice.cpu()):
+                raise ValueError(
+                    f"independent BC dataset record {index} teacher actions disagree with frozen trace"
+                )
+            step_rows.append(metadata)
+            yield record
+        _validate_independent_bc_step_sequence(step_rows, self.manifest["metadata"])
 
 
 def _parse_seed_list(seed_list_arg: str) -> List[int]:
@@ -110,6 +570,10 @@ class EpisodeSummary:
 class OnlineEpisodeRunner:
     def __init__(self, args: argparse.Namespace):
         self.args = args
+        self.ctbs_enabled = (
+            str(getattr(args, "independent_headroom_accounting", "raw-v1"))
+            == "ctbs-v1"
+        )
         self.proc: Optional[subprocess.Popen] = None
         self.env: Optional[BridgeEnvClient] = None
         self.socket_path: Optional[str] = None
@@ -123,6 +587,13 @@ class OnlineEpisodeRunner:
         self.base_topology_seed = int(args.topology_seed)
         self.sim_env_overrides = _parse_sim_env_entries(getattr(args, "sim_env", []))
         self.sim_log_path = Path(args.out_dir).resolve() / "sim_runtime" / "online_bridge_imitation.log"
+
+    def _bridge_env_config(self) -> BridgeEnvConfig:
+        return BridgeEnvConfig(
+            socket_path=str(self.socket_path),
+            connect_timeout_s=float(self.args.connect_timeout_s),
+            enable_ctbs=self.ctbs_enabled,
+        )
 
     def _episode_seed_for(self, episode_idx: int) -> int:
         if self.resolved_topology_seed_mode == "list_cycle":
@@ -153,6 +624,8 @@ class OnlineEpisodeRunner:
             # mask. Teacher collection must share that action space; the PFQ
             # comparator calibration remains unchanged.
             sim_env.setdefault("CUMAC_PFQ_DEMAND_CAP_SLACK_BYTES", "0")
+            if self.ctbs_enabled:
+                sim_env.setdefault("CUMAC_ONLINE_EXPORT_PHY_TBS_AUDIT", "1")
         for key, value in self.sim_env_overrides.items():
             sim_env[key] = value
         sim_env["CUMAC_TOPOLOGY_SEED"] = str(int(topology_seed))
@@ -298,9 +771,7 @@ class OnlineEpisodeRunner:
             f"episode_seed={episode_seed} topology_seed={topology_seed} "
             f"persistent={int(self.args.online_persistent)} socket={self.socket_path}"
         )
-        self.env = BridgeEnvClient(
-            BridgeEnvConfig(socket_path=self.socket_path, connect_timeout_s=self.args.connect_timeout_s)
-        )
+        self.env = BridgeEnvClient(self._bridge_env_config())
         self.live_topology_seed = topology_seed
         obs, reward, info = self.env.reset(seed=episode_seed, episode_horizon=self.args.episode_horizon)
         self.cached_obs = obs
@@ -309,9 +780,173 @@ class OnlineEpisodeRunner:
         return obs, float(reward), info, episode_seed, topology_seed
 
 
+def _ctbs_inputs_for_imitation_step(
+    runner: OnlineEpisodeRunner,
+    info: Mapping[str, object],
+) -> CtbsHeadroomInputs | None:
+    if not runner.ctbs_enabled:
+        return None
+    if runner.env is None:
+        raise RuntimeError("CTBS imitation requires a live bridge environment")
+    if bool(info.get("ctbs_config_available", False)):
+        if int(info.get("harq_enabled", -1)) != 0:
+            raise ValueError("independent CTBS-v1 BC requires runtime HARQ to be disabled")
+        runner.ctbs_config = PhyTbsConfig.from_vector(info["ctbs_config"])
+        runner.ctbs_config_sha256 = str(info["ctbs_config_sha256"])
+    config = getattr(runner, "ctbs_config", None)
+    config_sha256 = getattr(runner, "ctbs_config_sha256", None)
+    if config is None or config_sha256 is None:
+        raise RuntimeError("independent CTBS-v1 BC reset did not provide a TBS configuration")
+    if "tti" not in info:
+        raise RuntimeError("independent CTBS-v1 BC state is missing its TTI identity")
+    pre_action = runner.env.request_pre_action_snapshot(expected_tti=int(info["tti"]))
+    return CtbsHeadroomInputs.from_arrays(
+        tti=pre_action.tti,
+        snapshot_id=pre_action.snapshot_id,
+        config_sha256=pre_action.config_sha256,
+        config=config,
+        ue_ids=pre_action.ue_ids,
+        serving_cell=pre_action.serving_cell,
+        wb_sinr_first_layer_db=pre_action.wb_sinr_first_layer_db,
+        olla_delta=pre_action.olla_delta,
+        olla_delta_up=pre_action.olla_delta_up,
+        olla_delta_down=pre_action.olla_delta_down,
+        prior_tb_err=pre_action.prior_tb_err,
+        prg_layer_cap=pre_action.prg_layer_cap,
+    )
+
+
+def _run_offline_independent_bc(
+    args: argparse.Namespace,
+    device: torch.device,
+    metrics_path: Path,
+    summary_path: Path,
+    ckpt_last_path: Path,
+    ckpt_best_path: Path,
+) -> int:
+    sim_env = _parse_sim_env_entries(list(getattr(args, "sim_env", [])))
+    feature_stage = sim_env.get(
+        "CUMAC_DPA_FEATURE_MODE", os.environ.get("CUMAC_DPA_FEATURE_MODE", "")
+    )
+    expected_steps = int(args.max_steps) if int(args.max_steps) > 0 else int(args.episode_horizon)
+    reader = IndependentBcDatasetReader(
+        args.independent_bc_dataset_in,
+        expected_metadata={
+            "feature_stage": feature_stage,
+            "topology_seed_mode": _resolve_topology_seed_mode(
+                str(args.topology_seed_mode), _parse_seed_list(str(args.seed_list))
+            ),
+            "topology_seed": int(args.topology_seed),
+            "expected_episode_count": int(args.episodes),
+            "expected_steps_per_episode": expected_steps,
+            "expected_record_count": int(args.episodes) * expected_steps,
+        },
+    )
+    max_candidates = int(reader.manifest["max_candidates"])
+    model = PFQIndependentReuseActor(
+        IndependentActorConfig(
+            hidden_dim=int(args.hidden_dim),
+            message_layers=int(args.message_layers),
+            dropout=float(args.dropout),
+            max_candidates=max_candidates,
+            ablation=str(args.independent_ablation),
+        )
+    ).to(device)
+    initial_actor_sha256 = _model_tensor_sha256(model)
+    optimizer = torch.optim.AdamW(
+        model.parameters(),
+        lr=float(args.lr),
+        weight_decay=float(args.weight_decay),
+    )
+    rows: List[Dict[str, object]] = []
+    episode_losses: Dict[int, List[float]] = {}
+    with metrics_path.open("w", encoding="utf-8") as metrics_file:
+        for global_step, record in enumerate(reader):
+            trace = record["teacher_trace"]
+            if trace.ctbs_headroom_inputs is None:
+                raise ValueError(f"independent BC dataset record {global_step} lacks CTBS-v1 inputs")
+            step_result = _independent_bc_train_step(
+                model,
+                optimizer,
+                record["graph"],
+                trace,
+                float(args.grad_clip),
+            )
+            metadata = record.get("metadata", {})
+            if not isinstance(metadata, Mapping):
+                raise ValueError(f"independent BC dataset record {global_step} metadata is malformed")
+            episode = int(metadata.get("episode", 1))
+            row: Dict[str, object] = {
+                "episode": episode,
+                "step": int(metadata.get("step", global_step)),
+                "global_step": global_step,
+                "tti": int(metadata.get("tti", -1)),
+                "loss": float(step_result["loss"]),
+                "grad_norm": float(step_result["grad_norm"]),
+                "reward_raw": float(metadata.get("reward_raw", 0.0)),
+                "action_head_mode": "independent",
+                "independent_ablation": str(args.independent_ablation),
+                "dataset_replay": 1,
+            }
+            metrics_file.write(json.dumps(row, ensure_ascii=True) + "\n")
+            rows.append(row)
+            episode_losses.setdefault(episode, []).append(float(step_result["loss"]))
+
+    checkpoint = {
+        "model_state": model.state_dict(),
+        "model_config": model.model_config_dict(),
+        "actor_state": model.state_dict(),
+        "actor_config": model.model_config_dict(),
+        "graph_config": {
+            "candidate_mode": "all_demand_ues",
+            "include_pfq_score_anchor": False,
+            "include_candidate_risk_features": False,
+        },
+        "train_args": vars(args),
+        "episode": max(episode_losses, default=0),
+        "global_step": len(rows),
+        "mean_loss": float(np.mean([row["loss"] for row in rows])) if rows else 0.0,
+        "dataset": reader.manifest,
+        "initial_actor_sha256": initial_actor_sha256,
+    }
+    torch.save(checkpoint, ckpt_last_path)
+    torch.save(checkpoint, ckpt_best_path)
+    summary = {
+        "episodes": len(episode_losses),
+        "resolved_max_steps": len(rows),
+        "device": str(device),
+        "teacher_mode": "pfq_passthrough",
+        "action_head_mode": "independent",
+        "independent_ablation": str(args.independent_ablation),
+        "actor_family": model.actor_family,
+        "requires_pfq_features": False,
+        "resolved_max_candidates": max_candidates,
+        "metrics_path": str(metrics_path),
+        "last_checkpoint": str(ckpt_last_path),
+        "best_checkpoint": str(ckpt_best_path),
+        "best_mean_loss": min(
+            (float(np.mean(values)) for values in episode_losses.values()),
+            default=0.0,
+        ),
+        "mean_loss_all": float(np.mean([row["loss"] for row in rows])) if rows else 0.0,
+        "initial_actor_sha256": initial_actor_sha256,
+        "dataset": reader.manifest,
+        "dataset_mode": "offline_replay",
+    }
+    summary_path.write_text(
+        json.dumps(summary, ensure_ascii=True, indent=2), encoding="utf-8"
+    )
+    print(f"[online-imitation] replayed dataset: {args.independent_bc_dataset_in}")
+    print(f"[online-imitation] wrote metrics: {metrics_path}")
+    print(f"[online-imitation] wrote summary: {summary_path}")
+    print(f"[online-imitation] last checkpoint: {ckpt_last_path}")
+    print(f"[online-imitation] best checkpoint: {ckpt_best_path}")
+    return 0
+
+
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Run Stage-B sparse-graph online imitation warm start")
-    p.add_argument("--sim-bin", required=True, help="Path to multiCellSchedulerUeSelection binary")
+    p.add_argument("--sim-bin", default="", help="Path to multiCellSchedulerUeSelection binary; omitted for dataset replay")
     p.add_argument("--sim-args", default="-d 1 -b 2 -x 0 -f 0 -g 100 -r 3000", help="CLI args for the simulation binary")
     p.add_argument("--sim-cwd", default="", help="Optional cwd for launching the simulation")
     p.add_argument("--sim-env", action="append", default=[], help="Extra simulator env vars, format KEY=VALUE")
@@ -357,6 +992,25 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--device", choices=["auto", "cpu", "cuda"], default="auto")
     p.add_argument("--teacher-mode", choices=["heuristic_graph", "pfq_passthrough"], default="pfq_passthrough")
     p.add_argument("--save-every-episodes", type=int, default=1)
+    p.add_argument(
+        "--independent-headroom-accounting",
+        choices=["raw-v1", "ctbs-v1"],
+        default="raw-v1",
+    )
+    p.add_argument(
+        "--independent-ablation",
+        choices=["full", "no_reuse_attention", "no_dimensionless"],
+        default="full",
+    )
+    p.add_argument("--independent-bc-dataset-out", default="")
+    p.add_argument("--independent-bc-dataset-in", default="")
+    p.add_argument(
+        "--independent-bc-collect-only",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        help="capture PFQ/CTBS records without optimizer updates; requires dataset-out",
+    )
     return p.parse_args()
 
 
@@ -374,6 +1028,13 @@ def main() -> int:
         raise ValueError("--ue-prg-diversity-extra must be >= 0")
     if args.candidate_pfq_anchor_logit_coef < 0.0:
         raise ValueError("--candidate-pfq-anchor-logit-coef must be >= 0")
+    if args.independent_bc_dataset_in and args.independent_bc_dataset_out:
+        raise ValueError("--independent-bc-dataset-in and --independent-bc-dataset-out are mutually exclusive")
+    dataset_mode = bool(args.independent_bc_dataset_in or args.independent_bc_dataset_out)
+    if int(args.independent_bc_collect_only) == 1 and not args.independent_bc_dataset_out:
+        raise ValueError("--independent-bc-collect-only 1 requires --independent-bc-dataset-out")
+    if not args.independent_bc_dataset_in and not args.sim_bin:
+        raise ValueError("--sim-bin is required unless --independent-bc-dataset-in is used")
     if args.action_head_mode == "independent":
         if args.teacher_mode != "pfq_passthrough":
             raise ValueError("independent BC requires --teacher-mode pfq_passthrough")
@@ -381,6 +1042,13 @@ def main() -> int:
             raise ValueError("independent BC requires --candidate-mode all_demand_ues")
         if int(args.include_pfq_score_anchor) != 0:
             raise ValueError("independent BC requires --include-pfq-score-anchor 0")
+    if dataset_mode:
+        if args.action_head_mode != "independent":
+            raise ValueError("independent BC dataset mode requires --action-head-mode independent")
+        if args.independent_headroom_accounting != "ctbs-v1":
+            raise ValueError("independent BC dataset mode requires --independent-headroom-accounting ctbs-v1")
+        if args.independent_bc_dataset_in and args.independent_ablation == "no_dimensionless":
+            raise ValueError("offline legacy S0 dataset replay does not support no_dimensionless")
     explicit_seed_list = _parse_seed_list(args.seed_list)
     if args.topology_seed_mode == "list_cycle" and not explicit_seed_list:
         raise ValueError("--topology-seed-mode list_cycle requires --seed-list")
@@ -401,15 +1069,35 @@ def main() -> int:
     ckpt_best_path = out_dir / (
         "hgraph_independent_bc_best.pt" if independent_mode else "hgraph_imitation_best.pt"
     )
+    if args.independent_bc_dataset_in:
+        return _run_offline_independent_bc(
+            args,
+            device,
+            metrics_path,
+            summary_path,
+            ckpt_last_path,
+            ckpt_best_path,
+        )
     max_prg_candidates = (
         0
         if independent_mode
         else _resolve_prg_candidate_count(args.ue_prg_topk, args.ue_prg_diversity_extra)
     )
 
-    snapshot_builder = FeatureSnapshotBuilder(
-        SnapshotBuilderConfig(tb_err_ema_alpha=float(args.tb_err_ema_alpha))
-    )
+    requested_feature_mode = _parse_sim_env_entries(list(args.sim_env)).get("CUMAC_DPA_FEATURE_MODE")
+    previous_feature_mode = os.environ.get("CUMAC_DPA_FEATURE_MODE")
+    if requested_feature_mode is not None:
+        os.environ["CUMAC_DPA_FEATURE_MODE"] = requested_feature_mode
+    try:
+        snapshot_builder = FeatureSnapshotBuilder(
+            SnapshotBuilderConfig(tb_err_ema_alpha=float(args.tb_err_ema_alpha))
+        )
+    finally:
+        if requested_feature_mode is not None:
+            if previous_feature_mode is None:
+                os.environ.pop("CUMAC_DPA_FEATURE_MODE", None)
+            else:
+                os.environ["CUMAC_DPA_FEATURE_MODE"] = previous_feature_mode
     edge_generator = SparseEdgeGenerator(
         EdgeGeneratorConfig(
             ue_prg_topk=int(args.ue_prg_topk),
@@ -463,6 +1151,9 @@ def main() -> int:
     episode_summaries: List[EpisodeSummary] = []
     best_mean_loss = float("inf")
     global_step = 0
+    dataset_writer: IndependentBcDatasetWriter | None = None
+    dataset_manifest: Dict[str, object] | None = None
+    initial_actor_sha256 = ""
 
     try:
         with open(metrics_path, "w", encoding="utf-8") as f_jsonl:
@@ -484,8 +1175,10 @@ def main() -> int:
                                 message_layers=int(args.message_layers),
                                 dropout=float(args.dropout),
                                 max_candidates=max_prg_candidates,
+                                ablation=str(args.independent_ablation),
                             )
                         ).to(device)
+                        initial_actor_sha256 = _model_tensor_sha256(model)
                         optimizer = torch.optim.AdamW(
                             model.parameters(),
                             lr=float(args.lr),
@@ -495,10 +1188,35 @@ def main() -> int:
                             "[online-imitation] independent full candidate width "
                             f"resolved from static association mask: {max_prg_candidates}"
                         )
+                        if args.independent_bc_dataset_out:
+                            dataset_writer = IndependentBcDatasetWriter(
+                                args.independent_bc_dataset_out,
+                                initial_actor_sha256=initial_actor_sha256,
+                                metadata={
+                                    "feature_stage": runner.sim_env_overrides.get(
+                                        "CUMAC_DPA_FEATURE_MODE",
+                                        os.environ.get("CUMAC_DPA_FEATURE_MODE", ""),
+                                    ),
+                                    "headroom_accounting": "ctbs-v1",
+                                    "teacher_policy": "pfq_passthrough",
+                                    "teacher_alignment": "ctbs_prefix_prune_v1",
+                                    "candidate_mode": "all_demand_ues",
+                                    "include_pfq_score_anchor": False,
+                                    "actor_family": model.actor_family,
+                                    "collection_ablation": str(args.independent_ablation),
+                                    "topology_seed_mode": runner.resolved_topology_seed_mode,
+                                    "topology_seed": int(args.topology_seed),
+                                    "model_seed": int(args.seed),
+                                    "expected_episode_count": int(args.episodes),
+                                    "expected_steps_per_episode": int(max_steps),
+                                    "expected_record_count": int(args.episodes) * int(max_steps),
+                                },
+                            )
                     if model is None or optimizer is None:
                         raise RuntimeError("model initialization failed")
 
                     teacher_out = teacher.label_graph(graph)
+                    teacher_alignment = None
                     teacher_target_ue = teacher_out["target_ue_class"].to(device=device, dtype=torch.long)
                     teacher_target_prg = teacher_out["target_prg_class"].to(device=device, dtype=torch.long)
 
@@ -510,14 +1228,44 @@ def main() -> int:
                             max_candidates=max_prg_candidates,
                             fixed_width=True,
                         )
-                        teacher_trace = independent_teacher_trace_from_type0(
-                            model,
-                            graph,
-                            packed,
-                            teacher_out["action_ue_select"].to(device=device, dtype=torch.long),
-                            teacher_out["action_prg_alloc"].to(device=device, dtype=torch.long),
+                        teacher_action_ue = teacher_out["action_ue_select"].to(
+                            device=device, dtype=torch.long
                         )
-                        loss = -teacher_trace.logp
+                        teacher_action_prg = teacher_out["action_prg_alloc"].to(
+                            device=device, dtype=torch.long
+                        )
+                        if dataset_writer is not None:
+                            ctbs_inputs = _ctbs_inputs_for_imitation_step(runner, info)
+                            if ctbs_inputs is None:
+                                raise RuntimeError("dataset collection requires CTBS-v1 inputs")
+                            teacher_action_prg, teacher_alignment = _align_ctbs_teacher(
+                                graph,teacher_action_ue,teacher_action_prg,ctbs_inputs)
+                            teacher_out["action_prg_alloc"]=teacher_action_prg
+                            teacher_out["teacher_blank_ratio"]=(teacher_action_prg<0).float().mean()
+                            teacher_trace = _canonical_independent_teacher_trace(
+                                model,
+                                graph,
+                                packed,
+                                teacher_action_ue,
+                                teacher_action_prg,
+                                ctbs_inputs,
+                            )
+                            replayed_logp, _replayed_entropy, _replayed_action = replay_independent_trace(
+                                model,
+                                graph,
+                                packed,
+                                teacher_trace,
+                            )
+                            loss = -replayed_logp
+                        else:
+                            teacher_trace = independent_teacher_trace_from_type0(
+                                model,
+                                graph,
+                                packed,
+                                teacher_action_ue,
+                                teacher_action_prg,
+                            )
+                            loss = -teacher_trace.logp
                         prg_loss = loss
                         ue_loss = loss * 0.0
                         with torch.no_grad():
@@ -526,9 +1274,14 @@ def main() -> int:
                                 graph,
                                 packed,
                                 mode="greedy",
+                                ctbs_headroom_inputs=(
+                                    teacher_trace.ctbs_headroom_inputs
+                                    if dataset_writer is not None
+                                    else None
+                                ),
                             )
                             prg_acc = float(
-                                (greedy_trace.choice == teacher_trace.choice).float().mean().item()
+                            (greedy_trace.choice == teacher_trace.choice.to(greedy_trace.choice.device)).float().mean().item()
                             )
                         ue_acc = 1.0
                         joint_acc = prg_acc
@@ -616,10 +1369,11 @@ def main() -> int:
                         )
                         loss = prg_loss + ue_loss_weight * ue_loss
 
-                    optimizer.zero_grad(set_to_none=True)
-                    loss.backward()
-                    torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=float(args.grad_clip))
-                    optimizer.step()
+                    if int(args.independent_bc_collect_only) == 0:
+                        optimizer.zero_grad(set_to_none=True)
+                        loss.backward()
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=float(args.grad_clip))
+                        optimizer.step()
 
                     if not independent_mode:
                         with torch.no_grad():
@@ -637,6 +1391,37 @@ def main() -> int:
                         teacher_out["action_prg_alloc"].cpu().numpy(),
                     )
                     runner.record_transition(next_obs, float(reward_raw), next_info)
+                    if dataset_writer is not None:
+                        slots=teacher_action_prg.detach().cpu().reshape(meta.n_prg,meta.n_cell)
+                        selected=teacher_action_ue.detach().cpu()
+                        chosen=torch.full_like(slots,-1)
+                        valid=slots>=0; chosen[valid]=selected[slots[valid]]
+                        parity=compare_ctbs_reference_labels(ctbs_inputs,
+                            chosen_ue_per_prg=chosen.T.reshape(-1).tolist(),
+                            actual_mcs=next_info['actual_ue_mcs'],actual_layer=next_info['actual_ue_layer'],
+                            actual_tbs_capacity_bytes=next_info['actual_ue_tbs_capacity_bytes'],
+                            n_cell=meta.n_cell,n_prg=meta.n_prg)
+                        if not parity.all_exact:raise ValueError('aligned BC teacher CTBS post-action parity failed')
+                        dataset_writer.write(
+                            graph=graph,
+                            teacher_trace=teacher_trace,
+                            teacher_action_ue=teacher_action_ue,
+                            teacher_action_prg=teacher_action_prg,
+                            next_obs=next_obs,
+                            next_info=next_info,
+                            step_metadata={
+                                "episode": episode_idx,
+                                "episode_seed": episode_seed,
+                                "topology_seed": topology_seed,
+                                "step": step,
+                                "global_step": global_step,
+                                "tti": int(info["tti"]),
+                                "done": bool(done),
+                                "reward_raw": float(reward_raw),
+                                "teacher_alignment": teacher_alignment,
+                                "ctbs_post_action_exact": True,
+                            },
+                        )
 
                     prg_feat = snapshot.prg_features.values
                     row = {
@@ -659,6 +1444,7 @@ def main() -> int:
                         "teacher_blank_ratio": float(teacher_out["teacher_blank_ratio"].item()),
                         "reward_raw": float(reward_raw),
                         "action_head_mode": str(args.action_head_mode),
+                        "collect_only": int(args.independent_bc_collect_only),
                         "candidate_pfq_anchor_logit_mean": (
                             float(out["candidate_pfq_anchor_logits"].detach().mean().item())
                             if "candidate_pfq_anchor_logits" in out
@@ -758,6 +1544,8 @@ def main() -> int:
                     "global_step": global_step,
                     "mean_loss": mean_loss,
                     "mean_acc": mean_acc,
+                    "initial_actor_sha256": initial_actor_sha256,
+                    "collect_only": int(args.independent_bc_collect_only),
                     "teacher_collection": (
                         {
                             "policy": "pfq",
@@ -777,6 +1565,12 @@ def main() -> int:
     finally:
         runner.close_episode(graceful=False)
 
+    if dataset_writer is not None:
+        dataset_manifest = dataset_writer.finalize(max_candidates=max_prg_candidates)
+        checkpoint["dataset"] = dataset_manifest
+        checkpoint["initial_actor_sha256"] = initial_actor_sha256
+        torch.save(checkpoint, ckpt_last_path)
+
     summary = {
         "episodes": int(args.episodes),
         "resolved_max_steps": int(max_steps),
@@ -784,6 +1578,7 @@ def main() -> int:
         "device": str(device),
         "teacher_mode": args.teacher_mode,
         "action_head_mode": str(args.action_head_mode),
+        "independent_ablation": str(args.independent_ablation),
         "actor_family": getattr(model, "actor_family", "legacy_stageb_hgraph"),
         "requires_pfq_features": bool(getattr(model, "requires_pfq_features", True)),
         "resolved_max_candidates": int(max_prg_candidates),
@@ -795,6 +1590,10 @@ def main() -> int:
         "last_checkpoint": str(ckpt_last_path),
         "best_checkpoint": str(ckpt_best_path),
         "best_mean_loss": float(best_mean_loss if np.isfinite(best_mean_loss) else 0.0),
+        "initial_actor_sha256": initial_actor_sha256,
+        "dataset": dataset_manifest or {},
+        "dataset_mode": "online_collect" if dataset_manifest is not None else "disabled",
+        "collect_only": int(args.independent_bc_collect_only),
         "episode_summaries": [asdict(ep) for ep in episode_summaries],
         "mean_loss_all": float(np.mean([row["loss"] for row in all_rows])) if all_rows else 0.0,
         "mean_ue_acc_all": float(np.mean([row["ue_acc"] for row in all_rows])) if all_rows else 0.0,

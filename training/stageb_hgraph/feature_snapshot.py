@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 from typing import Any, Mapping, Optional
 
 import torch
@@ -21,10 +22,10 @@ _UE_HOL_DELAY_IDX = 8
 _UE_TTL_SLACK_IDX = 9
 _UE_RECENT_SCHED_RATIO_IDX = 10
 _UE_RECENT_DEFICIT_IDX = 11
-_UE_CRITICAL_TTL_BACKLOG_IDX = 12
-_UE_NEAR_TTL_BACKLOG_IDX = 13
-_UE_AGE_WEIGHTED_BACKLOG_IDX = 14
-_UE_SERVICE_GAP_IDX = 15
+_UE_LOG1P_DRAIN_PRESSURE_IDX = 12
+_UE_SCHEDULED_DEQUEUE_ADEQUACY_IDX = 13
+_UE_TTL_NORMALIZED_SERVICE_AGE_IDX = 14
+_UE_RESERVED_ZERO_IDX = 15
 
 _PRG_TOP1_SINR_IDX = 0
 _PRG_TOP2_GAP_IDX = 1
@@ -60,10 +61,10 @@ _UE_FEATURE_NAMES = (
     "ttl_slack_ms",
     "recent_scheduled_ratio",
     "recent_goodput_deficit_norm",
-    "critical_ttl_backlog_bytes",
-    "near_ttl_backlog_bytes",
-    "age_weighted_backlog_bytes",
-    "service_gap_tti",
+    "log1p_drain_pressure",
+    "scheduled_dequeue_adequacy",
+    "ttl_normalized_service_age",
+    "reserved_zero",
 )
 
 _PRG_FEATURE_NAMES = (
@@ -124,6 +125,12 @@ class FeatureSnapshotBuilder:
 
     def __init__(self, cfg: SnapshotBuilderConfig | None = None):
         self.cfg = cfg or SnapshotBuilderConfig()
+        mode = os.environ.get("CUMAC_DPA_FEATURE_MODE", "dimensionless")
+        if mode not in ("legacy", "dimensionless"):
+            raise ValueError("CUMAC_DPA_FEATURE_MODE must be legacy or dimensionless")
+        self._ue_feature_names = _UE_FEATURE_NAMES if mode == "dimensionless" else (
+            *_UE_FEATURE_NAMES[:12], "critical_ttl_backlog_bytes", "near_ttl_backlog_bytes",
+            "age_weighted_backlog_bytes", "service_gap_tti")
         self._cell_tb_err_ema: Optional[torch.Tensor] = None
 
     def reset(self) -> None:
@@ -181,7 +188,7 @@ class FeatureSnapshotBuilder:
         cell_values = obs_cell[:, : len(_CELL_FEATURE_NAMES)].contiguous()
         ue_feat_dim = min(int(obs_ue.shape[-1]), len(_UE_FEATURE_NAMES))
         ue_values = obs_ue[:, :ue_feat_dim].contiguous()
-        ue_feature_names = _UE_FEATURE_NAMES[:ue_feat_dim]
+        ue_feature_names = self._ue_feature_names[:ue_feat_dim]
         prg_feat_dim = min(int(obs_prg.shape[-1]), len(_PRG_FEATURE_NAMES))
         prg_values = obs_prg[:, :, :prg_feat_dim].reshape(
             n_cell * n_prg,

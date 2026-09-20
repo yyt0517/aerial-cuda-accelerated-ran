@@ -87,6 +87,14 @@ public:
     {
         return generator->GetTotalGeneratedPkts();
     }
+    void SetPacketOfferAuditEnabled(bool enabled)
+    {
+        generator->SetPacketOfferAuditEnabled(enabled);
+    }
+    void GetPacketOfferSamples(std::vector<PacketOfferSample>& samples) const
+    {
+        generator->GetPacketOfferSamples(samples);
+    }
     unsigned long long GetTotalAcceptedBytes() const
     {
         return radio_rsrc->GetTotalAcceptedBytes();

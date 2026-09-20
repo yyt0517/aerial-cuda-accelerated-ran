@@ -6,6 +6,7 @@ import numpy as np
 import pytest
 import torch
 
+from training.stageb_hgraph import independent_contract as independent_contract_module
 from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder
 from training.stageb_hgraph.graph_ops import pack_prg_candidates
@@ -89,8 +90,71 @@ def test_candidate_width_cannot_be_smaller_than_static_association() -> None:
     graph = _independent_graph(make_candidate_observation(n_prg=2))
 
     validate_independent_graph(graph, max_candidates=2)
+    validate_independent_graph(graph, max_candidates=3)
     with pytest.raises(ValueError, match="max_candidates"):
         validate_independent_graph(graph, max_candidates=1)
+
+
+def test_runtime_width_uses_full_topology_and_legacy_width_is_training_metadata() -> None:
+    resolver = getattr(independent_contract_module, "resolve_runtime_candidate_contract", None)
+    assert callable(resolver), "runtime topology candidate contract is missing"
+    graph = _independent_graph(make_candidate_observation(n_prg=2))
+
+    automatic = resolver(graph, {"max_candidates": 13})
+    padded = resolver(graph, {"max_candidates": 13}, requested_width=3)
+
+    assert automatic.runtime_candidate_width == 2
+    assert automatic.topology_candidate_width == 2
+    assert automatic.training_observed_max_candidates == 13
+    assert automatic.candidate_width_policy == "runtime_topology"
+    assert automatic.candidate_truncation == "forbidden"
+    assert padded.runtime_candidate_width == 3
+    with pytest.raises(ValueError, match="topology|truncat"):
+        resolver(graph, {"max_candidates": 13}, requested_width=1)
+
+
+def test_candidate_truncation_counter_detects_dropped_edges() -> None:
+    counter = getattr(independent_contract_module, "candidate_truncation_count", None)
+    assert callable(counter), "candidate truncation audit is missing"
+    graph = _independent_graph(make_candidate_observation(n_prg=2))
+    full = pack_prg_candidates(graph, max_candidates=2, fixed_width=True)
+    truncated = pack_prg_candidates(graph, max_candidates=1, fixed_width=True)
+
+    assert counter(graph, full) == 0
+    assert counter(graph, truncated) == 6
+
+
+def test_state_dict_identity_uses_sorted_tensor_content_not_serialization() -> None:
+    hasher = getattr(independent_contract_module, "state_dict_sha256", None)
+    equal = getattr(independent_contract_module, "state_dicts_bitwise_equal", None)
+    assert callable(hasher)
+    assert callable(equal), "bitwise state-dict value comparison is missing"
+    left = {
+        "z.weight": torch.tensor([[1.0, 2.0]], dtype=torch.float32),
+        "a.bias": torch.tensor([3, 4], dtype=torch.int16),
+    }
+    reordered = {
+        "a.bias": left["a.bias"].clone(),
+        "z.weight": left["z.weight"].clone(),
+    }
+    different_dtype = {
+        "a.bias": left["a.bias"].to(torch.int32),
+        "z.weight": left["z.weight"].clone(),
+    }
+    different_shape = {
+        "a.bias": left["a.bias"].clone(),
+        "z.weight": left["z.weight"].reshape(2, 1),
+    }
+    different_value = {
+        "a.bias": left["a.bias"].clone(),
+        "z.weight": torch.tensor([[1.0, 2.5]], dtype=torch.float32),
+    }
+
+    assert hasher(left) == hasher(reordered)
+    assert equal(left, reordered)
+    for changed in (different_dtype, different_shape, different_value):
+        assert hasher(left) != hasher(changed)
+        assert not equal(left, changed)
 
 
 def test_deleting_all_pfq_and_teacher_fields_preserves_actor_graph_tensors() -> None:

@@ -1,3 +1,5 @@
+> 历史材料，2026-09-20 起不作为修正环境的性能证据或续跑许可。见[三项修正与新实验要求](../../../Doc/stageB_corrected_environment_v1.md)；[修正前原文](../../../Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/plans/2026-08-13-pfq-independent-reuse-actor.md)保留当时状态。
+
 # PFQ-Independent Reuse Actor Research Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use `superpowers:executing-plans` for serial execution, or `superpowers:subagent-driven-development` only when the user explicitly authorizes delegated/parallel work. Execute tasks in order, track the checkbox (`- [ ]`) steps, and stop at the research gates below.

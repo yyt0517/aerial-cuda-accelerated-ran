@@ -5,14 +5,18 @@ from typing import Literal, Mapping
 
 import numpy as np
 
-from .independent_objectives import ExpiryAwareUeWindowTracker, compute_delay_debt_potential
+from .independent_objectives import (
+    DeadlineTailPressureTracker,
+    ExpiryAwareUeWindowTracker,
+    compute_delay_debt_potential,
+)
 from .reward_utils import extract_reward_metrics
 from .types import GraphFeatureSnapshot, SparseEntityGraph
 
 
 @dataclass(frozen=True)
 class IndependentRewardConfig:
-    treatment: Literal["A", "B", "C", "D"]
+    treatment: Literal["A", "B", "C", "D", "E"]
     offered_bytes_per_tti: float = 108_000.0
     slot_duration_s: float = 0.0005
     gamma: float = 0.99
@@ -25,9 +29,17 @@ class IndependentRewardConfig:
     delay_weight: float = 0.25
     ue_utility_weight: float = 0.25
     delay_topk: int = 8
+    deadline_tail_eta: float = 0.25
+    deadline_tail_window_steps: int = 100
+    deadline_tail_epsilon_bytes: float = 1.0
+    deadline_tail_tail_fraction: float = 0.10
+    deadline_tail_rate_weight: float = 0.25
+    deadline_tail_rate_tail_fraction: float = 0.10
+    deadline_tail_rate_epsilon_mbps: float = 1.0e-6
+    remove_deadline_reward: bool = False
 
     def __post_init__(self) -> None:
-        if self.treatment not in ("A", "B", "C", "D"):
+        if self.treatment not in ("A", "B", "C", "D", "E"):
             raise ValueError(f"unknown independent treatment: {self.treatment}")
         if float(self.offered_bytes_per_tti) <= 0.0:
             raise ValueError("offered_bytes_per_tti must be positive")
@@ -35,6 +47,21 @@ class IndependentRewardConfig:
             raise ValueError("treatment C/D requires positive frozen delay_scale_p95")
         if self.treatment == "D" and float(self.ue_utility_scale_p95) <= 0.0:
             raise ValueError("treatment D requires positive frozen ue_utility_scale_p95")
+        if self.treatment == "E":
+            if float(self.deadline_tail_eta) <= 0.0:
+                raise ValueError("treatment E requires positive deadline_tail_eta")
+            if int(self.deadline_tail_window_steps) <= 0:
+                raise ValueError("treatment E requires positive deadline_tail_window_steps")
+            if float(self.deadline_tail_epsilon_bytes) <= 0.0:
+                raise ValueError("treatment E requires positive deadline_tail_epsilon_bytes")
+            if not 0.0 < float(self.deadline_tail_tail_fraction) <= 1.0:
+                raise ValueError("treatment E tail fraction must be in (0, 1]")
+            if float(self.deadline_tail_rate_weight) < 0.0:
+                raise ValueError("treatment E rate-tail weight must be non-negative")
+            if not 0.0 < float(self.deadline_tail_rate_tail_fraction) <= 1.0:
+                raise ValueError("treatment E rate-tail fraction must be in (0, 1]")
+            if float(self.deadline_tail_rate_epsilon_mbps) <= 0.0:
+                raise ValueError("treatment E rate-tail epsilon must be positive")
 
 
 def _snapshot(value: SparseEntityGraph | GraphFeatureSnapshot) -> GraphFeatureSnapshot:
@@ -66,10 +93,10 @@ def compute_independent_reward(
     before_graph: SparseEntityGraph | GraphFeatureSnapshot,
     after_graph: SparseEntityGraph | GraphFeatureSnapshot,
     info: Mapping[str, object],
-    tracker: ExpiryAwareUeWindowTracker | None,
+    tracker: ExpiryAwareUeWindowTracker | DeadlineTailPressureTracker | None,
     cfg: IndependentRewardConfig,
 ) -> dict[str, float]:
-    """Compute the locked G-F-2E reward and optional frozen-scale auxiliaries."""
+    """Compute the locked base reward plus one selected auxiliary treatment."""
     # Revalidate because tests and checkpoint loaders may construct configs without
     # going through a CLI preflight.
     cfg.__post_init__()
@@ -92,7 +119,12 @@ def compute_independent_reward(
     goodput_weighted = float(cfg.goodput_weight) * goodput_raw
     failed_weighted = -float(cfg.failed_weight) * failed_raw
     expired_weighted = -float(cfg.expired_weight) * expired_raw
-    base = goodput_weighted + failed_weighted + expired_weighted
+    base_with_expiry = goodput_weighted + failed_weighted + expired_weighted
+    base = (
+        goodput_weighted + failed_weighted
+        if bool(cfg.remove_deadline_reward)
+        else base_with_expiry
+    )
 
     delay_enabled = cfg.treatment in ("C", "D")
     delay_before = 0.0
@@ -135,8 +167,88 @@ def compute_independent_reward(
         utility_clipped = float(np.clip(utility_scaled, -1.0, 1.0))
         utility_weighted = float(cfg.ue_utility_weight) * utility_clipped
 
-    total = base + delay_weighted + utility_weighted
-    return {
+    deadline_tail_terms = {
+        "reward_deadline_tail_enabled": 0.0,
+        "reward_deadline_tail_phi_before": 0.0,
+        "reward_deadline_tail_phi_after": 0.0,
+        "reward_deadline_tail_phi_delta": 0.0,
+        "reward_deadline_tail_eta": float(cfg.deadline_tail_eta),
+        "reward_deadline_tail_history_steps": 0.0,
+        "reward_deadline_tail_weighted": 0.0,
+    }
+    deadline_tail_rate_terms = {
+        "reward_deadline_tail_rate_enabled": 0.0,
+        "reward_deadline_tail_rate_before": 0.0,
+        "reward_deadline_tail_rate_after": 0.0,
+        "reward_deadline_tail_rate_delta": 0.0,
+        "reward_deadline_tail_rate_weight": float(cfg.deadline_tail_rate_weight),
+        "reward_deadline_tail_rate_tail_fraction": float(cfg.deadline_tail_rate_tail_fraction),
+        "reward_deadline_tail_rate_epsilon_mbps": float(cfg.deadline_tail_rate_epsilon_mbps),
+        "reward_deadline_tail_rate_weighted": 0.0,
+    }
+    if cfg.treatment == "E":
+        if not isinstance(tracker, DeadlineTailPressureTracker):
+            raise ValueError("treatment E requires DeadlineTailPressureTracker")
+        if not bool(info.get("actual_ue_packet_expiry_aware_diagnostics_available", False)):
+            raise ValueError("treatment E requires expiry-aware UE diagnostics")
+        tail = tracker.transition(
+            before_graph,
+            after_graph,
+            scheduled_by_ue,
+        )
+        deadline_tail_terms.update(
+            {
+                "reward_deadline_tail_enabled": 1.0,
+                "reward_deadline_tail_phi_before": float(tail["phi_before"]),
+                "reward_deadline_tail_phi_after": float(tail["phi_after"]),
+                "reward_deadline_tail_phi_delta": float(tail["phi_delta"]),
+                "reward_deadline_tail_history_steps": float(tail["scheduled_history_steps"]),
+                "reward_deadline_tail_weighted": float(cfg.deadline_tail_eta) * float(tail["phi_delta"]),
+            }
+        )
+        rate_tracker = tracker.expiry_rate_tracker
+        before_demand = _demand_mask(before_graph)
+        after_demand = _demand_mask(after_graph)
+        rate_before = rate_tracker.rate_tail_utility(
+            before_demand,
+            tail_fraction=float(cfg.deadline_tail_rate_tail_fraction),
+            epsilon_mbps=float(cfg.deadline_tail_rate_epsilon_mbps),
+        )
+        rate_tracker.update(
+            after_demand,
+            goodput_by_ue,
+            _ue_array(info, "actual_ue_packet_system_time_ms", before_n_ue),
+            _ue_array(info, "actual_ue_packet_expired_system_time_ms", before_n_ue),
+        )
+        rate_after = rate_tracker.rate_tail_utility(
+            after_demand,
+            tail_fraction=float(cfg.deadline_tail_rate_tail_fraction),
+            epsilon_mbps=float(cfg.deadline_tail_rate_epsilon_mbps),
+        )
+        rate_delta = float(cfg.gamma) * rate_after - rate_before
+        deadline_tail_rate_terms.update(
+            {
+                "reward_deadline_tail_rate_enabled": 1.0,
+                "reward_deadline_tail_rate_before": float(rate_before),
+                "reward_deadline_tail_rate_after": float(rate_after),
+                "reward_deadline_tail_rate_delta": float(rate_delta),
+                "reward_deadline_tail_rate_weighted": float(cfg.deadline_tail_rate_weight) * rate_delta,
+            }
+        )
+
+    deadline_tail_weighted = deadline_tail_terms["reward_deadline_tail_weighted"]
+    deadline_tail_rate_weighted = deadline_tail_rate_terms[
+        "reward_deadline_tail_rate_weighted"
+    ]
+    removed_deadline_contribution = 0.0
+    if bool(cfg.remove_deadline_reward):
+        removed_deadline_contribution = (
+            expired_weighted + deadline_tail_weighted + deadline_tail_rate_weighted
+        )
+        deadline_tail_weighted = 0.0
+        deadline_tail_rate_weighted = 0.0
+    total = base + delay_weighted + utility_weighted + deadline_tail_weighted + deadline_tail_rate_weighted
+    result = {
         "reward_total": float(total),
         "reward_base": float(base),
         "reward_goodput_bytes": goodput_bytes,
@@ -149,6 +261,8 @@ def compute_independent_reward(
         "reward_goodput_weighted": goodput_weighted,
         "reward_failed_weighted": failed_weighted,
         "reward_expired_weighted": expired_weighted,
+        "reward_remove_deadline_reward": float(bool(cfg.remove_deadline_reward)),
+        "reward_removed_deadline_contribution": float(removed_deadline_contribution),
         "reward_delay_enabled": float(delay_enabled),
         "reward_delay_before_raw": delay_before,
         "reward_delay_after_raw": delay_after,
@@ -166,6 +280,9 @@ def compute_independent_reward(
         "reward_delay_scale_p95": float(cfg.delay_scale_p95),
         "reward_ue_utility_scale_p95": float(cfg.ue_utility_scale_p95),
     }
+    result.update(deadline_tail_terms)
+    result.update(deadline_tail_rate_terms)
+    return result
 
 
 __all__ = ["IndependentRewardConfig", "compute_independent_reward"]

@@ -6,17 +6,38 @@ from pathlib import Path
 import numpy as np
 import pytest
 
+
+@pytest.mark.parametrize("policy", ["pf", "pfq", "rr", "rrq"])
+def test_native_four_policy_cli_accepts_explicit_policy(monkeypatch, policy):
+    from training.stageb_hgraph.pfq_reference_calibration import _parse_args
+    monkeypatch.setattr("sys.argv", ["calibration", "--sim-bin", "/unused",
+        "--out-dir", "/unused", "--reference-policy", policy])
+    assert _parse_args().reference_policy == policy
+
+
+def test_explicit_pressure_ttl_overrides_stale_tti_env():
+    from training.stageb_hgraph import pfq_reference_calibration as calibration
+    assert hasattr(calibration, "packet_ttl_env"), "pressure TTL must be explicitly supported"
+    assert calibration.packet_ttl_env(12.5) == {
+        "CUMAC_PACKET_TTL_MS": "12.5", "CUMAC_PACKET_TTL_TTI": "0"}
+    with pytest.raises(ValueError):
+        calibration.packet_ttl_env(0)
+
 from training.stageb_hgraph.independent_objectives import (
     ExpiryAwareUeWindowTracker,
     compute_calibration_scales,
 )
 from training.stageb_hgraph.pfq_reference_calibration import (
     MEASURED_TERMINAL_TTI_EXCLUSIVE,
+    build_service_balance_audit_env,
     build_reference_summary,
     filter_outcome_samples,
+    pfq_schedule_structure_metrics,
+    traffic_profile_metadata,
     validate_observed_scenario,
     validate_reference_manifest,
 )
+from training.stageb_hgraph.online_protocol import VERSION
 
 
 def _trace_rows() -> list[dict[str, float | int]]:
@@ -92,7 +113,7 @@ def test_manifest_requires_binary_source_scenario_and_protocol() -> None:
     manifest = {
         "binary_sha256": "a" * 64,
         "source_revision": "deadbeef",
-        "protocol_version": 12,
+        "protocol_version": VERSION,
         "scenario": {
             "name": "coop_boundary",
             "topology_seed": 41,
@@ -147,3 +168,62 @@ def test_outcome_window_excludes_terminal_1000_and_includes_1001(tmp_path: Path)
     )
 
     assert [row["terminal_tti"] for row in rows] == [1001, 5000]
+
+
+def test_pfq_schedule_structure_metrics_record_opportunity_without_gating() -> None:
+    action_prg = np.asarray(
+        [0, 0, 0, 0, 1, 2, 0, -1, -1, -1, -1, -1],
+        dtype=np.int16,
+    )
+    reward_terms = np.zeros((23,), dtype=np.float64)
+    reward_terms[6] = 7.0 / 12.0
+    reward_terms[8] = 0.25
+
+    metrics = pfq_schedule_structure_metrics(
+        action_prg,
+        {"reward_terms": reward_terms, "n_cell": 3, "n_prg": 4},
+    )
+
+    assert metrics == {
+        "blank_ratio": pytest.approx(5.0 / 12.0),
+        "prg_opportunity_count": 7.0,
+        "prg_utilization_ratio": pytest.approx(7.0 / 12.0),
+        "prg_reuse_ratio": pytest.approx(0.25),
+        "local_prg_00_opportunity_count": 3.0,
+        "local_prg_01_opportunity_count": 3.0,
+        "local_prg_02_opportunity_count": 1.0,
+        "local_prg_03_opportunity_count": 0.0,
+    }
+
+
+def test_service_balance_audit_env_is_explicit_and_frozen(tmp_path: Path) -> None:
+    env = build_service_balance_audit_env(tmp_path, trace_first_tti=602)
+
+    assert env == {
+        "CUMAC_ONLINE_EXPORT_PHY_TBS_AUDIT": "1",
+        "CUMAC_SERVICE_BALANCE_TRACE_CSV": str(tmp_path / "service_balance_trace.csv"),
+        "CUMAC_SERVICE_BALANCE_TRACE_FIRST_TTI": "602",
+        "CUMAC_TRAFFIC_OFFERED_SAMPLES_CSV": str(tmp_path / "traffic_offered_packets.csv"),
+    }
+    with pytest.raises(ValueError, match="positive"):
+        build_service_balance_audit_env(tmp_path, trace_first_tti=0)
+
+
+def test_mixed_granularity_metadata_preserves_expected_load() -> None:
+    homogeneous = traffic_profile_metadata("homogeneous")
+    mixed = traffic_profile_metadata("mixed_granularity_v1")
+
+    assert homogeneous["expected_offered_bytes_per_tti"] == 108000.0
+    assert mixed["expected_offered_bytes_per_tti"] == 108000.0
+    assert mixed["flow_classes"] == {
+        "high_frequency_short": {
+            "ue_ids": list(range(0, 36, 2)),
+            "packet_size_bytes": 1500,
+            "arrival_rate_packets_per_tti": 2.0,
+        },
+        "low_frequency_large": {
+            "ue_ids": list(range(1, 36, 2)),
+            "packet_size_bytes": 12000,
+            "arrival_rate_packets_per_tti": 0.25,
+        },
+    }

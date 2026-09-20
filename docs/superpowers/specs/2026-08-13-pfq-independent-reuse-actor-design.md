@@ -1,650 +1,269 @@
-# PFQ-Guided, PFQ-Independent Reuse Actor Design
+# DPA-v1（PFQ-independent reuse actor）主设计
 
-## 1. Goal
+> 状态：保留算法结构与接口契约，更新于 2026-09-20；历史性能结论撤回，尚无修正环境中新训练并验收的 DPA。
+> 容量单位、PHY slot 索引、GPU MCS 同步已修正，见[重大变更与有效性分界](../../../Doc/stageB_corrected_environment_v1.md)。[修改前原文](../../../Doc/archive/pre_correction_2026_09_20/originals/docs/superpowers/specs/2026-08-13-pfq-independent-reuse-actor-design.md)保留历史记录；当前结果统一见[修正环境实验报告](../../../Doc/stageB_boundary_intelligent_algorithm_experiment_report.md)。
 
-Build and falsify a lightweight intelligent scheduler for the canonical
-3-cell boundary scenario. PFQ may provide behavior-cloning labels during warm
-start, but the converged policy must construct candidates, score actions, and
-materialize the Type-0 schedule without reading PFQ data.
+## 1. 定位与结论
 
-The first research question is deliberately narrow:
+DPA-v1（Deadline-Pressure Actor v1）是 Stage-B 历史冻结的、在线不依赖 PFQ 的图策略。代码中的兼容名称仍为：
 
-> Can a PFQ-free online actor, using the full associated-UE action space and
-> explicit same-PRG cross-cell context, reach at least 99% of PFQ goodput on
-> boundary seed 41 without violating the reliability and expiry gates?
+- actor class：`PFQIndependentReuseActor`
+- actor family：`pfq_independent_reuse_v1`
+- 报告名称：`DPA-v1`
 
-The first experiment is a mechanism test, not a production scheduler. It stops
-after the seed-41 question is answered. Seeds 41--43 are run only if the
-seed-41 gate passes. Ten-seed validation, 7-cell scaling, deployment hardening,
-and generalized architecture work are separate follow-ups.
+三者指向同一个算法，不代表三个版本。保留旧代码名是为了 checkpoint 和已有实验目录兼容。
 
-## 2. Core hypotheses
+DPA-v1 回答的核心问题是：在不读取 PFQ score、PFQ ranking 或 PFQ action 的前提下，能否从因果可用的队列、截止期、信道和历史服务状态直接生成 Type-0 PRG 分配，并在吞吐、可靠性、时延和弱 UE 服务上超过 PFQ/RRQ。
 
-The experiment separates three hypotheses that the previous PFQ-residual
-stack could not isolate.
+当前证据边界：
 
-### H1: architecture feasibility
+- 旧 seeds41–50 paired 结果、seeds101–110 packet-granularity 结果，以及训练/消融结果来自存在关键错误的环境，已归档，不能证明修正环境中 DPA 超过 PFQ/RRQ。
+- 修正环境当前完成 seed42 PFQ/RRQ 短基线与三项错误的限定验证，尚未证明 DPA 或 reuse attention/deadline 组件的性能贡献。
+- 旧 guard 的零 override 是历史观察，不是修正环境的 non-starvation 保证；重新实验时须明确 guard 配置。
+- 下文保留结构、特征和解码语义，但不继承旧容量、旧训练门槛及旧 checkpoint 的部署有效性。
 
-An HGraph encoder followed by explicit reuse-group attention and a sequential
-headroom-aware UE scorer can reach 99% of PFQ goodput while choosing from every
-legal associated UE, not only a PFQ proposal neighborhood.
+## 2. 冻结身份与复现边界
 
-### H2: PFQ is a training prior, not an online dependency
-
-PFQ behavior cloning reduces the number of PPO interactions required to reach
-the gate. A scratch policy and a PFQ-warm-start policy use the same actor and
-the same PFQ-free online inputs. Their difference measures initialization and
-sample efficiency, not action-space capacity.
-
-### H3: secondary utility matters near the capacity ceiling
-
-When aggregate goodput is close to capacity, delay-debt reduction and
-per-UE expiry-aware successful rate provide useful gradients that aggregate
-goodput alone does not. These terms are accepted only if they improve formal
-secondary KPIs without sacrificing goodput or reliability.
-
-## 3. Fixed experimental scope
-
-The first experiment is fixed to:
-
-- 3 cells;
-- 36 UEs with fixed strongest-cell association;
-- 17 local PRGs per cell and 16 PRBs per PRG;
-- Type-0 allocation;
-- `coop_boundary` UE placement;
-- cell radius 500 m, corresponding to the canonical boundary geometry;
-- SVD precoding;
-- 3000-byte packets;
-- one packet per TTI offered load;
-- 200 ms packet TTL;
-- topology and traffic seed 41 for training and the first gate;
-- seeds 41--43 only after the seed-41 gate passes.
-
-All PFQ and learned-policy comparisons must come from the same newly built
-binary after the expiry-aware metric correction. Historical PFQ artifacts are
-context only and cannot be used as the promotion reference.
-
-### Out of scope
-
-The first experiment does not:
-
-- change cell association or handover;
-- enumerate joint three-cell UE tuples;
-- use a cross-cell autoregressive decoder;
-- use PFQ score, rank, proposal, margin, residual action, or materializer state
-  online;
-- add STOP/BLANK/SWAP/FILL edits or a PFQ-relative action language;
-- run counterfactual PFQ schedules on the learned policy's state;
-- add safe-fill, blank repair, slot repair, or PFQ fallback;
-- tune PRG granularity;
-- run a reward-weight grid search;
-- scale to 7 cells;
-- build a complete production deployment path.
-
-## 4. Architecture
-
-The selected first-version architecture is:
+历史 DPA-v1 checkpoint（原路径现为归档兼容链接，仅限历史研究/明确标注的迁移诊断）：
 
 ```text
-PFQ-free state
-  -> HGraph encoder
-  -> reuse-group attention
-  -> sequential headroom-aware per-cell UE scorer
-  -> deterministic Type-0 materializer
+output/pfq_independent_reuse/formal/
+  deadline_dimensionless_features_seed45_v1/
+  train_attempt2/ppo_actor_last.pt
 ```
 
-It reuses the existing Stage-B online bridge, feature snapshot, sparse graph
-encoder, PPO rollout machinery, and KPI reporting wherever their semantics are
-already suitable. The implementation adds one independent action path instead
-of redesigning the existing PFQ-residual stack.
+- 文件 SHA-256：`94a2e40f0c0a56632e0c0ca63af4fa54d894d35aea38c2dd34afc0cfeadf2d7a`
+- tensor-state SHA-256：`6039c59e92ecda5ed75731fef86b71f567fe0c227142d9ed267434934b1e56be`
+- 冻结 iteration：`8`
+- 训练初始化：`deadline_tail_rate_alignment_v1/.../ppo_actor_absolute_best.pt`
+- 训练 reward：treatment `E`，deadline-tail potential + tail-rate utility
+- 历史评估配置：deterministic `argmax`，CTBS-v1，guard off；不代表当前部署验收
 
-### 4.1 PFQ-free state
+所有性能声明必须同时给出 checkpoint、二进制 hash、seed、业务 profile、窗口和解码配置。不同二进制或不同 offered stream 的结果只能作为跨 campaign 参考，不能做严格 paired 因果比较。
 
-The online state is restricted to scheduling facts:
+新实验还必须记录共享库 hash 和三项修正的代码身份。旧 trajectory/BC/归一化状态不能通过字段除以 8 复用；修正环境需重新采集并训练。
 
-- queue: buffer bytes, HOL age, TTL slack, critical/near-expiry backlog;
-- PHY: wideband and per-PRG post-EQ SINR, CQI, RI, MCS-relevant quality, recent
-  TB outcome;
-- history: average successful rate, recent service ratio, service gap, and
-  successful-goodput deficit;
-- topology: serving-cell association and cell adjacency;
-- interference/reuse: same-local-PRG neighbor context and current interference
-  proxies.
+## 3. 在线算法契约
 
-The actor input must not contain:
+每个 TTI 的决策流程如下：
 
-- PFQ score or transformed PFQ score;
-- PFQ rank, second-best margin, or proposal membership;
-- PFQ predicted or assigned bytes;
-- PFQ residual headroom;
-- teacher actions;
-- PFQ residual traces or PFQ-relative utility.
+1. 从 online bridge 读取一次 pre-action snapshot。
+2. 构造 Cell、UE 和 Cell-PRG 三类实体及稀疏关系。
+3. 对整张图编码，并在相同 local PRG 的不同 cell token 之间做 reuse attention。
+4. 按固定 local PRG 顺序 `0..16` 解码。
+5. 每个 local PRG 同时为三个 cell 从同一份 pre-update 状态计算 logits。
+6. 以 `argmax` 选择本 cell 的某个 UE 或 Blank。
+7. 三个 cell 的选择确定后，按固定 cell 顺序更新累计 CTBS headroom 与 sequential features。
+8. materializer 将选择写成合法 Type-0 bitmap，送入现有仿真执行路径。
 
-Teacher actions may be present in a behavior-cloning data object, but they are
-not part of the graph snapshot accepted by the actor.
+同一 reuse group 必须“先统一打分、后顺序更新”。如果 cell 0 的选择提前污染 cell 1/2 的打分输入，便破坏了同 PRG 跨小区决策的可比性。
 
-### 4.2 Full candidate coverage
+### 3.1 候选集合
 
-For every `(cell c, local PRG p)`, the candidate set is:
+每个 cell 的候选集合是：
 
 ```text
-all UEs associated with c that are schedulable and have positive demand
-+ Blank
+所有与该 cell 关联、可调度且 pre-action demand > 0 的 UE + Blank
 ```
 
-The canonical scenario is expected to have at most 12 associated UEs per cell,
-so the complete set is small enough to score directly. A preflight check reads
-the actual static association mask. Fixed-width packing uses that observed
-maximum (expected 12) plus Blank and masks unused positions. A run fails before
-training if the configured width is smaller than the observed maximum. There
-is no PFQ Top-K and no learned or heuristic pre-ranking that can remove a legal
-demand UE before the actor sees it.
+候选宽度由运行时拓扑决定，禁止截断。冻结 checkpoint/eval metadata 记录的 `training_observed_max_candidates=13` 是 UE 候选观察值，不含额外 Blank，也不是部署上限。例如 seed45 正式评估的 association candidate counts 为 `[7, 20, 9]`，运行时 `K=20`，加入 Blank 后 logit 宽度为 21。源码 `IndependentActorConfig` 的默认 `max_candidates=12` 同样不能解释为截断上限；正式复现应以 checkpoint metadata 和 runtime full-width validation 为准。
 
-The edge generator uses `candidate_mode=all_demand_ues` and disables the PFQ
-score anchor. Existing non-PFQ UE-PRG physical, urgency, debt, and risk features
-may be reused.
+候选合法性来自 mask；无 demand、未关联、不可调度 UE 不得通过低 logit“软排除”，而必须被硬 mask。
 
-### 4.3 HGraph encoder
+### 3.2 动作
 
-The existing entity types remain:
-
-- Cell;
-- UE;
-- Cell-PRG.
-
-The existing relation types remain:
-
-- Cell -> Cell;
-- Cell -> UE;
-- Cell -> PRG;
-- UE -> PRG;
-- PRG -> PRG for the same local PRG across cells.
-
-The first version keeps the existing structured template encoders and sparse
-heterogeneous message passing. It does not add deeper graph stacks or a new
-graph framework.
-
-### 4.4 Reuse-group attention
-
-After HGraph encoding, Cell-PRG embeddings are reshaped from `[C*P,H]` to
-`[P,C,H]`. One lightweight attention layer processes the three cell tokens of
-each local PRG:
+动作是每个 `(cell, local_prg)` 的一个离散 token：
 
 ```text
-G_p = {(cell 0,p), (cell 1,p), (cell 2,p)}
+UE id | Blank
 ```
 
-The output for `(p,c)` therefore contains the other two cells' same-frequency
-context before the UE scorer runs. The first version uses four attention heads
-and a residual connection. It does not condition cell 1 on cell 0's sampled UE
-or cell 2 on earlier sampled UEs. Cross-cell autoregression is considered only
-if diagnostics show that per-cell choices are individually sound but their
-same-PRG combinations remain the dominant failure mode.
+一个 UE 可在同 TTI 获得多个 local PRG。Blank 表示该 cell 在该 PRG 上不发射，属于资源效率/干扰控制动作，不等价于“没有候选”。
 
-### 4.5 Sequential headroom-aware actor
+## 4. 状态表示
 
-Reuse groups are processed in fixed native order `p=0..16`. At step `p`, each
-cell scores every currently valid associated UE and Blank:
+### 4.1 图结构
+
+- Cell node：小区负载、活跃 UE 数、平均宽带 SINR、平均速率和 bridge 当前 snapshot 的 TB-error rate。
+- UE node：队列、长期速率、宽带信道、HARQ/新数据、时延与服务历史，共 16 维。
+- Cell-PRG node：局部/邻区信道、历史占用、reuse conflict/ICI proxy、post-EQ 和 expected-goodput 类特征，共 12 维。
+- Cell--Cell edge：拓扑邻接及两维 edge attribute。
+- UE--Cell-PRG edge：候选 UE 与对应 PRG token 的关系及五维 edge attribute。
+
+模型先分别编码三类 node，经过两层 `HeteroMessageLayer`；随后对同一 local PRG 的跨 cell embedding 使用 4-head self-attention，得到 reuse context。
+
+当前模型参数：
+
+| 参数 | 值 |
+|---|---:|
+| cell / UE / PRG feature dim | 5 / 16 / 12 |
+| hidden dim | 128 |
+| message layers | 2 |
+| UE--PRG edge attr dim | 5 |
+| reuse attention heads | 4 |
+| dropout | 0 |
+
+UE scorer 输入 reuse、cell、UE、candidate-edge context 和 3 维 sequential features；Blank 使用独立 scorer。
+
+实现说明：`FeatureSnapshotBuilder` 当前会维护私有 `_cell_tb_err_ema`，但 `cell_values` 实际直接传递 observation 的前 5 维，并未用该 EMA 覆盖 slot 4。因此算法文档必须按“当前 TB-error rate”描述；若未来真的切换为 EMA，需要作为输入分布变更重新版本化和评估。
+
+### 4.2 无量纲 deadline/service 特征
+
+旧版直接使用绝对 backlog、service gap 和手工阈值，能识别 starvation，却不能稳定改变策略排序。DPA-v1 将 UE slot 12--15 固定为：
 
 ```text
-z[p,c,u] = scorer(
-    reuse_context[p,c],
-    ue_embedding[u],
-    ue_prg_edge[p,c,u],
-    sequential_ue_state[u])
+S_hat(t+1) = 0.95 * S_hat(t) + 0.05 * scheduled_dequeue_bytes(t)
+slack_slots  = max(TTL slack in TTI, 1)
+pressure     = Q / (S_hat * slack_slots + 1)
+
+f12 = log1p(pressure)
+f13 = clip(S_hat * slack_slots / max(Q, 1), 0, 1)
+f14 = clip(service_age_tti / packet_ttl_tti, 0, 1)
+f15 = 0
 ```
 
-The sequential UE state contains only non-PFQ quantities:
+当前 `TTL=200 ms`、TTI `0.5 ms`，所以 `packet_ttl_tti=400`。当 `Q=0` 时，四个 slot 全部为 0。这里使用 scheduled dequeue，而不是 successful goodput，目的是让状态反映调度器可控的服务行为，同时避免由 PHY 成败引入错误的“未调度”解释。
 
-- remaining demand bytes;
-- PRGs already allocated in the current TTI;
-- cumulative predicted service in the current TTI.
+三者分别表达：按剩余期限归一化的排空压力、期限内预计可服务比例、归一化连续未服务年龄。`f15` 保留为零是版本契约，不应悄悄复用。
 
-At TTI start, remaining demand equals the observed UE buffer. A candidate's
-single-PRG service estimate is derived from its post-EQ physical-rate estimate
-and slot duration, converted to bytes and clipped to at least one byte. After a
-selection, that estimate is subtracted from remaining demand with a zero lower
-bound. This estimator is independent of PFQ score and PFQ allocation state. No
-allocation-set counterfactual PHY simulation is introduced in the first
-experiment.
+### 4.3 Sequential features
 
-Association, schedulability, positive demand, and remaining headroom form the
-hard mask. Blank is always legal. The three cells sample or greedily choose
-from separate categoricals, but all three distributions use reuse-attended
-context. After the three choices for `p`, their sequential states are updated
-before `p+1`.
+同一 TTI 内，一个 UE 获得 PRG 后，其后续候选打分会读取 3 维顺序状态，用于表达已分配资源和剩余需求。它们只由当前 TTI 已经确定的动作及 causal CTBS state 更新，不得读取 post-action label。
 
-Rollout and PPO replay must execute the same sequence and masks. The stored
-trace includes ordering, choices, and valid classes at each step. The submitted
-Type-0 action must exactly match deterministic replay of that trace.
+## 5. CTBS-v1：累计 TBS headroom
 
-### 4.6 Deterministic Type-0 materialization
+早期设计使用“单 PRG expected service”累加，会把 TBS 当线性函数，和真实 PHY 的累计 PRB/TBS 过程不一致。该描述已经废止。DPA-v1 使用 CTBS-v1：
 
-The actor directly selects UE or Blank per Cell-PRG. Materialization performs
-only representation conversion:
-
-1. collect the unique selected UEs in each cell;
-2. map them deterministically to that cell's Type-0 slots in ascending UE-ID
-   order;
-3. point each nonblank PRG to the selected UE's slot;
-4. assert association, slot capacity, PRG mask, and index legality.
-
-There are at most 12 unique selected UEs and 12 cell-local slots in the fixed
-scenario. Materialization must not change a chosen identity, add a fill, swap
-UEs, enforce a second demand cap, or invoke PFQ. Invalid materialization is an
-experiment failure, not a reason to fall back to PFQ.
-
-## 5. PFQ guidance and independence contract
-
-### 5.1 Behavior-cloning warm start
-
-The native PFQ schedule is converted into direct per-Cell-PRG UE/Blank labels
-over the full actor candidate set. Behavior cloning uses masked cross-entropy.
-It does not regress PFQ scores or train a PFQ residual.
-
-The fixed warm-start budget is reported separately from PPO environment
-interactions. Scratch and warm-start policies receive the same measured PPO
-interaction budget.
-
-### 5.2 PPO phase
-
-At PPO start:
-
-- teacher loss is zero;
-- teacher action fields are deleted from the actor input;
-- no PFQ anchor is present;
-- no KL or behavior regularizer references PFQ;
-- no runtime fallback references PFQ.
-
-The learned weights may encode behavior learned during cloning. This is the
-intended meaning of PFQ-guided training. Independence refers to inputs and the
-online action path, not to erasing knowledge acquired during warm start.
-
-### 5.3 PFQ-deletion test
-
-The formal independence test creates one observation with PFQ/teacher fields
-and a second observation with those fields deleted. Graph tensors, logits, the
-sequential trace under deterministic decoding, and final Type-0 actions must
-be exactly equal. Random perturbation is not part of the test.
-
-Checkpoint metadata records `requires_pfq_features=false`. Loading or exporting
-an independent actor must reject a configuration that enables a PFQ score
-anchor or PFQ-based candidate generation.
-
-## 6. Expiry-aware packet accounting
-
-### 6.1 Root cause in the current tracker
-
-The shared traffic tracker currently updates packet system time only when
-`RecordServedBytes()` completes a MAC packet. `AdvanceToTti()` removes an
-expired packet and updates expired byte/packet counts, but does not record the
-expired packet's residence time. Consequently, existing packet delay and
-packet effective rate are conditional on MAC-completed packets.
-
-That conditional metric is retained as a diagnostic. It is not sufficient as
-the only QoS metric in a TTL-constrained experiment because a scheduler can
-make the reported delay/rate look better by allowing difficult packets to
-expire.
-
-The correction applies in the common traffic tracker and therefore affects
-PFQ, Scratch-PPO, and PFQ-BC->PPO identically. It must not be enabled only for
-PFQ or only for the learned policy.
-
-### 6.2 Expiry terminal time
-
-When a packet expires, its terminal time is the TTL boundary:
+1. bridge 在动作前导出 CPU OLLA 状态、第一层 WB SINR、prior TB error、每 UE/PRG layer cap、PHY TBS 配置与 snapshot/config hash。
+2. Python 侧按与 PHY 对齐的规则重建 UE MCS。
+3. 对同一 UE 已选 local PRG 集合，取有效 layer cap，并按累计 PRB 数重新计算 TBS。
+4. headroom 为：
 
 ```text
-expiry_time_ms = arrival_time_ms + packet_ttl_tti * slot_duration_ms
-expired_system_time_ms = normalize(expiry_time_ms - arrival_time_ms)
+remaining_demand = max(0, initial_queue_bytes - cumulative_tbs_bytes)
 ```
 
-For the canonical experiment this is 200 ms. The tracker must not use the
-`AdvanceToTti()` call's raw timestamp, which is one scheduling boundary after
-the last eligible TTI in the current loop ordering.
+5. 每增加一个 PRG 都重算 cumulative TBS，而不是将单 PRG 容量简单相加。
 
-An expired packet contributes:
+2026-09-20 单位契约：PHY TBS 原始值为 bits，进入 byte headroom 前转换为 bytes；不得将 bit 数直接扣减 byte 队列。需要独立数值检查及 `8 * scheduled_dequeue_bytes <= raw_TBS_bits`，不仅是 Python 与 C++ 相互一致。旧 CTBS 对齐测试不能单独证明物理单位正确。
 
-- one expired terminal outcome;
-- its TTL residence time;
-- zero delivered packet bits;
-- zero per-packet rate.
+CTBS 输入必须带正的 snapshot id、64 位 config hash、canonical UE id 和合法 layer cap。post-action actual MCS/layer/TBS 只用于审计重建一致性，不可回流到当次动作。
 
-Partially dequeued but incomplete packets still count as expired packet
-outcomes with zero completed-packet payload. Remaining expired bytes continue
-to be reported separately.
+## 6. PFQ 独立性
 
-### 6.3 Retained delivered-only metrics
+PFQ 只允许出现在两处：
 
-The following semantics remain available and are explicitly labeled
-delivered-only:
+- 早期 behavior cloning 的 teacher label；
+- 实验中的 baseline arm。
 
-- delivered packet count;
-- delivered packet system time;
-- delivered-only delay distribution;
-- delivered-only aggregate packet effective rate;
-- delivered-only mean per-packet effective rate.
+DPA-v1 在线前向不得读取：
 
-They answer: "Among packets that completed at the MAC queue, how long did
-completion take?"
+- PFQ score、ranking 或 selected UE；
+- teacher action；
+- PFQ 内部 moving average 或队列权重；
+- 从 post-action 结果反推的当前动作标签。
 
-### 6.4 New outcome/expiry-aware metrics
+`actor_family` 声明 `requires_pfq_features=False`。删除 PFQ/teacher 字段前后，actor-visible tensors 和动作必须相等；相关 fail-closed 测试由 `test_independent_pfq_deletion.py` 和 online-path tests 覆盖。
 
-The tracker adds cumulative, per-TTI, and per-UE quantities:
+## 7. 训练目标与版本沿革
 
-- expired packet count;
-- expired packet system time;
-- terminal outcome count = delivered + expired;
-- terminal outcome system time = delivered time + expired time;
-- outcome delay mean/p50/p90/p95/max over delivered and expired terminals;
-- expiry-aware aggregate packet effective rate;
-- expiry-aware mean per-packet effective rate.
-
-Definitions:
+冻结 checkpoint 使用 treatment E。基础 reward 为：
 
 ```text
-R_pkt_expiry_aware =
-    delivered_packet_bits /
-    (delivered_packet_system_time + expired_packet_system_time)
-
-R_pkt_per_packet_mean_expiry_aware =
-    sum(delivered_packet_individual_rates) /
-    (delivered_packet_count + expired_packet_count)
+R_base = goodput_bytes / offered_bytes
+       - failed_bytes / offered_bytes
+       - 2 * expired_bytes / offered_bytes
 ```
 
-Pending packets at the end of a finite run remain right-censored. They are
-reported separately and are not silently converted into terminal samples.
+再加入：
 
-Output names must distinguish the two meanings. Existing fields are not
-silently redefined. New final log records use exactly
-`TRAFFIC_PKT_OUTCOME_DELAY`, `TRAFFIC_PKT_RATE_EA`,
-`UE_PKT_OUTCOME_DELAY`, and `UE_PKT_RATE_EA`. Parsers and summaries expose both
-families.
+- deadline-tail potential，`eta=0.25`，history window `100`，tail fraction `0.10`；
+- expiry-aware tail-rate utility，weight `0.25`，tail fraction `0.10`。
 
-### 6.5 PHY-success boundary
+代码仍保留 treatments A--D 供消融，但它们不是 DPA-v1 冻结身份。
 
-The current MAC packet tracker consumes scheduled/dequeued bytes before the
-PHY-success accounting used by `actual_ue_goodput_bytes`. Adding expired time
-fixes survivorship bias but does not turn MAC completion into an ACK-based
-packet lifecycle.
+2026-09-08 的[等预算重训消融](../../../Doc/dpa_equal_budget_ablation_experiment.md)使用 `full` / `no_reuse_attention` / `no_dimensionless`，三组从随机初始化使用 reward E，不改变历史冻结 checkpoint 的训练沿革。`IndependentActorConfig.ablation` 默认 `full`，旧 checkpoint 缺省时仍加载完整 DPA。该 campaign 已因环境错误归档，不作为修正环境中 attention 或 deadline 特征的贡献证据，也不自动续跑。
 
-Therefore:
+关键研究沿革（均为错误环境中的历史观察，不是修正后的有效性能证据）：
 
-- packet outcome metrics describe the current MAC tracker semantics;
-- aggregate and per-UE successful utility use `actual_ue_goodput_bytes`;
-- failed-byte penalties remain explicit;
-- no claim is made that this change implements reliable retransmission or
-  success-confirmed packet completion.
+| 阶段 | 当时观察 | 历史解释（须重验） |
+|---|---|---|
+| deadline-tail-rate iter21 | seed42 明显改善，但 seed43/45 出现 actor 排序导致的 starvation | 被 DPA-v1 表示修正替代 |
+| dimensionless feature-only seed45 | 旧失败 UE 恢复，最长 backlog 零服务 streak 降至 9 TTI | 支持采用当前 UE slots 12--15 |
+| frozen seed48/51 | seed48 全门通过；seed51 大部分 KPI 改善但 expiry 失败 | 暴露 worst-seed 风险 |
+| CTBS-legal guard seed51 | guard 已实现，但合法 Blank 机会不足，0 次 override | 不进入当前部署 |
+| DPA-v1 seeds 41--50 | 旧环境 paired 优于 PFQ | 已归档，须重新验证 |
+| packet granularity seeds 101--110 | 旧环境相对 PFQ/RRQ 优势总体保持，但非零 expiry 暴露 | 已归档，须重新验证 |
 
-## 7. Reward design
+历史完整数字保留在[原综合报告](../../../Doc/archive/pre_correction_2026_09_20/originals/Doc/stageB_boundary_intelligent_algorithm_experiment_report.md)。后续不得自动续跑旧随机初始化、适应或生命周期复现队列。
 
-The full candidate reward is:
+## 8. Experimental guard
+
+guard 的研究目标是在不制造非法 Type-0 动作的前提下，为高 pressure/长 service-age UE 替换一个 Blank。它不能抢占已由 actor 分配给其他 UE 的 PRG。
+
+旧错误环境 seed51 steady measured window 的历史记录：
+
+- actor non-Blank choices：`159087`
+- `no_pressure_candidate`：`44913`
+- guard override：`0`
+- 分类：`insufficient_blank_opportunities`
+
+因此该历史实验中 guard 没有改变动作和 KPI，也没有验证“能降低 expiry”的假设。旧 DPA-v1 配置为 `guard=off`；不得把“guard 代码存在”写成“guard 已生效”。
+
+## 9. 正确性不变量
+
+实现或评估 DPA-v1 时必须检查：
+
+1. snapshot 是 pre-action 且 TTI/snapshot id 单调。
+2. 图 shape、UE id、serving cell、PRG index 与运行时拓扑一致。
+3. 候选全集完整，禁止静默 truncation。
+4. illegal、masked 或跨 serving-cell UE 永不落入 materialized action。
+5. 每个 TTI 恰有 `n_cell * n_prg` 个 UE/Blank 决策。
+6. 三个 cell 在同 local PRG 使用同一 pre-update 状态打分。
+7. CTBS cumulative TBS 与审计 reference 对齐，且 reference-label deletion equality 成立。
+8. PFQ/teacher 删除前后 actor 输入和动作相等。
+9. deterministic replay 在同 snapshot/checkpoint 上动作一致。
+10. baseline/treatment 的二进制、offered stream、拓扑和统计窗口在 paired 声明中完全对齐。
+11. bits/bytes 单位和流量守恒通过独立数值检查；slot 重排不改变固定物理输入结果；GPU 路径需独立检查原始 PRG 计数/MCS，不用 CPU goodput 替代验证。
+
+聚合代码的最小验证集：
 
 ```text
-r_t =
-    w_G * normalized_successful_goodput
-  - w_F * normalized_failed_bytes
-  - w_E * normalized_expired_bytes
-  + w_D * delay_debt_reduction
-  + w_U * expiry_aware_successful_UE_utility_delta
+training/stageb_hgraph/tests/test_dpa_v1_historical_comparison.py
+training/stageb_hgraph/tests/test_pfq_dpa_aligned_comparison.py
+training/stageb_hgraph/tests/test_granularity_experiment.py
 ```
 
-### 7.1 Goodput, failure, and expiry
-
-Successful goodput, failed bytes, and expired bytes are normalized by offered
-bytes per TTI. Raw PRG utilization, Blank count, PFQ-relative improvement, and
-counterfactual utility are not reward terms.
-
-### 7.2 Delay-debt shaping
-
-The delay term is a dense state-cost reduction:
-
-```text
-Delta_D = D(s_t) - gamma * D(s_{t+1})
-```
-
-`D` is computed over all demand-active UEs from backlog, HOL, TTL slack, and
-service gap, with emphasis on the highest-debt UEs. Raw mean delay of completed
-packets is not directly penalized because it has completion-selection bias and
-can punish the rescue of old packets.
-
-### 7.3 Expiry-aware per-UE successful utility
-
-For a trailing window `W=400` TTIs, matching one TTL horizon:
-
-```text
-R_EA[u] =
-    actual successful goodput bits for u in W /
-    (delivered packet system time for u in W
-     + expired packet system time for u in W)
-
-U_EA = mean over demand-active u of log(epsilon + R_EA[u])
-Delta_U = gamma * U_EA(s_{t+1}) - U_EA(s_t)
-```
-
-An expiry adds TTL residence time and no successful bits, so it lowers the
-utility. Successful service to a persistently low-rate UE has larger marginal
-utility than the same successful bits given to an already high-rate UE.
-
-The training and evaluation stream uses a 1000-TTI warmup before measured
-steady-state windows. Missing per-UE expiry-aware diagnostics is a hard error
-for treatments that enable this reward; the code must not silently substitute
-delivered-only rate.
-
-### 7.4 Reward scaling
-
-`G`, `F`, and `E` are divided by offered bytes per TTI. `Delta_D` and `Delta_U`
-are divided by their respective PFQ seed-41 steady-state 95th percentile
-absolute magnitudes and clipped to `[-1,1]`; a zero percentile disables that
-auxiliary term and fails the corresponding treatment preflight. The fixed
-coefficients are:
-
-```text
-w_G = 1.00
-w_F = 1.00
-w_E = 2.00
-w_D = 0.25
-w_U = 0.25
-```
-
-The experiment does not perform a weight grid search. Scale values and PFQ raw
-distributions are persisted in the run manifest.
-
-## 8. Treatments and causal comparisons
-
-The minimum matrix contains four treatments:
-
-| ID | Initialization | Reward | Question |
-|---|---|---|---|
-| A | random | `G-F-E` | Can the independent architecture learn from scratch? |
-| B | PFQ BC | `G-F-E` | Does PFQ warm start improve PPO sample efficiency? |
-| C | same PFQ BC checkpoint | `G-F-E + Delta_D` | Does delay debt improve outcome latency? |
-| D | same PFQ BC checkpoint | `G-F-E + Delta_D + Delta_U` | Does UE expiry-aware utility improve low-rate service? |
-
-Treatments B--D start from the identical frozen BC checkpoint. All four use
-the same actor, topology, traffic sequence, optimizer configuration, measured
-PPO interaction budget, and deterministic evaluation path. BC interactions
-and warmup interactions are reported separately.
-
-PFQ is not another online reward term. A precomputed PFQ value subtracted from
-per-TTI goodput is action-independent and supplies no new policy gradient.
-Running a counterfactual PFQ on the learned policy's state would reintroduce the
-heavy PFQ-relative training chain and would not represent a matched trajectory
-after queue and average-rate states diverge.
-
-PFQ-relative quantities are used only in checkpoint selection, final gates,
-and the report.
-
-## 9. Experiment sequence
-
-### Phase 0: metric correction and new PFQ reference
-
-1. Add expiry terminal-time accounting in the common traffic tracker.
-2. Validate accounting identities with controlled packet traces.
-3. Build one binary used by every arm.
-4. Run PFQ seed 41 for 5000 TTIs.
-5. Treat the first 1000 TTIs as warmup and use the remaining 4000 TTIs for the
-   steady-state training scale and comparator.
-6. Retain full-run native KPI as a diagnostic, but do not mix it with the
-   warmup-excluded promotion comparison.
-
-### Phase 1: action-path validity
-
-Before training:
-
-- every active associated demand UE appears exactly once in its Cell-PRG
-  candidate row;
-- no cross-cell UE appears;
-- PFQ fields can be deleted with no graph/logit/action change;
-- all actor actions materialize legally;
-- sequential rollout and replay produce identical choices and masks;
-- submitted Type-0 actions match materialized replay exactly.
-
-### Phase 2: behavior cloning
-
-Run 4000 PFQ teacher TTIs on seed 41 and save one BC checkpoint. The BC stage
-passes when all labels are legal, no PFQ-selected UE is missing from the full
-candidate set, and deterministic teacher imitation has no materialization
-mismatch. Accuracy is reported, but the research claim does not require exact
-PFQ reproduction at convergence.
-
-### Phase 3: seed-41 PPO pilot
-
-Run treatments A--D for 20 iterations of 512 measured PPO TTIs, or 10,240
-measured PPO TTIs per treatment. Use the existing persistent online path, one
-1000-TTI steady-state warmup before measured collection, and deterministic
-argmax evaluation. Save checkpoints every four iterations, but select them
-only through the PFQ-relative guarded score in Section 10. BC and warmup TTIs
-are excluded from the matched PPO budget and reported separately.
-
-If neither A nor B approaches the 99% PFQ goodput gate within the fixed budget,
-stop. Do not tune reward auxiliaries or launch multi-seed experiments. That
-result falsifies the current architecture/training path at the allotted budget.
-
-### Phase 4: small generalization
-
-Only the best gate-passing seed-41 treatment advances. Evaluate the fixed
-checkpoint on seeds 41, 42, and 43 with paired new-binary PFQ runs, 1000 warmup
-TTIs, and 4000 measured TTIs. Stop after reporting this result. A 10-seed run
-requires a separate decision.
-
-## 10. Checkpoint selection and gates
-
-For a measured window `W`, the selection score is based on locked PFQ-relative
-metrics:
-
-```text
-score_W =
-    relative_goodput_delta
-  + beta_U * relative_UE_expiry_aware_rate_delta
-  - beta_D * max(0, outcome_delay - PFQ_outcome_delay)
-```
-
-This score selects among checkpoints that already satisfy hard reliability and
-legality gates. It is not sent back as per-TTI reward.
-
-### Seed-41 architecture gate
-
-The actor passes only if:
-
-- measured goodput is at least 99% of the new PFQ seed-41 goodput;
-- TB BLER is no more than 0.2 percentage point above PFQ;
-- expiry rate is no more than 0.05 percentage point above PFQ;
-- action replay mismatch count is zero;
-- illegal action count is zero;
-- PFQ-deletion equality passes exactly.
-
-### Reward-treatment preference
-
-Among architecture-gate passers, an auxiliary reward treatment is preferred
-only if:
-
-- expiry-aware outcome delay p95 is no higher than PFQ;
-- UE-macro expiry-aware successful rate is no lower than PFQ;
-- UE p10 expiry-aware successful rate is no lower than PFQ;
-- goodput and reliability remain inside the architecture gate.
-
-If an auxiliary term changes training reward but not formal metrics, reject the
-term. If C passes and D fails, retain delay debt without UE-rate utility. If B
-matches C/D on formal metrics, retain the simpler `G-F-E` reward.
-
-## 11. Validity checks
-
-Only checks needed to trust the experiment are in scope.
-
-### 11.1 Packet accounting
-
-- With no expiry, delivered-only and expiry-aware aggregate rates are equal.
-- One 3000-byte packet delivered in 0.5 ms produces 48 Mbps delivered-only
-  packet rate.
-- One 3000-byte packet expired at 200 ms adds 200 ms outcome time, zero bits,
-  and a zero per-packet-rate sample.
-- A mixed delivered/expired trace satisfies:
-
-  ```text
-  outcome_count = delivered_count + expired_count
-  outcome_time = delivered_time + expired_time
-  R_EA = delivered_bits / outcome_time
-  ```
-
-- Per-flow totals sum to cluster totals.
-- CPU and GPU scheduler modes use the same host traffic accounting.
-
-### 11.2 Action validity
-
-- Full candidate coverage equals the active associated demand set.
-- Blank is the only valid choice when a cell has no active demand UE.
-- Headroom masks are monotone within a TTI once demand is exhausted.
-- A selected UE never belongs to a different cell.
-- Unique selected UE count never exceeds available cell-local slots.
-- Materialization does not change selected UE identities.
-- Rollout and PPO replay log-probabilities use identical masks and ordering.
-
-### 11.3 Comparator validity
-
-- PFQ and every treatment use the same source revision and binary fingerprint.
-- Topology, traffic, association, PHY, TTL, warmup, and measured horizon match.
-- PFQ scale statistics are frozen before learned-policy training.
-- Scratch and warm-start PPO measured interaction budgets match.
-- Historical pre-correction delay/rate numbers are never mixed with corrected
-  metrics.
-
-## 12. Failure behavior
-
-The experiment fails closed when:
-
-- post-EQ inputs required by the actor are missing;
-- PFQ fields remain in the actor feature schema;
-- a PFQ-selected BC label is absent from the full legal candidate set;
-- expiry-aware diagnostics are unavailable for treatment D;
-- materialization changes a choice or needs fallback;
-- rollout replay differs from the submitted action;
-- PFQ and treatment manifests do not match on the fixed scenario;
-- a pre-correction baseline is supplied as the comparator.
-
-None of these cases may silently fall back to PFQ, delivered-only rate, or a
-heuristic candidate generator.
-
-## 13. Stop conditions and interpretation
-
-The research prototype is complete when one of the following occurs:
-
-1. No independent treatment reaches the seed-41 architecture gate within the
-   fixed budget. Report the falsification and the dominant observed failure.
-2. At least one treatment reaches the gate. Report whether PFQ BC improved
-   sample efficiency and whether delay/rate auxiliaries improved formal
-   secondary metrics.
-3. A seed-41 winner is evaluated on seeds 41--43. Report generalization and
-   stop.
-
-Do not automatically continue into autoregressive decoding, wider reward
-sweeps, 10-seed campaigns, 7-cell scaling, ONNX/TensorRT deployment,
-refactoring, or production hardening.
-
-The final report must state:
-
-- what code and metric semantics changed;
-- which treatment and budget were tested;
-- new-binary PFQ and learned-policy results;
-- whether H1, H2, and H3 are supported;
-- the main remaining uncertainty.
+2026-09-07 历史复核结果：`19 passed`，仅说明当时聚合测试通过，不代表三项环境错误不存在。修正验证以新报告为准。
+
+## 10. 当前证据与不主张事项
+
+主结果见：
+
+- [`Doc/stageB_boundary_intelligent_algorithm_experiment_report.md`](../../../Doc/stageB_boundary_intelligent_algorithm_experiment_report.md)
+- [`Doc/current_stageB_effective_configuration.md`](../../../Doc/current_stageB_effective_configuration.md)
+- [修正前报告与数据归档](../../../Doc/archive/pre_correction_2026_09_20/README.md)
+- [修正后 seed42 PFQ/RRQ 基线](../../../output/pfq_independent_reuse/formal/seed42_pfq_rrq_corrected_v1/report.md)
+
+当前不主张：
+
+- 修正环境中 DPA 已超过 PFQ/RRQ，或 attention/deadline 组件已获正/负贡献证明；
+- 对所有 seed 或所有负载实现 zero expiry；
+- guard 已提供 non-starvation 保证；
+- 已验证 7cell/84UE 的性能或 checkpoint 泛化；
+- mixed packet granularity 与 homogeneous 之间存在显著 goodput 差异；
+- 不同 campaign 的绝对数值可直接做 paired 比较；
+- DPA-v1 已达到生产级鲁棒性或安全保证。
+
+当前优先顺序改为：固定修正环境 → 重新校准负载和基线 → 新采集 BC → Full 重训与独立 argmax 验收 → 同流程组件消融。旧 seed104/107 机制诊断不再优先于环境重建；不能预设修复后组件一定有增益。本次文档更新不启动新训练。
+
+## 11. 代码入口
+
+- actor/model：`training/stageb_hgraph/independent_actor.py`
+- online policy/decode：`training/stageb_hgraph/independent_policy.py`
+- graph snapshot：`training/stageb_hgraph/feature_snapshot.py`
+- CTBS-v1：`training/stageb_hgraph/ctbs_headroom.py`
+- reward：`training/stageb_hgraph/independent_reward.py`
+- bridge deadline/service features：`cuMAC/examples/onlineTrainBridge/DeadlineServiceFeatures.h`
+- standard paired aggregation：`training/stageb_hgraph/pfq_dpa_aligned_comparison.py`
+- packet-granularity aggregation：`training/stageb_hgraph/granularity_experiment.py`

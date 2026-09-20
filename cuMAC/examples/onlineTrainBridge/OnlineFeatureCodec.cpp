@@ -130,6 +130,7 @@ bool OnlineFeatureCodec::initialize(const cumacCellGrpPrms* cellGrpPrmsCpu)
     m_nPrbGrp = cellGrpPrmsCpu->nPrbGrp;
     m_totNumCell = cellGrpPrmsCpu->totNumCell;
     m_allocType = cellGrpPrmsCpu->allocType;
+    m_harqEnabled = cellGrpPrmsCpu->harqEnabledInd;
     m_nEdges = (m_nCell > 1U) ? (m_nCell * (m_nCell - 1U)) : 0U;
     m_actionAllocLen = (m_allocType == 0U) ? (m_totNumCell * m_nPrbGrp) : (2U * m_nSchedUe);
 

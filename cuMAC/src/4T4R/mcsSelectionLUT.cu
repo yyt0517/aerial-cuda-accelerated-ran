@@ -16,6 +16,9 @@
  */
 
 #include "cumac.h"
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
 
 // cuMAC namespace
 namespace cumac {
@@ -68,6 +71,20 @@ mcsSelectionLUT::~mcsSelectionLUT()
     CUDA_CHECK_ERR(cudaFree(pGpuDynDesc));
 }
 
+void mcsSelectionLUT::copyOllaParamsToHost(std::vector<ollaParam>* output, cudaStream_t strm) const
+{
+    if (output == nullptr) {
+        return;
+    }
+    output->assign(m_nUe, ollaParam{});
+    if (m_nUe == 0 || ollaParamArr == nullptr) {
+        return;
+    }
+    CUDA_CHECK_ERR(cudaMemcpyAsync(
+        output->data(), ollaParamArr, sizeof(ollaParam) * m_nUe, cudaMemcpyDeviceToHost, strm));
+    CUDA_CHECK_ERR(cudaStreamSynchronize(strm));
+}
+
 // ***************** Type-0 PRB allocation *****************
 static __global__ void mcsSelSinrRepKernel_type0_cqi(mcsSelDynDescr_t* pDynDescr)
 {
@@ -79,6 +96,7 @@ static __global__ void mcsSelSinrRepKernel_type0_cqi(mcsSelDynDescr_t* pDynDescr
     __shared__ int numAllocPrg[1024];
 
     numAllocPrg[threadIdx.x] = 0;
+    __syncthreads(); // all counter initialization must precede cross-warp atomicAdd
     if (uIdx < pDynDescr->nUe) {
         globalUidx = pDynDescr->setSchdUePerCellTTI[uIdx];
     }
@@ -173,6 +191,7 @@ static __global__ void mcsSelSinrRepKernel_type0_wbSinr(mcsSelDynDescr_t* pDynDe
     __shared__ int numAllocPrg[1024];
 
     numAllocPrg[threadIdx.x] = 0;
+    __syncthreads(); // all counter initialization must precede cross-warp atomicAdd
     if (uIdx < pDynDescr->nUe) {
         globalUidx = pDynDescr->setSchdUePerCellTTI[uIdx];
     }
@@ -186,6 +205,10 @@ static __global__ void mcsSelSinrRepKernel_type0_wbSinr(mcsSelDynDescr_t* pDynDe
         }
     }
     __syncthreads();
+
+    if (pDynDescr->auditNumAllocPrg != nullptr && uIdx < pDynDescr->nUe && prgIdx == 0) {
+        pDynDescr->auditNumAllocPrg[uIdx] = numAllocPrg[blockLocalUidx];
+    }
 
     int8_t   tbErrLast = -1;
 
@@ -534,6 +557,93 @@ void mcsSelectionLUT::setup(cumacCellGrpUeStatus*       cellGrpUeStatus,
 void mcsSelectionLUT::run(cudaStream_t strm)
 {
     const CUDA_KERNEL_NODE_PARAMS& kernelNodeParamsDriver = pLaunchCfg->kernelNodeParamsDriver;
+
+    // Bounded diagnostic: replay the first real WB-SINR input, restoring all
+    // kernel-mutated state before every replay and before the normal invocation.
+    // No scheduling, input perturbation, sleeps, or synthetic race amplification.
+    static bool audited = false;
+    const char* auditPath = std::getenv("CUMAC_MCS_FIXED_INPUT_AUDIT_CSV");
+    if (auditPath && !audited) {
+        audited = true;
+        if (allocType != 0 || CQI != 0 || enableHarq != 0 ||
+            pCpuDynDesc->nBsAnt != 4 || pCpuDynDesc->mcsSelLutType != 0) {
+            throw std::runtime_error("MCS replay audit supports Type0 WB-SINR 4TR LUT0 without HARQ only");
+        }
+        CUDA_CHECK_ERR(cudaStreamSynchronize(strm));
+        const int slots = pCpuDynDesc->nUe;
+        std::vector<uint16_t> ids(slots), cells(pCpuDynDesc->nCell);
+        std::vector<int16_t> alloc(pCpuDynDesc->nPrbGrp * pCpuDynDesc->totNumCell), savedMcs(slots), outMcs(slots);
+        std::vector<int8_t> prior(slots);
+        std::vector<float> sinr(m_nUe * pCpuDynDesc->nUeAnt), gainLast, gainCurr;
+        std::vector<ollaParam> savedOlla(m_nUe), outOlla(m_nUe);
+        std::vector<int> counts(slots);
+        auto read = [](auto& host, const auto* device) {
+            CUDA_CHECK_ERR(cudaMemcpy(host.data(), device, host.size() * sizeof(host[0]), cudaMemcpyDeviceToHost));
+        };
+        read(ids, pCpuDynDesc->setSchdUePerCellTTI); read(cells, pCpuDynDesc->cellId);
+        read(alloc, pCpuDynDesc->allocSol); read(savedMcs, pCpuDynDesc->mcsSelSol);
+        read(prior, pCpuDynDesc->tbErrLast); read(sinr, pCpuDynDesc->wbSinr);
+        read(savedOlla, ollaParamArr);
+        if (pCpuDynDesc->beamformGainLastTx && pCpuDynDesc->beamformGainCurrTx) {
+            gainLast.resize(m_nUe); gainCurr.resize(m_nUe);
+            read(gainLast, pCpuDynDesc->beamformGainLastTx); read(gainCurr, pCpuDynDesc->beamformGainCurrTx);
+        }
+        std::ofstream input(std::string(auditPath) + ".inputs", std::ios::binary);
+        auto dump = [&input](const auto& v) {
+            input.write(reinterpret_cast<const char*>(v.data()), v.size() * sizeof(v[0]));
+        };
+        dump(ids); dump(cells); dump(alloc); dump(prior); dump(sinr); dump(savedOlla); dump(gainLast); dump(gainCurr);
+        input << pCpuDynDesc->nPrbGrp << ',' << pCpuDynDesc->totNumCell << ',' << pCpuDynDesc->mcsSelSinrCapThr;
+        if (!input) throw std::runtime_error("cannot write MCS fixed input audit");
+        input.close();
+        CUDA_CHECK_ERR(cudaMalloc(reinterpret_cast<void**>(&pCpuDynDesc->auditNumAllocPrg), slots * sizeof(int)));
+        CUDA_CHECK_ERR(cudaMemcpy(pGpuDynDesc, pCpuDynDesc.get(), sizeof(mcsSelDynDescr_t), cudaMemcpyHostToDevice));
+        std::ofstream output(auditPath);
+        output << "repeat,slot,ue,expected_count,raw_count,raw_mcs,expected_mcs,wb_sinr_db,prior_tb_err,delta_before,delta_after,expected_delta\n";
+        output << std::setprecision(17);
+        // Independent scalar host reference: count canonical allocations, then
+        // apply the documented LUT0 thresholds (not the GPU shared counter).
+        const float thresholds[28] = {-4.57,-3.02,-0.6,1.26,2.87,4.89,5.9,6.67,7.72,8.41,9.36,10.56,11.65,12.64,13.23,14.25,15.23,16.14,16.72,17.79,19.19,19.65,20.95,21.75,22.6,23.91,24.38,25.99};
+        auto restore = [&]() {
+            CUDA_CHECK_ERR(cudaMemcpy(ollaParamArr, savedOlla.data(), m_nUe * sizeof(ollaParam), cudaMemcpyHostToDevice));
+            CUDA_CHECK_ERR(cudaMemcpy(pCpuDynDesc->mcsSelSol, savedMcs.data(), slots * sizeof(int16_t), cudaMemcpyHostToDevice));
+            if (!gainLast.empty()) CUDA_CHECK_ERR(cudaMemcpy(pCpuDynDesc->beamformGainLastTx, gainLast.data(), m_nUe * sizeof(float), cudaMemcpyHostToDevice));
+        };
+        for (int repeat = 0; repeat < 128; ++repeat) {
+            restore();
+            CUDA_CHECK_ERR(cudaMemset(pCpuDynDesc->auditNumAllocPrg, 0xff, slots * sizeof(int)));
+            CUDA_CHECK_RES(cuLaunchKernel(kernelNodeParamsDriver.func,
+                kernelNodeParamsDriver.gridDimX, kernelNodeParamsDriver.gridDimY, kernelNodeParamsDriver.gridDimZ,
+                kernelNodeParamsDriver.blockDimX, kernelNodeParamsDriver.blockDimY, kernelNodeParamsDriver.blockDimZ,
+                kernelNodeParamsDriver.sharedMemBytes, strm, kernelNodeParamsDriver.kernelParams, kernelNodeParamsDriver.extra));
+            CUDA_CHECK_ERR(cudaStreamSynchronize(strm));
+            read(counts, pCpuDynDesc->auditNumAllocPrg); read(outMcs, pCpuDynDesc->mcsSelSol); read(outOlla, ollaParamArr);
+            for (int slot = 0; slot < slots; ++slot) {
+                const int ue = ids[slot];
+                if (ue >= m_nUe) continue;
+                int expectedCount = 0;
+                for (int prg = 0; prg < pCpuDynDesc->nPrbGrp; ++prg)
+                    for (auto cell : cells) expectedCount += alloc[prg * pCpuDynDesc->totNumCell + cell] == slot;
+                float delta = savedOlla[ue].delta;
+                if (expectedCount && prior[slot] == 1) delta += savedOlla[ue].delta_up;
+                if (expectedCount && prior[slot] == 0) delta -= savedOlla[ue].delta_down;
+                float db = static_cast<float>(10.0 * std::log10(static_cast<double>(sinr[ue * pCpuDynDesc->nUeAnt])));
+                float adjusted = std::min(db, pCpuDynDesc->mcsSelSinrCapThr);
+                if (!gainLast.empty() && gainLast[ue] != -100.0f && gainCurr[ue] != -100.0f) adjusted += gainCurr[ue] - gainLast[ue];
+                adjusted -= delta;
+                int expectedMcs = expectedCount ? 0 : -1;
+                if (expectedCount) for (int m = 27; m >= 0; --m) if (adjusted >= thresholds[m]) { expectedMcs = m; break; }
+                output << repeat << ',' << slot << ',' << ue << ',' << expectedCount << ',' << counts[slot] << ','
+                       << outMcs[slot] << ',' << expectedMcs << ',' << db << ',' << int(prior[slot]) << ','
+                       << savedOlla[ue].delta << ',' << outOlla[ue].delta << ',' << delta << '\n';
+            }
+        }
+        if (!output) throw std::runtime_error("cannot write MCS replay results");
+        restore();
+        CUDA_CHECK_ERR(cudaFree(pCpuDynDesc->auditNumAllocPrg));
+        pCpuDynDesc->auditNumAllocPrg = nullptr;
+        CUDA_CHECK_ERR(cudaMemcpy(pGpuDynDesc, pCpuDynDesc.get(), sizeof(mcsSelDynDescr_t), cudaMemcpyHostToDevice));
+    }
 
 #ifdef SCHEDULER_KERNEL_TIME_MEASURE_
     cudaEvent_t start, stop;

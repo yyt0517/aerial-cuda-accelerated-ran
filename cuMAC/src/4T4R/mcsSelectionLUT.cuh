@@ -42,6 +42,7 @@ typedef struct mcsSelDynDescr{
 
     //----------------- output buffers (common for both DL and UL) ----------------- 
     int16_t*    mcsSelSol; // MCS selection solution
+    int*        auditNumAllocPrg; // optional readout, null outside fixed-input audit
 
     // ***********************************
     //----------------- parameters (common for both DL and UL) -----------------
@@ -84,6 +85,9 @@ public:
 
     // logging function for debugging
     void debugLog(); 
+
+    // Copy the causal OLLA state before the current TTI's MCS kernel runs.
+    void copyOllaParamsToHost(std::vector<ollaParam>* output, cudaStream_t strm) const;
 
 private:
     // indicator for UE reported CQI based MCS selection

@@ -15,6 +15,7 @@ from training.stageb_hgraph.rescue_cohort_diagnostics import (
     RescueUeTtiRow,
     build_rescue_decision_diagnostics,
     join_rescue_cohort_tti,
+    summarize_local_prg_phy_interference,
     summarize_rescue_cohorts,
 )
 from training.stageb_hgraph.types import (
@@ -174,6 +175,36 @@ def _outcome_info() -> dict[str, object]:
         "actual_ue_tb_tx_count": np.array([0, 1]),
         "actual_ue_tb_err_count": np.array([0, 0]),
     }
+
+
+def test_local_prg_phy_interference_summary_keeps_reuse_and_selected_phy() -> None:
+    summary = summarize_local_prg_phy_interference(
+        _rescue_decisions(),
+        n_cell=2,
+        n_prg=2,
+    )
+
+    assert summary["schema_version"] == 1
+    assert summary["tti_count"] == 1
+    assert len(summary["local_prgs"]) == 2
+    prg0, prg1 = summary["local_prgs"]
+    assert prg0["local_prg"] == 0
+    assert prg0["selected_count"] == 2
+    assert prg0["forced_blank_count"] == 0
+    assert prg0["conservative_blank_count"] == 0
+    assert prg0["blank_ratio"] == 0.0
+    assert prg0["reuse_count_mean"] == 2.0
+    assert prg0["reuse_cardinality_tti_count"] == {"0": 0, "1": 0, "2": 1}
+    assert prg0["selected_quality_db_mean"] == 2.0
+    assert prg0["selected_prg_risk_mean"] == pytest.approx(0.02)
+    assert prg0["selected_predicted_service_bytes_mean"] == 8.5
+    assert prg1["selected_count"] == 1
+    assert prg1["forced_blank_count"] == 1
+    assert prg1["conservative_blank_count"] == 0
+    assert prg1["blank_ratio"] == 0.5
+    assert prg1["reuse_count_mean"] == 1.0
+    assert prg1["reuse_cardinality_tti_count"] == {"0": 0, "1": 1, "2": 0}
+    assert prg1["selected_quality_db_mean"] == 2.0
 
 
 def test_join_rescue_cohort_keeps_zero_actual_rescue_ue_at_ue_tti_resolution() -> None:

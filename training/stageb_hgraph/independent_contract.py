@@ -1,15 +1,29 @@
 from __future__ import annotations
 
+import hashlib
 import re
+import struct
+from dataclasses import dataclass
 from typing import Mapping
 
 import torch
 
 from .feature_snapshot import actor_visible_snapshot_tensors
-from .graph_ops import demand_active_ue_mask_from_features
+from .graph_ops import PackedPrgCandidates, demand_active_ue_mask_from_features
 from .types import SparseEntityGraph
 
 _INDEPENDENT_EDGE_ATTR_DIM = 5
+W0_V2_VALID_LOGITS_ATOL = 1.0e-5
+W0_V2_CHOSEN_LOGPROB_ATOL = 1.0e-6
+
+
+@dataclass(frozen=True)
+class RuntimeCandidateContract:
+    runtime_candidate_width: int
+    topology_candidate_width: int
+    training_observed_max_candidates: int
+    candidate_width_policy: str = "runtime_topology"
+    candidate_truncation: str = "forbidden"
 
 
 def _normalized_key(key: object) -> str:
@@ -40,9 +54,9 @@ def validate_independent_graph(
 ) -> None:
     meta = graph.snapshot.static_meta
     expected_width = _maximum_static_association(meta)
-    if int(max_candidates) != expected_width:
+    if int(max_candidates) < expected_width:
         raise ValueError(
-            "max_candidates must equal maximum static association count: "
+            "max_candidates would truncate the maximum static association count: "
             f"got={int(max_candidates)} expected={expected_width}"
         )
     if "E_UP" not in graph.edges:
@@ -81,6 +95,95 @@ def validate_independent_graph(
                     f"incomplete independent candidates at PRG token {token_idx}: "
                     f"actual={sorted(actual_ids)} expected={expected_ids}"
                 )
+
+
+def resolve_runtime_candidate_contract(
+    graph: SparseEntityGraph,
+    actor_config: Mapping[str, object],
+    *,
+    requested_width: int = 0,
+) -> RuntimeCandidateContract:
+    topology_width = _maximum_static_association(graph.snapshot.static_meta)
+    requested = int(requested_width)
+    if requested < 0:
+        raise ValueError("requested runtime candidate width must be non-negative")
+    runtime_width = topology_width if requested == 0 else requested
+    if runtime_width < topology_width:
+        raise ValueError(
+            "runtime candidate width would truncate topology candidates: "
+            f"got={runtime_width} topology={topology_width}"
+        )
+    training_width = int(
+        actor_config.get(
+            "training_observed_max_candidates",
+            actor_config.get("max_candidates", 0),
+        )
+    )
+    return RuntimeCandidateContract(
+        runtime_candidate_width=runtime_width,
+        topology_candidate_width=topology_width,
+        training_observed_max_candidates=training_width,
+    )
+
+
+def candidate_truncation_count(
+    graph: SparseEntityGraph,
+    packed: PackedPrgCandidates,
+) -> int:
+    edge = graph.edges.get("E_UP")
+    if edge is None:
+        raise ValueError("independent graph requires E_UP")
+    expected = torch.zeros(
+        (graph.snapshot.n_prg_tokens,),
+        dtype=torch.int64,
+        device=edge.index.device,
+    )
+    if edge.index.numel() > 0:
+        destination = edge.index[1].to(dtype=torch.int64)
+        expected.scatter_add_(0, destination, torch.ones_like(destination))
+    materialized = packed.mask.to(device=expected.device, dtype=torch.int64).sum(dim=1)
+    return int(torch.clamp_min(expected - materialized, 0).sum().item())
+
+
+def _state_tensor_bytes(tensor: torch.Tensor) -> bytes:
+    value = torch.as_tensor(tensor).detach().cpu().contiguous()
+    if value.dtype == torch.bfloat16:
+        return value.view(torch.int16).numpy().tobytes(order="C")
+    return value.numpy().tobytes(order="C")
+
+
+def state_dict_sha256(state_dict: Mapping[str, torch.Tensor]) -> str:
+    """Hash sorted tensor names, dtypes, shapes, and raw bytes only."""
+    digest = hashlib.sha256()
+    for name in sorted(state_dict):
+        tensor = torch.as_tensor(state_dict[name]).detach().cpu().contiguous()
+        encoded_name = name.encode("utf-8")
+        encoded_dtype = str(tensor.dtype).encode("ascii")
+        digest.update(struct.pack("<I", len(encoded_name)))
+        digest.update(encoded_name)
+        digest.update(struct.pack("<I", len(encoded_dtype)))
+        digest.update(encoded_dtype)
+        digest.update(struct.pack("<I", tensor.dim()))
+        for size in tensor.shape:
+            digest.update(struct.pack("<q", int(size)))
+        digest.update(_state_tensor_bytes(tensor))
+    return digest.hexdigest()
+
+
+def state_dicts_bitwise_equal(
+    left: Mapping[str, torch.Tensor],
+    right: Mapping[str, torch.Tensor],
+) -> bool:
+    if set(left) != set(right):
+        return False
+    for name in sorted(left):
+        left_tensor = torch.as_tensor(left[name]).detach().cpu().contiguous()
+        right_tensor = torch.as_tensor(right[name]).detach().cpu().contiguous()
+        if left_tensor.dtype != right_tensor.dtype or left_tensor.shape != right_tensor.shape:
+            return False
+        if _state_tensor_bytes(left_tensor) != _state_tensor_bytes(right_tensor):
+            return False
+    return True
 
 
 def _mapping(value: object, name: str) -> Mapping[str, object]:
@@ -170,7 +273,11 @@ def assert_graph_tensor_equality(a: SparseEntityGraph, b: SparseEntityGraph) -> 
 
 
 __all__ = [
+    "W0_V2_CHOSEN_LOGPROB_ATOL",
+    "W0_V2_VALID_LOGITS_ATOL",
     "assert_graph_tensor_equality",
+    "state_dict_sha256",
+    "state_dicts_bitwise_equal",
     "strip_pfq_fields",
     "validate_independent_checkpoint",
     "validate_independent_graph",

@@ -22,6 +22,7 @@ class IndependentActorConfig:
     attention_heads: int = 4
     max_candidates: int = 12
     dropout: float = 0.0
+    ablation: str = "full"
 
 
 def _fit_feature_dim(features: torch.Tensor, target_dim: int) -> torch.Tensor:
@@ -46,6 +47,8 @@ class PFQIndependentReuseActor(nn.Module):
     def __init__(self, cfg: IndependentActorConfig | None = None):
         super().__init__()
         self.cfg = cfg or IndependentActorConfig()
+        if self.cfg.ablation not in {"full", "no_reuse_attention", "no_dimensionless"}:
+            raise ValueError(f"unknown ablation: {self.cfg.ablation}")
         hidden = int(self.cfg.hidden_dim)
         if hidden <= 0:
             raise ValueError("hidden_dim must be positive")
@@ -92,6 +95,10 @@ class PFQIndependentReuseActor(nn.Module):
             batch_first=True,
         )
         self.reuse_norm = nn.LayerNorm(hidden)
+        # Retain identical initialization/RNG consumption, but never execute or
+        # optimize the removed branch. Its dormant weights remain serializable.
+        if self.cfg.ablation == "no_reuse_attention":
+            self.reuse_attention.requires_grad_(False)
 
         self.candidate_edge_projection = nn.Linear(
             max(1, int(self.cfg.up_edge_attr_dim)),
@@ -126,6 +133,10 @@ class PFQIndependentReuseActor(nn.Module):
             graph.snapshot.prg_features.values.to(device=device),
             self.cfg.prg_feat_dim,
         )
+        if self.cfg.ablation == "no_dimensionless":
+            # Do not mutate the snapshot: reward and audit retain the same state.
+            ue_features = ue_features.clone()
+            ue_features[:, 12:15] = 0
 
         cell_embeddings = self.cell_encoder(cell_features)
         ue_embeddings = self.ue_encoder(ue_features)
@@ -166,6 +177,8 @@ class PFQIndependentReuseActor(nn.Module):
                 f"prg_embeddings shape mismatch: got={tuple(prg_embeddings.shape)} expected={expected}"
             )
         by_local_prg = prg_embeddings.reshape(int(n_cell), int(n_prg), hidden).permute(1, 0, 2)
+        if self.cfg.ablation == "no_reuse_attention":
+            return self.reuse_norm(by_local_prg)
         attended, _ = self.reuse_attention(
             by_local_prg,
             by_local_prg,
@@ -189,10 +202,6 @@ class PFQIndependentReuseActor(nn.Module):
         local = int(local_prg)
         if local < 0 or local >= n_prg:
             raise ValueError(f"local_prg out of range: {local}")
-        if max_candidates != int(self.cfg.max_candidates):
-            raise ValueError(
-                f"candidate width mismatch: got={max_candidates} expected={int(self.cfg.max_candidates)}"
-            )
         if tuple(sequential_features.shape) != (n_cell, max_candidates, 3):
             raise ValueError(
                 "sequential_features must be [C,K,3], "
@@ -250,6 +259,9 @@ class PFQIndependentReuseActor(nn.Module):
             {
                 "actor_family": self.actor_family,
                 "requires_pfq_features": self.requires_pfq_features,
+                "candidate_width_policy": "runtime_topology",
+                "candidate_truncation": "forbidden",
+                "training_observed_max_candidates": int(self.cfg.max_candidates),
             }
         )
         return config

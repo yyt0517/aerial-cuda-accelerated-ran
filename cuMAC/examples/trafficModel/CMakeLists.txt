@@ -20,8 +20,13 @@ target_include_directories(${ProjectId} PRIVATE ${HDF5_CXX_INCLUDE_DIRS} ${CMAKE
 target_link_libraries(${ProjectId} PRIVATE cumac ${HDF5_CXX_LIBRARIES})
 
 if (ENABLE_TESTS)
+    add_executable(tbsUnitsTest tbsUnitsTest.cpp)
+    add_test(NAME tbsUnitsTest COMMAND tbsUnitsTest)
+    add_executable(trafficGranularityProfileTest trafficGranularityProfileTest.cpp)
+    add_test(NAME trafficGranularityProfileTest COMMAND trafficGranularityProfileTest)
+
     add_executable(trafficPacketAccountingTest)
-    target_sources(trafficPacketAccountingTest PRIVATE trafficPacketAccountingTest.cpp)
+    target_sources(trafficPacketAccountingTest PRIVATE trafficPacketAccountingTest.cpp trafficGenerator.cpp)
     target_include_directories(
         trafficPacketAccountingTest
         PRIVATE ${HDF5_CXX_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/../src/)

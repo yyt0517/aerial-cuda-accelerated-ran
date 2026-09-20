@@ -16,8 +16,26 @@ namespace cumac::online {
 
 struct StepAction {
     int32_t stepIdx = 0;
+    int64_t snapshotId = 0;
     std::vector<int32_t> ueAction;
     std::vector<int16_t> prgAction;
+};
+
+struct PreActionRequest {
+    int32_t tti = 0;
+    std::array<uint8_t, 32> configHash {};
+};
+
+struct PreActionSnapshot {
+    PreActionRspHeader header;
+    std::vector<int32_t> ueIds;
+    std::vector<int32_t> servingCell;
+    std::vector<float> wbSinrFirstLayerDb;
+    std::vector<float> ollaDelta;
+    std::vector<float> ollaDeltaUp;
+    std::vector<float> ollaDeltaDown;
+    std::vector<int32_t> priorTbErr;
+    std::vector<uint8_t> prgLayerCap;
 };
 
 struct StepState {
@@ -59,6 +77,20 @@ struct StepState {
     std::vector<float> actualUePacketOutcomeSystemTimeMs;
     std::vector<float> actualUePacketExpiryAwareRateMbps;
     std::vector<float> actualUePacketExpiryAwareRatePerPacketMeanMbps;
+    std::vector<uint8_t> acceptedPrePdschUePrgMask;
+    std::vector<uint8_t> actualUePrgMask;
+    std::vector<float> decisionPreWbSinrFirstLayerDb;
+    std::vector<float> decisionPreOllaDelta;
+    std::vector<float> decisionPreOllaDeltaUp;
+    std::vector<float> decisionPreOllaDeltaDown;
+    std::vector<int32_t> decisionPreTbErr;
+    std::vector<uint8_t> decisionPrePrgLayerCap;
+    std::vector<float> phyTbsConfig;
+    std::vector<int32_t> phyTbsAuditProvenance;
+    std::vector<int32_t> actualUeMcs;
+    std::vector<int32_t> actualUeLayer;
+    std::vector<int32_t> actualUeTbsCapacityBytes;
+    std::vector<float> ctbsConfig;
 };
 
 class OnlineBridgeServer {
@@ -73,6 +105,9 @@ public:
 
     bool recvStepReq(StepAction* req, bool* closeReq = nullptr);
     bool sendStepRsp(const StepState& state);
+
+    bool recvPreActionReq(PreActionRequest* req, bool* closeReq = nullptr);
+    bool sendPreActionRsp(const PreActionSnapshot& snapshot);
 
     bool recvCloseReq();
     bool sendCloseRsp();

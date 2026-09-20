@@ -5,6 +5,7 @@
 
 #include "OnlineBridgeServer.h"
 
+#include <algorithm>
 #include <cerrno>
 #include <cstdio>
 #include <cstring>
@@ -232,7 +233,21 @@ std::vector<uint8_t> OnlineBridgeServer::buildStatePayload(const StepState& stat
         sizeof(float) * state.actualUePacketExpiredSystemTimeMs.size() +
         sizeof(float) * state.actualUePacketOutcomeSystemTimeMs.size() +
         sizeof(float) * state.actualUePacketExpiryAwareRateMbps.size() +
-        sizeof(float) * state.actualUePacketExpiryAwareRatePerPacketMeanMbps.size());
+        sizeof(float) * state.actualUePacketExpiryAwareRatePerPacketMeanMbps.size() +
+        sizeof(uint8_t) * state.acceptedPrePdschUePrgMask.size() +
+        sizeof(uint8_t) * state.actualUePrgMask.size() +
+        sizeof(float) * state.decisionPreWbSinrFirstLayerDb.size() +
+        sizeof(float) * state.decisionPreOllaDelta.size() +
+        sizeof(float) * state.decisionPreOllaDeltaUp.size() +
+        sizeof(float) * state.decisionPreOllaDeltaDown.size() +
+        sizeof(int32_t) * state.decisionPreTbErr.size() +
+        sizeof(uint8_t) * state.decisionPrePrgLayerCap.size() +
+        sizeof(float) * state.phyTbsConfig.size() +
+        sizeof(int32_t) * state.phyTbsAuditProvenance.size() +
+        sizeof(int32_t) * state.actualUeMcs.size() +
+        sizeof(int32_t) * state.actualUeLayer.size() +
+        sizeof(int32_t) * state.actualUeTbsCapacityBytes.size() +
+        sizeof(float) * state.ctbsConfig.size());
 
     appendPod(out, state.header);
 
@@ -387,6 +402,58 @@ std::vector<uint8_t> OnlineBridgeServer::buildStatePayload(const StepState& stat
             state.actualUePacketExpiryAwareRatePerPacketMeanMbps.data(),
             sizeof(float) * state.actualUePacketExpiryAwareRatePerPacketMeanMbps.size());
     }
+    if (!state.acceptedPrePdschUePrgMask.empty()) {
+        appendRaw(
+            state.acceptedPrePdschUePrgMask.data(),
+            sizeof(uint8_t) * state.acceptedPrePdschUePrgMask.size());
+    }
+    if (!state.actualUePrgMask.empty()) {
+        appendRaw(state.actualUePrgMask.data(), sizeof(uint8_t) * state.actualUePrgMask.size());
+    }
+    if (!state.decisionPreWbSinrFirstLayerDb.empty()) {
+        appendRaw(
+            state.decisionPreWbSinrFirstLayerDb.data(),
+            sizeof(float) * state.decisionPreWbSinrFirstLayerDb.size());
+    }
+    if (!state.decisionPreOllaDelta.empty()) {
+        appendRaw(state.decisionPreOllaDelta.data(), sizeof(float) * state.decisionPreOllaDelta.size());
+    }
+    if (!state.decisionPreOllaDeltaUp.empty()) {
+        appendRaw(state.decisionPreOllaDeltaUp.data(), sizeof(float) * state.decisionPreOllaDeltaUp.size());
+    }
+    if (!state.decisionPreOllaDeltaDown.empty()) {
+        appendRaw(state.decisionPreOllaDeltaDown.data(), sizeof(float) * state.decisionPreOllaDeltaDown.size());
+    }
+    if (!state.decisionPreTbErr.empty()) {
+        appendRaw(state.decisionPreTbErr.data(), sizeof(int32_t) * state.decisionPreTbErr.size());
+    }
+    if (!state.decisionPrePrgLayerCap.empty()) {
+        appendRaw(
+            state.decisionPrePrgLayerCap.data(),
+            sizeof(uint8_t) * state.decisionPrePrgLayerCap.size());
+    }
+    if (!state.phyTbsConfig.empty()) {
+        appendRaw(state.phyTbsConfig.data(), sizeof(float) * state.phyTbsConfig.size());
+    }
+    if (!state.phyTbsAuditProvenance.empty()) {
+        appendRaw(
+            state.phyTbsAuditProvenance.data(),
+            sizeof(int32_t) * state.phyTbsAuditProvenance.size());
+    }
+    if (!state.actualUeMcs.empty()) {
+        appendRaw(state.actualUeMcs.data(), sizeof(int32_t) * state.actualUeMcs.size());
+    }
+    if (!state.actualUeLayer.empty()) {
+        appendRaw(state.actualUeLayer.data(), sizeof(int32_t) * state.actualUeLayer.size());
+    }
+    if (!state.actualUeTbsCapacityBytes.empty()) {
+        appendRaw(
+            state.actualUeTbsCapacityBytes.data(),
+            sizeof(int32_t) * state.actualUeTbsCapacityBytes.size());
+    }
+    if (!state.ctbsConfig.empty()) {
+        appendRaw(state.ctbsConfig.data(), sizeof(float) * state.ctbsConfig.size());
+    }
 
     return out;
 }
@@ -464,6 +531,7 @@ bool OnlineBridgeServer::recvStepReq(StepAction* req, bool* closeReq)
     }
 
     req->stepIdx = hdr.stepIdx;
+    req->snapshotId = hdr.snapshotId;
     req->ueAction.assign(hdr.ueActionLen, -1);
     req->prgAction.assign(hdr.prgActionLen, static_cast<int16_t>(-1));
 
@@ -482,6 +550,86 @@ bool OnlineBridgeServer::recvStepReq(StepAction* req, bool* closeReq)
         std::memcpy(req->prgAction.data(), payload.data() + off, prgBytes);
     }
     return true;
+}
+
+bool OnlineBridgeServer::recvPreActionReq(PreActionRequest* req, bool* closeReq)
+{
+    if (req == nullptr || m_clientFd < 0) {
+        return false;
+    }
+    if (closeReq != nullptr) {
+        *closeReq = false;
+    }
+
+    MsgHeader h {};
+    if (!readExact(m_clientFd, &h, sizeof(h))) {
+        return false;
+    }
+    if (h.magic != kMagic || h.version != kVersion) {
+        std::cerr << "[ONLINE_BRIDGE] invalid header magic/version\n";
+        return false;
+    }
+    std::vector<uint8_t> payload(h.payloadBytes, 0U);
+    if (h.payloadBytes > 0U && !readExact(m_clientFd, payload.data(), payload.size())) {
+        return false;
+    }
+    const MsgType type = static_cast<MsgType>(h.type);
+    if (type == MsgType::CloseReq) {
+        if (!payload.empty()) {
+            std::cerr << "[ONLINE_BRIDGE] invalid CloseReq payload size\n";
+            return false;
+        }
+        if (closeReq != nullptr) {
+            *closeReq = true;
+        }
+        return true;
+    }
+    if (type != MsgType::PreActionReq) {
+        std::cerr << "[ONLINE_BRIDGE] unexpected message type=" << h.type
+                  << " expected=" << static_cast<uint16_t>(MsgType::PreActionReq) << "\n";
+        return false;
+    }
+    if (payload.size() != sizeof(PreActionReqPayload)) {
+        std::cerr << "[ONLINE_BRIDGE] invalid PreActionReq payload size\n";
+        return false;
+    }
+    PreActionReqPayload wire {};
+    std::memcpy(&wire, payload.data(), sizeof(wire));
+    req->tti = wire.tti;
+    std::copy(std::begin(wire.configHash), std::end(wire.configHash), req->configHash.begin());
+    return true;
+}
+
+bool OnlineBridgeServer::sendPreActionRsp(const PreActionSnapshot& snapshot)
+{
+    const uint32_t nUe = snapshot.header.nActiveUe;
+    const uint32_t nPrg = snapshot.header.nPrg;
+    const size_t expectedLayerCaps = static_cast<size_t>(nUe) * static_cast<size_t>(nPrg);
+    if (snapshot.ueIds.size() != nUe || snapshot.servingCell.size() != nUe ||
+        snapshot.wbSinrFirstLayerDb.size() != nUe || snapshot.ollaDelta.size() != nUe ||
+        snapshot.ollaDeltaUp.size() != nUe || snapshot.ollaDeltaDown.size() != nUe ||
+        snapshot.priorTbErr.size() != nUe || snapshot.prgLayerCap.size() != expectedLayerCaps) {
+        std::cerr << "[ONLINE_BRIDGE] invalid PreActionRsp dimensions\n";
+        return false;
+    }
+    std::vector<uint8_t> payload;
+    appendPod(payload, snapshot.header);
+    const auto appendRaw = [&](const void* ptr, size_t bytes) {
+        const size_t pos = payload.size();
+        payload.resize(pos + bytes);
+        std::memcpy(payload.data() + pos, ptr, bytes);
+    };
+    appendRaw(snapshot.ueIds.data(), sizeof(int32_t) * snapshot.ueIds.size());
+    appendRaw(snapshot.servingCell.data(), sizeof(int32_t) * snapshot.servingCell.size());
+    appendRaw(
+        snapshot.wbSinrFirstLayerDb.data(),
+        sizeof(float) * snapshot.wbSinrFirstLayerDb.size());
+    appendRaw(snapshot.ollaDelta.data(), sizeof(float) * snapshot.ollaDelta.size());
+    appendRaw(snapshot.ollaDeltaUp.data(), sizeof(float) * snapshot.ollaDeltaUp.size());
+    appendRaw(snapshot.ollaDeltaDown.data(), sizeof(float) * snapshot.ollaDeltaDown.size());
+    appendRaw(snapshot.priorTbErr.data(), sizeof(int32_t) * snapshot.priorTbErr.size());
+    appendRaw(snapshot.prgLayerCap.data(), sizeof(uint8_t) * snapshot.prgLayerCap.size());
+    return sendMessage(MsgType::PreActionRsp, payload);
 }
 
 bool OnlineBridgeServer::sendStepRsp(const StepState& state)

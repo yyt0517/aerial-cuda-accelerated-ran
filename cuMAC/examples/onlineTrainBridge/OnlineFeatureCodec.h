@@ -71,6 +71,7 @@ public:
     uint32_t nTotCell() const { return m_totNumCell; }
     uint32_t nEdges() const { return m_nEdges; }
     uint32_t allocType() const { return m_allocType; }
+    uint32_t harqEnabled() const { return m_harqEnabled; }
     uint32_t actionAllocLen() const { return m_actionAllocLen; }
     uint32_t cellFeatDim() const { return kCellFeatDim; }
     uint32_t ueFeatDim() const { return kUeFeatDim; }
@@ -125,6 +126,7 @@ private:
     uint32_t m_nPrbGrp = 0U;
     uint32_t m_totNumCell = 0U;
     uint32_t m_allocType = 0U;
+    uint32_t m_harqEnabled = 0U;
     uint32_t m_nEdges = 0U;
     uint32_t m_actionAllocLen = 0U;
     RewardMode m_rewardMode = RewardMode::GoodputOnly;

@@ -5,6 +5,7 @@ import io
 import numpy as np
 import torch
 
+from training.stageb_hgraph import independent_contract as independent_contract_module
 from training.stageb_hgraph.edge_generator import EdgeGeneratorConfig, SparseEdgeGenerator
 from training.stageb_hgraph.feature_snapshot import FeatureSnapshotBuilder
 from training.stageb_hgraph.graph_ops import pack_prg_candidates
@@ -128,9 +129,31 @@ def test_actor_has_no_legacy_correction_heads_and_reports_checkpoint_metadata() 
     assert config["requires_pfq_features"] is False
     assert config["attention_heads"] == 4
     assert config["max_candidates"] == 12
+    assert config["training_observed_max_candidates"] == 12
+    assert config["candidate_width_policy"] == "runtime_topology"
+    assert config["candidate_truncation"] == "forbidden"
 
     parameter_count = sum(parameter.numel() for parameter in actor.parameters())
     payload = io.BytesIO()
     torch.save({"actor_config": config, "actor_state": actor.state_dict()}, payload)
     assert parameter_count > 0
     assert len(payload.getvalue()) > 0
+
+
+def test_state_dict_hash_is_independent_of_runtime_candidate_width() -> None:
+    hasher = getattr(independent_contract_module, "state_dict_sha256", None)
+    assert callable(hasher), "state-dict identity hash is missing"
+    actor12 = _actor()
+    actor13 = PFQIndependentReuseActor(
+        IndependentActorConfig(hidden_dim=32, message_layers=1, max_candidates=13)
+    )
+    actor13.load_state_dict(actor12.state_dict(), strict=True)
+
+    original_hash = hasher(actor12.state_dict())
+    widened_hash = hasher(actor13.state_dict())
+    changed = {name: tensor.clone() for name, tensor in actor13.state_dict().items()}
+    first_name = next(iter(changed))
+    changed[first_name].view(-1)[0] += 1.0
+
+    assert original_hash == widened_hash
+    assert hasher(changed) != original_hash

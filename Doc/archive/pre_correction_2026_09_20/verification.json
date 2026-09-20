@@ -1,0 +1,16 @@
+{
+  "date": "2026-09-20",
+  "archived_regular_files_sha256_verified": 7780,
+  "archived_bytes_verified": 12374575291,
+  "compatibility_aliases_verified": 70,
+  "original_documents_sha256_verified": 50,
+  "historical_frozen_checkpoint_sha256_unchanged": true,
+  "snapshot_source_files_match_current_code": 96,
+  "snapshot_binary_and_library_match_tested_build": true,
+  "current_document_and_notice_links_checked": 180,
+  "broken_checked_links": 0,
+  "archive_manifest_sha256": "edefa409208ae9c03a77bf6e5908aa225d47e214f01d3989a2d47e8a44d79a66",
+  "version_manifest_sha256": "7389e8d49ec28a2b0d3e2dffb60d47c20a83801d2e2a80b3cab1b1b47d01d615",
+  "training_or_simulation_started": false,
+  "scope": "Archival/documentation verification, not a new runtime validation; original historical documents are preserved, not rewritten or globally link-repaired."
+}

@@ -134,7 +134,7 @@ def test_direct_evaluation_rejects_incompatible_configuration(field, value):
 
 
 def _run_evaluator_main_boundary(monkeypatch, checkpoint_args):
-    graph = object()
+    graph = make_candidate_graph(n_prg=2)
     captured = {}
 
     class FakeEnv:

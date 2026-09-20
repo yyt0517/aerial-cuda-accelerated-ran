@@ -10,7 +10,7 @@
 namespace cumac::online {
 
 constexpr uint32_t kMagic = 0x524c4e4fU; // "ONLR"
-constexpr uint16_t kVersion = 12U;
+constexpr uint16_t kVersion = 16U;
 constexpr uint32_t kRewardTerms = 23U;
 constexpr uint32_t kStateFlagHasPostEqSinr = 1U << 0;
 constexpr uint32_t kStateFlagHasTeacherAction = 1U << 1;
@@ -19,6 +19,12 @@ constexpr uint32_t kStateFlagHasAcceptedPrePdschUeDiagnostics = 1U << 3;
 constexpr uint32_t kStateFlagHasNativeRejectDiagnostics = 1U << 4;
 constexpr uint32_t kStateFlagHasNativeSlotLayoutDiagnostics = 1U << 5;
 constexpr uint32_t kStateFlagHasActualUePacketDiagnostics = 1U << 6;
+constexpr uint32_t kStateFlagHasUePrgSetDiagnostics = 1U << 7;
+constexpr uint32_t kStateFlagHasPhyTbsAuditDiagnostics = 1U << 8;
+constexpr uint32_t kStateFlagHasCtbsConfig = 1U << 9;
+constexpr uint32_t kResetFlagEnableCtbs = 1U << 0;
+constexpr int32_t kPhyTbsOllaSourceCpu = 1;
+constexpr int32_t kPhyTbsCapturePhasePreActionPreMcs = 1;
 
 enum class MsgType : uint16_t {
     ResetReq = 1,
@@ -28,6 +34,8 @@ enum class MsgType : uint16_t {
     CloseReq = 5,
     CloseRsp = 6,
     ErrorRsp = 7,
+    PreActionReq = 8,
+    PreActionRsp = 9,
 };
 
 #pragma pack(push, 1)
@@ -47,8 +55,24 @@ struct ResetReqPayload {
 
 struct StepReqHeader {
     int32_t stepIdx = 0;
+    int64_t snapshotId = 0;
     uint32_t ueActionLen = 0;
     uint32_t prgActionLen = 0;
+};
+
+struct PreActionReqPayload {
+    int32_t tti = 0;
+    uint8_t configHash[32] = {};
+};
+
+struct PreActionRspHeader {
+    int32_t tti = 0;
+    int64_t snapshotId = 0;
+    uint32_t nActiveUe = 0;
+    uint32_t nPrg = 0;
+    int32_t ollaSourceCode = kPhyTbsOllaSourceCpu;
+    int32_t capturePhaseCode = kPhyTbsCapturePhasePreActionPreMcs;
+    uint8_t configHash[32] = {};
 };
 
 struct EnvDimsPayload {
@@ -65,6 +89,7 @@ struct EnvDimsPayload {
     uint32_t edgeFeatDim = 0;
     uint32_t prgFeatDim = 0;
     uint32_t postEqLayerDim = 0;
+    uint32_t harqEnabled = 0;
 };
 
 struct StepStateHeader {

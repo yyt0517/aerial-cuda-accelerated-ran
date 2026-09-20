@@ -8,10 +8,17 @@ from training.stageb_hgraph.independent_gate import (
     architecture_gate,
     compare_manifests,
     compare_treatments,
+    ctbs_formal_evaluation_gate,
+    ctbs_seed42_formal_pair_gate,
+    ctbs_seed42_smoke_gate,
+    long_multiseed_seed42_gate,
+    short_debt_treatment_gate,
+    formal_seed42_pair_gate,
     load_outcome_delay_p95,
     normalize_gate_metrics,
     score_checkpoint,
     select_treatment_checkpoints,
+    staged_multiseed_safety_prefix_gate,
 )
 from training.stageb_hgraph.online_protocol import VERSION
 
@@ -58,6 +65,391 @@ def _metrics(**updates):
     }
     values.update(updates)
     return values
+
+
+def _w0_v2_inputs():
+    static = {
+        "passed": True,
+        "actor_state_dict_sha256": "tensor-content-hash",
+        "state_tensor_names_equal": True,
+        "state_tensor_values_bitwise_equal": True,
+        "state_dict_hash_match_after_strict_load": True,
+    }
+    seed41 = {
+        "completed_steps": 128,
+        "candidate_mode": "all_demand_ues",
+        "candidate_width_policy": "runtime_topology",
+        "candidate_truncation": "forbidden",
+        "candidate_full_coverage": True,
+        "candidate_truncation_count": 0,
+        "stats_sum_action_replay_mismatch_count": 0.0,
+        "stats_sum_illegal_action_count": 0.0,
+        "independent_deletion_equal": True,
+        "actor_state_dict_sha256": "tensor-content-hash",
+        "training_observed_max_candidates": 13,
+        "topology_candidate_width": 13,
+        "runtime_candidate_width": 14,
+        "candidate_width_equivalence_steps": 128,
+        "candidate_width_equivalence_protocol": "fp32-w0-v2",
+        "candidate_width_equivalence": {
+            "candidate_choice_equal": True,
+            "mask_equal": True,
+            "type0_action_equal": True,
+            "extra_padding_invalid": True,
+            "runtime_replay_mismatch_count": 0,
+            "valid_logits_atol": 1.0e-5,
+            "chosen_logprob_atol": 1.0e-6,
+            "valid_logits_max_abs_diff": 9.54e-7,
+            "chosen_logprob_max_abs_diff": 5.96e-8,
+            "nan_or_inf_count": 0,
+            "passed": True,
+        },
+    }
+    seed42 = {
+        "completed_steps": 128,
+        "candidate_mode": "all_demand_ues",
+        "candidate_width_policy": "runtime_topology",
+        "candidate_truncation": "forbidden",
+        "candidate_full_coverage": True,
+        "candidate_truncation_count": 0,
+        "stats_sum_action_replay_mismatch_count": 0.0,
+        "stats_sum_illegal_action_count": 0.0,
+        "independent_deletion_equal": True,
+        "actor_state_dict_sha256": "tensor-content-hash",
+        "training_observed_max_candidates": 13,
+        "association_candidate_counts": [11, 11, 14],
+        "topology_candidate_width": 14,
+        "runtime_candidate_width": 14,
+    }
+    return static, seed41, seed42
+
+
+def _formal_seed42_actor_summary(**updates):
+    summary = {
+        "completed_steps": 5000,
+        "stats_count": 4000,
+        "measured_tti_first": 1001,
+        "measured_tti_last": 5000,
+        "sim_binary_sha256": "binary-a",
+        "candidate_mode": "all_demand_ues",
+        "candidate_width_policy": "runtime_topology",
+        "candidate_truncation": "forbidden",
+        "candidate_full_coverage": True,
+        "candidate_truncation_count": 0,
+        "stats_sum_candidate_truncation_count": 0.0,
+        "stats_sum_action_replay_mismatch_count": 0.0,
+        "stats_sum_illegal_action_count": 0.0,
+        "independent_deletion_equal": True,
+        "actor_state_dict_sha256": "frozen-b4",
+        "training_observed_max_candidates": 13,
+        "association_candidate_counts": [11, 11, 14],
+        "topology_candidate_width": 14,
+        "runtime_candidate_width": 14,
+        "stats_mean_blank_ratio": 0.25,
+        "stats_mean_fill_ratio": 0.75,
+        "stats_mean_prg_utilization_ratio": 0.75,
+        "stats_mean_prg_reuse_ratio": 0.5,
+    }
+    summary.update(updates)
+    return summary
+
+
+def _formal_seed42_manifest(*, source_state: str = "frozen-source"):
+    return {
+        **_manifest(seed=42),
+        "source_state_sha256": source_state,
+        "checkpoint_state_dict_sha256": "frozen-b4",
+        "warmup_steps": 1000,
+        "measure_steps": 4000,
+    }
+
+
+def _ctbs_actor_summary(*, completed_steps: int, stats_count: int, **updates):
+    summary = _formal_seed42_actor_summary(
+        completed_steps=completed_steps,
+        stats_count=stats_count,
+        measured_tti_first=1 if stats_count == completed_steps else 1001,
+        measured_tti_last=completed_steps,
+        protocol_version=VERSION,
+        runtime_harq_enabled=0,
+        independent_headroom_accounting="ctbs-v1",
+        ctbs_pre_action_handshake_enabled=True,
+        ctbs_config_sha256="c" * 64,
+        ctbs_snapshot_count=completed_steps,
+        ctbs_snapshot_id_first=1,
+        ctbs_snapshot_id_last=completed_steps,
+        ctbs_mcs_mismatch_count=0,
+        ctbs_layer_mismatch_count=0,
+        ctbs_tbs_mismatch_count=0,
+        ctbs_reference_label_deletion_equal=True,
+        ctbs_mask_reactivation_count=0,
+        ctbs_mask_trigger_count_by_local_prg=[0] * 17,
+        ctbs_selected_count_by_local_prg=[1] * 17,
+        ctbs_valid_candidate_count_by_local_prg=[1] * 17,
+    )
+    summary.update(updates)
+    return summary
+
+
+def test_ctbs_seed42_smoke_requires_causal_exact_and_replay_gates() -> None:
+    passed = ctbs_seed42_smoke_gate(
+        _ctbs_actor_summary(completed_steps=128, stats_count=128),
+        frozen_state_dict_sha256="frozen-b4",
+        frozen_binary_sha256="binary-a",
+    )
+    failed = ctbs_seed42_smoke_gate(
+        _ctbs_actor_summary(
+            completed_steps=128,
+            stats_count=128,
+            ctbs_tbs_mismatch_count=1,
+        ),
+        frozen_state_dict_sha256="frozen-b4",
+        frozen_binary_sha256="binary-a",
+    )
+
+    assert passed["passed"] is True
+    assert passed["classification"] == "b4_ctbs_seed42_smoke_pass"
+    assert failed["passed"] is False
+    assert failed["checks"]["exact_tbs_parity"] is False
+
+
+def test_ctbs_seed42_formal_gate_keeps_mechanism_diagnostics_record_only() -> None:
+    report = ctbs_seed42_formal_pair_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        _ctbs_actor_summary(completed_steps=5000, stats_count=4000),
+        _formal_seed42_manifest(),
+        _formal_seed42_manifest(),
+        frozen_state_dict_sha256="frozen-b4",
+    )
+
+    assert report["passed"] is True
+    assert report["classification"] == "seed42_ctbs_formal_gate_pass"
+    assert report["structural_gate"]["checks"]["ctbs_exact_tbs_parity"] is True
+    assert report["recorded_diagnostics"]["ctbs"]["gate_role"] == "record_only"
+
+
+def _short_treatment_service_report(prg_ratio: float) -> dict[str, object]:
+    pfq_target = 1000.0
+    pfq_cell = 10_000.0
+    actor_cell = 10_000.0
+    actor_target = pfq_target * prg_ratio
+    return {
+        "deficits": {
+            "actual_prg_count": {
+                "ctbs_over_pfq": prg_ratio,
+                "ctbs_overall": actor_target,
+                "pfq_overall": pfq_target,
+            }
+        },
+        "population_association_only": {
+            "ctbs_cell2": {"actual_prg_count": actor_cell},
+            "pfq_cell2": {"actual_prg_count": pfq_cell},
+        },
+    }
+
+
+def test_short_debt_treatment_requires_performance_and_clear_ue2_recovery() -> None:
+    summary = _ctbs_actor_summary(completed_steps=5000, stats_count=4000)
+    smoke = {"passed": True}
+    promising = short_debt_treatment_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        summary,
+        smoke,
+        _short_treatment_service_report(0.91),
+        actor_state_dict_sha256="frozen-b4",
+        binary_sha256="binary-a",
+    )
+    boundary_failure = short_debt_treatment_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        summary,
+        smoke,
+        _short_treatment_service_report(0.90),
+        actor_state_dict_sha256="frozen-b4",
+        binary_sha256="binary-a",
+    )
+
+    assert promising["classification"] == "short_debt_treatment_promising"
+    assert promising["passed"] is True
+    assert boundary_failure["classification"] == "short_debt_treatment_failure"
+    assert boundary_failure["ue2_allocation_gate"]["passed"] is False
+
+
+def test_generic_ctbs_formal_evaluation_accepts_seed41_topology() -> None:
+    report = ctbs_formal_evaluation_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        _ctbs_actor_summary(
+            completed_steps=5000,
+            stats_count=4000,
+            association_candidate_counts=[11, 12, 13],
+            topology_candidate_width=13,
+            runtime_candidate_width=13,
+            actor_state_dict_sha256="trained-long",
+        ),
+        actor_state_dict_sha256="trained-long",
+        binary_sha256="binary-a",
+        expected_association_counts=(11, 12, 13),
+        expected_runtime_width=13,
+        protocol_id="seed41-long-evaluation",
+    )
+
+    assert report["passed"] is True
+    assert report["structural_gate"]["passed"] is True
+    assert report["performance_gate"]["passed"] is True
+
+
+def test_long_multiseed_seed42_requires_performance_and_ue2_allocation() -> None:
+    summary = _ctbs_actor_summary(
+        completed_steps=5000,
+        stats_count=4000,
+        actor_state_dict_sha256="trained-long",
+    )
+    passed = long_multiseed_seed42_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        summary,
+        _short_treatment_service_report(0.91),
+        actor_state_dict_sha256="trained-long",
+        binary_sha256="binary-a",
+    )
+    failed = long_multiseed_seed42_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        summary,
+        _short_treatment_service_report(0.90),
+        actor_state_dict_sha256="trained-long",
+        binary_sha256="binary-a",
+    )
+
+    assert passed["classification"] == "long_multiseed_seed42_pass"
+    assert passed["passed"] is True
+    assert failed["classification"] == "long_multiseed_seed42_failure"
+    assert failed["ue2_allocation_gate"]["passed"] is False
+
+
+def test_formal_seed42_pair_passes_only_structural_then_performance_gates() -> None:
+    report = formal_seed42_pair_gate(
+        _metrics(),
+        _metrics(goodput_mbps=99.0, tb_bler=0.102, expiry_rate=0.0105),
+        _formal_seed42_actor_summary(),
+        _formal_seed42_manifest(),
+        _formal_seed42_manifest(),
+        frozen_state_dict_sha256="frozen-b4",
+    )
+
+    assert report["protocol_id"] == "seed42-pfq-b4-formal-v1"
+    assert report["structural_gate"]["status"] == "PASS"
+    assert report["performance_gate"]["status"] == "PASS"
+    assert report["classification"] == "seed42_formal_gate_pass"
+    assert report["passed"] is True
+    assert report["status"] == (
+        "Seed42 formal PFQ-B4 pair PASS: frozen B4 passes the first "
+        "unseen-seed performance gate."
+    )
+
+
+def test_formal_seed42_pair_structural_failure_precedes_performance() -> None:
+    report = formal_seed42_pair_gate(
+        _metrics(),
+        _metrics(goodput_mbps=110.0),
+        _formal_seed42_actor_summary(candidate_truncation_count=1),
+        _formal_seed42_manifest(),
+        _formal_seed42_manifest(),
+        frozen_state_dict_sha256="frozen-b4",
+    )
+
+    assert report["structural_gate"]["status"] == "FAIL"
+    assert report["performance_gate"]["status"] == "NOT_EVALUATED"
+    assert report["classification"] == "runtime_compatibility_path_failure"
+    assert report["passed"] is False
+
+
+def test_formal_seed42_pair_reports_performance_failure_after_structural_pass() -> None:
+    report = formal_seed42_pair_gate(
+        _metrics(),
+        _metrics(goodput_mbps=98.9),
+        _formal_seed42_actor_summary(),
+        _formal_seed42_manifest(),
+        _formal_seed42_manifest(),
+        frozen_state_dict_sha256="frozen-b4",
+    )
+
+    assert report["structural_gate"]["status"] == "PASS"
+    assert report["performance_gate"]["status"] == "FAIL"
+    assert report["classification"] == "seed42_performance_gate_failure"
+    assert report["passed"] is False
+
+
+def test_formal_seed42_diagnostics_are_recorded_but_never_promoted_to_gates() -> None:
+    pfq = _metrics(outcome_delay_p95_ms=999.0, ue_p10_ea_rate_mbps=0.001)
+    pfq.update(
+        blank_ratio_mean=0.99,
+        prg_opportunity_count_mean=0.01,
+        prg_utilization_ratio_mean=0.01,
+        prg_reuse_ratio_mean=0.01,
+    )
+    actor = _metrics(
+        goodput_mbps=99.0,
+        tb_bler=0.102,
+        expiry_rate=0.0105,
+        outcome_delay_p95_ms=9999.0,
+        ue_p10_ea_rate_mbps=0.00001,
+    )
+
+    report = formal_seed42_pair_gate(
+        pfq,
+        actor,
+        _formal_seed42_actor_summary(
+            stats_mean_blank_ratio=1.0,
+            stats_mean_fill_ratio=0.0,
+        ),
+        _formal_seed42_manifest(),
+        _formal_seed42_manifest(),
+        frozen_state_dict_sha256="frozen-b4",
+    )
+
+    assert report["passed"] is True
+    assert report["recorded_diagnostics"]["gate_role"] == "record_only"
+    assert report["recorded_diagnostics"]["actor"]["prg_opportunity_count_mean"] == 0.0
+    assert "outcome_delay_p95_ms" not in report["performance_gate"]["gate"]["checks"]
+
+
+def test_w0_v2_reports_seed41_and_seed42_conclusions_separately() -> None:
+    from training.stageb_hgraph import independent_gate
+
+    gate = getattr(independent_gate, "candidate_width_w0_v2_gate", None)
+    assert callable(gate), "W0-v2 summary gate is missing"
+    static, seed41, seed42 = _w0_v2_inputs()
+
+    report = gate(static, seed41, seed42, expected_steps=128)
+
+    assert report["protocol_id"] == "W0-v2"
+    assert report["seed41_numerical_compatibility"]["status"] == "PASS"
+    assert report["seed42_structural_smoke"]["status"] == "PASS"
+    assert report["passed"] is True
+    assert report["status"] == (
+        "W0-v2 PASS: behaviorally identical under frozen FP32 tolerance "
+        "and structurally compatible with seed42 topology."
+    )
+
+
+def test_w0_v2_never_hides_a_seed_specific_failure() -> None:
+    from training.stageb_hgraph import independent_gate
+
+    gate = getattr(independent_gate, "candidate_width_w0_v2_gate", None)
+    assert callable(gate), "W0-v2 summary gate is missing"
+    static, seed41, seed42 = _w0_v2_inputs()
+    seed42["candidate_truncation_count"] = 1
+
+    report = gate(static, seed41, seed42, expected_steps=128)
+
+    assert report["seed41_numerical_compatibility"]["status"] == "PASS"
+    assert report["seed42_structural_smoke"]["status"] == "FAIL"
+    assert report["passed"] is False
+    assert not report["status"].startswith("W0-v2 PASS")
 
 
 @pytest.mark.parametrize(
@@ -253,3 +645,69 @@ def test_evaluator_summary_is_normalized_to_gate_metrics_without_defaults():
                 "packet_outcome_delay_p95_ms": None,
             }
         )
+
+
+def _safe_multiseed_training_row(iteration: int) -> dict[str, object]:
+    return {
+        "iter": float(iteration),
+        "topology_seed": float(41 if iteration % 2 == 1 else 42),
+        "rollout_steps": 512.0,
+        "rollout_reward_total_mean": 0.8,
+        "policy_loss": -0.01,
+        "value_loss": 0.2,
+        "entropy_mean": 1.0,
+        "approx_kl_mean": 0.001,
+        "rollout_ctbs_pre_action_handshake_enabled": True,
+        "rollout_ctbs_mcs_mismatch_count": 0.0,
+        "rollout_ctbs_layer_mismatch_count": 0.0,
+        "rollout_ctbs_tbs_mismatch_count": 0.0,
+        "rollout_ctbs_reference_label_deletion_equal": True,
+        "rollout_action_replay_mismatch_count_mean": 0.0,
+        "rollout_native_reject_diagnostics_available_mean": 1.0,
+        "rollout_python_preflight_diagnostics_available_mean": 1.0,
+        "rollout_native_reject_wrong_cell_slot_count_mean": 0.0,
+        "rollout_native_reject_empty_slot_count_mean": 0.0,
+        "rollout_native_reject_prg_mask_count_mean": 0.0,
+        "rollout_native_reject_oob_slot_count_mean": 0.0,
+        "rollout_native_reject_duplicate_ue_count_mean": 0.0,
+        "rollout_python_preflight_wrong_cell_slot_count_mean": 0.0,
+        "rollout_python_preflight_empty_slot_count_mean": 0.0,
+        "rollout_python_preflight_prg_mask_count_mean": 0.0,
+        "rollout_python_preflight_oob_slot_count_mean": 0.0,
+        "rollout_python_preflight_duplicate_ue_count_mean": 0.0,
+    }
+
+
+def test_staged_multiseed_safety_prefix_passes_at_eight_alternating_rollouts():
+    report = staged_multiseed_safety_prefix_gate(
+        [_safe_multiseed_training_row(iteration) for iteration in range(1, 9)]
+    )
+
+    assert report["status"] == "PASS"
+    assert report["prefix_complete"] is True
+    assert report["measured_ttis"] == 4096
+    assert report["observed_topology_seeds"] == [41, 42, 41, 42, 41, 42, 41, 42]
+    assert all(report["checks"].values())
+
+
+@pytest.mark.parametrize(
+    ("mutation", "failed_check"),
+    [
+        ({"rollout_reward_total_mean": float("nan")}, "all_numeric_metrics_finite"),
+        ({"topology_seed": 41.0}, "seed_cycle_exact"),
+        ({"rollout_action_replay_mismatch_count_mean": 1.0}, "zero_replay_mismatch"),
+        ({"rollout_native_reject_prg_mask_count_mean": 1.0}, "zero_illegal_action"),
+        ({"rollout_ctbs_tbs_mismatch_count": 1.0}, "ctbs_exact_parity"),
+    ],
+)
+def test_staged_multiseed_safety_prefix_fails_closed(
+    mutation: dict[str, object], failed_check: str
+):
+    rows = [_safe_multiseed_training_row(iteration) for iteration in range(1, 9)]
+    rows[1].update(mutation)
+
+    report = staged_multiseed_safety_prefix_gate(rows)
+
+    assert report["status"] == "FAIL"
+    assert report["safe_so_far"] is False
+    assert report["checks"][failed_check] is False

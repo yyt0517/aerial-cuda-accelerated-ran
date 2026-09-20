@@ -97,11 +97,16 @@ inline int resolveSchedSlotToActiveUe(const uint16_t* schedToActiveMap, int sche
     if (schedSlot < 0) {
         return -1;
     }
-    if (schedToActiveMap != nullptr && schedSlot < nSchedUe) {
+    if (schedToActiveMap != nullptr) {
+        if (schedSlot >= nSchedUe) {
+            return -1;
+        }
         const uint16_t activeUeId = schedToActiveMap[schedSlot];
         if (activeUeId != 0xFFFF && activeUeId < static_cast<uint16_t>(nActiveUe)) {
             return static_cast<int>(activeUeId);
         }
+        // A padded/invalid scheduled slot is not an identity-mapped active UE.
+        return -1;
     }
     if (schedSlot < nActiveUe) {
         return schedSlot;
@@ -1622,6 +1627,17 @@ static inline int sanitizeLayerCount(int layerCount, int maxLayers)
     CUDA_CHECK_ERR(cudaMemcpyAsync(cellGrpPrmsCpu->detMat_actUe, cellGrpPrmsGpu->detMat_actUe, detActUeSize, cudaMemcpyDeviceToHost, strm));
     CUDA_CHECK_ERR(cudaMemcpyAsync(cellGrpPrmsCpu->sinVal_actUe, cellGrpPrmsGpu->sinVal_actUe, sinValActUeSize, cudaMemcpyDeviceToHost, strm));
  }
+
+ void network::copySinValActUeGpu2Cpu(cudaStream_t strm)
+ {
+    CUDA_CHECK_ERR(cudaMemcpyAsync(
+        cellGrpPrmsCpu->sinVal_actUe,
+        cellGrpPrmsGpu->sinVal_actUe,
+        sinValActUeSize,
+        cudaMemcpyDeviceToHost,
+        strm));
+    CUDA_CHECK_ERR(cudaStreamSynchronize(strm));
+ }
  
 void network::copyCellAssocResGpu2Cpu(cudaStream_t strm)
 {
@@ -1721,6 +1737,7 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
 
  void network::updateDataRatePdschGpu(int slotIdx)
  {
+    lastPhyDiagnosticsGpu.assign(nUe, {-999.0f, -1.0f});
     uint32_t nBsAntSqrd         = nBsAnt*nBsAnt;
     cuComplex* CMat             = new cuComplex[nBsAntSqrd];
     cuComplex* BMat             = new cuComplex[nBsAntSqrd];
@@ -1918,15 +1935,16 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                     tbErr = 1;
                 }
 
+                lastPhyDiagnosticsGpu[ueIdx] = {10.0f * log10f(avgSinr), blerCurr};
                 tbErrLast[ueIdx] = tbErr;
                 tbErrRecordsGpu[ueIdx][slotIdx] = tbErr;
 
-                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]);
-                float insRate = static_cast<float>(TBS)*(1-tbErr)/slotDuration;
+                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]) / 8U; // bits -> queue bytes
+                float insRate = 8.0F*static_cast<float>(TBS)*(1-tbErr)/slotDuration; // avgRates remains bit/s
                 // CPU and GPU buffer sizes hold the same values (data managed on CPU side)
                 if(0 != cellGrpUeStatusCpu->bufferSize){
                     auto sched_bytes = std::min({TBS,cellGrpUeStatusCpu->bufferSize[ueIdx]});
-                    insRate = static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
+                    insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
                 }
                 avgRates[ueIdx] = (1.0-pfAvgRateUpd)*avgRates[ueIdx] + pfAvgRateUpd*insRate;
                 perUeThr[ueIdx] = insRate;
@@ -1992,7 +2010,7 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
 
                     if (DL == 1) { // DL
                         uint32_t hTemp =
-                            rbgIdx * nUe * totNumCell * nBsAnt * nUeAnt + activeUeId * totNumCell * nBsAnt * nUeAnt;
+                            rbgIdx * nUe * totNumCell * nBsAnt * nUeAnt + ueIdx * totNumCell * nBsAnt * nUeAnt;
                         for (int rowIdx = 0; rowIdx < nUeAnt; rowIdx++) {
                             for (int colIdx = 0; colIdx < nUeAnt; colIdx++) {
                                 if (rowIdx == colIdx) {
@@ -2027,7 +2045,8 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                             matAlg->matMultiplication_aHb(&estH_fr[hMatStart], nUeAnt, nBsAnt, CInvMat, nUeAnt, DMat);
                             matAlg->matMultiplication_ab(DMat, nBsAnt, nUeAnt, &estH_fr[hMatStart], nBsAnt, EMat);
                         } else { 
-                            uint32_t vMatStart = (activeUeId * nPrbGrp + rbgIdx) * nBsAnt * nBsAnt;
+                            // ueDownSelect packs estH_fr/prdMat by scheduled slot, not active UE id.
+                            uint32_t vMatStart = (ueIdx * nPrbGrp + rbgIdx) * nBsAnt * nBsAnt;
                             matAlg->matMultiplication_ab(&estH_fr[hMatStart], nUeAnt, nBsAnt, prdMat.get()+vMatStart, nBsAnt, BMat);
                             matAlg->matMultiplication_aHb(BMat, nUeAnt, nBsAnt, CInvMat, nUeAnt, DMat);
                             matAlg->matMultiplication_ab(DMat, nBsAnt, nUeAnt, BMat, nBsAnt, EMat);
@@ -2068,20 +2087,21 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                             if (uePrimeIdx < 0)
                                 continue;
         
-                            uint32_t hInterfMatStart = hTemp + uePrimeIdx * totNumCell * nBsAnt * nUeAnt;
+                            const int interfererSlot = allocSol[rbgIdx * totNumCell + l];
+                            uint32_t hInterfMatStart = hTemp + interfererSlot * totNumCell * nBsAnt * nUeAnt;
                             addAaHplusBWithPowerBoost(
                                 matAlg.get(), &estH_fr[hInterfMatStart], nBsAnt, nUeAnt,
                                 activeRbgPowerBoost[static_cast<size_t>(l)], CMat);
                         }
                         matAlg->matInverseEigen(CMat, nBsAnt, CInvMat);
 
-                        uint32_t hMatStart = hTemp + activeUeId * totNumCell * nBsAnt * nUeAnt;
+                        uint32_t hMatStart = hTemp + ueIdx * totNumCell * nBsAnt * nUeAnt;
         
                         if (precodingScheme == 0) { // no precoding
                             printf("Error: Currently only support SVD precoding for UL");
                             return;
                         } else { 
-                            uint32_t vMatStart = (activeUeId * nPrbGrp + rbgIdx) * nUeAnt * nUeAnt;
+                            uint32_t vMatStart = (ueIdx * nPrbGrp + rbgIdx) * nUeAnt * nUeAnt;
                             matAlg->matMultiplication_ab(&estH_fr[hMatStart], nBsAnt, nUeAnt, prdMat.get()+vMatStart, nUeAnt, BMat);
     
                             matAlg->matMultiplication_aHb(BMat, nBsAnt, nUeAnt, CInvMat, nBsAnt, DMat);
@@ -2134,15 +2154,16 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                     tbErr = 1;
                 }
 
+                lastPhyDiagnosticsGpu[ueIdx] = {10.0f * log10f(avgSinr), blerCurr};
                 tbErrLast[ueIdx] = tbErr;
                 tbErrRecordsGpu[ueIdx][slotIdx] = tbErr;
 
-                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]);
-                float insRate = static_cast<float>(TBS)*(1-tbErr)/slotDuration;
+                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]) / 8U; // bits -> queue bytes
+                float insRate = 8.0F*static_cast<float>(TBS)*(1-tbErr)/slotDuration; // avgRates remains bit/s
                 // CPU and GPU buffer sizes hold the same values (data managed on CPU side)
                 if(0 != cellGrpUeStatusCpu->bufferSize){
                     auto sched_bytes = std::min({TBS,cellGrpUeStatusCpu->bufferSize[activeUeId]});
-                    insRate = static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
+                    insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
                 }
                 avgRates[ueIdx] = (1.0-pfAvgRateUpd)*avgRates[ueIdx] + pfAvgRateUpd*insRate;
                 perUeThr[ueIdx] = insRate;
@@ -2195,6 +2216,7 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
 
  void network::updateDataRatePdschCpu(int slotIdx)
  {
+    lastPhyDiagnosticsCpu.assign(nUe, {-999.0f, -1.0f});
     uint32_t nBsAntSqrd         = nBsAnt*nBsAnt;
 
     cuComplex* CMat             = new cuComplex[nBsAntSqrd];
@@ -2397,16 +2419,17 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                     tbErr = 1;
                 }
                 
+                lastPhyDiagnosticsCpu[ueIdx] = {10.0f * log10f(avgSinr), blerCurr};
                 cellGrpUeStatusCpu->tbErrLast[ueIdx] = tbErr;
                 tbErrRecordsCpu[ueIdx][slotIdx] = tbErr;
                 predBlerRecordsCpu[ueIdx][slotIdx] = blerCurr;
 
-                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]);
-                float insRate = static_cast<float>(TBS)*(1-tbErr)/slotDuration;
+                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]) / 8U; // bits -> queue bytes
+                float insRate = 8.0F*static_cast<float>(TBS)*(1-tbErr)/slotDuration; // avgRates remains bit/s
                 if(0 != cellGrpUeStatusCpu->bufferSize){
                     auto sched_bytes = std::min({TBS,cellGrpUeStatusCpu->bufferSize[ueIdx]});
                     cellGrpUeStatusCpu->bufferSize[ueIdx] -= sched_bytes;
-                    insRate = static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
+                    insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
                 }
                 cellGrpUeStatusCpu->avgRates[ueIdx] = (1.0-pfAvgRateUpd)*cellGrpUeStatusCpu->avgRates[ueIdx] + pfAvgRateUpd*insRate;
                 perUeThr[ueIdx] = insRate;
@@ -2479,7 +2502,7 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
 
                         if (DL == 1) { // DL
                             uint32_t hTemp =
-                                rbgIdx * nUe * totNumCell * nBsAnt * nUeAnt + activeUeId * totNumCell * nBsAnt * nUeAnt;
+                                rbgIdx * nUe * totNumCell * nBsAnt * nUeAnt + ueIdx * totNumCell * nBsAnt * nUeAnt;
 
                             for (int rowIdx = 0; rowIdx < nUeAnt; rowIdx++) {
                                 for (int colIdx = 0; colIdx < nUeAnt; colIdx++) {
@@ -2515,7 +2538,8 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                                 matAlg->matMultiplication_aHb(&cellGrpPrmsCpu->estH_fr[hMatStart], nUeAnt, nBsAnt, CInvMat, nUeAnt, DMat);
                                 matAlg->matMultiplication_ab(DMat, nBsAnt, nUeAnt, &cellGrpPrmsCpu->estH_fr[hMatStart], nBsAnt, EMat);
                             } else { 
-                                uint32_t vMatStart = (activeUeId * nPrbGrp + rbgIdx) * nBsAnt * nBsAnt;
+                                // ueDownSelect packs estH_fr/prdMat by scheduled slot, not active UE id.
+                                uint32_t vMatStart = (ueIdx * nPrbGrp + rbgIdx) * nBsAnt * nBsAnt;
                                 matAlg->matMultiplication_ab(&cellGrpPrmsCpu->estH_fr[hMatStart], nUeAnt, nBsAnt, &cellGrpPrmsCpu->prdMat[vMatStart], nBsAnt, BMat);
     
                                 matAlg->matMultiplication_aHb(BMat, nUeAnt, nBsAnt, CInvMat, nUeAnt, DMat);
@@ -2557,20 +2581,21 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                                 if (uePrimeIdx < 0)
                                     continue;
         
-                                uint32_t hInterfMatStart = hTemp + uePrimeIdx * totNumCell * nBsAnt * nUeAnt;
+                                const int interfererSlot = schdSolCpu->allocSol[rbgIdx * totNumCell + l];
+                                uint32_t hInterfMatStart = hTemp + interfererSlot * totNumCell * nBsAnt * nUeAnt;
                                 addAaHplusBWithPowerBoost(
                                     matAlg.get(), &cellGrpPrmsCpu->estH_fr[hInterfMatStart], nBsAnt, nUeAnt,
                                     activeRbgPowerBoost[static_cast<size_t>(l)], CMat);
                             }
                             matAlg->matInverseEigen(CMat, nBsAnt, CInvMat);
 
-                            uint32_t hMatStart = hTemp + activeUeId * totNumCell * nBsAnt * nUeAnt;
+                            uint32_t hMatStart = hTemp + ueIdx * totNumCell * nBsAnt * nUeAnt;
         
                             if (precodingScheme == 0) { // no precoding
                                 printf("Error: Currently only support SVD precoding for UL");
                                 return;
                             } else { 
-                                uint32_t vMatStart = (activeUeId * nPrbGrp + rbgIdx) * nUeAnt * nUeAnt;
+                                uint32_t vMatStart = (ueIdx * nPrbGrp + rbgIdx) * nUeAnt * nUeAnt;
                                 matAlg->matMultiplication_ab(&cellGrpPrmsCpu->estH_fr[hMatStart], nBsAnt, nUeAnt, &cellGrpPrmsCpu->prdMat[vMatStart], nUeAnt, BMat);
     
                                 matAlg->matMultiplication_aHb(BMat, nBsAnt, nUeAnt, CInvMat, nBsAnt, DMat);
@@ -2622,16 +2647,17 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
                     tbErr = 1;
                 }
                 
+                lastPhyDiagnosticsCpu[ueIdx] = {10.0f * log10f(avgSinr), blerCurr};
                 cellGrpUeStatusCpu->tbErrLast[ueIdx] = tbErr;
                 tbErrRecordsCpu[ueIdx][slotIdx] = tbErr;
                 predBlerRecordsCpu[ueIdx][slotIdx] = blerCurr;
 
-                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]);
-                float insRate = static_cast<float>(TBS)*(1-tbErr)/slotDuration;
+                uint32_t TBS = determineTbsPdsch(nrAllocPrb, pdschNrOfDataSymb, layerCount, mcsTable_codeRate[mcsSel]/1024.0, mcsTable_qamOrder[mcsSel]) / 8U; // bits -> queue bytes
+                float insRate = 8.0F*static_cast<float>(TBS)*(1-tbErr)/slotDuration; // avgRates remains bit/s
                 if(0 != cellGrpUeStatusCpu->bufferSize){
                     auto sched_bytes = std::min({TBS,cellGrpUeStatusCpu->bufferSize[activeUeId]});
                     cellGrpUeStatusCpu->bufferSize[activeUeId] -= sched_bytes;
-                    insRate = static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
+                    insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;
                 }
                 cellGrpUeStatusCpu->avgRates[ueIdx] = (1.0-pfAvgRateUpd)*cellGrpUeStatusCpu->avgRates[ueIdx] + pfAvgRateUpd*insRate;
                 perUeThr[ueIdx] = insRate;
@@ -4114,7 +4140,7 @@ void network::saveSolMatx()
 }
 
 
-uint32_t network::determineTbsPdsch(int rbSize, int nDataSymb, int nrOfLayers, float codeRate, int qam)
+uint32_t network::determineTbsPdsch(int rbSize, int nDataSymb, int nrOfLayers, float codeRate, int qam) const
 {
     uint32_t TBS = 0;
     // current assumption is that resource allocation is type-1
@@ -4153,6 +4179,62 @@ uint32_t network::determineTbsPdsch(int rbSize, int nDataSymb, int nrOfLayers, f
     }
 
     return TBS;
+}
+
+std::vector<uint32_t> network::scheduledTbsCapacityByActiveUe() const
+{
+    auto result = scheduledTbsCapacityBitsByActiveUe();
+    for (auto& bits : result) {
+        bits /= 8U; // PHY bits -> exported byte capacity; exactly once.
+    }
+    return result;
+}
+
+uint64_t network::rawChannelFingerprint() const
+{
+    // Raw active-UE CFR, before scheduling/down-selection; no policy state.
+    const auto* bytes = reinterpret_cast<const unsigned char*>(estH_fr_actUe.get());
+    uint64_t hash = 14695981039346656037ULL;
+    for (size_t i = 0; i < hActUeSize; ++i) {
+        hash = (hash ^ bytes[i]) * 1099511628211ULL;
+    }
+    return hash;
+}
+
+std::vector<uint32_t> network::scheduledTbsCapacityBitsByActiveUe() const
+{
+    std::vector<uint32_t> result(static_cast<size_t>(nActiveUe), 0U);
+    if (schdSolCpu == nullptr || cellGrpPrmsCpu == nullptr || schdSolCpu->allocSol == nullptr ||
+        schdSolCpu->setSchdUePerCellTTI == nullptr || schdSolCpu->mcsSelSol == nullptr ||
+        schdSolCpu->layerSelSol == nullptr) {
+        return result;
+    }
+    for (int slot = 0; slot < nUe; ++slot) {
+        const uint16_t activeUe = schdSolCpu->setSchdUePerCellTTI[slot];
+        if (activeUe == 0xFFFF || activeUe >= static_cast<uint16_t>(nActiveUe)) {
+            continue;
+        }
+        int allocatedPrgs = 0;
+        for (int prg = 0; prg < nPrbGrp; ++prg) {
+            for (int cell = 0; cell < totNumCell; ++cell) {
+                if (schdSolCpu->allocSol[prg * totNumCell + cell] == slot) {
+                    ++allocatedPrgs;
+                }
+            }
+        }
+        const int mcs = static_cast<int>(schdSolCpu->mcsSelSol[slot]);
+        const int layers = static_cast<int>(schdSolCpu->layerSelSol[slot]);
+        if (allocatedPrgs <= 0 || mcs < 0 || mcs >= 28 || layers <= 0 || layers > nUeAnt) {
+            continue;
+        }
+        result[activeUe] = determineTbsPdsch(
+            allocatedPrgs * nPrbPerGrp,
+            m_pdschNrOfDataSymb,
+            layers,
+            mcsTable_codeRate[mcs] / 1024.0F,
+            mcsTable_qamOrder[mcs]); // raw PHY bits: independent of byte export/dequeue
+    }
+    return result;
 }
 
 void network::genNetTopology()
@@ -4992,6 +5074,15 @@ float network::getPredictedBlerCpu(int schedUeIdx, int slotIdx) const
         return -1.0f;
     }
     return predBlerRecordsCpu[schedUeIdx][slotIdx];
+}
+
+std::pair<float, float> network::getLastPhySinrAndBler(int schedSlot, bool gpu) const
+{
+    const auto& records = gpu ? lastPhyDiagnosticsGpu : lastPhyDiagnosticsCpu;
+    if (schedSlot < 0 || static_cast<size_t>(schedSlot) >= records.size()) {
+        return {-999.0f, -1.0f};
+    }
+    return records[schedSlot];
 }
 
 void network::updateDataRateAllActiveUeGpu(const int slotIdx)

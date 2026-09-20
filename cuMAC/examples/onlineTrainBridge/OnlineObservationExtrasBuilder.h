@@ -8,9 +8,13 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdint>
+#include <cstdlib>
+#include <stdexcept>
+#include <string>
 #include <limits>
 #include <vector>
 
+#include "DeadlineServiceFeatures.h"
 #include "OnlineObservationTypes.h"
 #include "api.h"
 #include "../trafficModel/trafficService.hpp"
@@ -32,7 +36,15 @@ public:
         }
         m_recentSchedRatio.assign(m_nActiveUe, 0.0f);
         m_recentGoodputMbps.assign(m_nActiveUe, 0.0f);
-        m_lastServedTti.assign(m_nActiveUe, -1);
+        m_recentScheduledDequeueBytes.assign(m_nActiveUe, 0.0f);
+        m_lastScheduledDequeueTti.assign(m_nActiveUe, -1);
+        m_lastSuccessfulServiceTti.assign(m_nActiveUe, -1);
+        const char* featureMode = std::getenv("CUMAC_DPA_FEATURE_MODE");
+        const std::string mode = featureMode == nullptr ? "dimensionless" : featureMode;
+        if (mode != "dimensionless" && mode != "legacy") {
+            throw std::invalid_argument("CUMAC_DPA_FEATURE_MODE must be dimensionless or legacy");
+        }
+        m_legacyDeadlineFeatures = mode == "legacy";
         m_currentSnapshotTti = 0;
         m_prevPrgAssigned.assign(static_cast<size_t>(m_nCell) * m_nPrg, 0U);
         m_snapshot.ueExtraFeatures.assign(
@@ -111,6 +123,7 @@ public:
             const size_t base = static_cast<size_t>(ueIdx) * ObservationFeatureLayout::kUeExtraFeatDim;
             float holDelayMs = 0.0f;
             float ttlSlackMs = -1.0f;
+            int ttlSlackTti = -1;
             float pendingBytes = 0.0f;
             if (ueIdx < packetHead.size()) {
                 pendingBytes = static_cast<float>(packetHead[ueIdx].pending_bytes);
@@ -118,6 +131,7 @@ public:
                     holDelayMs = static_cast<float>(packetHead[ueIdx].hol_age_tti) * m_slotDurationMs;
                 }
                 if (packetHead[ueIdx].ttl_slack_tti >= 0 && m_packetTtlTti > 0) {
+                    ttlSlackTti = packetHead[ueIdx].ttl_slack_tti;
                     ttlSlackMs = static_cast<float>(packetHead[ueIdx].ttl_slack_tti) * m_slotDurationMs;
                 }
             }
@@ -133,18 +147,29 @@ public:
             m_snapshot.ueExtraFeatures[base + 1U] = ttlSlackMs;
             m_snapshot.ueExtraFeatures[base + 2U] = std::max(0.0f, std::min(1.0f, m_recentSchedRatio[ueIdx]));
             m_snapshot.ueExtraFeatures[base + 3U] = recentDeficitNorm;
-            m_snapshot.ueExtraFeatures[base + 4U] =
-                (ttlSlackMs >= 0.0f && ttlSlackMs <= 20.0f) ? pendingBytes : 0.0f;
-            m_snapshot.ueExtraFeatures[base + 5U] =
-                (ttlSlackMs >= 0.0f && ttlSlackMs <= 60.0f) ? pendingBytes : 0.0f;
-            const float ttlMs = static_cast<float>(m_packetTtlTti) * m_slotDurationMs;
-            const float ageWeight =
-                ttlMs > 0.0f ? std::min(2.0f, std::max(0.0f, holDelayMs / ttlMs)) : 0.0f;
-            m_snapshot.ueExtraFeatures[base + 6U] = pendingBytes * ageWeight;
-            m_snapshot.ueExtraFeatures[base + 7U] =
-                m_lastServedTti[ueIdx] >= 0
-                    ? static_cast<float>(std::max(0, m_currentSnapshotTti - m_lastServedTti[ueIdx]))
-                    : static_cast<float>(m_currentSnapshotTti);
+            const int serviceAgeTti =
+                m_lastScheduledDequeueTti[ueIdx] >= 0
+                    ? std::max(0, m_currentSnapshotTti - m_lastScheduledDequeueTti[ueIdx])
+                    : m_currentSnapshotTti;
+            const DeadlineServiceFeatures deadlineFeatures = buildDeadlineServiceFeatures(
+                pendingBytes,
+                m_recentScheduledDequeueBytes[ueIdx],
+                ttlSlackTti,
+                serviceAgeTti,
+                m_packetTtlTti);
+            m_snapshot.ueExtraFeatures[base + 4U] = deadlineFeatures.log1pDrainPressure;
+            m_snapshot.ueExtraFeatures[base + 5U] = deadlineFeatures.scheduledDequeueAdequacy;
+            m_snapshot.ueExtraFeatures[base + 6U] = deadlineFeatures.ttlNormalizedServiceAge;
+            m_snapshot.ueExtraFeatures[base + 7U] = 0.0F;
+            if (m_legacyDeadlineFeatures) {
+                const int successAge = m_lastSuccessfulServiceTti[ueIdx] >= 0
+                    ? std::max(0, m_currentSnapshotTti - m_lastSuccessfulServiceTti[ueIdx])
+                    : m_currentSnapshotTti;
+                const auto legacy = buildLegacyDeadlineFeatures(
+                    pendingBytes, ttlSlackMs, holDelayMs,
+                    static_cast<float>(m_packetTtlTti) * m_slotDurationMs, successAge);
+                std::copy(legacy.begin(), legacy.end(), m_snapshot.ueExtraFeatures.begin() + base + 4U);
+            }
         }
 
         const uint8_t nUeAnt = std::max<uint8_t>(1U, cellGrpPrmsCpu->nUeAnt);
@@ -340,6 +365,7 @@ public:
 
     void observeTtiResult(const cumacSchdSol* schdSolCpu,
                           const cumacCellGrpPrms* cellGrpPrmsCpu,
+                          const std::vector<unsigned long long>& scheduledDequeueBytesThisTti,
                           const std::vector<unsigned long long>& goodputBytesThisTti)
     {
         if (cellGrpPrmsCpu == nullptr || schdSolCpu == nullptr || m_nCell == 0U || m_nActiveUe == 0U || m_nPrg == 0U) {
@@ -375,10 +401,21 @@ public:
                     : 0.0f;
             m_recentSchedRatio[ueIdx] =
                 (1.0f - m_recentAlpha) * m_recentSchedRatio[ueIdx] + m_recentAlpha * scheduledFlag;
+            const float scheduledDequeueBytes =
+                ueIdx < scheduledDequeueBytesThisTti.size()
+                    ? static_cast<float>(scheduledDequeueBytesThisTti[ueIdx])
+                    : 0.0F;
+            m_recentScheduledDequeueBytes[ueIdx] = updateScheduledDequeueEwma(
+                m_recentScheduledDequeueBytes[ueIdx],
+                scheduledDequeueBytes,
+                m_recentAlpha);
             m_recentGoodputMbps[ueIdx] =
                 (1.0f - m_recentAlpha) * m_recentGoodputMbps[ueIdx] + m_recentAlpha * goodputMbps;
+            if (ueIdx < scheduledDequeueBytesThisTti.size() && scheduledDequeueBytesThisTti[ueIdx] > 0ULL) {
+                m_lastScheduledDequeueTti[ueIdx] = m_currentSnapshotTti;
+            }
             if (ueIdx < goodputBytesThisTti.size() && goodputBytesThisTti[ueIdx] > 0ULL) {
-                m_lastServedTti[ueIdx] = m_currentSnapshotTti;
+                m_lastSuccessfulServiceTti[ueIdx] = m_currentSnapshotTti;
             }
         }
     }
@@ -405,7 +442,10 @@ private:
     int m_currentSnapshotTti = 0;
     std::vector<float> m_recentSchedRatio;
     std::vector<float> m_recentGoodputMbps;
-    std::vector<int> m_lastServedTti;
+    std::vector<float> m_recentScheduledDequeueBytes;
+    std::vector<int> m_lastScheduledDequeueTti;
+    std::vector<int> m_lastSuccessfulServiceTti;
+    bool m_legacyDeadlineFeatures = false;
     std::vector<uint8_t> m_prevPrgAssigned;
     ObservationExtras m_snapshot;
 };

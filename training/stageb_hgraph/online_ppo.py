@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 import os
@@ -98,18 +99,28 @@ from training.stageb_hgraph.independent_blank_diagnostics import (
     concatenate_independent_policy_diagnostics,
     summarize_independent_policy_diagnostics,
 )
-from training.stageb_hgraph.independent_objectives import ExpiryAwareUeWindowTracker
+from training.stageb_hgraph.ctbs_headroom import (
+    CtbsHeadroomInputs,
+    compare_ctbs_reference_labels,
+)
+from training.stageb_hgraph.independent_objectives import (
+    DeadlineTailPressureTracker,
+    ExpiryAwareUeWindowTracker,
+)
 from training.stageb_hgraph.independent_policy import (
     IndependentPolicyTrace,
     materialize_independent_choices_to_type0,
     replay_independent_trace,
+    resolve_full_candidate_width,
     select_independent_action,
 )
 from training.stageb_hgraph.independent_reward import (
     IndependentRewardConfig,
     compute_independent_reward,
 )
+from training.stageb_hgraph.independent_gate import staged_multiseed_safety_prefix_gate
 from training.stageb_hgraph.online_imitation import OnlineEpisodeRunner, _pick_device, _set_seed
+from training.stageb_hgraph.phy_tbs_alignment_audit import PhyTbsConfig
 from training.stageb_hgraph.pfq_residual import (
     initialize_pfq_residual_head,
     should_initialize_pfq_residual,
@@ -290,6 +301,10 @@ class RolloutStep:
     expiry_potential_delta: float
     expiry_potential_topk_mean: float
     expiry_potential_max: float
+    deadline_tail_rate_before: float
+    deadline_tail_rate_after: float
+    deadline_tail_rate_delta: float
+    deadline_tail_rate_weighted: float
     rescue_credit: float
     rescue_miss: float
     rescue_risk_topk_mean: float
@@ -1237,6 +1252,14 @@ def _validate_candidate_policy_mode(args: argparse.Namespace) -> None:
 
 def _validate_independent_ppo_args(args: argparse.Namespace) -> None:
     action_head_mode = str(getattr(args, "action_head_mode", ""))
+    headroom_accounting = str(
+        getattr(args, "independent_headroom_accounting", "raw-v1")
+    )
+    if headroom_accounting == "ctbs-v1" and action_head_mode != "independent":
+        raise ValueError(
+            "--independent-headroom-accounting ctbs-v1 requires "
+            "--action-head-mode independent"
+        )
     if (
         int(getattr(args, "independent_policy_diagnostics", 0)) == 1
         and action_head_mode != "independent"
@@ -1246,8 +1269,8 @@ def _validate_independent_ppo_args(args: argparse.Namespace) -> None:
         )
     if action_head_mode != "independent":
         return
+    allowed_reward_modes = ("pfq_independent", "deadline_tail")
     required = (
-        ("reward_mode", "pfq_independent"),
         ("candidate_mode", "all_demand_ues"),
         ("include_pfq_score_anchor", 0),
         ("include_candidate_risk_features", 0),
@@ -1277,11 +1300,21 @@ def _validate_independent_ppo_args(args: argparse.Namespace) -> None:
         for name, expected in required
         if getattr(args, name, None) != expected
     ]
+    if str(getattr(args, "reward_mode", "")) not in allowed_reward_modes:
+        incompatible.append(
+            f"reward_mode={getattr(args, 'reward_mode', None)!r} "
+            f"(required one of {allowed_reward_modes!r})"
+        )
     treatment = str(getattr(args, "independent_treatment", ""))
+    if str(getattr(args, "reward_mode", "")) == "deadline_tail" and treatment != "E":
+        incompatible.append("deadline_tail reward requires --independent-treatment E")
     has_init = bool(str(getattr(args, "init_checkpoint", "")))
     if treatment == "A" and has_init:
         incompatible.append("treatment A requires an empty --init-checkpoint")
-    if treatment in ("B", "C", "D") and not has_init:
+    random_init = bool(int(getattr(args, "independent_random_init", 0)))
+    if random_init and (has_init or treatment != "E" or args.reward_mode != "deadline_tail"):
+        incompatible.append("--independent-random-init requires deadline_tail/E and no init checkpoint")
+    if treatment in ("B", "C", "D", "E") and not has_init and not random_init:
         incompatible.append(f"treatment {treatment} requires the frozen BC --init-checkpoint")
     if int(getattr(args, "max_prg_candidates", 0)) <= 0 and not has_init:
         incompatible.append("random-init independent PPO requires --max-prg-candidates")
@@ -3118,11 +3151,12 @@ def _sample_joint_action(
     candidate_seq_state_coef: float = 1.0,
     candidate_seq_fail_risk_feature_offset: int = -1,
     independent_policy_diagnostics: bool = False,
+    ctbs_headroom_inputs: CtbsHeadroomInputs | None = None,
 ) -> Dict[str, torch.Tensor | float]:
     if isinstance(actor, PFQIndependentReuseActor):
         packed = pack_prg_candidates(
             graph,
-            max_candidates=int(actor.cfg.max_candidates),
+            max_candidates=resolve_full_candidate_width(graph),
             fixed_width=True,
         )
         trace, decoded = select_independent_action(
@@ -3131,6 +3165,7 @@ def _sample_joint_action(
             packed,
             mode="sample",
             collect_diagnostics=independent_policy_diagnostics,
+            ctbs_headroom_inputs=ctbs_headroom_inputs,
         )
         chosen = decoded.chosen_ue_per_prg[decoded.chosen_ue_per_prg >= 0]
         e_up = graph.edges["E_UP"].index
@@ -3609,6 +3644,70 @@ def _compute_gae(
     return advantages, returns
 
 
+def _raw_training_scale_metrics(
+    advantages: torch.Tensor,
+    returns: torch.Tensor,
+    values: torch.Tensor,
+) -> Dict[str, float]:
+    """Summarize pre-normalization PPO targets without changing them."""
+    adv = advantages.detach().to(dtype=torch.float32, device="cpu").reshape(-1)
+    ret = returns.detach().to(dtype=torch.float32, device="cpu").reshape(-1)
+    val = values.detach().to(dtype=torch.float32, device="cpu").reshape(-1)
+    if not (adv.numel() and adv.shape == ret.shape == val.shape):
+        raise ValueError("raw PPO scale tensors must be non-empty and have equal shapes")
+
+    def stats(prefix: str, tensor: torch.Tensor) -> Dict[str, float]:
+        return {
+            f"{prefix}_mean": float(tensor.mean().item()),
+            f"{prefix}_std": float(tensor.std(unbiased=False).item()),
+            f"{prefix}_p05": float(torch.quantile(tensor, 0.05).item()),
+            f"{prefix}_p95": float(torch.quantile(tensor, 0.95).item()),
+        }
+
+    result = {
+        **stats("adv_raw", adv),
+        **stats("return_raw", ret),
+        **stats("value_raw", val),
+    }
+    return_variance = float(ret.var(unbiased=False).item())
+    result["explained_variance_raw"] = (
+        float(1.0 - (ret - val).var(unbiased=False).item() / return_variance)
+        if return_variance > 0.0
+        else 0.0
+    )
+    return result
+
+
+def _parse_candidate_checkpoint_iters(value: str) -> frozenset[int]:
+    if not str(value).strip():
+        return frozenset()
+    try:
+        parsed = [int(token.strip()) for token in str(value).split(",")]
+    except ValueError as exc:
+        raise ValueError(
+            "--candidate-checkpoint-iters must be a comma-separated integer list"
+        ) from exc
+    if any(iteration <= 0 for iteration in parsed):
+        raise ValueError("--candidate-checkpoint-iters entries must be positive")
+    return frozenset(parsed)
+
+
+def _candidate_checkpoint_due(
+    iter_idx: int,
+    interval: int,
+    explicit_iters: frozenset[int],
+    *,
+    best_min_iter: int,
+) -> bool:
+    explicit_due = int(iter_idx) in explicit_iters
+    interval_due = (
+        int(interval) > 0
+        and int(iter_idx) >= int(best_min_iter)
+        and (int(iter_idx) % int(interval)) == 0
+    )
+    return explicit_due or interval_due
+
+
 def _load_checkpoint_compatible(
     model: nn.Module,
     ckpt_path: str,
@@ -3627,6 +3726,8 @@ def _load_checkpoint_compatible(
         actor_cfg = ckpt.get("actor_config") or ckpt.get("model_config")
         if not isinstance(actor_cfg, Mapping) or str(actor_cfg.get("actor_family", "")) != model.actor_family:
             raise ValueError("independent initialization checkpoint actor_family mismatch")
+        if str(actor_cfg.get("ablation", "full")) != model.cfg.ablation:
+            raise ValueError("independent initialization checkpoint ablation mismatch")
     state = ckpt.get("model_state") or ckpt.get("actor_state") or ckpt
     target_state = model.state_dict()
     if isinstance(model, PFQIndependentReuseActor):
@@ -3659,6 +3760,8 @@ def _configure_actor_trainable_params(
     if not bool(candidate_seq_train_only):
         for param in actor.parameters():
             param.requires_grad_(True)
+        if isinstance(actor, PFQIndependentReuseActor) and actor.cfg.ablation == "no_reuse_attention":
+            actor.reuse_attention.requires_grad_(False)
         params = [p for p in actor.parameters() if p.requires_grad]
         return params, sum(p.numel() for p in params), total_count
 
@@ -3908,6 +4011,86 @@ def _run_online_imitation_warm_start(
     }
 
 
+def _ctbs_inputs_for_rollout_step(
+    runner: OnlineEpisodeRunner,
+    info: Mapping[str, object],
+) -> CtbsHeadroomInputs | None:
+    if (
+        str(getattr(runner.args, "independent_headroom_accounting", "raw-v1"))
+        != "ctbs-v1"
+    ):
+        return None
+    if runner.env is None:
+        raise RuntimeError("CTBS rollout requires a live bridge environment")
+    if bool(info.get("ctbs_config_available", False)):
+        if int(info.get("harq_enabled", -1)) != 0:
+            raise ValueError("B4-CTBS-v1 requires runtime HARQ to be disabled")
+        runner.ctbs_config = PhyTbsConfig.from_vector(info["ctbs_config"])
+        runner.ctbs_config_sha256 = str(info["ctbs_config_sha256"])
+    config = getattr(runner, "ctbs_config", None)
+    config_sha256 = getattr(runner, "ctbs_config_sha256", None)
+    if config is None or config_sha256 is None:
+        raise RuntimeError("B4-CTBS-v1 reset did not provide a TBS configuration")
+    if "tti" not in info:
+        raise RuntimeError("B4-CTBS-v1 rollout state is missing its TTI identity")
+    pre_action = runner.env.request_pre_action_snapshot(expected_tti=int(info["tti"]))
+    return CtbsHeadroomInputs.from_arrays(
+        tti=pre_action.tti,
+        snapshot_id=pre_action.snapshot_id,
+        config_sha256=pre_action.config_sha256,
+        config=config,
+        ue_ids=pre_action.ue_ids,
+        serving_cell=pre_action.serving_cell,
+        wb_sinr_first_layer_db=pre_action.wb_sinr_first_layer_db,
+        olla_delta=pre_action.olla_delta,
+        olla_delta_up=pre_action.olla_delta_up,
+        olla_delta_down=pre_action.olla_delta_down,
+        prior_tb_err=pre_action.prior_tb_err,
+        prg_layer_cap=pre_action.prg_layer_cap,
+    )
+
+
+def _validate_ctbs_rollout_parity(
+    inputs: CtbsHeadroomInputs | None,
+    sampled: Mapping[str, object],
+    next_info: Mapping[str, object],
+    graph: SparseEntityGraph,
+):
+    if inputs is None:
+        return None
+    required = (
+        "actual_ue_mcs",
+        "actual_ue_layer",
+        "actual_ue_tbs_capacity_bytes",
+    )
+    missing = [name for name in required if name not in next_info]
+    if missing:
+        raise RuntimeError(
+            "B4-CTBS-v1 post-action reference labels are missing: "
+            + ", ".join(missing)
+        )
+    parity = compare_ctbs_reference_labels(
+        inputs,
+        chosen_ue_per_prg=torch.as_tensor(sampled["chosen_ue_per_prg"])
+        .reshape(-1)
+        .tolist(),
+        actual_mcs=next_info["actual_ue_mcs"],
+        actual_layer=next_info["actual_ue_layer"],
+        actual_tbs_capacity_bytes=next_info["actual_ue_tbs_capacity_bytes"],
+        n_cell=int(graph.snapshot.static_meta.n_cell),
+        n_prg=int(graph.snapshot.static_meta.n_prg),
+    )
+    if not parity.all_exact:
+        raise RuntimeError(
+            "B4-CTBS-v1 causal PHY/TBS parity failed: "
+            f"mcs={parity.mcs_mismatch_count} "
+            f"layer={parity.layer_mismatch_count} "
+            f"tbs={parity.tbs_mismatch_count} "
+            f"deletion={int(parity.reference_label_deletion_equal)}"
+        )
+    return parity
+
+
 def _collect_rollout(
     *,
     runner: OnlineEpisodeRunner,
@@ -3954,7 +4137,29 @@ def _collect_rollout(
             window_steps=int(reward_cfg.get("expiry_reward_window_steps", 0)),
             offered_bytes_per_tti=float(reward_cfg.get("expiry_reward_offered_bytes_per_tti", 0.0)),
         )
+    if reward_mode == "deadline_tail":
+        pressure_tracker = getattr(expiry_reward_tracker, "deadline_tail_pressure_tracker", None)
+        if pressure_tracker is None or int(pressure_tracker.n_ue) != int(graph.snapshot.static_meta.n_ue):
+            pressure_tracker = DeadlineTailPressureTracker(
+                int(graph.snapshot.static_meta.n_ue),
+                window_steps=int(reward_cfg["deadline_tail_window_steps"]),
+                slot_duration_s=float(reward_cfg["deadline_tail_slot_duration_s"]),
+                epsilon_bytes=float(reward_cfg["deadline_tail_epsilon_bytes"]),
+                tail_fraction=float(reward_cfg["deadline_tail_tail_fraction"]),
+            )
+            expiry_reward_tracker.deadline_tail_pressure_tracker = pressure_tracker
+        else:
+            # Each rollout may switch topology/traffic seed; never leak the
+            # previous rollout's service history into the next seed.
+            pressure_tracker.reset()
     n_cell = int(graph.snapshot.static_meta.n_cell)
+    ctbs_snapshot_count = 0
+    ctbs_snapshot_id_first: int | None = None
+    ctbs_snapshot_id_last: int | None = None
+    ctbs_mcs_mismatch_count = 0
+    ctbs_layer_mismatch_count = 0
+    ctbs_tbs_mismatch_count = 0
+    ctbs_reference_label_deletion_equal = True
     native_reject_cell_sum = {
         key: np.zeros((n_cell,), dtype=np.float64) for key in _NATIVE_REJECT_INFO_KEYS
     }
@@ -3993,6 +4198,7 @@ def _collect_rollout(
             rate_target_mbps=float(getattr(runner.args, "candidate_packet_tail_rate_target_mbps", 2.0)),
             delay_scale_ms=float(getattr(runner.args, "candidate_packet_tail_delay_scale_ms", 10.0)),
         )
+        ctbs_inputs = _ctbs_inputs_for_rollout_step(runner, info)
         with torch.no_grad():
             if cached_actor_out is None or cached_value is None:
                 actor_out, value = _evaluate_graph(actor, critic, graph, state_norm=state_norm)
@@ -4106,6 +4312,7 @@ def _collect_rollout(
                     getattr(runner.args, "candidate_seq_fail_risk_feature_offset", -1)
                 ),
                 independent_policy_diagnostics=independent_policy_diagnostics,
+                ctbs_headroom_inputs=ctbs_inputs,
             )
 
         python_preflight_counts = {
@@ -4239,6 +4446,28 @@ def _collect_rollout(
             sampled["action_ue_select"],
             sampled["action_prg_alloc"],
         )
+        ctbs_parity = _validate_ctbs_rollout_parity(
+            ctbs_inputs,
+            sampled,
+            next_info,
+            graph,
+        )
+        if ctbs_inputs is not None:
+            assert ctbs_parity is not None
+            ctbs_snapshot_count += 1
+            ctbs_snapshot_id_first = (
+                ctbs_inputs.snapshot_id
+                if ctbs_snapshot_id_first is None
+                else ctbs_snapshot_id_first
+            )
+            ctbs_snapshot_id_last = ctbs_inputs.snapshot_id
+            ctbs_mcs_mismatch_count += int(ctbs_parity.mcs_mismatch_count)
+            ctbs_layer_mismatch_count += int(ctbs_parity.layer_mismatch_count)
+            ctbs_tbs_mismatch_count += int(ctbs_parity.tbs_mismatch_count)
+            ctbs_reference_label_deletion_equal = bool(
+                ctbs_reference_label_deletion_equal
+                and ctbs_parity.reference_label_deletion_equal
+            )
         runner.record_transition(next_obs, float(raw_env_reward), next_info)
         cache_next_transition = not done and (step_idx + 1) < total_env_steps
         transition_next_graph = None
@@ -4249,7 +4478,7 @@ def _collect_rollout(
             )
         elif (
             float(reward_cfg.get("queue_pressure_weight", 0.0)) > 0.0
-            or reward_mode == "pfq_independent"
+            or reward_mode in ("pfq_independent", "deadline_tail")
         ):
             transition_next_graph = _graph_to_device(
                 edge_generator.build_graph(
@@ -4465,20 +4694,30 @@ def _collect_rollout(
         expiry_potential_delta = expiry_potential_before - expiry_potential_after
         expiry_potential_topk_mean = float(expiry_after_stats["expiry_topk_mean"])
         expiry_potential_max = float(expiry_after_stats["expiry_max"])
+        deadline_tail_rate_before = 0.0
+        deadline_tail_rate_after = 0.0
+        deadline_tail_rate_delta = 0.0
+        deadline_tail_rate_weighted = 0.0
         rescue_credit = float(rescue_credit_stats["rescue_credit"])
         rescue_miss = float(rescue_credit_stats["rescue_miss"])
         rescue_risk_topk_mean = float(rescue_credit_stats["rescue_risk_topk_mean"])
         rescue_served_ratio = float(rescue_credit_stats["rescue_served_ratio"])
         independent_reward_terms: Dict[str, float] | None = None
-        if reward_mode == "pfq_independent":
+        if reward_mode in ("pfq_independent", "deadline_tail"):
             if transition_next_graph is None:
-                raise RuntimeError("PFQ-independent reward requires the post-action observation graph")
-            treatment = str(reward_cfg["independent_treatment"])
+                raise RuntimeError("independent reward requires the post-action observation graph")
+            treatment = "E" if reward_mode == "deadline_tail" else str(reward_cfg["independent_treatment"])
             independent_tracker = getattr(
                 expiry_reward_tracker,
                 "independent_ue_tracker",
                 None,
             )
+            if treatment == "E":
+                independent_tracker = getattr(
+                    expiry_reward_tracker,
+                    "deadline_tail_pressure_tracker",
+                    None,
+                )
             if treatment == "D" and (
                 independent_tracker is None
                 or int(independent_tracker.n_ue) != int(graph.snapshot.static_meta.n_ue)
@@ -4506,9 +4745,46 @@ def _collect_rollout(
                     ue_utility_scale_p95=float(
                         reward_cfg["independent_ue_utility_scale_p95"]
                     ),
+                    goodput_weight=float(reward_cfg["independent_goodput_weight"]),
+                    failed_weight=float(reward_cfg["independent_failed_weight"]),
+                    expired_weight=float(reward_cfg["independent_expired_weight"]),
+                    deadline_tail_eta=float(reward_cfg.get("deadline_tail_eta", 0.25)),
+                    deadline_tail_window_steps=int(
+                        reward_cfg.get("deadline_tail_window_steps", 100)
+                    ),
+                    deadline_tail_epsilon_bytes=float(
+                        reward_cfg.get("deadline_tail_epsilon_bytes", 1.0)
+                    ),
+                    deadline_tail_tail_fraction=float(
+                        reward_cfg.get("deadline_tail_tail_fraction", 0.10)
+                    ),
+                    deadline_tail_rate_weight=float(
+                        reward_cfg.get("deadline_tail_rate_weight", 0.25)
+                    ),
+                    deadline_tail_rate_tail_fraction=float(
+                        reward_cfg.get("deadline_tail_rate_tail_fraction", 0.10)
+                    ),
+                    deadline_tail_rate_epsilon_mbps=float(
+                        reward_cfg.get("deadline_tail_rate_epsilon_mbps", 1.0e-6)
+                    ),
+                    remove_deadline_reward=bool(
+                        int(reward_cfg.get("independent_remove_deadline_reward", 0))
+                    ),
                 ),
             )
             reward_raw = float(independent_reward_terms["reward_total"])
+            deadline_tail_rate_before = float(
+                independent_reward_terms["reward_deadline_tail_rate_before"]
+            )
+            deadline_tail_rate_after = float(
+                independent_reward_terms["reward_deadline_tail_rate_after"]
+            )
+            deadline_tail_rate_delta = float(
+                independent_reward_terms["reward_deadline_tail_rate_delta"]
+            )
+            deadline_tail_rate_weighted = float(
+                independent_reward_terms["reward_deadline_tail_rate_weighted"]
+            )
             conflict_mean = _prg_feature_mean(graph, 6)
             ici_mean = _prg_feature_mean(graph, 7)
             urgent_backlog_penalty = 0.0
@@ -5062,6 +5338,10 @@ def _collect_rollout(
                 expiry_potential_delta=expiry_potential_delta,
                 expiry_potential_topk_mean=expiry_potential_topk_mean,
                 expiry_potential_max=expiry_potential_max,
+                deadline_tail_rate_before=deadline_tail_rate_before,
+                deadline_tail_rate_after=deadline_tail_rate_after,
+                deadline_tail_rate_delta=deadline_tail_rate_delta,
+                deadline_tail_rate_weighted=deadline_tail_rate_weighted,
                 rescue_credit=rescue_credit,
                 rescue_miss=rescue_miss,
                 rescue_risk_topk_mean=rescue_risk_topk_mean,
@@ -5123,6 +5403,8 @@ def _collect_rollout(
                 f"debtKB={float(np.mean([s.actual_unserved_backlog_bytes for s in tail]))/1024.0:.1f} "
                 f"tailPot={float(np.mean([s.tail_potential_after for s in tail])):.3f} "
                 f"tailDelta={float(np.mean([s.tail_potential_delta for s in tail])):.3f} "
+                f"rateTail={float(np.mean([s.deadline_tail_rate_after for s in tail])):.3f} "
+                f"rateTailW={float(np.mean([s.deadline_tail_rate_weighted for s in tail])):.3f} "
                 f"resc={float(np.mean([s.rescue_credit for s in tail])):.3f} "
                 f"miss={float(np.mean([s.rescue_miss for s in tail])):.3f} "
                 f"preGap={float(np.mean([s.planned_accepted_pre_pdsch_prg_gap_ratio for s in tail])):.3f} "
@@ -5174,6 +5456,20 @@ def _collect_rollout(
         "rollout_warmup_steps": float(warmup_steps_completed),
         "rollout_warmup_steps_requested": float(warmup_steps_requested),
         "rollout_total_env_steps": float(warmup_steps_completed + len(steps)),
+        "rollout_ctbs_pre_action_handshake_enabled": bool(ctbs_snapshot_count),
+        "rollout_ctbs_snapshot_count": float(ctbs_snapshot_count),
+        "rollout_ctbs_snapshot_id_first": (
+            float(ctbs_snapshot_id_first) if ctbs_snapshot_id_first is not None else -1.0
+        ),
+        "rollout_ctbs_snapshot_id_last": (
+            float(ctbs_snapshot_id_last) if ctbs_snapshot_id_last is not None else -1.0
+        ),
+        "rollout_ctbs_mcs_mismatch_count": float(ctbs_mcs_mismatch_count),
+        "rollout_ctbs_layer_mismatch_count": float(ctbs_layer_mismatch_count),
+        "rollout_ctbs_tbs_mismatch_count": float(ctbs_tbs_mismatch_count),
+        "rollout_ctbs_reference_label_deletion_equal": bool(
+            ctbs_reference_label_deletion_equal
+        ),
         "rollout_post_eq_enabled_mean": (
             float(np.mean([1.0 if s.graph.snapshot.static_meta.post_eq_sinr is not None else 0.0 for s in steps]))
             if steps
@@ -5693,6 +5989,18 @@ def _collect_rollout(
         "rollout_expiry_potential_max_mean": (
             float(np.mean([s.expiry_potential_max for s in steps])) if steps else 0.0
         ),
+        "rollout_deadline_tail_rate_before_mean": (
+            float(np.mean([s.deadline_tail_rate_before for s in steps])) if steps else 0.0
+        ),
+        "rollout_deadline_tail_rate_after_mean": (
+            float(np.mean([s.deadline_tail_rate_after for s in steps])) if steps else 0.0
+        ),
+        "rollout_deadline_tail_rate_delta_mean": (
+            float(np.mean([s.deadline_tail_rate_delta for s in steps])) if steps else 0.0
+        ),
+        "rollout_deadline_tail_rate_weighted_mean": (
+            float(np.mean([s.deadline_tail_rate_weighted for s in steps])) if steps else 0.0
+        ),
         "rollout_coverage_repair_count_mean": (
             float(np.mean([s.coverage_repair_count for s in steps])) if steps else 0.0
         ),
@@ -5752,6 +6060,7 @@ def _collect_rollout(
             and key in step.independent_reward_terms
         ]
         summary[f"rollout_{key}_mean"] = float(np.mean(values)) if values else 0.0
+        summary[f"rollout_{key}_std"] = float(np.std(values)) if values else 0.0
     if per_ue_log_dir is not None and steps:
         per_ue_log_dir.mkdir(parents=True, exist_ok=True)
         per_ue_rows = per_ue_tracker.rows(
@@ -6043,7 +6352,7 @@ def _ppo_update(
                         raise ValueError("independent PPO rollout step is missing its policy trace")
                     packed = pack_prg_candidates(
                         graph,
-                        max_candidates=int(actor.cfg.max_candidates),
+                        max_candidates=resolve_full_candidate_width(graph),
                         fixed_width=True,
                     )
                     logp, entropy_value, replayed = replay_independent_trace(
@@ -7374,6 +7683,10 @@ def _write_summary(
         "iterations": int(args.iterations),
         "rollout_steps": int(args.rollout_steps),
         "rollout_warmup_steps": int(args.rollout_warmup_steps),
+        "rollout_warmup_once": int(args.rollout_warmup_once),
+        "topology_seed_mode": str(args.topology_seed_mode),
+        "seed_list": str(args.seed_list),
+        "safety_prefix_iters": int(args.safety_prefix_iters),
         "device": str(device),
         "reward_mode": str(args.reward_mode),
         "reward_cfg": reward_cfg,
@@ -7385,12 +7698,35 @@ def _write_summary(
         "independent_allow_noncanonical_offered_load": int(
             args.independent_allow_noncanonical_offered_load
         ),
+        "deadline_tail_eta": float(reward_cfg.get("deadline_tail_eta", 0.25)),
+        "deadline_tail_window_steps": int(reward_cfg.get("deadline_tail_window_steps", 100)),
+        "deadline_tail_slot_duration_s": float(
+            reward_cfg.get("deadline_tail_slot_duration_s", 0.0005)
+        ),
+        "deadline_tail_epsilon_bytes": float(
+            reward_cfg.get("deadline_tail_epsilon_bytes", 1.0)
+        ),
+        "deadline_tail_tail_fraction": float(
+            reward_cfg.get("deadline_tail_tail_fraction", 0.10)
+        ),
+        "deadline_tail_rate_weight": float(
+            reward_cfg.get("deadline_tail_rate_weight", 0.25)
+        ),
+        "deadline_tail_rate_tail_fraction": float(
+            reward_cfg.get("deadline_tail_rate_tail_fraction", 0.10)
+        ),
+        "deadline_tail_rate_epsilon_mbps": float(
+            reward_cfg.get("deadline_tail_rate_epsilon_mbps", 1.0e-6)
+        ),
         "init_checkpoint": str(args.init_checkpoint),
         "ue_prg_topk": int(args.ue_prg_topk),
         "ue_prg_diversity_extra": int(args.ue_prg_diversity_extra),
         "candidate_mode": str(args.candidate_mode),
         "max_prg_candidates": int(args.max_prg_candidates),
         "action_head_mode": str(args.action_head_mode),
+        "independent_headroom_accounting": str(
+            getattr(args, "independent_headroom_accounting", "raw-v1")
+        ),
         "candidate_policy_mode": str(args.candidate_policy_mode),
         "candidate_blank_logit_bias": float(args.candidate_blank_logit_bias),
         "candidate_success_logit_scale": float(args.candidate_success_logit_scale),
@@ -7515,6 +7851,7 @@ def _write_summary(
         "train_absolute_best": str(train_absolute_best),
         "train_threshold_best": str(train_threshold_best),
         "candidate_checkpoint_interval": int(args.candidate_checkpoint_interval),
+        "candidate_checkpoint_iters": str(args.candidate_checkpoint_iters),
         "candidate_checkpoint_require_gate": int(args.candidate_checkpoint_require_gate),
         "candidate_checkpoint_dir": str(Path(args.out_dir).resolve() / "candidate_checkpoints"),
         "best_metric": str(args.best_metric),
@@ -7605,6 +7942,9 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="Run Stage-B sparse-graph online PPO fine-tuning")
     p.add_argument("--sim-bin", required=True, help="Path to multiCellSchedulerUeSelection binary")
     p.add_argument("--sim-args", default="-d 1 -b 2 -x 0 -f 0 -g 100 -r 3000", help="CLI args for the simulation binary")
+    p.add_argument("--independent-ablation", choices=("full", "no_reuse_attention", "no_dimensionless"), default="full")
+    p.add_argument("--independent-random-init", type=int, choices=(0, 1), default=0,
+                   help="explicit random-init deadline_tail/E experiment; no learned initialization")
     p.add_argument("--sim-cwd", default="", help="Optional cwd for launching the simulation")
     p.add_argument("--sim-env", action="append", default=[], help="Extra simulator env vars, format KEY=VALUE")
     p.add_argument("--sim-log-mode", choices=["file", "inherit"], default="file")
@@ -7615,6 +7955,12 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--episode-horizon", type=int, default=400)
     p.add_argument("--rollout-steps", type=int, default=400)
     p.add_argument("--iterations", type=int, default=50)
+    p.add_argument(
+        "--safety-prefix-iters",
+        type=int,
+        default=0,
+        help="write and enforce a numerical/action-path safety Gate over the first N iterations",
+    )
     p.add_argument("--topology-seed", type=int, default=42)
     p.add_argument("--topology-seed-mode", choices=["auto", "fixed", "sequential", "list_cycle"], default="auto")
     p.add_argument("--seed-list", default="", help="Comma-separated topology seeds for list_cycle mode")
@@ -7635,6 +7981,12 @@ def parse_args() -> argparse.Namespace:
         choices=(0, 1),
         default=0,
         help="collect detached PFQ-independent Blank diagnostics without changing actions",
+    )
+    p.add_argument(
+        "--independent-headroom-accounting",
+        choices=("raw-v1", "ctbs-v1"),
+        default="raw-v1",
+        help="sequential independent-actor headroom accounting used during rollout and replay",
     )
     p.add_argument(
         "--candidate-policy-mode",
@@ -8024,6 +8376,7 @@ def parse_args() -> argparse.Namespace:
         choices=[
             "raw_env",
             "pfq_independent",
+            "deadline_tail",
             "stageb_v1",
             "stageb_blankaware",
             "stageb_tailguard_simple",
@@ -8035,7 +8388,7 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument(
         "--independent-treatment",
-        choices=["A", "B", "C", "D"],
+        choices=["A", "B", "C", "D", "E"],
         default="A",
         help="locked PFQ-independent reward/initialization ablation",
     )
@@ -8049,6 +8402,13 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=108000.0,
         help="offered bytes in the locked scenario",
+    )
+    p.add_argument(
+        "--independent-remove-deadline-reward",
+        type=int,
+        choices=[0, 1],
+        default=0,
+        help="remove expiry, deadline-tail Phi, and expiry-aware rate utility from independent reward",
     )
     p.add_argument(
         "--independent-allow-noncanonical-offered-load",
@@ -8081,6 +8441,11 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=0,
         help="save actor/train candidate checkpoints every N iterations after --best-min-iter; 0 disables",
+    )
+    p.add_argument(
+        "--candidate-checkpoint-iters",
+        default="",
+        help="comma-separated exact post-update candidate iterations, unioned with the interval schedule",
     )
     p.add_argument(
         "--candidate-checkpoint-require-gate",
@@ -8518,6 +8883,11 @@ def _validate_pfq_residual_args(args: argparse.Namespace) -> None:
 
 
 def _load_independent_reward_scales(args: argparse.Namespace) -> Dict[str, float]:
+    if str(args.reward_mode) == "deadline_tail":
+        return {
+            "delay_scale_p95": 0.0,
+            "ue_utility_scale_p95": 0.0,
+        }
     if str(args.reward_mode) != "pfq_independent":
         return {
             "delay_scale_p95": 0.0,
@@ -8574,6 +8944,9 @@ def main() -> int:
     _validate_pfq_residual_args(args)
     _validate_independent_ppo_args(args)
     independent_scales = _load_independent_reward_scales(args)
+    candidate_checkpoint_iters = _parse_candidate_checkpoint_iters(
+        args.candidate_checkpoint_iters
+    )
     if args.sim_cwd == "":
         args.sim_cwd = None
     if args.rollout_steps < 1:
@@ -8582,6 +8955,10 @@ def main() -> int:
         raise ValueError("--rollout-warmup-steps must be >= 0")
     if args.iterations < 1:
         raise ValueError("--iterations must be >= 1")
+    if int(args.safety_prefix_iters) < 0:
+        raise ValueError("--safety-prefix-iters must be >= 0")
+    if int(args.safety_prefix_iters) > int(args.iterations):
+        raise ValueError("--safety-prefix-iters must not exceed --iterations")
     if args.best_min_iter < 0:
         raise ValueError("--best-min-iter must be >= 0")
     if int(args.best_multi_seed_window_iters) < 0:
@@ -8843,7 +9220,7 @@ def main() -> int:
     train_threshold_best = out_dir / "ppo_train_threshold_best.pt"
     imitation_actor_init = out_dir / "ppo_actor_imitation_init.pt"
     candidate_checkpoint_dir = out_dir / "candidate_checkpoints"
-    if int(args.candidate_checkpoint_interval) > 0:
+    if int(args.candidate_checkpoint_interval) > 0 or candidate_checkpoint_iters:
         candidate_checkpoint_dir.mkdir(parents=True, exist_ok=True)
 
     snapshot_builder = FeatureSnapshotBuilder(
@@ -8893,6 +9270,7 @@ def main() -> int:
                 dropout=float(args.dropout),
                 up_edge_attr_dim=5,
                 max_candidates=max_prg_candidates,
+                ablation=str(args.independent_ablation),
             )
         ).to(device)
     else:
@@ -8950,6 +9328,13 @@ def main() -> int:
             "mode": "random" if init_checkpoint_data is None else "standalone_bc",
             "source_checkpoint": str(args.init_checkpoint),
         }
+        if int(args.independent_random_init):
+            for label, module in (("actor", actor), ("critic", critic)):
+                digest = hashlib.sha256()
+                for name, tensor in sorted(module.state_dict().items()):
+                    digest.update(name.encode())
+                    digest.update(tensor.detach().cpu().contiguous().numpy().tobytes())
+                initialization_metadata[f"{label}_initial_tensor_sha256"] = digest.hexdigest()
     elif isinstance(loaded_initialization, Mapping):
         initialization_metadata = dict(loaded_initialization)
     else:
@@ -9009,11 +9394,30 @@ def main() -> int:
         "independent_allow_noncanonical_offered_load": int(
             args.independent_allow_noncanonical_offered_load
         ),
+        "independent_remove_deadline_reward": int(
+            args.independent_remove_deadline_reward
+        ),
         "independent_delay_scale_p95": float(independent_scales["delay_scale_p95"]),
         "independent_ue_utility_scale_p95": float(
             independent_scales["ue_utility_scale_p95"]
         ),
         "independent_ue_window_steps": 400,
+        "independent_goodput_weight": 1.0,
+        "independent_failed_weight": 1.0,
+        "independent_expired_weight": 2.0,
+        # Deadline-tail v1 is deliberately unit-normalized and coefficient-
+        # frozen: Phi is dimensionless log-pressure CVaR, eta=0.25, and the
+        # rolling scheduled-service window is exactly 100 TTIs.
+        "deadline_tail_eta": 0.25,
+        "deadline_tail_window_steps": 100,
+        "deadline_tail_slot_duration_s": 0.0005,
+        "deadline_tail_epsilon_bytes": 1.0,
+        "deadline_tail_tail_fraction": 0.10,
+        # Expiry-aware per-UE rate tail is unit-normalized and coefficient-
+        # frozen alongside Phi; no reward-coefficient scan is permitted.
+        "deadline_tail_rate_weight": 0.25,
+        "deadline_tail_rate_tail_fraction": 0.10,
+        "deadline_tail_rate_epsilon_mbps": 1.0e-6,
         "queue_pressure_weight": float(args.queue_pressure_weight),
         "queue_pressure_topk": int(args.queue_pressure_topk),
         "goodput_weight": float(args.goodput_weight),
@@ -9136,6 +9540,11 @@ def main() -> int:
                 dones=dones,
                 gamma=float(args.gamma),
                 gae_lambda=float(args.gae_lambda),
+            )
+            raw_scale_metrics = _raw_training_scale_metrics(
+                advantages,
+                returns,
+                values,
             )
             if int(args.normalize_adv) == 1:
                 advantages = (advantages - advantages.mean()) / (advantages.std(unbiased=False) + 1.0e-8)
@@ -9265,11 +9674,25 @@ def main() -> int:
                 "collect_time_s": float(collect_time_s),
                 "update_time_s": float(update_time_s),
                 "iter_time_s": float(iter_time_s),
+                **raw_scale_metrics,
                 "adv_mean": float(advantages.mean().item()),
                 "adv_std": float(advantages.std(unbiased=False).item()),
                 "return_mean": float(returns.mean().item()),
             }
             history.append(row)
+
+            if 0 < int(args.safety_prefix_iters) and iter_idx <= int(args.safety_prefix_iters):
+                safety_report = staged_multiseed_safety_prefix_gate(
+                    history,
+                    prefix_iterations=int(args.safety_prefix_iters),
+                )
+                with open(out_dir / "safety_prefix_gate.json", "w", encoding="utf-8") as handle:
+                    json.dump(safety_report, handle, ensure_ascii=True, indent=2)
+                if safety_report["status"] == "FAIL":
+                    raise RuntimeError(
+                        "staged multi-seed safety prefix failed: "
+                        f"{safety_report['checks']}"
+                    )
 
             actor_checkpoint = {
                 "iter": iter_idx,
@@ -9683,10 +10106,11 @@ def main() -> int:
                 no_improve_iters = 0
 
             candidate_interval = int(args.candidate_checkpoint_interval)
-            candidate_due = (
-                candidate_interval > 0
-                and iter_idx >= int(args.best_min_iter)
-                and (iter_idx % candidate_interval) == 0
+            candidate_due = _candidate_checkpoint_due(
+                iter_idx,
+                candidate_interval,
+                candidate_checkpoint_iters,
+                best_min_iter=int(args.best_min_iter),
             )
             if candidate_due and (
                 int(args.candidate_checkpoint_require_gate) == 0 or hard_gate_pass

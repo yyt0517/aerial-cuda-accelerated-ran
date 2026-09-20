@@ -23,6 +23,8 @@
 // cuMAC namespace
 namespace cumac {
 
+ uint8_t resolveEffectiveLayerCapForAudit(uint8_t maxSupportedLayers);
+
  // dynamic descriptor for CUDA kernels
  typedef struct mcLayerSelDynDescr {
    //----------------- input buffers (common for both DL and UL) ----------------- 
