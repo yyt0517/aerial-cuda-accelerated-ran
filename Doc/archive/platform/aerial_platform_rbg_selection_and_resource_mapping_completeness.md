@@ -61,9 +61,9 @@
 
 对应实现：
 
-- [`cuMAC/src/api.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/api.h)
-- [`cuMAC/examples/parameters.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/parameters.h)
-- [`cuMAC/examples/network.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/network.cu)
+- [`cuMAC/src/api.h`](../../../cuMAC/src/api.h)
+- [`cuMAC/examples/parameters.h`](../../../cuMAC/examples/parameters.h)
+- [`cuMAC/examples/network.cu`](../../../cuMAC/examples/network.cu)
 
 典型配置：
 
@@ -82,7 +82,7 @@
 
 在 API 常量里：
 
-- [`cuMAC/src/api.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/api.h) 定义 `maxNumPrgPerCell_ = 273`
+- [`cuMAC/src/api.h`](../../../cuMAC/src/api.h) 定义 `maxNumPrgPerCell_ = 273`
 
 这说明平台内部数据结构可以覆盖“最多 273 个 PRG 单元”的情况。  
 但这不代表平台自动按 `273 PRB -> 某种 3GPP RBG 规则` 来划分；它只说明平台的上层调度抽象可以容纳这一数量级的频域单元。
@@ -118,12 +118,12 @@
 
 在 `4T4R` 示例里：
 
-- [`cuMAC/examples/network.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/network.cu) 将 `nPrbGrp = nPrbGrpsConst`、`nPrbPerGrp = nPrbsPerGrpConst`
-- [`cuMAC/examples/parameters.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/parameters.h) 进一步固定为 `68 × 4`
+- [`cuMAC/examples/network.cu`](../../../cuMAC/examples/network.cu) 将 `nPrbGrp = nPrbGrpsConst`、`nPrbPerGrp = nPrbsPerGrpConst`
+- [`cuMAC/examples/parameters.h`](../../../cuMAC/examples/parameters.h) 进一步固定为 `68 × 4`
 
 在 `64T64R` 示例里：
 
-- [`cuMAC/examples/multiCellMuMimoScheduler/config.yaml`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellMuMimoScheduler/config.yaml) 直接给出：
+- [`cuMAC/examples/multiCellMuMimoScheduler/config.yaml`](../../../cuMAC/examples/multiCellMuMimoScheduler/config.yaml) 直接给出：
   - `nPrbPerGrp: 4`
   - `nPrbGrp: 68`
 
@@ -163,17 +163,17 @@
 相关模块：
 
 - `PF UE selection`：
-  - [`cuMAC/src/4T4R/multiCellUeSelection.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellUeSelection.cu)
-  - [`cuMAC/src/4T4R/multiCellUeSelectionCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellUeSelectionCpu.cpp)
+  - [`cuMAC/src/4T4R/multiCellUeSelection.cu`](../../../cuMAC/src/4T4R/multiCellUeSelection.cu)
+  - [`cuMAC/src/4T4R/multiCellUeSelectionCpu.cpp`](../../../cuMAC/src/4T4R/multiCellUeSelectionCpu.cpp)
 - `RR UE selection`：
-  - [`cuMAC/src/4T4R/roundRobinUeSel.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/roundRobinUeSel.cu)
-  - [`cuMAC/src/4T4R/roundRobinUeSelCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/roundRobinUeSelCpu.cpp)
+  - [`cuMAC/src/4T4R/roundRobinUeSel.cu`](../../../cuMAC/src/4T4R/roundRobinUeSel.cu)
+  - [`cuMAC/src/4T4R/roundRobinUeSelCpu.cpp`](../../../cuMAC/src/4T4R/roundRobinUeSelCpu.cpp)
 - `PF scheduler`：
-  - [`cuMAC/src/4T4R/multiCellScheduler.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellScheduler.cu)
-  - [`cuMAC/src/4T4R/multiCellSchedulerCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellSchedulerCpu.cpp)
+  - [`cuMAC/src/4T4R/multiCellScheduler.cu`](../../../cuMAC/src/4T4R/multiCellScheduler.cu)
+  - [`cuMAC/src/4T4R/multiCellSchedulerCpu.cpp`](../../../cuMAC/src/4T4R/multiCellSchedulerCpu.cpp)
 - `RR scheduler`：
-  - [`cuMAC/src/4T4R/roundRobinScheduler.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/roundRobinScheduler.cu)
-  - [`cuMAC/src/4T4R/roundRobinSchedulerCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/roundRobinSchedulerCpu.cpp)
+  - [`cuMAC/src/4T4R/roundRobinScheduler.cu`](../../../cuMAC/src/4T4R/roundRobinScheduler.cu)
+  - [`cuMAC/src/4T4R/roundRobinSchedulerCpu.cpp`](../../../cuMAC/src/4T4R/roundRobinSchedulerCpu.cpp)
 
 ### 5.1.1 Type-0：非连续、bitmap 式 PRG 分配
 
@@ -194,7 +194,7 @@
 
 在 CPU 参考路径里，这一点非常直接：
 
-- [`cuMAC/src/4T4R/multiCellSchedulerCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellSchedulerCpu.cpp) 的 `multiCellSchedulerCpu_noPrdMmse()` 和 `multiCellSchedulerCpu_svdMmse()` 都是“逐 `RBG` 选最优 UE”
+- [`cuMAC/src/4T4R/multiCellSchedulerCpu.cpp`](../../../cuMAC/src/4T4R/multiCellSchedulerCpu.cpp) 的 `multiCellSchedulerCpu_noPrdMmse()` 和 `multiCellSchedulerCpu_svdMmse()` 都是“逐 `RBG` 选最优 UE”
 - 结果写成 `allocSol[rbgIdx*totNumCell + cIdx] = ueIdx`
 
 因此：
@@ -288,9 +288,9 @@
 
 相关模块：
 
-- [`cuMAC/src/64T64R/multiCellMuUeGrp.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/64T64R/multiCellMuUeGrp.cu)
-- [`cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp)
-- [`cuMAC/src/64T64R/multiCellBeamform.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/64T64R/multiCellBeamform.cu)
+- [`cuMAC/src/64T64R/multiCellMuUeGrp.cu`](../../../cuMAC/src/64T64R/multiCellMuUeGrp.cu)
+- [`cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp`](../../../cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp)
+- [`cuMAC/src/64T64R/multiCellBeamform.cu`](../../../cuMAC/src/64T64R/multiCellBeamform.cu)
 
 ### 5.2.1 平台边界
 
@@ -308,7 +308,7 @@
 
 ### 5.2.2 baseline CPU：RME 风格连续 PRG 块分配
 
-在 [`cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp) 中，可以看到如下逻辑：
+在 [`cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp`](../../../cuMAC/src/64T64R/muMimoSchedulerBaseCpu.cpp) 中，可以看到如下逻辑：
 
 1. 对每个 UE、每个 PRG 计算 PF metric
 2. 找到一个 anchor UE 和其最优 PRG
@@ -324,7 +324,7 @@
 
 ### 5.2.3 GPU MU grouping：semi-static / dynamic 两种模式
 
-在 [`cuMAC/src/64T64R/multiCellMuUeGrp.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/64T64R/multiCellMuUeGrp.cu) 中，`DL` 路径支持两类频域分配模式：
+在 [`cuMAC/src/64T64R/multiCellMuUeGrp.cu`](../../../cuMAC/src/64T64R/multiCellMuUeGrp.cu) 中，`DL` 路径支持两类频域分配模式：
 
 #### 1. semi-static subband allocation
 
@@ -454,8 +454,8 @@
 
 对应实现：
 
-- [`cuMAC/src/api.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/api.h)
-- [`cuMAC/examples/network.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/network.cu)
+- [`cuMAC/src/api.h`](../../../cuMAC/src/api.h)
+- [`cuMAC/examples/network.cu`](../../../cuMAC/examples/network.cu)
 
 ### 6.2.2 `allocSol` 存的是谁
 
@@ -477,7 +477,7 @@
 
 这是当前项目的一个特殊情况，不是平台通用语义。
 
-在 [`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellSchedulerUeSelection/main.cpp) 里，当前 `type-0` baseline 会先调用 `populateType0AllUeSelection()`：
+在 [`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](../../../cuMAC/examples/multiCellSchedulerUeSelection/main.cpp) 里，当前 `type-0` baseline 会先调用 `populateType0AllUeSelection()`：
 
 1. 直接把所有 active UE 填进 `setSchdUePerCellTTI`
 2. 且顺序就是 `0, 1, 2, ...`
@@ -551,7 +551,7 @@
 
 在代码里：
 
-- [`cuMAC/examples/network.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/network.cu) 的 `convertPrbgAllocToPrbAlloc()` 就是做这个乘法
+- [`cuMAC/examples/network.cu`](../../../cuMAC/examples/network.cu) 的 `convertPrbgAllocToPrbAlloc()` 就是做这个乘法
 
 这说明当前平台默认假设：
 
@@ -577,7 +577,7 @@
 
 ### 6.5.2 64T64R
 
-在 [`cuMAC/src/64T64R/multiCellBeamform.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/64T64R/multiCellBeamform.cu) 中，beamforming kernel 是按 `(cell, rbgIdx)` 发起的。
+在 [`cuMAC/src/64T64R/multiCellBeamform.cu`](../../../cuMAC/src/64T64R/multiCellBeamform.cu) 中，beamforming kernel 是按 `(cell, rbgIdx)` 发起的。
 
 其基本流程是：
 
@@ -710,7 +710,7 @@
 
 参考文档：
 
-- [`Doc/current_stageB_effective_configuration.md`](/home/oai2/aerial-cuda-accelerated-ran/Doc/current_stageB_effective_configuration.md)
+- [`Doc/current_stageB_effective_configuration.md`](../../current_stageB_effective_configuration.md)
 
 ## 8.2 当前 baseline 比较的其实是什么
 

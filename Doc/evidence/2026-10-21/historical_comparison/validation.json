@@ -1,0 +1,452 @@
+{
+  "passed": true,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "runs": 20,
+  "new_simulations": 0,
+  "raw_service_rows": 4608000,
+  "fifo_and_byte_balances_passed": true,
+  "mature_cohort_no_censoring": true,
+  "published_primary_metrics_reproduced": true,
+  "pairing": [
+    {
+      "seed": 41,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 8
+    },
+    {
+      "seed": 42,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 3
+    },
+    {
+      "seed": 43,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 6
+    },
+    {
+      "seed": 44,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 6
+    },
+    {
+      "seed": 45,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 6
+    },
+    {
+      "seed": 46,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 7
+    },
+    {
+      "seed": 47,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 10
+    },
+    {
+      "seed": 48,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 5
+    },
+    {
+      "seed": 49,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 4
+    },
+    {
+      "seed": 50,
+      "topology_and_offered_traffic_exact": true,
+      "changed_serving_ues": 4
+    }
+  ],
+  "changed_serving_ue_seed_pairs": 59,
+  "comparison": "All-three-corrections current versus historical PFQ; different physical models and input timing.",
+  "causal_scope": "Descriptive paired-seed overall version difference; does not isolate SVD or algorithm effect.",
+  "cross_version_H_W_or_warmup_equality_claimed": false,
+  "sources": [
+    {
+      "seed": 41,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed41_pfq0_2000",
+      "files": {
+        "metrics.bin": "342c51d246c2d55cf087afe6e9b88671b90bde68d794c0e2dd204420e4415091",
+        "traffic_offered_packets.csv": "6fa781b6ee2646ca270fc0fde0f3cdebad99f9a7879669a96d5641be4f982a1c",
+        "packet_outcome_samples.csv": "320ed09ca23815f0372dae020535af42dcc314963cd2c010e857e8a99a717056",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "e479bc64601333c75c54943523f4eb0e103794aabdc1258285407af4ecd6021d",
+        "launch.json": "858ecb7ebdbdd7f4655a512bd3f414fff6ecb314b8b4f8c09720763ab1d48aba"
+      },
+      "first4000_service_sha256": "3b78208736b4bc989f9f616a295766f1fa602c5e09b1d285f98073e8b15c3935",
+      "mature_cohort_packets": 57496,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 41,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed41_current_2000",
+      "files": {
+        "metrics.bin": "708f48384de3376d6e5ea2d47f2fc746b0f98e276a65f7a7c06ddbcc7c5eb36e",
+        "traffic_offered_packets.csv": "6fa781b6ee2646ca270fc0fde0f3cdebad99f9a7879669a96d5641be4f982a1c",
+        "packet_outcome_samples.csv": "b6449ad12145a254beb816b5fe694511328cb890f9aeec725156d02787c0b5cc",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "69d1d3565a31eea3a29c7fd143a720fd05d54ae65511916be924a9e3f3d7dc76",
+        "launch.json": "282110161ce433b343ddcf9f252fe7441d9bc5d805b545edb877145c28a9f590",
+        "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7"
+      },
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "mature_cohort_packets": 57496,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 42,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed42_pfq0_2000",
+      "files": {
+        "metrics.bin": "1c97667d04db89717d105388121ac6d7603c072a59998f2c2561a83183bc9aa3",
+        "traffic_offered_packets.csv": "b2761bf870d27992a9715c73b66a4e64a59ac9de9d202bc2316b313ced1813ba",
+        "packet_outcome_samples.csv": "28109a80bdd4c0da7fb6fc70f6348a7aa93215cd44d779017fc2d5fe8965f1ec",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "9c9343a8eca1f0483ae031d0bd8304acb69f0b2446261be1d9ed62ad633a28b8",
+        "launch.json": "ba59ad8b5b8c63c1000abf7884cc58a64c8c65b8d157bbae249f4c9445241a7c"
+      },
+      "first4000_service_sha256": "fee05a70d1d19740f1dd850bc2e2dddc7b2442c876cb9ca4581994fcbcf4b5ee",
+      "mature_cohort_packets": 57986,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 42,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed42_current_2000",
+      "files": {
+        "metrics.bin": "598a29b170bf84e069c7fa07a96e6a6a61f80a47f36ef4a20414deeb09c977bd",
+        "traffic_offered_packets.csv": "b2761bf870d27992a9715c73b66a4e64a59ac9de9d202bc2316b313ced1813ba",
+        "packet_outcome_samples.csv": "cb55862ef3a595787793430aa7e9c3a2045cda69767b7dde677732d9fc88ee70",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "b53c1913ceeb5bf38009bbcdf373474c3e449d7c8efc63bc74a00b53c6c76e4b",
+        "launch.json": "60fa2bdde118a9d1137226f8d22e8815271bf3564398192109fee8898641b028",
+        "validation.json": "dd9d1ffa80924b0557013664a1fb50c7c6b5d7ea32be92f699c5b927c07b2d38"
+      },
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "mature_cohort_packets": 57986,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 43,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed43_pfq0_2000",
+      "files": {
+        "metrics.bin": "a7b6f7b9b23d27e178917b46a3ea512b704705f98866daf90cbecef0f8fcd263",
+        "traffic_offered_packets.csv": "41fb87676512b2e4e64eb782474a4a0fd6b65006b7f6da65f606585ffc98f9c0",
+        "packet_outcome_samples.csv": "3196b4b2a57d452ff6f95ce8c47afd1894f3ab802d9671fccbd4f29a8ccc5371",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "b2948ac4d71e7ffc45f61ce6138775fbf4484cd3e991885e11c766b2438f6370",
+        "launch.json": "2b0390f2d3b9ad4965b95e254e1f5cb6aa25dbfde1336acbb34df567e94a0641"
+      },
+      "first4000_service_sha256": "09fed87c89d38d8760bd0dc221ba382b387bafe49643dfb2bc1d6409b33ff352",
+      "mature_cohort_packets": 57749,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 43,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed43_current_2000",
+      "files": {
+        "metrics.bin": "d7a92f24c0b2bf78e5b0237c41951ab57bec118d9a72ebcc26d69773a8d2cf63",
+        "traffic_offered_packets.csv": "41fb87676512b2e4e64eb782474a4a0fd6b65006b7f6da65f606585ffc98f9c0",
+        "packet_outcome_samples.csv": "331d6e6aeff5c62b540829458d1688c92b57329493680432d1e093f87397fbd5",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "665cbe4ce1d9c881872af851a17b145cadfd9789baf17e0d7f39cc2eef2d1fa5",
+        "launch.json": "900ad06af61bf23582fa8975734e788f667325e2244f76471bfc8fea4e8d104a",
+        "validation.json": "965b485b6b339e9af59c2ce7527ce584ce578824f48c527c43616a47edd93a20"
+      },
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "mature_cohort_packets": 57749,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 44,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed44_pfq0_2000",
+      "files": {
+        "metrics.bin": "ce1ee8e8468caf86279a446fdb4edd323ea4615f64b85568b5a84bbdecf816ab",
+        "traffic_offered_packets.csv": "fa8e30ab7c87fa9c907360dc06e55e943e48e41b0423814b2b4ab59a5bceacdc",
+        "packet_outcome_samples.csv": "98c7680f696aab5fc74967b3dface20a74c1a28a95c325b6c050ccb65f4af36c",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "56392698830941db188875966e120b1ca17b0ec91b3cf3e0961cbb580c5a5caa",
+        "launch.json": "ae47abe0e4c1942551ea427a2738e3c5f3668669e0f06465615f291abbf7f88d"
+      },
+      "first4000_service_sha256": "209f6be55eb480d3f8bea19a1e63e608bc944331e74b8aedabac8b7857dd3d8d",
+      "mature_cohort_packets": 57988,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 44,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed44_current_2000",
+      "files": {
+        "metrics.bin": "c62b7bdfd4a0a914d9b4324aeda1bab5ebc40acb4efeb3613f0fb1c5f2546914",
+        "traffic_offered_packets.csv": "fa8e30ab7c87fa9c907360dc06e55e943e48e41b0423814b2b4ab59a5bceacdc",
+        "packet_outcome_samples.csv": "ad59fc3dbdd1290d14ed1dc1c2961da2e6beedfe6e80ca95bbe0dfed2528de3c",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "590641c6fc5e642c5d85fae22c579674fd50b4d03454938fe3edd23e66bd922c",
+        "launch.json": "7406aad773b1991662089ddf6437500a2ef45ac8e1ff26633891599fe0855d66",
+        "validation.json": "5585d8fbb55b83cfe4c931740063341d5a5d37e86aeb59e6aec4870ab08f92a9"
+      },
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "mature_cohort_packets": 57988,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 45,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed45_pfq0_2000",
+      "files": {
+        "metrics.bin": "06ea5e3a58db57afee67d1fbbf386bb88ce203ba05cacc4e13d063583479d667",
+        "traffic_offered_packets.csv": "cf295fc5d2bca21646f771ff66350a1ad297215514f4cc96dcc5337d4bc644df",
+        "packet_outcome_samples.csv": "46600fffbe1bfd74f80c5f49e005ef72eb851cf9ed03fa5ab9275881607e0fc3",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "40263ad1500d3eb937401d93c7aa959a15a0708fa2d3eb98a6d795acb47cbae8",
+        "launch.json": "254e34c9d18ea103254b2e689e4b009bd44a2c8b718f9299cd67397039c18cdf"
+      },
+      "first4000_service_sha256": "d5f721fa788ed4db2f327f1055cb7e03090bef8d8a51f73b9befafd46204fab3",
+      "mature_cohort_packets": 57404,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 45,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed45_current_2000",
+      "files": {
+        "metrics.bin": "f6dd8b48648b9d723137228ca4ce67de63a421080522899fffa65a16436bb36e",
+        "traffic_offered_packets.csv": "cf295fc5d2bca21646f771ff66350a1ad297215514f4cc96dcc5337d4bc644df",
+        "packet_outcome_samples.csv": "4959f5b2077b5e27836477f2e6639269e7f39a19c8e233b612fcec688db9e2cd",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "1b6b0e16e59b64178c9cb48d083db5694d62453d1eb645d2c29232f8adb01013",
+        "launch.json": "f901fc60f370fd7363ed83c6407b3ebee789ad494e26a87e79d75fda9d0642f9",
+        "validation.json": "fb515d0404b5b589a0068e7f6efd83a2c37bd4dc95adc23b714eed31c45301da"
+      },
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "mature_cohort_packets": 57404,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed46_pfq0_2000",
+      "files": {
+        "metrics.bin": "41ba44d0b240738e142b5fb3a89e2f3e41d3a80d5ba37d7dc0d080b5ae0d0d32",
+        "traffic_offered_packets.csv": "31f6a24a01fece4a3cf983b20f9c836e3c87cb14ba8eec127179227593dfdd7c",
+        "packet_outcome_samples.csv": "0e1c0002d38e1c29f614337b60a0e81b213026ab079a0ff814431514d9384a77",
+        "ue_topology.csv": "159e79feb96b8301219010387d4ce50c576c2843cd6f2993ea05c63050b9542b",
+        "execution.json": "0812f3f86edb95aa11c1836c049e215bcfe5a5c6b77ce71a539f3e608509dae3",
+        "launch.json": "b7f387fbf544520e27a52c3bc9ccd0ee0bb9c2ac0684600e166d3b911ad3c1e2"
+      },
+      "first4000_service_sha256": "04d4eae49e6cdace8a901e44819481c9ad62b6a5bd42da8b875c091fd1aeae38",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 46,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed46_current_2000",
+      "files": {
+        "metrics.bin": "63778e04c7a898006fdb43e3575d5e82dce6d45bd0b85fd6b3a9d4f87955ffd2",
+        "traffic_offered_packets.csv": "31f6a24a01fece4a3cf983b20f9c836e3c87cb14ba8eec127179227593dfdd7c",
+        "packet_outcome_samples.csv": "d76adb18eb3d3e307d32cfbc15543ec71e1007557fb31ff9973c4fa4d2fa7145",
+        "ue_topology.csv": "159e79feb96b8301219010387d4ce50c576c2843cd6f2993ea05c63050b9542b",
+        "execution.json": "2951c1a7bb22efb776ac625c395bd831f8fffc3796bffb0b129327795756c347",
+        "launch.json": "7966b5042f96c29a9e9ade876fb98c8cd26b932e7943ef16c1c1c9a32abc43f3",
+        "validation.json": "4191fd99cb1853d7bcb4e00902265cfa4b3173cbe181ed7526e767fbd9152417"
+      },
+      "first4000_service_sha256": "5168ba9f43091a8c5b9fd9b07381e821145f30dc2bdd0d95a8c84bd0037c643c",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed47_pfq0_2000",
+      "files": {
+        "metrics.bin": "136f6aa41b879319c6065d6f6e52b664a1e02e24f42c3c83100affeac8bd8eaf",
+        "traffic_offered_packets.csv": "90bc21e24f720eb24dae11626bbd654e949019cc56eb14ec00dcbf25b087442e",
+        "packet_outcome_samples.csv": "009073746a2ccc1c62152cc3f02d23e3f151b2e91073d90678eb3228dcd4e345",
+        "ue_topology.csv": "a3a81b53eb98d5067373e970306abadc32647ee0a40a07d8765849d03c34250f",
+        "execution.json": "a66bba4bd40c1857e5487f88b3373e45ffb2efab4a828965cef4c1bef5eb3213",
+        "launch.json": "7f87793362f709dd1da46f036d9d05133c4e9b70dbdb9978bd2911223b70ef84"
+      },
+      "first4000_service_sha256": "94e7dfa288468d714cc4a5e43199221d1b6600b9e17743b40c62d776d26d0b7d",
+      "mature_cohort_packets": 57588,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 47,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed47_current_2000",
+      "files": {
+        "metrics.bin": "b59b7915af0755dd8da91f00e6f19782f4a3d8da6252bb9552553cd8305bc7ed",
+        "traffic_offered_packets.csv": "90bc21e24f720eb24dae11626bbd654e949019cc56eb14ec00dcbf25b087442e",
+        "packet_outcome_samples.csv": "f9cc3b5ec29673b4ad0e89cf30aa0b6020130645e68fbfea68ad92dc5b4d9c00",
+        "ue_topology.csv": "a3a81b53eb98d5067373e970306abadc32647ee0a40a07d8765849d03c34250f",
+        "execution.json": "015d0c5ce5e60d78f24630b4b05da27cedacfb074c45cfc15ca5b30a7b15ea97",
+        "launch.json": "aec658e4ce621648bd8a517c55d3f5b05a422072d7abd4baec94f83d4756e2fe",
+        "validation.json": "d47ab57f3a688f94fb97ca8b5a2ffc1dc2b2bd86bd919fb2340a075584be9c55"
+      },
+      "first4000_service_sha256": "4417c11e07391b151630deafe6e8aaaaf7145ab96336b926ae8cb1a80589c1fc",
+      "mature_cohort_packets": 57588,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed48_pfq0_2000",
+      "files": {
+        "metrics.bin": "ae39a8e1e4f289314b1a5d11880c5e8cc6da2b274cb2d08e8ca3f6ace3eea132",
+        "traffic_offered_packets.csv": "b745e7ed6a9a8d780cb08709cebfc51f54491f01c94670dc839f6f0068675560",
+        "packet_outcome_samples.csv": "222d1ec5f51a42a50ec6a68c65309bfb6162b0e454dd7e83968234b19654e56c",
+        "ue_topology.csv": "564c099a09a601fa68a305c2f86c27bf0b8bc29a36d4061f0175843e3ed1cf8b",
+        "execution.json": "6b9ac9de1ee9d69866ac5dab6284ffb743c4848e80219597b75119d87d7a765a",
+        "launch.json": "741dd16e06de0ac2544b54d2b2c3e12982cae9406aef9924daecb0198af128dc"
+      },
+      "first4000_service_sha256": "1ac4a805707f9b59d4688beb7c68f40e3c8f41c3aa5cd657196cdf9fce59ca4b",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 48,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed48_current_2000",
+      "files": {
+        "metrics.bin": "51fbe899768690152ffb6be7714f1431aa8d06a956cc2a0d16729b3d5fe16da1",
+        "traffic_offered_packets.csv": "b745e7ed6a9a8d780cb08709cebfc51f54491f01c94670dc839f6f0068675560",
+        "packet_outcome_samples.csv": "524ad643ebbf651a48f73687f85b5ab10d8372edb1b57c1ed8d8a12be1406197",
+        "ue_topology.csv": "564c099a09a601fa68a305c2f86c27bf0b8bc29a36d4061f0175843e3ed1cf8b",
+        "execution.json": "bb23ff204ee08d8d67e2b697afcbef0053cbec3b5605e865e3ac4d76b2fec519",
+        "launch.json": "87c99d5202e8f267dd4a68d6bd412753e403dabd4b031c9454334bc5d758819b",
+        "validation.json": "71e0949101e7994f217e3b3361fd12fd4da520d1793ce62f8cca45719c7195e1"
+      },
+      "first4000_service_sha256": "0d46e9829a4b1a7fd77ad2c042d5c2f29b4081356ab6f46a4f5125d43ec33ef2",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 49,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed49_pfq0_2000",
+      "files": {
+        "metrics.bin": "5aed22480b3e13fd8b1cae9e02d0c7c459d72772939434b6567496bc2df4a4d0",
+        "traffic_offered_packets.csv": "c1f77e93b0aad75299929bb8f4b96e05c9edb72ec35d2179d57a807a01620bb9",
+        "packet_outcome_samples.csv": "e7dac1488bc63766ab45e8b779de09e381fae376c6de325e82e36b3fa8b2586f",
+        "ue_topology.csv": "52b34bbac15416c4167f6623524e7ee3d02ec59425c57d0bea82b90a6ed28130",
+        "execution.json": "80b3e11192b17a3a33cbf013070e975debb76e6f48121607f43b9f5d70651a8c",
+        "launch.json": "e8d94a6457a7eda0c8c90572dd212218118b9abe5146e7ee209a9edd40bc6f0e"
+      },
+      "first4000_service_sha256": "812088050bc4111622647e1f859d6b441761916144e28c84c88dc2c24af9086a",
+      "mature_cohort_packets": 57227,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 49,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed49_current_2000",
+      "files": {
+        "metrics.bin": "699f4e6be7b8ca3fe83bbbe4895a6f8adce6f316eb4bf3a2f1b922e32fdc2405",
+        "traffic_offered_packets.csv": "c1f77e93b0aad75299929bb8f4b96e05c9edb72ec35d2179d57a807a01620bb9",
+        "packet_outcome_samples.csv": "58fadea0d452e5ddb06a0a6da970b18a783c1c3aebfa00ea52df2e3d309ba8a0",
+        "ue_topology.csv": "52b34bbac15416c4167f6623524e7ee3d02ec59425c57d0bea82b90a6ed28130",
+        "execution.json": "5595387d0c13e26ef0a35d6f53579abcdc3f37eed067d2652e8d5848f2b297e9",
+        "launch.json": "47381136387eafcc43e96edd6d616a5a99f061bb372a3fc48409eba204537bc3",
+        "validation.json": "a1e1a6be852bd29e7db5ba2fe28e54d6e8d2c283d7b8d9800b3e6d2e0481083a"
+      },
+      "first4000_service_sha256": "6855ec9c63d0f7560cb13789d8e0f3c9e90b446b1779d472c28dbbc2b767b79e",
+      "mature_cohort_packets": 57227,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    },
+    {
+      "seed": 50,
+      "arm": "pfq0",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed50_pfq0_2000",
+      "files": {
+        "metrics.bin": "2d299be8bbc303bc623157efcda2619b46cee581df0bcdf90a1aba4b09d4a2f9",
+        "traffic_offered_packets.csv": "d3cc1be5ae59e058f23670b55175cae012adaf51f5433746f760157d17a08453",
+        "packet_outcome_samples.csv": "ee89d588f9695c795da9cca5e7284c4433aa4539dec6aebfc708fdfd6151f084",
+        "ue_topology.csv": "5de94a71f5313a9dfb1a4c08810e07994f84c6f53dbcb8783d8a4647cbdbd8bd",
+        "execution.json": "2cf4fede539b13a64d90ab3849b7dc5706009438fb05c22597c910b3c8bf44aa",
+        "launch.json": "85ee4bc071aec3c64ce6aa869b329379764b9a8cf85d0a3214eb49cb3acd824c"
+      },
+      "first4000_service_sha256": "86afbdf33ef79d5f2a7ef48d4c383548fd36f8f58210f45da2f1f4ce67cdd849",
+      "mature_cohort_packets": 57623,
+      "no_censoring": true,
+      "comparison_arm": "original_pfq",
+      "simulator_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84"
+    },
+    {
+      "seed": 50,
+      "arm": "current",
+      "source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed50_current_2000",
+      "files": {
+        "metrics.bin": "795dc906db648a85ce0f944b5becaa73644215f301ba949d498d16fe57f42e03",
+        "traffic_offered_packets.csv": "d3cc1be5ae59e058f23670b55175cae012adaf51f5433746f760157d17a08453",
+        "packet_outcome_samples.csv": "571d3bba0ac4d486ca2b886e51342b43bf4b3dcf5d380ba0e76b17abd3638a9c",
+        "ue_topology.csv": "5de94a71f5313a9dfb1a4c08810e07994f84c6f53dbcb8783d8a4647cbdbd8bd",
+        "execution.json": "45ae1efd362e7dbd9d08164c7c9b868c5b364c3b746186253115464f46d9834a",
+        "launch.json": "2e689ecd81a7802a3a4952708531b146e87b5be82741beface313a6894f02d0e",
+        "validation.json": "62af4be078a3c3d6b301075c2c5cde2f5186a7dff101bc56279038a039890751"
+      },
+      "first4000_service_sha256": "590e799cdc6e66a247146aa0f3c24067bdf48d0be58aea4cef66c02201064fe8",
+      "mature_cohort_packets": 57623,
+      "no_censoring": true,
+      "comparison_arm": "corrected_current",
+      "simulator_sha256": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d"
+    }
+  ],
+  "analysis_sha256": "ae74476ee533867575e3c137cf4dbe107dc1f7dffe61825eafa321ab5813bea4",
+  "metric_code_sha256": "bc6f57635880c7afef4a1099bce0f6234d498cbdd500b48d7c4a54aa41df79d1",
+  "fifo_code_sha256": "a7cc5760eb33cd0530f52b4ff3683f22d93063422e56cbcbd10e6cad42841652"
+}

@@ -4,11 +4,11 @@
 
 当前 7 小区执行主线见：
 
-- [`stageB_7cell_tar_gnn_pfq_design.md`](../../stageB_7cell_tar_gnn_pfq_design.md)
+- [`stageB_7cell_tar_gnn_pfq_design.md`](../hgraph_design/stageB_7cell_tar_gnn_pfq_design.md)
 
 v34-v43 的完整逐轮日志已归档到：
 
-- [`stageB_hgraph_v34_v43_full_experiment_log_20260525.md`](./stageB_hgraph_v34_v43_full_experiment_log_20260525.md)
+- [`stageB_hgraph_v34_v43_full_experiment_log_20260525.md`](stageB_hgraph_v34_v43_full_experiment_log_20260525.md)
 
 本文只保留仍有决策价值的内容：算法架构、关键实验结果、为什么多轮优化没有明显压过 PFQ，以及哪些机制应迁移到 7 小区 TAR-GNN-PFQ。
 
@@ -546,9 +546,9 @@ score = service_value + alpha * log(success_prob) - beta * headroom_risk
 
 历史细节已归档：
 
-- [`stageB_hgraph_v34_v43_full_experiment_log_20260525.md`](./stageB_hgraph_v34_v43_full_experiment_log_20260525.md)
-- [`../hgraph_design/`](../hgraph_design/)
-- [`../platform/`](../platform/)
+- [`stageB_hgraph_v34_v43_full_experiment_log_20260525.md`](stageB_hgraph_v34_v43_full_experiment_log_20260525.md)
+- [`../hgraph_design/`](../hgraph_design)
+- [`../platform/`](../platform)
 
 ## 9. 2026-05-25 追加验证：active power 与部署侧 headroom ranking
 

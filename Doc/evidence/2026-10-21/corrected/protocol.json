@@ -1,0 +1,117 @@
+{
+  "status": "frozen before full seed41 pilot; three-arm short validity checks passed",
+  "question": "Under corrected actual-serving SVD, explicit 3 dB shadow fading and equal fresh preaction timing, how do the three frozen policies compare in the prescribed finite window?",
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "scene": {
+    "placement": "coop_boundary/all_boundary",
+    "cells": 3,
+    "ues": 36,
+    "prgs_per_cell": 17,
+    "arrival_packets_per_ue_per_tti": 0.8,
+    "packet_bytes": 3000,
+    "tti_ms": 0.5,
+    "ttl_ttis": 400,
+    "configured_offered_mbps": 1382.4,
+    "shadow_fading_std_db": 3.0,
+    "harq": false,
+    "pfq_demand_slack_bytes": 0,
+    "last_slot_completion_guard": false
+  },
+  "physics": {
+    "serving_precoder": "SVD of each UE actual runtime serving-cell channel; not ue_id//12 placement group",
+    "timing": "all arms choose from their own fresh preaction state of the TTI being executed",
+    "native_sources": "new corrected simulator and library manifests, hashes frozen for campaign"
+  },
+  "arms": {
+    "pfq0": "native PFQ from fresh preaction state",
+    "full": "frozen BC actor plus frozen directed coordinator from fresh preaction state",
+    "current": "frozen PFQ+CTBS plus same coordinator plus deficit-weighted full local search; target2400B/UE/TTI"
+  },
+  "policy": {
+    "retraining": false,
+    "hyperparameter_tuning": false,
+    "target_bytes_per_ue_per_tti": 2400,
+    "ema": "0.995*ema+0.005*realized_successful_bytes including common warmup; initial0"
+  },
+  "windows": {
+    "warmup": [
+      1,
+      4000
+    ],
+    "warmup_policy": "identical native PFQ in all three arms",
+    "measurement": [
+      4001,
+      6000
+    ],
+    "followup": [
+      6001,
+      6400
+    ],
+    "packet_cohort": "all arrivals4001..6000, followed through6400; no censoring"
+  },
+  "reuse_rule": "All30 trajectories are new. Old statistics may be shown separately with explicit environment/timing caveats; never pool old and corrected runs.",
+  "pilot_gate": {
+    "seeds": [
+      41
+    ],
+    "required_arms": [
+      "pfq0",
+      "full",
+      "current"
+    ],
+    "expand_only_after": "seed41 full 6400-TTI three-arm run and statistical/physical/pairing checks pass, independent of performance; no retuning",
+    "short_validation": "smoke_pair_validation.json; 136 TTI per arm, 128 common PFQ TTI, 129 identical fresh inputs"
+  },
+  "required_pairing_evidence": [
+    "traffic/topology equal byte hashes withinseed",
+    "fresh preaction H and actual-serving W fingerprints equal byTTI across arms",
+    "fresh input timestamp equals executedTTI-1; no off-by-one source",
+    "full shared PFQ4000 trajectory/actions/outputs and preaction state forTTI4001 equal",
+    "later arm-dependent queues/EMA/MCS may differ; do not demand fullobs equality after divergence",
+    "native actions legal and saved native label decode agrees",
+    "perrow arrival/queue/dequeue/success/failure byte conservation",
+    "packet FIFO terminals match native outcomes; mature cohort no censoring",
+    "native and frozen policy source hashes unchanged"
+  ],
+  "statistics": {
+    "unit": "seed",
+    "primary": [
+      "goodput_mbps",
+      "complete_payload_mbps",
+      "complete_success_pct"
+    ],
+    "secondary": [
+      "success/outcome mean,p50,p95,p99",
+      "SINR/MCS with explicit activeTX filters",
+      "predicted and observed TB BLER",
+      "expiry/CRC/total packet failure",
+      "PRG denominator3*17*2000",
+      "start/end/mean backlog and drift",
+      "UEp5/p10 and matchedUE outcomes"
+    ],
+    "summary": "perseed plus equal-seed mean/sampleSD; paired current-reference differences and nominal95%tCI; n1 pilot CI undefined",
+    "transient": "one-second policy switch window, not steady-state capacity"
+  },
+  "raw_schema_proposal": {
+    "metrics.bin": "same19float64LE columns as historical schema; semantics re-audited under correctednative",
+    "runs": "seed{seed}_{pfq0,full,current}_2000",
+    "pairing_arrays": "coordinate exact fingerprint/input timestamp names with runner before pilot"
+  },
+  "pairing_scope": {
+    "all_ttis": "same traffic/topology and fresh exogenous H/W by seed and TTI",
+    "before_policy_divergence": "identical PFQ actions/states/service for TTI1..4000; identical complete fresh decision state immediately beforeTTI4001",
+    "after_policy_divergence": "queues, OLLA/MCS and EMA may diverge endogenously; only equal freshness and exogenous H/W are required, not equality of complete policy states"
+  },
+  "numeric_protocol_frozen_before_results": true
+}

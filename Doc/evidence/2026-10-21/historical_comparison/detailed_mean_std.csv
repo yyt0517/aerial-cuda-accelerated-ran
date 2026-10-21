@@ -1,0 +1,130 @@
+metric,label,unit,source_to_display_scale,arm,n,mean,sample_std
+actual_offered_mbps,实际到达负载,Mbps,1.0,original_pfq,10,1384.74,6.55126491602956
+actual_offered_mbps,实际到达负载,Mbps,1.0,corrected_pfq,10,1384.74,6.55126491602956
+actual_offered_mbps,实际到达负载,Mbps,1.0,corrected_current,10,1384.74,6.55126491602956
+goodput_mbps,成功分段goodput,Mbps,1.0,original_pfq,10,1190.8429552,58.52840535383893
+goodput_mbps,成功分段goodput,Mbps,1.0,corrected_pfq,10,994.9718704,50.58761428301183
+goodput_mbps,成功分段goodput,Mbps,1.0,corrected_current,10,1398.1983599999999,23.201868383428835
+complete_payload_mbps,完整成功包payload吞吐,Mbps,1.0,original_pfq,10,1053.4704,86.82041654818296
+complete_payload_mbps,完整成功包payload吞吐,Mbps,1.0,corrected_pfq,10,752.4144,68.27256357864412
+complete_payload_mbps,完整成功包payload吞吐,Mbps,1.0,corrected_current,10,1212.8832,19.002429486778773
+mac_dequeue_mbps,MAC出队吞吐（含失败字节）,Mbps,1.0,original_pfq,10,1310.3414968,60.72547582928914
+mac_dequeue_mbps,MAC出队吞吐（含失败字节）,Mbps,1.0,corrected_pfq,10,1107.6926528,56.07743515702353
+mac_dequeue_mbps,MAC出队吞吐（含失败字节）,Mbps,1.0,corrected_current,10,1483.4933864,23.28497161432596
+ue_mean_goodput_mbps,每UE平均goodput,Mbps,1.0,original_pfq,10,33.07897097777778,1.6257890376066382
+ue_mean_goodput_mbps,每UE平均goodput,Mbps,1.0,corrected_pfq,10,27.63810751111111,1.4052115078614413
+ue_mean_goodput_mbps,每UE平均goodput,Mbps,1.0,corrected_current,10,38.83884333333334,0.6444963439841321
+ue_goodput_p5_mbps,UE goodput p5,Mbps,1.0,original_pfq,10,24.319061400000002,5.261180272156771
+ue_goodput_p5_mbps,UE goodput p5,Mbps,1.0,corrected_pfq,10,18.535620599999998,2.0413579883651645
+ue_goodput_p5_mbps,UE goodput p5,Mbps,1.0,corrected_current,10,30.5422108,2.556418872317585
+ue_goodput_p10_mbps,UE goodput p10,Mbps,1.0,original_pfq,10,27.664069599999998,5.474732726041199
+ue_goodput_p10_mbps,UE goodput p10,Mbps,1.0,corrected_pfq,10,20.0495868,2.506214717102391
+ue_goodput_p10_mbps,UE goodput p10,Mbps,1.0,corrected_current,10,33.0269524,2.2421076764631387
+ue_goodput_jain,UE goodput Jain指数,ratio,1.0,original_pfq,10,0.9810428882064443,0.017478176540275604
+ue_goodput_jain,UE goodput Jain指数,ratio,1.0,corrected_pfq,10,0.9542516816282138,0.016644854616208102
+ue_goodput_jain,UE goodput Jain指数,ratio,1.0,corrected_current,10,0.9866791747329475,0.004835763029542938
+successful_bytes_per_prg,每分配cell-PRG成功字节,B/PRG/TTI,1.0,original_pfq,10,1508.9175112420933,92.30674559221532
+successful_bytes_per_prg,每分配cell-PRG成功字节,B/PRG/TTI,1.0,corrected_pfq,10,1220.7067793121882,59.685446096642714
+successful_bytes_per_prg,每分配cell-PRG成功字节,B/PRG/TTI,1.0,corrected_current,10,2176.7090850279865,77.779548801428
+outcome_mean_ms,全部包outcome平均时延,ms,1.0,original_pfq,10,46.516818059988985,24.51496326311249
+outcome_mean_ms,全部包outcome平均时延,ms,1.0,corrected_pfq,10,144.77566327846984,15.093267843877959
+outcome_mean_ms,全部包outcome平均时延,ms,1.0,corrected_current,10,54.312335767789975,14.074792744376776
+outcome_p50_ms,全部包outcome p50,ms,1.0,original_pfq,10,9.55,16.28300067896305
+outcome_p50_ms,全部包outcome p50,ms,1.0,corrected_pfq,10,197.25,2.8987545218210085
+outcome_p50_ms,全部包outcome p50,ms,1.0,corrected_current,10,5.0,7.090682462060883
+outcome_p95_ms,全部包outcome p95,ms,1.0,original_pfq,10,197.45,6.635133759013452
+outcome_p95_ms,全部包outcome p95,ms,1.0,corrected_pfq,10,200.0,0.0
+outcome_p95_ms,全部包outcome p95,ms,1.0,corrected_current,10,196.05,4.474930167052892
+outcome_p99_ms,全部包outcome p99,ms,1.0,original_pfq,10,200.0,0.0
+outcome_p99_ms,全部包outcome p99,ms,1.0,corrected_pfq,10,200.0,0.0
+outcome_p99_ms,全部包outcome p99,ms,1.0,corrected_current,10,200.0,0.0
+success_delay_mean_ms,成功包平均时延,ms,1.0,original_pfq,10,31.71453159545763,15.578939496073293
+success_delay_mean_ms,成功包平均时延,ms,1.0,corrected_pfq,10,118.2178275829662,19.486380382214037
+success_delay_mean_ms,成功包平均时延,ms,1.0,corrected_current,10,50.678593337167804,12.794594806818202
+success_delay_p50_ms,成功包时延p50,ms,1.0,original_pfq,10,2.7,0.9775252199076787
+success_delay_p50_ms,成功包时延p50,ms,1.0,corrected_pfq,10,139.8,58.01589820423746
+success_delay_p50_ms,成功包时延p50,ms,1.0,corrected_current,10,3.2,3.1640339933558095
+success_delay_p95_ms,成功包时延p95,ms,1.0,original_pfq,10,173.95,50.60217935579016
+success_delay_p95_ms,成功包时延p95,ms,1.0,corrected_pfq,10,200.0,0.0
+success_delay_p95_ms,成功包时延p95,ms,1.0,corrected_current,10,193.2,4.649970131325818
+success_delay_p99_ms,成功包时延p99,ms,1.0,original_pfq,10,199.7,0.6324555320336757
+success_delay_p99_ms,成功包时延p99,ms,1.0,corrected_pfq,10,200.0,0.0
+success_delay_p99_ms,成功包时延p99,ms,1.0,corrected_current,10,199.25,0.75461542817812
+success_within_1ms_pct,全部到达包中1ms内完整成功比例,%,1.0,original_pfq,10,10.163934612934208,5.050356744269789
+success_within_1ms_pct,全部到达包中1ms内完整成功比例,%,1.0,corrected_pfq,10,1.976090703127022,2.2676843763899153
+success_within_1ms_pct,全部到达包中1ms内完整成功比例,%,1.0,corrected_current,10,36.53320166525623,7.087080229386347
+success_within_5ms_pct,全部到达包中5ms内完整成功比例,%,1.0,original_pfq,10,52.573210957858805,12.865272718350138
+success_within_5ms_pct,全部到达包中5ms内完整成功比例,%,1.0,corrected_pfq,10,8.706341592784426,7.426215101202623
+success_within_5ms_pct,全部到达包中5ms内完整成功比例,%,1.0,corrected_current,10,51.90577752548857,8.119135573820532
+success_payload_over_success_system_time_mbps,R_pkt:成功payload/成功包时延之和,Mbps,1.0,original_pfq,10,0.9515756732999481,0.4850317168074969
+success_payload_over_success_system_time_mbps,R_pkt:成功payload/成功包时延之和,Mbps,1.0,corrected_pfq,10,0.20781634734387727,0.03259823739285153
+success_payload_over_success_system_time_mbps,R_pkt:成功payload/成功包时延之和,Mbps,1.0,corrected_current,10,0.5031301094824294,0.13323182541123235
+success_payload_over_all_outcome_system_time_mbps,R_outcome:成功payload/全部包终态时延之和,Mbps,1.0,original_pfq,10,0.5151432130576346,0.28083540786203576
+success_payload_over_all_outcome_system_time_mbps,R_outcome:成功payload/全部包终态时延之和,Mbps,1.0,corrected_pfq,10,0.09144762087904694,0.016198244533819513
+success_payload_over_all_outcome_system_time_mbps,R_outcome:成功payload/全部包终态时延之和,Mbps,1.0,corrected_current,10,0.4137512576367727,0.11768775935984128
+ue_macro_success_packet_rate_mbps,每UE成功包rate再宏平均,Mbps,1.0,original_pfq,10,8.493569319960562,2.3573463283859497
+ue_macro_success_packet_rate_mbps,每UE成功包rate再宏平均,Mbps,1.0,corrected_pfq,10,1.5264502451100224,1.135866241616614
+ue_macro_success_packet_rate_mbps,每UE成功包rate再宏平均,Mbps,1.0,corrected_current,10,7.238089925918189,2.283548914268522
+success_packet_effective_rate_mean_mbps,逐成功包payload/时延再平均,Mbps,1.0,original_pfq,10,10.380963607170434,2.2733790665953735
+success_packet_effective_rate_mean_mbps,逐成功包payload/时延再平均,Mbps,1.0,corrected_pfq,10,2.7811337177618194,2.3070278312193744
+success_packet_effective_rate_mean_mbps,逐成功包payload/时延再平均,Mbps,1.0,corrected_current,10,18.765764923789963,3.3628526208233667
+all_arrival_effective_delivery_rate_mean_mbps,逐包payload/时延再平均（失败计0）,Mbps,1.0,original_pfq,10,7.998469091543082,2.250805680260552
+all_arrival_effective_delivery_rate_mean_mbps,逐包payload/时延再平均（失败计0）,Mbps,1.0,corrected_pfq,10,1.498675519776724,1.1886670212746533
+all_arrival_effective_delivery_rate_mean_mbps,逐包payload/时延再平均（失败计0）,Mbps,1.0,corrected_current,10,16.455099889957378,3.0650700074734005
+ue_macro_mac_packet_rate_mbps,每UE MAC完成包rate再宏平均（含CRC失败）,Mbps,1.0,original_pfq,10,8.4840887654812,2.3536300899719302
+ue_macro_mac_packet_rate_mbps,每UE MAC完成包rate再宏平均（含CRC失败）,Mbps,1.0,corrected_pfq,10,1.519757080047762,1.1252271213175813
+ue_macro_mac_packet_rate_mbps,每UE MAC完成包rate再宏平均（含CRC失败）,Mbps,1.0,corrected_current,10,7.131398744258282,2.1983889820438964
+ue_macro_success_byte_outcome_rate_mbps,每UE成功分段bits/outcome时延再宏平均,Mbps,1.0,original_pfq,10,7.763800353374431,2.1690393764961464
+ue_macro_success_byte_outcome_rate_mbps,每UE成功分段bits/outcome时延再宏平均,Mbps,1.0,corrected_pfq,10,1.3611665466849345,1.0307884865291324
+ue_macro_success_byte_outcome_rate_mbps,每UE成功分段bits/outcome时延再宏平均,Mbps,1.0,corrected_current,10,6.658890625441201,2.0535120769049517
+sinr_tx_mean_db,实际TX SINR均值,dB,1.0,original_pfq,10,9.577040710816895,1.2967168622018737
+sinr_tx_mean_db,实际TX SINR均值,dB,1.0,corrected_pfq,10,5.885358306693665,0.3623101944463991
+sinr_tx_mean_db,实际TX SINR均值,dB,1.0,corrected_current,10,10.071460108463656,0.5204583391197383
+sinr_tx_p10_db,实际TX SINR p10,dB,1.0,original_pfq,10,2.622746422886849,1.020694954554839
+sinr_tx_p10_db,实际TX SINR p10,dB,1.0,corrected_pfq,10,2.8477859520912174,0.3789058692174391
+sinr_tx_p10_db,实际TX SINR p10,dB,1.0,corrected_current,10,5.344205193519592,0.2287975906432907
+sinr_tx_p50_db,实际TX SINR p50,dB,1.0,original_pfq,10,8.307324147224426,1.4891531746313125
+sinr_tx_p50_db,实际TX SINR p50,dB,1.0,corrected_pfq,10,5.707590556144714,0.36439866076037947
+sinr_tx_p50_db,实际TX SINR p50,dB,1.0,corrected_current,10,9.586211252212525,0.4765619389840794
+mcs_tx_mean,实际TX MCS均值,index,1.0,original_pfq,10,7.895449102313044,0.7619879595443407
+mcs_tx_mean,实际TX MCS均值,index,1.0,corrected_pfq,10,5.152332827957329,0.26998125216443164
+mcs_tx_mean,实际TX MCS均值,index,1.0,corrected_current,10,9.599643562568355,0.41146958607568185
+mcs_tx_p10,实际TX MCS p10,index,1.0,original_pfq,10,3.2,0.6324555320336758
+mcs_tx_p10,实际TX MCS p10,index,1.0,corrected_pfq,10,3.3,0.4830458915396479
+mcs_tx_p10,实际TX MCS p10,index,1.0,corrected_current,10,5.4,0.5163977794943223
+layer_tx_mean,实际TX层数均值,layers,1.0,original_pfq,10,3.5528931357941596,0.02183232939322215
+layer_tx_mean,实际TX层数均值,layers,1.0,corrected_pfq,10,3.6396988000709265,0.008797616252598702
+layer_tx_mean,实际TX层数均值,layers,1.0,corrected_current,10,3.7501143051336343,0.02133884711022825
+tb_bler_pct,实际采样TB BLER,%,1.0,original_pfq,10,9.000018624108197,0.09955009784335722
+tb_bler_pct,实际采样TB BLER,%,1.0,corrected_pfq,10,9.09223430439931,0.00899939260704798
+tb_bler_pct,实际采样TB BLER,%,1.0,corrected_current,10,8.804730033530122,0.08477735096076448
+predicted_bler_mean_pct,模型预测TB BLER均值,%,1.0,original_pfq,10,9.022481131911706,0.07745050281149979
+predicted_bler_mean_pct,模型预测TB BLER均值,%,1.0,corrected_pfq,10,9.07885377281178,0.04859590955981795
+predicted_bler_mean_pct,模型预测TB BLER均值,%,1.0,corrected_current,10,8.811010236222002,0.08881100157053416
+complete_success_pct,整包成功率,%,1.0,original_pfq,10,76.08073417528628,6.29748471183147
+complete_success_pct,整包成功率,%,1.0,corrected_pfq,10,54.3376473862588,4.949302383551096
+complete_success_pct,整包成功率,%,1.0,corrected_current,10,87.59030736827293,1.384974341721593
+expiry_pct,包过期率,%,1.0,original_pfq,10,8.308834948218431,6.8520751535829465
+expiry_pct,包过期率,%,1.0,corrected_pfq,10,31.174883913091797,6.117405237213609
+expiry_pct,包过期率,%,1.0,corrected_current,10,2.5981138018339234,1.4071179767739759
+residual_crc_failure_pct,残留CRC包失败率,%,1.0,original_pfq,10,15.610430876495286,0.8068894912350634
+residual_crc_failure_pct,残留CRC包失败率,%,1.0,corrected_pfq,10,14.487468700649407,1.2535243572935402
+residual_crc_failure_pct,残留CRC包失败率,%,1.0,corrected_current,10,9.811578829893145,0.2801327861702158
+total_failure_pct,总包失败率,%,1.0,original_pfq,10,23.91926582471372,6.2974847118314745
+total_failure_pct,总包失败率,%,1.0,corrected_pfq,10,45.6623526137412,4.949302383551095
+total_failure_pct,总包失败率,%,1.0,corrected_current,10,12.409692631727069,1.3849743417215967
+prg_utilization,cell-PRG占用,%,100.0,original_pfq,10,96.84676470588235,3.849374552870782
+prg_utilization,cell-PRG占用,%,100.0,corrected_pfq,10,99.87823529411764,0.3406498076124143
+prg_utilization,cell-PRG占用,%,100.0,corrected_current,10,78.78627450980392,2.4104817070227895
+blank_pct,cell-PRG未分配比例,%,1.0,original_pfq,10,3.1532352941176476,3.8493745528707795
+blank_pct,cell-PRG未分配比例,%,1.0,corrected_pfq,10,0.12176470588235233,0.3406498076124133
+blank_pct,cell-PRG未分配比例,%,1.0,corrected_current,10,21.21372549019608,2.4104817070227886
+start_backlog_bytes,窗口起点总积压,MB,1e-06,original_pfq,10,7.7216682,4.189915884724783
+start_backlog_bytes,窗口起点总积压,MB,1e-06,corrected_pfq,10,24.438352399999996,2.5935212508942014
+start_backlog_bytes,窗口起点总积压,MB,1e-06,corrected_current,10,24.438352399999996,2.5935212508942014
+end_backlog_bytes,窗口终点总积压,MB,1e-06,original_pfq,10,8.0245485,4.355136458034001
+end_backlog_bytes,窗口终点总积压,MB,1e-06,corrected_pfq,10,24.9561742,2.8963767718471516
+end_backlog_bytes,窗口终点总积压,MB,1e-06,corrected_current,10,5.6603518,2.3094000084601483
+mean_backlog_bytes,窗口平均总积压,MB,1e-06,original_pfq,10,7.8926795741,4.218949491941233
+mean_backlog_bytes,窗口平均总积压,MB,1e-06,corrected_pfq,10,24.888268034049997,2.629334940920219
+mean_backlog_bytes,窗口平均总积压,MB,1e-06,corrected_current,10,10.722822372949999,2.490570316066139

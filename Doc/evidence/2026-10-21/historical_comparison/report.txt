@@ -1,0 +1,74 @@
+三项修正 current 与 PFQ 的十 seed 对照（2026-10-21）
+
+结论与比较口径
+
+本次“历史原始 PFQ”是仓库扩展后保存的旧基线，并不是未经修改的 NVIDIA 原版。它也使用有问题的服务链路 SVD、旧阴影参数解释和旧输入时序。这些是公共仿真环境/调度接口的问题，不是 PFQ 公式本身的三个错误。
+
+因此，评价调度算法应比较“三项均修正的 current vs 三项均修正的 PFQ”。后者已经在前一轮完成 seed 41–50，本次直接核验复用，不需要重复仿真。用户指定的“修正 current vs 历史原始 PFQ”同时保留，用于描述整体版本变化，不能将其全部视作算法收益或单独的 SVD 收益。
+
+旧基线与修正版的区别
+
+1. SVD：旧基线按名义小区取信道，但仓库已按最强小区建立实际关联；修正版按实际服务小区取 SVD 信道。NVIDIA 原版的固定名义关联与名义 SVD 原本一致。
+2. 阴影：旧实现将数值 3 直接作为 lognormal 的自然对数标准差，等效阴影标准差约 13.03 dB；修正版明确指定 3 dB，并转换成 ln 标准差 3*ln(10)/10。此项改变了传播模型，修复后不保证 PFQ 分数会上升。
+3. 时序：旧 PFQ runner 直接执行上次 StepRsp 中的 teacher 动作；当前时隙到包/过期之后虽然 native 重算 teacher，却未通过旧响应路径提供给本次 Python 动作。修正版从同一时隙动作前状态读取 teacher、观测、关联掩码、H/W 和 CTBS。
+
+共同实验设置
+
+seed 41–50；3 小区、36 UE、每小区 17 PRG；每 UE 每 TTI 平均 0.8 包，每包 3000 B；TTI=0.5 ms，TTL=200 ms。每条轨迹 6400 TTI：4000 TTI PFQ 预热，2000 TTI 测量，400 TTI 随访。统计先逐 seed 计算，再对 10 个 seed 等权平均；下表为均值±样本标准差。
+
+指标                              历史原始PFQ          修正后PFQ            修正后current
+成功分段goodput / Mbps             1190.84±58.53        994.97±50.59         1398.20±23.20
+完整包payload吞吐 / Mbps           1053.47±86.82        752.41±68.27         1212.88±19.00
+整包成功率 / %                    76.08±6.30           54.34±4.95           87.59±1.38
+成功包平均时延 / ms               31.71±15.58          118.22±19.49         50.68±12.79
+小区–PRG占用 / %                  96.85±3.85           99.88±0.34           78.79±2.41
+
+算法比较：修正 current 对修正 PFQ
+
+- 分段 goodput：+40.53%，配对差 +403.23 Mbps，95% CI [366.08, 440.37]；10/10 seed 提高。
+- 完整包 payload：+61.20%，配对差 +460.47 Mbps，95% CI [414.16, 506.78]；10/10 seed 提高。
+- 整包成功率：54.34%→87.59%，提高 33.25 个百分点。
+- 成功包平均时延：118.22→50.68 ms。
+- 两臂在同一 seed 下有一致的流量、拓扑、实际关联、H/W 序列和 4000 TTI PFQ 预热；分叉前输入和 CTBS 一致。支持本场景及测量窗口内的策略比较。
+
+历史版本比较：修正 current 对历史原始 PFQ
+
+- 分段 goodput：+17.41%，配对差 +207.36 Mbps，95% CI [165.09, 249.62]；10/10 seed 提高。
+- 完整包 payload：+15.13%，配对差 +159.41 Mbps，95% CI [100.70, 218.13]；10/10 seed 提高。
+- 整包成功率：提高 11.51 个百分点，95% CI [7.28, 15.74]；10/10 seed 提高。
+- 成功包平均时延：增加 18.96 ms，95% CI [6.09, 31.84]；8/10 seed 变差。
+- 包过期率：8.31%→2.60%；残留 CRC 包失败率：15.61%→9.81%。
+- 全包平均终态时延差的 95% CI 为 [-9.70, 25.29] ms，Jain 公平指数差的 CI 为 [-0.00530, 0.01657]，均不能据此断言改善。
+- 360 个匹配 UE 中，39 个分段 goodput 下降，36 个完整包 payload/成功率下降；seed 41、47 的 UE goodput p5 和包过期率也回退。不是所有 UE 都改善。
+
+跨版本的流量与拓扑 CSV 逐 seed 字节一致，但阴影变化导致 59/360 个 UE-seed 的服务小区改变；H/W、预热队列与 OLLA 状态不相同。上述历史比较只描述完整版本变化。
+
+指标解释和主要不确定性
+
+分段 goodput 是 TTI 4001–6000 内成功分段字节乘 8，再除以 1 秒；它可能包含最终没有完整成功的包的部分字节。完整包 payload 是同窗口到达、经随访确认整包成功的 payload bits 除以 1 秒。整包指标的到达 cohort 相同、无截尾。成功包时延仅对完整成功包计算；全包终态时延还包括失败和过期包。
+
+当前版在测量期释放积压，平均队列由 24.44 MB 降到 5.66 MB；历史 PFQ 为 7.72→8.02 MB。current 的前/后 250 ms goodput 为 1536.92/1293.86 Mbps，随后 200 ms 为 1279.67 Mbps。末 250 ms 与随后 200 ms 仍分别高于历史 PFQ 8.69% 和 7.99%，均 10/10 seed 为正，但这些短窗口不能证明稳态容量。全部 seed 的全包终态 p99 仍是 200 ms。
+
+所有增益百分比使用“10 seed 均值之比”。区间为逐 seed 配对差的名义 95% t 区间（df=9），未做多重比较校正；独立统计单位是 seed，不是 TTI 或数据包。
+
+数据来源、核验与复现
+
+工作树：.worktrees/pfq-independent-reuse-actor
+历史 PFQ：output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/seed{41..50}_pfq0_2000
+修正 PFQ/current：output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed{41..50}_{pfq0,current}_2000
+
+本次重新读取历史 PFQ 与修正 current 共 20 条原始轨迹、4608000 条 UE×TTI 记录，复用同一 FIFO/指标计算代码，检查逐行及跨 TTI 字节守恒、动作范围、成熟包终态、无截尾、二进制 SHA、窗口和流量/拓扑配对；全部通过，关键指标与原有汇总一致。本次没有运行新仿真、追加 seed、重训或调参。
+
+本目录 compare.py 可复现这 20 条轨迹的指标重算及历史比较；在仓库根目录执行：
+.venv/bin/python deliverables/current_corrected_vs_original_pfq_20261021/compare.py
+
+修正版 PFQ/current 的补充核验重查了已保存的输入、动作与服务记录的配对关系；完整 FIFO/物理数值核验见 ../boundary08_corrected_physics_20261020/final_report.txt 及同目录验证文件。
+
+本目录文件：
+- per_seed_comparison.csv：10 seed 的三组主要指标及两种基线的吞吐增益。
+- per_seed_metrics.csv / per_ue_metrics.csv：历史 PFQ 与修正 current 的重算结果。
+- paired_mean_ci.csv / paired_differences.csv：历史比较的区间及逐 seed 差。
+- corrected_pfq_and_current_metrics.csv / corrected_pfq_vs_current_paired_ci.csv：同修正环境下的比较。
+- validation.json：历史比较的数据核验与原始文件 SHA。
+- corrected_baseline_validation.json：修正版现有结果配对核验与来源 SHA。
+- window_goodput.csv：250 ms 分段及 200 ms 随访结果。

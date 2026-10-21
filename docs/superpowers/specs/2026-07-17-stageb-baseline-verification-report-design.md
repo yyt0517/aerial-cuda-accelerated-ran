@@ -19,7 +19,7 @@ Q 明确表示本项目的 queue-aware 实现，不将 RRQ/PFQ表述为标准化
 
 实施阶段生成以下文件：
 
-- 正式报告：`Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md`
+- 正式报告：`Doc/archive/baselines/stageB_baseline_verification_legacy.md`
 - 图表生成脚本：`cuMAC/scripts/plot_stageB_baseline_verification_report.py`
 - 报告图表目录：`Doc/figures/stageB_baseline_verification/`
 - 实施计划：`docs/superpowers/plans/2026-07-17-stageb-baseline-verification-report.md`
@@ -100,10 +100,10 @@ active boundary gate 数据来自：
 
 以下现有文档用于核对场景、指标和结论边界，不替代原始数据：
 
-- `Doc/stageB_cochannel_baseline_analysis_reference.md`
-- `Doc/stageB_packet_delay_distribution_analysis.md`
+- `Doc/archive/baselines/stageB_baseline_verification_legacy.md`
+- `Doc/archive/baselines/stageB_baseline_verification_legacy.md`
 - `Doc/current_stageB_effective_configuration.md`
-- `Doc/stageB_boundary_intelligent_algorithm_experiment_report.md`
+- `Doc/archive/hgraph_experiments/stageB_hgraph_v9c_v19_retrospective.md`
 
 ## 5. 场景与多维资源映射
 

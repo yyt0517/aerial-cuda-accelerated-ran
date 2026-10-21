@@ -1,0 +1,26 @@
+{
+  "selected_weighted": true,
+  "selection_seed": 306,
+  "selection_load": 1.4,
+  "capacity_seeds_unobserved": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "sha256": {
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/teacher_selection.json": "5ae70133953641eea6233db7d70cecba9c31c0564f8fda010212e1723cd140cf",
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/protocol.json": "8d63dd17cbc18073d1f02208366c8f9e563d6e891fc804278caa2f71dbd6154b",
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/policy.py": "74917a1782f051d270443223f5874295ac603946d9f5404679c42cfcea753926",
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/native_accelerated.py": "bb4bf4e42df6364f194d02dba1e670cf680fda6ea50fad38a92b39579cd6fbdd",
+    "output/pfq_independent_reuse/formal/boundary75_two_round_search_20261014_v1/run.py": "8482959bd5b8531b63597ae4984aca76bec41e3da963fc75a073827b594c8ca5",
+    "output/pfq_independent_reuse/formal/boundary75_load_sweep_20261014_v1/policy.py": "1b1ef23ff3764c55fc168c56768359710b34095f8af65c89634f04bb3bce2434",
+    "output/pfq_independent_reuse/formal/boundary08_blank_probe_20261008_v1/bc_diagnostic/balanced_fit_probe/actor_diagnostic_only.pt": "8855c49af680019bb0cc72da8b33aa80e94c495b12d996d89c32a91da8c06a59",
+    "output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+    "output/pfq_independent_reuse/formal/boundary75_deadline_drop_20261014_v1/protocol.json": "fb5f82e357bc81712800e99adb027bfddc5c33fb089e7785a468ded9e4db500f",
+    "output/pfq_independent_reuse/formal/boundary75_deadline_drop_20261014_v1/simulator": "7146d425c14b98ad1a02be0e8247962ca60797c7f4577b68b14884d408c61d62",
+    "output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/fast_phy.py": "e853b01da5edcfd266b247dfb9cf7b061ca096253cdc0d04986b76f191504e70",
+    "output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/physics_kernel.so": "43a1cb08853b144e9ccbe20540d7f35e5a28208bfc7b5f0061713d1bdb932e73"
+  }
+}

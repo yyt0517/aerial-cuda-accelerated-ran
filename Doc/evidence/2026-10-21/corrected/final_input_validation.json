@@ -1,0 +1,1903 @@
+{
+  "passed": true,
+  "runs": 30,
+  "states": 90,
+  "layer_caps": 55080,
+  "max_svd_offdiag": 1.98326897320952e-06,
+  "max_wb_error_db": 1.4904796685755173e-06,
+  "max_shadow_scaling_error_db": 6.539845497721686e-05,
+  "scope": "90 saved preaction states; 360 distinct nominal shadow links across10seeds, repeated across3arms; no simulation rerun",
+  "runs_detail": [
+    {
+      "seed": 41,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.4301826182278952e-06,
+          "w_unitary_max_abs": 1.2080774438594233e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.8424977533015863e-05,
+          "subband_max_relative": 0.0012986265317032801,
+          "worst_relative_index": [
+            28,
+            1,
+            3
+          ],
+          "worst_relative_gamma": 8.214840272080809e-06,
+          "worst_relative_native": 8.225508281611837e-06,
+          "worst_relative_abs": 1.066800953102873e-08,
+          "wb_first_layer_max_abs_db": 8.767669346099183e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0705752960001882e-06,
+          "w_unitary_max_abs": 1.2365765669208884e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.776932882080473e-05,
+          "subband_max_relative": 0.0001059083806954627,
+          "worst_relative_index": [
+            3,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 0.0016507246461985449,
+          "worst_relative_native": 0.001650549820624292,
+          "worst_relative_abs": 1.7482557425297848e-07,
+          "wb_first_layer_max_abs_db": 1.2282872106084142e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2135689816579042e-06,
+          "w_unitary_max_abs": 1.2157230684373133e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5397969434616243e-05,
+          "subband_max_relative": 0.000138545743884373,
+          "worst_relative_index": [
+            31,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.00058402795682008,
+          "worst_relative_native": 0.0005841088714078069,
+          "worst_relative_abs": 8.091458772690845e-08,
+          "wb_first_layer_max_abs_db": 1.2768115258410262e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.740093306696576,
+      "shadow_old_scaled_max_abs_db": 6.220885541763366e-05,
+      "states_sha256": "24f31c35a23d6376db1882892954539b7f4544f9a222aa69999f2b72c31b9f57"
+    },
+    {
+      "seed": 41,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.4301826182278952e-06,
+          "w_unitary_max_abs": 1.2080774438594233e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.8424977533015863e-05,
+          "subband_max_relative": 0.0012986265317032801,
+          "worst_relative_index": [
+            28,
+            1,
+            3
+          ],
+          "worst_relative_gamma": 8.214840272080809e-06,
+          "worst_relative_native": 8.225508281611837e-06,
+          "worst_relative_abs": 1.066800953102873e-08,
+          "wb_first_layer_max_abs_db": 8.767669346099183e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0705752960001882e-06,
+          "w_unitary_max_abs": 1.2365765669208884e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.776932882080473e-05,
+          "subband_max_relative": 0.0001059083806954627,
+          "worst_relative_index": [
+            3,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 0.0016507246461985449,
+          "worst_relative_native": 0.001650549820624292,
+          "worst_relative_abs": 1.7482557425297848e-07,
+          "wb_first_layer_max_abs_db": 1.2282872106084142e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2135689816579042e-06,
+          "w_unitary_max_abs": 1.2157230684373133e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5397969434616243e-05,
+          "subband_max_relative": 0.000138545743884373,
+          "worst_relative_index": [
+            31,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.00058402795682008,
+          "worst_relative_native": 0.0005841088714078069,
+          "worst_relative_abs": 8.091458772690845e-08,
+          "wb_first_layer_max_abs_db": 1.2768115258410262e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.740093306696576,
+      "shadow_old_scaled_max_abs_db": 6.220885541763366e-05,
+      "states_sha256": "96725e12663640ee85518f464bbb076354c98c40872c0390e76b9072d96cce83"
+    },
+    {
+      "seed": 41,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.4301826182278952e-06,
+          "w_unitary_max_abs": 1.2080774438594233e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.8424977533015863e-05,
+          "subband_max_relative": 0.0012986265317032801,
+          "worst_relative_index": [
+            28,
+            1,
+            3
+          ],
+          "worst_relative_gamma": 8.214840272080809e-06,
+          "worst_relative_native": 8.225508281611837e-06,
+          "worst_relative_abs": 1.066800953102873e-08,
+          "wb_first_layer_max_abs_db": 8.767669346099183e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0705752960001882e-06,
+          "w_unitary_max_abs": 1.2365765669208884e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.776932882080473e-05,
+          "subband_max_relative": 0.0001059083806954627,
+          "worst_relative_index": [
+            3,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 0.0016507246461985449,
+          "worst_relative_native": 0.001650549820624292,
+          "worst_relative_abs": 1.7482557425297848e-07,
+          "wb_first_layer_max_abs_db": 1.2282872106084142e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2135689816579042e-06,
+          "w_unitary_max_abs": 1.2157230684373133e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5397969434616243e-05,
+          "subband_max_relative": 0.000138545743884373,
+          "worst_relative_index": [
+            31,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.00058402795682008,
+          "worst_relative_native": 0.0005841088714078069,
+          "worst_relative_abs": 8.091458772690845e-08,
+          "wb_first_layer_max_abs_db": 1.2768115258410262e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.740093306696576,
+      "shadow_old_scaled_max_abs_db": 6.220885541763366e-05,
+      "states_sha256": "637f2beacf9bfa98f180d38dce1fedc0bdcfcb0579f40de238e28b39acd9dc12"
+    },
+    {
+      "seed": 42,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3430982321087767e-06,
+          "w_unitary_max_abs": 1.1872004459512198e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.0528537277186842e-05,
+          "subband_max_relative": 0.0003815293225431002,
+          "worst_relative_index": [
+            33,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.0002457762328699455,
+          "worst_relative_native": 0.0002458700037095696,
+          "worst_relative_abs": 9.377083962406555e-08,
+          "wb_first_layer_max_abs_db": 9.096109350181791e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0837392183947322e-06,
+          "w_unitary_max_abs": 1.2247259406628075e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5669065469126053e-05,
+          "subband_max_relative": 0.00028160297994569115,
+          "worst_relative_index": [
+            27,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 0.00014744212614549072,
+          "worst_relative_native": 0.00014748364628758281,
+          "worst_relative_abs": 4.152014209209869e-08,
+          "wb_first_layer_max_abs_db": 8.967270002102623e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1057112766289119e-06,
+          "w_unitary_max_abs": 1.305638179127655e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.6698825689331898e-05,
+          "subband_max_relative": 0.00103228473705404,
+          "worst_relative_index": [
+            23,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 0.0001097382427369705,
+          "worst_relative_native": 0.00010962496162392199,
+          "worst_relative_abs": 1.1328111304850601e-07,
+          "wb_first_layer_max_abs_db": 9.154083393525525e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.90761990565421,
+      "shadow_old_scaled_max_abs_db": 5.5503073074003595e-05,
+      "states_sha256": "ba2a481b5faf6b25c27f69881dbef07a4e328f701a18f5a48282843230222cbb"
+    },
+    {
+      "seed": 42,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3430982321087767e-06,
+          "w_unitary_max_abs": 1.1872004459512198e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.0528537277186842e-05,
+          "subband_max_relative": 0.0003815293225431002,
+          "worst_relative_index": [
+            33,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.0002457762328699455,
+          "worst_relative_native": 0.0002458700037095696,
+          "worst_relative_abs": 9.377083962406555e-08,
+          "wb_first_layer_max_abs_db": 9.096109350181791e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0837392183947322e-06,
+          "w_unitary_max_abs": 1.2247259406628075e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5669065469126053e-05,
+          "subband_max_relative": 0.00028160297994569115,
+          "worst_relative_index": [
+            27,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 0.00014744212614549072,
+          "worst_relative_native": 0.00014748364628758281,
+          "worst_relative_abs": 4.152014209209869e-08,
+          "wb_first_layer_max_abs_db": 8.967270002102623e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1057112766289119e-06,
+          "w_unitary_max_abs": 1.305638179127655e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.6698825689331898e-05,
+          "subband_max_relative": 0.00103228473705404,
+          "worst_relative_index": [
+            23,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 0.0001097382427369705,
+          "worst_relative_native": 0.00010962496162392199,
+          "worst_relative_abs": 1.1328111304850601e-07,
+          "wb_first_layer_max_abs_db": 9.154083393525525e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.90761990565421,
+      "shadow_old_scaled_max_abs_db": 5.5503073074003595e-05,
+      "states_sha256": "577bc13e210500e74968a70f8c1dc0d2bf46cc51c1c7ae10e6725dd957027200"
+    },
+    {
+      "seed": 42,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3430982321087767e-06,
+          "w_unitary_max_abs": 1.1872004459512198e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.0528537277186842e-05,
+          "subband_max_relative": 0.0003815293225431002,
+          "worst_relative_index": [
+            33,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.0002457762328699455,
+          "worst_relative_native": 0.0002458700037095696,
+          "worst_relative_abs": 9.377083962406555e-08,
+          "wb_first_layer_max_abs_db": 9.096109350181791e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0837392183947322e-06,
+          "w_unitary_max_abs": 1.2247259406628075e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5669065469126053e-05,
+          "subband_max_relative": 0.00028160297994569115,
+          "worst_relative_index": [
+            27,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 0.00014744212614549072,
+          "worst_relative_native": 0.00014748364628758281,
+          "worst_relative_abs": 4.152014209209869e-08,
+          "wb_first_layer_max_abs_db": 8.967270002102623e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1057112766289119e-06,
+          "w_unitary_max_abs": 1.305638179127655e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.6698825689331898e-05,
+          "subband_max_relative": 0.00103228473705404,
+          "worst_relative_index": [
+            23,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 0.0001097382427369705,
+          "worst_relative_native": 0.00010962496162392199,
+          "worst_relative_abs": 1.1328111304850601e-07,
+          "wb_first_layer_max_abs_db": 9.154083393525525e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.90761990565421,
+      "shadow_old_scaled_max_abs_db": 5.5503073074003595e-05,
+      "states_sha256": "6a67cfe05880fa1c35d9c6ee1b3825c06dbece0ba108a64614298879af7ff739"
+    },
+    {
+      "seed": 43,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.4048807605675633e-06,
+          "w_unitary_max_abs": 1.470771127998205e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.3645185535769997e-05,
+          "subband_max_relative": 0.00011776485091448307,
+          "worst_relative_index": [
+            21,
+            3,
+            3
+          ],
+          "worst_relative_gamma": 0.0006819636480393063,
+          "worst_relative_native": 0.0006820439593866467,
+          "worst_relative_abs": 8.031134734044591e-08,
+          "wb_first_layer_max_abs_db": 9.094549806576424e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.382342768955691e-06,
+          "w_unitary_max_abs": 1.121860127462071e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.0404270362585066e-05,
+          "subband_max_relative": 0.00031779248348635274,
+          "worst_relative_index": [
+            16,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.00030828934667988825,
+          "worst_relative_native": 0.00030819137464277446,
+          "worst_relative_abs": 9.797203711378686e-08,
+          "wb_first_layer_max_abs_db": 1.0196264828010726e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0922703833424365e-06,
+          "w_unitary_max_abs": 1.1269111093170636e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.8668664971244198e-05,
+          "subband_max_relative": 0.0025403409117469252,
+          "worst_relative_index": [
+            32,
+            5,
+            3
+          ],
+          "worst_relative_gamma": 4.900268238674897e-05,
+          "worst_relative_native": 4.887819886789657e-05,
+          "worst_relative_abs": 1.2448351885239886e-07,
+          "wb_first_layer_max_abs_db": 7.626985496500538e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.7443509378183157,
+      "shadow_old_scaled_max_abs_db": 5.451081439389327e-05,
+      "states_sha256": "e50af8f5f41d41b1e8d3aa72992fcc8251674c927c56b7565e646be5e44b478c"
+    },
+    {
+      "seed": 43,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.4048807605675633e-06,
+          "w_unitary_max_abs": 1.470771127998205e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.3645185535769997e-05,
+          "subband_max_relative": 0.00011776485091448307,
+          "worst_relative_index": [
+            21,
+            3,
+            3
+          ],
+          "worst_relative_gamma": 0.0006819636480393063,
+          "worst_relative_native": 0.0006820439593866467,
+          "worst_relative_abs": 8.031134734044591e-08,
+          "wb_first_layer_max_abs_db": 9.094549806576424e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.382342768955691e-06,
+          "w_unitary_max_abs": 1.121860127462071e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.0404270362585066e-05,
+          "subband_max_relative": 0.00031779248348635274,
+          "worst_relative_index": [
+            16,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.00030828934667988825,
+          "worst_relative_native": 0.00030819137464277446,
+          "worst_relative_abs": 9.797203711378686e-08,
+          "wb_first_layer_max_abs_db": 1.0196264828010726e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0922703833424365e-06,
+          "w_unitary_max_abs": 1.1269111093170636e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.8668664971244198e-05,
+          "subband_max_relative": 0.0025403409117469252,
+          "worst_relative_index": [
+            32,
+            5,
+            3
+          ],
+          "worst_relative_gamma": 4.900268238674897e-05,
+          "worst_relative_native": 4.887819886789657e-05,
+          "worst_relative_abs": 1.2448351885239886e-07,
+          "wb_first_layer_max_abs_db": 7.626985496500538e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.7443509378183157,
+      "shadow_old_scaled_max_abs_db": 5.451081439389327e-05,
+      "states_sha256": "69c90142cdab606445a16c3045cb8cfffc2ff55e09fa9b1cbdf347ec19f5d092"
+    },
+    {
+      "seed": 43,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.4048807605675633e-06,
+          "w_unitary_max_abs": 1.470771127998205e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.3645185535769997e-05,
+          "subband_max_relative": 0.00011776485091448307,
+          "worst_relative_index": [
+            21,
+            3,
+            3
+          ],
+          "worst_relative_gamma": 0.0006819636480393063,
+          "worst_relative_native": 0.0006820439593866467,
+          "worst_relative_abs": 8.031134734044591e-08,
+          "wb_first_layer_max_abs_db": 9.094549806576424e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.382342768955691e-06,
+          "w_unitary_max_abs": 1.121860127462071e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.0404270362585066e-05,
+          "subband_max_relative": 0.00031779248348635274,
+          "worst_relative_index": [
+            16,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.00030828934667988825,
+          "worst_relative_native": 0.00030819137464277446,
+          "worst_relative_abs": 9.797203711378686e-08,
+          "wb_first_layer_max_abs_db": 1.0196264828010726e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.0922703833424365e-06,
+          "w_unitary_max_abs": 1.1269111093170636e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.8668664971244198e-05,
+          "subband_max_relative": 0.0025403409117469252,
+          "worst_relative_index": [
+            32,
+            5,
+            3
+          ],
+          "worst_relative_gamma": 4.900268238674897e-05,
+          "worst_relative_native": 4.887819886789657e-05,
+          "worst_relative_abs": 1.2448351885239886e-07,
+          "wb_first_layer_max_abs_db": 7.626985496500538e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.7443509378183157,
+      "shadow_old_scaled_max_abs_db": 5.451081439389327e-05,
+      "states_sha256": "fe48dc2477f0607ad8338ae67ef9e68c171933cd12aaedc828ce4826bcb3b89a"
+    },
+    {
+      "seed": 44,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.7573404513250379e-06,
+          "w_unitary_max_abs": 1.3016001341181749e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 3.3741413346888294e-05,
+          "subband_max_relative": 0.010735381989270093,
+          "worst_relative_index": [
+            21,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 1.1204723756467244e-05,
+          "worst_relative_native": 1.1325010746077169e-05,
+          "worst_relative_abs": 1.202869896099252e-07,
+          "wb_first_layer_max_abs_db": 1.062023907927312e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3825560205220224e-06,
+          "w_unitary_max_abs": 1.0997418957714444e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.7754376233701805e-05,
+          "subband_max_relative": 0.0038262026468186975,
+          "worst_relative_index": [
+            24,
+            6,
+            3
+          ],
+          "worst_relative_gamma": 2.7045506804970308e-05,
+          "worst_relative_native": 2.6942025215248577e-05,
+          "worst_relative_abs": 1.0348158972173048e-07,
+          "wb_first_layer_max_abs_db": 1.4904796685755173e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.7911921752594974e-06,
+          "w_unitary_max_abs": 1.0821591072129877e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.4514699177681223e-05,
+          "subband_max_relative": 0.01018251131471861,
+          "worst_relative_index": [
+            27,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 6.490464894069655e-06,
+          "worst_relative_native": 6.556554126291303e-06,
+          "worst_relative_abs": 6.608923222164819e-08,
+          "wb_first_layer_max_abs_db": 1.3963795790772338e-06
+        }
+      ],
+      "shadow_sample_sd_db": 3.305402952219485,
+      "shadow_old_scaled_max_abs_db": 5.154670872453693e-05,
+      "states_sha256": "9f6f08fe24dd8d6ac976ebb7344de9db9022578496a8bb85ac5fa24839bbf928"
+    },
+    {
+      "seed": 44,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.7573404513250379e-06,
+          "w_unitary_max_abs": 1.3016001341181749e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 3.3741413346888294e-05,
+          "subband_max_relative": 0.010735381989270093,
+          "worst_relative_index": [
+            21,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 1.1204723756467244e-05,
+          "worst_relative_native": 1.1325010746077169e-05,
+          "worst_relative_abs": 1.202869896099252e-07,
+          "wb_first_layer_max_abs_db": 1.062023907927312e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3825560205220224e-06,
+          "w_unitary_max_abs": 1.0997418957714444e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.7754376233701805e-05,
+          "subband_max_relative": 0.0038262026468186975,
+          "worst_relative_index": [
+            24,
+            6,
+            3
+          ],
+          "worst_relative_gamma": 2.7045506804970308e-05,
+          "worst_relative_native": 2.6942025215248577e-05,
+          "worst_relative_abs": 1.0348158972173048e-07,
+          "wb_first_layer_max_abs_db": 1.4904796685755173e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.7911921752594974e-06,
+          "w_unitary_max_abs": 1.0821591072129877e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.4514699177681223e-05,
+          "subband_max_relative": 0.01018251131471861,
+          "worst_relative_index": [
+            27,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 6.490464894069655e-06,
+          "worst_relative_native": 6.556554126291303e-06,
+          "worst_relative_abs": 6.608923222164819e-08,
+          "wb_first_layer_max_abs_db": 1.3963795790772338e-06
+        }
+      ],
+      "shadow_sample_sd_db": 3.305402952219485,
+      "shadow_old_scaled_max_abs_db": 5.154670872453693e-05,
+      "states_sha256": "c26183740e1ab0d3324500e296549e6f4483784324bc4d1c21f16e61f057520c"
+    },
+    {
+      "seed": 44,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.7573404513250379e-06,
+          "w_unitary_max_abs": 1.3016001341181749e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 3.3741413346888294e-05,
+          "subband_max_relative": 0.010735381989270093,
+          "worst_relative_index": [
+            21,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 1.1204723756467244e-05,
+          "worst_relative_native": 1.1325010746077169e-05,
+          "worst_relative_abs": 1.202869896099252e-07,
+          "wb_first_layer_max_abs_db": 1.062023907927312e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3825560205220224e-06,
+          "w_unitary_max_abs": 1.0997418957714444e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.7754376233701805e-05,
+          "subband_max_relative": 0.0038262026468186975,
+          "worst_relative_index": [
+            24,
+            6,
+            3
+          ],
+          "worst_relative_gamma": 2.7045506804970308e-05,
+          "worst_relative_native": 2.6942025215248577e-05,
+          "worst_relative_abs": 1.0348158972173048e-07,
+          "wb_first_layer_max_abs_db": 1.4904796685755173e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.7911921752594974e-06,
+          "w_unitary_max_abs": 1.0821591072129877e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.4514699177681223e-05,
+          "subband_max_relative": 0.01018251131471861,
+          "worst_relative_index": [
+            27,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 6.490464894069655e-06,
+          "worst_relative_native": 6.556554126291303e-06,
+          "worst_relative_abs": 6.608923222164819e-08,
+          "wb_first_layer_max_abs_db": 1.3963795790772338e-06
+        }
+      ],
+      "shadow_sample_sd_db": 3.305402952219485,
+      "shadow_old_scaled_max_abs_db": 5.154670872453693e-05,
+      "states_sha256": "64e7f6376d62fdd24fc658a31eb88fba359e4de72df59cd62d7f5471c7988fa5"
+    },
+    {
+      "seed": 45,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 9.128419300830836e-07,
+          "w_unitary_max_abs": 1.267902010937405e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.0851309946602328e-05,
+          "subband_max_relative": 0.00030994289222717426,
+          "worst_relative_index": [
+            27,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.00042836973595591243,
+          "worst_relative_native": 0.0004285025061108172,
+          "worst_relative_abs": 1.3277015490476647e-07,
+          "wb_first_layer_max_abs_db": 1.193389499221098e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1848614589454379e-06,
+          "w_unitary_max_abs": 1.1207418126879531e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.350870486722556e-05,
+          "subband_max_relative": 0.00011377648629896367,
+          "worst_relative_index": [
+            35,
+            1,
+            3
+          ],
+          "worst_relative_gamma": 0.00010617922350228312,
+          "worst_relative_native": 0.00010616714280331507,
+          "worst_relative_abs": 1.2080698968042116e-08,
+          "wb_first_layer_max_abs_db": 1.392872338357165e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1312216898527128e-06,
+          "w_unitary_max_abs": 1.0644751775590322e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.451880728708943e-05,
+          "subband_max_relative": 0.0012913045616452811,
+          "worst_relative_index": [
+            21,
+            14,
+            3
+          ],
+          "worst_relative_gamma": 3.330350269517437e-05,
+          "worst_relative_native": 3.3260497730225325e-05,
+          "worst_relative_abs": 4.3004964949044575e-08,
+          "wb_first_layer_max_abs_db": 1.0335048976628514e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.5823762276558964,
+      "shadow_old_scaled_max_abs_db": 5.760221878770011e-05,
+      "states_sha256": "c1d4b7df32d7ca488de00474e83959c6d081d0fe95473da56672efd6f5b24a42"
+    },
+    {
+      "seed": 45,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 9.128419300830836e-07,
+          "w_unitary_max_abs": 1.267902010937405e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.0851309946602328e-05,
+          "subband_max_relative": 0.00030994289222717426,
+          "worst_relative_index": [
+            27,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.00042836973595591243,
+          "worst_relative_native": 0.0004285025061108172,
+          "worst_relative_abs": 1.3277015490476647e-07,
+          "wb_first_layer_max_abs_db": 1.193389499221098e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1848614589454379e-06,
+          "w_unitary_max_abs": 1.1207418126879531e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.350870486722556e-05,
+          "subband_max_relative": 0.00011377648629896367,
+          "worst_relative_index": [
+            35,
+            1,
+            3
+          ],
+          "worst_relative_gamma": 0.00010617922350228312,
+          "worst_relative_native": 0.00010616714280331507,
+          "worst_relative_abs": 1.2080698968042116e-08,
+          "wb_first_layer_max_abs_db": 1.392872338357165e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1312216898527128e-06,
+          "w_unitary_max_abs": 1.0644751775590322e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.451880728708943e-05,
+          "subband_max_relative": 0.0012913045616452811,
+          "worst_relative_index": [
+            21,
+            14,
+            3
+          ],
+          "worst_relative_gamma": 3.330350269517437e-05,
+          "worst_relative_native": 3.3260497730225325e-05,
+          "worst_relative_abs": 4.3004964949044575e-08,
+          "wb_first_layer_max_abs_db": 1.0335048976628514e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.5823762276558964,
+      "shadow_old_scaled_max_abs_db": 5.760221878770011e-05,
+      "states_sha256": "3a6c739f70b5b5b719cdf86f1c31061af2604352f1b2044f48caf6c3f91bb052"
+    },
+    {
+      "seed": 45,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 9.128419300830836e-07,
+          "w_unitary_max_abs": 1.267902010937405e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.0851309946602328e-05,
+          "subband_max_relative": 0.00030994289222717426,
+          "worst_relative_index": [
+            27,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.00042836973595591243,
+          "worst_relative_native": 0.0004285025061108172,
+          "worst_relative_abs": 1.3277015490476647e-07,
+          "wb_first_layer_max_abs_db": 1.193389499221098e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1848614589454379e-06,
+          "w_unitary_max_abs": 1.1207418126879531e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.350870486722556e-05,
+          "subband_max_relative": 0.00011377648629896367,
+          "worst_relative_index": [
+            35,
+            1,
+            3
+          ],
+          "worst_relative_gamma": 0.00010617922350228312,
+          "worst_relative_native": 0.00010616714280331507,
+          "worst_relative_abs": 1.2080698968042116e-08,
+          "wb_first_layer_max_abs_db": 1.392872338357165e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1312216898527128e-06,
+          "w_unitary_max_abs": 1.0644751775590322e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.451880728708943e-05,
+          "subband_max_relative": 0.0012913045616452811,
+          "worst_relative_index": [
+            21,
+            14,
+            3
+          ],
+          "worst_relative_gamma": 3.330350269517437e-05,
+          "worst_relative_native": 3.3260497730225325e-05,
+          "worst_relative_abs": 4.3004964949044575e-08,
+          "wb_first_layer_max_abs_db": 1.0335048976628514e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.5823762276558964,
+      "shadow_old_scaled_max_abs_db": 5.760221878770011e-05,
+      "states_sha256": "2b06ed9d4e9c8bfaa5037f21ec56ed85dabf403c0e4e3b61cfe9aa7cdbc1beb0"
+    },
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2595335479412453e-06,
+          "w_unitary_max_abs": 1.1021710428771314e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.8364636598610105e-05,
+          "subband_max_relative": 0.0007000233476605076,
+          "worst_relative_index": [
+            13,
+            15,
+            3
+          ],
+          "worst_relative_gamma": 0.0002826465529543444,
+          "worst_relative_native": 0.00028284441214054823,
+          "worst_relative_abs": 1.9785918620380313e-07,
+          "wb_first_layer_max_abs_db": 1.314276124375624e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.6611543327521216e-06,
+          "w_unitary_max_abs": 1.2057061720138762e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.2371506016582998e-05,
+          "subband_max_relative": 0.00038162122386262723,
+          "worst_relative_index": [
+            26,
+            12,
+            3
+          ],
+          "worst_relative_gamma": 0.00032691364688009584,
+          "worst_relative_native": 0.0003270384040661156,
+          "worst_relative_abs": 1.2475718601977692e-07,
+          "wb_first_layer_max_abs_db": 1.261616824344003e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2970109207800528e-06,
+          "w_unitary_max_abs": 1.1311819367865183e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.3855981755739322e-05,
+          "subband_max_relative": 0.0004558585944229743,
+          "worst_relative_index": [
+            23,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.0001776747653549877,
+          "worst_relative_native": 0.00017759377078618854,
+          "worst_relative_abs": 8.099456879915646e-08,
+          "wb_first_layer_max_abs_db": 9.022262421609639e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.8318962825807787,
+      "shadow_old_scaled_max_abs_db": 6.539845497721686e-05,
+      "states_sha256": "6ecacc1799d51aefd24ba503e98f165133d2f8ec8b6f627e31e9711277f5690f"
+    },
+    {
+      "seed": 46,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2595335479412453e-06,
+          "w_unitary_max_abs": 1.1021710428771314e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.8364636598610105e-05,
+          "subband_max_relative": 0.0007000233476605076,
+          "worst_relative_index": [
+            13,
+            15,
+            3
+          ],
+          "worst_relative_gamma": 0.0002826465529543444,
+          "worst_relative_native": 0.00028284441214054823,
+          "worst_relative_abs": 1.9785918620380313e-07,
+          "wb_first_layer_max_abs_db": 1.314276124375624e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.6611543327521216e-06,
+          "w_unitary_max_abs": 1.2057061720138762e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.2371506016582998e-05,
+          "subband_max_relative": 0.00038162122386262723,
+          "worst_relative_index": [
+            26,
+            12,
+            3
+          ],
+          "worst_relative_gamma": 0.00032691364688009584,
+          "worst_relative_native": 0.0003270384040661156,
+          "worst_relative_abs": 1.2475718601977692e-07,
+          "wb_first_layer_max_abs_db": 1.261616824344003e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2970109207800528e-06,
+          "w_unitary_max_abs": 1.1311819367865183e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.3855981755739322e-05,
+          "subband_max_relative": 0.0004558585944229743,
+          "worst_relative_index": [
+            23,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.0001776747653549877,
+          "worst_relative_native": 0.00017759377078618854,
+          "worst_relative_abs": 8.099456879915646e-08,
+          "wb_first_layer_max_abs_db": 9.022262421609639e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.8318962825807787,
+      "shadow_old_scaled_max_abs_db": 6.539845497721686e-05,
+      "states_sha256": "312fd16c3ede0b7cc7de917d0032515178ab0c418eed59e3317c48e9e294470d"
+    },
+    {
+      "seed": 46,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2595335479412453e-06,
+          "w_unitary_max_abs": 1.1021710428771314e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.8364636598610105e-05,
+          "subband_max_relative": 0.0007000233476605076,
+          "worst_relative_index": [
+            13,
+            15,
+            3
+          ],
+          "worst_relative_gamma": 0.0002826465529543444,
+          "worst_relative_native": 0.00028284441214054823,
+          "worst_relative_abs": 1.9785918620380313e-07,
+          "wb_first_layer_max_abs_db": 1.314276124375624e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.6611543327521216e-06,
+          "w_unitary_max_abs": 1.2057061720138762e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 2.2371506016582998e-05,
+          "subband_max_relative": 0.00038162122386262723,
+          "worst_relative_index": [
+            26,
+            12,
+            3
+          ],
+          "worst_relative_gamma": 0.00032691364688009584,
+          "worst_relative_native": 0.0003270384040661156,
+          "worst_relative_abs": 1.2475718601977692e-07,
+          "wb_first_layer_max_abs_db": 1.261616824344003e-06
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2970109207800528e-06,
+          "w_unitary_max_abs": 1.1311819367865183e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.3855981755739322e-05,
+          "subband_max_relative": 0.0004558585944229743,
+          "worst_relative_index": [
+            23,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.0001776747653549877,
+          "worst_relative_native": 0.00017759377078618854,
+          "worst_relative_abs": 8.099456879915646e-08,
+          "wb_first_layer_max_abs_db": 9.022262421609639e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.8318962825807787,
+      "shadow_old_scaled_max_abs_db": 6.539845497721686e-05,
+      "states_sha256": "26a24c28c7719218c2633d23d46434de29657445e233905a20184f3d3fd31e8b"
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2920391073671703e-06,
+          "w_unitary_max_abs": 1.3717635800603034e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.7755839053279487e-05,
+          "subband_max_relative": 0.0007319896230066918,
+          "worst_relative_index": [
+            10,
+            16,
+            3
+          ],
+          "worst_relative_gamma": 0.00011698400372972839,
+          "worst_relative_native": 0.00011689837265294045,
+          "worst_relative_abs": 8.56310767879373e-08,
+          "wb_first_layer_max_abs_db": 1.0011916558028133e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2063862256155493e-06,
+          "w_unitary_max_abs": 1.0953799292057198e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5106473345127824e-05,
+          "subband_max_relative": 0.0005152980645015733,
+          "worst_relative_index": [
+            29,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 0.0002377630943681309,
+          "worst_relative_native": 0.0002376405755057931,
+          "worst_relative_abs": 1.225188623378028e-07,
+          "wb_first_layer_max_abs_db": 8.428374065339028e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1637803527707007e-06,
+          "w_unitary_max_abs": 1.2385238143952648e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.810820079839459e-05,
+          "subband_max_relative": 0.00019693090147175168,
+          "worst_relative_index": [
+            29,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 0.000502520366023754,
+          "worst_relative_native": 0.000502421404235065,
+          "worst_relative_abs": 9.896178868897248e-08,
+          "wb_first_layer_max_abs_db": 9.411072863230174e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.500468037286977,
+      "shadow_old_scaled_max_abs_db": 5.990273514022704e-05,
+      "states_sha256": "21707ccacd292226337c695045b452b4a5d67de3438ae41d2acb949a8dd43601"
+    },
+    {
+      "seed": 47,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2920391073671703e-06,
+          "w_unitary_max_abs": 1.3717635800603034e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.7755839053279487e-05,
+          "subband_max_relative": 0.0007319896230066918,
+          "worst_relative_index": [
+            10,
+            16,
+            3
+          ],
+          "worst_relative_gamma": 0.00011698400372972839,
+          "worst_relative_native": 0.00011689837265294045,
+          "worst_relative_abs": 8.56310767879373e-08,
+          "wb_first_layer_max_abs_db": 1.0011916558028133e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2063862256155493e-06,
+          "w_unitary_max_abs": 1.0953799292057198e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5106473345127824e-05,
+          "subband_max_relative": 0.0005152980645015733,
+          "worst_relative_index": [
+            29,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 0.0002377630943681309,
+          "worst_relative_native": 0.0002376405755057931,
+          "worst_relative_abs": 1.225188623378028e-07,
+          "wb_first_layer_max_abs_db": 8.428374065339028e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1637803527707007e-06,
+          "w_unitary_max_abs": 1.2385238143952648e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.810820079839459e-05,
+          "subband_max_relative": 0.00019693090147175168,
+          "worst_relative_index": [
+            29,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 0.000502520366023754,
+          "worst_relative_native": 0.000502421404235065,
+          "worst_relative_abs": 9.896178868897248e-08,
+          "wb_first_layer_max_abs_db": 9.411072863230174e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.500468037286977,
+      "shadow_old_scaled_max_abs_db": 5.990273514022704e-05,
+      "states_sha256": "1173e3aa3442718b2e986f7702ac12b492497e0dc25f21da1b97ca6048615e32"
+    },
+    {
+      "seed": 47,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2920391073671703e-06,
+          "w_unitary_max_abs": 1.3717635800603034e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.7755839053279487e-05,
+          "subband_max_relative": 0.0007319896230066918,
+          "worst_relative_index": [
+            10,
+            16,
+            3
+          ],
+          "worst_relative_gamma": 0.00011698400372972839,
+          "worst_relative_native": 0.00011689837265294045,
+          "worst_relative_abs": 8.56310767879373e-08,
+          "wb_first_layer_max_abs_db": 1.0011916558028133e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2063862256155493e-06,
+          "w_unitary_max_abs": 1.0953799292057198e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5106473345127824e-05,
+          "subband_max_relative": 0.0005152980645015733,
+          "worst_relative_index": [
+            29,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 0.0002377630943681309,
+          "worst_relative_native": 0.0002376405755057931,
+          "worst_relative_abs": 1.225188623378028e-07,
+          "wb_first_layer_max_abs_db": 8.428374065339028e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1637803527707007e-06,
+          "w_unitary_max_abs": 1.2385238143952648e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.810820079839459e-05,
+          "subband_max_relative": 0.00019693090147175168,
+          "worst_relative_index": [
+            29,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 0.000502520366023754,
+          "worst_relative_native": 0.000502421404235065,
+          "worst_relative_abs": 9.896178868897248e-08,
+          "wb_first_layer_max_abs_db": 9.411072863230174e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.500468037286977,
+      "shadow_old_scaled_max_abs_db": 5.990273514022704e-05,
+      "states_sha256": "eaf844741d831126bbcac6c2a329461e1a66d67c948410da505751105096c017"
+    },
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.37599622476901e-06,
+          "w_unitary_max_abs": 1.1691092185461827e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.916785522837472e-05,
+          "subband_max_relative": 0.0008517871164899865,
+          "worst_relative_index": [
+            20,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 2.0248742697083517e-05,
+          "worst_relative_native": 2.0265990315238014e-05,
+          "worst_relative_abs": 1.724761815449644e-08,
+          "wb_first_layer_max_abs_db": 9.687927260415563e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.284037429272459e-06,
+          "w_unitary_max_abs": 1.2946679224246083e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.7570894165430673e-05,
+          "subband_max_relative": 0.016648354185120312,
+          "worst_relative_index": [
+            3,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 2.696921852784511e-06,
+          "worst_relative_native": 2.7418211629992584e-06,
+          "worst_relative_abs": 4.489931021474744e-08,
+          "wb_first_layer_max_abs_db": 9.8563412365138e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1155199753992567e-06,
+          "w_unitary_max_abs": 1.2232083339558386e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.4044876074592594e-05,
+          "subband_max_relative": 0.0007979489927036838,
+          "worst_relative_index": [
+            34,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 8.542930277803028e-05,
+          "worst_relative_native": 8.536113455193117e-05,
+          "worst_relative_abs": 6.816822609910728e-08,
+          "wb_first_layer_max_abs_db": 1.1680492075782922e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.987168345300466,
+      "shadow_old_scaled_max_abs_db": 5.792137673554798e-05,
+      "states_sha256": "c6adeede24cd4bca2cafa0111825bb5b668b3f374f5d8c125db2d121d6f7c35e"
+    },
+    {
+      "seed": 48,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.37599622476901e-06,
+          "w_unitary_max_abs": 1.1691092185461827e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.916785522837472e-05,
+          "subband_max_relative": 0.0008517871164899865,
+          "worst_relative_index": [
+            20,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 2.0248742697083517e-05,
+          "worst_relative_native": 2.0265990315238014e-05,
+          "worst_relative_abs": 1.724761815449644e-08,
+          "wb_first_layer_max_abs_db": 9.687927260415563e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.284037429272459e-06,
+          "w_unitary_max_abs": 1.2946679224246083e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.7570894165430673e-05,
+          "subband_max_relative": 0.016648354185120312,
+          "worst_relative_index": [
+            3,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 2.696921852784511e-06,
+          "worst_relative_native": 2.7418211629992584e-06,
+          "worst_relative_abs": 4.489931021474744e-08,
+          "wb_first_layer_max_abs_db": 9.8563412365138e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1155199753992567e-06,
+          "w_unitary_max_abs": 1.2232083339558386e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.4044876074592594e-05,
+          "subband_max_relative": 0.0007979489927036838,
+          "worst_relative_index": [
+            34,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 8.542930277803028e-05,
+          "worst_relative_native": 8.536113455193117e-05,
+          "worst_relative_abs": 6.816822609910728e-08,
+          "wb_first_layer_max_abs_db": 1.1680492075782922e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.987168345300466,
+      "shadow_old_scaled_max_abs_db": 5.792137673554798e-05,
+      "states_sha256": "6389d44cab32c8c7eacc62c5abdae04e6d501cedda7b71a8acfa349626c0a7ef"
+    },
+    {
+      "seed": 48,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.37599622476901e-06,
+          "w_unitary_max_abs": 1.1691092185461827e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.916785522837472e-05,
+          "subband_max_relative": 0.0008517871164899865,
+          "worst_relative_index": [
+            20,
+            2,
+            3
+          ],
+          "worst_relative_gamma": 2.0248742697083517e-05,
+          "worst_relative_native": 2.0265990315238014e-05,
+          "worst_relative_abs": 1.724761815449644e-08,
+          "wb_first_layer_max_abs_db": 9.687927260415563e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.284037429272459e-06,
+          "w_unitary_max_abs": 1.2946679224246083e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.7570894165430673e-05,
+          "subband_max_relative": 0.016648354185120312,
+          "worst_relative_index": [
+            3,
+            11,
+            3
+          ],
+          "worst_relative_gamma": 2.696921852784511e-06,
+          "worst_relative_native": 2.7418211629992584e-06,
+          "worst_relative_abs": 4.489931021474744e-08,
+          "wb_first_layer_max_abs_db": 9.8563412365138e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.1155199753992567e-06,
+          "w_unitary_max_abs": 1.2232083339558386e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.4044876074592594e-05,
+          "subband_max_relative": 0.0007979489927036838,
+          "worst_relative_index": [
+            34,
+            8,
+            3
+          ],
+          "worst_relative_gamma": 8.542930277803028e-05,
+          "worst_relative_native": 8.536113455193117e-05,
+          "worst_relative_abs": 6.816822609910728e-08,
+          "wb_first_layer_max_abs_db": 1.1680492075782922e-06
+        }
+      ],
+      "shadow_sample_sd_db": 2.987168345300466,
+      "shadow_old_scaled_max_abs_db": 5.792137673554798e-05,
+      "states_sha256": "8f596c0c78494d48eff2e1b65061e880422b70599d450aea3e05292a3c7d3f89"
+    },
+    {
+      "seed": 49,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2856404354601789e-06,
+          "w_unitary_max_abs": 1.236203980070627e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5682471449451896e-05,
+          "subband_max_relative": 0.0004584187379988702,
+          "worst_relative_index": [
+            19,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.0002140649672644133,
+          "worst_relative_native": 0.00021396683587227017,
+          "worst_relative_abs": 9.81313921431218e-08,
+          "wb_first_layer_max_abs_db": 7.993786068638542e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.346001628829702e-06,
+          "w_unitary_max_abs": 1.3987381901614526e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.3922019382661688e-05,
+          "subband_max_relative": 0.00033612379541251897,
+          "worst_relative_index": [
+            19,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.0003912312787493041,
+          "worst_relative_native": 0.0003910997766070068,
+          "worst_relative_abs": 1.3150214229730927e-07,
+          "wb_first_layer_max_abs_db": 9.254503812172743e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3645436629189386e-06,
+          "w_unitary_max_abs": 1.1056535051956473e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 4.865872135439986e-05,
+          "subband_max_relative": 0.0015220652408002347,
+          "worst_relative_index": [
+            23,
+            0,
+            3
+          ],
+          "worst_relative_gamma": 7.606476669968217e-05,
+          "worst_relative_native": 7.618054223712534e-05,
+          "worst_relative_abs": 1.1577553744316542e-07,
+          "wb_first_layer_max_abs_db": 9.688261393137054e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.9216107716830835,
+      "shadow_old_scaled_max_abs_db": 5.832380128945047e-05,
+      "states_sha256": "1f5d3c251cfe6602f76fa056129d45a37deca534d2a4a70a38e158c16c81302f"
+    },
+    {
+      "seed": 49,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2856404354601789e-06,
+          "w_unitary_max_abs": 1.236203980070627e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5682471449451896e-05,
+          "subband_max_relative": 0.0004584187379988702,
+          "worst_relative_index": [
+            19,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.0002140649672644133,
+          "worst_relative_native": 0.00021396683587227017,
+          "worst_relative_abs": 9.81313921431218e-08,
+          "wb_first_layer_max_abs_db": 7.993786068638542e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.346001628829702e-06,
+          "w_unitary_max_abs": 1.3987381901614526e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.3922019382661688e-05,
+          "subband_max_relative": 0.00033612379541251897,
+          "worst_relative_index": [
+            19,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.0003912312787493041,
+          "worst_relative_native": 0.0003910997766070068,
+          "worst_relative_abs": 1.3150214229730927e-07,
+          "wb_first_layer_max_abs_db": 9.254503812172743e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3645436629189386e-06,
+          "w_unitary_max_abs": 1.1056535051956473e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 4.865872135439986e-05,
+          "subband_max_relative": 0.0015220652408002347,
+          "worst_relative_index": [
+            23,
+            0,
+            3
+          ],
+          "worst_relative_gamma": 7.606476669968217e-05,
+          "worst_relative_native": 7.618054223712534e-05,
+          "worst_relative_abs": 1.1577553744316542e-07,
+          "wb_first_layer_max_abs_db": 9.688261393137054e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.9216107716830835,
+      "shadow_old_scaled_max_abs_db": 5.832380128945047e-05,
+      "states_sha256": "97e4ee6c946a75696dd74cac46cdb31482dfb196b7f40ec40bab6da66191b56c"
+    },
+    {
+      "seed": 49,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2856404354601789e-06,
+          "w_unitary_max_abs": 1.236203980070627e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.5682471449451896e-05,
+          "subband_max_relative": 0.0004584187379988702,
+          "worst_relative_index": [
+            19,
+            9,
+            3
+          ],
+          "worst_relative_gamma": 0.0002140649672644133,
+          "worst_relative_native": 0.00021396683587227017,
+          "worst_relative_abs": 9.81313921431218e-08,
+          "wb_first_layer_max_abs_db": 7.993786068638542e-07
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.346001628829702e-06,
+          "w_unitary_max_abs": 1.3987381901614526e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.3922019382661688e-05,
+          "subband_max_relative": 0.00033612379541251897,
+          "worst_relative_index": [
+            19,
+            10,
+            3
+          ],
+          "worst_relative_gamma": 0.0003912312787493041,
+          "worst_relative_native": 0.0003910997766070068,
+          "worst_relative_abs": 1.3150214229730927e-07,
+          "wb_first_layer_max_abs_db": 9.254503812172743e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3645436629189386e-06,
+          "w_unitary_max_abs": 1.1056535051956473e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 4.865872135439986e-05,
+          "subband_max_relative": 0.0015220652408002347,
+          "worst_relative_index": [
+            23,
+            0,
+            3
+          ],
+          "worst_relative_gamma": 7.606476669968217e-05,
+          "worst_relative_native": 7.618054223712534e-05,
+          "worst_relative_abs": 1.1577553744316542e-07,
+          "wb_first_layer_max_abs_db": 9.688261393137054e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.9216107716830835,
+      "shadow_old_scaled_max_abs_db": 5.832380128945047e-05,
+      "states_sha256": "acfa9ec27564a58cf38d6229a33b98ed600af242da4f86d1ef03622ac62a4afd"
+    },
+    {
+      "seed": 50,
+      "arm": "pfq0",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.98326897320952e-06,
+          "w_unitary_max_abs": 1.2039822472331707e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 3.9670520223467065e-05,
+          "subband_max_relative": 0.001175584652201283,
+          "worst_relative_index": [
+            35,
+            14,
+            3
+          ],
+          "worst_relative_gamma": 6.168171251454093e-05,
+          "worst_relative_native": 6.175422458909452e-05,
+          "worst_relative_abs": 7.251207455358612e-08,
+          "wb_first_layer_max_abs_db": 1.2604637706914446e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2814330275174386e-06,
+          "w_unitary_max_abs": 1.4365130422966388e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.515305876154116e-05,
+          "subband_max_relative": 0.000306948070155392,
+          "worst_relative_index": [
+            31,
+            6,
+            3
+          ],
+          "worst_relative_gamma": 0.0001684631926251271,
+          "worst_relative_native": 0.0001684114831732586,
+          "worst_relative_abs": 5.1709451868498825e-08,
+          "wb_first_layer_max_abs_db": 8.583331414513395e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3099970571828327e-06,
+          "w_unitary_max_abs": 1.11217303055966e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.893309358536044e-05,
+          "subband_max_relative": 0.0005336370578325846,
+          "worst_relative_index": [
+            27,
+            5,
+            3
+          ],
+          "worst_relative_gamma": 0.00023299429732013036,
+          "worst_relative_native": 0.00023286996292881668,
+          "worst_relative_abs": 1.2433439131368483e-07,
+          "wb_first_layer_max_abs_db": 9.735071007099805e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.9843642525246263,
+      "shadow_old_scaled_max_abs_db": 5.7927919502098746e-05,
+      "states_sha256": "0480452f8bcb3ebed2d5913613f5b7db46f7d3a50fb5efdee0ecc5aebe8a5d43"
+    },
+    {
+      "seed": 50,
+      "arm": "full",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.98326897320952e-06,
+          "w_unitary_max_abs": 1.2039822472331707e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 3.9670520223467065e-05,
+          "subband_max_relative": 0.001175584652201283,
+          "worst_relative_index": [
+            35,
+            14,
+            3
+          ],
+          "worst_relative_gamma": 6.168171251454093e-05,
+          "worst_relative_native": 6.175422458909452e-05,
+          "worst_relative_abs": 7.251207455358612e-08,
+          "wb_first_layer_max_abs_db": 1.2604637706914446e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2814330275174386e-06,
+          "w_unitary_max_abs": 1.4365130422966388e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.515305876154116e-05,
+          "subband_max_relative": 0.000306948070155392,
+          "worst_relative_index": [
+            31,
+            6,
+            3
+          ],
+          "worst_relative_gamma": 0.0001684631926251271,
+          "worst_relative_native": 0.0001684114831732586,
+          "worst_relative_abs": 5.1709451868498825e-08,
+          "wb_first_layer_max_abs_db": 8.583331414513395e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3099970571828327e-06,
+          "w_unitary_max_abs": 1.11217303055966e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.893309358536044e-05,
+          "subband_max_relative": 0.0005336370578325846,
+          "worst_relative_index": [
+            27,
+            5,
+            3
+          ],
+          "worst_relative_gamma": 0.00023299429732013036,
+          "worst_relative_native": 0.00023286996292881668,
+          "worst_relative_abs": 1.2433439131368483e-07,
+          "wb_first_layer_max_abs_db": 9.735071007099805e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.9843642525246263,
+      "shadow_old_scaled_max_abs_db": 5.7927919502098746e-05,
+      "states_sha256": "69c28c41243dfa1f7fb2fd83403550c0996bb6ee914ac8df3f08e37dc082d72a"
+    },
+    {
+      "seed": 50,
+      "arm": "current",
+      "samples": [
+        {
+          "tti": 4001,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.98326897320952e-06,
+          "w_unitary_max_abs": 1.2039822472331707e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 3.9670520223467065e-05,
+          "subband_max_relative": 0.001175584652201283,
+          "worst_relative_index": [
+            35,
+            14,
+            3
+          ],
+          "worst_relative_gamma": 6.168171251454093e-05,
+          "worst_relative_native": 6.175422458909452e-05,
+          "worst_relative_abs": 7.251207455358612e-08,
+          "wb_first_layer_max_abs_db": 1.2604637706914446e-06
+        },
+        {
+          "tti": 4100,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.2814330275174386e-06,
+          "w_unitary_max_abs": 1.4365130422966388e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.515305876154116e-05,
+          "subband_max_relative": 0.000306948070155392,
+          "worst_relative_index": [
+            31,
+            6,
+            3
+          ],
+          "worst_relative_gamma": 0.0001684631926251271,
+          "worst_relative_native": 0.0001684114831732586,
+          "worst_relative_abs": 5.1709451868498825e-08,
+          "wb_first_layer_max_abs_db": 8.583331414513395e-07
+        },
+        {
+          "tti": 5000,
+          "layer_caps_exact": 612,
+          "serving_svd_offdiag_max": 1.3099970571828327e-06,
+          "w_unitary_max_abs": 1.11217303055966e-06,
+          "subband_count": 2448,
+          "subband_max_abs": 1.893309358536044e-05,
+          "subband_max_relative": 0.0005336370578325846,
+          "worst_relative_index": [
+            27,
+            5,
+            3
+          ],
+          "worst_relative_gamma": 0.00023299429732013036,
+          "worst_relative_native": 0.00023286996292881668,
+          "worst_relative_abs": 1.2433439131368483e-07,
+          "wb_first_layer_max_abs_db": 9.735071007099805e-07
+        }
+      ],
+      "shadow_sample_sd_db": 2.9843642525246263,
+      "shadow_old_scaled_max_abs_db": 5.7927919502098746e-05,
+      "states_sha256": "5d973d4c1c07b357a89091c9d0d63e144ccadd929e63847af6b597bed6f94afe"
+    }
+  ],
+  "validator_sha256": "b7901de5c0f6fe308947f771902494c8003c6b0d6ce9c14544b2a119ad47eb69"
+}

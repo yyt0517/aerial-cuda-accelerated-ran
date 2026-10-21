@@ -389,8 +389,8 @@ canonical 动作算子必须只有一个语义来源；Python、ONNX wrapper 和
 
 本设计基于以下本地证据和实现入口：
 
-- 多 seed 演进、逐 seed 指标和当前模型配置：`Doc/stageB_intelligent_algorithm_evolution_training_report.md`
-- seed41 动作后干扰、Python/ONNX 同轨迹结果及执行差异：`Doc/stageB_cochannel_baseline_analysis_reference.md`
+- 多 seed 演进、逐 seed 指标和当前模型配置：`Doc/archive/hgraph_experiments/stageB_hgraph_v9c_v19_retrospective.md`
+- seed41 动作后干扰、Python/ONNX 同轨迹结果及执行差异：`Doc/archive/baselines/stageB_baseline_verification_legacy.md`
 - 状态特征和静态图元数据：`training/stageb_hgraph/feature_snapshot.py`、`training/stageb_hgraph/types.py`
 - PRG—PRG、UE—PRG 等图边：`training/stageb_hgraph/edge_generator.py`
 - HGraph 消息传递和 candidate action head：`training/stageb_hgraph/model.py`

@@ -10,7 +10,7 @@
 - 但策略表现为低 PRG 利用率、低调度频率、单次集中服务。
 - 结果是 packet delay、packet effective service rate、UE 服务节奏仍落后 PFQ/RRQ。
 
-本文不替代 [`current_stageB_effective_configuration.md`](./current_stageB_effective_configuration.md)，而是补充 HGraph 算法结构和下一步训练/部署优化设计。
+本文不替代 [`current_stageB_effective_configuration.md`](../platform/stageB_legacy_configuration_reference.md)，而是补充 HGraph 算法结构和下一步训练/部署优化设计。
 
 ### 1.1 源码对应关系
 

@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "review_date": "2026-10-21",
+  "runs": 30,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "raw_window_goodput_independently_recomputed": true,
+  "aggregate_validator_rerun_passed": true,
+  "independent_input_validation_passed": true,
+  "final_report_sha256": "cee21fa530789b1fc7425c1a91df23083deb9c884162fc724a9e1f000af1070a",
+  "scope": "No new simulations; frozen30runs only."
+}

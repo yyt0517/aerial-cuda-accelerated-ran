@@ -1,0 +1,165 @@
+{
+  "collected_on": "2026-10-21",
+  "scope": "Frozen evidence copies; no new simulations or training. Raw trajectories and full runnable source remain in the local research worktree.",
+  "main_base_commit": "04a9200fe90319a2172f65c50d1140977b45bbad",
+  "research_worktree_base_commit": "aa1401b542abce8ad2de141d233ff7e0ab0de1ff",
+  "research_worktree_dirty": true,
+  "files": [
+    {
+      "file": "corrected/protocol.json",
+      "source": "deliverables/boundary08_corrected_physics_20261020/protocol.json",
+      "bytes": 4609,
+      "sha256": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019"
+    },
+    {
+      "file": "corrected/metric_definitions.json",
+      "source": "deliverables/boundary08_corrected_physics_20261020/metric_definitions.json",
+      "bytes": 5475,
+      "sha256": "211852682b6048d3dac81d8a9e07b40874e059908e230dcacd0e2cb6fd86c146"
+    },
+    {
+      "file": "corrected/per_seed_metrics.csv",
+      "source": "deliverables/boundary08_corrected_physics_20261020/per_seed_metrics.csv",
+      "bytes": 32970,
+      "sha256": "8eda591d0b236fd64d81735d84187759c8e76e7fecc100fadfcdfbe20fa870f9"
+    },
+    {
+      "file": "corrected/per_ue_metrics.csv",
+      "source": "deliverables/boundary08_corrected_physics_20261020/per_ue_metrics.csv",
+      "bytes": 318422,
+      "sha256": "78784984c299a2e581f234a3ecad43f6ac3bb5e4e0e658accc84219c0bfb9feb"
+    },
+    {
+      "file": "corrected/mean_std.csv",
+      "source": "deliverables/boundary08_corrected_physics_20261020/mean_std.csv",
+      "bytes": 13355,
+      "sha256": "1b03344142969727e7ab2ebb5a3e383a35bde0fca0039182299f75b295f217ee"
+    },
+    {
+      "file": "corrected/paired_mean_ci.csv",
+      "source": "deliverables/boundary08_corrected_physics_20261020/paired_mean_ci.csv",
+      "bytes": 19631,
+      "sha256": "12e37fadb581bc82ccda72c7c34775261ebf8278c5264e19d0028e316d5860af"
+    },
+    {
+      "file": "corrected/transient_goodput_per_seed.csv",
+      "source": "deliverables/boundary08_corrected_physics_20261020/transient_goodput_per_seed.csv",
+      "bytes": 5158,
+      "sha256": "ed1d25d680a6e593e2ccd1ccc9014fb8cb69469d797108a8caa818f1f61d1152"
+    },
+    {
+      "file": "corrected/validation.json",
+      "source": "deliverables/boundary08_corrected_physics_20261020/validation.json",
+      "bytes": 50148,
+      "sha256": "5ed2ddba83cc2f23af3f500be5bc026cbc3afcdc59f1cdf600ab68baab1c5c7e"
+    },
+    {
+      "file": "corrected/final_input_validation.json",
+      "source": "deliverables/boundary08_corrected_physics_20261020/final_input_validation.json",
+      "bytes": 68587,
+      "sha256": "bcddd91da30ebea9ee768c0ddb8167b11bacc0973a629adf9728f0453f1def41"
+    },
+    {
+      "file": "corrected/final_review.json",
+      "source": "deliverables/boundary08_corrected_physics_20261020/final_review.json",
+      "bytes": 455,
+      "sha256": "e8acb6d1c709a60cab287d3a3f7b12cbc6269dee297a4a2a910a97402616eaba"
+    },
+    {
+      "file": "corrected/native_build_manifest.json",
+      "source": "deliverables/boundary08_corrected_physics_20261020/native_build_manifest.json",
+      "bytes": 9937,
+      "sha256": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11"
+    },
+    {
+      "file": "corrected/native_correction.patch",
+      "source": "deliverables/boundary08_corrected_physics_20261020/native_correction.patch",
+      "bytes": 5748,
+      "sha256": "aefab07a00278a98d28d5580223f954bc09632a762e31be39dc6617ecc74abcd"
+    },
+    {
+      "file": "corrected/final_report.txt",
+      "source": "deliverables/boundary08_corrected_physics_20261020/final_report.txt",
+      "bytes": 4363,
+      "sha256": "cee21fa530789b1fc7425c1a91df23083deb9c884162fc724a9e1f000af1070a"
+    },
+    {
+      "file": "historical_comparison/report.txt",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/report.txt",
+      "bytes": 6845,
+      "sha256": "4ef53764bae25df07abffd8f669607568506beef0998b78829e8b8c989c1c1a0"
+    },
+    {
+      "file": "historical_comparison/detailed_metrics.txt",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/detailed_metrics.txt",
+      "bytes": 6757,
+      "sha256": "ad1997a6bc02b5c2170cbeb5f03828dd738874c15e44b9eb0ced9484e786bf9e"
+    },
+    {
+      "file": "historical_comparison/per_seed_comparison.csv",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/per_seed_comparison.csv",
+      "bytes": 3645,
+      "sha256": "51640fa142141d39eea22e65b8fed3b230c3fb81597e908a7a28027d60a81110"
+    },
+    {
+      "file": "historical_comparison/detailed_per_seed_metrics.csv",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/detailed_per_seed_metrics.csv",
+      "bytes": 33636,
+      "sha256": "b66ce563865b06532ec887971f38b13b783a2e57cd5379bb4781625382fe6ebc"
+    },
+    {
+      "file": "historical_comparison/detailed_mean_std.csv",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/detailed_mean_std.csv",
+      "bytes": 13814,
+      "sha256": "ea239d20cf6ff26307b09dfda033faa8e7476026233c056132fa9744ebc70b28"
+    },
+    {
+      "file": "historical_comparison/detailed_paired_ci.csv",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/detailed_paired_ci.csv",
+      "bytes": 12713,
+      "sha256": "b8ba2b5101f59167b8212b7d332bb99888880788ee675a60da9f71e5d379ce38"
+    },
+    {
+      "file": "historical_comparison/validation.json",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/validation.json",
+      "bytes": 26161,
+      "sha256": "049737a70f7e2fa9cc22159cf5193edcc3c957a1dfaa931bb154baaba7e62e6f"
+    },
+    {
+      "file": "historical_comparison/corrected_baseline_validation.json",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/corrected_baseline_validation.json",
+      "bytes": 16891,
+      "sha256": "dc137a3bd0ee186b61293111c67abb085dcd59fc58f84a34dc5760fe0d721829"
+    },
+    {
+      "file": "historical_comparison/detailed_validation.json",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/detailed_validation.json",
+      "bytes": 22130,
+      "sha256": "e90ec938e6b6592440d99f24c5486fca16d2235f06505303e4b7a7af9d96f90b"
+    },
+    {
+      "file": "historical_comparison/window_goodput.csv",
+      "source": "deliverables/current_corrected_vs_original_pfq_20261021/window_goodput.csv",
+      "bytes": 4200,
+      "sha256": "edaeab3fc4fbe7c1863c202c07c4ad8cb024522b26ebc12f05f4e9e767abac4b"
+    },
+    {
+      "file": "identity/seed41_current_launch.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed41_current_2000/launch.json",
+      "bytes": 7870,
+      "sha256": "282110161ce433b343ddcf9f252fe7441d9bc5d805b545edb877145c28a9f590"
+    },
+    {
+      "file": "identity/frozen_teacher.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/frozen_teacher.json",
+      "bytes": 2186,
+      "sha256": "6c7ba6d66860d3935888e270bfabcaf0d46fb44f7e060b47795f80c207fa37ab"
+    },
+    {
+      "file": "identity/search_confirmation.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/confirmation.json",
+      "bytes": 17895,
+      "sha256": "3e92edee823f4aa0dbb73934e6de399693c31817f7a952be015e6a0212d6a58c"
+    }
+  ]
+}

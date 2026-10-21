@@ -1,72 +1,14 @@
 # Stage-B Sparse Entity Graph Stack
 
-This directory is the graph stack for Stage-B scheduler research. The current execution plan is the 7-cell TAR-GNN-PFQ design; the older 3-cell HGraph runs are retained as implementation and mechanism references.
+This directory contains the HGraph, PFQ-residual and independent-actor research interfaces available on `main`. Project conclusions and experimental settings are maintained in one place:
 
-Canonical docs:
+- [Current progress](../../Doc/stageB_current_progress.md)
+- [Current configuration and version boundaries](../../Doc/current_stageB_effective_configuration.md)
+- [Historical HGraph experiments](../../Doc/archive/hgraph_experiments/stageB_hgraph_v9c_v19_retrospective.md)
 
-- `Doc/README.md`
-- `Doc/stageB_boundary_intelligent_algorithm_experiment_report.md`
-- `Doc/current_stageB_effective_configuration.md`
-- `Doc/stageB_packet_delay_distribution_analysis.md`
-- `Doc/stageB_7cell_tar_gnn_pfq_design.md`
-- `Doc/archive/hgraph_experiments/stageB_hgraph_3cell_retrospective_20260605.md`
+The 2026-10-21 corrected PFQ/DPA/current campaign uses a dedicated runner in a separate research worktree. It has not been integrated into these generic training interfaces. The commands below describe the existing interfaces and historical example settings; they do not reproduce that corrected campaign or prescribe a new training run. Previous seed42/v33 smoke results and training recommendations are retained in the [historical configuration appendix](../../Doc/archive/platform/stageB_legacy_configuration_reference.md).
 
-Current active target:
-
-- `3cell + 36UE + RBG16 + SVD + TTL200ms`
-- `ue-placement=coop_boundary`
-- `cell-assoc-mode=strongest`
-- `cell_radius=500`, therefore `ISD/site_spacing=1000m`
-- no explicit `shadow_seed`; simulator log must show `shadow_seed=legacy_shared_rng`
-- `packet_size_bytes=3000`
-- `traffic_arrival_rate=1.0`
-- native gate:
-  - `output/stageB_rrq_pfq_multiseed_compare_coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41_s50`
-  - PFQ mean goodput `1520.536 Mbps`, TB BLER `11.778%`, expiry `0.017%`, packet p95 `25.650 ms`
-- training goal: use HGraphPPO to beat boundary PFQ reliable goodput without worsening BLER/expiry; packet delay is a secondary guard because completed-packet delay rises when old packets are rescued
-
-Current long-term 7-cell target:
-
-- `7cell + 84UE + RBG16 + SVD + TTL200ms`
-- `packet_size_bytes=3000`
-- `traffic_arrival_rate=0.85`
-- target: increase `goodput`, clearly reduce `packet_delay_p95`, and increase packet effective service rate against PFQ
-
-Current 3-cell coop-boundary follow-up:
-
-- canonical doc section: `Doc/stageB_7cell_tar_gnn_pfq_design.md`, section `1`
-- scenario: `3cell + ue-placement=coop_boundary + cell-assoc-mode=strongest + SVD + TTL200ms`
-- fixed radius: `cellRadius=500 (ISD=1000m)` for direct comparison with the uniform ISD1000 result
-- `cellRadius=250 (ISD=500m)` is now diagnostic only
-- traffic: `packet_size_bytes=3000`, `traffic_arrival_rate=1.0`
-- topology/traffic/shadow: use `legacyshadow` in labels when no `--shadow-seed` is passed, for example `coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41`
-- required signal path: raw/postEq SINR export through `CUMAC_ONLINE_EXPORT_POST_EQ_SINR=1`
-- required PRG features: postEq SINR `top1/p10/mean`, `backlog_weighted_expected_goodput_mbps`, and `low_sinr_hol_ttl_weight`
-- training goal: use HGraph+RL to exceed the stronger same-scenario native reference by converting pending backlog into reliable goodput, not by merely increasing raw PRG utilization
-
-`coop_center`, `coop_boundary nominal`, fixed `shadow41`, and `ISD500` runs are retained as mechanism references only. New formal runs should not use those labels unless the experiment is explicitly diagnostic.
-
-Retained 3-cell reference run: `training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation`.
-
-Current run-directory hygiene:
-
-- keep directories with checkpoints, gate summaries, KPI CSV/JSON, or documented mechanism value
-- remove smoke/skip/build-only artifacts once the result has been superseded
-- remove failed launch directories with no checkpoint and no summary
-- remove `__pycache__` directories
-- new run labels must include placement, association, shadow policy, radius, horizon, warmup, and seed, for example `coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41`
-
-It is intentionally separate from `training/gnnrl/`:
-
-- reuse the Stage-B simulator scenario/build flow
-- do not reuse the old GNN+RL model/training scripts as the implementation base
-- keep the first-version scope fixed to:
-  - `Cell / UE / P_{i,g}` nodes
-  - `Cell-Cell / Cell-UE / Cell-PRG / UE-PRG / PRG-PRG` edges
-  - template encoders implemented as structured MLPs
-  - one later hetero-graph message-passing layer
-
-## Current module boundary
+## Module boundary
 
 - `feature_snapshot.py`
   - builds the first-version `cell_features / ue_features / prg_features / static_meta`
@@ -133,17 +75,17 @@ It is intentionally separate from `training/gnnrl/`:
 
 Recommended reuse boundary:
 
-1. Keep `cuMAC/scripts/run_stageB_main_experiment.sh` as the canonical Stage-B scenario/build/run entry.
+1. Keep `cuMAC/scripts/run_stageB_main_experiment.sh` as the historical Stage-B scenario/build/run entry.
 2. Use the new independent launcher:
    - `cuMAC/scripts/run_stageB_hgraph_online_sanity.sh`
 3. Keep this stack separate from `cuMAC/scripts/run_stageB_online_train.sh` and `training/gnnrl/*`.
 4. Use the current online bridge observation path first, because it already exposes `obs_prg_features`.
 
-Current validated runtime boundary:
+Historical validated runtime boundary:
 
 - fixed seed + `online_persistent=1`
   - the simulator is now reused as one continuous online stream across PPO iterations
-  - this is the recommended first formal-training path
+  - this was the original fixed-seed training path
 - `--sim-env`
   - may be repeated
   - all simulator env entries are preserved, including:
@@ -414,7 +356,7 @@ python -m training.stageb_hgraph.residual_tail_gate \
   --out training/stageb_hgraph/runs/causal_residual_smoke/residual_tail_gate.json
 ```
 
-Recommended fixed-seed smoke / first formal run:
+Historical fixed-seed smoke / first formal-run example:
 
 ```bash
 CUDA_VISIBLE_DEVICES=1 ./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
@@ -489,12 +431,12 @@ Current online PPO logging / checkpoint behavior:
   - the true peak of the selected best metric, regardless of `early-stop-min-delta`
   - this is the recommended checkpoint family for final offline / multi-seed evaluation
 - best-checkpoint selection is controlled by `--best-metric {reward,goodput}`
-- recommended current defaults:
+- historical example defaults:
   - `--best-metric goodput`
   - `--early-stop-patience 60`
   - `--early-stop-min-delta 1.0`
   - `--early-stop-warmup-iters 50`
-- if the immediate goal is to retrain a clean new model under the current validated Stage-B setup, the recommended choice is:
+- the earlier Stage-B training recipe used the following settings; they are not a current training recommendation:
   - keep the training/evaluation traffic aligned:
     - `3000 bytes / packet`
     - `1 pkt / TTI`
@@ -570,7 +512,7 @@ The wrapper default decode path is now `argmax`, which matches the deterministic
 
 This wrapper:
 
-- runs the canonical Stage-B main experiment once per topology seed
+- runs the historical Stage-B main experiment once per topology seed
 - uses `--online-bridge 1` and drives actions from the chosen checkpoint
 - collects the real per-seed `kpi_summary.json`
 - aggregates the final HGraph mean/std/min/max with the same manifest-style flow used by the RRQ/PFQ comparison scripts
@@ -640,171 +582,4 @@ To run it through the C++ runtime path, pass the action ONNX as the `gnnrl_model
   --precoding svd \
   --exec-mode both \
   --tti 4000
-```
-
-For the seed42 smoke run with a 1000-TTI warm-start horizon and 4000 measured-horizon intent, use 5000 total TTI:
-
-```bash
-./cuMAC/scripts/run_stageB_main_experiment.sh \
-  --build-method cmake \
-  --custom-ue-prg 1 \
-  --custom-policy gnnrl_model \
-  --model-path training/stageb_hgraph/exports/hgraph_3cell_36ue_17prg_action_posteq.onnx \
-  --gnnrl-model-output-mode action \
-  --gnnrl-model-use-post-eq-input 1 \
-  --gnnrl-model-decode-mode argmax \
-  --gnnrl-model-strict 1 \
-  --topology-scenario 3cell \
-  --topology-seed 42 \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --exec-mode both \
-  --tti 5000 \
-  --compact-output 0 \
-  --tag hgraph_action_s42_warmup1000
-```
-
-Important caveat: the current Stage-B main KPI summary still accumulates over the full run. The `warmup1000` tag and `--tti 5000` layout are useful for controlled runs, but strict warmup-excluded KPI still requires a future `--stats-warmup-tti 1000` counter/snapshot path.
-
-Latest seed42 action-mode smoke result:
-
-| Metric | HGraph action s42 | PFQ s42 | RRQ s42 |
-|---|---:|---:|---:|
-| `traffic.served_mbps_est` | 1736.670 | 1734.346 | 1725.653 |
-| `traffic.goodput_mbps` | 1555.805 | 1548.486 | 1548.063 |
-| `global_kpi.global_tb_bler` | 0.105984 | 0.108009 | 0.108990 |
-| `global_kpi.ue_goodput_jain` | 0.998669 | 0.998616 | 0.998790 |
-| `global_kpi.ue_goodput_p5_mbps` | 40.209 | 39.604 | 40.306 |
-| `global_kpi.prg_utilization_ratio` | 0.603208 | 0.906142 | 0.866892 |
-| `traffic.packet_delay_mean_ms` | 2.353 | 0.692 | 0.685 |
-| `traffic.packet_delay_p95_ms` | 6.500 | 2.000 | 1.500 |
-
-Interpretation: the final action path is now functionally credible. It matches or slightly beats PFQ on throughput, goodput, BLER, fairness, and p5 goodput for seed42, but it does so with much lower PRG utilization and scheduling frequency. The remaining deployment-quality gap is therefore mostly packet-delay/service-regularity, not aggregate rate.
-
-## Latest validated smoke status
-
-The latest fixed-seed smoke has already validated the following:
-
-- simulator-side configuration is aligned:
-  - `online raw postEqSinr export=on`
-  - `online reward mode=goodput_reliability_blankaware`
-  - `precoding=svd`
-  - `TTL = 200 ms`
-  - topology placement and tx pattern are aligned with the intended Stage-B scenario
-- PPO-side runtime is aligned:
-  - `posteqL = 4`
-  - persistent stream shows `continue` instead of relaunching every iteration
-- latest smoke tail reached approximately:
-  - `goodput = 1500.84 Mbps`
-  - `tb_err = 0.092`
-  - `blank = 0.046`
-  - `fill = 0.954`
-
-This means the current first-version stack has passed the key smoke gates needed for formal fixed-seed training.
-
-## Current recommendation
-
-The current recommendation is to retrain one new model from scratch under the validated Stage-B training configuration, then evaluate the final `absolute_best` checkpoint with three topology seeds under the same traffic setting.
-
-Recommended rebuild:
-
-```bash
-./cuMAC/scripts/run_stageB_main_experiment.sh \
-  --build-only 1 \
-  --build-method cmake \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --topology-seed 42 \
-  --baseline-scheduler pfq \
-  --exec-mode both \
-  --precoding svd
-```
-
-Recommended fresh formal training:
-
-```bash
-CUDA_VISIBLE_DEVICES=1 ./cuMAC/scripts/run_stageB_hgraph_online_ppo.sh \
-  --build-method skip \
-  --tti 4000 \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --precoding svd \
-  --topology-seed 42 \
-  --topology-seed-mode fixed \
-  --baseline-scheduler pfq \
-  --online-persistent 1 \
-  --episode-horizon 1024 \
-  --rollout-steps 1024 \
-  --iterations 300 \
-  --ue-prg-topk 6 \
-  --hidden-dim 192 \
-  --message-layers 3 \
-  --dropout 0.0 \
-  --device cuda \
-  --lr 1.5e-4 \
-  --actor-lr 1.0e-4 \
-  --critic-lr 3.0e-4 \
-  --weight-decay 1e-5 \
-  --gamma 0.99 \
-  --gae-lambda 0.95 \
-  --clip-eps 0.2 \
-  --value-coef 0.5 \
-  --entropy-coef 0.004 \
-  --target-kl 0.05 \
-  --update-epochs 4 \
-  --minibatch-size 256 \
-  --reward-mode stageb_blankaware \
-  --rollout-log-every-steps 500 \
-  --update-log-every-minibatches 2 \
-  --best-metric goodput \
-  --early-stop-patience 0 \
-  --print-every-iters 1 \
-  --sim-env CUDA_VISIBLE_DEVICES=0 \
-  --out-dir training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation
-```
-
-Recommended matching evaluation style:
-
-```bash
-./cuMAC/scripts/run_stageB_hgraph_checkpoint_multi_seed_compare.sh \
-  --seed-list 41,42,43 \
-  --checkpoint-path training/stageb_hgraph/runs/online_ppo_seed42_svd_rawbridge_joint_v33_capSlack3000_simpleExecutor_ablation/ppo_actor_absolute_best.pt \
-  --model-label hgraph_v33_absbest \
-  --baseline-mean-root output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443 \
-  --build-method skip \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --fading-mode 0 \
-  --cdl-profiles NA \
-  --cdl-delay-spreads 0 \
-  --tti 4000 \
-  --prbs-per-group 16 \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1.0 \
-  --packet-ttl-ms 200 \
-  --progress-tti 1000 \
-  --kpi-tti-log 0 \
-  --compare-tti 0 \
-  --compact-output 1 \
-  --exec-mode both \
-  --precoding svd \
-  --decode-mode argmax \
-  --eval-episode-horizon 4000 \
-  --eval-device cuda \
-  --eval-print-every-steps 500 \
-  --sim-env CUDA_VISIBLE_DEVICES=0 \
-  --eval-env CUDA_VISIBLE_DEVICES=1 \
-  --compare-output-dir output/stageB_hgraph_v33_absbest_multiseed_compare
 ```

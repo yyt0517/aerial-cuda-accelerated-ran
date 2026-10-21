@@ -34,7 +34,7 @@ ZIP 不把符号链接转换为普通文件或占位文件，以避免让浏览�
 
 ## 原始包不变性
 
-生成 Windows ZIP 前后分别校验原始 `tar.gz` 的 SHA256。其预期值保持为：
+现有归档从历史文件名 `stageb_cuda_rerun_62227dc.tar.gz` 仅重命名为交付清单约定的 `stageB_cuda_rerun_62227dc.tar.gz`；不重写归档内容。对应 `.sha256` 文件同步采用大写 `B` 文件名并引用实际交付文件。生成 Windows ZIP 前后分别校验原始 `tar.gz` 的 SHA256，其预期值保持为：
 
 ```text
 1321254fe9b941536466f2c69033e59a1a764b1b3672b49f4f43b96cebded372

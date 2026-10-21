@@ -1,0 +1,322 @@
+{
+  "passed": true,
+  "new_simulations": 0,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "saved_input_and_action_pairing_checks": [
+    {
+      "seed": 41,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "0bf6dac06d45e3868f450414368b4e809b86cc5ecf1e6025425bf527ec0a6895",
+          "validation.json": "549dc729f1529ac7b33afeaff39c28051c2be209aab1db9c6d2645798e767eeb",
+          "physical_validation.json": "53a9a7bc8d63d1cbefeab1dc4d649dbd12118a5331c7ca244a68ef74eb89b637",
+          "sim.log": "ff89df882570d406d91d36bacba07d3bc805eacbb89db038ade37744ee07f2c8"
+        },
+        "full": {
+          "prefix.npz": "2a1e60584230ed7c493e0576e0f5893e5c763cdeae3497eb32cd09dd7afe4f25",
+          "validation.json": "65faf00207504a6449ec49a8fdcb27cd79eb830aabdd678dcd667d666d843156",
+          "physical_validation.json": "9c89f57e1a23e1b00d65f549734ca36b96e09a41afdba225089c702c7e209685",
+          "sim.log": "54693178da0a996997d8e1a40f6b9a1e832e1717ec26a3c2d51fb18f75a2f8a6"
+        },
+        "current": {
+          "prefix.npz": "f01480e7902e753b988be2276e0f272887f61d38b262ee269e2210119acb1042",
+          "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7",
+          "physical_validation.json": "a368d0bddddabb6660c92c0241ede5d58b43e3741505f60a9e491579f2b2a100",
+          "sim.log": "e173b6dfdcd10127840f0382a27f7d58886983a0d9c0efbdd1fed82c4d3b9ac5"
+        }
+      }
+    },
+    {
+      "seed": 42,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "6dd4f09a15eae058f28a8b0baed03f8641716ad3b4512c542fbb29b4646c40ec",
+          "validation.json": "f67ecf0f7f62553a2a9535e8d92ecf6b5cb2628dca8f68da5f6130c12d5564b2",
+          "physical_validation.json": "6c2f7866a576cb18e1b805c4ad33e29bf7ca3e1983bb4425383407f35a9c71ef",
+          "sim.log": "4ca9bb488698b9ad80acb5119efdac44cca3087dcc34353195303aed40f66973"
+        },
+        "full": {
+          "prefix.npz": "c386ea06be819998c594cc5fa3b071cfa3afd1d11b9fe8aa858c2803cb09a9db",
+          "validation.json": "2a4fcedfcf29ddb7fac4d591fa8ed3cf674d666b0fa8b2c2d5330fc92e89019d",
+          "physical_validation.json": "68e8b0faba120a62337d76c88a21b989ec04fce7705971c6169464c9b62ca373",
+          "sim.log": "a5278f0c9533b0c5cfc5752141efe0658aa4b181f5091d5b2de278380ea6a2db"
+        },
+        "current": {
+          "prefix.npz": "57f81c995f857e8a4440618b7d0d11de8a21990a3cf97fd71e9d7dd5b03c889b",
+          "validation.json": "dd9d1ffa80924b0557013664a1fb50c7c6b5d7ea32be92f699c5b927c07b2d38",
+          "physical_validation.json": "5736ec6afb7bdb30bb002dbd7f151efb51549f1ea350ce3e3d50907766db4962",
+          "sim.log": "d81c9652e4f977656d9c1583e8b35aec3f4b917888c7e4abe3578c0295292b7b"
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "3acc006b2f9a21c115492206837cbfe86c8922dde1c13cd3e89ee4d81d1b14d1",
+          "validation.json": "288da97e7ec16c356b2afc60ea45fd55038b83db18410de539b62d10525d1f52",
+          "physical_validation.json": "bb9454e50fe44d23263c7f43d09c4fd6efaf3e8fbb7b3639045031e62512f10a",
+          "sim.log": "9029d132674d2554a631fa54c5fbcb1e932369b3fa5b9bb00038267656132299"
+        },
+        "full": {
+          "prefix.npz": "8c351dced220766245749ee233533a70e0e3c6432c5abee891b1a77d352d555f",
+          "validation.json": "5d0f0accf7696700ebc898dcc2ee8a82cbef823e02f7efe1f1f36a8c267ebeb4",
+          "physical_validation.json": "9cdfa1f97bd72efb6ba91cff74b018f0929229107af31b3978572cb26d8c08a6",
+          "sim.log": "c0285f26c7a5abdac950180e4bd07951bc3c7a6908203579cd201d317ec45e66"
+        },
+        "current": {
+          "prefix.npz": "0c535aa7faf6391acb27f5bd9441bff26484bdab4e805a5eebdee122fd1b0f43",
+          "validation.json": "965b485b6b339e9af59c2ce7527ce584ce578824f48c527c43616a47edd93a20",
+          "physical_validation.json": "474ae2cdf1d58de1d4f4140c24590a269bd17b62c5d51f5e29f0361c3abb7491",
+          "sim.log": "eb8963b08b46ca54e64e2ec35d0039625125523afac0f208b5f5b1c09ba4edee"
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "35151d6071b4e144811248856078135b7d7203a0edf57d2aa5309ba4f755b917",
+          "validation.json": "234e4dca99131b1da9a5728908a47089eb870f693995586723554b5f40e4d51a",
+          "physical_validation.json": "1b807263ee46075c8b39104fea466056b46fe01c572404816e7d91397dff9869",
+          "sim.log": "b641c95359b9358766f8901430a2819dc0870457bd4a5f6fd37a938ffee75e07"
+        },
+        "full": {
+          "prefix.npz": "ec75338140dd1d8ffb91e68257dbba328b7be4c64dae6083dbf1f0a8a16377e7",
+          "validation.json": "6266b4e50fe43b6ad44c6ff59819d098be2ea5eb3395d105c80724fb1bc783db",
+          "physical_validation.json": "dbd56453308f368ab0ffe513d880a4ba041bb9d0310bfc2323461dfcdee0453d",
+          "sim.log": "3c84376c07c32e3099b516967a9b27cd4616125194e98913bb35aff63598be76"
+        },
+        "current": {
+          "prefix.npz": "806aab7c5bedbf65201f2039b88f52512bd4daa43400c1577ab2ec5cf8a82dd2",
+          "validation.json": "5585d8fbb55b83cfe4c931740063341d5a5d37e86aeb59e6aec4870ab08f92a9",
+          "physical_validation.json": "b10ca25285a68e422e9aecdcf45612179bf6a5c210d8f51b33465d80bcfd20bf",
+          "sim.log": "1097993d7d4d777b9e3f567aa47e1401600a3697496e133a05457c1d4d5726ef"
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "418af6a68aeb75fec863ce131678c24c9571bdb47b8dcb4ab03973e388f29718",
+          "validation.json": "a70c1570da8d71c8e07ce2ba9e6bede84b86cf830a2d907c3365555349a7abbd",
+          "physical_validation.json": "d86ebb3df0f771a6d26bd2afc945cbac7cd1626081e3c05d1f1638bb278c0240",
+          "sim.log": "dff1f130ebbdc43f59271113e6991dd845c8f7e22f1d892f7ded93df1e3fcd4a"
+        },
+        "full": {
+          "prefix.npz": "95a60cf46f8a35577fa21a97dcfc8c8ddd541da3212e931e64f8b77ac4539a89",
+          "validation.json": "7cf8df0755ecbe403b052e157b82d06511896f2a55e6d6add168f435920e9c53",
+          "physical_validation.json": "8493356409840cc8987e96ee5d2eab7e3e88ddb122e121ada3149f0f70d42cb5",
+          "sim.log": "923e1b5e711d38618442ef61baebd4f9f6f2439db54cbce934d295ad9cf34a7c"
+        },
+        "current": {
+          "prefix.npz": "379a0fae49181a172808c5b2562de2501c6d30f1952a0f42dfb20f394efe3999",
+          "validation.json": "fb515d0404b5b589a0068e7f6efd83a2c37bd4dc95adc23b714eed31c45301da",
+          "physical_validation.json": "92083a5e4d19f5e5d30d5dd04186e400fdedf070a9d92964c340cd1109914b1c",
+          "sim.log": "16d3b60caff3a741e902c1ee7a036f4a0d785edc752df3ec1727abd82d4fee30"
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "e709c7e72ea3eec28a81bc9bbb562477869d56ece77f37908e097cee33a754b5",
+          "validation.json": "8ca78c92e494132c6a91c234386f955133d82c729a9349f706e4d1ab064acf45",
+          "physical_validation.json": "9aac9c398bcc4385de15fc6dcb5e502662e97fb7d27b164fc37f6f4a8d598875",
+          "sim.log": "e8229b87d02e1665d81b17903f3c97cdd6cf6314825760366adfd5809039768b"
+        },
+        "full": {
+          "prefix.npz": "2411cce3a9ddddc0f92ba5dd803f306526b728915cf37ec92947259e7024bee8",
+          "validation.json": "1be207da5362e6dbc03342a245f8b081ae3add00fd2ff728d931bf7515e56324",
+          "physical_validation.json": "9d253dc6f508ea1ac076ab27f35d72dd5a3716bf82bee8c1161a9ee590a0acf1",
+          "sim.log": "2e360431bb2a0a6b845965ade6ed1d04447b1ee5838235e9f56d1bdcea398395"
+        },
+        "current": {
+          "prefix.npz": "a609e812d8263115257b765db3764c66b92a2bb3f92c1160b5194f450c203a97",
+          "validation.json": "4191fd99cb1853d7bcb4e00902265cfa4b3173cbe181ed7526e767fbd9152417",
+          "physical_validation.json": "5c5d259fa2da3fd63b71a11da8a1dfbfaf578441efde61f743b0ae73411e4f1e",
+          "sim.log": "7a3e2df522ec65b78ba507a4595ea4f3ad5a5257e51a3c5c700269def81996bf"
+        }
+      }
+    },
+    {
+      "seed": 47,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "0dcb556a7d474a7d9d4f9738cb9c44b1b78bfcf04e020d042cf9610c3a036622",
+          "validation.json": "9cff19372a248a0463307de9e480d04d5690172ef79727a24fec4dad034f594d",
+          "physical_validation.json": "e4ba3cf6fddf706819d83250b75188453f21fdde56b064f8ccaad2606db8098e",
+          "sim.log": "90f92cd154654de7c28e43f2885ffcc3d3f4e94c51f98ff31882e3644a4d8af1"
+        },
+        "full": {
+          "prefix.npz": "20787182e389c0743fe827850bb9623abe422688991bccb87242c379f48e9f82",
+          "validation.json": "0e1b958ef5e143282e929575cd5953090646a53e9624af47348949544458f070",
+          "physical_validation.json": "3103c4e742f303bd3eefa43ab1d12a14f7833538e16e69ef4778ebb66cdf14f9",
+          "sim.log": "62a005240e6a5f6d22cd4d900756d6f01af5aeda8e0ac916b9be10bf21b310a4"
+        },
+        "current": {
+          "prefix.npz": "bbda6d0d23dde26e6a00b0b8b79136e6779de5d333fd28b0dee236f8d54a7cf7",
+          "validation.json": "d47ab57f3a688f94fb97ca8b5a2ffc1dc2b2bd86bd919fb2340a075584be9c55",
+          "physical_validation.json": "b01fa46aafc8b822a2f4e4d1764171ea5cdbe6e59e8b233145062737a16591ed",
+          "sim.log": "98920f03ae53c16d903f4a921aec0b52e451ec433bf75cdf80a895f11ad50008"
+        }
+      }
+    },
+    {
+      "seed": 48,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "274dabb588466f562b517c8f4ccbd6ba5065e367dbd0aa510c9b28eb16c81f8f",
+          "validation.json": "cb0a324c7b1f5daa4af0b004005753122c2051c84bcfd5444e17a8d1726ebc1d",
+          "physical_validation.json": "1c455487d1fd389496f6bfc73248279b074042fb4d67d8396b321c521ddd7363",
+          "sim.log": "e8ca9823b87bc4558160bcf8a757d12214f0cf9b5e5afb741a23b1fdbae0676f"
+        },
+        "full": {
+          "prefix.npz": "e86bc86d3bb060bd15407e94a6c090fcf8a2a96b48086a07d0098947877b7330",
+          "validation.json": "d4f1fd2908801f791374fc08803d6e08aeae66e90f3c26ca4d0ff4aaf73ea565",
+          "physical_validation.json": "c32caecf5c9a702999c05bcd1daf9e0185d8e45f0fb441065f4549f7b1ca7237",
+          "sim.log": "805fcbf0e736cd35890df3bba4703c2e9b0913bca1e426f5d81fb7f0de6d802b"
+        },
+        "current": {
+          "prefix.npz": "04a729a50d4a2d539794e1dee93f3882fdec60a91fb3449af34ad8dbbf91fa20",
+          "validation.json": "71e0949101e7994f217e3b3361fd12fd4da520d1793ce62f8cca45719c7195e1",
+          "physical_validation.json": "c307a52f06ebe5469dfd62da594517711aac49c3f8bb12b4236d3d5929489ad1",
+          "sim.log": "fcca7a8e81e8ccd77f7da0a5be821419794e115dad0d3fa8ac8db3b34fb2ff40"
+        }
+      }
+    },
+    {
+      "seed": 49,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "812a6722cb8a15d05dde525d30082256edc0bd0c495fca6c30d315e0bec17eee",
+          "validation.json": "275e058e93b116c7f7510c31a134f002fa363353746357410c8e63bc4660d551",
+          "physical_validation.json": "209b7a379aabbbdfff88728c3fde3b318486bcfc6802897506f28aa48cc7ddf0",
+          "sim.log": "9020b05a94a6a1aa48608603bcb30fd28bfbe3621637874417c6422a4adcf53b"
+        },
+        "full": {
+          "prefix.npz": "4bb3588474a802bde201abbbd6386e5e97d9c1438f5f99240df5cb95af50f7ea",
+          "validation.json": "5a83da034a7794c48258df27ab10e43a43afcdee13b45845e54fb6909939bb38",
+          "physical_validation.json": "b7dd66807cca5e50505836615a2eac33205e8ffecf641e5162f8bfa61952f5fe",
+          "sim.log": "bc2f855aba50b281542e636a960138bbae1383600b600da8913f401f6f56754d"
+        },
+        "current": {
+          "prefix.npz": "52d8bc5f46e6baf5bb82f8caaa3dd383534230537a14b06128dc65b60f0f8a64",
+          "validation.json": "a1e1a6be852bd29e7db5ba2fe28e54d6e8d2c283d7b8d9800b3e6d2e0481083a",
+          "physical_validation.json": "034b4d96e47c07291fd457f5a95aba38d2f6936e4129e97f84cc1d27b58df973",
+          "sim.log": "0265924a06e580aa595507cd8adee73e02bb827f4bbe26d6074b83d54a08ccbd"
+        }
+      }
+    },
+    {
+      "seed": 50,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "dbd24a63b82b177403fb5d260f0c33aef469a24d6f9adfebee6327815f77baee",
+          "validation.json": "69915b678b7b8e418d7ffa89ba4888c42adc0483525b85868a8fa974f45b34a1",
+          "physical_validation.json": "3437a4a77f9ce394fc6c81b8e46008cafba71f470863cb29f62132582fe7e867",
+          "sim.log": "9ff06af18de3e632dac42f5224f35be4d49a0f74f551ab24fcd0ec9d0b5e74d2"
+        },
+        "full": {
+          "prefix.npz": "1b834fb77e5f08d34a7d254392a247e1cfac986b160eb08aba7a807194839570",
+          "validation.json": "215f010fd79a17d6e945cedb8ea02de2163a8873564f4eec626d1c3841927cf5",
+          "physical_validation.json": "355e732c0690337d6d6f21b7cad56435c4a96b83b44685f8e8dbaaebef9100c9",
+          "sim.log": "cfb0942f94041de3aff24790806b65d118cc10ea8f852d6d55cbffe774afa87f"
+        },
+        "current": {
+          "prefix.npz": "589697b0556898f0983b51e8f978007cff3e3b584d8c03f960b999e4154bbded",
+          "validation.json": "62af4be078a3c3d6b301075c2c5cde2f5186a7dff101bc56279038a039890751",
+          "physical_validation.json": "7750ac37e44f73a4e9dc26af9ffdcde843a122257d40fedd75b3c83d237b4241",
+          "sim.log": "ed96f8d4bba887c3192afd43f3ce8a7a46b23052afc335b9557a8557a1d7759c"
+        }
+      }
+    }
+  ],
+  "source_metrics_sha256": "8eda591d0b236fd64d81735d84187759c8e76e7fecc100fadfcdfbe20fa870f9",
+  "source_paired_ci_sha256": "12e37fadb581bc82ccda72c7c34775261ebf8278c5264e19d0028e316d5860af",
+  "full_fifo_validation_source": "/home/oai2/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/validation.json",
+  "full_fifo_validation_sha256": "5ed2ddba83cc2f23af3f500be5bc026cbc3afcdc59f1cdf600ab68baab1c5c7e"
+}

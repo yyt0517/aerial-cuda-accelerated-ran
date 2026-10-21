@@ -1,0 +1,848 @@
+{
+  "passed": true,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "arms": [
+    "pfq0",
+    "full",
+    "current"
+  ],
+  "completed_rows": 30,
+  "all_arms_new_corrected_runs": true,
+  "historical_rows_reused": 0,
+  "frozen_source_maps_identical": true,
+  "full_ten_seed_comparison": true,
+  "pair_checks": [
+    {
+      "seed": 41,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "0bf6dac06d45e3868f450414368b4e809b86cc5ecf1e6025425bf527ec0a6895",
+          "validation.json": "549dc729f1529ac7b33afeaff39c28051c2be209aab1db9c6d2645798e767eeb",
+          "physical_validation.json": "53a9a7bc8d63d1cbefeab1dc4d649dbd12118a5331c7ca244a68ef74eb89b637",
+          "sim.log": "ff89df882570d406d91d36bacba07d3bc805eacbb89db038ade37744ee07f2c8"
+        },
+        "full": {
+          "prefix.npz": "2a1e60584230ed7c493e0576e0f5893e5c763cdeae3497eb32cd09dd7afe4f25",
+          "validation.json": "65faf00207504a6449ec49a8fdcb27cd79eb830aabdd678dcd667d666d843156",
+          "physical_validation.json": "9c89f57e1a23e1b00d65f549734ca36b96e09a41afdba225089c702c7e209685",
+          "sim.log": "54693178da0a996997d8e1a40f6b9a1e832e1717ec26a3c2d51fb18f75a2f8a6"
+        },
+        "current": {
+          "prefix.npz": "f01480e7902e753b988be2276e0f272887f61d38b262ee269e2210119acb1042",
+          "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7",
+          "physical_validation.json": "a368d0bddddabb6660c92c0241ede5d58b43e3741505f60a9e491579f2b2a100",
+          "sim.log": "e173b6dfdcd10127840f0382a27f7d58886983a0d9c0efbdd1fed82c4d3b9ac5"
+        }
+      }
+    },
+    {
+      "seed": 42,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "6dd4f09a15eae058f28a8b0baed03f8641716ad3b4512c542fbb29b4646c40ec",
+          "validation.json": "f67ecf0f7f62553a2a9535e8d92ecf6b5cb2628dca8f68da5f6130c12d5564b2",
+          "physical_validation.json": "6c2f7866a576cb18e1b805c4ad33e29bf7ca3e1983bb4425383407f35a9c71ef",
+          "sim.log": "4ca9bb488698b9ad80acb5119efdac44cca3087dcc34353195303aed40f66973"
+        },
+        "full": {
+          "prefix.npz": "c386ea06be819998c594cc5fa3b071cfa3afd1d11b9fe8aa858c2803cb09a9db",
+          "validation.json": "2a4fcedfcf29ddb7fac4d591fa8ed3cf674d666b0fa8b2c2d5330fc92e89019d",
+          "physical_validation.json": "68e8b0faba120a62337d76c88a21b989ec04fce7705971c6169464c9b62ca373",
+          "sim.log": "a5278f0c9533b0c5cfc5752141efe0658aa4b181f5091d5b2de278380ea6a2db"
+        },
+        "current": {
+          "prefix.npz": "57f81c995f857e8a4440618b7d0d11de8a21990a3cf97fd71e9d7dd5b03c889b",
+          "validation.json": "dd9d1ffa80924b0557013664a1fb50c7c6b5d7ea32be92f699c5b927c07b2d38",
+          "physical_validation.json": "5736ec6afb7bdb30bb002dbd7f151efb51549f1ea350ce3e3d50907766db4962",
+          "sim.log": "d81c9652e4f977656d9c1583e8b35aec3f4b917888c7e4abe3578c0295292b7b"
+        }
+      }
+    },
+    {
+      "seed": 43,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "3acc006b2f9a21c115492206837cbfe86c8922dde1c13cd3e89ee4d81d1b14d1",
+          "validation.json": "288da97e7ec16c356b2afc60ea45fd55038b83db18410de539b62d10525d1f52",
+          "physical_validation.json": "bb9454e50fe44d23263c7f43d09c4fd6efaf3e8fbb7b3639045031e62512f10a",
+          "sim.log": "9029d132674d2554a631fa54c5fbcb1e932369b3fa5b9bb00038267656132299"
+        },
+        "full": {
+          "prefix.npz": "8c351dced220766245749ee233533a70e0e3c6432c5abee891b1a77d352d555f",
+          "validation.json": "5d0f0accf7696700ebc898dcc2ee8a82cbef823e02f7efe1f1f36a8c267ebeb4",
+          "physical_validation.json": "9cdfa1f97bd72efb6ba91cff74b018f0929229107af31b3978572cb26d8c08a6",
+          "sim.log": "c0285f26c7a5abdac950180e4bd07951bc3c7a6908203579cd201d317ec45e66"
+        },
+        "current": {
+          "prefix.npz": "0c535aa7faf6391acb27f5bd9441bff26484bdab4e805a5eebdee122fd1b0f43",
+          "validation.json": "965b485b6b339e9af59c2ce7527ce584ce578824f48c527c43616a47edd93a20",
+          "physical_validation.json": "474ae2cdf1d58de1d4f4140c24590a269bd17b62c5d51f5e29f0361c3abb7491",
+          "sim.log": "eb8963b08b46ca54e64e2ec35d0039625125523afac0f208b5f5b1c09ba4edee"
+        }
+      }
+    },
+    {
+      "seed": 44,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "35151d6071b4e144811248856078135b7d7203a0edf57d2aa5309ba4f755b917",
+          "validation.json": "234e4dca99131b1da9a5728908a47089eb870f693995586723554b5f40e4d51a",
+          "physical_validation.json": "1b807263ee46075c8b39104fea466056b46fe01c572404816e7d91397dff9869",
+          "sim.log": "b641c95359b9358766f8901430a2819dc0870457bd4a5f6fd37a938ffee75e07"
+        },
+        "full": {
+          "prefix.npz": "ec75338140dd1d8ffb91e68257dbba328b7be4c64dae6083dbf1f0a8a16377e7",
+          "validation.json": "6266b4e50fe43b6ad44c6ff59819d098be2ea5eb3395d105c80724fb1bc783db",
+          "physical_validation.json": "dbd56453308f368ab0ffe513d880a4ba041bb9d0310bfc2323461dfcdee0453d",
+          "sim.log": "3c84376c07c32e3099b516967a9b27cd4616125194e98913bb35aff63598be76"
+        },
+        "current": {
+          "prefix.npz": "806aab7c5bedbf65201f2039b88f52512bd4daa43400c1577ab2ec5cf8a82dd2",
+          "validation.json": "5585d8fbb55b83cfe4c931740063341d5a5d37e86aeb59e6aec4870ab08f92a9",
+          "physical_validation.json": "b10ca25285a68e422e9aecdcf45612179bf6a5c210d8f51b33465d80bcfd20bf",
+          "sim.log": "1097993d7d4d777b9e3f567aa47e1401600a3697496e133a05457c1d4d5726ef"
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "418af6a68aeb75fec863ce131678c24c9571bdb47b8dcb4ab03973e388f29718",
+          "validation.json": "a70c1570da8d71c8e07ce2ba9e6bede84b86cf830a2d907c3365555349a7abbd",
+          "physical_validation.json": "d86ebb3df0f771a6d26bd2afc945cbac7cd1626081e3c05d1f1638bb278c0240",
+          "sim.log": "dff1f130ebbdc43f59271113e6991dd845c8f7e22f1d892f7ded93df1e3fcd4a"
+        },
+        "full": {
+          "prefix.npz": "95a60cf46f8a35577fa21a97dcfc8c8ddd541da3212e931e64f8b77ac4539a89",
+          "validation.json": "7cf8df0755ecbe403b052e157b82d06511896f2a55e6d6add168f435920e9c53",
+          "physical_validation.json": "8493356409840cc8987e96ee5d2eab7e3e88ddb122e121ada3149f0f70d42cb5",
+          "sim.log": "923e1b5e711d38618442ef61baebd4f9f6f2439db54cbce934d295ad9cf34a7c"
+        },
+        "current": {
+          "prefix.npz": "379a0fae49181a172808c5b2562de2501c6d30f1952a0f42dfb20f394efe3999",
+          "validation.json": "fb515d0404b5b589a0068e7f6efd83a2c37bd4dc95adc23b714eed31c45301da",
+          "physical_validation.json": "92083a5e4d19f5e5d30d5dd04186e400fdedf070a9d92964c340cd1109914b1c",
+          "sim.log": "16d3b60caff3a741e902c1ee7a036f4a0d785edc752df3ec1727abd82d4fee30"
+        }
+      }
+    },
+    {
+      "seed": 46,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "e709c7e72ea3eec28a81bc9bbb562477869d56ece77f37908e097cee33a754b5",
+          "validation.json": "8ca78c92e494132c6a91c234386f955133d82c729a9349f706e4d1ab064acf45",
+          "physical_validation.json": "9aac9c398bcc4385de15fc6dcb5e502662e97fb7d27b164fc37f6f4a8d598875",
+          "sim.log": "e8229b87d02e1665d81b17903f3c97cdd6cf6314825760366adfd5809039768b"
+        },
+        "full": {
+          "prefix.npz": "2411cce3a9ddddc0f92ba5dd803f306526b728915cf37ec92947259e7024bee8",
+          "validation.json": "1be207da5362e6dbc03342a245f8b081ae3add00fd2ff728d931bf7515e56324",
+          "physical_validation.json": "9d253dc6f508ea1ac076ab27f35d72dd5a3716bf82bee8c1161a9ee590a0acf1",
+          "sim.log": "2e360431bb2a0a6b845965ade6ed1d04447b1ee5838235e9f56d1bdcea398395"
+        },
+        "current": {
+          "prefix.npz": "a609e812d8263115257b765db3764c66b92a2bb3f92c1160b5194f450c203a97",
+          "validation.json": "4191fd99cb1853d7bcb4e00902265cfa4b3173cbe181ed7526e767fbd9152417",
+          "physical_validation.json": "5c5d259fa2da3fd63b71a11da8a1dfbfaf578441efde61f743b0ae73411e4f1e",
+          "sim.log": "7a3e2df522ec65b78ba507a4595ea4f3ad5a5257e51a3c5c700269def81996bf"
+        }
+      }
+    },
+    {
+      "seed": 47,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "0dcb556a7d474a7d9d4f9738cb9c44b1b78bfcf04e020d042cf9610c3a036622",
+          "validation.json": "9cff19372a248a0463307de9e480d04d5690172ef79727a24fec4dad034f594d",
+          "physical_validation.json": "e4ba3cf6fddf706819d83250b75188453f21fdde56b064f8ccaad2606db8098e",
+          "sim.log": "90f92cd154654de7c28e43f2885ffcc3d3f4e94c51f98ff31882e3644a4d8af1"
+        },
+        "full": {
+          "prefix.npz": "20787182e389c0743fe827850bb9623abe422688991bccb87242c379f48e9f82",
+          "validation.json": "0e1b958ef5e143282e929575cd5953090646a53e9624af47348949544458f070",
+          "physical_validation.json": "3103c4e742f303bd3eefa43ab1d12a14f7833538e16e69ef4778ebb66cdf14f9",
+          "sim.log": "62a005240e6a5f6d22cd4d900756d6f01af5aeda8e0ac916b9be10bf21b310a4"
+        },
+        "current": {
+          "prefix.npz": "bbda6d0d23dde26e6a00b0b8b79136e6779de5d333fd28b0dee236f8d54a7cf7",
+          "validation.json": "d47ab57f3a688f94fb97ca8b5a2ffc1dc2b2bd86bd919fb2340a075584be9c55",
+          "physical_validation.json": "b01fa46aafc8b822a2f4e4d1764171ea5cdbe6e59e8b233145062737a16591ed",
+          "sim.log": "98920f03ae53c16d903f4a921aec0b52e451ec433bf75cdf80a895f11ad50008"
+        }
+      }
+    },
+    {
+      "seed": 48,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "274dabb588466f562b517c8f4ccbd6ba5065e367dbd0aa510c9b28eb16c81f8f",
+          "validation.json": "cb0a324c7b1f5daa4af0b004005753122c2051c84bcfd5444e17a8d1726ebc1d",
+          "physical_validation.json": "1c455487d1fd389496f6bfc73248279b074042fb4d67d8396b321c521ddd7363",
+          "sim.log": "e8ca9823b87bc4558160bcf8a757d12214f0cf9b5e5afb741a23b1fdbae0676f"
+        },
+        "full": {
+          "prefix.npz": "e86bc86d3bb060bd15407e94a6c090fcf8a2a96b48086a07d0098947877b7330",
+          "validation.json": "d4f1fd2908801f791374fc08803d6e08aeae66e90f3c26ca4d0ff4aaf73ea565",
+          "physical_validation.json": "c32caecf5c9a702999c05bcd1daf9e0185d8e45f0fb441065f4549f7b1ca7237",
+          "sim.log": "805fcbf0e736cd35890df3bba4703c2e9b0913bca1e426f5d81fb7f0de6d802b"
+        },
+        "current": {
+          "prefix.npz": "04a729a50d4a2d539794e1dee93f3882fdec60a91fb3449af34ad8dbbf91fa20",
+          "validation.json": "71e0949101e7994f217e3b3361fd12fd4da520d1793ce62f8cca45719c7195e1",
+          "physical_validation.json": "c307a52f06ebe5469dfd62da594517711aac49c3f8bb12b4236d3d5929489ad1",
+          "sim.log": "fcca7a8e81e8ccd77f7da0a5be821419794e115dad0d3fa8ac8db3b34fb2ff40"
+        }
+      }
+    },
+    {
+      "seed": 49,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "812a6722cb8a15d05dde525d30082256edc0bd0c495fca6c30d315e0bec17eee",
+          "validation.json": "275e058e93b116c7f7510c31a134f002fa363353746357410c8e63bc4660d551",
+          "physical_validation.json": "209b7a379aabbbdfff88728c3fde3b318486bcfc6802897506f28aa48cc7ddf0",
+          "sim.log": "9020b05a94a6a1aa48608603bcb30fd28bfbe3621637874417c6422a4adcf53b"
+        },
+        "full": {
+          "prefix.npz": "4bb3588474a802bde201abbbd6386e5e97d9c1438f5f99240df5cb95af50f7ea",
+          "validation.json": "5a83da034a7794c48258df27ab10e43a43afcdee13b45845e54fb6909939bb38",
+          "physical_validation.json": "b7dd66807cca5e50505836615a2eac33205e8ffecf641e5162f8bfa61952f5fe",
+          "sim.log": "bc2f855aba50b281542e636a960138bbae1383600b600da8913f401f6f56754d"
+        },
+        "current": {
+          "prefix.npz": "52d8bc5f46e6baf5bb82f8caaa3dd383534230537a14b06128dc65b60f0f8a64",
+          "validation.json": "a1e1a6be852bd29e7db5ba2fe28e54d6e8d2c283d7b8d9800b3e6d2e0481083a",
+          "physical_validation.json": "034b4d96e47c07291fd457f5a95aba38d2f6936e4129e97f84cc1d27b58df973",
+          "sim.log": "0265924a06e580aa595507cd8adee73e02bb827f4bbe26d6074b83d54a08ccbd"
+        }
+      }
+    },
+    {
+      "seed": 50,
+      "passed": true,
+      "fresh_input_ttis_exact": 6400,
+      "common_exogenous_H_W_ttis": 6400,
+      "shared_full_input_and_ctbs_hashes": 4001,
+      "shared_PFQ_actions_ttis": 4000,
+      "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+      "post4001_full_state_equality_required": false,
+      "files": {
+        "pfq0": {
+          "prefix.npz": "dbd24a63b82b177403fb5d260f0c33aef469a24d6f9adfebee6327815f77baee",
+          "validation.json": "69915b678b7b8e418d7ffa89ba4888c42adc0483525b85868a8fa974f45b34a1",
+          "physical_validation.json": "3437a4a77f9ce394fc6c81b8e46008cafba71f470863cb29f62132582fe7e867",
+          "sim.log": "9ff06af18de3e632dac42f5224f35be4d49a0f74f551ab24fcd0ec9d0b5e74d2"
+        },
+        "full": {
+          "prefix.npz": "1b834fb77e5f08d34a7d254392a247e1cfac986b160eb08aba7a807194839570",
+          "validation.json": "215f010fd79a17d6e945cedb8ea02de2163a8873564f4eec626d1c3841927cf5",
+          "physical_validation.json": "355e732c0690337d6d6f21b7cad56435c4a96b83b44685f8e8dbaaebef9100c9",
+          "sim.log": "cfb0942f94041de3aff24790806b65d118cc10ea8f852d6d55cbffe774afa87f"
+        },
+        "current": {
+          "prefix.npz": "589697b0556898f0983b51e8f978007cff3e3b584d8c03f960b999e4154bbded",
+          "validation.json": "62af4be078a3c3d6b301075c2c5cde2f5186a7dff101bc56279038a039890751",
+          "physical_validation.json": "7750ac37e44f73a4e9dc26af9ffdcde843a122257d40fedd75b3c83d237b4241",
+          "sim.log": "ed96f8d4bba887c3192afd43f3ce8a7a46b23052afc335b9557a8557a1d7759c"
+        }
+      }
+    }
+  ],
+  "fifo_native_terminals_and_byte_balances_exact": true,
+  "crc_failed_bytes_equal_err_tb_dequeue": true,
+  "no_censoring": true,
+  "common_PFQ_warmup_service_exact": true,
+  "limitation": "One-second measurement includes policy transients. After the common prefix, queue/OLLA/EMA states may differ. Native physical-model validation is separate from this statistical audit.",
+  "sources": [
+    {
+      "seed": 41,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed41_pfq0_2000",
+      "files": {
+        "metrics.bin": "a04e88329461e9d2c10f1f89e211603bccad7ddccb91d0e9f757508b4b2223e3",
+        "traffic_offered_packets.csv": "6fa781b6ee2646ca270fc0fde0f3cdebad99f9a7879669a96d5641be4f982a1c",
+        "packet_outcome_samples.csv": "92566c0ea64a6b3a2d2ce786a0ef3704bb1e7396be877b0c1efb3a8cf7f6b42c",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "c671ab0fe59d7f3f5e0fb2c21e047d82c730d13827fd0e4e3d425fdc2f24079c",
+        "launch.json": "0bf3d4778ac76636412317a298c81c0fe5c6ad55ead5a923476a460958fa425a",
+        "validation.json": "549dc729f1529ac7b33afeaff39c28051c2be209aab1db9c6d2645798e767eeb"
+      },
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "mature_cohort_packets": 57496,
+      "no_censoring": true
+    },
+    {
+      "seed": 41,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed41_full_2000",
+      "files": {
+        "metrics.bin": "7af1e095150c7498682a7257f0c479a064839a85eadbaf14bb7e465d989b577a",
+        "traffic_offered_packets.csv": "6fa781b6ee2646ca270fc0fde0f3cdebad99f9a7879669a96d5641be4f982a1c",
+        "packet_outcome_samples.csv": "90cded6a1070a5895a65a718eb312099b4dbbaa032d3c633b11ddc9cc823b8e7",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "895553919b56cc76381e6fa971107e40a7e0df0dc1cb3d3a8732acac73935520",
+        "launch.json": "e3cccfd3342fc515246ebaaadd94956ab4bd7ff59c2e2b0a2df8bd694fdf60a0",
+        "validation.json": "65faf00207504a6449ec49a8fdcb27cd79eb830aabdd678dcd667d666d843156"
+      },
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "mature_cohort_packets": 57496,
+      "no_censoring": true
+    },
+    {
+      "seed": 41,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed41_current_2000",
+      "files": {
+        "metrics.bin": "708f48384de3376d6e5ea2d47f2fc746b0f98e276a65f7a7c06ddbcc7c5eb36e",
+        "traffic_offered_packets.csv": "6fa781b6ee2646ca270fc0fde0f3cdebad99f9a7879669a96d5641be4f982a1c",
+        "packet_outcome_samples.csv": "b6449ad12145a254beb816b5fe694511328cb890f9aeec725156d02787c0b5cc",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "69d1d3565a31eea3a29c7fd143a720fd05d54ae65511916be924a9e3f3d7dc76",
+        "launch.json": "282110161ce433b343ddcf9f252fe7441d9bc5d805b545edb877145c28a9f590",
+        "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7"
+      },
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "mature_cohort_packets": 57496,
+      "no_censoring": true
+    },
+    {
+      "seed": 42,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed42_pfq0_2000",
+      "files": {
+        "metrics.bin": "95963e440349a298f80fa9eacc45f2a5c95de3ec21b24140638b0a89743a7e03",
+        "traffic_offered_packets.csv": "b2761bf870d27992a9715c73b66a4e64a59ac9de9d202bc2316b313ced1813ba",
+        "packet_outcome_samples.csv": "f241df6daee3efb7883b6df2f68dfe86badbd893715a325cba69765a9faa358e",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "797c5ccbb9d8825a0749aee8b5688e6a8627aa0761afd243951d91732f55ab65",
+        "launch.json": "701896f948e788f82512d0abc613d77f35091582c7ed0907912d90e64dd5fc19",
+        "validation.json": "f67ecf0f7f62553a2a9535e8d92ecf6b5cb2628dca8f68da5f6130c12d5564b2"
+      },
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "mature_cohort_packets": 57986,
+      "no_censoring": true
+    },
+    {
+      "seed": 42,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed42_full_2000",
+      "files": {
+        "metrics.bin": "538d813d05679365de00982333f37782c728475a2a460f07e1ed637f6e31b81e",
+        "traffic_offered_packets.csv": "b2761bf870d27992a9715c73b66a4e64a59ac9de9d202bc2316b313ced1813ba",
+        "packet_outcome_samples.csv": "70a90804df66900d8a9df06d364b3999b7a225d87f3a15da3249354216ebf3b0",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "2848410b0190a777d2869d6fa34a49d0956487d94d8451d706627405be2df8a5",
+        "launch.json": "a81e458c40fe29ea4da04bf89c2e809ba2d7e40678f04caf73110a58f682fa9d",
+        "validation.json": "2a4fcedfcf29ddb7fac4d591fa8ed3cf674d666b0fa8b2c2d5330fc92e89019d"
+      },
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "mature_cohort_packets": 57986,
+      "no_censoring": true
+    },
+    {
+      "seed": 42,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed42_current_2000",
+      "files": {
+        "metrics.bin": "598a29b170bf84e069c7fa07a96e6a6a61f80a47f36ef4a20414deeb09c977bd",
+        "traffic_offered_packets.csv": "b2761bf870d27992a9715c73b66a4e64a59ac9de9d202bc2316b313ced1813ba",
+        "packet_outcome_samples.csv": "cb55862ef3a595787793430aa7e9c3a2045cda69767b7dde677732d9fc88ee70",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "b53c1913ceeb5bf38009bbcdf373474c3e449d7c8efc63bc74a00b53c6c76e4b",
+        "launch.json": "60fa2bdde118a9d1137226f8d22e8815271bf3564398192109fee8898641b028",
+        "validation.json": "dd9d1ffa80924b0557013664a1fb50c7c6b5d7ea32be92f699c5b927c07b2d38"
+      },
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "mature_cohort_packets": 57986,
+      "no_censoring": true
+    },
+    {
+      "seed": 43,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed43_pfq0_2000",
+      "files": {
+        "metrics.bin": "0d8d6f4a7c656c3c93c98d2a054a031bf7cec1169e6cf0ff739d03d3fa42130b",
+        "traffic_offered_packets.csv": "41fb87676512b2e4e64eb782474a4a0fd6b65006b7f6da65f606585ffc98f9c0",
+        "packet_outcome_samples.csv": "5e9a333f57d4eb975d34af99cbca95cb02af1091ae2d33b4cd5f6e16300b1a70",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "ed3b6fab2bac8df145b128ee5c3a72b85b94f392cfcd491965f4f12d3c4e4ed9",
+        "launch.json": "82427634b729806e705d45ae1d1f9352abdb15d6471e4ff808a539b2ec4c1825",
+        "validation.json": "288da97e7ec16c356b2afc60ea45fd55038b83db18410de539b62d10525d1f52"
+      },
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "mature_cohort_packets": 57749,
+      "no_censoring": true
+    },
+    {
+      "seed": 43,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed43_full_2000",
+      "files": {
+        "metrics.bin": "5748a84c8c4f9c46bc8b57cb8de99e39cc23cc24063fe19920d80a8f62edf992",
+        "traffic_offered_packets.csv": "41fb87676512b2e4e64eb782474a4a0fd6b65006b7f6da65f606585ffc98f9c0",
+        "packet_outcome_samples.csv": "836b143b242c0a1285d719662b3e0cd618e4b556cd837c23fb9264eee2ee4cff",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "c048768871e8f90a0370b62c21e1c6df0e38ca6bcb3ee1cdd990a2de0580befc",
+        "launch.json": "5b42d6f2f9de134c0c8f2b11006d43131daa8d36a8573624032d223ce9eb74a9",
+        "validation.json": "5d0f0accf7696700ebc898dcc2ee8a82cbef823e02f7efe1f1f36a8c267ebeb4"
+      },
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "mature_cohort_packets": 57749,
+      "no_censoring": true
+    },
+    {
+      "seed": 43,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed43_current_2000",
+      "files": {
+        "metrics.bin": "d7a92f24c0b2bf78e5b0237c41951ab57bec118d9a72ebcc26d69773a8d2cf63",
+        "traffic_offered_packets.csv": "41fb87676512b2e4e64eb782474a4a0fd6b65006b7f6da65f606585ffc98f9c0",
+        "packet_outcome_samples.csv": "331d6e6aeff5c62b540829458d1688c92b57329493680432d1e093f87397fbd5",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "665cbe4ce1d9c881872af851a17b145cadfd9789baf17e0d7f39cc2eef2d1fa5",
+        "launch.json": "900ad06af61bf23582fa8975734e788f667325e2244f76471bfc8fea4e8d104a",
+        "validation.json": "965b485b6b339e9af59c2ce7527ce584ce578824f48c527c43616a47edd93a20"
+      },
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "mature_cohort_packets": 57749,
+      "no_censoring": true
+    },
+    {
+      "seed": 44,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed44_pfq0_2000",
+      "files": {
+        "metrics.bin": "0743e1781b3ea2d18788b11c64e25f196237ddc8bac7eda531ced442be1bf3a1",
+        "traffic_offered_packets.csv": "fa8e30ab7c87fa9c907360dc06e55e943e48e41b0423814b2b4ab59a5bceacdc",
+        "packet_outcome_samples.csv": "3d11a2c905726f82f6862f86c91908fdc1b972da53f4db4a20793da3b315b096",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "a97e2daea8f792d2ba60eef68311b15a39db094117ae45e341eb5ede85119d40",
+        "launch.json": "c3b47b1fb04af060bf77df0fd7a9a037856d1710fbdf55c4963be541448f5457",
+        "validation.json": "234e4dca99131b1da9a5728908a47089eb870f693995586723554b5f40e4d51a"
+      },
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "mature_cohort_packets": 57988,
+      "no_censoring": true
+    },
+    {
+      "seed": 44,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed44_full_2000",
+      "files": {
+        "metrics.bin": "3fed12499cb26153257ae7d4f8dfdaab5a4244eda2fa8e301e964a3c446ffbb4",
+        "traffic_offered_packets.csv": "fa8e30ab7c87fa9c907360dc06e55e943e48e41b0423814b2b4ab59a5bceacdc",
+        "packet_outcome_samples.csv": "8d6eb2afa07c955d1048195035e8e66a17f1fdf1d5652532db423412103a171a",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "7027079007591c32d2734b5232c53ba863d676395e51d194517a23ca0e096202",
+        "launch.json": "3a6eb55023cf9003b9f06b1234b4b96ecd28441ec3284d71ce19b3879b2e043b",
+        "validation.json": "6266b4e50fe43b6ad44c6ff59819d098be2ea5eb3395d105c80724fb1bc783db"
+      },
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "mature_cohort_packets": 57988,
+      "no_censoring": true
+    },
+    {
+      "seed": 44,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed44_current_2000",
+      "files": {
+        "metrics.bin": "c62b7bdfd4a0a914d9b4324aeda1bab5ebc40acb4efeb3613f0fb1c5f2546914",
+        "traffic_offered_packets.csv": "fa8e30ab7c87fa9c907360dc06e55e943e48e41b0423814b2b4ab59a5bceacdc",
+        "packet_outcome_samples.csv": "ad59fc3dbdd1290d14ed1dc1c2961da2e6beedfe6e80ca95bbe0dfed2528de3c",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "590641c6fc5e642c5d85fae22c579674fd50b4d03454938fe3edd23e66bd922c",
+        "launch.json": "7406aad773b1991662089ddf6437500a2ef45ac8e1ff26633891599fe0855d66",
+        "validation.json": "5585d8fbb55b83cfe4c931740063341d5a5d37e86aeb59e6aec4870ab08f92a9"
+      },
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "mature_cohort_packets": 57988,
+      "no_censoring": true
+    },
+    {
+      "seed": 45,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed45_pfq0_2000",
+      "files": {
+        "metrics.bin": "64a038051f1caa5f5804bd79c276e888d766bbc6dfd99103585341d3cfa5b1c2",
+        "traffic_offered_packets.csv": "cf295fc5d2bca21646f771ff66350a1ad297215514f4cc96dcc5337d4bc644df",
+        "packet_outcome_samples.csv": "0b47112183c581862d6f0784b88984ad5bba97ef7f03fdd6c79fd8e2fdb3f0fd",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "c484b16ee3fd6c91edc29d1bb7d7054ef25823d63573d348133ad60c7de53ac8",
+        "launch.json": "e54f1e00c9ed0fecf1074c2f68d9a6613efbb0f9aef9b14a24c19099c7e009f5",
+        "validation.json": "a70c1570da8d71c8e07ce2ba9e6bede84b86cf830a2d907c3365555349a7abbd"
+      },
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "mature_cohort_packets": 57404,
+      "no_censoring": true
+    },
+    {
+      "seed": 45,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed45_full_2000",
+      "files": {
+        "metrics.bin": "19b917895a84e40b6b3c3da74ae8676a630fb028a06c638eeac968ebc7704bc3",
+        "traffic_offered_packets.csv": "cf295fc5d2bca21646f771ff66350a1ad297215514f4cc96dcc5337d4bc644df",
+        "packet_outcome_samples.csv": "c26333ce9607c986b5c4b871808be8627ade2738b569b52e287dbfbb098bb129",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "382da38a224218916f335e3d9154fcb2ebfe88283a4aac76447b093b38e2c447",
+        "launch.json": "36817f7015a2cee169ea9bb885a13e8d619d30d255aed5b3bb6ecc787858aa85",
+        "validation.json": "7cf8df0755ecbe403b052e157b82d06511896f2a55e6d6add168f435920e9c53"
+      },
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "mature_cohort_packets": 57404,
+      "no_censoring": true
+    },
+    {
+      "seed": 45,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed45_current_2000",
+      "files": {
+        "metrics.bin": "f6dd8b48648b9d723137228ca4ce67de63a421080522899fffa65a16436bb36e",
+        "traffic_offered_packets.csv": "cf295fc5d2bca21646f771ff66350a1ad297215514f4cc96dcc5337d4bc644df",
+        "packet_outcome_samples.csv": "4959f5b2077b5e27836477f2e6639269e7f39a19c8e233b612fcec688db9e2cd",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "1b6b0e16e59b64178c9cb48d083db5694d62453d1eb645d2c29232f8adb01013",
+        "launch.json": "f901fc60f370fd7363ed83c6407b3ebee789ad494e26a87e79d75fda9d0642f9",
+        "validation.json": "fb515d0404b5b589a0068e7f6efd83a2c37bd4dc95adc23b714eed31c45301da"
+      },
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "mature_cohort_packets": 57404,
+      "no_censoring": true
+    },
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed46_pfq0_2000",
+      "files": {
+        "metrics.bin": "cde7ac1040eb9593f8b06d0ac81cb75c5f9cfca5d3c7a245385624ca267688bc",
+        "traffic_offered_packets.csv": "31f6a24a01fece4a3cf983b20f9c836e3c87cb14ba8eec127179227593dfdd7c",
+        "packet_outcome_samples.csv": "b40105a8edcec6544c6ebc90c4f97e3eb031498316c114e3bc2d37e46556707e",
+        "ue_topology.csv": "159e79feb96b8301219010387d4ce50c576c2843cd6f2993ea05c63050b9542b",
+        "execution.json": "64c85a229a2675c43602383f34b796c481eeea96427746a645e9ec0b1ba6beb2",
+        "launch.json": "166ad295f45e8d0ff49eb818fa95a62f06cc5b83ef1774b800a43995be16e0a1",
+        "validation.json": "8ca78c92e494132c6a91c234386f955133d82c729a9349f706e4d1ab064acf45"
+      },
+      "first4000_service_sha256": "5168ba9f43091a8c5b9fd9b07381e821145f30dc2bdd0d95a8c84bd0037c643c",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 46,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed46_full_2000",
+      "files": {
+        "metrics.bin": "e51b40c9fc9ea6bfc5c437d165bd08b16f1d435d8eed9688f0d71ddf6d749726",
+        "traffic_offered_packets.csv": "31f6a24a01fece4a3cf983b20f9c836e3c87cb14ba8eec127179227593dfdd7c",
+        "packet_outcome_samples.csv": "2545fb522e811fb9a3cac4335d06d48e468f05cde72d6eff8a4be76f86ac2aee",
+        "ue_topology.csv": "159e79feb96b8301219010387d4ce50c576c2843cd6f2993ea05c63050b9542b",
+        "execution.json": "cba8c1803a4c41b5647756b23cafec8dce9bc1a88d14033ea0eca4b270f5fa57",
+        "launch.json": "5efac77ce0ddc1fe1ceeb3572246f562044c4e1b8b8e944d0adf3d1fc96d3961",
+        "validation.json": "1be207da5362e6dbc03342a245f8b081ae3add00fd2ff728d931bf7515e56324"
+      },
+      "first4000_service_sha256": "5168ba9f43091a8c5b9fd9b07381e821145f30dc2bdd0d95a8c84bd0037c643c",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 46,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed46_current_2000",
+      "files": {
+        "metrics.bin": "63778e04c7a898006fdb43e3575d5e82dce6d45bd0b85fd6b3a9d4f87955ffd2",
+        "traffic_offered_packets.csv": "31f6a24a01fece4a3cf983b20f9c836e3c87cb14ba8eec127179227593dfdd7c",
+        "packet_outcome_samples.csv": "d76adb18eb3d3e307d32cfbc15543ec71e1007557fb31ff9973c4fa4d2fa7145",
+        "ue_topology.csv": "159e79feb96b8301219010387d4ce50c576c2843cd6f2993ea05c63050b9542b",
+        "execution.json": "2951c1a7bb22efb776ac625c395bd831f8fffc3796bffb0b129327795756c347",
+        "launch.json": "7966b5042f96c29a9e9ade876fb98c8cd26b932e7943ef16c1c1c9a32abc43f3",
+        "validation.json": "4191fd99cb1853d7bcb4e00902265cfa4b3173cbe181ed7526e767fbd9152417"
+      },
+      "first4000_service_sha256": "5168ba9f43091a8c5b9fd9b07381e821145f30dc2bdd0d95a8c84bd0037c643c",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed47_pfq0_2000",
+      "files": {
+        "metrics.bin": "caf360cb0f8153afa813c2cf9163f2117543a4ce45e57b1b93b5bf8b3f175126",
+        "traffic_offered_packets.csv": "90bc21e24f720eb24dae11626bbd654e949019cc56eb14ec00dcbf25b087442e",
+        "packet_outcome_samples.csv": "4f95d1a7931d356e90f1c36852cc8c40762a800a7476db5df8cea0d4eff1bf64",
+        "ue_topology.csv": "a3a81b53eb98d5067373e970306abadc32647ee0a40a07d8765849d03c34250f",
+        "execution.json": "8aa6800a5c285a04514b982b1953276814e25e744d5ea15e7a9e1037432df536",
+        "launch.json": "7d2f07fd0bd96232e9494d1bf3024371f94c2c43610ad1851d5e20de4d0acbf3",
+        "validation.json": "9cff19372a248a0463307de9e480d04d5690172ef79727a24fec4dad034f594d"
+      },
+      "first4000_service_sha256": "4417c11e07391b151630deafe6e8aaaaf7145ab96336b926ae8cb1a80589c1fc",
+      "mature_cohort_packets": 57588,
+      "no_censoring": true
+    },
+    {
+      "seed": 47,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed47_full_2000",
+      "files": {
+        "metrics.bin": "32e0612da58a39c4a94cdc2044a335f1191b48be7dd570b088b33261ca7cdb94",
+        "traffic_offered_packets.csv": "90bc21e24f720eb24dae11626bbd654e949019cc56eb14ec00dcbf25b087442e",
+        "packet_outcome_samples.csv": "f8c77b396786be216a0b65807a0a3517509173e2f99b5e1ef0be1a9f818150b4",
+        "ue_topology.csv": "a3a81b53eb98d5067373e970306abadc32647ee0a40a07d8765849d03c34250f",
+        "execution.json": "685fad1abf127fe2b0f1d1711d612978e3fb9e5ac6fc3d3b5773d7794ab5e3ea",
+        "launch.json": "988e6f1cb0c3d3b41767997bdbabe58dfaf4fec612a087863b78c1b93438dbdd",
+        "validation.json": "0e1b958ef5e143282e929575cd5953090646a53e9624af47348949544458f070"
+      },
+      "first4000_service_sha256": "4417c11e07391b151630deafe6e8aaaaf7145ab96336b926ae8cb1a80589c1fc",
+      "mature_cohort_packets": 57588,
+      "no_censoring": true
+    },
+    {
+      "seed": 47,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed47_current_2000",
+      "files": {
+        "metrics.bin": "b59b7915af0755dd8da91f00e6f19782f4a3d8da6252bb9552553cd8305bc7ed",
+        "traffic_offered_packets.csv": "90bc21e24f720eb24dae11626bbd654e949019cc56eb14ec00dcbf25b087442e",
+        "packet_outcome_samples.csv": "f9cc3b5ec29673b4ad0e89cf30aa0b6020130645e68fbfea68ad92dc5b4d9c00",
+        "ue_topology.csv": "a3a81b53eb98d5067373e970306abadc32647ee0a40a07d8765849d03c34250f",
+        "execution.json": "015d0c5ce5e60d78f24630b4b05da27cedacfb074c45cfc15ca5b30a7b15ea97",
+        "launch.json": "aec658e4ce621648bd8a517c55d3f5b05a422072d7abd4baec94f83d4756e2fe",
+        "validation.json": "d47ab57f3a688f94fb97ca8b5a2ffc1dc2b2bd86bd919fb2340a075584be9c55"
+      },
+      "first4000_service_sha256": "4417c11e07391b151630deafe6e8aaaaf7145ab96336b926ae8cb1a80589c1fc",
+      "mature_cohort_packets": 57588,
+      "no_censoring": true
+    },
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed48_pfq0_2000",
+      "files": {
+        "metrics.bin": "2243e289685cdccc8bddc3ad38b9b67999161637c0bd715c53a885e835dd03b4",
+        "traffic_offered_packets.csv": "b745e7ed6a9a8d780cb08709cebfc51f54491f01c94670dc839f6f0068675560",
+        "packet_outcome_samples.csv": "38e8740134d2e81517df48d8a0964e432034232b6b309b7827a8e84af33d8b1e",
+        "ue_topology.csv": "564c099a09a601fa68a305c2f86c27bf0b8bc29a36d4061f0175843e3ed1cf8b",
+        "execution.json": "ab1240c87cdc60a4baa304b9248752ea55c3b89331b755ed3c0ddd94444428dd",
+        "launch.json": "73d5b10814da3a58bcc655ef8810465d4529d98292a4521b32a3758a3221ad83",
+        "validation.json": "cb0a324c7b1f5daa4af0b004005753122c2051c84bcfd5444e17a8d1726ebc1d"
+      },
+      "first4000_service_sha256": "0d46e9829a4b1a7fd77ad2c042d5c2f29b4081356ab6f46a4f5125d43ec33ef2",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 48,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed48_full_2000",
+      "files": {
+        "metrics.bin": "576e4020f3cbbf154995793fd02c05ebfc49ddb4bebe46734a7bfdb002857934",
+        "traffic_offered_packets.csv": "b745e7ed6a9a8d780cb08709cebfc51f54491f01c94670dc839f6f0068675560",
+        "packet_outcome_samples.csv": "c3e3ed9516d05aa841f716bc485f45d54926007da180b4c15054952329b810ff",
+        "ue_topology.csv": "564c099a09a601fa68a305c2f86c27bf0b8bc29a36d4061f0175843e3ed1cf8b",
+        "execution.json": "12cab04e13c36ea6e3e6b64324f82c4ffc3bb87cfe79ad75702a9b254e152174",
+        "launch.json": "192a5545299ceb06fbda3edf471dd0ecc8df0aa69f819cc33235830038dd5a3d",
+        "validation.json": "d4f1fd2908801f791374fc08803d6e08aeae66e90f3c26ca4d0ff4aaf73ea565"
+      },
+      "first4000_service_sha256": "0d46e9829a4b1a7fd77ad2c042d5c2f29b4081356ab6f46a4f5125d43ec33ef2",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 48,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed48_current_2000",
+      "files": {
+        "metrics.bin": "51fbe899768690152ffb6be7714f1431aa8d06a956cc2a0d16729b3d5fe16da1",
+        "traffic_offered_packets.csv": "b745e7ed6a9a8d780cb08709cebfc51f54491f01c94670dc839f6f0068675560",
+        "packet_outcome_samples.csv": "524ad643ebbf651a48f73687f85b5ab10d8372edb1b57c1ed8d8a12be1406197",
+        "ue_topology.csv": "564c099a09a601fa68a305c2f86c27bf0b8bc29a36d4061f0175843e3ed1cf8b",
+        "execution.json": "bb23ff204ee08d8d67e2b697afcbef0053cbec3b5605e865e3ac4d76b2fec519",
+        "launch.json": "87c99d5202e8f267dd4a68d6bd412753e403dabd4b031c9454334bc5d758819b",
+        "validation.json": "71e0949101e7994f217e3b3361fd12fd4da520d1793ce62f8cca45719c7195e1"
+      },
+      "first4000_service_sha256": "0d46e9829a4b1a7fd77ad2c042d5c2f29b4081356ab6f46a4f5125d43ec33ef2",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 49,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed49_pfq0_2000",
+      "files": {
+        "metrics.bin": "9f03844a0ed70c8eece4e0918578f3ca1682c2fd77a1816784a1c8c4944519d6",
+        "traffic_offered_packets.csv": "c1f77e93b0aad75299929bb8f4b96e05c9edb72ec35d2179d57a807a01620bb9",
+        "packet_outcome_samples.csv": "00d993f4c432341e6e63f4a2f17637a7a0915de44a5346f1485705eb00b4aa33",
+        "ue_topology.csv": "52b34bbac15416c4167f6623524e7ee3d02ec59425c57d0bea82b90a6ed28130",
+        "execution.json": "7698ee575a25ca1e33248a88ad8e2a9b41db483e7bee7ecbade86ec876f9c955",
+        "launch.json": "e69e782e9f2b5990bba2f1603e7b45abb4fe71913fc182ba67a33dd722d4bc0c",
+        "validation.json": "275e058e93b116c7f7510c31a134f002fa363353746357410c8e63bc4660d551"
+      },
+      "first4000_service_sha256": "6855ec9c63d0f7560cb13789d8e0f3c9e90b446b1779d472c28dbbc2b767b79e",
+      "mature_cohort_packets": 57227,
+      "no_censoring": true
+    },
+    {
+      "seed": 49,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed49_full_2000",
+      "files": {
+        "metrics.bin": "aca3355abc9207adeba6509502b2390b1583218a5b3d1c8a0ed14e48081c1058",
+        "traffic_offered_packets.csv": "c1f77e93b0aad75299929bb8f4b96e05c9edb72ec35d2179d57a807a01620bb9",
+        "packet_outcome_samples.csv": "3c17e817e472de8609fe208218f7829ac514152d4db4aa876fca643ff319733e",
+        "ue_topology.csv": "52b34bbac15416c4167f6623524e7ee3d02ec59425c57d0bea82b90a6ed28130",
+        "execution.json": "6985ccb659b92aedd92c568de69e1da08367d12cf035b8b660cce6f11c8e74bc",
+        "launch.json": "0ec6d94ce1762d78b8844af9c5c11265e09437b5f20f15026e4a6e0cf737a5db",
+        "validation.json": "5a83da034a7794c48258df27ab10e43a43afcdee13b45845e54fb6909939bb38"
+      },
+      "first4000_service_sha256": "6855ec9c63d0f7560cb13789d8e0f3c9e90b446b1779d472c28dbbc2b767b79e",
+      "mature_cohort_packets": 57227,
+      "no_censoring": true
+    },
+    {
+      "seed": 49,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed49_current_2000",
+      "files": {
+        "metrics.bin": "699f4e6be7b8ca3fe83bbbe4895a6f8adce6f316eb4bf3a2f1b922e32fdc2405",
+        "traffic_offered_packets.csv": "c1f77e93b0aad75299929bb8f4b96e05c9edb72ec35d2179d57a807a01620bb9",
+        "packet_outcome_samples.csv": "58fadea0d452e5ddb06a0a6da970b18a783c1c3aebfa00ea52df2e3d309ba8a0",
+        "ue_topology.csv": "52b34bbac15416c4167f6623524e7ee3d02ec59425c57d0bea82b90a6ed28130",
+        "execution.json": "5595387d0c13e26ef0a35d6f53579abcdc3f37eed067d2652e8d5848f2b297e9",
+        "launch.json": "47381136387eafcc43e96edd6d616a5a99f061bb372a3fc48409eba204537bc3",
+        "validation.json": "a1e1a6be852bd29e7db5ba2fe28e54d6e8d2c283d7b8d9800b3e6d2e0481083a"
+      },
+      "first4000_service_sha256": "6855ec9c63d0f7560cb13789d8e0f3c9e90b446b1779d472c28dbbc2b767b79e",
+      "mature_cohort_packets": 57227,
+      "no_censoring": true
+    },
+    {
+      "seed": 50,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed50_pfq0_2000",
+      "files": {
+        "metrics.bin": "b625175233310d691783d2dd2df0820cd68db135dba9185c9237660890e64ce3",
+        "traffic_offered_packets.csv": "d3cc1be5ae59e058f23670b55175cae012adaf51f5433746f760157d17a08453",
+        "packet_outcome_samples.csv": "294f4c8464debf0f9ce904792650ad4a027885caad8c4bd2f6db2c78f9fdce7a",
+        "ue_topology.csv": "5de94a71f5313a9dfb1a4c08810e07994f84c6f53dbcb8783d8a4647cbdbd8bd",
+        "execution.json": "6249f45b31ee199c443d502e213f2d3615fb1b4b67f74a717b0e1757731e61b7",
+        "launch.json": "8a8149362fdcb8d263f7490af94c6f87b52f0ecd3c2cb8d78d06de9e145709f9",
+        "validation.json": "69915b678b7b8e418d7ffa89ba4888c42adc0483525b85868a8fa974f45b34a1"
+      },
+      "first4000_service_sha256": "590e799cdc6e66a247146aa0f3c24067bdf48d0be58aea4cef66c02201064fe8",
+      "mature_cohort_packets": 57623,
+      "no_censoring": true
+    },
+    {
+      "seed": 50,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed50_full_2000",
+      "files": {
+        "metrics.bin": "7e8fdee0ead5ae703e04ff49ec8b8ebeb324a884665af56577e06bcda047a44c",
+        "traffic_offered_packets.csv": "d3cc1be5ae59e058f23670b55175cae012adaf51f5433746f760157d17a08453",
+        "packet_outcome_samples.csv": "082b43d48fb9fc0d390df5f6f7242f05f2fc9310744d4b344af8963b7e5ac8c3",
+        "ue_topology.csv": "5de94a71f5313a9dfb1a4c08810e07994f84c6f53dbcb8783d8a4647cbdbd8bd",
+        "execution.json": "08ecc780f025ef41428aa6232024675f40a7fe05e068b808a0c984cf334d2a87",
+        "launch.json": "aa2358b565c394df2a79c246454d8d42dc97f59658c35562212d32b9de4ecca6",
+        "validation.json": "215f010fd79a17d6e945cedb8ea02de2163a8873564f4eec626d1c3841927cf5"
+      },
+      "first4000_service_sha256": "590e799cdc6e66a247146aa0f3c24067bdf48d0be58aea4cef66c02201064fe8",
+      "mature_cohort_packets": 57623,
+      "no_censoring": true
+    },
+    {
+      "seed": 50,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/seed50_current_2000",
+      "files": {
+        "metrics.bin": "795dc906db648a85ce0f944b5becaa73644215f301ba949d498d16fe57f42e03",
+        "traffic_offered_packets.csv": "d3cc1be5ae59e058f23670b55175cae012adaf51f5433746f760157d17a08453",
+        "packet_outcome_samples.csv": "571d3bba0ac4d486ca2b886e51342b43bf4b3dcf5d380ba0e76b17abd3638a9c",
+        "ue_topology.csv": "5de94a71f5313a9dfb1a4c08810e07994f84c6f53dbcb8783d8a4647cbdbd8bd",
+        "execution.json": "45ae1efd362e7dbd9d08164c7c9b868c5b364c3b746186253115464f46d9834a",
+        "launch.json": "2e689ecd81a7802a3a4952708531b146e87b5be82741beface313a6894f02d0e",
+        "validation.json": "62af4be078a3c3d6b301075c2c5cde2f5186a7dff101bc56279038a039890751"
+      },
+      "first4000_service_sha256": "590e799cdc6e66a247146aa0f3c24067bdf48d0be58aea4cef66c02201064fe8",
+      "mature_cohort_packets": 57623,
+      "no_censoring": true
+    }
+  ],
+  "analysis_sha256": "bc6f57635880c7afef4a1099bce0f6234d498cbdd500b48d7c4a54aa41df79d1",
+  "build_manifest_sha256": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+  "protocol_sha256": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+  "old_fifo_code_sha256": "a7cc5760eb33cd0530f52b4ff3683f22d93063422e56cbcbd10e6cad42841652"
+}

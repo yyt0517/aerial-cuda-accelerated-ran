@@ -315,9 +315,9 @@ git commit -m "feat: add Stage-B baseline report figures"
 ### Task 3: Write the formal acceptance report and technical appendix
 
 **Files:**
-- Create: `Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md`
-- Reference: `Doc/stageB_cochannel_baseline_analysis_reference.md`
-- Reference: `Doc/stageB_packet_delay_distribution_analysis.md`
+- Create: `Doc/archive/baselines/stageB_baseline_verification_legacy.md`
+- Reference: `Doc/archive/baselines/stageB_baseline_verification_legacy.md`
+- Reference: `Doc/archive/baselines/stageB_baseline_verification_legacy.md`
 - Reference: `Doc/current_stageB_effective_configuration.md`
 
 **Interfaces:**
@@ -392,7 +392,7 @@ Run:
 
 ```bash
 rg -n 'T[B]D|T[O]DO|RRF|显著提升系统容量|直接优化发射功率|跨小区联合动作' \
-  Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md
+  Doc/archive/baselines/stageB_baseline_verification_legacy.md
 ```
 
 Expected: no unresolved placeholder or `RRF`; any matches for prohibited claims occur only inside explicit negations or limitations and are manually confirmed.
@@ -400,7 +400,7 @@ Expected: no unresolved placeholder or `RRF`; any matches for prohibited claims 
 - [ ] **Step 7: Commit the formal report**
 
 ```bash
-git add Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md
+git add Doc/archive/baselines/stageB_baseline_verification_legacy.md
 git commit -m "docs: add Stage-B baseline verification report"
 ```
 
@@ -419,7 +419,7 @@ git commit -m "docs: add Stage-B baseline verification report"
 Add this bullet before the intelligent-algorithm report entry:
 
 ```markdown
-- [`stageB_multidimensional_resource_allocation_simulation_verification_report.md`](./stageB_multidimensional_resource_allocation_simulation_verification_report.md)：RR、PF、RRQ、PFQ 四类代表性资源分配技术的项目验收仿真验证报告，包含统一场景对比、同频边缘增强验证和复现附录。
+- [`stageB_multidimensional_resource_allocation_simulation_verification_report.md`](../../../Doc/archive/baselines/stageB_baseline_verification_legacy.md)：RR、PF、RRQ、PFQ 四类代表性资源分配技术的项目验收仿真验证报告，包含统一场景对比、同频边缘增强验证和复现附录。
 ```
 
 - [ ] **Step 2: Verify the existing user changes remain present**
@@ -440,7 +440,7 @@ Run `git status --short Doc/README.md` and verify it remains ` M Doc/README.md`.
 ### Task 5: Run final acceptance verification
 
 **Files:**
-- Verify: `Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md`
+- Verify: `Doc/archive/baselines/stageB_baseline_verification_legacy.md`
 - Verify: `Doc/figures/stageB_baseline_verification/`
 - Verify: `cuMAC/scripts/plot_stageB_baseline_verification_report.py`
 - Verify: `cuMAC/scripts/tests/test_plot_stageB_baseline_verification_report.py`
@@ -475,7 +475,7 @@ python3 - <<'PY'
 import re
 from pathlib import Path
 
-report = Path('Doc/stageB_multidimensional_resource_allocation_simulation_verification_report.md')
+report = Path('Doc/archive/baselines/stageB_baseline_verification_legacy.md')
 text = report.read_text(encoding='utf-8')
 missing = []
 for target in re.findall(r'!?(?:\[[^]]*\])\(([^)]+)\)', text):

@@ -1,3 +1,7 @@
+# cuMAC scripts
+
+Stage-B research: [current progress](../../Doc/stageB_current_progress.md), [configuration and version boundaries](../../Doc/current_stageB_effective_configuration.md). The latest corrected campaign uses a dedicated research-worktree runner; the generic scripts below do not by themselves reproduce it.
+
 **Aerial cuMAC Tests**
 
 All cuMAC Tests are included in the cumac_tests.sh. Current support cuMAC Multi-cell Scheduling for 4T4R and 64TR, SRS, DRL MCS selection, TDL and CDL tests.

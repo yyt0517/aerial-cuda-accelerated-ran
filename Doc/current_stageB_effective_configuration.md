@@ -1,703 +1,94 @@
-# 当前 Stage-B 生效配置与 RRQ/PFQ 基线说明
+# Stage-B 当前有效实验配置
 
-## 1. 文档定位
+更新至 **2026-10-21**。本文描述 `boundary08_corrected_physics_20261020_v1` 的冻结配置；[当前进展](stageB_current_progress.md)维护结果。它不是 `main` 上所有通用脚本的默认配置。
 
-- 本文档是当前 Stage-B 基线场景的唯一配置参考。
-- 当前实验结论和模型排序以 [`stageB_boundary_intelligent_algorithm_experiment_report.md`](./stageB_boundary_intelligent_algorithm_experiment_report.md) 为准；本文只维护配置、脚本和 KPI 口径。
-- 重点覆盖当前真实生效的三条主线：
-  - `./cuMAC/scripts/run_stageB_main_experiment.sh`
-  - `./cuMAC/scripts/run_stageB_rr_pf_compare.sh`
-  - `./cuMAC/scripts/run_stageB_rr_pf_multi_seed_compare.sh`
-  - `multiCellSchedulerUeSelection` 当前在 `Type-0 bitmap` 下的 native PF/RR 行为
-- 旧的独立 baseline 场景说明已经并入本文档。
+## 1. 实现与版本边界
 
-## 2. 一眼结论
+| 对象 | 身份与状态 |
+|---|---|
+| 整理前主分支 | `main`，基底 `04a9200`，包含截至 8 月的 independent actor / rescue cohort 实现 |
+| 最新实验工作区 | `.worktrees/pfq-independent-reuse-actor`，分支 `research/pfq-independent-reuse-actor` |
+| 实验 Git 基底 | `aa1401b542abce8ad2de141d233ff7e0ab0de1ff`；存在未提交修正，不能仅凭 HEAD 复现 |
+| 9 月有效性分界 | 实验分支 `7f3b700` 修正容量 bit/byte、PHY slot 索引、GPU MCS 初始化同步 |
+| 10 月有效性分界 | 实际服务链路 SVD、显式 3 dB 阴影、同一步动作前输入；修正在实验源码与专用 runner 中 |
+| 本次收口 | 文档、历史去重与证据；未把实验 worktree 或现存未提交运行时代码合入主分支 |
 
-2026-06-22 当前 active 3-cell 分支已经切到：
-
-- `3cell + 36UE + RBG16 + Rayleigh + SVD + TTL200ms`
-- `packet_size_bytes = 3000`
-- `traffic_arrival_rate = 1.0 pkt/TTI/UE`
-- `ue-placement = coop_boundary`
-- `cell-assoc-mode = strongest`
-- 不传 `shadow-seed`，采用日志中的 `shadow_seed=legacy_shared_rng`，以便和旧 uniform run 口径一致
-- native baseline 已固定为 `cell-radius=500` / `ISD1000`；`cell-radius=250` / `ISD500` 只作为已废弃诊断分支，不再进入下一阶段训练
-- 正式 baseline 口径为 `4000 TTI full-run`，RRQ/PFQ 都作为 reference
-
-`coop_boundary nominal` 的 seed41/r250 结果只作为纯几何诊断：它证明边界带 UE 能把 baseline 拉到 hard case，但不是正式系统口径。正式实验必须恢复 strongest association，因为 UE 被 strongest-cell 接走是合理行为。
-
-当前 active baseline evidence：
-
-| 场景 | 输出目录 | 用途 |
-|---|---|---|
-| uniform, strongest, no shadow seed | `output/stageB_rrq_pfq_multiseed_compare_uniform_assocstrongest_legacyshadow_r500_t4000_w0_s41_s50` | 和旧 uniform / 既有智能算法小幅增益对照 |
-| coop_boundary, strongest, no shadow seed | `output/stageB_rrq_pfq_multiseed_compare_coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41_s50` | 下一阶段 HGraphPPO 训练 gate |
-| uniform vs boundary 汇总 | `output/stageB_isd1000_legacyshadow_uniform_vs_boundary_rrq_pfq_detailed_compare.md` | 当前报告和文档引用入口 |
-
-关键 10-seed mean：
-
-| 指标 | Uniform RRQ | Uniform PFQ | Boundary RRQ | Boundary PFQ |
-|---|---:|---:|---:|---:|
-| goodput Mbps | `1525.710` | `1531.572` | `1513.633` | `1520.536` |
-| TTL expiry | `0.602%` | `0.038%` | `0.609%` | `0.017%` |
-| packet p95 delay | `67.950 ms` | `21.700 ms` | `56.078 ms` | `25.650 ms` |
-| TB BLER | `11.267%` | `11.390%` | `11.555%` | `11.778%` |
-| PRG utilization | `88.784%` | `94.238%` | `93.019%` | `98.523%` |
-
-当前 Stage-B 默认基线已经固化为：
-
-- 默认 `7` 个 coordinated cells，`0` 个 outer interferer cells
-- `4T4R`
-- `30 kHz` SCS
-- `68` 个 PRG/RBG，每组 `4 PRB`，总计 `272 PRB`
-- `Type-0 bitmap allocation`
-- `2.5 GHz`
-- `slotDurationConst = 0.5 ms`
-- 运行入口默认是 DL
-- UE 采用 serving-cell 覆盖区内均匀撒点
-- 默认全向发射，不做 sector design
-- 入口脚本现已支持 `--topology-scenario 7cell|3cell`；`3cell` 变体保持同样的全向 + 均匀撒点口径，默认也是每站 `8 UE`
-
-7-cell 长期迁移仍保留下面这组主 baseline。当前 HGraphPPO 先以 3cell coop-boundary ISD1000 gate 为准，只有通过 10-seed mean gate 后再迁移到 7cell：
-
-- `7cell + 84UE + RBG16 + Rayleigh + TTL200ms + 4T4R + SVD`
-- `packet_size_bytes = 3000`
-- `traffic_arrival_rate = 0.85 pkt/TTI/UE`
-- topology seeds: `41,42,43,44,45,46,47,48,49,50`
-- 长期训练目标：goodput 有小幅增加，packet delay 明显降低，packet effective service rate 上升
-- 设计文档：
-  [`Doc/stageB_7cell_tar_gnn_pfq_design.md`](/home/oai2/aerial-cuda-accelerated-ran/Doc/stageB_7cell_tar_gnn_pfq_design.md)
-
-当前已完成 7-cell 压力扫描：
-
-| arrival rate | seeds | PFQ served delta | PFQ goodput delta | PFQ expiry | PFQ p90 | PFQ p95 | PFQ PRG util | 用途 |
-|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| `0.8` | `41-43` | `+0.14%` | `-0.64%` | `0.815%` | `25.33 ms` | `65.00 ms` | `97.17%` | 偏轻参考 |
-| `0.85` | `41-43` | `+0.42%` | `-0.06%` | `1.433%` | `48.50 ms` | `109.83 ms` | `97.90%` | 主训练点 |
-| `0.9` | `41-43` | `+0.41%` | `-0.19%` | `2.177%` | `68.50 ms` | `148.17 ms` | `98.46%` | 压力泛化 |
-| `1.0` | `41-50` | `+2.12%` | `+2.02%` | `2.657%` | `85.00 ms` | `166.70 ms` | `98.66%` | 过载参考 |
-
-对应输出目录：
-
-- `output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_7cell_s41_s43_ue84_ttl200_rbg16_svd_rate0p85_trafficseed_20260601_081200`
-- `output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_7cell_s41_s43_ue84_ttl200_rbg16_svd_rate0p9_trafficseed_20260601_080659`
-- `output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_7cell_s41_s50_ue84_ttl200_rbg16_svd_trafficseed_20260601_064006`
-
-旧 3-cell baseline 仍保留为历史对照和机制复盘口径：
-
-- `3cell + 36UE + RBG16 + Rayleigh + TTL200ms + 4T4R + SVD`
-- `packet_size_bytes = 3000`
-- `traffic_arrival_rate = 1.0 pkt/TTI`
-- topology seeds: `41,42,43,44,45,46,47,48,49,50`
-- 结果目录：
-  [`output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443`](/home/oai2/aerial-cuda-accelerated-ran/output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443)
-
-这组 3-cell 10-seed 结果已经取代早期 3-seed / no-SVD / RR-vs-PF 结果，但现在只作为历史对照；7-cell 训练和评测以 `arrival_rate=0.85` 为主线。
-
-2026-06-05 旧 3cell sequential/budgeted 分支的 baseline 口径需要特别区分。它现在只作为机制背景，不再作为下一阶段训练 gate：
-
-| 口径 | scheduler | horizon | goodput Mbps | TB BLER | expiry | packet delay mean / p95 | packet effective rate |
-|---|---|---:|---:|---:|---:|---:|---:|
-| active-run default: `3cell uniform radius500 rate1 seed41` | PFQ | `1000` | `1491.444` | `12.993%` | `0` | `2.606 / 14.5 ms` | `9.209 Mbps` |
-| active-run default: `3cell uniform radius500 rate1 seed41` | RRQ | `1000` | `1467.325` | `13.018%` | `0` | `5.683 / 49.0 ms` | `4.223 Mbps` |
-| pressure reference: `3cell coop-center ISD500 rate1 seed41` | PFQ | `4000` | `1465.369` | `13.695%` | `1.045%` | `11.529 / 55.0 ms` | `2.082 Mbps` |
-| pressure reference: `3cell coop-center ISD500 rate1 seed41` | RRQ | `4000` | `1441.373` | `13.395%` | `2.578%` | `18.658 / 188.5 ms` | `1.286 Mbps` |
-
-旧训练目录：
+原始实验根目录（下称 `FORMAL`）：
 
 ```text
-training/stageb_hgraph/runs/online_ppo_3cell_s41_v8_seq_budgeted_sample_packetdelay_guardonly_i50_from_v6_20260605_073632
+.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/
 ```
 
-注意：该分支的启动日志显示 `cell_radius_m=500`、`ue_placement=uniform`。因此 coop-center baseline 和 uniform seed41/t1000 baseline 都只能作为压力参考或机制背景；新训练必须使用上方 `coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s41_s50` gate。
+仿真器 SHA-256：`621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d`。完整源码、共享库和编译身份见[构建清单](evidence/2026-10-21/corrected/native_build_manifest.json)及 [seed41 current 启动清单](evidence/2026-10-21/identity/seed41_current_launch.json)。这些清单用于定位证据，不是完整可执行交付包。
 
-2026-06-22 更新：`uniform radius500` 现在只作为“智能算法已有小幅增益”的对照；`coop_center` 只作为历史压力参考；新的 baseline gate 改为：
+## 2. 冻结场景与窗口
+
+以[原始协议](evidence/2026-10-21/corrected/protocol.json)为准：
+
+| 项目 | 当前值 |
+|---|---|
+| 拓扑与用户 | 3 小区、36 UE，全部 boundary 放置，实际 strongest-cell association |
+| 几何 | cell radius 500 m，site spacing 1000 m |
+| PHY / 资源 | DL、4T4R、Rayleigh、SVD、Type-0；每小区 17 PRG × 16 PRB = 272 PRB |
+| 阴影 | 显式 `CUMAC_SHADOW_FADING_STD_DB=3`；lognormal 自然对数标准差为 `3 × ln(10) / 10` |
+| 业务 | 每 UE 每 TTI 平均 0.8 包，3000 B/包；配置 offered load 1382.4 Mbps |
+| TTI / TTL | 0.5 ms / 200 ms（400 TTI） |
+| HARQ / 主动丢包 | HARQ 关闭；last-slot completion guard 关闭，无 proactive drop |
+| PFQ demand slack | 0 B，不得与旧 PFQ3000 混用 |
+| Seeds | 41–50，三臂各 10 条新轨迹 |
+| 共同预热 | TTI 1–4000，三臂都执行 native PFQ |
+| 测量 | TTI 4001–6000，2000 TTI = 1 秒 |
+| 随访 | TTI 6001–6400，覆盖测量期到达包的完整 TTL |
+| 包 cohort | 测量期全部到达包，随访至终态，无截尾 |
+| 汇总 | 逐 seed 等权均值、样本标准差；配对差的名义 95% t 区间，df=9 |
+
+三臂同 seed 的流量、拓扑、实际关联、H/W 序列与 4000 TTI 预热一致；第 4001 TTI 动作前完整输入及 CTBS 一致。分叉后队列、OLLA/MCS 与 EMA 可因策略不同而分化，不要求此后完整状态相同。
+
+历史 `rate1.0 / legacyshadow / t4000 / w0`、7cell rate0.85 和 68×4 pilot 属于不同实验。旧 full-KPI / active gate 的 wrapper log 已核验为 **17×16**，不能沿用底稿误写的 68×4。原命令和机制见[历史配置](archive/platform/stageB_legacy_configuration_reference.md)。
+
+## 3. 冻结策略
+
+| arm | 实际执行路径 |
+|---|---|
+| `pfq0` | 本 TTI fresh preaction 状态下的 native PFQ |
+| `full`（DPA） | 冻结 BC actor + 冻结 directed coordinator，输入来自同一步动作前状态 |
+| `current` | fresh PFQ → CTBS 裁剪 → 同一冻结 directed coordinator → 服务缺口加权完整局部搜索 |
+
+`current` 不执行 DPA 的 BC actor。服务目标固定为 2400 B/UE/TTI，EMA 为 `0.995 × ema + 0.005 × realized_successful_bytes`，初值 0，计入共同预热。“完整局部搜索”指冻结邻域与停止规则，不代表全局最优。本轮没有重训或调参。
+
+冻结协调器 checkpoint：
 
 ```text
-coopboundary_assocstrongest_legacyshadow_r500_t4000_w0_s<seed>
+FORMAL/boundary08_directed_attention_20261008_v1/training/full.pt
+SHA-256: 1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f
 ```
 
-输出目录和 model label 必须包含 placement、association、shadow policy、radius、horizon、warmup 和 seed。当前 shadow policy 固定写作 `legacyshadow`，表示不传 `--shadow-seed`。禁止再把 `uniform/r500/t1000`、`coop_center/r250/t4000`、`coop_boundary nominal` 或固定 `shadow41` 混到同一个 label。
+专用入口是 `FORMAL/boundary08_corrected_physics_20261020_v1/run.py`。PFQ/CTBS 初选来自 `boundary75_pfq_ctbs_replacement_20261016_v1/policy.py`；搜索入口为 `boundary75_search_acceleration_20261020_v1/policy.py`，冻结加权逻辑来自 `boundary75_teacher_weight_20261014_v1/policy.py`。身份见[冻结清单](evidence/2026-10-21/identity/frozen_teacher.json)和[搜索一致性记录](evidence/2026-10-21/identity/search_confirmation.json)。
 
-当前最重要的变化不是“又多了一个脚本”，而是：
+## 4. 指标口径
 
-1. native PF 和极限 RR 都已经能在 `GPU + Type-0 bitmap` 下跑通。
-2. `run_stageB_rr_pf_compare.sh` / `run_stageB_rr_pf_multi_seed_compare.sh` 已经把 RRQ/PFQ 对比流程脚本化。
-3. 当前 baseline 对比在 `Type-0` 下本质上是“PRG bitmap 分配策略对比”，不是旧语义下完整的 UE selection + scheduler 双模块对比。
+| 指标 | 定义与限制 |
+|---|---|
+| 分段 goodput | 测量窗成功分段 bytes × 8 / 1 秒；可包含最终整包失败的部分字节与预热积压 |
+| 完整包 payload 吞吐 | 测量期到达、随访后整包成功的 payload bits / 1 秒 |
+| 整包成功率 | 完整成功包数 / 同一成熟到达 cohort 包数 |
+| 成功包时延 | 仅完整成功包；`(terminal TTI − arrival TTI + 1) × 0.5 ms` |
+| 全包终态时延 | 同一 cohort 中成功、CRC 失败、自然过期包的到达至终态时延 |
+| PRG 占用 | 实际分配总数 / `(2000 × 3 × 17)`；未占用不全等于主动 blank |
+| TB BLER | 错误 TB / 已发送 TB；不同于包过期率或残留 CRC 包失败率 |
+| 置信区间 | seed 为独立单位；未做多重比较校正，不把 TTI 或包当独立重复 |
 
-## 3. 入口脚本与职责
+完整口径见[指标字典](evidence/2026-10-21/corrected/metric_definitions.json)。旧 packet tracker 的 MAC 出队完成时延、UE-macro 包速率与当前成功交付/全包终态指标不同，不能拼表或继承旧阈值。
 
-### 3.1 主实验脚本
+## 5. 数据核验与本地复现
 
-入口：
+既有核验包括30条轨迹的动作合法性、逐行/跨 TTI 字节守恒、FIFO 终态、无截尾与配对一致性；物理独立数值核验覆盖90个保存状态，不是全 TTI 物理量重算。
+
+具备原始 worktree、轨迹及 `.venv` 时，可从仓库根目录重算已有统计：
 
 ```bash
-./cuMAC/scripts/run_stageB_main_experiment.sh
+.venv/bin/python .worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/summarize_corrected.py
+.venv/bin/python deliverables/current_corrected_vs_original_pfq_20261021/compare.py
 ```
 
-脚本职责：
-
-- 将 [`cuMAC/examples/parameters.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/parameters.h) 注入为当前 Stage-B 固定编译期参数
-- 编译 `multiCellSchedulerUeSelection`
-- 运行单场景或场景矩阵
-- 调用 [`cuMAC/scripts/summarize_stageA_kpi.py`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/scripts/summarize_stageA_kpi.py) 生成：
-  - `kpi_summary.json`
-  - `kpi_summary.txt`
-  - `ue_kpi.csv`
-
-### 3.2 RRQ/PFQ 一键比较脚本
-
-单 seed 入口：
-
-```bash
-./cuMAC/scripts/run_stageB_rr_pf_compare.sh
-```
-
-多 seed 入口：
-
-```bash
-./cuMAC/scripts/run_stageB_rr_pf_multi_seed_compare.sh
-```
-
-脚本职责：
-
-1. 调 `run_stageB_main_experiment.sh` 跑一次 native RR
-2. 再跑一次 native PF 或 PFQ
-3. 对公共场景目录调用 [`cuMAC/scripts/rr_vs_pf_compare.py`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/scripts/rr_vs_pf_compare.py)
-4. 输出统一的比较产物
-
-当前这条封装只支持：
-
-- `--custom-ue-prg 0`
-- 即 native baseline 路径
-
-## 4. 当前脚本实际注入的关键参数
-
-`run_stageB_main_experiment.sh` 当前会固定注入以下编译期常量：
-
-| 参数 | 当前值 |
-|---|---:|
-| `numCellConst` | 默认 `7`，`--topology-scenario 3cell` 时为 `3` |
-| `numCoorCellConst` | 默认 `7`，`--topology-scenario 3cell` 时为 `3` |
-| `numUePerCellConst` | 默认 `8`；当前 3cell/36UE benchmark 通过脚本注入为 `12` |
-| `numActiveUePerCellConst` | 默认 `8`；当前 3cell/36UE benchmark 通过脚本注入为 `12` |
-| `nBsAntConst` | `4` |
-| `nUeAntConst` | `4` |
-| `nPrbsPerGrpConst` | `4` |
-| `nPrbGrpsConst` | `68` |
-| `gpuAllocTypeConst` | `0` |
-| `cpuAllocTypeConst` | `0` |
-| `slotDurationConst` | `0.5e-3` |
-| `scsConst` | `30000.0` |
-| `cellRadiusConst` | `500` |
-
-对应代码位置：
-
-- [`cuMAC/scripts/run_stageB_main_experiment.sh`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/scripts/run_stageB_main_experiment.sh)
-- [`cuMAC/examples/parameters.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/parameters.h)
-
-运行期还会通过环境变量补充：
-
-- `CUMAC_TOPOLOGY_SEED`
-- `CUMAC_SHADOW_SEED`
-- `CUMAC_UE_PLACEMENT_MODE`
-- `CUMAC_CELL_ASSOC_MODE`
-- `CUMAC_UE_VORONOI_CLIP`
-- `CUMAC_UE_COOP_BOUNDARY_SPAN_RATIO`
-- `CUMAC_UE_COOP_BOUNDARY_INSET_RATIO`
-- `CUMAC_BS_TX_PATTERN`
-- `CUMAC_TRAFFIC_ARRIVAL_RATE`
-- `CUMAC_EXEC_MODE`
-- `CUMAC_CDL_PROFILE`
-- `CUMAC_CDL_DELAY_SPREAD_NS`
-
-## 5. 当前拓扑、业务流与 KPI 口径
-
-### 5.1 拓扑
-
-- 默认建 `1+6` 六边形 `7-cell` 协调簇
-- 也支持 `3-cell` 等边三角协同簇，可通过 `--topology-scenario 3cell` 切换
-- 没有外环干扰站点
-- `siteSpacing = 1000 m`
-- UE 默认在 serving-cell 覆盖区内做面积均匀撒点
-- Stage-B 默认开启 `Voronoi clip`，把 UE 约束在本小区覆盖区内
-- 默认 `bs_tx_pattern = omni`，不再设计扇区朝向或扇区水平增益
-
-对应代码：
-
-- [`cuMAC/examples/network.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/network.cu)
-
-### 5.2 流量模型
-
-当前脚本已把旧的“`traffic-rate` 看起来像吞吐率”语义明确改成：
-
-- `--packet-size-bytes`：平均包长，单位 `bytes`
-- `--traffic-arrival-rate`：平均到达率，单位 `pkt/TTI`
-
-`multiCellSchedulerUeSelection` 内部现在使用：
-
-- `TrafficType(packet_size_bytes, 0, traffic_arrival_rate)`
-- 到达过程为 `Poisson`
-- 包级队列会记录 `arrival_tti`
-- MAC packet tracker 会为每个成功进入发送队列的 packet 记录：
-  - `packet_id`
-  - `packet_size_bytes`
-  - `arrival_time`
-  - `finish_time`
-  - `delivered`
-- KPI 汇总会同时给出：
-  - backlog 估计时延
-  - packet-level delay（mean/p50/p90/p95/max）
-  - packet-based average effective service rate：
-    - `R_pkt = sum(delivered payload bits) / sum(packet system time)`
-    - 当前实现里，统计对象是 MAC packet queue tracker 中“整包出队完成”的 packet
-    - 分子只按原始 payload 计一次，不因重传重复累计
-    - 分母自然包含排队、等待调度、重传等全过程
-    - 为避免低负载时由于离散 TTI 时间戳导致“same-slot 完成 = 0 ms”而把 `R_pkt` 放大失真，当前 packet system time 口径统一取 `max(raw_system_time, 1 slot)`
-    - 因此如果 packet 在与入队相同的 slot 内完成，`packet_delay_*` 和 `R_pkt` 分母都按 `1 slot` 计，而不是 `0 ms`
-    - 当前输出字段为 `TRAFFIC_PKT_RATE.r_pkt_mbps`
-    - 汇总后进入 `traffic.packet_effective_service_rate_mbps` 与 `global_kpi.packet_effective_service_rate_mbps`
-  - packet-based per-packet mean effective service rate：
-    - 先对每个已完成 packet 计算 `r_p = L_p / packet_system_time_p`
-    - 再做算术平均：`R_pkt_mean = (1/N) * sum(r_p)`
-    - 当前输出字段为 `TRAFFIC_PKT_RATE.r_pkt_per_packet_mean_mbps`
-    - 汇总后进入 `traffic.packet_effective_service_rate_per_packet_mean_mbps` 与 `global_kpi.packet_effective_service_rate_per_packet_mean_mbps`
-  - packet count / throughput 类指标：
-    - `traffic.packet_delay_served_pkt_count`：MAC packet queue tracker 中“整包出队完成”的 packet 个数
-    - `traffic.goodput_mbps = goodput_bytes * 8 / total_time_s / 1e6`
-    - `traffic.served_mbps_est = served_bytes_est * 8 / total_time_s / 1e6`
-    - 其中 `packet_delay_served_pkt_count` 是“个数”，`goodput_mbps` / `served_mbps_est` 是“速率”，三者单位不同，不能直接比较数值大小
-
-对应代码：
-
-- [`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellSchedulerUeSelection/main.cpp)
-- [`cuMAC/examples/trafficModel/trafficGenerator.hpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/trafficModel/trafficGenerator.hpp)
-- [`cuMAC/examples/trafficModel/trafficService.hpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/trafficModel/trafficService.hpp)
-
-### 5.3 KPI 解释重点
-
-RRQ/PFQ 胜负优先看：
-
-- `traffic.*`
-- `global_kpi.*`
-- 其中 `traffic.packet_effective_service_rate_mbps` / `global_kpi.packet_effective_service_rate_mbps` 适合和 `packet_delay_*` 一起看“当前 tracker 定义下已完成 packet 的平均有效服务能力”
-- 其中 `traffic.packet_effective_service_rate_per_packet_mean_mbps` / `global_kpi.packet_effective_service_rate_per_packet_mean_mbps` 是“每包先单独算速率再取平均”的版本，会比 `R_pkt` 更偏向奖励短 system-time packet
-- 其中 `packet_delay_*` 与 `packet_effective_service_rate_mbps` 共享同一 packet system time 口径，当前最小粒度为 `1 slot`
-
-### 5.4 `packet_delay_served_pkt_count` 与 `goodput_mbps` 的区别
-
-这两个指标看起来都和“包发送了多少”有关，但它们并不是同一类量：
-
-- `packet_delay_served_pkt_count`：
-  - 单位是 `packet`
-  - 统计的是 MAC packet queue tracker 里“整包出队完成”的次数
-  - 当前实现里，这个完成事件发生在 packet 的最后一个字节被从 MAC buffer / packet tracker 中扣减完时
-  - 因此它更接近 `served_mbps_est` 对应的“MAC dequeue / served”口径
-- `goodput_mbps`：
-  - 单位是 `Mbps`
-  - 统计的是 `tbErr == 0` 时累计的 `goodput_bytes`
-  - 也就是 PHY 侧成功解码后的有效吞吐率
-
-按当前实现，`packet_delay_served_pkt_count` / `traffic.packet_effective_*` 与 `goodput_mbps` 的完成事件并不相同：
-
-- 前者是 MAC queue tracker 的“出队完成”
-- 后者是 PHY 侧的“成功解码完成”
-
-因此更合理的关系是：
-
-- 若包长固定为 `L_pkt_bits`，仿真总时长为 `T`
-- 则 `packet_delay_served_pkt_count * L_pkt_bits / T` 更接近 `served_mbps_est`
-- 而不是更接近 `goodput_mbps`
-
-以当前这组 `1000 bytes`、`4000 TTI`、`slot=0.5 ms` 的实验为例：
-
-- 总时长 `T = 4000 * 0.5 ms = 2 s`
-- 每包 `L_pkt_bits = 1000 * 8 = 8000 bits`
-- 若 `packet_delay_served_pkt_count = 14413.67`
-- 则等效 MAC dequeue 速率约为 `14413.67 * 8000 / 2 / 1e6 = 57.65 Mbps`
-- 这与结果里的 `traffic.served_mbps_est ≈ 57.65 Mbps` 一致
-- 而 `traffic.goodput_mbps ≈ 46.49 Mbps` 更低，是因为只有成功解码的 TB 字节才会计入 goodput
-
-什么时候两者会出现较大的差异：
-
-- `BLER / tbErr` 较高时：MAC 已出队的字节不一定都成为 successful goodput，`goodput_mbps` 会明显低于按 packet count 换算得到的 dequeue 速率
-- 重传较多时：goodput 只认最终成功解码的有效字节，而 packet delay / `R_pkt` 会把等待与重传时间都算进去
-- 包长固定但较小、仿真时间较长时：packet count 可以很大，而 `Mbps` 仍然只是几十，这属于单位差异导致的正常现象
-- 包长可变时：单纯 packet count 更不能直接映射到 goodput，因为它不反映每个 packet 携带的 bit 数
-- 低负载且 backlog 很小时：`packet_delay_served_pkt_count` 可能接近 offered packet 总数，但 `goodput_mbps` 仍由“总成功 bit / 总时间”决定，两者数值量级未必接近
-
-如果后续需要让 packet-level completion 严格对齐“成功解码完成”而不是“MAC 出队完成”，则需要把 packet 生命周期完成事件从当前的 MAC queue tracker 扣减路径，进一步绑定到 `tbErr == 0` 的 ACK / goodput 记账路径上。
-
-### 5.5 `packet_effective_service_rate_mbps` 与 `goodput_mbps` 的区别
-
-这两个指标虽然单位都写成 `Mbps`，但不要把它们当成同一种“吞吐量”去直接比较数值大小。
-
-- `traffic.goodput_mbps`：
-  - 定义为 `goodput_bytes * 8 / total_time_s / 1e6`
-  - 分子是 PHY 侧成功解码的有效字节
-  - 分母是整场仿真的 wall-clock 时间
-  - 它是系统级 aggregate goodput，表示整个 cluster 在单位时间内真正成功送达了多少有效 bit
-- `traffic.packet_effective_service_rate_mbps`：
-  - 定义为 `R_pkt = total_delivered_bits / total_packet_system_time`
-  - 当前实现里，统计对象是 MAC packet queue tracker 中“整包出队完成”的 packet
-  - 分母不是 wall-clock 时间，而是所有 packet system time 的求和：
-    - `sum_p (t_finish_p - t_arr_p)`
-    - 且当前口径下每个成功 packet 至少贡献 `1 slot`
-  - 它本质上是 packet-centric rate，更接近“单个已完成 packet 的平均有效服务速度”
-
-在包长固定为 `L_pkt_bits` 时，这个关系可以写成：
-
-- `R_pkt = sum(L_pkt_bits) / sum(W_p) = L_pkt_bits / E[W_p]`
-
-也就是说，固定包长下：
-
-- `packet_effective_service_rate_mbps` 近似等于“包长 / 平均 packet system time”
-- 它更像时延指标的另一种写法
-- 它不是 cluster aggregate throughput
-
-如果忽略当前“MAC queue completion”和“PHY success completion”之间的事件边界差异，可以把两者的关系粗略理解成：
-
-- `served_mbps_est ≈ R_pkt * N_bar`
-- `goodput_mbps ≈ served_mbps_est * success_fraction`
-- 因而 `goodput_mbps ≈ R_pkt * N_bar * success_fraction`
-
-其中：
-
-- `N_bar` 表示系统中平均同时处于 packet system time 统计口径内的 packet 并发度
-- `success_fraction` 近似反映 `tbErr == 0` 的成功比例
-
-所以 `goodput_mbps` 比 `R_pkt` 大很多通常并不奇怪，常见原因是：
-
-- 多 cell、多 UE、多个 packet 在并发服务，aggregate goodput 会随并发度叠加
-- `R_pkt` 是按每个 packet 自己的 system time 做平均，不会因为并发 packet 多就线性变大
-- `goodput_mbps` 只看总成功 bit / 总时间，而 `R_pkt` 会把排队、等待调度、重传时间都压进分母
-
-以当前这组 `1000 bytes`、`4000 TTI`、`slot=0.5 ms` 的实验为例：
-
-- `traffic.goodput_mbps ≈ 46.49 Mbps`
-- `traffic.packet_effective_service_rate_mbps = 16.0 Mbps`
-- `traffic.served_mbps_est ≈ 57.65 Mbps`
-- `global_kpi.global_tx_success_rate ≈ 0.807`
-
-这组数可以这样读：
-
-- `R_pkt = 16 Mbps`，因为固定 `1000 bytes = 8000 bits` 的包在当前口径下最小 system time 是 `0.5 ms`，因此理论上限就是 `8000 / 0.0005 / 1e6 = 16 Mbps`
-- `served_mbps_est / R_pkt ≈ 57.65 / 16 ≈ 3.60`，说明系统 aggregate served 速率大约相当于 `3.6` 个 packet-level effective rate 在并行叠加
-- `goodput_mbps / served_mbps_est ≈ 46.49 / 57.65 ≈ 0.806`，这又与当前 `global_tx_success_rate ≈ 0.807` 基本一致
-
-什么时候两者会出现较大的差异：
-
-- 并发度高时：更多 packet 同时在系统里流动，`goodput_mbps` 会明显高于 `R_pkt`
-- packet system time 长时：排队、等待调度、重传会拉低 `R_pkt`，但不一定等比例拉低 goodput
-- `BLER / tbErr` 高时：`served_mbps_est` 与 `goodput_mbps` 会进一步拉开，goodput 更低
-- 包长固定且系统时延接近 `1 slot` 下界时：`R_pkt` 容易触顶，继续提升并发/成功率时，goodput 还可以继续上升，但 `R_pkt` 已经不再敏感
-- 包长变化较大时：`R_pkt` 与 goodput 的关系会更复杂，因为 `R_pkt` 受 packet-size 分布和 packet-time 分布共同影响
-
-因此：
-
-- `goodput_mbps` 更适合看系统级吞吐能力
-- `packet_effective_service_rate_mbps` 更适合和 `packet_delay_*` 一起看 packet 体验与 timeliness
-- 两者都重要，但不应该按“哪个 Mbps 更大”这种方式直接判断调度器优劣
-
-### 5.6 `packet_effective_service_rate_mbps` 与 `packet_effective_service_rate_per_packet_mean_mbps` 的区别
-
-当前文档里这两个 packet-level `Mbps` 指标分别对应两种平均方式：
-
-- `traffic.packet_effective_service_rate_mbps`：
-  - `R_pkt = sum(L_p) / sum(W_p)`
-  - 这是“先汇总 bits，再汇总 packet system time”的 ratio-of-sums 版本
-  - 固定包长时可写成 `R_pkt = L / mean(W_p)`
-  - 它更接近调和平均语义，对长 system-time packet 更敏感
-- `traffic.packet_effective_service_rate_per_packet_mean_mbps`：
-  - `R_pkt_mean = (1/N) * sum(L_p / W_p)`
-  - 这是“每包先单独算速率，再做算术平均”的版本
-  - 固定包长时可写成 `R_pkt_mean = L * mean(1 / W_p)`
-  - 它会更偏向奖励那些很快完成的 packet
-
-两者一般不相等。对固定包长场景，有：
-
-- `mean(1 / W_p) >= 1 / mean(W_p)`
-- 因而通常 `R_pkt_mean >= R_pkt`
-
-只有在所有 packet 的 `W_p` 都完全相同时，这两个指标才会相同。
-
-对当前 StageB 来说，可以这样理解：
-
-- `R_pkt` 更保守，更能反映长尾等待和重传代价
-- `R_pkt_mean` 更乐观，更像“典型 packet 的单包完成速率”
-- 当系统里存在一批很快完成的 packet 和一批明显更慢的 packet 时，`R_pkt_mean` 往往会明显高于 `R_pkt`
-
-因此：
-
-- 如果你想看 packet timeliness / tail penalty，优先看 `R_pkt`
-- 如果你想额外观察“每包单独折算速率后的平均体验”，可以同时看 `R_pkt_mean`
-- 不建议只看 `R_pkt_mean`，因为它更容易被短时延 packet 拉高，从而掩盖慢 packet 的影响
-
-### 5.7 调度优化建议
-
-如果目标是评价或训练调度算法，当前更推荐：
-
-- 主目标优先看 `goodput_mbps`
-- 副目标或约束同时看 `packet_delay_p95_ms`、`packet_effective_service_rate_mbps`、`packet_effective_service_rate_per_packet_mean_mbps`、`expiry_drop_rate`、`global_tb_bler`
-
-原因：
-
-- `goodput_mbps` 最接近“系统最终真正送达了多少有效 bit/s”，是更硬的系统级收益指标
-- 它天然同时约束了资源利用、UE 选择、链路质量匹配、BLER 和重传代价
-- `packet_effective_service_rate_mbps` 虽然也用 `Mbps` 表示，但本质上更接近 packet delay 的倒数乘包长，是 packet-centric KPI
-- `packet_effective_service_rate_per_packet_mean_mbps` 比 `R_pkt` 更容易被短时延 packet 拉高，因此更适合作为辅助观察，不适合替代系统级主目标
-
-从“更容易出效果”看：
-
-- 更容易被调出明显变化的，通常是 `packet_effective_service_rate_per_packet_mean_mbps`，其次是 `packet_effective_service_rate_mbps`
-  - 尤其在中高负载下，只要 packet delay 有明显变化，`R_pkt` 就会立刻响应
-  - `R_pkt_mean` 则会更快地被一批快速完成的 packet 拉高
-  - 但这两个 packet-centric 指标都更容易受到统计口径、slot 下界、包长分布和 completion semantics 的影响
-- 更难但也更有意义的，通常是 `goodput_mbps`
-  - 想把它真正做高，必须同时兼顾调度效率和成功解码率
-  - 这个指标更不容易“虚高”，因此更适合当主优化方向
-
-对当前 StageB 来说，更稳妥的建议是：
-
-- 若只能选一个主 KPI：优先优化 `goodput_mbps`
-- 若业务确实强时延敏感，再把 `packet_effective_service_rate_mbps` 和 `packet_effective_service_rate_per_packet_mean_mbps` 作为 packet-centric 辅助 KPI
-- 不建议把任一 packet-centric `Mbps` 指标单独当成唯一目标，否则调度器可能更偏向“缩短部分 packet 的系统时延”，但未必带来更高的真实成功吞吐
-
-不要把以下字段误当成 baseline 胜负指标：
-
-- `throughput.*`
-- `cpu_gpu_compare.*`
-
-原因：
-
-- `throughput.*` 是 scheduler 内部长时速率状态
-- `cpu_gpu_compare.*` 是 CPU/GPU 一致性检查
-- 当 `--exec-mode gpu` 时，独立 CPU reference path 会被关闭，此时 `cpu_gpu_compare` 只剩 shadow bookkeeping 含义
-
-## 6. 当前 native PF/RR 在 Type-0 下的真实行为
-
-这是当前最关键的实现边界。
-
-### 6.1 native baseline 路径
-
-条件：
-
-- `--custom-ue-prg 0`
-
-可选 baseline：
-
-- `--baseline-scheduler pf`
-- `--baseline-scheduler pfq`
-- `--baseline-scheduler rr`
-
-### 6.2 Type-0 下 UE selection 的真实语义
-
-当前 `allocType == 0` 时，native baseline 不再先跑 PF/RR UE selection，再交给 scheduler。
-
-实际走的是：
-
-1. [`populateType0AllUeSelection()`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellSchedulerUeSelection/main.cpp) 先把 `setSchdUePerCellTTI` 填成“所有 active UE”
-2. 后续 PF 或 RR scheduler 只负责把 `PRG bitmap` 分给这些 slot
-
-这意味着：
-
-- 当前 Type-0 baseline 的 PF/RR 对比，本质是“PRG allocation kernel 对比”
-- 不是旧 Type-1 语义下完整的“UE selection + PRG allocation”双阶段对比
-
-### 6.3 PF/RR 差异实际落在哪
-
-PF 路径：
-
-- GPU: [`multiCellScheduler`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellScheduler.cu)
-- CPU: [`multiCellSchedulerCpu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellSchedulerCpu.cpp)
-
-RR 路径：
-
-- GPU: [`multiCellRRScheduler`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/roundRobinScheduler.cu)
-- CPU: [`roundRobinSchedulerCpu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/roundRobinSchedulerCpu.cpp)
-
-当前 RR 的 `type-0` kernel 行为是：
-
-- 先按 cell 找关联 UE
-- 将 `nPrbGrp` 尽量均匀切给这些 UE
-- 余数 PRG 从前往后补
-- `type-0 + HARQ` 仍不支持
-
-### 6.4 当前 PFQ 最终保留的改造
-
-当前 `--baseline-scheduler pfq` 的最终 baseline，已经固定为**单阶段 queue-aware PFQ**，不再保留之前试验过的二阶段空闲 PRG 填充逻辑。
-
-当前 PFQ 的核心改造只有三层：
-
-- 基础分数仍然是原始 PF 形式：`rate^beta / avgRate`
-- 在基础 PF 上叠加 queue-aware buffer 权重：
-  - `1 + coeff * log2(1 + buffer_bytes / scale_bytes)`
-- 在 `Type-0` 逐 PRG 分配时，再叠加两条单 TTI 内的约束：
-  - `demand-aware cap`：按瞬时速率和 `slotDuration` 估算单个 PRG 可服务字节数；若 UE 在当前 TTI 已分到的字节已经接近 `buffer + slack`，则继续分配会被压低甚至截断
-  - `intra-TTI decay`：同一 UE 在同一 TTI 内连续拿到多个 PRG 时，分数按 `1 / (1 + decay * assigned_prg_count)` 递减
-
-当前 final baseline **明确不包含**：
-
-- 二阶段 relaxed PF idle-PRG fill
-- threshold-gated relaxed fill
-
-这些都只是在 2026-04-20 的调参过程中做过试验，最终没有保留到当前 baseline。
-
-这样定稿的设计目的很直接：
-
-- 避免好信道 UE 在 `Type-0` 贪心分配里拿走远超当前需求的 PRG
-- 让 PFQ 至少先做到“按需求收敛”，而不是继续无上限追逐瞬时速率
-- 因此当前 PFQ 的 `global_kpi.prg_utilization_ratio` 可能低于 RR；如果 `goodput`、`delay`、`residual buffer` 没有同步恶化，这种“未把空闲 PRG 再补满”的行为是设计使然，不应单独视为 bug
-
-当前运行期配置项如下：
-
-- `CUMAC_PFQ_BUFFER_COEFF`，默认 `0.25`
-- `CUMAC_PFQ_BUFFER_SCALE_BYTES`，默认 `packetSizeBytes`
-- `CUMAC_PFQ_DEMAND_CAP`，默认 `1`
-- `CUMAC_PFQ_DEMAND_CAP_SLACK_BYTES`，默认 `packetSizeBytes`
-- `CUMAC_PFQ_INTRA_TTI_DECAY_COEFF`，默认 `0.5`
-
-对应代码位置：
-
-- 参数注入与日志输出：[`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellSchedulerUeSelection/main.cpp)
-- CPU Type-0 PFQ：[`cuMAC/src/4T4R/multiCellSchedulerCpu.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellSchedulerCpu.cpp)
-- GPU Type-0 PFQ 与 host 后处理：[`cuMAC/src/4T4R/multiCellScheduler.cu`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/src/4T4R/multiCellScheduler.cu)
-
-## 7. `exec-mode` 与当前可用组合
-
-`run_stageB_main_experiment.sh` 当前支持：
-
-- `--exec-mode both`
-- `--exec-mode gpu`
-
-含义：
-
-- `both`：跑 GPU 主路径，同时保留独立 CPU reference scheduler path
-- `gpu`：关闭独立 CPU reference scheduler path，CPU 侧 KPI 仅做镜像/统计
-
-当前限制：
-
-- `exec-mode=gpu` 不支持 `--custom-ue-prg 1`
-- `exec-mode=gpu` 不支持 `--online-bridge 1`
-
-对应代码：
-
-- [`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellSchedulerUeSelection/main.cpp)
-
-## 8. RRQ/PFQ 比较脚本当前产物
-
-当前推荐的 7cell 主 baseline 命令为：
-
-```bash
-RUN_TS="$(date +%Y%m%d_%H%M%S)"; \
-./cuMAC/scripts/run_stageB_rr_pf_multi_seed_compare.sh \
-  --seed-list 41,42,43,44,45,46,47,48,49,50 \
-  --reference-baseline rrq \
-  --pf-baseline pfq \
-  --topology-scenario 7cell \
-  --total-ue-count 84 \
-  --build-method cmake \
-  --fading-mode 0 \
-  --cdl-profiles NA \
-  --cdl-delay-spreads 0 \
-  --tti 4000 \
-  --prbs-per-group 16 \
-  --precoding svd \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 0.85 \
-  --packet-ttl-ms 200 \
-  --progress-tti 1000 \
-  --kpi-tti-log 0 \
-  --compare-tti 0 \
-  --compact-output 1 \
-  --exec-mode gpu \
-  --tag rrq_pfq_7cell_s41_s50_ue84_ttl200_rbg16_svd_rate0p85_trafficseed \
-  --compare-output-dir "output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_7cell_s41_s50_ue84_ttl200_rbg16_svd_rate0p85_trafficseed_${RUN_TS}"
-```
-
-旧 3cell 历史 baseline 复现命令为：
-
-```bash
-RUN_TS="$(date +%Y%m%d_%H%M%S)"; \
-./cuMAC/scripts/run_stageB_rr_pf_multi_seed_compare.sh \
-  --seed-list 41,42,43,44,45,46,47,48,49,50 \
-  --reference-baseline rrq \
-  --pf-baseline pfq \
-  --topology-scenario 3cell \
-  --total-ue-count 36 \
-  --build-method cmake \
-  --fading-mode 0 \
-  --cdl-profiles NA \
-  --cdl-delay-spreads 0 \
-  --tti 4000 \
-  --prbs-per-group 16 \
-  --precoding svd \
-  --packet-size-bytes 3000 \
-  --traffic-arrival-rate 1 \
-  --packet-ttl-ms 200 \
-  --progress-tti 1000 \
-  --kpi-tti-log 0 \
-  --compare-tti 0 \
-  --compact-output 1 \
-  --exec-mode gpu \
-  --tag rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd \
-  --compare-output-dir "output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_${RUN_TS}"
-```
-
-当前保留的历史 3cell 输出目录：
-
-- [`output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443`](/home/oai2/aerial-cuda-accelerated-ran/output/stageB_rrq_pfq_multiseed_compare_rrq_pfq_3cell_s41_s50_ue36_ttl200_rbg16_svd_20260506_091443)
-
-核心产物命名会跟第二个 baseline 联动。
-例如 `--pf-baseline pf` 时是 `rr_vs_pf_compare.*`，`--pf-baseline pfq` 时是 `rr_vs_pfq_compare.*`。
-
-通用产物：
-
-- `rr_wrapper_run.log`
-- `<baseline>_wrapper_run.log`
-- `compare_manifest.csv`
-- `compare_summary.txt`
-- `<SCENARIO>/rr_vs_<baseline>_compare.json`
-- `<SCENARIO>/rr_vs_<baseline>_compare.csv`
-- `<SCENARIO>/rr_vs_<baseline>_compare.txt`
-
-其中 `rr_vs_<baseline>_compare.*` 会给出：
-
-- 统一指标表
-- per-cell delta
-- Top-N UE throughput delta
-- Top-N UE queue-delay delta
-
-注意：
-
-- 这些 `compare.csv/json/txt` 是最终 KPI 对比结果，不是 RL replay transition，不能直接拿去做 `bc_train.py` / `ppo_train.py`。
-- 若要做离线训练，必须重新跑 `run_stageB_main_experiment.sh --replay-dump 1` 生成 `rl_replay_meta.json`、`rl_replay_schema.json`、`rl_replay_records.bin`。
-
-## 9. 历史参考结果处理
-
-2026-03 至 2026-04 的早期 RR/PF、RR/PFQ、no-SVD 或 3-seed 结果只保留为历史背景，不再作为当前 baseline 引用。相关本地输出目录已经清理；如果需要复现，应按第 8 节命令重新跑同口径结果。
-
-当前报告不要再引用 2026-03 的旧 RR/PF 单 seed 输出或早期 `rr_vs_pfq_compare_mean.csv` 作为主结论来源。
-
-## 10. 对后续智能算法开发的直接启示
-
-当前 baseline 已经不是旧的 Type-1 连续块版本，而是：
-
-- `Type-0 bitmap`
-- 7-cell 主线
-- `4T4R`
-- native PF/RR 都可在 GPU 下运行
-
-因此后续 GNN+RL 智能算法的第一阶段，应优先和当前 3cell boundary active gate 保持一致：
-
-1. 先对齐同一场景、同一 traffic 模型、同一 KPI 口径
-2. 明确“当前 baseline 对比的是 bitmap 分配策略”这一点
-3. 先完成与 RRQ/PFQ 的同口径 compare automation，再做更复杂的联合动作空间扩展
-4. 新算法先按 `coop_boundary + strongest + legacyshadow + r500 + t4000` gate 做 checkpoint 选择，再把通过 gate 的结构迁移到 7cell rate0.85
-
-## 11. 当前已知限制
-
-- 纯 coordinated-cluster 模式下，`CDL` 仍不是当前主推荐回归模式，稳态对比建议继续优先用 `Rayleigh/TDL`
-- `Type-0 + RR + HARQ` 当前不支持
-- `gpu-only` 模式下不要把 `cpu_gpu_compare` 当成独立 baseline 校验
-- online bridge 与 custom UE+PRG 还没有跟 `gpu-only` 运行模式打通
+这些命令重新生成本地汇总，不启动仿真。仅克隆主仓库可检查小型证据和 SHA-256，不能直接重放完整 CUDA 实验。通用 `run_stageB_main_experiment.sh` 或旧 StepRsp teacher passthrough 不等价于此专用 runner；新实验必须固定修正源码、编译产物及输入时点。

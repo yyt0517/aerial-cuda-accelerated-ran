@@ -77,11 +77,13 @@ source .venv/bin/activate
 
 Run subsequent `cuMAC/scripts/*stageB*` and `training/stageb_hgraph/*` commands from the activated shell.
 
-Current local Stage-B planning docs:
+Current Stage-B research status (updated 2026-10-21):
 
-- `Doc/README.md`
-- `Doc/current_stageB_effective_configuration.md`
-- `Doc/stageB_7cell_tar_gnn_pfq_design.md`
+- [Project documentation](Doc/README.md)
+- [Current progress and evidence](Doc/stageB_current_progress.md)
+- [Frozen experimental configuration](Doc/current_stageB_effective_configuration.md)
+
+The latest corrected PFQ/DPA/current comparison lives in a separate research worktree. The configuration document distinguishes that experiment from the generic scripts on `main`; cloning this repository provides the evidence snapshot, not the full local experiment artifacts.
 
 ### Further Information
 

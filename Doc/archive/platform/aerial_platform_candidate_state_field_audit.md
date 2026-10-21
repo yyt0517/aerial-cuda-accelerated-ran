@@ -35,14 +35,14 @@
 
 ### 2.2 当前 Stage-B 主线已验证事实
 
-1. `M_sched` 当前是 `PRG/RBG`，不是 `RB`。通用 7-cell 默认是 `68 PRG × 4 PRB`；当前代表性 3-cell baseline 使用 `17 PRG × 16 PRB`，对应 [`cuMAC/examples/parameters.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/parameters.h) 与 [`Doc/current_stageB_effective_configuration.md`](/home/oai2/aerial-cuda-accelerated-ran/Doc/current_stageB_effective_configuration.md)。
-2. 平台 API 支持 `B_total != B_coord`，但当前 online PPO / BC 主线要求 `n_tot_cell == n_cell`，见 [`training/gnnrl/ppo_online_train.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/ppo_online_train.py) 与 [`training/gnnrl/bc_train.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/bc_train.py)。
+1. `M_sched` 当前是 `PRG/RBG`，不是 `RB`。通用 7-cell 默认是 `68 PRG × 4 PRB`；当前代表性 3-cell baseline 使用 `17 PRG × 16 PRB`，对应 [`cuMAC/examples/parameters.h`](../../../cuMAC/examples/parameters.h) 与 [`Doc/current_stageB_effective_configuration.md`](../../current_stageB_effective_configuration.md)。
+2. 平台 API 支持 `B_total != B_coord`，但当前 online PPO / BC 主线要求 `n_tot_cell == n_cell`，见 [`training/gnnrl/ppo_online_train.py`](../../../training/gnnrl/ppo_online_train.py) 与 [`training/gnnrl/bc_train.py`](../../../training/gnnrl/bc_train.py)。
 3. 当前 online bridge 实际维度是：
    - `cellFeatDim = 5`
    - `ueFeatDim = 12`
    - `edgeFeatDim = 2`
    - `prgFeatDim = 8`
-   见 [`cuMAC/examples/onlineTrainBridge/OnlineObservationTypes.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineObservationTypes.h)。
+   见 [`cuMAC/examples/onlineTrainBridge/OnlineObservationTypes.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineObservationTypes.h)。
 4. 当前代表性 Stage-B baseline 使用 `4T4R + SVD precoding`；早期 no-SVD 口径已经不再作为当前主参考。平台能力上仍支持 `no precoding` 与 `SVD precoding` 两种 4T4R 路径。
 5. 当前 `4T4R Type-0` 主线每个 `cell × PRG` 只落一个 slot/UE，不存在“同小区同 PRG 多用户复用”的原生语义。
 
@@ -143,7 +143,7 @@
 
 `F_node = 5`
 
-来自 [`cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp)：
+来自 [`cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp`](../../../cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp)：
 
 1. `cell_load_bytes`
 2. `active_ue_count`
@@ -155,7 +155,7 @@
 
 `ueFeatDim = 12`
 
-前 8 维来自 [`cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp)：
+前 8 维来自 [`cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp`](../../../cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp)：
 
 1. `buffer_bytes`
 2. `avg_rate_mbps`
@@ -166,7 +166,7 @@
 7. `newDataActUe`
 8. `staleSlots`
 
-后 4 维来自 [`cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h)：
+后 4 维来自 [`cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h)：
 
 9. `hol_delay_ms`
 10. `ttl_slack_ms`
@@ -179,7 +179,7 @@
 
 `prgFeatDim = 8`
 
-来自 [`cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h)：
+来自 [`cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h)：
 
 1. `top1SinrDb`
 2. `top2GapDb`

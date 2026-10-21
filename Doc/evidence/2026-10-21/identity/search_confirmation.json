@@ -1,0 +1,534 @@
+{
+  "passed": true,
+  "full_trace_and_every_timed_outcome_exact": true,
+  "all_original_audits_preserved": true,
+  "protocol_sha256": "01efc5641028d47cab1e405bc6dc6e8b4d4d16e8d9b78995349c2f2c5177435a",
+  "labels_sha256": "d39aeccc3088cb3c69fab19cd687e0972653658978be3e097fbee6a1c62e87b9",
+  "source_sha256": {
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.cpp": "b82c08315dc7789cfd99e65d7e4c7d0ddb91da1cfe97a21e60cfe61c3b6b350f",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/build.sh": "ad6a0124b8d6c3983d0039bbdceccb023dd0df0a4ecf672b72e773bacca44037",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/benchmark.py": "d154214a87cdecb9a39b77f7630cdfad33a3041d41233698ce70b1643127458e",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/confirm.py": "a7752e583435f19e31cbb9ebdddea4507a7a3387bef9ec8e4e2dae6c8baae28c",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/protocol.json": "bfab71d2e78754c457289673b8f67af2968ab46d2e026a6f3259962a401660b8",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/confirmation_protocol.json": "01efc5641028d47cab1e405bc6dc6e8b4d4d16e8d9b78995349c2f2c5177435a",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_latency_20261020_v1/benchmark.py": "0760ca029a7f0af453126d9b418f759fdeceea72dcaa5ccc2100ffabd3117b70",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/policy.py": "74917a1782f051d270443223f5874295ac603946d9f5404679c42cfcea753926",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_old_joint_probe_20261013_v1/selector.py": "d7094eb322798e6f60c94a0d61d417d6a61cd358cd3a8fabf7e6e9dfdd758813",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_joint_search_diagnostics_20261014_v1/probe.py": "9b4aea81ab569bf7ad99d2e00f785de45253145d22de8346bdda7d5cc856fa34",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/parity_phy.py": "a95b89285f714b2f4682d4008adb7704fc2359f86ec89f5b71ea37552a4bc68d",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_coordination_20261008_v1/causal_phy.py": "fda5a61119245127486e6319abf4fb066370a7873ef29b211bd6d9aca72d679c",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/fast_phy.py": "e853b01da5edcfd266b247dfb9cf7b061ca096253cdc0d04986b76f191504e70",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/physics_kernel.cpp": "5261b4d08126b2c259ccf45e9bcfe94deafd724cad7f0cf81faf0ddc4032c68d",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/physics_kernel.so": "43a1cb08853b144e9ccbe20540d7f35e5a28208bfc7b5f0061713d1bdb932e73"
+  },
+  "frozen_original_sources": {
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/teacher_selection.json": "5ae70133953641eea6233db7d70cecba9c31c0564f8fda010212e1723cd140cf",
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/protocol.json": "8d63dd17cbc18073d1f02208366c8f9e563d6e891fc804278caa2f71dbd6154b",
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/policy.py": "74917a1782f051d270443223f5874295ac603946d9f5404679c42cfcea753926",
+    "output/pfq_independent_reuse/formal/boundary75_teacher_weight_20261014_v1/native_accelerated.py": "bb4bf4e42df6364f194d02dba1e670cf680fda6ea50fad38a92b39579cd6fbdd",
+    "output/pfq_independent_reuse/formal/boundary75_two_round_search_20261014_v1/run.py": "8482959bd5b8531b63597ae4984aca76bec41e3da963fc75a073827b594c8ca5",
+    "output/pfq_independent_reuse/formal/boundary75_load_sweep_20261014_v1/policy.py": "1b1ef23ff3764c55fc168c56768359710b34095f8af65c89634f04bb3bce2434",
+    "output/pfq_independent_reuse/formal/boundary08_blank_probe_20261008_v1/bc_diagnostic/balanced_fit_probe/actor_diagnostic_only.pt": "8855c49af680019bb0cc72da8b33aa80e94c495b12d996d89c32a91da8c06a59",
+    "output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+    "output/pfq_independent_reuse/formal/boundary75_deadline_drop_20261014_v1/protocol.json": "fb5f82e357bc81712800e99adb027bfddc5c33fb089e7785a468ded9e4db500f",
+    "output/pfq_independent_reuse/formal/boundary75_deadline_drop_20261014_v1/simulator": "7146d425c14b98ad1a02be0e8247962ca60797c7f4577b68b14884d408c61d62",
+    "output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/fast_phy.py": "e853b01da5edcfd266b247dfb9cf7b061ca096253cdc0d04986b76f191504e70",
+    "output/pfq_independent_reuse/formal/boundary75_service_capacity_20261014_v1/physics_kernel.so": "43a1cb08853b144e9ccbe20540d7f35e5a28208bfc7b5f0061713d1bdb932e73"
+  },
+  "environment": {
+    "started_at": "2026-10-20T05:16:29.552369+00:00",
+    "platform": "Linux-6.8.0-106-generic-x86_64-with-glibc2.35",
+    "torch_version": "2.10.0+cu128",
+    "torch_threads": 1,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143
+    ],
+    "thread_environment": {
+      "OPENBLAS_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OMP_PROC_BIND": null,
+      "OMP_PLACES": null
+    },
+    "compiler": "g++ (GCC) 12.3.0",
+    "resources": "Serial uses one physical worker; parallel4 requests four OpenMP physical workers. Torch/NumPy thread settings are recorded separately.",
+    "finished_at": "2026-10-20T05:17:25.955774+00:00"
+  },
+  "validation": [
+    {
+      "tti": 4127,
+      "exact_full_trace": true,
+      "baseline": {
+        "prepare_ms": 14.084063470363617,
+        "search_ms": 237.39589750766754,
+        "total_ms": 251.47996097803116,
+        "rounds": 27,
+        "candidates": 21476,
+        "audit_calls": 0,
+        "metrics": {}
+      },
+      "treatments": {
+        "serial": {
+          "prepare_ms": 12.196391820907593,
+          "search_ms": 123.48167598247528,
+          "total_ms": 135.67806780338287,
+          "rounds": 27,
+          "candidates": 21476,
+          "audit_calls": 0,
+          "metrics": {
+            "stage": 2,
+            "threads": 1,
+            "audit_calls": 0,
+            "cache_hits": 247429,
+            "cache_misses": 3267,
+            "inactive_skips": 522440,
+            "actual_workers": 1
+          }
+        },
+        "parallel4": {
+          "prepare_ms": 12.125331908464432,
+          "search_ms": 137.85600662231445,
+          "total_ms": 149.98133853077888,
+          "rounds": 27,
+          "candidates": 21476,
+          "audit_calls": 0,
+          "metrics": {
+            "stage": 4,
+            "threads": 4,
+            "audit_calls": 0,
+            "cache_hits": 247429,
+            "cache_misses": 3267,
+            "inactive_skips": 522440,
+            "actual_workers": 4
+          }
+        }
+      }
+    },
+    {
+      "tti": 4254,
+      "exact_full_trace": true,
+      "baseline": {
+        "prepare_ms": 12.500360608100891,
+        "search_ms": 219.16816756129265,
+        "total_ms": 231.66852816939354,
+        "rounds": 15,
+        "candidates": 15017,
+        "audit_calls": 0,
+        "metrics": {}
+      },
+      "treatments": {
+        "serial": {
+          "prepare_ms": 12.462187558412552,
+          "search_ms": 83.61556753516197,
+          "total_ms": 96.07775509357452,
+          "rounds": 15,
+          "candidates": 15017,
+          "audit_calls": 0,
+          "metrics": {
+            "stage": 2,
+            "threads": 1,
+            "audit_calls": 0,
+            "cache_hits": 245612,
+            "cache_misses": 2742,
+            "inactive_skips": 292258,
+            "actual_workers": 1
+          }
+        },
+        "parallel4": {
+          "prepare_ms": 12.337461113929749,
+          "search_ms": 92.93605759739876,
+          "total_ms": 105.2735187113285,
+          "rounds": 15,
+          "candidates": 15017,
+          "audit_calls": 0,
+          "metrics": {
+            "stage": 4,
+            "threads": 4,
+            "audit_calls": 0,
+            "cache_hits": 245612,
+            "cache_misses": 2742,
+            "inactive_skips": 292258,
+            "actual_workers": 4
+          }
+        }
+      }
+    },
+    {
+      "tti": 4889,
+      "exact_full_trace": true,
+      "baseline": {
+        "prepare_ms": 12.163832783699036,
+        "search_ms": 202.4022974073887,
+        "total_ms": 214.56613019108772,
+        "rounds": 19,
+        "candidates": 19248,
+        "audit_calls": 0,
+        "metrics": {}
+      },
+      "treatments": {
+        "serial": {
+          "prepare_ms": 12.357767671346664,
+          "search_ms": 106.56246542930603,
+          "total_ms": 118.9202331006527,
+          "rounds": 19,
+          "candidates": 19248,
+          "audit_calls": 0,
+          "metrics": {
+            "stage": 2,
+            "threads": 1,
+            "audit_calls": 0,
+            "cache_hits": 367837,
+            "cache_misses": 3452,
+            "inactive_skips": 321639,
+            "actual_workers": 1
+          }
+        },
+        "parallel4": {
+          "prepare_ms": 12.397401034832,
+          "search_ms": 116.10610410571098,
+          "total_ms": 128.50350514054298,
+          "rounds": 19,
+          "candidates": 19248,
+          "audit_calls": 0,
+          "metrics": {
+            "stage": 4,
+            "threads": 4,
+            "audit_calls": 0,
+            "cache_hits": 367837,
+            "cache_misses": 3452,
+            "inactive_skips": 321639,
+            "actual_workers": 4
+          }
+        }
+      }
+    },
+    {
+      "tti": 4001,
+      "exact_full_trace": true,
+      "baseline": {
+        "prepare_ms": 12.73094117641449,
+        "search_ms": 4521.180536597967,
+        "total_ms": 4533.911477774382,
+        "rounds": 42,
+        "candidates": 67862,
+        "audit_calls": 294,
+        "metrics": {}
+      },
+      "treatments": {
+        "serial": {
+          "prepare_ms": 15.419922769069672,
+          "search_ms": 4372.318040579557,
+          "total_ms": 4387.737963348627,
+          "rounds": 42,
+          "candidates": 67862,
+          "audit_calls": 294,
+          "metrics": {
+            "stage": 2,
+            "threads": 1,
+            "audit_calls": 294,
+            "cache_hits": 1540485,
+            "cache_misses": 6136,
+            "inactive_skips": 896411,
+            "actual_workers": 1
+          }
+        },
+        "parallel4": {
+          "prepare_ms": 13.141755014657974,
+          "search_ms": 4172.052778303623,
+          "total_ms": 4185.194533318281,
+          "rounds": 42,
+          "candidates": 67862,
+          "audit_calls": 294,
+          "metrics": {
+            "stage": 4,
+            "threads": 4,
+            "audit_calls": 294,
+            "cache_hits": 1540485,
+            "cache_misses": 6136,
+            "inactive_skips": 896411,
+            "actual_workers": 4
+          }
+        }
+      }
+    }
+  ],
+  "state_median_ms": {
+    "4127": {
+      "baseline": {
+        "prepare_ms": 12.46459037065506,
+        "search_ms": 215.65475687384605,
+        "total_ms": 228.1193472445011
+      },
+      "serial": {
+        "prepare_ms": 12.455176562070847,
+        "search_ms": 106.70631378889084,
+        "total_ms": 119.16149035096169
+      },
+      "parallel4": {
+        "prepare_ms": 12.31805607676506,
+        "search_ms": 120.85599824786186,
+        "total_ms": 133.17405432462692
+      }
+    },
+    "4254": {
+      "baseline": {
+        "prepare_ms": 12.234192341566086,
+        "search_ms": 149.27839115262032,
+        "total_ms": 161.6244800388813
+      },
+      "serial": {
+        "prepare_ms": 12.276764959096909,
+        "search_ms": 74.199378490448,
+        "total_ms": 86.4761434495449
+      },
+      "parallel4": {
+        "prepare_ms": 12.424346059560776,
+        "search_ms": 84.7165435552597,
+        "total_ms": 97.14088961482048
+      }
+    },
+    "4889": {
+      "baseline": {
+        "prepare_ms": 12.325584888458252,
+        "search_ms": 187.5217668712139,
+        "total_ms": 199.84735175967216
+      },
+      "serial": {
+        "prepare_ms": 12.30628788471222,
+        "search_ms": 94.09357607364655,
+        "total_ms": 106.46679624915123
+      },
+      "parallel4": {
+        "prepare_ms": 12.304417788982391,
+        "search_ms": 104.50248047709465,
+        "total_ms": 116.77508801221848
+      }
+    },
+    "4001": {
+      "baseline": {
+        "prepare_ms": 12.577798217535019,
+        "search_ms": 4414.865348488092,
+        "total_ms": 4427.401587367058
+      },
+      "serial": {
+        "prepare_ms": 12.741073966026306,
+        "search_ms": 4052.8457164764404,
+        "total_ms": 4068.9769871532917
+      },
+      "parallel4": {
+        "prepare_ms": 12.619942426681519,
+        "search_ms": 4063.456315547228,
+        "total_ms": 4076.0762579739094
+      }
+    }
+  },
+  "group_mean_median_ms": {
+    "all_four": {
+      "baseline": {
+        "prepare_ms": 12.400541454553604,
+        "search_ms": 1241.8300658464432,
+        "total_ms": 1254.248191602528
+      },
+      "serial": {
+        "prepare_ms": 12.44482584297657,
+        "search_ms": 1081.9612462073565,
+        "total_ms": 1095.2703543007374
+      },
+      "parallel4": {
+        "prepare_ms": 12.416690587997437,
+        "search_ms": 1093.382834456861,
+        "total_ms": 1105.7915724813938
+      }
+    },
+    "ordinary_three": {
+      "baseline": {
+        "prepare_ms": 12.341455866893133,
+        "search_ms": 184.15163829922676,
+        "total_ms": 196.53039301435152
+      },
+      "serial": {
+        "prepare_ms": 12.346076468626658,
+        "search_ms": 91.66642278432846,
+        "total_ms": 104.03481001655261
+      },
+      "parallel4": {
+        "prepare_ms": 12.348939975102743,
+        "search_ms": 103.35834076007207,
+        "total_ms": 115.69667731722195
+      }
+    },
+    "audit": {
+      "baseline": {
+        "prepare_ms": 12.577798217535019,
+        "search_ms": 4414.865348488092,
+        "total_ms": 4427.401587367058
+      },
+      "serial": {
+        "prepare_ms": 12.741073966026306,
+        "search_ms": 4052.8457164764404,
+        "total_ms": 4068.9769871532917
+      },
+      "parallel4": {
+        "prepare_ms": 12.619942426681519,
+        "search_ms": 4063.456315547228,
+        "total_ms": 4076.0762579739094
+      }
+    }
+  },
+  "parallel_selection": {
+    "ordinary_total_time_reduction_pct": -11.209581964742243,
+    "no_ordinary_state_slowdown": false,
+    "passes_predeclared_criterion": false,
+    "default": "serial",
+    "physical_workers": 1,
+    "parallel_available_experimental": true
+  },
+  "limitation": "Three correlated ordinary archived states plus one audit state; more workers use more CPU. Offline prepare+search only, not native end-to-end latency."
+}

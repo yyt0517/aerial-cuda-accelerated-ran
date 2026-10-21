@@ -1,0 +1,100 @@
+diff --git a/cuMAC/examples/network.cu b/cuMAC/examples/network.cu
+index 2cb8b02..396c905 100644
+--- a/cuMAC/examples/network.cu
++++ b/cuMAC/examples/network.cu
+@@ -891,6 +891,14 @@ static inline int sanitizeLayerCount(int layerCount, int maxLayers)
+      netData->scenarioUma = 1; // UMa
+      netData->carrierFreq = 2.5; // carrier frequency in unit of GHz
+      netData->sfStd = 3.0; // shadow fading STD in dB
++     if (const char* value = std::getenv("CUMAC_SHADOW_FADING_STD_DB")) {
++        char* end = nullptr;
++        const float parsed = std::strtof(value, &end);
++        if (end == value || *end != '\0' || !std::isfinite(parsed) || parsed <= 0.0f) {
++            throw std::runtime_error("CUMAC_SHADOW_FADING_STD_DB must be finite and positive");
++        }
++        netData->sfStd = parsed;
++     }
+      netData->noiseFloor = -98.9; // dBm
+      netData->bsHeight = 25;
+      netData->ueHeight = 1.5;
+@@ -4506,7 +4514,10 @@ void network::initStrongestCellAssociation()
+ 
+ void network::genLSFading()
+ {
+-    std::lognormal_distribution<float> ln_distribution(0.0, netData->sfStd);
++    const float shadowLnStd = netData->sfStd * std::log(10.0f) / 10.0f;
++    std::lognormal_distribution<float> ln_distribution(0.0, shadowLnStd);
++    printf("Shadow fading configuration: std_db=%.6f ln_std=%.9f\n",
++           netData->sfStd, shadowLnStd);
+     unsigned int shadowSeed = 0;
+     std::default_random_engine shadowRandomEngine;
+     std::default_random_engine* lsfRandomEngine = &randomEngine;
+@@ -4892,6 +4903,19 @@ void network::rrUeSelectionCpu(const int TTIidx)
+ 
+ void network::genFastFadingGpu(const int TTIidx)
+ {
++    // Fixed association is initialized by genLSFading/createAPI before the first
++    // channel. SVD must use the same serving link as SINR and scheduling.
++    if (fixCellAssociation && TTIidx == 0) {
++        for (int ue = 0; ue < nActiveUe; ++ue) {
++            int servingCount = 0;
++            for (int cell = 0; cell < nCell; ++cell) {
++                servingCount += cellAssocActUe[cell*nActiveUe + ue] != 0;
++            }
++            if (servingCount != 1) {
++                throw std::runtime_error("SVD channel requires one initialized serving cell per active UE");
++            }
++        }
++    }
+     if(m_fastFadingType == 1 || m_fastFadingType == 2) // GPU TDL
+     {
+         // optional: reset initial phase
+@@ -4917,11 +4941,13 @@ void network::genFastFadingGpu(const int TTIidx)
+     }
+     
+     if (DL == 1) { // DL
+-        genChann4TrKernel<<<netData->numThrdBlk, netData->numThrdPerBlk>>>(cellGrpPrmsGpu->estH_fr_actUe, cellGrpPrmsGpu->estH_fr_actUe_prd, netData->rxSigPowDBGpu, nPrbGrp, netData->numCell,
++        genChann4TrKernel<<<netData->numThrdBlk, netData->numThrdPerBlk>>>(cellGrpPrmsGpu->estH_fr_actUe, cellGrpPrmsGpu->estH_fr_actUe_prd,
++            fixCellAssociation ? cellGrpPrmsGpu->cellAssocActUe : nullptr, netData->rxSigPowDBGpu, nPrbGrp, netData->numCell,
+             nActiveUe, netData->numActiveUesPerCell, nBsAnt, nUeAnt, netData->rho, netData->rhoPrime, scalingFactor,
+             TTIidx, netData->states, 1 /*DL = 1*/, m_externFastFadingPrbgPtr);
+     } else { // UL
+-        genChann4TrKernel<<<netData->numThrdBlk, netData->numThrdPerBlk>>>(cellGrpPrmsGpu->estH_fr_actUe, cellGrpPrmsGpu->estH_fr_actUe_prd, netData->rxSigPowDBGpu_UL, nPrbGrp, netData->numCell,
++        genChann4TrKernel<<<netData->numThrdBlk, netData->numThrdPerBlk>>>(cellGrpPrmsGpu->estH_fr_actUe, cellGrpPrmsGpu->estH_fr_actUe_prd,
++            fixCellAssociation ? cellGrpPrmsGpu->cellAssocActUe : nullptr, netData->rxSigPowDBGpu_UL, nPrbGrp, netData->numCell,
+             nActiveUe, netData->numActiveUesPerCell, nBsAnt, nUeAnt, netData->rho, netData->rhoPrime, scalingFactor,
+             TTIidx, netData->states, 0 /*DL = 0*/, m_externFastFadingPrbgPtr);
+     }
+@@ -4956,6 +4982,7 @@ __global__ void init_curand(unsigned int t_seed, int id_offset, curandState *sta
+ 
+ __global__ void genChann4TrKernel(cuComplex*       channMatGpu, 
+                                   cuComplex*       channMatPrdGpu,
++                                  const uint8_t*   servingCellAssoc,
+                                   float*           rxSigPowDBGpu,
+                                   const int        nPrbGrp, 
+                                   const int        numCell, 
+@@ -5018,8 +5045,10 @@ __global__ void genChann4TrKernel(cuComplex*       channMatGpu,
+             channMatGpu[currChannIdx].x = channMatGpu_real;
+             channMatGpu[currChannIdx].y = channMatGpu_imag;
+ 
+-            int asscCellIdx = floor(static_cast<float>(currUeIdx)/static_cast<float>(numActUePerCell));
+-            if (asscCellIdx == cIdx) {
++            const bool isServing = servingCellAssoc != nullptr
++                ? servingCellAssoc[cIdx*totNumActUe + currUeIdx] != 0
++                : currUeIdx/numActUePerCell == cIdx;
++            if (isServing) {
+                 channMatPrdGpu[currUeIdx*nPrbGrp*nBsUeAntPrd + prgIdx*nBsUeAntPrd + eIdx].x = channMatGpu_real;
+                 channMatPrdGpu[currUeIdx*nPrbGrp*nBsUeAntPrd + prgIdx*nBsUeAntPrd + eIdx].y = channMatGpu_imag;
+             }
+diff --git a/cuMAC/examples/network.h b/cuMAC/examples/network.h
+index 04d9f43..ac73954 100644
+--- a/cuMAC/examples/network.h
++++ b/cuMAC/examples/network.h
+@@ -408,6 +408,7 @@ namespace cumac {
+ 
+  __global__ void genChann4TrKernel(cuComplex*       channMatGpu, 
+                                    cuComplex*       channMatPrdGpu,
++                                   const uint8_t*   servingCellAssoc,
+                                    float*           rxSigPowDBGpu,
+                                    const int        nPrbGrp, 
+                                    const int        numCell, 

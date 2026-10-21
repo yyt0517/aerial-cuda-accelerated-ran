@@ -25,3 +25,8 @@ training/stageb_hgraph/runs/**
 !training/stageb_hgraph/runs/
 !training/stageb_hgraph/runs/README.md
 training/stageb_hgraph/exports/
+
+# Python bytecode and generated delivery bundles (evidence lives in Doc/evidence/)
+__pycache__/
+*.py[cod]
+/deliverables/

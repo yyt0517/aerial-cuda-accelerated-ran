@@ -6,44 +6,44 @@
 
 - 本文档描述当前仓库里已经落地、并且仍与代码一致的 GNN+RL 实现。
 - 它已经吸收此前拆分的 offline、replay、RL I/O、online protocol 和 bridge 设计说明。
-- 当前基线场景请先看 [`Doc/current_stageB_effective_configuration.md`](/home/oai2/aerial-cuda-accelerated-ran/Doc/current_stageB_effective_configuration.md)。
-- `2026-04-08` 已重新对照 [`OnlineObservationTypes.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineObservationTypes.h)、[`OnlineFeatureCodec.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp) 与 [`OnlineObservationExtrasBuilder.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h) 复核当前输入特征文档；`cell/ue/prg/edge` 维度仍是 `5/12/8/2`，字段顺序与代码一致。
+- 当前基线场景请先看 [`Doc/current_stageB_effective_configuration.md`](../../current_stageB_effective_configuration.md)。
+- `2026-04-08` 已重新对照 [`OnlineObservationTypes.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineObservationTypes.h)、[`OnlineFeatureCodec.cpp`](../../../cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp) 与 [`OnlineObservationExtrasBuilder.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h) 复核当前输入特征文档；`cell/ue/prg/edge` 维度仍是 `5/12/8/2`，字段顺序与代码一致。
 
 ## 2. 当前代码地图
 
 ### 2.1 仿真与数据导出
 
 - Stage-B 主入口：
-  - [`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/multiCellSchedulerUeSelection/main.cpp)
+  - [`cuMAC/examples/multiCellSchedulerUeSelection/main.cpp`](../../../cuMAC/examples/multiCellSchedulerUeSelection/main.cpp)
 - replay 导出：
-  - [`cuMAC/examples/rlReplay/ReplayWriter.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/rlReplay/ReplayWriter.cpp)
+  - [`cuMAC/examples/rlReplay/ReplayWriter.cpp`](../../../cuMAC/examples/rlReplay/ReplayWriter.cpp)
 - online bridge：
-  - [`cuMAC/examples/onlineTrainBridge/OnlineProtocol.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineProtocol.h)
-  - [`cuMAC/examples/onlineTrainBridge/OnlineBridgeServer.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineBridgeServer.cpp)
-  - [`cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp)
+  - [`cuMAC/examples/onlineTrainBridge/OnlineProtocol.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineProtocol.h)
+  - [`cuMAC/examples/onlineTrainBridge/OnlineBridgeServer.cpp`](../../../cuMAC/examples/onlineTrainBridge/OnlineBridgeServer.cpp)
+  - [`cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp`](../../../cuMAC/examples/onlineTrainBridge/OnlineFeatureCodec.cpp)
 
 ### 2.2 训练与部署
 
 - dataset：
-  - [`training/gnnrl/dataset.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/dataset.py)
+  - [`training/gnnrl/dataset.py`](../../../training/gnnrl/dataset.py)
 - BC：
-  - [`training/gnnrl/bc_train.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/bc_train.py)
+  - [`training/gnnrl/bc_train.py`](../../../training/gnnrl/bc_train.py)
 - offline PPO：
-  - [`training/gnnrl/ppo_train.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/ppo_train.py)
+  - [`training/gnnrl/ppo_train.py`](../../../training/gnnrl/ppo_train.py)
 - online PPO：
-  - [`training/gnnrl/ppo_online_train.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/ppo_online_train.py)
+  - [`training/gnnrl/ppo_online_train.py`](../../../training/gnnrl/ppo_online_train.py)
 - online client：
-  - [`training/gnnrl/aerial_env.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/aerial_env.py)
-  - [`training/gnnrl/online_protocol.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/online_protocol.py)
+  - [`training/gnnrl/aerial_env.py`](../../../training/gnnrl/aerial_env.py)
+  - [`training/gnnrl/online_protocol.py`](../../../training/gnnrl/online_protocol.py)
 - 模型：
-  - [`training/gnnrl/model.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/model.py)
+  - [`training/gnnrl/model.py`](../../../training/gnnrl/model.py)
 - 导出 ONNX：
-  - [`training/gnnrl/export_onnx.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/export_onnx.py)
+  - [`training/gnnrl/export_onnx.py`](../../../training/gnnrl/export_onnx.py)
 - 候选 checkpoint 主实验评测：
-  - [`training/gnnrl/eval_candidate_checkpoints.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/eval_candidate_checkpoints.py)
+  - [`training/gnnrl/eval_candidate_checkpoints.py`](../../../training/gnnrl/eval_candidate_checkpoints.py)
 - C++ 推理落地：
-  - [`cuMAC/examples/customScheduler/GnnRlPolicyRuntime.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/customScheduler/GnnRlPolicyRuntime.cpp)
-  - [`cuMAC/examples/customScheduler/CustomUePrgScheduler.cpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/customScheduler/CustomUePrgScheduler.cpp)
+  - [`cuMAC/examples/customScheduler/GnnRlPolicyRuntime.cpp`](../../../cuMAC/examples/customScheduler/GnnRlPolicyRuntime.cpp)
+  - [`cuMAC/examples/customScheduler/CustomUePrgScheduler.cpp`](../../../cuMAC/examples/customScheduler/CustomUePrgScheduler.cpp)
 
 ## 3. 当前训练约束
 
@@ -126,7 +126,7 @@
 11. `recent_scheduled_ratio`
 12. `recent_goodput_deficit_norm`
 
-其中后 4 维来自 [`OnlineObservationExtrasBuilder.h`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h)：
+其中后 4 维来自 [`OnlineObservationExtrasBuilder.h`](../../../cuMAC/examples/onlineTrainBridge/OnlineObservationExtrasBuilder.h)：
 
 - `hol_delay_ms`
   - 当前 HOL packet 的年龄，单位毫秒
@@ -470,14 +470,14 @@ struct StepReqHeader {
 
 对应 Python 解析：
 
-- [`training/gnnrl/online_protocol.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/online_protocol.py)
-- [`training/gnnrl/aerial_env.py`](/home/oai2/aerial-cuda-accelerated-ran/training/gnnrl/aerial_env.py)
+- [`training/gnnrl/online_protocol.py`](../../../training/gnnrl/online_protocol.py)
+- [`training/gnnrl/aerial_env.py`](../../../training/gnnrl/aerial_env.py)
 
 ## 7. 当前推荐工作流
 
 ## 7.1 前置条件
 
-推荐优先使用 [`cuMAC/scripts/run_stageB_online_train.sh`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/scripts/run_stageB_online_train.sh)。
+推荐优先使用 [`cuMAC/scripts/run_stageB_online_train.sh`](../../../cuMAC/scripts/run_stageB_online_train.sh)。
 
 原因：
 
@@ -694,8 +694,8 @@ build.$(uname -m)/cuMAC/examples/multiCellSchedulerUeSelection/multiCellSchedule
 
 当前实现现状：
 
-- [`cuMAC/examples/trafficModel/trafficFlows.hpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/trafficModel/trafficFlows.hpp) 里只在队列容量超过 `MAX_BYTES` 时丢弃新到达流量
-- [`cuMAC/examples/trafficModel/trafficGenerator.hpp`](/home/oai2/aerial-cuda-accelerated-ran/cuMAC/examples/trafficModel/trafficGenerator.hpp) 里会记录 packet 的 `arrival_tti`
+- [`cuMAC/examples/trafficModel/trafficFlows.hpp`](../../../cuMAC/examples/trafficModel/trafficFlows.hpp) 里只在队列容量超过 `MAX_BYTES` 时丢弃新到达流量
+- [`cuMAC/examples/trafficModel/trafficGenerator.hpp`](../../../cuMAC/examples/trafficModel/trafficGenerator.hpp) 里会记录 packet 的 `arrival_tti`
 - packet 被服务完成时统计 `packet_delay_*`
 - packet 若超过配置 TTL，则会在 traffic model 中直接过期并累计到 `expired_packets / expired_bytes`
 

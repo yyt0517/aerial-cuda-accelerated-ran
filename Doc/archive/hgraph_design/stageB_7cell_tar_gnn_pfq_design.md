@@ -1,8 +1,10 @@
-# Stage-B HGraphPPO Training Plan
+# Stage-B HGraphPPO Training Plan（历史设计与训练日志）
 
-> 定位：本文是 HGraphPPO / 7cell 迁移的设计与历史训练日志。当前实验结论、模型排序和报告口径以 [`stageB_boundary_intelligent_algorithm_experiment_report.md`](./stageB_boundary_intelligent_algorithm_experiment_report.md) 为准。
+> **历史归档，不是当前执行计划。** 本文保留早期 HGraph/7cell 迁移设计及 v5–v19 等训练流水中的独有机制、参数扫描和负结果。2026-09-20 后续路线及 2026-10-20 物理/时序修正之后，文中旧结果已退出当前性能证据链；正文中的“当前”“下一步”“active”和 checkpoint 推荐均仅代表记录时状态。
+>
+> 当前进展见 `Doc/stageB_current_progress.md`，旧 v9c–v19 整理见 `Doc/archive/hgraph_experiments/stageB_hgraph_v9c_v19_retrospective.md`。旧 AI post-1000 与 PFQ full-run 的比较不是同窗口处理效应，不能用于证明稳态胜出。保留原始记录不代表认可其中已失效的结论。
 
-本文是 Stage-B 智能调度当前执行主文档。7-cell RRQ/PFQ 压力扫描继续保留为长期目标背景，但 2026-06-22 之后的实际训练入口先固定在
+以下为当时的 Stage-B 智能调度执行记录。7-cell RRQ/PFQ 压力扫描继续保留为长期目标背景，但 2026-06-22 之后的实际训练入口先固定在
 `3cell + ISD1000 + coop_boundary + strongest association + no explicit shadow_seed`。旧 `coop_center/ISD500` 和固定 `shadow_seed=41` 的结果只作为机制参考，不再作为 HGraphPPO 的训练 gate。
 
 ## 1. 当前决策
@@ -227,7 +229,7 @@ weighted delay = 1.074 ms
 候选 checkpoint：
 
 | iter | goodput | TB err | R_pkt | R_pkt per-packet mean | weighted delay | hard gate | 备注 |
-|---:|---:|---:|---:|---:|---:|---:|
+|---:|---:|---:|---:|---:|---:|---:|---|
 | 4 | `1543.920` | `0.10880` | `22.495` | `31.134` | `1.081 ms` | pass | early stable |
 | 8 | `1544.071` | `0.11408` | `22.980` | `31.596` | `1.054 ms` | pass | rate-preserving |
 | 12 | `1546.982` | `0.10696` | `21.919` | `30.829` | `1.107 ms` | pass | goodput leaning |
