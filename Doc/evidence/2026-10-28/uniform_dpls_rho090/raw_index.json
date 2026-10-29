@@ -1,0 +1,482 @@
+[
+  {
+    "seed": 41,
+    "arm": "pfq0",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed41_pfq0_20000",
+    "new_native_run": false,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "8019c69773f1bce06eb3b015cab340f1e357adae938f3b5579c47ba3aafd0602"
+      },
+      "launch.json": {
+        "bytes": 7856,
+        "sha256": "165b9f4075e7e5544107808ffef7bb2ce55b65dd4bcadb2884f3952d4637c3c3"
+      },
+      "execution.json": {
+        "bytes": 4591,
+        "sha256": "21cc47213e571ebd5332859ebf6b6d94e5dd6c6979119f83470785e4129fbd97"
+      },
+      "validation.json": {
+        "bytes": 2282,
+        "sha256": "cd182295bd855d7623ab4921cd5fdb1d5bef113e72a14e1b396c5df4228b204b"
+      },
+      "physical_validation.json": {
+        "bytes": 1825,
+        "sha256": "0a941bd30a160d3a1eaf212eb5b602aebbebd557c8a4c12e77500144bf4fc9b9"
+      },
+      "prefix.npz": {
+        "bytes": 9290675,
+        "sha256": "9d666aa40327b40b541bcdca3beccb73e1394ba009e31cebbd3c828bb3b04f76"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24783474,
+        "sha256": "00122d8d66a15e9136213c20b1918d58025d828a7457c5c48817f838cddfd3bd"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47932727,
+        "sha256": "7a67cadc539294f1c0ca7d2fc2be52660566ba6a7436c3ea14b8d01513fd9e82"
+      },
+      "ue_topology.csv": {
+        "bytes": 2836,
+        "sha256": "180c7802648d9f1505022ab06e079473ef7a72cee2a4d133e20e6a87e1b651ea"
+      },
+      "states.pt": {
+        "bytes": 5232999,
+        "sha256": "f8f849cfaf8d12a876ae37cb2ba48516b36113d433419377aa179346c16f7464"
+      }
+    }
+  },
+  {
+    "seed": 41,
+    "arm": "current_rho090",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed41_current_20000",
+    "new_native_run": true,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "6d5973a64ffefc10896b8e3e9385449515af0773ec7e20e3b95d4ea046a4583f"
+      },
+      "launch.json": {
+        "bytes": 9238,
+        "sha256": "601ae9d63b188f8e8c18f184f2904694486a04bc4c3831e30224042494db7524"
+      },
+      "execution.json": {
+        "bytes": 5872,
+        "sha256": "24603e0604faf02e5f6e3ab29fd95a9e7a9b366388923854f8c8b789df38adb3"
+      },
+      "validation.json": {
+        "bytes": 2284,
+        "sha256": "abdb430c23780cabc328819fbaad07c7ddea5ce9a9f01024bffc556e4a81fdf9"
+      },
+      "physical_validation.json": {
+        "bytes": 1823,
+        "sha256": "4261903f4b9c59a5126962b70a56d157b1daf7264258698da3fe5feb431ce274"
+      },
+      "prefix.npz": {
+        "bytes": 9355222,
+        "sha256": "eb118d269c510154105c1180678f69f73f933df72073cc54b55730981698da8b"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24783474,
+        "sha256": "00122d8d66a15e9136213c20b1918d58025d828a7457c5c48817f838cddfd3bd"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47901329,
+        "sha256": "077b19b2bf470c16783b547081b8eee9bdb29a6ba6fbc63cd3b6a27a624d8d0c"
+      },
+      "ue_topology.csv": {
+        "bytes": 2836,
+        "sha256": "180c7802648d9f1505022ab06e079473ef7a72cee2a4d133e20e6a87e1b651ea"
+      },
+      "states.pt": {
+        "bytes": 5234407,
+        "sha256": "cf96f9a60153cc73f95ef486ba91d282b316907000733bd58431fe253620e39e"
+      }
+    }
+  },
+  {
+    "seed": 42,
+    "arm": "pfq0",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed42_pfq0_20000",
+    "new_native_run": false,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "001cb761169fc9dbc4d8777dd4e9cb12bb0c4cc5dd7a72d542159aff86db645a"
+      },
+      "launch.json": {
+        "bytes": 7856,
+        "sha256": "e297ea41d766f8436d8cc8ec9d2dc35ab4c3f7c28f7c16e17436537c44324d84"
+      },
+      "execution.json": {
+        "bytes": 4592,
+        "sha256": "8c0d5e315587c428e10f2ba6f44a9753702c940de783dbca7ebd8138bd5b4e56"
+      },
+      "validation.json": {
+        "bytes": 2281,
+        "sha256": "7bc45d89cb5b4ad58fdd3fc9842f7ffc7c0c0dd28c1dd5c0f44e9898923b657a"
+      },
+      "physical_validation.json": {
+        "bytes": 1824,
+        "sha256": "f12927ed80f08b10b70bbf7dcf21f06f86bf3574a4cb4b269b8b9505103f23da"
+      },
+      "prefix.npz": {
+        "bytes": 9301745,
+        "sha256": "d2302234ef8e866f10001a51f518ee1c24206308537187a17a5627be7cff610a"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24768404,
+        "sha256": "67393fd984f8d2c2d840e9803e7de6a22e91ac3677db73c80c673e83483bec3a"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47864031,
+        "sha256": "862f2f5c4b90186da80a70e7a384eb87100c048c075471cd18a98a6cfc64f4f1"
+      },
+      "ue_topology.csv": {
+        "bytes": 2830,
+        "sha256": "14e474cb934ebc97422d25598985b3b4898013085a9b07201ddcd94bddc06fb3"
+      },
+      "states.pt": {
+        "bytes": 5222183,
+        "sha256": "e117760eb3dc4699a2d7c30d086246750adb6bb14cfc6523bc2fe032fbf46faf"
+      }
+    }
+  },
+  {
+    "seed": 42,
+    "arm": "current_rho090",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed42_current_20000",
+    "new_native_run": true,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "7effcea14c51cb2d4f46271b11d5a55056368551a1b72da92c0660efb63029a3"
+      },
+      "launch.json": {
+        "bytes": 9238,
+        "sha256": "304e031d19724e83cc81e2be05b8c1b2fbc91ec770c27a401a4041d8f26fd8fd"
+      },
+      "execution.json": {
+        "bytes": 5871,
+        "sha256": "6270839f4e57005d5f1ee1c00eaa350fbb0a9b8f356c741d3a561f2db0d713e4"
+      },
+      "validation.json": {
+        "bytes": 2286,
+        "sha256": "8bdb64dac3ed4b8a8757d60d0d67ae677ebde4d9459c9146cb16e523f8114a10"
+      },
+      "physical_validation.json": {
+        "bytes": 1825,
+        "sha256": "ffe98aa4fa47cdfbf3a0c52a5af43df1fbcb4261983d0f69909388ab2368226e"
+      },
+      "prefix.npz": {
+        "bytes": 9316583,
+        "sha256": "74634deee2f5f818d7eb7284a6201f15442dbb0d9733aba569dd3f9eddfaad6b"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24768404,
+        "sha256": "67393fd984f8d2c2d840e9803e7de6a22e91ac3677db73c80c673e83483bec3a"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47864640,
+        "sha256": "8732676eef8a91b880f166a5272d069d4a4f8f62c55d3d050c420fc565f0cd60"
+      },
+      "ue_topology.csv": {
+        "bytes": 2830,
+        "sha256": "14e474cb934ebc97422d25598985b3b4898013085a9b07201ddcd94bddc06fb3"
+      },
+      "states.pt": {
+        "bytes": 5223591,
+        "sha256": "4d8447b19ebc1beb6ad379df4895be70512889670d0d4d1fc27d65327a1e7bd5"
+      }
+    }
+  },
+  {
+    "seed": 43,
+    "arm": "pfq0",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed43_pfq0_20000",
+    "new_native_run": false,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "51810ee75a5e6fb1353d0a528469f66f4a3c734275e7e3862bbdf93211fca2cf"
+      },
+      "launch.json": {
+        "bytes": 7856,
+        "sha256": "f6803afc148138fbb4d0dc7032c0b09ff9c5faa411e1f5811b72470d4d4f45d8"
+      },
+      "execution.json": {
+        "bytes": 4592,
+        "sha256": "4bc180c78494acb5d4ae874377022b550c20538839b34756179d3ea431223f2c"
+      },
+      "validation.json": {
+        "bytes": 2281,
+        "sha256": "309132fff15de1eabe5063588ac8af2bc2b49e7947fa0f34754ca6d5cd1ce8dc"
+      },
+      "physical_validation.json": {
+        "bytes": 1824,
+        "sha256": "7e178f0e53af993b9af565e9e71f66f30603b5c637f43de4809c1480d95cd066"
+      },
+      "prefix.npz": {
+        "bytes": 9232486,
+        "sha256": "e03adfd6d1d51b5c1d34f99f43ef5ba9d9676e29a13b0e8d661901389285e74a"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24794004,
+        "sha256": "dfb4b3fc91add3a5dd394ac2f9cc8e4248657e3d7e776fb60f6b539e0c4a839e"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47917940,
+        "sha256": "1e3a200fb77bebf18bd2a3dfa84bf95f0e59b0974e82516b4edc56c434681488"
+      },
+      "ue_topology.csv": {
+        "bytes": 2829,
+        "sha256": "d9997e8c9148c2af355f00327d28d329b211878f4dfccb14b2312e47b3039a98"
+      },
+      "states.pt": {
+        "bytes": 5233255,
+        "sha256": "cf1dfbfe0899f6547ef2a70f606f80519e114a3a78213159788a1cb4243baafc"
+      }
+    }
+  },
+  {
+    "seed": 43,
+    "arm": "current_rho090",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed43_current_20000",
+    "new_native_run": true,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "004aab369cc4b37c0db6209cd8c7d7fb679d8ac9884ee96c68c6fe47b2150126"
+      },
+      "launch.json": {
+        "bytes": 9238,
+        "sha256": "0e05899779ad5b550b7ff15aa671011ef9c7f1184244bbf2801dc55683d5b2ed"
+      },
+      "execution.json": {
+        "bytes": 5872,
+        "sha256": "f6941d60500381d4536650362a77d0fca5bf5acd17b5c21eaa48221185f7483d"
+      },
+      "validation.json": {
+        "bytes": 2282,
+        "sha256": "5a74055cc7d57ef70c64505121decd4d10912ee3f4190edd3510b9e843e22e28"
+      },
+      "physical_validation.json": {
+        "bytes": 1821,
+        "sha256": "2b8dafa0a98053515f93fe08c2000c86467a709af1cc90ce2c04fe2be0408464"
+      },
+      "prefix.npz": {
+        "bytes": 9317043,
+        "sha256": "bed594684480940e90f3dfea0444546bbb09b8b9a067a82dbd6664cd588a154f"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24794004,
+        "sha256": "dfb4b3fc91add3a5dd394ac2f9cc8e4248657e3d7e776fb60f6b539e0c4a839e"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47913333,
+        "sha256": "d358c2b2d2ae805b1507c90f706c59fd8ccdab7d5667b7855592a13e89392e09"
+      },
+      "ue_topology.csv": {
+        "bytes": 2829,
+        "sha256": "d9997e8c9148c2af355f00327d28d329b211878f4dfccb14b2312e47b3039a98"
+      },
+      "states.pt": {
+        "bytes": 5234599,
+        "sha256": "27d9ae03c6b9ba6a151eaf616739a0a12e55dec077222971322ddf7ba1d305f8"
+      }
+    }
+  },
+  {
+    "seed": 44,
+    "arm": "pfq0",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed44_pfq0_20000",
+    "new_native_run": false,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "60fa1a2bae44d01bd95b39db1cf26c424ab6a64ce5d63681de714ee291cc2ae9"
+      },
+      "launch.json": {
+        "bytes": 7856,
+        "sha256": "652fe567077cc594b39912b78c5d97cf12de397402adb4efd402794869bbdd64"
+      },
+      "execution.json": {
+        "bytes": 4592,
+        "sha256": "35c9d369f9030d3ec3a723f96f0690d8326ccf50ae92ceada73ea5fa38af3760"
+      },
+      "validation.json": {
+        "bytes": 2281,
+        "sha256": "d077a805e0c2869246eaa3a32079dc7ec35e9e42fccb179814d72924ce988520"
+      },
+      "physical_validation.json": {
+        "bytes": 1824,
+        "sha256": "9e50d3024ac84a344f74896f09b8cb84b9bed5a38fdf6ba98e5b8006d0725d8d"
+      },
+      "prefix.npz": {
+        "bytes": 9301779,
+        "sha256": "f428630d9595e1fa2caebf57d706951f7a300138905cb10ae39e9ea85aaba8f9"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24771770,
+        "sha256": "d94b3fac007972dcaa4dec097e5643cd7769fefadbccd0f28306af57598ba362"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47869951,
+        "sha256": "b7d3ac86e44ee04aa7d8e465364c2f5f980ab479da3ca044409261d9446a6dd6"
+      },
+      "ue_topology.csv": {
+        "bytes": 2829,
+        "sha256": "90b5a180998724dd9fb1061b7a2f1232417be0e4206348b3e5efd7c2c957eca7"
+      },
+      "states.pt": {
+        "bytes": 5230183,
+        "sha256": "684608ccb8bd9be78747192a72e539b21e1155c2f500b60f1c3773f5498320b0"
+      }
+    }
+  },
+  {
+    "seed": 44,
+    "arm": "current_rho090",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed44_current_20000",
+    "new_native_run": true,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "e5b2d83364b1c440bfde87a947c64c2342edeec1ff4dd17a6410bb97748ff35b"
+      },
+      "launch.json": {
+        "bytes": 9238,
+        "sha256": "d4afd668a1658d0614f91332a9c085f3730d2c1aeceb22ee093fb1986df32b31"
+      },
+      "execution.json": {
+        "bytes": 5871,
+        "sha256": "3d6bac02455b3d7452fa667f21ea26a6034032f0bef691b26376b01f59c0e96e"
+      },
+      "validation.json": {
+        "bytes": 2288,
+        "sha256": "269ce155d14b7aaeeb572d32b102637cc52b366cfa277c0b2fd178151b1d4fe4"
+      },
+      "physical_validation.json": {
+        "bytes": 1827,
+        "sha256": "8678c5afc2d5cef848aca97025bca2d65a29a7adb6c7f02fe66586a26f9621c4"
+      },
+      "prefix.npz": {
+        "bytes": 9317165,
+        "sha256": "673c3f458b76f4221177c1a56cff4a2967448328fc6dfabb0bd8a7cee73cc0c2"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24771770,
+        "sha256": "d94b3fac007972dcaa4dec097e5643cd7769fefadbccd0f28306af57598ba362"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47870816,
+        "sha256": "d83fa990b6f70b87a59bf113bb5bba6026f113641145d8406a51c00be7901361"
+      },
+      "ue_topology.csv": {
+        "bytes": 2829,
+        "sha256": "90b5a180998724dd9fb1061b7a2f1232417be0e4206348b3e5efd7c2c957eca7"
+      },
+      "states.pt": {
+        "bytes": 5231335,
+        "sha256": "0070b75f805cad2dddcea7f89c054b8503faac9d56bd9562508ebfa70169023e"
+      }
+    }
+  },
+  {
+    "seed": 45,
+    "arm": "pfq0",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed45_pfq0_20000",
+    "new_native_run": false,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "47dbf0f3b9d91d783f50d9a695fd2c7e46cbed61bcc410aa9fce4d352375a419"
+      },
+      "launch.json": {
+        "bytes": 7856,
+        "sha256": "eed8f666b60afd8d6defc2a7fce08541592f83cbac555124b5130057a07ec239"
+      },
+      "execution.json": {
+        "bytes": 4592,
+        "sha256": "3896bec6904140974c0e4ea118afbb245967fc3e2312a0380b955ddc06f644aa"
+      },
+      "validation.json": {
+        "bytes": 2280,
+        "sha256": "1dbdb7f12fb7d7222a1ae4eb02d07bfc5d38dae94c2bc5e2dde4ff4de09f8f1a"
+      },
+      "physical_validation.json": {
+        "bytes": 1823,
+        "sha256": "ab12ce79f0fcb158bdb4f99fee7b196bf707ee31b9a26e2689d34ecf499ff882"
+      },
+      "prefix.npz": {
+        "bytes": 9290244,
+        "sha256": "1977564dfc23d1a089042f69a91049262d1e361d827e1cd4f72d7d65b058fdb4"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24786097,
+        "sha256": "7779aebabbe205c1e67fb3499e26830ca38ffb99e8ecf8cc6774bc4aab1ec1a8"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47897756,
+        "sha256": "c65d8b8cd59b11bac3f2678008e649f8f4ecee08d4af6fca2d9363ce48682911"
+      },
+      "ue_topology.csv": {
+        "bytes": 2839,
+        "sha256": "e7d7803885ec0d808db9736c56375995b21e40192d0280c9f5e673716ca5fbae"
+      },
+      "states.pt": {
+        "bytes": 5230055,
+        "sha256": "844fceba55467156adff6fef6dc5e24e88e833bace8061a4716b2883441e2281"
+      }
+    }
+  },
+  {
+    "seed": 45,
+    "arm": "current_rho090",
+    "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed45_current_20000",
+    "new_native_run": true,
+    "files": {
+      "metrics.bin": {
+        "bytes": 155404800,
+        "sha256": "e060242d4743ce444d8e865fb027bc1270bbc205b1f9366577e71ef84b31822b"
+      },
+      "launch.json": {
+        "bytes": 9238,
+        "sha256": "aa824d167c368c3a2569fe8c6cc4ea56d896c1cb9089df6b49f0093ae4f7e429"
+      },
+      "execution.json": {
+        "bytes": 5871,
+        "sha256": "bdbee9fe226b983b468bb517759ac73300e087ac221010c27ac6593e10fc9e04"
+      },
+      "validation.json": {
+        "bytes": 2283,
+        "sha256": "b31807126f06b9a9aa5d05c5aab2d958afbeef30ca7fdf383ab7d51e3dd93508"
+      },
+      "physical_validation.json": {
+        "bytes": 1822,
+        "sha256": "40386178f57d262bcdca6f3203a96658b6cb9fa545f440b3cfe1e16e86f5c49e"
+      },
+      "prefix.npz": {
+        "bytes": 9339930,
+        "sha256": "31969fca377fd8517190cc92c76636b32737406473aa4f77e79089b6b5c9b12f"
+      },
+      "traffic_offered_packets.csv": {
+        "bytes": 24786097,
+        "sha256": "7779aebabbe205c1e67fb3499e26830ca38ffb99e8ecf8cc6774bc4aab1ec1a8"
+      },
+      "packet_outcome_samples.csv": {
+        "bytes": 47898447,
+        "sha256": "6a5af78d9f748924d6de5dee02470db8dd5774e13a906e0400e04062c4ffdc75"
+      },
+      "ue_topology.csv": {
+        "bytes": 2839,
+        "sha256": "e7d7803885ec0d808db9736c56375995b21e40192d0280c9f5e673716ca5fbae"
+      },
+      "states.pt": {
+        "bytes": 5231271,
+        "sha256": "512a24b80c892d5cd8f3f97191a6dc1480685280f45600400461d82e1d09d4f4"
+      }
+    }
+  }
+]

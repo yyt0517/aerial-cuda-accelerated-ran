@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "primary_metrics_recomputed": 8,
+  "packet_cohort_rows_checked": 5760328,
+  "recomputed_pfq_metrics_match_original_five_seed_report": true,
+  "per_ue_totals_and_deadline_cdf_consistent": true,
+  "original_pfq_summary_sha256": "3542a24bd6e5965a9ab080d4ba02d500ed98c2a4f383080e1cc0173c233eb44e",
+  "raw_archives_decompressed_and_verified": 10,
+  "all_delivery_and_project_evidence_hashes_valid": true,
+  "source_sha256": "e05f3259bcf71b4e373a1f9106cfedaf76698be21b11d360a843bf7473a8ad81"
+}

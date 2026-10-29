@@ -1,0 +1,9 @@
+,neural_incumbent,neural_incumbent,neural_incumbent,neural_incumbent,neural_incumbent,neural_incumbent,neural_incumbent,neural_incumbent,neural_incumbent,physical_local_repair,physical_local_repair,physical_local_repair,physical_local_repair,physical_local_repair,physical_local_repair,physical_local_repair,physical_local_repair,physical_local_repair
+,queue,mcs,hol_ms,prgs,layers,dequeue,sinr_db,bler,expected,queue,mcs,hol_ms,prgs,layers,dequeue,sinr_db,bler,expected
+ue,,,,,,,,,,,,,,,,,,
+2,6624.0,10,2.5,2.0,4.0,5379.0,11.697693037655688,0.0,5379.0,6624.0,10,2.5,3.0,4.0,6624.0,10.355866495383015,0.0,6624.0
+5,4433.0,13,1.0,1.0,4.0,3521.0,12.229080366524308,0.7510267142075748,876.634939275129,4433.0,13,1.0,2.0,4.0,4433.0,12.432460775816956,0.3472001189470344,2893.8618727077965
+6,802577.0,6,161.0,1.0,4.0,1793.0,1.8864336087218243,1.0,0.0,802577.0,6,161.0,0.0,-1.0,0.0,-999.0,-1.0,0.0
+20,409517.0,11,98.0,0.0,-1.0,0.0,-999.0,-1.0,0.0,409517.0,11,98.0,1.0,4.0,2880.0,1.5318786507075108,1.0,0.0
+29,6150.0,12,2.0,2.0,3.0,4737.0,8.769662424221318,1.0,0.0,6150.0,12,2.0,1.0,4.0,3201.0,6.491242464854112,1.0,0.0
+30,15000.0,6,1.5,3.0,4.0,5379.0,2.1287406044513006,1.0,0.0,15000.0,6,1.5,2.0,4.0,3585.0,1.4530648498873338,1.0,0.0

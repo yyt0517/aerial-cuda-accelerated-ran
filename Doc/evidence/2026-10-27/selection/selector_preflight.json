@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "tti": 4001,
+      "draft_dequeue": 68458,
+      "rho100_original_selector_exact": true
+    },
+    {
+      "tti": 4100,
+      "draft_dequeue": 95838,
+      "rho100_original_selector_exact": true
+    },
+    {
+      "tti": 5000,
+      "draft_dequeue": 70393,
+      "rho100_original_selector_exact": true
+    }
+  ],
+  "no_model_loaded": true
+}

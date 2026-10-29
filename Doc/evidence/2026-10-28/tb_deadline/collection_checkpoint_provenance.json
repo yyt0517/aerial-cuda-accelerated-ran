@@ -1,0 +1,18 @@
+{
+  "initial_checkpoint": "deliverables/tb_joint_repair_20261027_train_v1/repair.npz",
+  "sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409",
+  "actual_pretrained_seeds": [
+    41,
+    42,
+    43
+  ],
+  "actual_checkpoint_selection_seeds": [
+    44,
+    45
+  ],
+  "collection_policies": [
+    "frozen previous neural repair",
+    "physical LNS without a neural checkpoint"
+  ],
+  "metadata_note": "Collection launch training_seeds/model_selection_seeds describe planned stage dataset splits, not new training of the frozen collector. Subsequent launches record checkpoint-specific splits."
+}

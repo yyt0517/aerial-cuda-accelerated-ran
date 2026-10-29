@@ -1,0 +1,12 @@
+{
+  "script_sha256": "19e68b04002b33929b06bd56ac7a3687e612ea543a2c0cb267408a84f541878f",
+  "checkpoint_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c",
+  "repeats": 5,
+  "paired_difference": "same feature cache, incremental sparse prefix state vs full prefix recomputation",
+  "timing": "alternating serial complete searches after native validation jobs finish",
+  "selection_seeds": [
+    48,
+    50
+  ],
+  "policy_change": false
+}

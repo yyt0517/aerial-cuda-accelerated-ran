@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "seed": 48,
+  "horizon": 4400,
+  "reference": "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural",
+  "cached": "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural",
+  "all_native_inputs_actions_bytes_and_packets_exact": true,
+  "all_recorded_search_work_exact": true,
+  "metrics": {
+    "seed": 48,
+    "arm": "risk_neural",
+    "measured_ttis": 2000,
+    "goodput_mbps": 1307.75788,
+    "ue_goodput_p5_mbps": 34.672776,
+    "ue_goodput_jain": 0.998807380935636,
+    "dequeue_bytes": 174275995,
+    "failed_bytes": 10806260,
+    "expired_bytes": 0,
+    "tb_bler": 0.09107495818762354,
+    "cohort_packets": 57697,
+    "censored_packets": 0,
+    "start_backlog_bytes": 3122877,
+    "end_backlog_bytes": 1937882,
+    "complete_success_pct": 90.06707454460371,
+    "expiry_pct": 0.0,
+    "full_payload_mbps": 1247.184,
+    "success_delay_mean_ms": 14.077444867798176,
+    "success_delay_p95_ms": 137.0,
+    "outcome_mean_ms": 14.069206371215142
+  },
+  "exact_per_decision_network_counters": [],
+  "exact_total_network_counters": [
+    "neural_calls",
+    "neural_proposals"
+  ],
+  "unavailable_per_decision_network_counters": [
+    "neural_calls",
+    "neural_proposals",
+    "neural_option_scores",
+    "neural_logit_calls"
+  ],
+  "unavailable_total_network_counters": [
+    "neural_option_scores",
+    "neural_logit_calls"
+  ],
+  "success_delay_mean_delta_ms": 0.0,
+  "outcome_mean_delta_ms": 0.0,
+  "evidence_sha256": {
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/launch.json": "b1859bfa5444c498d01ae89cc30fd69730e1e9ca50d4b7ded71bf706ed36c903",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/execution.json": "847cbb6a3bd6a2ed47b02ba9f6d1e19c97c6a0451793fd4bed1f0cf3e9c8bd49",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/prefix.npz": "d74a4a2a3eba726938942bf3fc60cc4e503c651530c9d4fa6398fd2d01b7d8b8",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/metrics.bin": "b632d08389c8c5dfe1543dc4cada2568adf0f8bd9a35cbc05b0d3fb441682a61",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/metrics.json": "ac4ccb9bdf10601dfa1e58ec73e3c6f1a6ec74362a5d9126ab73b13940f56c7c",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/decisions.csv": "dbc1fee12ab45fe693db7ab9396745140f358348177e27d11f14b1432c01757f",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/packets.csv": "e45174f371f2e194267d85c778729feb39e8899b77d46c9aaaffc5e2c83ebacf",
+    "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/traffic_offered_packets.csv": "b0b4a5aca520e169c16e701873f687555d0c307f352b15a161abfda713cc0375",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/launch.json": "2fce22bbe9946c3e33c44a356b3e56ab73104ecf9f010fb162a6e5fdc3455b30",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/execution.json": "3739fab56d7ed792009c67c4b5fcf39f09c2e8f0dfa32502eaf795f4da49d6f4",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/prefix.npz": "d74a4a2a3eba726938942bf3fc60cc4e503c651530c9d4fa6398fd2d01b7d8b8",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/metrics.bin": "b632d08389c8c5dfe1543dc4cada2568adf0f8bd9a35cbc05b0d3fb441682a61",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/metrics.json": "ac4ccb9bdf10601dfa1e58ec73e3c6f1a6ec74362a5d9126ab73b13940f56c7c",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/decisions.csv": "b3ad2d58e3a9f63b22dd3fb6d67ab1b6dc10af1bface1dddb8c1ca3856b18479",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/packets.csv": "e45174f371f2e194267d85c778729feb39e8899b77d46c9aaaffc5e2c83ebacf",
+    "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1/native/seed48_risk_neural/traffic_offered_packets.csv": "b0b4a5aca520e169c16e701873f687555d0c307f352b15a161abfda713cc0375"
+  },
+  "interpretation": "Known validation seed, same traffic/model/search; equivalence, not new quality evidence"
+}

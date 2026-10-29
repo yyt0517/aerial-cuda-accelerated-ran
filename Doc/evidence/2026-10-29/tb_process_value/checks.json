@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "scientific_gate_passed": false,
+  "policy_promoted": false,
+  "registry_unchanged": true,
+  "source_snapshot_matches_current": true,
+  "all_input_snapshots_unchanged": true,
+  "frozen_actor_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c",
+  "frozen_value_sha256": "3339d1dd30d7865f974deee9dcda93022ba5924c4e9370e851d3a0d6306e4cb5",
+  "seed_roles_disjoint": true,
+  "final_test_seeds_unused": true,
+  "architecture_and_epoch_selection_reproduced": true,
+  "oracle_recall_bound_exact": true,
+  "full_budget_regret_zero": true,
+  "empirical_calibration_target_reproduced": true,
+  "independent_full_incremental_label_checks": 116,
+  "additional_control_replay_all_features_and_labels_exact": true,
+  "unit_test_command": "python -m unittest discover -s training/stageb_lns -t . -p 'test_*.py'",
+  "unit_tests_passed": 30,
+  "unit_test_exit_code": 0,
+  "interpretation": "Integrity checks passed; recall screen failed. No closed-loop or same-quality speedup claim."
+}

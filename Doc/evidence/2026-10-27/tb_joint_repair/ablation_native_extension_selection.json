@@ -1,0 +1,8 @@
+{
+  "selection_basis": "Only saved validation seeds 44,45; no native metrics inspected or used",
+  "selected": "local27",
+  "metric": "aggregate physical gain retained versus converged greedy",
+  "validation_gain_retained": 1.000517047481066,
+  "native_extension": "tb_joint_repair_20261027_native_local27_v1",
+  "full79_native_campaign_remains_frozen": true
+}

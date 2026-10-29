@@ -1,0 +1,70 @@
+{
+  "seed": 41,
+  "ratio_numerators": [
+    100,
+    95,
+    90
+  ],
+  "denominator": 100,
+  "question": "Does a causal PFQ+CTBS draft dequeue floor work best at 100%,95%,or90% in the corrected seed41 window?",
+  "floor": "Dmin(t)=ceil(rho * sum_u min(Q_u(t),TBS_u(PFQ_CTBS_draft(t)))); each arm uses only its own current state.",
+  "no_reference_floor_schedule": true,
+  "no_bc_or_coordinator_model": true,
+  "windows": {
+    "common_PFQ_warmup": [
+      1,
+      4000
+    ],
+    "measurement": [
+      4001,
+      6000
+    ],
+    "mature_followup": [
+      6001,
+      6400
+    ]
+  },
+  "frozen_rest": "Same corrected simulator/SVD/3dB shadow/fresh inputs, CTBS, causal deficit weights, ordered neighborhood, frozen scoring, >1B first two rounds/>16B thereafter, full convergence; no candidate budget.",
+  "ratios_not_extended_after_results": true,
+  "selection": {
+    "quality_vs_original_current": {
+      "min_goodput_ratio": 0.99,
+      "min_complete_payload_ratio": 0.99,
+      "max_extra_failure_pp": 0.5,
+      "max_extra_expiry_pp": 0.5,
+      "min_ue_p5_goodput_ratio": 0.95,
+      "max_extra_success_p95_ms": 2.0
+    },
+    "relaxation_vs_rho100": {
+      "min_payload_improvement_ratio": 1.01,
+      "min_goodput_ratio": 0.99,
+      "max_extra_failure_pp": 0.5,
+      "max_extra_expiry_pp": 0.5,
+      "min_ue_p5_goodput_ratio": 0.95,
+      "max_extra_success_p95_ms": 2.0
+    },
+    "rule": "Prefer rho100 if it passes original-current gates unless a relaxed arm also passes them and improves complete payload by >1% over rho100 while passing all rho100 guards. Among qualifying relaxed arms within1% of best payload prefer the larger rho. If rho100 fails, choose highest-payload relaxed arm passing original-current gates, tie within1% prefers larger rho; if none passes, recommend none.",
+    "note": "Practical engineering tolerances for this one development seed, not statistical equivalence or a generalization claim."
+  },
+  "diagnostics": [
+    "Full native/FIFO pairing",
+    "Every-TTI independent floor computation",
+    "First/second half-window packet outcomes",
+    "Weak UE metrics and tail delays",
+    "Search work and binding fraction"
+  ],
+  "stop": "Exactly these three ratios on seed41; validity failures retained; no additional seeds, ratio tuning, or steady-state extension.",
+  "limitations": [
+    "One seed and one CRC realization; no seed-level confidence interval.",
+    "The1s policy-switch window includes backlog release and does not establish steady-state capacity.",
+    "New causal floor is a policy change; this comparison does not isolate the neural proposal contribution.",
+    "Frozen legacy MCS3 scoring is retained equally for isolation; no lookup correction in these native arms.",
+    "Concurrent/shared-host timings are diagnostic, not controlled runtime speedups."
+  ],
+  "reference_sha256": {
+    "launch.json": "282110161ce433b343ddcf9f252fe7441d9bc5d805b545edb877145c28a9f590",
+    "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7",
+    "metrics.bin": "708f48384de3376d6e5ea2d47f2fc746b0f98e276a65f7a7c06ddbcc7c5eb36e",
+    "prefix.npz": "f01480e7902e753b988be2276e0f272887f61d38b262ee269e2210119acb1042"
+  }
+}

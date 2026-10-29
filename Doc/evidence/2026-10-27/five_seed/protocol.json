@@ -1,0 +1,144 @@
+{
+  "question": "How does the promoted coordinator-free causal-floor rho090 policy compare with exactly the existing five-seed PFQ experiment?",
+  "algorithm_id": "pfq_ctbs_deficit_search_rho090_20261027",
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "arms": [
+    "pfq0",
+    "current_rho090"
+  ],
+  "floor_ratio_num": 90,
+  "floor_denominator": 100,
+  "floor": "ceil(0.90 * own-current-state PFQ+CTBS draft total dequeue); recomputed eachTTI, no external floor schedule.",
+  "policy_source_sha256": "f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc",
+  "selected_configuration_sha256": "9c6083169544b3616264bc089cf586a257ae9d91aa53dc67f8dd2eb0b32fd767",
+  "latest_registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "common_pfq_warmup_ttis": [
+    1,
+    4000
+  ],
+  "policy_settling_ttis": [
+    4001,
+    8000
+  ],
+  "measurement_ttis": [
+    8001,
+    28000
+  ],
+  "followup_ttis": [
+    28001,
+    28400
+  ],
+  "tti_ms": 0.5,
+  "measurement_seconds": 10.0,
+  "horizon": 28400,
+  "scene": {
+    "cells": 3,
+    "ues": 36,
+    "prgs_per_cell": 17,
+    "placement": "coop_boundary",
+    "arrival_rate": 0.8,
+    "packet_bytes": 3000,
+    "ttl_ttis": 400,
+    "shadow_std_db": 3.0,
+    "harq": false
+  },
+  "baseline": "Reuse verified PFQ seeds41..45 from boundary08_steady_state_20261021_v1; baseline hashes frozen before new native runs.",
+  "baseline_protocol_sha256": "dde03f10f6502f7194e11244f69e3aa963803f015ed4cb2aa8c36c69005f9f71",
+  "reference_files_sha256": {
+    "41": {
+      "launch.json": "9cb67beba7d5fdab61652984ca72858b381eeb91171b76f8a48131783bcfa4b1",
+      "execution.json": "6356fed45a7aae7629b3e311897ff5edf1268929ce7a8e5e11b1ca5ec0015748",
+      "validation.json": "178d541c53508f3cdd5178e24b147c5a1d609a13a7852c8a86492fc6526ebbe0",
+      "physical_validation.json": "2f7ed96cedba23d435c96bb257a1d6709e6643152d6227ed30a33d0b3e4d991c",
+      "metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+      "prefix.npz": "51f6c02025df904d7452bd69c31ffaf65276c1851c5c71db315afa402672f24c",
+      "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+      "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+      "packet_outcome_samples.csv": "fb009c646dbe1fcf4e3b3ddd74961161632f9f010e8f033b938631fdc4526d36"
+    },
+    "42": {
+      "launch.json": "ce3f28f1c2c8dd084ad578e2866f08ff8755948f00c3cca6eb799c3ec24da0df",
+      "execution.json": "8c11b88c3fe2cf331d376a5e338c75f3437ef3a48a9d0d2a24270dbc07bb6b40",
+      "validation.json": "6f2c412a23ac0af735a2d26c818bfdcf47aaf38f78544189cd0c58c3db7cce3f",
+      "physical_validation.json": "e19211fe277cad31d21909eebfa2c167e4cd71c88958e5c8eaa0e59e95b89032",
+      "metrics.bin": "de90f4e10afa57bb7d7f7de9d899e674d5910f120bdffd0d44b5cba3179d62f4",
+      "prefix.npz": "523a599f18e911bfe4dfe4cd3a566d9bcf41ae7e8da09cc54b3bde2f2c341238",
+      "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+      "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+      "packet_outcome_samples.csv": "a140be3423cd0bf231265264eee2e23d1a9dbc85e7bc23c4a686d9a9a54c4637"
+    },
+    "43": {
+      "launch.json": "607cff9e0876ece4adbf0cae78da25b6f4d9b7911a414511b31b7cdcb9586b6b",
+      "execution.json": "5769772348a2fbadf66f89273cb00fbee8dde60959bd1d4f37c032d9bf1be997",
+      "validation.json": "52f54e9d3e0256bfde93365fd4e3090e748c119acf2a5748e7b4ca05a65c401b",
+      "physical_validation.json": "6b40341ca397bc49b1b8acd0ff2f656e705405cfb78694c85bd19d7229590fdc",
+      "metrics.bin": "9fa7aa24657f4bea2fdf1325f7f1f8e3cf5caad58076508ba5255becfcecb2cb",
+      "prefix.npz": "7e4a4556705e7dd17fe30af16f136a09cedcf751d2db02f9265409622bc60615",
+      "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+      "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+      "packet_outcome_samples.csv": "7f5bd762eeff9b3a5153c241eec849529662a44390ff1007f96f5460942b56d6"
+    },
+    "44": {
+      "launch.json": "6e3e144c573956d5c7eb4f26da33b574e292b9f050dcd9ecbc311de43ee3854e",
+      "execution.json": "26d837b1b66396812645e155cb2638ea489e67612bc116698cc0cedf93118ad4",
+      "validation.json": "902349e9d8bf705268a40274d2ee8c7856dc6b59f763a737a216771877b17268",
+      "physical_validation.json": "1d873608c9c6eca847951ecca6ce14073890868413b6f2afdc0762a591dc7001",
+      "metrics.bin": "235f2d1c008bf90eeb2cb802252a4e42f08d04f6711018dfe38a73a9793254c7",
+      "prefix.npz": "97f4ae9db101c61b2f72e187f667f4294695d44deac62ef1416b7c7b652a31b3",
+      "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+      "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+      "packet_outcome_samples.csv": "ec7b26f5473a5c57dd3a482fe1028d81817dc1ae7df4975d6d244ee8527c3f88"
+    },
+    "45": {
+      "launch.json": "f2ef0da3341fd601635c190bbcb33aad93fa0ea4a0308e1abb9af24eb8b13374",
+      "execution.json": "0d59c9b8ece41db71acac61c39195153f5ee8a859a8dae4f763ec1043b8ae896",
+      "validation.json": "34f1978c7ecfa31da33b6598e88f5381562716b76f51788051f54fdd8416ffc8",
+      "physical_validation.json": "441a87c412960746b8b72caab01cc3e7cd4db892cf0cf9be7ee1bfa1edef146d",
+      "metrics.bin": "34c411ceba506948c1f9b9ec434b812229f3a5b65c440ac8691f6443389aa9b4",
+      "prefix.npz": "ba749ddb8acd21062286a58b92f2ab065ef004562b89563c129a4817f2e72f5e",
+      "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+      "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+      "packet_outcome_samples.csv": "7c149fbb885e66ee7b62ef23eb6b96b98259d61e9cb0573c18be71c25e5e6c45"
+    }
+  },
+  "simulator": "Reuse the exact continuous-clock corrected native binary used by PFQ, genFastFadingGpu(t); no rebuild or physics changes.",
+  "simulator_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "selection": "rho090 was fixed on prior seed41 short-window development comparison; no reselection using this five-seed experiment. Seed41 is not an unseen validation seed.",
+  "statistics": "Seed is independent unit n5; equal-seed mean/sampleSD and current_rho090-PFQ nominal95% paired tCI df4; no multiplicity correction; windows/packets not independent repetitions.",
+  "stationarity": {
+    "windows": "ten nonoverlapping1s windows within measurement; first5s vs last5s",
+    "predeclared_flags": "absolute first-half vs second-half goodput change >5% of overall mean, or net queue drift >1% offered traffic, or absolute queue linear trend >1% offered traffic; inspect all seeds/arms and do not label unpassed runs steady",
+    "interpretation": "finite-horizon practical stability diagnostics, not proof of capacity or asymptotic stationarity; TTL may stabilize overloaded queues by dropping"
+  },
+  "required_evidence": [
+    "Fresh current-state floor independent discrete TBS/queue parity on every decision",
+    "Native action/MCS/layer/TBS/dequeue equality on everyTTI",
+    "CommonPFQ4000 and full-input/CTBS4001 pairing; exogenousH/W and traffic/topology throughout",
+    "Full convergence and no256 cap; no BC/coordinator inference or external floor reads",
+    "Six direct physical samples and first4001 continuous-channel recurrence",
+    "FIFO packet/byte conservation, complete measured-arrival cohort no censoring"
+  ],
+  "detail_outputs": [
+    "Perseed full metrics",
+    "PerUE full metrics and matchedUE deltas",
+    "Packet cohort lifecycle CSV.gz",
+    "10 one-second windows plus first/second5s halves",
+    "Delay distributions including success/outcome p50/p95/p99",
+    "Raw native UE-TTI metrics binary and action/input fingerprints",
+    "Decisions/rounds/drafts/CTBS floor audits",
+    "Queue stability, gain mass-balance contributions, source/runtime identities"
+  ],
+  "stop": "Exactly five new rho090 trajectories after short seed41/45 validity checks; retain failed results, no tuning, extra seeds, or duration changes.",
+  "limitations": [
+    "Finite10s window is not asymptotic steady-state or capacity proof; TTL may stabilize overloaded queues.",
+    "The prior1s selection used a periodic channel-clock binary. This experiment matches the PFQ continuous-clock baseline; old/new absolute changes are not single-factor policy effects.",
+    "Frozen legacy MCS3 scoring retained to isolate the selected policy; no lookup correction.",
+    "Shared-host concurrent wall time is not controlled deployment latency."
+  ]
+}

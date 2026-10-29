@@ -1,0 +1,45 @@
+核对日期：2026-10-29。下列研究映射均为本项目的设计推断，不代表论文已经证明本调度器的性能或实时性。
+
+方案采用“覆盖提议器 → 学习筛选/排序 → 精确PHY与因果约束终审 → 离线再训练”的方向，但应修正以下保证与标签定义。
+
+1. 精确终审保证接受动作满足当前物理模型及显式验收约束。神经筛选仍会改变可搜索集合、返回动作及后续队列；漏掉高收益组合会影响质量。投机解码的不变分布依赖特定接受/拒绝与残差采样校正，不是“草稿由精确模型检查”就自然成立。当前体系没有对应的无损校正或对所有未展开后缀成立的可采纳上界。我们的候选补全分数不是后缀最优值上界。文中“神经只影响成本”“质量不劣是精确终审的前提保证”应改成待闭环检验的目标。
+Leviathan et al., Fast Inference from Transformers via Speculative Decoding, arXiv 2022 / ICML 2023：https://arxiv.org/abs/2211.17192
+Li et al., EAGLE-2: Faster Inference of Language Models with Dynamic Draft Trees, 2024：https://arxiv.org/abs/2406.16858
+Fu et al., Break the Sequential Dependency of LLM Inference Using Lookahead Decoding, 2024：https://arxiv.org/abs/2402.02057
+
+2. PAV预测在指定prover后续策略下的成功概率变化/优势。本轮标签是“用当前incumbent补全的精确风险分差”：相对冻结root的ΔR为主头，相对parent补全的ΔR为辅助头。它没有后续rollout结果，也没有逐包未来回报，因此只能称过程价值代理蒸馏。以后若训练真正的PAV式优势，需要指定较弱的继续策略，采集多次后续搜索/交付结果，并单独计费。
+Setlur et al., Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning, 2024：https://arxiv.org/abs/2410.08146
+Lightman et al., Let's Verify Step by Step, 2023：https://arxiv.org/abs/2305.20050
+Wang et al., Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations, 2023/2024：https://arxiv.org/abs/2312.08935
+
+3. 保形风险控制控制可交换单位上有界、随阈值单调的损失之期望，不是逐候选/逐TTI/逐seed绝对保证。风险应定义成“原高收益集合中被漏掉的比例”，不能用“丢弃集合中高收益比例”代替漏检率。本项目同TTI候选、相邻TTI、同seed轨迹相关，不能把十几万行当独立校准单位。按seed作为保守单位，当前只有seed45一个单位；α=.02时，标准有限样本修正无法给出非平凡剪枝。若使用98% split-conformal顺序统计量，至少49个可交换单位才能有有限阈值；这也不消除跨负载/拓扑/提议器变化的分布漂移。本轮经验校准与正式保证分开报告。
+Angelopoulos et al., Conformal Risk Control, 2022，最新核对v4/2025：https://arxiv.org/abs/2208.02814
+
+4. 高收益集合召回、best-of-K至少一个命中、最大收益保留率是三个不同指标。Pass@k适合候选采样的二元成功事件；连续PHY增益的集合最大值目标需要明确成功阈值或另行推导优势，不能直接声称把二元公式原样代入RLOO。Listwise训练也不自动等价于优化recall@K。应联合报告固定K覆盖、真实收益缺口和网络熵；训练难例只能从训练seed回放采集。旧验证48/50上的15个漏选、以及104–106的诊断样本，不能混入本轮训练。
+Chow et al., Inference-Aware Fine-Tuning for Best-of-N Sampling in Large Language Models, 2024，v2/2025：https://arxiv.org/abs/2412.15287
+Chen et al., Pass@k Training for Adaptively Balancing Exploration and Exploitation of Large Reasoning Models, 2025：https://arxiv.org/abs/2508.10751
+Yue et al., Does Reinforcement Learning Really Incentivize Reasoning Capacity in LLMs Beyond the Base Model?, 2025：https://arxiv.org/abs/2504.13837
+Cui et al., The Entropy Mechanism of Reinforcement Learning for Reasoning Language Models, 2025：https://arxiv.org/abs/2505.22617
+Yu et al., DAPO: An Open-Source LLM Reinforcement Learning System at Scale, 2025：https://arxiv.org/abs/2503.14476
+Yue等报告的是其研究设置中的经验现象，不是“RL永远不能产生新解”的一般结论。固定候选集合上的预算/STOP策略确实无法召回集合之外的动作；这与可改变生成分布、引入新探索的策略训练不同。
+
+5. 按UE保护值得作为独立约束研究，但单TTI PHY无法精确知道长期完整包交付或P95。可在线否决的是因果代理：例如对历史服务EMA低、当前HOL紧迫的UE，限制其预计成功字节相对已验证基线的下降。阈值、受保护集合和基线必须事先冻结，再用原生逐包结果验收。当前测试的最终P5及未来结果不能成为在线输入。31/72 UE下降是分布收益取舍的证据，尚不能单独证明reward hacking。RBR是训练奖励方法，不等同于确定性的硬约束解码；Safe RLHF和Group DRO同样不能自动保证本问题所有UE的长期交付不退化。
+Dai et al., Safe RLHF: Safe Reinforcement Learning from Human Feedback, 2023：https://arxiv.org/abs/2310.12773
+Mu et al., Rule Based Rewards for Language Model Safety, 2024：https://arxiv.org/abs/2411.01111
+Sagawa et al., Distributionally Robust Neural Networks for Group Shifts: On the Importance of Regularization for Worst-Case Generalization, 2019/ICLR2020：https://arxiv.org/abs/1911.08731
+
+6. 自演化需要训练用on-policy轨迹、独立校准及不反复使用的最终测试。迭代质量不保证单调，应预设回退条件。上一TTI只能作为提议草稿；H/W、MCS、合法性、队列、层数和干扰活动有变化时，必须重新验证其依赖闭包。慢时间尺度模板应报告生成成本的摊销、有效期、缓存失效、后台争用和P99，不能把成本移出统计窗口。根据难度路由可借鉴计算分配思路，论文中的效率倍数不能直接迁移到PHY。
+Guan et al., rStar-Math: Small LLMs Can Master Math Reasoning with Self-Evolved Deep Thinking, 2025：https://arxiv.org/abs/2501.04519
+Singh et al., Beyond Human Data: Scaling Self-Training for Problem-Solving with Language Models (ReST-EM), 2023/2024：https://arxiv.org/abs/2312.06585
+Anthony et al., Thinking Fast and Slow with Deep Learning and Tree Search (Expert Iteration), 2017：https://arxiv.org/abs/1705.08439
+Snell et al., Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters, 2024：https://arxiv.org/abs/2408.03314
+
+补充2026年直接相关研究；不把2023–2025年的奠基文献称为2026年最新结果：
+Liu et al., Evolutionary Guided Decoding: Iterative Value Refinement for LLMs, ACL2026（7月）：https://aclanthology.org/2026.acl-long.148/
+该文强调静态价值头只覆盖基策略轨迹造成的分布缺口，采用价值探索与迭代重采样。这支持后续更换提议器后重新采集并校准，而非沿用旧价值阈值。
+Wang et al., A General Deep Learning Framework for Wireless Resource Allocation under Discrete Constraints, 2026（核对v2/7月）：https://arxiv.org/abs/2603.19322
+其条件联合分布、动态上下文与可行性掩码支持本项目的序列化联合提议设计；其场景不是这里的包TTL调度，不能借用性能保证。
+Uslu et al., Fast State-Augmented Learning for Wireless Resource Allocation with Dual Variable Regression, 核对v2/2026年7月，接收TSP：https://arxiv.org/abs/2506.18748
+其以状态和对偶变量为输入、学习对偶初始化的做法，与未来按UE服务约束维护慢时间尺度乘子有关；论文的平均约束和功率控制结论不构成本项目逐包时延保证。
+
+本轮已经联网核对用户列出的19个arXiv编号对应的题名/作者/年份及上述3篇2026年论文。只对实施直接相关的PAV定义、CRC假设/公式等查阅正文；没有声称复现全部论文或逐页审阅全部正文。

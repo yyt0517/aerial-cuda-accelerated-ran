@@ -1,0 +1,12 @@
+{
+  "files": {
+    "report.txt": "1a5a68b47d4f07824a388613958e0aa47cf0589d546006c1889b4134ebbd57d0",
+    "checks.json": "68f3a9ca906e1dcdf5a48310a88513bd2e35a88c9bee1e0700ce9cb2fd9bc2d6",
+    "observed_continuation_rank_flips.csv": "091028be0b6d357d4d9f6c5eb8945708a7480a9640c2bffb7efe69f7e25b072a",
+    "analyze.py": "611d36520a7b3eb49307bdee4d6caf6cb996d094a417fea2da49e81abf2dd886",
+    "validation.json": "38d4af4343d49319edcd3982045fb5071c6894153c661ffec2b4396c7b0483b1",
+    "provenance.json": "cf43a236492b73fc385bf8f75b298272c3927a4f46e9dbefa903af5b04a63ced",
+    "loss_decomposition.csv": "78520f940a56376fa9cc2424ac8a3e4fb4ff33d8360eebe58699674f9f966f9d",
+    "continuation_guard_strata.csv": "63cd90e7591af0f1649c394d017e2a69a8407227149611b1eaf2c5a6ee93dba6"
+  }
+}

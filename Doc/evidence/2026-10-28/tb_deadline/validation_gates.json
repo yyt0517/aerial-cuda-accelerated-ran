@@ -1,0 +1,36 @@
+{
+  "risk_neural": {
+    "passed": false,
+    "reference": "neural",
+    "thresholds": {
+      "reference": "neural",
+      "mean_goodput_ratio_min": 1.0,
+      "mean_full_payload_ratio_min": 1.0,
+      "expiry_increase_pp_max": 0.1,
+      "p5_ratio_min": 0.99
+    },
+    "observed": {
+      "goodput_ratio": 1.0047360963591678,
+      "payload_ratio": 0.9993542168674698,
+      "expiry_increase_pp": -0.20365010312494583,
+      "p5_ratio": 1.0086357412205122
+    }
+  },
+  "risk_hybrid": {
+    "passed": true,
+    "reference": "greedy",
+    "thresholds": {
+      "reference": "greedy",
+      "mean_goodput_ratio_min": 0.995,
+      "mean_full_payload_ratio_min": 0.995,
+      "expiry_increase_pp_max": 0.2,
+      "p5_ratio_min": 0.99
+    },
+    "observed": {
+      "goodput_ratio": 0.9979263598063497,
+      "payload_ratio": 1.0005699932373684,
+      "expiry_increase_pp": 0.0,
+      "p5_ratio": 1.0015458463857163
+    }
+  }
+}

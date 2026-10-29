@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "seed": 48,
+      "arm": "hybrid",
+      "returncode": 0,
+      "elapsed_s": 849.0053955903277
+    },
+    {
+      "seed": 46,
+      "arm": "hybrid",
+      "returncode": 0,
+      "elapsed_s": 970.7703050142154
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 981.8871458442882
+    },
+    {
+      "seed": 46,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1008.0862048435956
+    },
+    {
+      "seed": 47,
+      "arm": "hybrid",
+      "returncode": 0,
+      "elapsed_s": 1030.4495538845658
+    },
+    {
+      "seed": 47,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1049.6489982483909
+    }
+  ]
+}

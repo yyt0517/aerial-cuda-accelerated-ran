@@ -1,0 +1,312 @@
+{
+  "training_states": 214,
+  "validation_states": 158,
+  "training_cases": 5136,
+  "validation_cases": 3792,
+  "parameters": 7745,
+  "best_epoch": 28,
+  "best_validation_proxy_gain": 4609.0556640625,
+  "history": [
+    {
+      "epoch": 0,
+      "loss": 2.6932007883801874,
+      "validation_selected_proxy_gain": 4494.94287109375
+    },
+    {
+      "epoch": 1,
+      "loss": 2.380848522539492,
+      "validation_selected_proxy_gain": 4537.1767578125
+    },
+    {
+      "epoch": 2,
+      "loss": 2.304400576485528,
+      "validation_selected_proxy_gain": 4561.07470703125
+    },
+    {
+      "epoch": 3,
+      "loss": 2.2654150430067084,
+      "validation_selected_proxy_gain": 4564.50439453125
+    },
+    {
+      "epoch": 4,
+      "loss": 2.239809982570601,
+      "validation_selected_proxy_gain": 4567.11474609375
+    },
+    {
+      "epoch": 5,
+      "loss": 2.2158461558965987,
+      "validation_selected_proxy_gain": 4572.759765625
+    },
+    {
+      "epoch": 6,
+      "loss": 2.1969916467313415,
+      "validation_selected_proxy_gain": 4589.00390625
+    },
+    {
+      "epoch": 7,
+      "loss": 2.1818649312596263,
+      "validation_selected_proxy_gain": 4581.04296875
+    },
+    {
+      "epoch": 8,
+      "loss": 2.1638888591601524,
+      "validation_selected_proxy_gain": 4595.6884765625
+    },
+    {
+      "epoch": 9,
+      "loss": 2.1466314262813992,
+      "validation_selected_proxy_gain": 4596.62939453125
+    },
+    {
+      "epoch": 10,
+      "loss": 2.140514878579128,
+      "validation_selected_proxy_gain": 4595.5185546875
+    },
+    {
+      "epoch": 11,
+      "loss": 2.1337072216434243,
+      "validation_selected_proxy_gain": 4593.29150390625
+    },
+    {
+      "epoch": 12,
+      "loss": 2.1194024601100403,
+      "validation_selected_proxy_gain": 4602.15576171875
+    },
+    {
+      "epoch": 13,
+      "loss": 2.1103815164095088,
+      "validation_selected_proxy_gain": 4594.02490234375
+    },
+    {
+      "epoch": 14,
+      "loss": 2.0958610405156644,
+      "validation_selected_proxy_gain": 4603.73095703125
+    },
+    {
+      "epoch": 15,
+      "loss": 2.0941353491794916,
+      "validation_selected_proxy_gain": 4602.6298828125
+    },
+    {
+      "epoch": 16,
+      "loss": 2.084028108620349,
+      "validation_selected_proxy_gain": 4598.61328125
+    },
+    {
+      "epoch": 17,
+      "loss": 2.074038062566592,
+      "validation_selected_proxy_gain": 4591.84619140625
+    },
+    {
+      "epoch": 18,
+      "loss": 2.073204482043231,
+      "validation_selected_proxy_gain": 4588.4560546875
+    },
+    {
+      "epoch": 19,
+      "loss": 2.0607486139109104,
+      "validation_selected_proxy_gain": 4593.45556640625
+    },
+    {
+      "epoch": 20,
+      "loss": 2.0562158955468073,
+      "validation_selected_proxy_gain": 4599.0361328125
+    },
+    {
+      "epoch": 21,
+      "loss": 2.0570047269632785,
+      "validation_selected_proxy_gain": 4605.28857421875
+    },
+    {
+      "epoch": 22,
+      "loss": 2.0431414989777554,
+      "validation_selected_proxy_gain": 4599.3212890625
+    },
+    {
+      "epoch": 23,
+      "loss": 2.0372086483755227,
+      "validation_selected_proxy_gain": 4603.2021484375
+    },
+    {
+      "epoch": 24,
+      "loss": 2.0348265288788596,
+      "validation_selected_proxy_gain": 4588.38671875
+    },
+    {
+      "epoch": 25,
+      "loss": 2.025186107482439,
+      "validation_selected_proxy_gain": 4602.10888671875
+    },
+    {
+      "epoch": 26,
+      "loss": 2.0307466939643577,
+      "validation_selected_proxy_gain": 4598.78076171875
+    },
+    {
+      "epoch": 27,
+      "loss": 2.0173127665931796,
+      "validation_selected_proxy_gain": 4589.50390625
+    },
+    {
+      "epoch": 28,
+      "loss": 2.013774910090882,
+      "validation_selected_proxy_gain": 4609.0556640625
+    },
+    {
+      "epoch": 29,
+      "loss": 2.0059711624074867,
+      "validation_selected_proxy_gain": 4588.82763671875
+    },
+    {
+      "epoch": 30,
+      "loss": 2.002982626726598,
+      "validation_selected_proxy_gain": 4599.453125
+    },
+    {
+      "epoch": 31,
+      "loss": 1.9988150361143513,
+      "validation_selected_proxy_gain": 4602.1083984375
+    },
+    {
+      "epoch": 32,
+      "loss": 1.9952754532849346,
+      "validation_selected_proxy_gain": 4596.08203125
+    },
+    {
+      "epoch": 33,
+      "loss": 1.9958701531092327,
+      "validation_selected_proxy_gain": 4603.1015625
+    },
+    {
+      "epoch": 34,
+      "loss": 1.9893563441288324,
+      "validation_selected_proxy_gain": 4594.26171875
+    },
+    {
+      "epoch": 35,
+      "loss": 1.9840445268301317,
+      "validation_selected_proxy_gain": 4587.19580078125
+    },
+    {
+      "epoch": 36,
+      "loss": 1.9773902569288089,
+      "validation_selected_proxy_gain": 4600.947265625
+    },
+    {
+      "epoch": 37,
+      "loss": 1.9709659240863941,
+      "validation_selected_proxy_gain": 4606.73583984375
+    },
+    {
+      "epoch": 38,
+      "loss": 1.9680828106256179,
+      "validation_selected_proxy_gain": 4594.23046875
+    },
+    {
+      "epoch": 39,
+      "loss": 1.9707669431780592,
+      "validation_selected_proxy_gain": 4599.7109375
+    },
+    {
+      "epoch": 40,
+      "loss": 1.9631098376380072,
+      "validation_selected_proxy_gain": 4600.291015625
+    },
+    {
+      "epoch": 41,
+      "loss": 1.9496354011841763,
+      "validation_selected_proxy_gain": 4592.26220703125
+    },
+    {
+      "epoch": 42,
+      "loss": 1.9550175843415436,
+      "validation_selected_proxy_gain": 4589.18115234375
+    },
+    {
+      "epoch": 43,
+      "loss": 1.946867957527255,
+      "validation_selected_proxy_gain": 4585.48974609375
+    },
+    {
+      "epoch": 44,
+      "loss": 1.9459660141556352,
+      "validation_selected_proxy_gain": 4599.68896484375
+    },
+    {
+      "epoch": 45,
+      "loss": 1.9445818603774647,
+      "validation_selected_proxy_gain": 4603.12060546875
+    },
+    {
+      "epoch": 46,
+      "loss": 1.9363265537921293,
+      "validation_selected_proxy_gain": 4598.07666015625
+    },
+    {
+      "epoch": 47,
+      "loss": 1.9353155618832436,
+      "validation_selected_proxy_gain": 4595.06201171875
+    },
+    {
+      "epoch": 48,
+      "loss": 1.9310185865119651,
+      "validation_selected_proxy_gain": 4606.703125
+    },
+    {
+      "epoch": 49,
+      "loss": 1.9293713716813077,
+      "validation_selected_proxy_gain": 4590.39453125
+    },
+    {
+      "epoch": 50,
+      "loss": 1.923064563009474,
+      "validation_selected_proxy_gain": 4600.26171875
+    },
+    {
+      "epoch": 51,
+      "loss": 1.9264492605939323,
+      "validation_selected_proxy_gain": 4599.2548828125
+    },
+    {
+      "epoch": 52,
+      "loss": 1.9214790220613833,
+      "validation_selected_proxy_gain": 4599.7255859375
+    },
+    {
+      "epoch": 53,
+      "loss": 1.9219802573875144,
+      "validation_selected_proxy_gain": 4595.95947265625
+    },
+    {
+      "epoch": 54,
+      "loss": 1.914115368584056,
+      "validation_selected_proxy_gain": 4591.1806640625
+    },
+    {
+      "epoch": 55,
+      "loss": 1.909576741265662,
+      "validation_selected_proxy_gain": 4594.96826171875
+    },
+    {
+      "epoch": 56,
+      "loss": 1.9104432500438926,
+      "validation_selected_proxy_gain": 4591.5576171875
+    },
+    {
+      "epoch": 57,
+      "loss": 1.9057544352095803,
+      "validation_selected_proxy_gain": 4591.89013671875
+    },
+    {
+      "epoch": 58,
+      "loss": 1.9078657494650946,
+      "validation_selected_proxy_gain": 4605.859375
+    },
+    {
+      "epoch": 59,
+      "loss": 1.903597828782635,
+      "validation_selected_proxy_gain": 4597.24658203125
+    }
+  ],
+  "checkpoint_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c"
+}

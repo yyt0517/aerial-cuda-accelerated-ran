@@ -1,0 +1,16 @@
+{
+  "stage": "behavior_preserving_neural_cost_reduction",
+  "date": "2026-10-28",
+  "priority": ["preserve_mean_packet_delay", "remove_repeated_feature_construction", "reduce_beam_control_work"],
+  "checkpoint": "deliverables/tb_deadline_20261028_training_v1/repair.npz",
+  "checkpoint_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c",
+  "selection_seeds": [48, 50],
+  "reference": "deliverables/tb_deadline_20261028_validation_native_v1/seed{seed}_risk_neural",
+  "native_protocol": {"warmup": 1000, "settling": 1000, "measured": 2000, "followup": 400, "tti_ms": 0.5},
+  "unchanged": ["weights", "feature_values", "logits", "stable_tie_order", "width16", "legal_options", "max3_rounds", "risk_objective", "native_physical_acceptance", "causal_floor"],
+  "equivalence_gate": ["feature_logit_proposal_bytes_exact", "all_tti_native_inputs_actions_and_service_exact", "mature_packet_outcomes_exact", "per_seed_success_mean_delay_delta_zero", "per_seed_all_outcome_mean_delay_delta_zero", "candidate_and_network_work_exact"],
+  "cost_measurement": "same-process serial saved-state searches; both decoders include cold decision-local cache setup; 5 alternating repetitions; summarize each state median then seed-equal means; profile separately",
+  "quality_boundary": "Preserving the frozen neural baseline does not close the mean-delay gap to direct physical repair. No claim of quality improvement, production latency or blind validation.",
+  "previous_final_test_seeds_excluded_from_tuning": [101, 102, 103, 104, 105, 106],
+  "registry_change": false
+}

@@ -1,0 +1,4 @@
+arm,ratio,mean_draft_dequeue,mean_floor,mean_chosen_dequeue,below_own_draft_dequeue_pct,final_floor_binding_pct,mean_rounds,mean_candidates,shared_host_decision_mean_ms,full_convergence
+rho100,1.0,87153.0765,87153.0765,90007.1725,0.0,0.05,24.411,33936.548,163.19002454308793,True
+rho95,0.95,93051.458,88399.3565,91922.498,71.15,0.05,24.375,32932.667,146.23457385599613,True
+rho90,0.9,99863.389,89877.5015,93878.9645,88.2,0.0,24.6465,32185.545,144.70860351994634,True

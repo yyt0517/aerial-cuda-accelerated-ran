@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-10-28T16:49:03+08:00",
+  "source": "/opt/nvidia/cuBB/deliverables/tb_neural_cost_20261028_v1",
+  "sha256": {
+    "plan.json": "2c3b2cae640661a028ea92028b46c11ee701842e751005f055c370702bb5771e",
+    "report.txt": "aef45c655af76056519d89949deffdfaf2bfda7c912d5859f1852cc00f2ffd02",
+    "native_quality.csv": "af29ac5c511295184e430f11fc4a9a079f946b95362d6047e9e93be0cbe2e082",
+    "work_reuse.json": "986b9d02bd338979e53ee21daeea599f2d75e542a4cfe25785371b490e33052b",
+    "unit_checks.json": "1e4de2107867902502e2ed1a2f157061b050d3a8c66230ac80c7007504ab1327",
+    "checks.json": "6213c57265ebeaccb7530a0c4dd57c4fe68a2471741972377f41304103c73573",
+    "audit_tool_revision.json": "44d3bbcead34f3d3c3956c4b41b51dde6eccc6df8c9776a29a9efd56ba333dcb",
+    "next_quality_stage.txt": "565fa62b412bc5c737cc16acdb9bfd2f1c08c381895d376f77c016813da5b561",
+    "replay/protocol.json": "e35c0477e0dbf252fae5a2d08f50e7aa625413990b6bbf748729f768fcbd61fb",
+    "replay/equivalence.csv": "579a85519ddebd04b14e1bf3de2bff26b0762557a7b4dc685174538036716930",
+    "replay/timings.csv": "f27a38376856cd9904c117ff4cf983f035d16002b413b12f75186dba73f13f8f",
+    "replay/paired_state_medians.csv": "1114b9107faf7a0f8ac0b1a2dcb96d2049e689cd8687a21482f5cfbad10fb9e4",
+    "replay/per_seed_cost.csv": "ac6d28637a6b975c8668b078cbebf633672900436ec79166008be3f0acdbbec6",
+    "replay/checks.json": "c367a3e73badf4ea81450f886f737947bcc6da220d831940073f5a732d772380",
+    "replay/reference_profile.txt": "4f1d97f4601a2f9c448d6911c1a6373b47513423d49b1487c4553e6da04967b4",
+    "replay/cached_profile.txt": "3cb4db2179c4f37c1b8e5200a0f779f14253ace311b9eb17084f5569772492b0",
+    "beam_ablation/protocol.json": "5f802988f8cb92b99b7f0f89380130e2d6e5d5629284b465e93e6409e397dec2",
+    "beam_ablation/checks.json": "2a51faf4cc304f0e8ef4526cb13188c789c6e2becf69e015a6959ba23ad38405",
+    "beam_ablation/per_seed_cost.csv": "860f90caf344b61ff1b9d4c5b9116f9efd44943aba58569f6dc9e78f1cc93d34",
+    "native/seed48_audit.json": "3c83a9af9e3c633b1b67933f56d531614d361032c9e017afcf180f1ab92d3e56",
+    "native/seed50_audit.json": "3ff4029dff7c0130f957923cf1e9e7197f5859780e51cc589b4ed8816b683df7",
+    "complete.py": "89a264f0063d406808d7b8a72fa443fda6a9a226a8aadb7689ef73f3ecfc43f8",
+    "beam_ablation.py": "19e68b04002b33929b06bd56ac7a3687e612ea543a2c0cb267408a84f541878f",
+    "repair_frozen.npz": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c"
+  }
+}

@@ -1,0 +1,2343 @@
+{
+  "all_prescribed_attempts_accounted": true,
+  "prescribed_seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "completed_seeds": [
+    41,
+    42,
+    43,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "stopped_seeds": [
+    44,
+    45
+  ],
+  "full_ten_seed_quality_comparison_available": false,
+  "full_ten_seed_lossless_replacement_demonstrated": false,
+  "completed_native_records_all_bit_exact": true,
+  "completed_exact_action_ttis": 51200,
+  "total_native_ttis": 62137,
+  "statuses": [
+    {
+      "seed": 41,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1365.052992,
+      "off_goodput_mbps": 1365.0529920000001,
+      "reference_complete_payload_mbps": 1207.536,
+      "off_complete_payload_mbps": 1207.536
+    },
+    {
+      "seed": 42,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1412.801592,
+      "off_goodput_mbps": 1412.801592,
+      "reference_complete_payload_mbps": 1221.984,
+      "off_complete_payload_mbps": 1221.984
+    },
+    {
+      "seed": 43,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1406.1441839999998,
+      "off_goodput_mbps": 1406.1441839999998,
+      "reference_complete_payload_mbps": 1210.2,
+      "off_complete_payload_mbps": 1210.2
+    },
+    {
+      "seed": 44,
+      "status": "stopped_no_feasible_first_neighborhood",
+      "native_ttis": 4937,
+      "first_difference_tti": 4933,
+      "stopped_tti": 4938,
+      "native_metrics_bit_exact": false,
+      "off_goodput_mbps": null,
+      "off_complete_payload_mbps": null
+    },
+    {
+      "seed": 45,
+      "status": "stopped_no_feasible_first_neighborhood",
+      "native_ttis": 6000,
+      "first_difference_tti": 5985,
+      "stopped_tti": 6001,
+      "native_metrics_bit_exact": false,
+      "off_goodput_mbps": 1419.684216,
+      "off_complete_payload_mbps": null
+    },
+    {
+      "seed": 46,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1376.9167199999995,
+      "off_goodput_mbps": 1376.9167199999997,
+      "reference_complete_payload_mbps": 1185.12,
+      "off_complete_payload_mbps": 1185.12
+    },
+    {
+      "seed": 47,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1369.190624,
+      "off_goodput_mbps": 1369.190624,
+      "reference_complete_payload_mbps": 1181.544,
+      "off_complete_payload_mbps": 1181.544
+    },
+    {
+      "seed": 48,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1412.907368,
+      "off_goodput_mbps": 1412.907368,
+      "reference_complete_payload_mbps": 1235.4,
+      "off_complete_payload_mbps": 1235.4
+    },
+    {
+      "seed": 49,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1378.7159439999998,
+      "off_goodput_mbps": 1378.7159439999998,
+      "reference_complete_payload_mbps": 1203.0,
+      "off_complete_payload_mbps": 1203.0
+    },
+    {
+      "seed": 50,
+      "status": "completed",
+      "native_ttis": 6400,
+      "first_difference_tti": null,
+      "stopped_tti": null,
+      "native_metrics_bit_exact": true,
+      "reference_goodput_mbps": 1428.6263040000003,
+      "off_goodput_mbps": 1428.6263040000003,
+      "reference_complete_payload_mbps": 1232.064,
+      "off_complete_payload_mbps": 1232.064
+    }
+  ],
+  "completed_validations": [
+    {
+      "passed": true,
+      "seed": 41,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 5,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 33538.9485,
+      "measured_candidates_on": 33538.9485,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "0bf6dac06d45e3868f450414368b4e809b86cc5ecf1e6025425bf527ec0a6895",
+            "validation.json": "549dc729f1529ac7b33afeaff39c28051c2be209aab1db9c6d2645798e767eeb",
+            "physical_validation.json": "53a9a7bc8d63d1cbefeab1dc4d649dbd12118a5331c7ca244a68ef74eb89b637",
+            "sim.log": "ff89df882570d406d91d36bacba07d3bc805eacbb89db038ade37744ee07f2c8"
+          },
+          "full": {
+            "prefix.npz": "2a1e60584230ed7c493e0576e0f5893e5c763cdeae3497eb32cd09dd7afe4f25",
+            "validation.json": "65faf00207504a6449ec49a8fdcb27cd79eb830aabdd678dcd667d666d843156",
+            "physical_validation.json": "9c89f57e1a23e1b00d65f549734ca36b96e09a41afdba225089c702c7e209685",
+            "sim.log": "54693178da0a996997d8e1a40f6b9a1e832e1717ec26a3c2d51fb18f75a2f8a6"
+          },
+          "current": {
+            "prefix.npz": "f01480e7902e753b988be2276e0f272887f61d38b262ee269e2210119acb1042",
+            "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7",
+            "physical_validation.json": "a368d0bddddabb6660c92c0241ede5d58b43e3741505f60a9e491579f2b2a100",
+            "sim.log": "a9c2d251f06c11e543cc0375bced6980c609e31a051474bd4a790c38abec433d"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 42,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 13,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 40277.798,
+      "measured_candidates_on": 40277.798,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "6dd4f09a15eae058f28a8b0baed03f8641716ad3b4512c542fbb29b4646c40ec",
+            "validation.json": "f67ecf0f7f62553a2a9535e8d92ecf6b5cb2628dca8f68da5f6130c12d5564b2",
+            "physical_validation.json": "6c2f7866a576cb18e1b805c4ad33e29bf7ca3e1983bb4425383407f35a9c71ef",
+            "sim.log": "4ca9bb488698b9ad80acb5119efdac44cca3087dcc34353195303aed40f66973"
+          },
+          "full": {
+            "prefix.npz": "c386ea06be819998c594cc5fa3b071cfa3afd1d11b9fe8aa858c2803cb09a9db",
+            "validation.json": "2a4fcedfcf29ddb7fac4d591fa8ed3cf674d666b0fa8b2c2d5330fc92e89019d",
+            "physical_validation.json": "68e8b0faba120a62337d76c88a21b989ec04fce7705971c6169464c9b62ca373",
+            "sim.log": "a5278f0c9533b0c5cfc5752141efe0658aa4b181f5091d5b2de278380ea6a2db"
+          },
+          "current": {
+            "prefix.npz": "57f81c995f857e8a4440618b7d0d11de8a21990a3cf97fd71e9d7dd5b03c889b",
+            "validation.json": "dd9d1ffa80924b0557013664a1fb50c7c6b5d7ea32be92f699c5b927c07b2d38",
+            "physical_validation.json": "5736ec6afb7bdb30bb002dbd7f151efb51549f1ea350ce3e3d50907766db4962",
+            "sim.log": "dd111ab8ff183c0919c52a208e279e991b2edc5b2da81c63f9ae97d8cb6ff730"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 43,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 3,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 40109.0685,
+      "measured_candidates_on": 40109.0685,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "3acc006b2f9a21c115492206837cbfe86c8922dde1c13cd3e89ee4d81d1b14d1",
+            "validation.json": "288da97e7ec16c356b2afc60ea45fd55038b83db18410de539b62d10525d1f52",
+            "physical_validation.json": "bb9454e50fe44d23263c7f43d09c4fd6efaf3e8fbb7b3639045031e62512f10a",
+            "sim.log": "9029d132674d2554a631fa54c5fbcb1e932369b3fa5b9bb00038267656132299"
+          },
+          "full": {
+            "prefix.npz": "8c351dced220766245749ee233533a70e0e3c6432c5abee891b1a77d352d555f",
+            "validation.json": "5d0f0accf7696700ebc898dcc2ee8a82cbef823e02f7efe1f1f36a8c267ebeb4",
+            "physical_validation.json": "9cdfa1f97bd72efb6ba91cff74b018f0929229107af31b3978572cb26d8c08a6",
+            "sim.log": "c0285f26c7a5abdac950180e4bd07951bc3c7a6908203579cd201d317ec45e66"
+          },
+          "current": {
+            "prefix.npz": "0c535aa7faf6391acb27f5bd9441bff26484bdab4e805a5eebdee122fd1b0f43",
+            "validation.json": "965b485b6b339e9af59c2ce7527ce584ce578824f48c527c43616a47edd93a20",
+            "physical_validation.json": "474ae2cdf1d58de1d4f4140c24590a269bd17b62c5d51f5e29f0361c3abb7491",
+            "sim.log": "2ac85f07a916e86df18f1e4e434ebfb7b39c3682fd1d74cd0cdd33dc00e0c4e3"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 46,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 5,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 38967.983,
+      "measured_candidates_on": 38967.983,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "e709c7e72ea3eec28a81bc9bbb562477869d56ece77f37908e097cee33a754b5",
+            "validation.json": "8ca78c92e494132c6a91c234386f955133d82c729a9349f706e4d1ab064acf45",
+            "physical_validation.json": "9aac9c398bcc4385de15fc6dcb5e502662e97fb7d27b164fc37f6f4a8d598875",
+            "sim.log": "e8229b87d02e1665d81b17903f3c97cdd6cf6314825760366adfd5809039768b"
+          },
+          "full": {
+            "prefix.npz": "2411cce3a9ddddc0f92ba5dd803f306526b728915cf37ec92947259e7024bee8",
+            "validation.json": "1be207da5362e6dbc03342a245f8b081ae3add00fd2ff728d931bf7515e56324",
+            "physical_validation.json": "9d253dc6f508ea1ac076ab27f35d72dd5a3716bf82bee8c1161a9ee590a0acf1",
+            "sim.log": "2e360431bb2a0a6b845965ade6ed1d04447b1ee5838235e9f56d1bdcea398395"
+          },
+          "current": {
+            "prefix.npz": "a609e812d8263115257b765db3764c66b92a2bb3f92c1160b5194f450c203a97",
+            "validation.json": "4191fd99cb1853d7bcb4e00902265cfa4b3173cbe181ed7526e767fbd9152417",
+            "physical_validation.json": "5c5d259fa2da3fd63b71a11da8a1dfbfaf578441efde61f743b0ae73411e4f1e",
+            "sim.log": "602c2496da91e9dd12fcc69afe6d10bee62dc09b69ffe174cc247a11c49b3e92"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 47,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 3,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 40111.6335,
+      "measured_candidates_on": 40111.6335,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "0dcb556a7d474a7d9d4f9738cb9c44b1b78bfcf04e020d042cf9610c3a036622",
+            "validation.json": "9cff19372a248a0463307de9e480d04d5690172ef79727a24fec4dad034f594d",
+            "physical_validation.json": "e4ba3cf6fddf706819d83250b75188453f21fdde56b064f8ccaad2606db8098e",
+            "sim.log": "90f92cd154654de7c28e43f2885ffcc3d3f4e94c51f98ff31882e3644a4d8af1"
+          },
+          "full": {
+            "prefix.npz": "20787182e389c0743fe827850bb9623abe422688991bccb87242c379f48e9f82",
+            "validation.json": "0e1b958ef5e143282e929575cd5953090646a53e9624af47348949544458f070",
+            "physical_validation.json": "3103c4e742f303bd3eefa43ab1d12a14f7833538e16e69ef4778ebb66cdf14f9",
+            "sim.log": "62a005240e6a5f6d22cd4d900756d6f01af5aeda8e0ac916b9be10bf21b310a4"
+          },
+          "current": {
+            "prefix.npz": "bbda6d0d23dde26e6a00b0b8b79136e6779de5d333fd28b0dee236f8d54a7cf7",
+            "validation.json": "d47ab57f3a688f94fb97ca8b5a2ffc1dc2b2bd86bd919fb2340a075584be9c55",
+            "physical_validation.json": "b01fa46aafc8b822a2f4e4d1764171ea5cdbe6e59e8b233145062737a16591ed",
+            "sim.log": "531fd7904c795bb46719a461cec8211b2789804e64279e753ec8453d5939c991"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 48,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 17,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 33889.112,
+      "measured_candidates_on": 33889.112,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "274dabb588466f562b517c8f4ccbd6ba5065e367dbd0aa510c9b28eb16c81f8f",
+            "validation.json": "cb0a324c7b1f5daa4af0b004005753122c2051c84bcfd5444e17a8d1726ebc1d",
+            "physical_validation.json": "1c455487d1fd389496f6bfc73248279b074042fb4d67d8396b321c521ddd7363",
+            "sim.log": "e8ca9823b87bc4558160bcf8a757d12214f0cf9b5e5afb741a23b1fdbae0676f"
+          },
+          "full": {
+            "prefix.npz": "e86bc86d3bb060bd15407e94a6c090fcf8a2a96b48086a07d0098947877b7330",
+            "validation.json": "d4f1fd2908801f791374fc08803d6e08aeae66e90f3c26ca4d0ff4aaf73ea565",
+            "physical_validation.json": "c32caecf5c9a702999c05bcd1daf9e0185d8e45f0fb441065f4549f7b1ca7237",
+            "sim.log": "805fcbf0e736cd35890df3bba4703c2e9b0913bca1e426f5d81fb7f0de6d802b"
+          },
+          "current": {
+            "prefix.npz": "04a729a50d4a2d539794e1dee93f3882fdec60a91fb3449af34ad8dbbf91fa20",
+            "validation.json": "71e0949101e7994f217e3b3361fd12fd4da520d1793ce62f8cca45719c7195e1",
+            "physical_validation.json": "c307a52f06ebe5469dfd62da594517711aac49c3f8bb12b4236d3d5929489ad1",
+            "sim.log": "94756c370f2b3948e538ec150570b97b01a4ff2df41049badb862548781b69d7"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 49,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 9,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 35193.5155,
+      "measured_candidates_on": 35193.5155,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "812a6722cb8a15d05dde525d30082256edc0bd0c495fca6c30d315e0bec17eee",
+            "validation.json": "275e058e93b116c7f7510c31a134f002fa363353746357410c8e63bc4660d551",
+            "physical_validation.json": "209b7a379aabbbdfff88728c3fde3b318486bcfc6802897506f28aa48cc7ddf0",
+            "sim.log": "9020b05a94a6a1aa48608603bcb30fd28bfbe3621637874417c6422a4adcf53b"
+          },
+          "full": {
+            "prefix.npz": "4bb3588474a802bde201abbbd6386e5e97d9c1438f5f99240df5cb95af50f7ea",
+            "validation.json": "5a83da034a7794c48258df27ab10e43a43afcdee13b45845e54fb6909939bb38",
+            "physical_validation.json": "b7dd66807cca5e50505836615a2eac33205e8ffecf641e5162f8bfa61952f5fe",
+            "sim.log": "bc2f855aba50b281542e636a960138bbae1383600b600da8913f401f6f56754d"
+          },
+          "current": {
+            "prefix.npz": "52d8bc5f46e6baf5bb82f8caaa3dd383534230537a14b06128dc65b60f0f8a64",
+            "validation.json": "a1e1a6be852bd29e7db5ba2fe28e54d6e8d2c283d7b8d9800b3e6d2e0481083a",
+            "physical_validation.json": "034b4d96e47c07291fd457f5a95aba38d2f6936e4129e97f84cc1d27b58df973",
+            "sim.log": "d17e4593fb72a7daa67bf4393b20f3063387320205b7c59f0a72f8c6979def38"
+          }
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 50,
+      "horizon": 6400,
+      "fixed_floor_ttis": 2400,
+      "no_coordinator_model_loads": true,
+      "no_coordinator_forward_calls": true,
+      "initial_feasibility_restoration_ttis": 31,
+      "full_native_metrics_bit_exact": true,
+      "equal_action_ttis": 6400,
+      "exact_saved_arrays": {
+        "input_hashes": true,
+        "fresh_input_tti": true,
+        "ctbs_hashes": true,
+        "channel_fingerprints": true,
+        "precoder_fingerprints": true,
+        "actions": true,
+        "ue": true,
+        "prg": true,
+        "goodput": true,
+        "hashes": true
+      },
+      "native_sources_sha256": {
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/run.py": "5113892bb2ba07de2d6282bca44a16f37be3a8f7c655c791cadd85b98b7dfcfe",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/instrumented_main.cpp": "5e8676869ac0b2b0e4f40b343de7f770bd35075b3e5a982122c5fe51f27e4c01",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/simulator": "621b1ec600e35882362e1198667c46ef393b25f74a682166ca3449123ec0387d",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_build_manifest.json": "6eb57163fd3d119b2dab85e7088f323c401dcf58921fce7b67a2e239f26f4f11",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/protocol.json": "2a1ec67d1bfd0233b73373e97ba9dd04fe89cc615ee94e29794df455e842f019",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/run.py": "22fa08de817cb9295fab3116358ba40a7b32478eb80b298295ec7bec49227dae",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/policy.py": "17fd5b1e14722a24fb92751aa1e0a620a34f699a32808ea688741e303eaa5e41",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/native_run_generated.py": "0e3202839d9e1d454a33c8dea1d67209aaa4eb261093c86585a48cbde7e0d392",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/search_with_floor.py": "4447fbbb4a77b79a7d5fc177b63da49268457f19b770ee070aad64d4ea790811",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/protocol.json": "70d60374cfbb462cf9ddbe95122e4d489e43d728774f9f56a77dcd53d201abf2",
+        "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/floors.csv": "125420413b88301eb3310d1420b63ba395489da60775e5ddd09b9dd66aa9332b"
+      },
+      "measured_candidates_off": 38060.929,
+      "measured_candidates_on": 38060.929,
+      "original_pair_validator": {
+        "passed": true,
+        "fresh_input_ttis_exact": 6400,
+        "common_exogenous_H_W_ttis": 6400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_label_decode_and_service_prg_counts_exact_ttis_per_arm": 6400,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "dbd24a63b82b177403fb5d260f0c33aef469a24d6f9adfebee6327815f77baee",
+            "validation.json": "69915b678b7b8e418d7ffa89ba4888c42adc0483525b85868a8fa974f45b34a1",
+            "physical_validation.json": "3437a4a77f9ce394fc6c81b8e46008cafba71f470863cb29f62132582fe7e867",
+            "sim.log": "9ff06af18de3e632dac42f5224f35be4d49a0f74f551ab24fcd0ec9d0b5e74d2"
+          },
+          "full": {
+            "prefix.npz": "1b834fb77e5f08d34a7d254392a247e1cfac986b160eb08aba7a807194839570",
+            "validation.json": "215f010fd79a17d6e945cedb8ea02de2163a8873564f4eec626d1c3841927cf5",
+            "physical_validation.json": "355e732c0690337d6d6f21b7cad56435c4a96b83b44685f8e8dbaaebef9100c9",
+            "sim.log": "cfb0942f94041de3aff24790806b65d118cc10ea8f852d6d55cbffe774afa87f"
+          },
+          "current": {
+            "prefix.npz": "589697b0556898f0983b51e8f978007cff3e3b584d8c03f960b999e4154bbded",
+            "validation.json": "62af4be078a3c3d6b301075c2c5cde2f5186a7dff101bc56279038a039890751",
+            "physical_validation.json": "7750ac37e44f73a4e9dc26af9ffdcde843a122257d40fedd75b3c83d237b4241",
+            "sim.log": "cb8199fb999e8cc542a55658d1cbb05bd7a2a3c0ba149751d0bdd4a1305eb200"
+          }
+        }
+      }
+    }
+  ],
+  "incomplete_runs": [
+    {
+      "seed": 44,
+      "status": "stopped_no_feasible_first_neighborhood",
+      "failed_tti": 4938,
+      "completed_native_ttis": 4937,
+      "first_native_difference_tti": 4933,
+      "identical_native_prefix_ttis": 4932,
+      "first_difference_fields": [
+        {
+          "ue": 0,
+          "field": "scheduled_dequeue_bytes",
+          "off": 7046.0,
+          "on": 0.0
+        },
+        {
+          "ue": 0,
+          "field": "post_queue_bytes",
+          "off": 13198.0,
+          "on": 20244.0
+        },
+        {
+          "ue": 0,
+          "field": "successful_bytes",
+          "off": 7046.0,
+          "on": 0.0
+        },
+        {
+          "ue": 0,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 0.0
+        },
+        {
+          "ue": 0,
+          "field": "mcs",
+          "off": 13.0,
+          "on": -1.0
+        },
+        {
+          "ue": 0,
+          "field": "layer",
+          "off": 4.0,
+          "on": -1.0
+        },
+        {
+          "ue": 0,
+          "field": "phy_sinr_db_cpu",
+          "off": 13.178464889526367,
+          "on": -999.0
+        },
+        {
+          "ue": 0,
+          "field": "predicted_bler_cpu",
+          "off": 0.0006350527983158827,
+          "on": -1.0
+        },
+        {
+          "ue": 0,
+          "field": "tb_tx_count",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 3,
+          "field": "scheduled_dequeue_bytes",
+          "off": 9474.0,
+          "on": 6402.0
+        },
+        {
+          "ue": 3,
+          "field": "post_queue_bytes",
+          "off": 102804.0,
+          "on": 105876.0
+        },
+        {
+          "ue": 3,
+          "field": "successful_bytes",
+          "off": 9474.0,
+          "on": 6402.0
+        },
+        {
+          "ue": 3,
+          "field": "actual_prg_count",
+          "off": 3.0,
+          "on": 2.0
+        },
+        {
+          "ue": 3,
+          "field": "phy_sinr_db_cpu",
+          "off": 11.919647216796875,
+          "on": 12.481836318969727
+        },
+        {
+          "ue": 3,
+          "field": "predicted_bler_cpu",
+          "off": 0.01014961488544941,
+          "on": 2.615569974295795e-05
+        },
+        {
+          "ue": 6,
+          "field": "scheduled_dequeue_bytes",
+          "off": 3841.0,
+          "on": 1889.0
+        },
+        {
+          "ue": 6,
+          "field": "post_queue_bytes",
+          "off": 20.0,
+          "on": 1972.0
+        },
+        {
+          "ue": 6,
+          "field": "successful_bytes",
+          "off": 3841.0,
+          "on": 0.0
+        },
+        {
+          "ue": 6,
+          "field": "failed_bytes",
+          "off": 0.0,
+          "on": 1889.0
+        },
+        {
+          "ue": 6,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 1.0
+        },
+        {
+          "ue": 6,
+          "field": "phy_sinr_db_cpu",
+          "off": 9.027878761291504,
+          "on": 6.276522636413574
+        },
+        {
+          "ue": 6,
+          "field": "predicted_bler_cpu",
+          "off": 3.553939677658491e-05,
+          "on": 1.0
+        },
+        {
+          "ue": 6,
+          "field": "tb_err_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 10,
+          "field": "phy_sinr_db_cpu",
+          "off": 9.348615646362305,
+          "on": 8.026073455810547
+        },
+        {
+          "ue": 11,
+          "field": "scheduled_dequeue_bytes",
+          "off": 2017.0,
+          "on": 0.0
+        },
+        {
+          "ue": 11,
+          "field": "post_queue_bytes",
+          "off": 983.0,
+          "on": 3000.0
+        },
+        {
+          "ue": 11,
+          "field": "successful_bytes",
+          "off": 2017.0,
+          "on": 0.0
+        },
+        {
+          "ue": 11,
+          "field": "actual_prg_count",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 11,
+          "field": "mcs",
+          "off": 7.0,
+          "on": -1.0
+        },
+        {
+          "ue": 11,
+          "field": "layer",
+          "off": 4.0,
+          "on": -1.0
+        },
+        {
+          "ue": 11,
+          "field": "phy_sinr_db_cpu",
+          "off": 10.329508781433105,
+          "on": -999.0
+        },
+        {
+          "ue": 11,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": -1.0
+        },
+        {
+          "ue": 11,
+          "field": "tb_tx_count",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 14,
+          "field": "scheduled_dequeue_bytes",
+          "off": 0.0,
+          "on": 5763.0
+        },
+        {
+          "ue": 14,
+          "field": "post_queue_bytes",
+          "off": 134076.0,
+          "on": 128313.0
+        },
+        {
+          "ue": 14,
+          "field": "successful_bytes",
+          "off": 0.0,
+          "on": 5763.0
+        },
+        {
+          "ue": 14,
+          "field": "actual_prg_count",
+          "off": 0.0,
+          "on": 3.0
+        },
+        {
+          "ue": 14,
+          "field": "mcs",
+          "off": -1.0,
+          "on": 9.0
+        },
+        {
+          "ue": 14,
+          "field": "layer",
+          "off": -1.0,
+          "on": 3.0
+        },
+        {
+          "ue": 14,
+          "field": "phy_sinr_db_cpu",
+          "off": -999.0,
+          "on": 8.795631408691406
+        },
+        {
+          "ue": 14,
+          "field": "predicted_bler_cpu",
+          "off": -1.0,
+          "on": 0.00020349487022031099
+        },
+        {
+          "ue": 14,
+          "field": "tb_tx_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 16,
+          "field": "scheduled_dequeue_bytes",
+          "off": 0.0,
+          "on": 23053.0
+        },
+        {
+          "ue": 16,
+          "field": "post_queue_bytes",
+          "off": 374714.0,
+          "on": 351661.0
+        },
+        {
+          "ue": 16,
+          "field": "successful_bytes",
+          "off": 0.0,
+          "on": 23053.0
+        },
+        {
+          "ue": 16,
+          "field": "actual_prg_count",
+          "off": 0.0,
+          "on": 8.0
+        },
+        {
+          "ue": 16,
+          "field": "mcs",
+          "off": -1.0,
+          "on": 11.0
+        },
+        {
+          "ue": 16,
+          "field": "layer",
+          "off": -1.0,
+          "on": 4.0
+        },
+        {
+          "ue": 16,
+          "field": "phy_sinr_db_cpu",
+          "off": -999.0,
+          "on": 15.379390716552734
+        },
+        {
+          "ue": 16,
+          "field": "predicted_bler_cpu",
+          "off": -1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 16,
+          "field": "tb_tx_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 17,
+          "field": "scheduled_dequeue_bytes",
+          "off": 4737.0,
+          "on": 6000.0
+        },
+        {
+          "ue": 17,
+          "field": "post_queue_bytes",
+          "off": 1263.0,
+          "on": 0.0
+        },
+        {
+          "ue": 17,
+          "field": "successful_bytes",
+          "off": 4737.0,
+          "on": 6000.0
+        },
+        {
+          "ue": 17,
+          "field": "layer",
+          "off": 3.0,
+          "on": 4.0
+        },
+        {
+          "ue": 17,
+          "field": "phy_sinr_db_cpu",
+          "off": 11.735285758972168,
+          "on": 12.55032730102539
+        },
+        {
+          "ue": 17,
+          "field": "predicted_bler_cpu",
+          "off": 0.03594730794429779,
+          "on": 0.0
+        },
+        {
+          "ue": 19,
+          "field": "scheduled_dequeue_bytes",
+          "off": 1857.0,
+          "on": 928.0
+        },
+        {
+          "ue": 19,
+          "field": "post_queue_bytes",
+          "off": 1024143.0,
+          "on": 1025072.0
+        },
+        {
+          "ue": 19,
+          "field": "successful_bytes",
+          "off": 1857.0,
+          "on": 928.0
+        },
+        {
+          "ue": 19,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 1.0
+        },
+        {
+          "ue": 19,
+          "field": "phy_sinr_db_cpu",
+          "off": 3.107261896133423,
+          "on": 2.548980951309204
+        },
+        {
+          "ue": 19,
+          "field": "predicted_bler_cpu",
+          "off": 0.00030283810338005424,
+          "on": 0.0006173043511807919
+        },
+        {
+          "ue": 21,
+          "field": "successful_bytes",
+          "off": 3201.0,
+          "on": 0.0
+        },
+        {
+          "ue": 21,
+          "field": "failed_bytes",
+          "off": 0.0,
+          "on": 3201.0
+        },
+        {
+          "ue": 21,
+          "field": "phy_sinr_db_cpu",
+          "off": 12.971542358398438,
+          "on": 5.96378755569458
+        },
+        {
+          "ue": 21,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 21,
+          "field": "tb_err_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 22,
+          "field": "phy_sinr_db_cpu",
+          "off": 17.00710105895996,
+          "on": 16.573001861572266
+        },
+        {
+          "ue": 25,
+          "field": "scheduled_dequeue_bytes",
+          "off": 4097.0,
+          "on": 7163.0
+        },
+        {
+          "ue": 25,
+          "field": "post_queue_bytes",
+          "off": 3066.0,
+          "on": 0.0
+        },
+        {
+          "ue": 25,
+          "field": "successful_bytes",
+          "off": 0.0,
+          "on": 7163.0
+        },
+        {
+          "ue": 25,
+          "field": "failed_bytes",
+          "off": 4097.0,
+          "on": 0.0
+        },
+        {
+          "ue": 25,
+          "field": "actual_prg_count",
+          "off": 1.0,
+          "on": 2.0
+        },
+        {
+          "ue": 25,
+          "field": "phy_sinr_db_cpu",
+          "off": 4.126827716827393,
+          "on": 20.63998794555664
+        },
+        {
+          "ue": 25,
+          "field": "predicted_bler_cpu",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 25,
+          "field": "tb_err_count",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 27,
+          "field": "phy_sinr_db_cpu",
+          "off": 15.890665054321289,
+          "on": 13.434795379638672
+        },
+        {
+          "ue": 27,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": 0.017457857728004456
+        },
+        {
+          "ue": 29,
+          "field": "actual_prg_count",
+          "off": 3.0,
+          "on": 4.0
+        },
+        {
+          "ue": 29,
+          "field": "layer",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 29,
+          "field": "phy_sinr_db_cpu",
+          "off": 9.420609474182129,
+          "on": 9.950848579406738
+        },
+        {
+          "ue": 29,
+          "field": "predicted_bler_cpu",
+          "off": 0.060346901416778564,
+          "on": 3.145690425299108e-05
+        },
+        {
+          "ue": 30,
+          "field": "phy_sinr_db_cpu",
+          "off": 7.508766174316406,
+          "on": 7.537915229797363
+        },
+        {
+          "ue": 32,
+          "field": "phy_sinr_db_cpu",
+          "off": 8.182856559753418,
+          "on": 5.105910301208496
+        },
+        {
+          "ue": 34,
+          "field": "scheduled_dequeue_bytes",
+          "off": 20497.0,
+          "on": 5122.0
+        },
+        {
+          "ue": 34,
+          "field": "post_queue_bytes",
+          "off": 885423.0,
+          "on": 900798.0
+        },
+        {
+          "ue": 34,
+          "field": "successful_bytes",
+          "off": 20497.0,
+          "on": 5122.0
+        },
+        {
+          "ue": 34,
+          "field": "actual_prg_count",
+          "off": 8.0,
+          "on": 2.0
+        },
+        {
+          "ue": 34,
+          "field": "phy_sinr_db_cpu",
+          "off": 16.41212272644043,
+          "on": 8.914814949035645
+        },
+        {
+          "ue": 34,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": 0.00010814804409164935
+        },
+        {
+          "ue": 35,
+          "field": "scheduled_dequeue_bytes",
+          "off": 4992.0,
+          "on": 2817.0
+        },
+        {
+          "ue": 35,
+          "field": "post_queue_bytes",
+          "off": 7713.0,
+          "on": 9888.0
+        },
+        {
+          "ue": 35,
+          "field": "successful_bytes",
+          "off": 4992.0,
+          "on": 2817.0
+        },
+        {
+          "ue": 35,
+          "field": "actual_prg_count",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 35,
+          "field": "layer",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 35,
+          "field": "phy_sinr_db_cpu",
+          "off": 3.9986157417297363,
+          "on": 3.903665542602539
+        },
+        {
+          "ue": 35,
+          "field": "predicted_bler_cpu",
+          "off": 0.0001604429562576115,
+          "on": 0.00019082702056039125
+        }
+      ],
+      "floor_relaxed": false,
+      "limitation": "No feasible candidate in the existing first-round neighborhood, not global infeasibility. Mature cohort is incomplete; do not extrapolate complete-window packet gain."
+    },
+    {
+      "seed": 45,
+      "status": "stopped_no_feasible_first_neighborhood",
+      "failed_tti": 6001,
+      "completed_native_ttis": 6000,
+      "first_native_difference_tti": 5985,
+      "identical_native_prefix_ttis": 5984,
+      "first_difference_fields": [
+        {
+          "ue": 1,
+          "field": "scheduled_dequeue_bytes",
+          "off": 0.0,
+          "on": 1249.0
+        },
+        {
+          "ue": 1,
+          "field": "post_queue_bytes",
+          "off": 3511.0,
+          "on": 2262.0
+        },
+        {
+          "ue": 1,
+          "field": "failed_bytes",
+          "off": 0.0,
+          "on": 1249.0
+        },
+        {
+          "ue": 1,
+          "field": "actual_prg_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 1,
+          "field": "mcs",
+          "off": -1.0,
+          "on": 4.0
+        },
+        {
+          "ue": 1,
+          "field": "layer",
+          "off": -1.0,
+          "on": 4.0
+        },
+        {
+          "ue": 1,
+          "field": "phy_sinr_db_cpu",
+          "off": -999.0,
+          "on": -0.21889400482177734
+        },
+        {
+          "ue": 1,
+          "field": "predicted_bler_cpu",
+          "off": -1.0,
+          "on": 1.0
+        },
+        {
+          "ue": 1,
+          "field": "tb_tx_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 1,
+          "field": "tb_err_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 2,
+          "field": "scheduled_dequeue_bytes",
+          "off": 2562.0,
+          "on": 1889.0
+        },
+        {
+          "ue": 2,
+          "field": "post_queue_bytes",
+          "off": 438.0,
+          "on": 1111.0
+        },
+        {
+          "ue": 2,
+          "field": "successful_bytes",
+          "off": 2562.0,
+          "on": 1889.0
+        },
+        {
+          "ue": 2,
+          "field": "layer",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 2,
+          "field": "phy_sinr_db_cpu",
+          "off": 8.887982368469238,
+          "on": 10.072433471679688
+        },
+        {
+          "ue": 2,
+          "field": "predicted_bler_cpu",
+          "off": 0.00012961411266587675,
+          "on": 0.0
+        },
+        {
+          "ue": 5,
+          "field": "phy_sinr_db_cpu",
+          "off": 10.389880180358887,
+          "on": 10.237180709838867
+        },
+        {
+          "ue": 6,
+          "field": "scheduled_dequeue_bytes",
+          "off": 2688.0,
+          "on": 4097.0
+        },
+        {
+          "ue": 6,
+          "field": "post_queue_bytes",
+          "off": 19496.0,
+          "on": 18087.0
+        },
+        {
+          "ue": 6,
+          "field": "successful_bytes",
+          "off": 2688.0,
+          "on": 4097.0
+        },
+        {
+          "ue": 6,
+          "field": "actual_prg_count",
+          "off": 1.0,
+          "on": 2.0
+        },
+        {
+          "ue": 6,
+          "field": "layer",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 6,
+          "field": "phy_sinr_db_cpu",
+          "off": 9.35336685180664,
+          "on": 10.010275840759277
+        },
+        {
+          "ue": 6,
+          "field": "predicted_bler_cpu",
+          "off": 0.10627630352973938,
+          "on": 0.0
+        },
+        {
+          "ue": 7,
+          "field": "phy_sinr_db_cpu",
+          "off": 8.67538070678711,
+          "on": 8.789572715759277
+        },
+        {
+          "ue": 7,
+          "field": "predicted_bler_cpu",
+          "off": 0.002830781973898411,
+          "on": 0.00020834182214457542
+        },
+        {
+          "ue": 9,
+          "field": "scheduled_dequeue_bytes",
+          "off": 9222.0,
+          "on": 6787.0
+        },
+        {
+          "ue": 9,
+          "field": "post_queue_bytes",
+          "off": 474.0,
+          "on": 2909.0
+        },
+        {
+          "ue": 9,
+          "field": "successful_bytes",
+          "off": 9222.0,
+          "on": 6787.0
+        },
+        {
+          "ue": 9,
+          "field": "actual_prg_count",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 9,
+          "field": "phy_sinr_db_cpu",
+          "off": 8.16215705871582,
+          "on": 7.906900405883789
+        },
+        {
+          "ue": 9,
+          "field": "predicted_bler_cpu",
+          "off": 0.0019319807179272175,
+          "on": 0.02528659999370575
+        },
+        {
+          "ue": 12,
+          "field": "scheduled_dequeue_bytes",
+          "off": 4033.0,
+          "on": 0.0
+        },
+        {
+          "ue": 12,
+          "field": "post_queue_bytes",
+          "off": 863552.0,
+          "on": 867585.0
+        },
+        {
+          "ue": 12,
+          "field": "successful_bytes",
+          "off": 4033.0,
+          "on": 0.0
+        },
+        {
+          "ue": 12,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 0.0
+        },
+        {
+          "ue": 12,
+          "field": "mcs",
+          "off": 7.0,
+          "on": -1.0
+        },
+        {
+          "ue": 12,
+          "field": "layer",
+          "off": 4.0,
+          "on": -1.0
+        },
+        {
+          "ue": 12,
+          "field": "phy_sinr_db_cpu",
+          "off": 7.335777759552002,
+          "on": -999.0
+        },
+        {
+          "ue": 12,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": -1.0
+        },
+        {
+          "ue": 12,
+          "field": "tb_tx_count",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 13,
+          "field": "scheduled_dequeue_bytes",
+          "off": 3841.0,
+          "on": 5399.0
+        },
+        {
+          "ue": 13,
+          "field": "post_queue_bytes",
+          "off": 1558.0,
+          "on": 0.0
+        },
+        {
+          "ue": 13,
+          "field": "successful_bytes",
+          "off": 3841.0,
+          "on": 5399.0
+        },
+        {
+          "ue": 13,
+          "field": "actual_prg_count",
+          "off": 1.0,
+          "on": 2.0
+        },
+        {
+          "ue": 13,
+          "field": "layer",
+          "off": 4.0,
+          "on": 3.0
+        },
+        {
+          "ue": 13,
+          "field": "phy_sinr_db_cpu",
+          "off": 16.302396774291992,
+          "on": 14.737428665161133
+        },
+        {
+          "ue": 18,
+          "field": "scheduled_dequeue_bytes",
+          "off": 5122.0,
+          "on": 0.0
+        },
+        {
+          "ue": 18,
+          "field": "post_queue_bytes",
+          "off": 1316.0,
+          "on": 6438.0
+        },
+        {
+          "ue": 18,
+          "field": "successful_bytes",
+          "off": 5122.0,
+          "on": 0.0
+        },
+        {
+          "ue": 18,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 0.0
+        },
+        {
+          "ue": 18,
+          "field": "mcs",
+          "off": 9.0,
+          "on": -1.0
+        },
+        {
+          "ue": 18,
+          "field": "layer",
+          "off": 4.0,
+          "on": -1.0
+        },
+        {
+          "ue": 18,
+          "field": "phy_sinr_db_cpu",
+          "off": 8.540135383605957,
+          "on": -999.0
+        },
+        {
+          "ue": 18,
+          "field": "predicted_bler_cpu",
+          "off": 0.007526499219238758,
+          "on": -1.0
+        },
+        {
+          "ue": 18,
+          "field": "tb_tx_count",
+          "off": 1.0,
+          "on": 0.0
+        },
+        {
+          "ue": 20,
+          "field": "scheduled_dequeue_bytes",
+          "off": 4612.0,
+          "on": 6787.0
+        },
+        {
+          "ue": 20,
+          "field": "post_queue_bytes",
+          "off": 17676.0,
+          "on": 15501.0
+        },
+        {
+          "ue": 20,
+          "field": "successful_bytes",
+          "off": 4612.0,
+          "on": 6787.0
+        },
+        {
+          "ue": 20,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 3.0
+        },
+        {
+          "ue": 20,
+          "field": "phy_sinr_db_cpu",
+          "off": 8.696293830871582,
+          "on": 7.94284725189209
+        },
+        {
+          "ue": 20,
+          "field": "predicted_bler_cpu",
+          "off": 8.592985977884382e-06,
+          "on": 0.01736103743314743
+        },
+        {
+          "ue": 23,
+          "field": "layer",
+          "off": 3.0,
+          "on": 4.0
+        },
+        {
+          "ue": 23,
+          "field": "phy_sinr_db_cpu",
+          "off": 9.57924747467041,
+          "on": 8.571678161621094
+        },
+        {
+          "ue": 23,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": 0.006431334186345339
+        },
+        {
+          "ue": 25,
+          "field": "scheduled_dequeue_bytes",
+          "off": 4737.0,
+          "on": 12802.0
+        },
+        {
+          "ue": 25,
+          "field": "post_queue_bytes",
+          "off": 9981.0,
+          "on": 1916.0
+        },
+        {
+          "ue": 25,
+          "field": "successful_bytes",
+          "off": 4737.0,
+          "on": 12802.0
+        },
+        {
+          "ue": 25,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 4.0
+        },
+        {
+          "ue": 25,
+          "field": "layer",
+          "off": 3.0,
+          "on": 4.0
+        },
+        {
+          "ue": 25,
+          "field": "phy_sinr_db_cpu",
+          "off": 12.03783893585205,
+          "on": 19.98455047607422
+        },
+        {
+          "ue": 25,
+          "field": "predicted_bler_cpu",
+          "off": 0.0026343667414039373,
+          "on": 0.0
+        },
+        {
+          "ue": 27,
+          "field": "scheduled_dequeue_bytes",
+          "off": 0.0,
+          "on": 2017.0
+        },
+        {
+          "ue": 27,
+          "field": "post_queue_bytes",
+          "off": 906146.0,
+          "on": 904129.0
+        },
+        {
+          "ue": 27,
+          "field": "failed_bytes",
+          "off": 0.0,
+          "on": 2017.0
+        },
+        {
+          "ue": 27,
+          "field": "actual_prg_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 27,
+          "field": "mcs",
+          "off": -1.0,
+          "on": 7.0
+        },
+        {
+          "ue": 27,
+          "field": "layer",
+          "off": -1.0,
+          "on": 4.0
+        },
+        {
+          "ue": 27,
+          "field": "phy_sinr_db_cpu",
+          "off": -999.0,
+          "on": 1.2857096195220947
+        },
+        {
+          "ue": 27,
+          "field": "predicted_bler_cpu",
+          "off": -1.0,
+          "on": 1.0
+        },
+        {
+          "ue": 27,
+          "field": "tb_tx_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 27,
+          "field": "tb_err_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 30,
+          "field": "scheduled_dequeue_bytes",
+          "off": 0.0,
+          "on": 2562.0
+        },
+        {
+          "ue": 30,
+          "field": "post_queue_bytes",
+          "off": 4181.0,
+          "on": 1619.0
+        },
+        {
+          "ue": 30,
+          "field": "failed_bytes",
+          "off": 0.0,
+          "on": 2562.0
+        },
+        {
+          "ue": 30,
+          "field": "actual_prg_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 30,
+          "field": "mcs",
+          "off": -1.0,
+          "on": 9.0
+        },
+        {
+          "ue": 30,
+          "field": "layer",
+          "off": -1.0,
+          "on": 4.0
+        },
+        {
+          "ue": 30,
+          "field": "phy_sinr_db_cpu",
+          "off": -999.0,
+          "on": 7.963543891906738
+        },
+        {
+          "ue": 30,
+          "field": "predicted_bler_cpu",
+          "off": -1.0,
+          "on": 0.9286817312240601
+        },
+        {
+          "ue": 30,
+          "field": "tb_tx_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 30,
+          "field": "tb_err_count",
+          "off": 0.0,
+          "on": 1.0
+        },
+        {
+          "ue": 34,
+          "field": "phy_sinr_db_cpu",
+          "off": 7.393186092376709,
+          "on": 7.540757656097412
+        },
+        {
+          "ue": 35,
+          "field": "scheduled_dequeue_bytes",
+          "off": 6474.0,
+          "on": 0.0
+        },
+        {
+          "ue": 35,
+          "field": "post_queue_bytes",
+          "off": 0.0,
+          "on": 6474.0
+        },
+        {
+          "ue": 35,
+          "field": "successful_bytes",
+          "off": 6474.0,
+          "on": 0.0
+        },
+        {
+          "ue": 35,
+          "field": "actual_prg_count",
+          "off": 2.0,
+          "on": 0.0
+        },
+        {
+          "ue": 35,
+          "field": "mcs",
+          "off": 14.0,
+          "on": -1.0
+        },
+        {
+          "ue": 35,
+          "field": "layer",
+          "off": 4.0,
+          "on": -1.0
+        },
+        {
+          "ue": 35,
+          "field": "phy_sinr_db_cpu",
+          "off": 21.47812843322754,
+          "on": -999.0
+        },
+        {
+          "ue": 35,
+          "field": "predicted_bler_cpu",
+          "off": 0.0,
+          "on": -1.0
+        },
+        {
+          "ue": 35,
+          "field": "tb_tx_count",
+          "off": 1.0,
+          "on": 0.0
+        }
+      ],
+      "floor_relaxed": false,
+      "limitation": "No feasible candidate in the existing first-round neighborhood, not global infeasibility. Mature cohort is incomplete; do not extrapolate complete-window packet gain."
+    }
+  ],
+  "fifo_provenance": [
+    {
+      "seed": 41,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed41_current_2000",
+      "files": {
+        "metrics.bin": "708f48384de3376d6e5ea2d47f2fc746b0f98e276a65f7a7c06ddbcc7c5eb36e",
+        "traffic_offered_packets.csv": "6fa781b6ee2646ca270fc0fde0f3cdebad99f9a7879669a96d5641be4f982a1c",
+        "packet_outcome_samples.csv": "b6449ad12145a254beb816b5fe694511328cb890f9aeec725156d02787c0b5cc",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "9a901913399f183148c06bd7e91e2872209b3d1de00ebf6753635c49468e506a",
+        "launch.json": "3578289041c967d65adea6e6b9a31751c45abaa13e328b6d24cc036f71371f98",
+        "validation.json": "060507c0b2b52cb36c5fd92342738471a148bc1e414cf57525db39a895a151a7"
+      },
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "mature_cohort_packets": 57496,
+      "no_censoring": true
+    },
+    {
+      "seed": 42,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed42_current_2000",
+      "files": {
+        "metrics.bin": "598a29b170bf84e069c7fa07a96e6a6a61f80a47f36ef4a20414deeb09c977bd",
+        "traffic_offered_packets.csv": "b2761bf870d27992a9715c73b66a4e64a59ac9de9d202bc2316b313ced1813ba",
+        "packet_outcome_samples.csv": "cb55862ef3a595787793430aa7e9c3a2045cda69767b7dde677732d9fc88ee70",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "2e19e314633eecabb2b2ddab81fa39b194de9ea8187bb52685b4c24d228f91c0",
+        "launch.json": "82166c30ddf5c6c13a3392e89b686700be75ac9d79933e68d25bc60d600f4e94",
+        "validation.json": "dd9d1ffa80924b0557013664a1fb50c7c6b5d7ea32be92f699c5b927c07b2d38"
+      },
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "mature_cohort_packets": 57986,
+      "no_censoring": true
+    },
+    {
+      "seed": 43,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed43_current_2000",
+      "files": {
+        "metrics.bin": "d7a92f24c0b2bf78e5b0237c41951ab57bec118d9a72ebcc26d69773a8d2cf63",
+        "traffic_offered_packets.csv": "41fb87676512b2e4e64eb782474a4a0fd6b65006b7f6da65f606585ffc98f9c0",
+        "packet_outcome_samples.csv": "331d6e6aeff5c62b540829458d1688c92b57329493680432d1e093f87397fbd5",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "f176f25f40e7c5b657ff4a246f96f4acc71649be1a294bf18a29cada73fe8f39",
+        "launch.json": "966064513f06cfdf22ebe5f5d3db100cf6a235795ef2d4628b7a1ad17bd499f2",
+        "validation.json": "965b485b6b339e9af59c2ce7527ce584ce578824f48c527c43616a47edd93a20"
+      },
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "mature_cohort_packets": 57749,
+      "no_censoring": true
+    },
+    {
+      "seed": 46,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed46_current_2000",
+      "files": {
+        "metrics.bin": "63778e04c7a898006fdb43e3575d5e82dce6d45bd0b85fd6b3a9d4f87955ffd2",
+        "traffic_offered_packets.csv": "31f6a24a01fece4a3cf983b20f9c836e3c87cb14ba8eec127179227593dfdd7c",
+        "packet_outcome_samples.csv": "d76adb18eb3d3e307d32cfbc15543ec71e1007557fb31ff9973c4fa4d2fa7145",
+        "ue_topology.csv": "159e79feb96b8301219010387d4ce50c576c2843cd6f2993ea05c63050b9542b",
+        "execution.json": "82307f2d6d2e0f7bf8c058abf5284f3cfd3389e553ef14e23247d7199a54505b",
+        "launch.json": "800ef1e7ecdb0079ae42d2c23ac69dbc05728660af5835da8861bec25e71b5a5",
+        "validation.json": "4191fd99cb1853d7bcb4e00902265cfa4b3173cbe181ed7526e767fbd9152417"
+      },
+      "first4000_service_sha256": "5168ba9f43091a8c5b9fd9b07381e821145f30dc2bdd0d95a8c84bd0037c643c",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 47,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed47_current_2000",
+      "files": {
+        "metrics.bin": "b59b7915af0755dd8da91f00e6f19782f4a3d8da6252bb9552553cd8305bc7ed",
+        "traffic_offered_packets.csv": "90bc21e24f720eb24dae11626bbd654e949019cc56eb14ec00dcbf25b087442e",
+        "packet_outcome_samples.csv": "f9cc3b5ec29673b4ad0e89cf30aa0b6020130645e68fbfea68ad92dc5b4d9c00",
+        "ue_topology.csv": "a3a81b53eb98d5067373e970306abadc32647ee0a40a07d8765849d03c34250f",
+        "execution.json": "44ac1b82aaedbb6b2f0fd5a2c46d8d259fff3dddf0e7a365a2fff13c14f1cfb0",
+        "launch.json": "9e156cb93eadf59f8c0d8fd0e3afa817721a54b3581926172d8f23ac2d8dcd0c",
+        "validation.json": "d47ab57f3a688f94fb97ca8b5a2ffc1dc2b2bd86bd919fb2340a075584be9c55"
+      },
+      "first4000_service_sha256": "4417c11e07391b151630deafe6e8aaaaf7145ab96336b926ae8cb1a80589c1fc",
+      "mature_cohort_packets": 57588,
+      "no_censoring": true
+    },
+    {
+      "seed": 48,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed48_current_2000",
+      "files": {
+        "metrics.bin": "51fbe899768690152ffb6be7714f1431aa8d06a956cc2a0d16729b3d5fe16da1",
+        "traffic_offered_packets.csv": "b745e7ed6a9a8d780cb08709cebfc51f54491f01c94670dc839f6f0068675560",
+        "packet_outcome_samples.csv": "524ad643ebbf651a48f73687f85b5ab10d8372edb1b57c1ed8d8a12be1406197",
+        "ue_topology.csv": "564c099a09a601fa68a305c2f86c27bf0b8bc29a36d4061f0175843e3ed1cf8b",
+        "execution.json": "87dbba3b192d561a15fad2fffa274951b968292dc355ddedf5526bffe75daf16",
+        "launch.json": "f7cd8d814e614f9ee5119f7015a4e51ffc6ab46055fc48f638da01bf60f692fe",
+        "validation.json": "71e0949101e7994f217e3b3361fd12fd4da520d1793ce62f8cca45719c7195e1"
+      },
+      "first4000_service_sha256": "0d46e9829a4b1a7fd77ad2c042d5c2f29b4081356ab6f46a4f5125d43ec33ef2",
+      "mature_cohort_packets": 57957,
+      "no_censoring": true
+    },
+    {
+      "seed": 49,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed49_current_2000",
+      "files": {
+        "metrics.bin": "699f4e6be7b8ca3fe83bbbe4895a6f8adce6f316eb4bf3a2f1b922e32fdc2405",
+        "traffic_offered_packets.csv": "c1f77e93b0aad75299929bb8f4b96e05c9edb72ec35d2179d57a807a01620bb9",
+        "packet_outcome_samples.csv": "58fadea0d452e5ddb06a0a6da970b18a783c1c3aebfa00ea52df2e3d309ba8a0",
+        "ue_topology.csv": "52b34bbac15416c4167f6623524e7ee3d02ec59425c57d0bea82b90a6ed28130",
+        "execution.json": "d297901ad489c8d215f0dfdf73764062ff63d17866035e9d2651b922f3aac810",
+        "launch.json": "6b7202bb45c56f742943402dff7862fa23bdbc6b39e230fd1d3dbb0cf08617b3",
+        "validation.json": "a1e1a6be852bd29e7db5ba2fe28e54d6e8d2c283d7b8d9800b3e6d2e0481083a"
+      },
+      "first4000_service_sha256": "6855ec9c63d0f7560cb13789d8e0f3c9e90b446b1779d472c28dbbc2b767b79e",
+      "mature_cohort_packets": 57227,
+      "no_censoring": true
+    },
+    {
+      "seed": 50,
+      "arm": "current",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/seed50_current_2000",
+      "files": {
+        "metrics.bin": "795dc906db648a85ce0f944b5becaa73644215f301ba949d498d16fe57f42e03",
+        "traffic_offered_packets.csv": "d3cc1be5ae59e058f23670b55175cae012adaf51f5433746f760157d17a08453",
+        "packet_outcome_samples.csv": "571d3bba0ac4d486ca2b886e51342b43bf4b3dcf5d380ba0e76b17abd3638a9c",
+        "ue_topology.csv": "5de94a71f5313a9dfb1a4c08810e07994f84c6f53dbcb8783d8a4647cbdbd8bd",
+        "execution.json": "65119de8e9b99a7f4435749fb25fee992a48622a95f59d9d91147e708f50fa60",
+        "launch.json": "b87badd5a462794a42e7ab93f08b7723eebc175df28e6a4d453bb3d5aa176a73",
+        "validation.json": "62af4be078a3c3d6b301075c2c5cde2f5186a7dff101bc56279038a039890751"
+      },
+      "first4000_service_sha256": "590e799cdc6e66a247146aa0f3c24067bdf48d0be58aea4cef66c02201064fe8",
+      "mature_cohort_packets": 57623,
+      "no_censoring": true
+    }
+  ],
+  "first_divergence_diagnostics": [
+    {
+      "seed": 44,
+      "tti": 4933,
+      "reference_full_inputs_replayed_exact": true,
+      "original_search_reproduces_reference_action": true,
+      "shared_numeric_floor": 102141.0,
+      "same_ordered_candidate_rows_except_incumbent": true,
+      "common_candidate_prediction_max_errors": {
+        "count": 0.0,
+        "layer": 0.0,
+        "mcs": 0.0,
+        "capacity": 0.0,
+        "dequeue": 0.0,
+        "sinr_db": 0.0,
+        "bler": 0.0,
+        "expected": 0.0,
+        "interference": 0.0
+      },
+      "common_candidate_score_max_error": 0.0,
+      "original_on_off_final_actions_equal": false,
+      "original_on_final_score": 83620.48290035117,
+      "original_off_final_score": 87101.95771430596,
+      "stable_native_mcs3_on_off_actions_equal": false,
+      "stable_on_final_score": 83620.48290035117,
+      "stable_off_final_score": 87101.95771430596,
+      "limitation": "Diagnostic at first divergence only. Stable lookup is not applied to primary native runs or reused historical metrics.",
+      "first_round_explanation": {
+        "on": {
+          "initial_score": 19600.94229472021,
+          "best_first_score": 19601.13130396235,
+          "best_first_index": 752,
+          "best_first_gain": 0.18900924213812687,
+          "best_is_incumbent": false,
+          "first_rounds": [
+            {
+              "round": 1,
+              "weighted_expected": 19600.94229472021,
+              "gain": 0.0,
+              "accepted": false,
+              "candidates": 1532
+            },
+            {
+              "round": 2,
+              "weighted_expected": 26020.826631430693,
+              "gain": 6419.884336710482,
+              "accepted": true,
+              "candidates": 1518
+            },
+            {
+              "round": 3,
+              "weighted_expected": 36398.628404273804,
+              "gain": 10377.801772843111,
+              "accepted": true,
+              "candidates": 1502
+            }
+          ],
+          "final_score": 83620.48290035117
+        },
+        "off": {
+          "initial_score": 10313.010080496691,
+          "best_first_score": 19601.13130396235,
+          "best_first_index": 752,
+          "best_first_gain": 9288.121223465658,
+          "best_is_incumbent": false,
+          "first_rounds": [
+            {
+              "round": 1,
+              "weighted_expected": 19601.13130396235,
+              "gain": 9288.121223465658,
+              "accepted": true,
+              "candidates": 1532
+            },
+            {
+              "round": 2,
+              "weighted_expected": 26021.01564067283,
+              "gain": 6419.884336710482,
+              "accepted": true,
+              "candidates": 1518
+            },
+            {
+              "round": 3,
+              "weighted_expected": 32329.87497993243,
+              "gain": 6308.859339259598,
+              "accepted": true,
+              "candidates": 1502
+            }
+          ],
+          "final_score": 87101.95771430596
+        }
+      }
+    },
+    {
+      "seed": 45,
+      "tti": 5985,
+      "reference_full_inputs_replayed_exact": true,
+      "original_search_reproduces_reference_action": true,
+      "shared_numeric_floor": 95335.0,
+      "same_ordered_candidate_rows_except_incumbent": true,
+      "common_candidate_prediction_max_errors": {
+        "count": 0.0,
+        "layer": 0.0,
+        "mcs": 0.0,
+        "capacity": 0.0,
+        "dequeue": 0.0,
+        "sinr_db": 0.0,
+        "bler": 0.0,
+        "expected": 0.0,
+        "interference": 0.0
+      },
+      "common_candidate_score_max_error": 0.0,
+      "original_on_off_final_actions_equal": false,
+      "original_on_final_score": 79147.93265041141,
+      "original_off_final_score": 84620.05214783722,
+      "stable_native_mcs3_on_off_actions_equal": false,
+      "stable_on_final_score": 79147.93265041141,
+      "stable_off_final_score": 84620.05214783722,
+      "limitation": "Diagnostic at first divergence only. Stable lookup is not applied to primary native runs or reused historical metrics.",
+      "first_round_explanation": {
+        "on": {
+          "initial_score": 19588.06471379314,
+          "best_first_score": 19588.559215122816,
+          "best_first_index": 805,
+          "best_first_gain": 0.4945013296746765,
+          "best_is_incumbent": false,
+          "first_rounds": [
+            {
+              "round": 1,
+              "weighted_expected": 19588.06471379314,
+              "gain": 0.0,
+              "accepted": false,
+              "candidates": 1466
+            },
+            {
+              "round": 2,
+              "weighted_expected": 26144.969796339356,
+              "gain": 6556.9050825462145,
+              "accepted": true,
+              "candidates": 1444
+            },
+            {
+              "round": 3,
+              "weighted_expected": 32391.627118953213,
+              "gain": 6246.657322613857,
+              "accepted": true,
+              "candidates": 1422
+            }
+          ],
+          "final_score": 79147.93265041141
+        },
+        "off": {
+          "initial_score": 8965.845816754827,
+          "best_first_score": 19588.559215122816,
+          "best_first_index": 805,
+          "best_first_gain": 10622.713398367989,
+          "best_is_incumbent": false,
+          "first_rounds": [
+            {
+              "round": 1,
+              "weighted_expected": 19588.559215122816,
+              "gain": 10622.713398367989,
+              "accepted": true,
+              "candidates": 1466
+            },
+            {
+              "round": 2,
+              "weighted_expected": 28173.086025154604,
+              "gain": 8584.526810031788,
+              "accepted": true,
+              "candidates": 1444
+            },
+            {
+              "round": 3,
+              "weighted_expected": 34729.99110770082,
+              "gain": 6556.905082546218,
+              "accepted": true,
+              "candidates": 1425
+            }
+          ],
+          "final_score": 84620.05214783722
+        }
+      }
+    }
+  ],
+  "limitation": "Stopped trajectories remain in the experiment denominator. No ten-seed throughput mean/CI is computed; completed-subset summaries are descriptive only. Frozen external floors need not remain feasible after endogenous trajectories diverge."
+}

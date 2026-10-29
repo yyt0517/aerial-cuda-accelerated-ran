@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "blocks": 259,
+  "snapshot_count": 6,
+  "physical_improves_blocks": 40,
+  "neural_improves_blocks": 2,
+  "physical_better_blocks": 38,
+  "neural_better_blocks": 0,
+  "tied_blocks": 221,
+  "missed_physical_candidates_all_pruned": true,
+  "missed_prune_depths": {
+    "2": 19,
+    "3": 14,
+    "4": 5
+  },
+  "missed_best_found_before_final_depth": 21,
+  "physical_final_depth_still_better": 33,
+  "all_traced_neural_pools_exact": true,
+  "limitation": "Only six prespecified saved states; local fixed-incumbent opportunities, not independent samples or native delay improvements"
+}

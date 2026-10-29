@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "teacher_targets_exact": true,
+  "all_decoder_best_values_exact": true,
+  "remaining_gaps_by_first_loss": {
+    "verified": {
+      "shortlist": 2
+    },
+    "verified_cover": {
+      "shortlist": 2
+    }
+  },
+  "boundary": "Targets are held-out from proposal generation; one representative teacher-best trajectory per block; alternate equal-value solutions count as covered"
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "states": 18,
+  "all_final_actions_and_values_exact": true,
+  "recomputed_ms": 162.09797240379783,
+  "incremental_ms": 144.62934988033442,
+  "incremental_reduction_pct": 10.776582991394735,
+  "limitation": "Host diagnostic on known validation snapshots; separate timing session from primary benchmark"
+}

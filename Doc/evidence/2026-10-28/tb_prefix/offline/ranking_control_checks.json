@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "posthoc": true,
+  "used_for_native_selection": false,
+  "cap": 48,
+  "beam_width": 16,
+  "native_policies_unchanged": true,
+  "control_risk": 87394.03235951171,
+  "verified_risk": 88325.91946953867,
+  "value_ranking_paired_risk_delta": 931.8871100269789,
+  "verified_better_states": 20,
+  "control_better_states": 16,
+  "tied_states": 0,
+  "mean_control_candidates": 18236.5,
+  "scope": "Same per-depth cap and physical acceptance, different next-beam scores; trajectories/actual work can differ; no serial cost claim during native jobs"
+}

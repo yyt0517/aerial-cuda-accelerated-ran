@@ -1,0 +1,91 @@
+{
+  "seed": 45,
+  "tti": 5985,
+  "reference_full_inputs_replayed_exact": true,
+  "original_search_reproduces_reference_action": true,
+  "shared_numeric_floor": 95335.0,
+  "same_ordered_candidate_rows_except_incumbent": true,
+  "common_candidate_prediction_max_errors": {
+    "count": 0.0,
+    "layer": 0.0,
+    "mcs": 0.0,
+    "capacity": 0.0,
+    "dequeue": 0.0,
+    "sinr_db": 0.0,
+    "bler": 0.0,
+    "expected": 0.0,
+    "interference": 0.0
+  },
+  "common_candidate_score_max_error": 0.0,
+  "original_on_off_final_actions_equal": false,
+  "original_on_final_score": 79147.93265041141,
+  "original_off_final_score": 84620.05214783722,
+  "stable_native_mcs3_on_off_actions_equal": false,
+  "stable_on_final_score": 79147.93265041141,
+  "stable_off_final_score": 84620.05214783722,
+  "limitation": "Diagnostic at first divergence only. Stable lookup is not applied to primary native runs or reused historical metrics.",
+  "first_round_explanation": {
+    "on": {
+      "initial_score": 19588.06471379314,
+      "best_first_score": 19588.559215122816,
+      "best_first_index": 805,
+      "best_first_gain": 0.4945013296746765,
+      "best_is_incumbent": false,
+      "first_rounds": [
+        {
+          "round": 1,
+          "weighted_expected": 19588.06471379314,
+          "gain": 0.0,
+          "accepted": false,
+          "candidates": 1466
+        },
+        {
+          "round": 2,
+          "weighted_expected": 26144.969796339356,
+          "gain": 6556.9050825462145,
+          "accepted": true,
+          "candidates": 1444
+        },
+        {
+          "round": 3,
+          "weighted_expected": 32391.627118953213,
+          "gain": 6246.657322613857,
+          "accepted": true,
+          "candidates": 1422
+        }
+      ],
+      "final_score": 79147.93265041141
+    },
+    "off": {
+      "initial_score": 8965.845816754827,
+      "best_first_score": 19588.559215122816,
+      "best_first_index": 805,
+      "best_first_gain": 10622.713398367989,
+      "best_is_incumbent": false,
+      "first_rounds": [
+        {
+          "round": 1,
+          "weighted_expected": 19588.559215122816,
+          "gain": 10622.713398367989,
+          "accepted": true,
+          "candidates": 1466
+        },
+        {
+          "round": 2,
+          "weighted_expected": 28173.086025154604,
+          "gain": 8584.526810031788,
+          "accepted": true,
+          "candidates": 1444
+        },
+        {
+          "round": 3,
+          "weighted_expected": 34729.99110770082,
+          "gain": 6556.905082546218,
+          "accepted": true,
+          "candidates": 1425
+        }
+      ],
+      "final_score": 84620.05214783722
+    }
+  }
+}

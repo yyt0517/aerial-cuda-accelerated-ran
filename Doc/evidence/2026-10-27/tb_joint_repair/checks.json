@@ -1,0 +1,406 @@
+{
+  "passed": true,
+  "runs": 24,
+  "native_ttis": 129600,
+  "physical_samples": 240,
+  "sinr_max_abs_db": 1.4146197978348596e-05,
+  "bler_max_abs": 1.6206089674120072e-05,
+  "matured_measurement_packets": 1387376,
+  "checks": [
+    {
+      "seed": 46,
+      "arm": "greedy",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 5.035262537589347e-06,
+      "bler_max_abs": 1.2078827142936177e-06
+    },
+    {
+      "seed": 46,
+      "arm": "hybrid",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 6.5973438605482215e-06,
+      "bler_max_abs": 1.1971640171415387e-06
+    },
+    {
+      "seed": 46,
+      "arm": "legacy_current",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 1.4146197978348596e-05,
+      "bler_max_abs": 1.1246880930237957e-05
+    },
+    {
+      "seed": 46,
+      "arm": "neural",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 9.462842055718568e-06,
+      "bler_max_abs": 1.8328197213812736e-06
+    },
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 3.2409194261617813e-06,
+      "bler_max_abs": 3.9051414643664906e-06
+    },
+    {
+      "seed": 46,
+      "arm": "physical_lns",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 7.846218890605883e-06,
+      "bler_max_abs": 1.743053892000468e-06
+    },
+    {
+      "seed": 47,
+      "arm": "greedy",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 6.6610732165628406e-06,
+      "bler_max_abs": 2.565998632186872e-06
+    },
+    {
+      "seed": 47,
+      "arm": "hybrid",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 7.863731257273798e-06,
+      "bler_max_abs": 4.6604695203011914e-06
+    },
+    {
+      "seed": 47,
+      "arm": "legacy_current",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 7.849739125376232e-06,
+      "bler_max_abs": 2.6523786216814393e-06
+    },
+    {
+      "seed": 47,
+      "arm": "neural",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 6.314669921181348e-06,
+      "bler_max_abs": 5.011890403583408e-06
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 4.093431227758515e-06,
+      "bler_max_abs": 4.2321731488770276e-06
+    },
+    {
+      "seed": 47,
+      "arm": "physical_lns",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 7.863731257273798e-06,
+      "bler_max_abs": 1.292537873995303e-06
+    },
+    {
+      "seed": 48,
+      "arm": "greedy",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 3.883243003599546e-06,
+      "bler_max_abs": 3.4483169165655525e-06
+    },
+    {
+      "seed": 48,
+      "arm": "hybrid",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 5.995625134147531e-06,
+      "bler_max_abs": 1.4809559716333354e-06
+    },
+    {
+      "seed": 48,
+      "arm": "legacy_current",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 5.538260669624151e-06,
+      "bler_max_abs": 4.1789286275295545e-06
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 3.8040007872552906e-06,
+      "bler_max_abs": 3.722378508874691e-06
+    },
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 2.729776642951265e-06,
+      "bler_max_abs": 2.5757089602285177e-06
+    },
+    {
+      "seed": 48,
+      "arm": "physical_lns",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 7.963438443781001e-06,
+      "bler_max_abs": 1.6206089674120072e-05
+    },
+    {
+      "seed": 46,
+      "arm": "hybrid27",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 1.3113595802138889e-05,
+      "bler_max_abs": 1.4114848148338854e-06
+    },
+    {
+      "seed": 46,
+      "arm": "neural27",
+      "horizon": 5400,
+      "mature_cohort_packets": 57810,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 5.570807386945376e-06,
+      "bler_max_abs": 3.639539451816276e-06
+    },
+    {
+      "seed": 47,
+      "arm": "hybrid27",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 8.178233156463932e-06,
+      "bler_max_abs": 4.897704660500324e-06
+    },
+    {
+      "seed": 47,
+      "arm": "neural27",
+      "horizon": 5400,
+      "mature_cohort_packets": 57679,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 4.648778510585316e-06,
+      "bler_max_abs": 3.372323556904977e-06
+    },
+    {
+      "seed": 48,
+      "arm": "hybrid27",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 5.812174013186677e-06,
+      "bler_max_abs": 1.4809559716333354e-06
+    },
+    {
+      "seed": 48,
+      "arm": "neural27",
+      "horizon": 5400,
+      "mature_cohort_packets": 57933,
+      "physical_samples": 10,
+      "sinr_max_abs_db": 8.116847460826193e-06,
+      "bler_max_abs": 2.345246384261035e-06
+    }
+  ],
+  "pairing": [
+    {
+      "seed": 46,
+      "arm": "greedy",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "hybrid",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "legacy_current",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "neural",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "physical_lns",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "hybrid27",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 46,
+      "arm": "neural27",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "greedy",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "hybrid",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "legacy_current",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "neural",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "physical_lns",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "hybrid27",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 47,
+      "arm": "neural27",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "greedy",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "hybrid",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "legacy_current",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "physical_lns",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "hybrid27",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    },
+    {
+      "seed": 48,
+      "arm": "neural27",
+      "warmup_exact": true,
+      "full_horizon_channel_precoder_exact": true,
+      "offered_traffic_file_exact": true
+    }
+  ],
+  "core_source_sha256": {
+    "physics.py": "efcd7a5351e3d279d7d44ada43296312006bfedd3caf93cffd39a569480fadb2",
+    "physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+    "search.py": "f65bb4d897917a179bf5ee8a6342f8816d53a9c935d1d85aa910a083d575a072",
+    "neural_repair.py": "4d9f8a8b3facc75b9595925b557af76251bb2d9a2c02c22043c1534b76e40e30",
+    "quality.py": "d912aba652a6769677a59cd02b6e7ddd81edc5a40a827eeab6a6d5b328e33f62",
+    "native_repair.py": "8761eb9c8d21dbd8401ef334062dc76af6edbdeecd8c492ecc2175117920dd2f"
+  }
+}

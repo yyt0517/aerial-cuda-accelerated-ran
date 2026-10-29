@@ -1,0 +1,39 @@
+{
+  "loss_decomposition": [
+    {
+      "seed": 48,
+      "actor": "new",
+      "coverage_loss": 34.99572709332006,
+      "ranking_loss": 22.428232491580776,
+      "total_loss": 57.42395958490084
+    },
+    {
+      "seed": 48,
+      "actor": "original",
+      "coverage_loss": 21.61338355492889,
+      "ranking_loss": 27.98104910888786,
+      "total_loss": 49.59443266381675
+    },
+    {
+      "seed": 50,
+      "actor": "new",
+      "coverage_loss": 30.126985607546114,
+      "ranking_loss": 13.261261585620286,
+      "total_loss": 43.3882471931664
+    },
+    {
+      "seed": 50,
+      "actor": "original",
+      "coverage_loss": 26.80954020943293,
+      "ranking_loss": 9.049625717873788,
+      "total_loss": 35.85916592730672
+    }
+  ],
+  "continuation_groups": 1283,
+  "observed_rank_flip_groups": 294,
+  "observed_rank_flip_fraction": 0.22915042868277474,
+  "continuation_scope": "Expanded physical-teacher prefixes only; backed values are best observed guarded completions, not exhaustive suffix optima; no inference about unexpanded prefixes",
+  "new_models_trained": false,
+  "new_phy_evaluations": 0,
+  "source": "tb_residual_20261029_v1 frozen candidate tree"
+}

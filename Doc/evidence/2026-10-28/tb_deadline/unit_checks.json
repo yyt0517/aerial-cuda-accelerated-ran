@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tests": 19,
+  "scope": [
+    "independent physical reference and TB closure",
+    "legal joint repairs and fixed original floor",
+    "finite delayed-return alignment",
+    "no post-action reward inputs",
+    "physical guarantee under adversarial shaped reward",
+    "zero-risk search equivalence"
+  ]
+}

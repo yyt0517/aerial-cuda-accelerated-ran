@@ -75,15 +75,15 @@ Before running the Stage-B HGraph training, evaluation, or comparison scripts in
 source .venv/bin/activate
 ```
 
-Run subsequent `cuMAC/scripts/*stageB*` and `training/stageb_hgraph/*` commands from the activated shell.
+Run the legacy Stage-B training and evaluation commands from the activated shell. The current-policy launcher described below runs on the host and enters the existing CUDA container itself.
 
-Current Stage-B research status (updated 2026-10-21):
+Current Stage-B research status (updated 2026-10-29):
 
 - [Project documentation](Doc/README.md)
 - [Current progress and evidence](Doc/stageB_current_progress.md)
 - [Frozen experimental configuration](Doc/current_stageB_effective_configuration.md)
 
-The latest corrected PFQ/DPA/current comparison lives in a separate research worktree. The configuration document distinguishes that experiment from the generic scripts on `main`; cloning this repository provides the evidence snapshot, not the full local experiment artifacts.
+The current research policy is PFQ + CTBS + causal deficit-weighted physical local search with a causal dequeue floor of rho=0.90. Five-seed, ten-second comparisons against PFQ are complete for boundary/rate0.8 and uniform/rate1.0. Neural repair, caching and value-learning experiments have not met all quality gates for replacing this policy. Its [version registry](training/stageb_hgraph/current_algorithm.json) and [launcher](cuMAC/scripts/run_stageB_current_algorithm.sh) identify the boundary entrypoint, which requires the existing CUDA container and research worktree. The documentation includes evidence snapshots; the full experimental runtime and local neural research package are not included in this documentation update.
 
 ### Further Information
 
@@ -98,7 +98,7 @@ Visit the full documentation at [NVIDIA Docs Hub](https://docs.nvidia.com/aerial
 
 ## Support
 - **Level**: Maintained
-- **How to get help**: 
+- **How to get help**:
   - File issues on GitHub for bugs and feature requests
   - Join discussions for questions and community support
 

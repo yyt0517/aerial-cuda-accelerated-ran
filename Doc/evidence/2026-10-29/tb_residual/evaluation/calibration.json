@@ -1,0 +1,9 @@
+{
+  "lambda_empirical": 0.6556023135049143,
+  "alpha": 0.02,
+  "seed": 45,
+  "independent_seed_units": 1,
+  "formal_nontrivial_guarantee": false,
+  "formal_fallback": "verify_all",
+  "historical_development_exposure": true
+}

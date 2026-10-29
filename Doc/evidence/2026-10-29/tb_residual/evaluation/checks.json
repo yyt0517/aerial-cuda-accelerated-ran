@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scientific_gate_passed": false,
+  "mode": 0,
+  "residual_sha256": "55c6d818ed50e14205e5fefa8aa73b159fcf84652ea9fe7746b2d0e7f859fd50",
+  "actor_sha256": "a013e265a438c80e99e615b5ea39242a0cbdfa23b5d8f177101864330bd3539f",
+  "evaluation_seed_results": [
+    {
+      "seed": 48,
+      "recall": 0.8228908882072687,
+      "any_high_yield": 0.9545454545454546,
+      "actual_fraction": 0.11370479485625647,
+      "regret": 47.214022858198085
+    },
+    {
+      "seed": 50,
+      "recall": 0.8729546901055735,
+      "any_high_yield": 0.9893842887473461,
+      "actual_fraction": 0.11568389681831119,
+      "regret": 30.68588228473228
+    }
+  ],
+  "no_evaluation_retraining": true,
+  "new_final_seed_campaign_started": false,
+  "interpretation": "Full-legal teacher-forced prefix pools; a larger population than the previous48-shortlist pilot. Not an end-to-end or native-delay result"
+}

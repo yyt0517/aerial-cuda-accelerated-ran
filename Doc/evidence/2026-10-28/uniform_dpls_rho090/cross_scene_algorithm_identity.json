@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "common_source_files": 15,
+  "changed_common_files": [],
+  "simulator_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "frozen_target_bytes": 2400,
+  "comparison": "New uniform DPLS vs prior boundary rho090; shared sources bit-identical, not a performance pooling."
+}

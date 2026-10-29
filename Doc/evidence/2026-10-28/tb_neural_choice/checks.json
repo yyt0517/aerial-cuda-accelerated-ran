@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "new_native_simulations": 0,
+  "existing_native_runs": 6,
+  "measurement_ttis_per_run": 10000,
+  "paired_measurement_states": 126,
+  "common_initial_states": 3,
+  "all_native_source_actions_values_reproduced": true,
+  "matched_common_success_packets": 708505,
+  "same_packet_delay_difference_ms": 19.324591082373946,
+  "packet_residence_accounting_exact": true,
+  "block_audit_snapshots": 6,
+  "block_count": 259,
+  "missed_better_physical_blocks": 38,
+  "model_and_policy_sources_unchanged": true,
+  "test_seed_policy_tuning": false,
+  "interpretation": "Post-hoc descriptive mechanism study; no independent units beyond three seeds and no native causal mediation estimate"
+}

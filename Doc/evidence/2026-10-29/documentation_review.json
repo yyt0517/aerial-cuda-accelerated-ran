@@ -1,0 +1,316 @@
+{
+  "review_date": "2026-10-29",
+  "scope": "Documentation, existing small evidence, frozen algorithm registry and launcher; no simulation or training rerun.",
+  "maintained_documents": [
+    "README.md",
+    "Doc/README.md",
+    "Doc/stageB_current_progress.md",
+    "Doc/current_stageB_effective_configuration.md",
+    "Doc/archive/README.md",
+    "training/stageb_hgraph/README.md",
+    "Doc/evidence/2026-10-21/README.md",
+    "Doc/evidence/2026-10-27/README.md",
+    "Doc/evidence/2026-10-28/README.md",
+    "Doc/evidence/2026-10-29/README.md"
+  ],
+  "local_links_checked": 102,
+  "hash_checks": {
+    "unique_available_files_verified": 286,
+    "mismatches": [],
+    "source_inventory_note": "Source manifests can list artifacts intentionally not included in the small snapshot. Two redundant progress.txt snapshots were removed; original inventory hashes and deliverables remain unchanged.",
+    "manifests": [
+      {
+        "manifest": "Doc/evidence/2026-10-21/manifest.json",
+        "available_files_verified": 26,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-27/manifest.json",
+        "available_files_verified": 32,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-28/tb_direct_risk/manifest.json",
+        "available_files_verified": 8,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-28/tb_neural_choice/manifest.json",
+        "available_files_verified": 25,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-28/tb_neural_cost/manifest.json",
+        "available_files_verified": 21,
+        "source_inventory_files_not_in_snapshot": [
+          "complete.py",
+          "beam_ablation.py",
+          "repair_frozen.npz"
+        ]
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-28/tb_prefix/manifest.json",
+        "available_files_verified": 28,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-28/uniform_dpls_rho090/manifest.json",
+        "available_files_verified": 14,
+        "source_inventory_files_not_in_snapshot": [
+          "Uniform_DPLS_vs_PFQ_5seed完整对比.html",
+          "Uniform_DPLS_vs_PFQ_5seed完整对比.pdf",
+          "Uniform_DPLS_vs_PFQ_5seed完整对比.xlsx",
+          "additional_per_seed_metrics.csv",
+          "archive_evidence.py",
+          "baseline_provenance/channel_continuity_validation.json",
+          "baseline_provenance/protocol.json",
+          "baseline_provenance/reevaluation_20261026.json",
+          "baseline_provenance/validation.json",
+          "build_report.py",
+          "campaign_launch.json",
+          "campaign_status.json",
+          "code/analyze.py",
+          "code/campaign.py",
+          "code/freeze_protocol.py",
+          "code/frozen_policy.py",
+          "code/frozen_search_ratio.py",
+          "code/native_run_generated.py",
+          "code/reference_uniform_analysis.py",
+          "code/reference_uniform_runner.py",
+          "code/run.py",
+          "code/validate.py",
+          "collect_results.py",
+          "deadline_delivery_cdf.csv",
+          "matched_ue_deltas.csv",
+          "mcs_layer_distributions.csv",
+          "metric_definitions.json",
+          "metric_dictionary.json",
+          "native_build_manifest.json",
+          "native_campaign_complete.json",
+          "packet_cohorts/seed41_current_rho090.csv.gz",
+          "packet_cohorts/seed41_pfq0.csv.gz",
+          "packet_cohorts/seed42_current_rho090.csv.gz",
+          "packet_cohorts/seed42_pfq0.csv.gz",
+          "packet_cohorts/seed43_current_rho090.csv.gz",
+          "packet_cohorts/seed43_pfq0.csv.gz",
+          "packet_cohorts/seed44_current_rho090.csv.gz",
+          "packet_cohorts/seed44_pfq0.csv.gz",
+          "packet_cohorts/seed45_current_rho090.csv.gz",
+          "packet_cohorts/seed45_pfq0.csv.gz",
+          "paired_differences.csv",
+          "per_ue_metrics.csv",
+          "prepare_analysis.py",
+          "setup_experiment.py",
+          "status.py",
+          "verify_results.py",
+          "window_metrics.csv",
+          "xlsx_export.py",
+          "全部指标_5seed对比.csv"
+        ]
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-29/tb_joint_repair_phy_supplement/manifest.json",
+        "available_files_verified": 4,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-29/tb_process_value/manifest.json",
+        "available_files_verified": 35,
+        "source_inventory_files_not_in_snapshot": [
+          "progress.txt"
+        ]
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-29/tb_residual/manifest.json",
+        "available_files_verified": 59,
+        "source_inventory_files_not_in_snapshot": [
+          "progress.txt"
+        ]
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-29/tb_search_gain_analysis/manifest.json",
+        "available_files_verified": 8,
+        "source_inventory_files_not_in_snapshot": []
+      },
+      {
+        "manifest": "Doc/evidence/2026-10-27/tb_joint_repair/sha256.json",
+        "available_files_verified": 26,
+        "source_inventory_files_not_in_snapshot": []
+      }
+    ]
+  },
+  "statistics": [
+    {
+      "scene": "boundary08",
+      "native_runs_in_table": 10,
+      "seed_count": 5,
+      "mean_sd_rows_recomputed": 166,
+      "paired_interval_rows_recomputed": 83,
+      "headline_metrics": {
+        "goodput_mbps": {
+          "pfq0": {
+            "mean": 972.79831008,
+            "sample_std": 41.554857219320695
+          },
+          "current_rho090": {
+            "mean": 1293.00377968,
+            "sample_std": 2.1848271550846303
+          }
+        },
+        "complete_payload_mbps": {
+          "pfq0": {
+            "mean": 720.23616,
+            "sample_std": 49.62153207598491
+          },
+          "current_rho090": {
+            "mean": 1236.0696,
+            "sample_std": 7.0895394716441436
+          }
+        },
+        "complete_success_pct": {
+          "pfq0": {
+            "mean": 52.09591879999067,
+            "sample_std": 3.5606517753201907
+          },
+          "current_rho090": {
+            "mean": 89.40948323419465,
+            "sample_std": 0.4629510232225565
+          }
+        },
+        "expiry_pct": {
+          "pfq0": {
+            "mean": 34.07520812575061,
+            "sample_std": 4.634783621050413
+          },
+          "current_rho090": {
+            "mean": 0.49203355781997327,
+            "sample_std": 0.23462278684535448
+          }
+        },
+        "success_delay_mean_ms": {
+          "pfq0": {
+            "mean": 117.57416206979912,
+            "sample_std": 21.452865120083235
+          },
+          "current_rho090": {
+            "mean": 11.382221211256798,
+            "sample_std": 2.5154158235075377
+          }
+        },
+        "ue_goodput_p5_mbps": {
+          "pfq0": {
+            "mean": 17.94450928,
+            "sample_std": 2.0222546449627923
+          },
+          "current_rho090": {
+            "mean": 35.22326512,
+            "sample_std": 0.09233957953733639
+          }
+        }
+      }
+    },
+    {
+      "scene": "uniform10",
+      "native_runs_in_table": 10,
+      "seed_count": 5,
+      "mean_sd_rows_recomputed": 166,
+      "paired_interval_rows_recomputed": 83,
+      "headline_metrics": {
+        "goodput_mbps": {
+          "pfq0": {
+            "mean": 1591.33942304,
+            "sample_std": 6.091003008574382
+          },
+          "current_rho090": {
+            "mean": 1626.31184688,
+            "sample_std": 6.49461869244803
+          }
+        },
+        "complete_payload_mbps": {
+          "pfq0": {
+            "mean": 1533.56352,
+            "sample_std": 12.752357756587553
+          },
+          "current_rho090": {
+            "mean": 1611.36096,
+            "sample_std": 8.96790623322967
+          }
+        },
+        "complete_success_pct": {
+          "pfq0": {
+            "mean": 88.79410461779862,
+            "sample_std": 0.7348250025430921
+          },
+          "current_rho090": {
+            "mean": 93.29866725985374,
+            "sample_std": 0.5250908803489207
+          }
+        },
+        "expiry_pct": {
+          "pfq0": {
+            "mean": 0.13659998359910658,
+            "sample_std": 0.30544684905295866
+          },
+          "current_rho090": {
+            "mean": 0.0,
+            "sample_std": 0.0
+          }
+        },
+        "success_delay_mean_ms": {
+          "pfq0": {
+            "mean": 1.6535026489087623,
+            "sample_std": 1.674054336626029
+          },
+          "current_rho090": {
+            "mean": 0.6030975004721927,
+            "sample_std": 0.01346967984501116
+          }
+        },
+        "ue_goodput_p5_mbps": {
+          "pfq0": {
+            "mean": 43.44068256,
+            "sample_std": 0.0366807879998229
+          },
+          "current_rho090": {
+            "mean": 44.188608439999996,
+            "sample_std": 0.101078194888354
+          }
+        }
+      }
+    }
+  ],
+  "statistical_method": "Python standard library statistics.mean/stdev; paired t with n=5, df=4, critical value 2.7764451051977987; seed is the independent unit.",
+  "registry_matches_frozen_protocol": true,
+  "launcher_checks": [
+    "bash -n",
+    "--show-config matches registry",
+    "--help"
+  ],
+  "preexisting_modified_cpp_cuda_sources_unchanged": true,
+  "deleted_redundant_snapshots": [
+    {
+      "removed": "Doc/evidence/2026-10-29/tb_process_value/progress.txt",
+      "sha256": "255fd2407fb9b7a46d98bb9b9afda10f3f86fea7a35fb48d91457b5aa8f5034c",
+      "merged_into": "Doc/evidence/2026-10-29/tb_process_value/report.txt"
+    },
+    {
+      "removed": "Doc/evidence/2026-10-29/tb_residual/progress.txt",
+      "sha256": "cfda85b30e2c876092a97a97364da8792915a44784f25e91f6ba1653b0bc04cf",
+      "merged_into": "Doc/evidence/2026-10-29/tb_residual/report.txt"
+    }
+  ],
+  "checks_not_rerun": [
+    "native rollout validators",
+    "CUDA physics checks",
+    "training or experiment unit suites"
+  ],
+  "errors": [],
+  "passed": true,
+  "staging_checks": {
+    "evidence_files_with_identical_worktree_and_index_bytes": 300,
+    "changed_markdown_links_resolve_in_git_index": true,
+    "gitattributes_preserves_evidence_source_bytes": true,
+    "frozen_source_whitespace_preserved": true,
+    "diff_check": "git diff --cached --check; frozen evidence uses -whitespace to retain original source bytes"
+  }
+}

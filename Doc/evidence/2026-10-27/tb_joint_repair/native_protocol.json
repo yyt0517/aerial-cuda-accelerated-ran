@@ -1,0 +1,26 @@
+{
+  "seeds": [
+    46,
+    47,
+    48
+  ],
+  "arms": [
+    "hybrid",
+    "neural",
+    "physical_lns",
+    "greedy",
+    "legacy_current",
+    "pfq0"
+  ],
+  "warmup": 2000,
+  "settling": 1000,
+  "measured": 2000,
+  "followup": 400,
+  "checkpoint": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_train_v1/repair.npz",
+  "checkpoint_sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409",
+  "width": 16,
+  "workers": 18,
+  "selection": "Frozen before native outcomes; no native-result tuning",
+  "timing_scope": "Concurrent exploratory runs; not a real-time latency benchmark",
+  "inference": "Finite-horizon paired native experiment; no steady-state or statistical-significance claim"
+}

@@ -1,0 +1,1219 @@
+{
+  "passed": true,
+  "algorithm_id": "pfq_ctbs_deficit_search_rho090_20261027",
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "new_rho090_runs": 5,
+  "reused_verified_pfq_runs": 5,
+  "measurement_rows": 10,
+  "new_native_ttis": 142000,
+  "native_actions_and_discrete_physics_exact": true,
+  "all_causal_floors_independently_verified": true,
+  "no_bc_or_coordinator_inference": true,
+  "no_external_floor_schedule": true,
+  "all_searches_converged": true,
+  "complete_five_seed_comparison": true,
+  "no_censoring": true,
+  "mature_packet_cohorts_match": true,
+  "all_practical_stability_checks_passed": true,
+  "stability_is_not_capacity_proof": true,
+  "independent_new_physical_samples": 30,
+  "pairing_and_inputs": [
+    {
+      "passed": true,
+      "seed": 41,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "scene": "uniform",
+      "arrival_rate": 1.0,
+      "frozen_target_bytes": 2400,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "scene": "uniform placement, arrival1.0",
+        "historical_boundary_prefix_equality_required": false,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "9d666aa40327b40b541bcdca3beccb73e1394ba009e31cebbd3c828bb3b04f76",
+            "validation.json": "cd182295bd855d7623ab4921cd5fdb1d5bef113e72a14e1b396c5df4228b204b",
+            "physical_validation.json": "0a941bd30a160d3a1eaf212eb5b602aebbebd557c8a4c12e77500144bf4fc9b9",
+            "sim.log": "dfe164197d0bcc674a8dc2853fa43521c7445d1163614c273ed953df6584bc7e"
+          },
+          "current": {
+            "prefix.npz": "eb118d269c510154105c1180678f69f73f933df72073cc54b55730981698da8b",
+            "validation.json": "abdb430c23780cabc328819fbaad07c7ddea5ce9a9f01024bffc556e4a81fdf9",
+            "physical_validation.json": "4261903f4b9c59a5126962b70a56d157b1daf7264258698da3fe5feb431ce274",
+            "sim.log": "087758161169af570f6f3386e66b6b4f067983e9a00dafb17ad71877aea820b7"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 41,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3570464436141337e-06,
+            "w_unitary_max_abs": 1.2528868276184824e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.001004505037826675,
+            "subband_max_relative": 9.094269885114865e-05,
+            "worst_relative_index": [
+              21,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 0.0008838026063307657,
+            "worst_relative_native": 0.0008838829817250371,
+            "worst_relative_abs": 8.03753942713991e-08,
+            "wb_first_layer_max_abs_db": 1.1364461158791528e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1970074230448075e-06,
+            "w_unitary_max_abs": 1.2388011636499385e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0010412560386612313,
+            "subband_max_relative": 0.00010368444847718079,
+            "worst_relative_index": [
+              24,
+              2,
+              3
+            ],
+            "worst_relative_gamma": 0.0007677802720387969,
+            "worst_relative_native": 0.0007677006651647389,
+            "worst_relative_abs": 7.960687405800249e-08,
+            "wb_first_layer_max_abs_db": 1.3405919929709853e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3210628736224255e-06,
+            "w_unitary_max_abs": 1.0626181643491606e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.000957971002208069,
+            "subband_max_relative": 6.557949716521964e-05,
+            "worst_relative_index": [
+              13,
+              1,
+              3
+            ],
+            "worst_relative_gamma": 0.001748339868954655,
+            "worst_relative_native": 0.001748454524204135,
+            "worst_relative_abs": 1.1465524947995229e-07,
+            "wb_first_layer_max_abs_db": 1.2526851307370634e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.417790373947072e-06,
+            "w_unitary_max_abs": 1.088244264479954e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0010239762505079852,
+            "subband_max_relative": 0.0001626987659488654,
+            "worst_relative_index": [
+              16,
+              4,
+              3
+            ],
+            "worst_relative_gamma": 0.0007160690429305003,
+            "worst_relative_native": 0.0007161855464801192,
+            "worst_relative_abs": 1.165035496189775e-07,
+            "wb_first_layer_max_abs_db": 1.501185998620258e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.247363897386565e-06,
+            "w_unitary_max_abs": 1.1949736680172407e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0008721574502033036,
+            "subband_max_relative": 5.652899943951381e-05,
+            "worst_relative_index": [
+              9,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 0.0009161792554306346,
+            "worst_relative_native": 0.0009161274647340178,
+            "worst_relative_abs": 5.1790696616732523e-08,
+            "wb_first_layer_max_abs_db": 1.056584657987969e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1303508462544106e-06,
+            "w_unitary_max_abs": 1.190401467399127e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0010905263634413132,
+            "subband_max_relative": 0.0003959113775074526,
+            "worst_relative_index": [
+              21,
+              1,
+              3
+            ],
+            "worst_relative_gamma": 0.0002036122844339312,
+            "worst_relative_native": 0.00020353167201392353,
+            "worst_relative_abs": 8.061242000767695e-08,
+            "wb_first_layer_max_abs_db": 1.5501761225777955e-06
+          }
+        ],
+        "baseline_H_W_samples_exact": true,
+        "continuous_clock_proof_reused": {
+          "path": "/opt/nvidia/cuBB/deliverables/uniform10_steady_state_20261021/channel_continuity_validation.json",
+          "sha256": "0e25e48ed6623edb452fecde171e6cd6c496c1e55e5c6aff925f5c472ee07130",
+          "scope": "Same verified continuous binary; uniform H/W matched to saved PFQ, no boundary innovation sample used."
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 42,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "scene": "uniform",
+      "arrival_rate": 1.0,
+      "frozen_target_bytes": 2400,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "scene": "uniform placement, arrival1.0",
+        "historical_boundary_prefix_equality_required": false,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "d2302234ef8e866f10001a51f518ee1c24206308537187a17a5627be7cff610a",
+            "validation.json": "7bc45d89cb5b4ad58fdd3fc9842f7ffc7c0c0dd28c1dd5c0f44e9898923b657a",
+            "physical_validation.json": "f12927ed80f08b10b70bbf7dcf21f06f86bf3574a4cb4b269b8b9505103f23da",
+            "sim.log": "826e5fea498806015e953f5b87ad74e7e334c2a82990bd53ec37a47de901f2d1"
+          },
+          "current": {
+            "prefix.npz": "74634deee2f5f818d7eb7284a6201f15442dbb0d9733aba569dd3f9eddfaad6b",
+            "validation.json": "8bdb64dac3ed4b8a8757d60d0d67ae677ebde4d9459c9146cb16e523f8114a10",
+            "physical_validation.json": "ffe98aa4fa47cdfbf3a0c52a5af43df1fbcb4261983d0f69909388ab2368226e",
+            "sim.log": "3bf05b453f01689f195f7b0c98bed8b89598cea9056ef31eed5082cfad2b4d40"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 42,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.4064135040923273e-06,
+            "w_unitary_max_abs": 1.0834341861443164e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0027879987119376892,
+            "subband_max_relative": 0.0003662943083807324,
+            "worst_relative_index": [
+              29,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 0.0004786195117557611,
+            "worst_relative_native": 0.0004787948273587972,
+            "worst_relative_abs": 1.7531560303610033e-07,
+            "wb_first_layer_max_abs_db": 1.777851640127892e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.7142773010298604e-06,
+            "w_unitary_max_abs": 1.2956869326341547e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0041797819030762184,
+            "subband_max_relative": 0.0003696871332214134,
+            "worst_relative_index": [
+              33,
+              6,
+              3
+            ],
+            "worst_relative_gamma": 0.00010076436026453786,
+            "worst_relative_native": 0.00010080161155201495,
+            "worst_relative_abs": 3.7251287477086704e-08,
+            "wb_first_layer_max_abs_db": 1.5997134923395606e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3317573287075977e-06,
+            "w_unitary_max_abs": 1.0948148980727268e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.002223708797373547,
+            "subband_max_relative": 6.629533004387046e-05,
+            "worst_relative_index": [
+              11,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.00059990289484041,
+            "worst_relative_native": 0.0005998631240800023,
+            "worst_relative_abs": 3.97707604077183e-08,
+            "wb_first_layer_max_abs_db": 1.1185165078586579e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.0210231373069847e-06,
+            "w_unitary_max_abs": 1.1298161943784635e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0049184854433406144,
+            "subband_max_relative": 5.3204800709395185e-05,
+            "worst_relative_index": [
+              1,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.0018348701511185829,
+            "worst_relative_native": 0.001834772527217865,
+            "worst_relative_abs": 9.762390071788203e-08,
+            "wb_first_layer_max_abs_db": 1.2815603867011305e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3181232502631987e-06,
+            "w_unitary_max_abs": 1.2624114820170007e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0028220046770002227,
+            "subband_max_relative": 0.00016677715666155965,
+            "worst_relative_index": [
+              16,
+              5,
+              3
+            ],
+            "worst_relative_gamma": 6.233994691733126e-05,
+            "worst_relative_native": 6.235034379642457e-05,
+            "worst_relative_abs": 1.0396879093305068e-08,
+            "wb_first_layer_max_abs_db": 1.3919088388547607e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1714517247372002e-06,
+            "w_unitary_max_abs": 1.2162556966011095e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0029510293607017957,
+            "subband_max_relative": 0.0006518164104348119,
+            "worst_relative_index": [
+              33,
+              16,
+              3
+            ],
+            "worst_relative_gamma": 0.00020724450581374688,
+            "worst_relative_native": 0.00020710942044388503,
+            "worst_relative_abs": 1.3508536986185302e-07,
+            "wb_first_layer_max_abs_db": 1.3296294625320115e-06
+          }
+        ],
+        "baseline_H_W_samples_exact": true,
+        "continuous_clock_proof_reused": {
+          "path": "/opt/nvidia/cuBB/deliverables/uniform10_steady_state_20261021/channel_continuity_validation.json",
+          "sha256": "0e25e48ed6623edb452fecde171e6cd6c496c1e55e5c6aff925f5c472ee07130",
+          "scope": "Same verified continuous binary; uniform H/W matched to saved PFQ, no boundary innovation sample used."
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 43,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "scene": "uniform",
+      "arrival_rate": 1.0,
+      "frozen_target_bytes": 2400,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "scene": "uniform placement, arrival1.0",
+        "historical_boundary_prefix_equality_required": false,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "e03adfd6d1d51b5c1d34f99f43ef5ba9d9676e29a13b0e8d661901389285e74a",
+            "validation.json": "309132fff15de1eabe5063588ac8af2bc2b49e7947fa0f34754ca6d5cd1ce8dc",
+            "physical_validation.json": "7e178f0e53af993b9af565e9e71f66f30603b5c637f43de4809c1480d95cd066",
+            "sim.log": "a91c18937661682807285dcb8025dc38af0f6ee4313d1a38e0d72873d36ab4c2"
+          },
+          "current": {
+            "prefix.npz": "bed594684480940e90f3dfea0444546bbb09b8b9a067a82dbd6664cd588a154f",
+            "validation.json": "5a74055cc7d57ef70c64505121decd4d10912ee3f4190edd3510b9e843e22e28",
+            "physical_validation.json": "2b8dafa0a98053515f93fe08c2000c86467a709af1cc90ce2c04fe2be0408464",
+            "sim.log": "ea821e104bfcb81c6cf503d2c8199bdd05f7f6166e491ef18158d353dcaf2dd2"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 43,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.7237083424217054e-06,
+            "w_unitary_max_abs": 1.1357151241675467e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0017959107517526718,
+            "subband_max_relative": 0.0002965334585032986,
+            "worst_relative_index": [
+              31,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.0005813108621189125,
+            "worst_relative_native": 0.0005814832402393222,
+            "worst_relative_abs": 1.7237812040965528e-07,
+            "wb_first_layer_max_abs_db": 1.3534283560545646e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2704480183658878e-06,
+            "w_unitary_max_abs": 1.0695240739710954e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0024273871913464973,
+            "subband_max_relative": 0.0002472820334482189,
+            "worst_relative_index": [
+              6,
+              8,
+              3
+            ],
+            "worst_relative_gamma": 0.0006610505327628433,
+            "worst_relative_native": 0.000661213998682797,
+            "worst_relative_abs": 1.6346591995362435e-07,
+            "wb_first_layer_max_abs_db": 1.991621964236856e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.5636396362002013e-06,
+            "w_unitary_max_abs": 1.118176021774886e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.002917460014941753,
+            "subband_max_relative": 0.00012263723808553077,
+            "worst_relative_index": [
+              7,
+              7,
+              3
+            ],
+            "worst_relative_gamma": 0.0005202656113136397,
+            "worst_relative_native": 0.0005202018073759973,
+            "worst_relative_abs": 6.380393764238504e-08,
+            "wb_first_layer_max_abs_db": 1.3572528310135112e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1518516389097655e-06,
+            "w_unitary_max_abs": 1.1316590617926892e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.002103049444485805,
+            "subband_max_relative": 2.6849297206898435e-05,
+            "worst_relative_index": [
+              29,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.002726471379422682,
+            "worst_relative_native": 0.0027263981755822897,
+            "worst_relative_abs": 7.320384039222194e-08,
+            "wb_first_layer_max_abs_db": 1.9785999469945637e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1712859904748845e-06,
+            "w_unitary_max_abs": 1.2574012837607285e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.001856169215443515,
+            "subband_max_relative": 0.00021460406563246866,
+            "worst_relative_index": [
+              31,
+              14,
+              3
+            ],
+            "worst_relative_gamma": 0.0005340493534214963,
+            "worst_relative_native": 0.0005341639625839889,
+            "worst_relative_abs": 1.1460916249264423e-07,
+            "wb_first_layer_max_abs_db": 1.2202133312655405e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3378874275874198e-06,
+            "w_unitary_max_abs": 1.4339064151602798e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0045185916333139176,
+            "subband_max_relative": 0.0003033501315085659,
+            "worst_relative_index": [
+              29,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 0.0002393829227559405,
+            "worst_relative_native": 0.0002393103059148416,
+            "worst_relative_abs": 7.261684109891942e-08,
+            "wb_first_layer_max_abs_db": 1.1845067362514783e-06
+          }
+        ],
+        "baseline_H_W_samples_exact": true,
+        "continuous_clock_proof_reused": {
+          "path": "/opt/nvidia/cuBB/deliverables/uniform10_steady_state_20261021/channel_continuity_validation.json",
+          "sha256": "0e25e48ed6623edb452fecde171e6cd6c496c1e55e5c6aff925f5c472ee07130",
+          "scope": "Same verified continuous binary; uniform H/W matched to saved PFQ, no boundary innovation sample used."
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 44,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "scene": "uniform",
+      "arrival_rate": 1.0,
+      "frozen_target_bytes": 2400,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "scene": "uniform placement, arrival1.0",
+        "historical_boundary_prefix_equality_required": false,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "f428630d9595e1fa2caebf57d706951f7a300138905cb10ae39e9ea85aaba8f9",
+            "validation.json": "d077a805e0c2869246eaa3a32079dc7ec35e9e42fccb179814d72924ce988520",
+            "physical_validation.json": "9e50d3024ac84a344f74896f09b8cb84b9bed5a38fdf6ba98e5b8006d0725d8d",
+            "sim.log": "75953ea7b9cdfa2fe38637978475d517f2c1e3e3b31fbfe202876c2135d154df"
+          },
+          "current": {
+            "prefix.npz": "673c3f458b76f4221177c1a56cff4a2967448328fc6dfabb0bd8a7cee73cc0c2",
+            "validation.json": "269ce155d14b7aaeeb572d32b102637cc52b366cfa277c0b2fd178151b1d4fe4",
+            "physical_validation.json": "8678c5afc2d5cef848aca97025bca2d65a29a7adb6c7f02fe66586a26f9621c4",
+            "sim.log": "b68f3456ffd6b5889adbb155be64f7297b415d35214a7bac66ec902d60650851"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 44,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.524501429800833e-06,
+            "w_unitary_max_abs": 1.135250688122369e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0004820814501727,
+            "subband_max_relative": 0.00011225942084326063,
+            "worst_relative_index": [
+              11,
+              6,
+              3
+            ],
+            "worst_relative_gamma": 0.0004909705087317868,
+            "worst_relative_native": 0.0004910256247967482,
+            "worst_relative_abs": 5.511606496135142e-08,
+            "wb_first_layer_max_abs_db": 1.0427696039982948e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2997203099489836e-06,
+            "w_unitary_max_abs": 1.35995184225024e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0012236884854246455,
+            "subband_max_relative": 0.00014048765993563615,
+            "worst_relative_index": [
+              35,
+              4,
+              3
+            ],
+            "worst_relative_gamma": 0.0006704901887543409,
+            "worst_relative_native": 0.0006705843843519688,
+            "worst_relative_abs": 9.419559762790033e-08,
+            "wb_first_layer_max_abs_db": 1.1250974782939238e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1360317398500008e-06,
+            "w_unitary_max_abs": 1.239151736776023e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0008520162809873,
+            "subband_max_relative": 0.00013321456140109593,
+            "worst_relative_index": [
+              6,
+              1,
+              3
+            ],
+            "worst_relative_gamma": 0.0009523676942901684,
+            "worst_relative_native": 0.0009524945635348558,
+            "worst_relative_abs": 1.2686924468743779e-07,
+            "wb_first_layer_max_abs_db": 1.0022941054899093e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2151028886703386e-06,
+            "w_unitary_max_abs": 1.0910370833450145e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0007491262977055158,
+            "subband_max_relative": 0.00010565358851803163,
+            "worst_relative_index": [
+              18,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.0007415357993085651,
+            "worst_relative_native": 0.0007416141452267766,
+            "worst_relative_abs": 7.834591821153682e-08,
+            "wb_first_layer_max_abs_db": 1.0545250219706759e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3551922926735498e-06,
+            "w_unitary_max_abs": 1.196910766942949e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0010293161817571672,
+            "subband_max_relative": 0.0007571570690722071,
+            "worst_relative_index": [
+              32,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.0002024924174705345,
+            "worst_relative_native": 0.00020233909890521318,
+            "worst_relative_abs": 1.533185653213357e-07,
+            "wb_first_layer_max_abs_db": 1.880545589472149e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2911580410947594e-06,
+            "w_unitary_max_abs": 1.2656133550059678e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0005408550919128174,
+            "subband_max_relative": 0.00025346509896623503,
+            "worst_relative_index": [
+              11,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.00015115891997121868,
+            "worst_relative_native": 0.00015112060646060854,
+            "worst_relative_abs": 3.831351061013414e-08,
+            "wb_first_layer_max_abs_db": 1.91058127541055e-06
+          }
+        ],
+        "baseline_H_W_samples_exact": true,
+        "continuous_clock_proof_reused": {
+          "path": "/opt/nvidia/cuBB/deliverables/uniform10_steady_state_20261021/channel_continuity_validation.json",
+          "sha256": "0e25e48ed6623edb452fecde171e6cd6c496c1e55e5c6aff925f5c472ee07130",
+          "scope": "Same verified continuous binary; uniform H/W matched to saved PFQ, no boundary innovation sample used."
+        }
+      }
+    },
+    {
+      "passed": true,
+      "seed": 45,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "scene": "uniform",
+      "arrival_rate": 1.0,
+      "frozen_target_bytes": 2400,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "scene": "uniform placement, arrival1.0",
+        "historical_boundary_prefix_equality_required": false,
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "1977564dfc23d1a089042f69a91049262d1e361d827e1cd4f72d7d65b058fdb4",
+            "validation.json": "1dbdb7f12fb7d7222a1ae4eb02d07bfc5d38dae94c2bc5e2dde4ff4de09f8f1a",
+            "physical_validation.json": "ab12ce79f0fcb158bdb4f99fee7b196bf707ee31b9a26e2689d34ecf499ff882",
+            "sim.log": "941cb229a9dd89dbb0b7a221cc60c1529abfa8d17748655267188e35d9042a86"
+          },
+          "current": {
+            "prefix.npz": "31969fca377fd8517190cc92c76636b32737406473aa4f77e79089b6b5c9b12f",
+            "validation.json": "b31807126f06b9a9aa5d05c5aab2d958afbeef30ca7fdf383ab7d51e3dd93508",
+            "physical_validation.json": "40386178f57d262bcdca6f3203a96658b6cb9fa545f440b3cfe1e16e86f5c49e",
+            "sim.log": "1443da69e46829c38fe8057b76145c3204983550ae4f81a5b0a056043c16322a"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 45,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2786103393784656e-06,
+            "w_unitary_max_abs": 1.0811654669318216e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0038988080159469973,
+            "subband_max_relative": 0.0006684590050100146,
+            "worst_relative_index": [
+              23,
+              6,
+              3
+            ],
+            "worst_relative_gamma": 0.00012962987678679752,
+            "worst_relative_native": 0.000129716529045254,
+            "worst_relative_abs": 8.665225845647345e-08,
+            "wb_first_layer_max_abs_db": 1.7065148512074302e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1947936907478763e-06,
+            "w_unitary_max_abs": 1.2062889598318804e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0037864516525587533,
+            "subband_max_relative": 6.707382889310288e-05,
+            "worst_relative_index": [
+              29,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 0.001311976451903361,
+            "worst_relative_native": 0.0013118884526193142,
+            "worst_relative_abs": 8.799928404674626e-08,
+            "wb_first_layer_max_abs_db": 1.4055617683084165e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.5719686439639913e-06,
+            "w_unitary_max_abs": 1.255785937237519e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.0038913101252546767,
+            "subband_max_relative": 9.704248751982954e-05,
+            "worst_relative_index": [
+              27,
+              12,
+              3
+            ],
+            "worst_relative_gamma": 0.0009946344788166507,
+            "worst_relative_native": 0.0009945379570126534,
+            "worst_relative_abs": 9.652180399735699e-08,
+            "wb_first_layer_max_abs_db": 2.9127910750048613e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.5371725461707807e-06,
+            "w_unitary_max_abs": 1.203208150890589e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.01054195742108277,
+            "subband_max_relative": 0.001204808937542383,
+            "worst_relative_index": [
+              27,
+              12,
+              3
+            ],
+            "worst_relative_gamma": 5.03673893463215e-05,
+            "worst_relative_native": 5.0428072427166626e-05,
+            "worst_relative_abs": 6.068308084512515e-08,
+            "wb_first_layer_max_abs_db": 2.6690930496897636e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1550462019554076e-06,
+            "w_unitary_max_abs": 1.272782741423839e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.00729772743943613,
+            "subband_max_relative": 0.00010937982951725984,
+            "worst_relative_index": [
+              31,
+              1,
+              3
+            ],
+            "worst_relative_gamma": 0.0006498259671629104,
+            "worst_relative_native": 0.0006497548893094063,
+            "worst_relative_abs": 7.107785350416763e-08,
+            "wb_first_layer_max_abs_db": 1.3803862586314608e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.470413707122177e-06,
+            "w_unitary_max_abs": 1.1361002265619646e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 0.00923659433829016,
+            "subband_max_relative": 0.00015088499763184283,
+            "worst_relative_index": [
+              29,
+              13,
+              3
+            ],
+            "worst_relative_gamma": 0.0002562077635783385,
+            "worst_relative_native": 0.0002562464214861393,
+            "worst_relative_abs": 3.865790780077736e-08,
+            "wb_first_layer_max_abs_db": 1.6632938972804823e-06
+          }
+        ],
+        "baseline_H_W_samples_exact": true,
+        "continuous_clock_proof_reused": {
+          "path": "/opt/nvidia/cuBB/deliverables/uniform10_steady_state_20261021/channel_continuity_validation.json",
+          "sha256": "0e25e48ed6623edb452fecde171e6cd6c496c1e55e5c6aff925f5c472ee07130",
+          "scope": "Same verified continuous binary; uniform H/W matched to saved PFQ, no boundary innovation sample used."
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "seed": 41,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed41_pfq0_20000",
+      "mature_cohort_packets": 719473,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "59e9d684a4ed2201bede2267c1ae2f31eb9904dbb27b7f384ffd0e8593bfbf0c",
+      "first4000_service_sha256": "de28b3a8c448b404e2c3c88876deb684d02cb703afc2c9b95c83f940016ac7c0",
+      "files": {
+        "metrics.bin": "8019c69773f1bce06eb3b015cab340f1e357adae938f3b5579c47ba3aafd0602",
+        "traffic_offered_packets.csv": "00122d8d66a15e9136213c20b1918d58025d828a7457c5c48817f838cddfd3bd",
+        "packet_outcome_samples.csv": "7a67cadc539294f1c0ca7d2fc2be52660566ba6a7436c3ea14b8d01513fd9e82",
+        "ue_topology.csv": "180c7802648d9f1505022ab06e079473ef7a72cee2a4d133e20e6a87e1b651ea",
+        "execution.json": "21cc47213e571ebd5332859ebf6b6d94e5dd6c6979119f83470785e4129fbd97",
+        "launch.json": "165b9f4075e7e5544107808ffef7bb2ce55b65dd4bcadb2884f3952d4637c3c3"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed41_pfq0.csv.gz",
+        "rows": 719473,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "9d9c7985cb2952bf9f0c879fad1e45fe0219b9c5418471e74cfc1ff666cc9a59"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed41_current_20000",
+      "mature_cohort_packets": 719473,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "59e9d684a4ed2201bede2267c1ae2f31eb9904dbb27b7f384ffd0e8593bfbf0c",
+      "first4000_service_sha256": "de28b3a8c448b404e2c3c88876deb684d02cb703afc2c9b95c83f940016ac7c0",
+      "files": {
+        "metrics.bin": "6d5973a64ffefc10896b8e3e9385449515af0773ec7e20e3b95d4ea046a4583f",
+        "traffic_offered_packets.csv": "00122d8d66a15e9136213c20b1918d58025d828a7457c5c48817f838cddfd3bd",
+        "packet_outcome_samples.csv": "077b19b2bf470c16783b547081b8eee9bdb29a6ba6fbc63cd3b6a27a624d8d0c",
+        "ue_topology.csv": "180c7802648d9f1505022ab06e079473ef7a72cee2a4d133e20e6a87e1b651ea",
+        "execution.json": "24603e0604faf02e5f6e3ab29fd95a9e7a9b366388923854f8c8b789df38adb3",
+        "launch.json": "601ae9d63b188f8e8c18f184f2904694486a04bc4c3831e30224042494db7524"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed41_current_rho090.csv.gz",
+        "rows": 719473,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "dcecb632388fc36776fa268f0ca5345270b101db8de62b3c4d9c42e3218f938a"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed42_pfq0_20000",
+      "mature_cohort_packets": 719116,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "cfdd309344df24467945a4636d70be92326f713404996c8385802ed46ad5788c",
+      "first4000_service_sha256": "20bcb7ecbbfe9b45401afbc4bf6bdbe19c6d70517f04c7c67f63b73869227234",
+      "files": {
+        "metrics.bin": "001cb761169fc9dbc4d8777dd4e9cb12bb0c4cc5dd7a72d542159aff86db645a",
+        "traffic_offered_packets.csv": "67393fd984f8d2c2d840e9803e7de6a22e91ac3677db73c80c673e83483bec3a",
+        "packet_outcome_samples.csv": "862f2f5c4b90186da80a70e7a384eb87100c048c075471cd18a98a6cfc64f4f1",
+        "ue_topology.csv": "14e474cb934ebc97422d25598985b3b4898013085a9b07201ddcd94bddc06fb3",
+        "execution.json": "8c0d5e315587c428e10f2ba6f44a9753702c940de783dbca7ebd8138bd5b4e56",
+        "launch.json": "e297ea41d766f8436d8cc8ec9d2dc35ab4c3f7c28f7c16e17436537c44324d84"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed42_pfq0.csv.gz",
+        "rows": 719116,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "832532473b743ecb3fb1eb7b59a8cb60387353bbe9c7f0127ef43833c6724bc1"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed42_current_20000",
+      "mature_cohort_packets": 719116,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "cfdd309344df24467945a4636d70be92326f713404996c8385802ed46ad5788c",
+      "first4000_service_sha256": "20bcb7ecbbfe9b45401afbc4bf6bdbe19c6d70517f04c7c67f63b73869227234",
+      "files": {
+        "metrics.bin": "7effcea14c51cb2d4f46271b11d5a55056368551a1b72da92c0660efb63029a3",
+        "traffic_offered_packets.csv": "67393fd984f8d2c2d840e9803e7de6a22e91ac3677db73c80c673e83483bec3a",
+        "packet_outcome_samples.csv": "8732676eef8a91b880f166a5272d069d4a4f8f62c55d3d050c420fc565f0cd60",
+        "ue_topology.csv": "14e474cb934ebc97422d25598985b3b4898013085a9b07201ddcd94bddc06fb3",
+        "execution.json": "6270839f4e57005d5f1ee1c00eaa350fbb0a9b8f356c741d3a561f2db0d713e4",
+        "launch.json": "304e031d19724e83cc81e2be05b8c1b2fbc91ec770c27a401a4041d8f26fd8fd"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed42_current_rho090.csv.gz",
+        "rows": 719116,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "810e0cd3d3446973a53c1f9add6c4bb93f6e6f8f6e400859f35e87b2ee7dfc6d"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed43_pfq0_20000",
+      "mature_cohort_packets": 720466,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "dd1acc508519a187c12964a5031018532a643d08896bacb37b978e357741f980",
+      "first4000_service_sha256": "2fe1acaf7b3a12b790a872de2cb92f3d4373c078c54918e242a153136063af46",
+      "files": {
+        "metrics.bin": "51810ee75a5e6fb1353d0a528469f66f4a3c734275e7e3862bbdf93211fca2cf",
+        "traffic_offered_packets.csv": "dfb4b3fc91add3a5dd394ac2f9cc8e4248657e3d7e776fb60f6b539e0c4a839e",
+        "packet_outcome_samples.csv": "1e3a200fb77bebf18bd2a3dfa84bf95f0e59b0974e82516b4edc56c434681488",
+        "ue_topology.csv": "d9997e8c9148c2af355f00327d28d329b211878f4dfccb14b2312e47b3039a98",
+        "execution.json": "4bc180c78494acb5d4ae874377022b550c20538839b34756179d3ea431223f2c",
+        "launch.json": "f6803afc148138fbb4d0dc7032c0b09ff9c5faa411e1f5811b72470d4d4f45d8"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed43_pfq0.csv.gz",
+        "rows": 720466,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "0d71a8509f0451f52629eba869e30097e62b49fc44877a569eca80e592401fbc"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed43_current_20000",
+      "mature_cohort_packets": 720466,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "dd1acc508519a187c12964a5031018532a643d08896bacb37b978e357741f980",
+      "first4000_service_sha256": "2fe1acaf7b3a12b790a872de2cb92f3d4373c078c54918e242a153136063af46",
+      "files": {
+        "metrics.bin": "004aab369cc4b37c0db6209cd8c7d7fb679d8ac9884ee96c68c6fe47b2150126",
+        "traffic_offered_packets.csv": "dfb4b3fc91add3a5dd394ac2f9cc8e4248657e3d7e776fb60f6b539e0c4a839e",
+        "packet_outcome_samples.csv": "d358c2b2d2ae805b1507c90f706c59fd8ccdab7d5667b7855592a13e89392e09",
+        "ue_topology.csv": "d9997e8c9148c2af355f00327d28d329b211878f4dfccb14b2312e47b3039a98",
+        "execution.json": "f6941d60500381d4536650362a77d0fca5bf5acd17b5c21eaa48221185f7483d",
+        "launch.json": "0e05899779ad5b550b7ff15aa671011ef9c7f1184244bbf2801dc55683d5b2ed"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed43_current_rho090.csv.gz",
+        "rows": 720466,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "47969169e9a39f70e0baa1f124bd1096c883ab35c48c939b7b4bf8c3773d3679"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed44_pfq0_20000",
+      "mature_cohort_packets": 719383,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "0f9a816e91899ba290ecb3007ed79a58c257d2d1efb71e25a6ec97804cc62cba",
+      "first4000_service_sha256": "51fe5d6ce5fce105640f338ec5afddceefa43f44569adb648188acb2ba015657",
+      "files": {
+        "metrics.bin": "60fa1a2bae44d01bd95b39db1cf26c424ab6a64ce5d63681de714ee291cc2ae9",
+        "traffic_offered_packets.csv": "d94b3fac007972dcaa4dec097e5643cd7769fefadbccd0f28306af57598ba362",
+        "packet_outcome_samples.csv": "b7d3ac86e44ee04aa7d8e465364c2f5f980ab479da3ca044409261d9446a6dd6",
+        "ue_topology.csv": "90b5a180998724dd9fb1061b7a2f1232417be0e4206348b3e5efd7c2c957eca7",
+        "execution.json": "35c9d369f9030d3ec3a723f96f0690d8326ccf50ae92ceada73ea5fa38af3760",
+        "launch.json": "652fe567077cc594b39912b78c5d97cf12de397402adb4efd402794869bbdd64"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed44_pfq0.csv.gz",
+        "rows": 719383,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "4e2229a5e101f24873c1dc48ea0569a69b4f7cc4130a1013e73b983c8c308ed3"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed44_current_20000",
+      "mature_cohort_packets": 719383,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "0f9a816e91899ba290ecb3007ed79a58c257d2d1efb71e25a6ec97804cc62cba",
+      "first4000_service_sha256": "51fe5d6ce5fce105640f338ec5afddceefa43f44569adb648188acb2ba015657",
+      "files": {
+        "metrics.bin": "e5b2d83364b1c440bfde87a947c64c2342edeec1ff4dd17a6410bb97748ff35b",
+        "traffic_offered_packets.csv": "d94b3fac007972dcaa4dec097e5643cd7769fefadbccd0f28306af57598ba362",
+        "packet_outcome_samples.csv": "d83fa990b6f70b87a59bf113bb5bba6026f113641145d8406a51c00be7901361",
+        "ue_topology.csv": "90b5a180998724dd9fb1061b7a2f1232417be0e4206348b3e5efd7c2c957eca7",
+        "execution.json": "3d6bac02455b3d7452fa667f21ea26a6034032f0bef691b26376b01f59c0e96e",
+        "launch.json": "d4afd668a1658d0614f91332a9c085f3730d2c1aeceb22ee093fb1986df32b31"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed44_current_rho090.csv.gz",
+        "rows": 719383,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "727df989b9783e61989cb21f61e48637a40a4f028d7cdadab9f132644f2003d8"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed45_pfq0_20000",
+      "mature_cohort_packets": 719688,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "dc7301fbbc7eb6ed5fda5d7422b4196e49025e7b1467231208c5c2b488e6c987",
+      "first4000_service_sha256": "2855a95df90cf311ea165d658f0dc214146cd6aa06f2ae41ec92c54c27587811",
+      "files": {
+        "metrics.bin": "47dbf0f3b9d91d783f50d9a695fd2c7e46cbed61bcc410aa9fce4d352375a419",
+        "traffic_offered_packets.csv": "7779aebabbe205c1e67fb3499e26830ca38ffb99e8ecf8cc6774bc4aab1ec1a8",
+        "packet_outcome_samples.csv": "c65d8b8cd59b11bac3f2678008e649f8f4ecee08d4af6fca2d9363ce48682911",
+        "ue_topology.csv": "e7d7803885ec0d808db9736c56375995b21e40192d0280c9f5e673716ca5fbae",
+        "execution.json": "3896bec6904140974c0e4ea118afbb245967fc3e2312a0380b955ddc06f644aa",
+        "launch.json": "eed8f666b60afd8d6defc2a7fce08541592f83cbac555124b5130057a07ec239"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed45_pfq0.csv.gz",
+        "rows": 719688,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "5060e05e234e9a65f44cf96f1b3e94deda187ff053d7ad9d5d61efae424fa927"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/seed45_current_20000",
+      "mature_cohort_packets": 719688,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "dc7301fbbc7eb6ed5fda5d7422b4196e49025e7b1467231208c5c2b488e6c987",
+      "first4000_service_sha256": "2855a95df90cf311ea165d658f0dc214146cd6aa06f2ae41ec92c54c27587811",
+      "files": {
+        "metrics.bin": "e060242d4743ce444d8e865fb027bc1270bbc205b1f9366577e71ef84b31822b",
+        "traffic_offered_packets.csv": "7779aebabbe205c1e67fb3499e26830ca38ffb99e8ecf8cc6774bc4aab1ec1a8",
+        "packet_outcome_samples.csv": "6a5af78d9f748924d6de5dee02470db8dd5774e13a906e0400e04062c4ffdc75",
+        "ue_topology.csv": "e7d7803885ec0d808db9736c56375995b21e40192d0280c9f5e673716ca5fbae",
+        "execution.json": "bdbee9fe226b983b468bb517759ac73300e087ac221010c27ac6593e10fc9e04",
+        "launch.json": "aa824d167c368c3a2569fe8c6cc4ea56d896c1cb9089df6b49f0093ae4f7e429"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_dpls_rho090_five_seed_20261028_v1/packet_cohorts/seed45_current_rho090.csv.gz",
+        "rows": 719688,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "1e29acffcf989593825d85e8edb674005c803d482ef1117006f2cb87ce4e3004"
+      }
+    }
+  ],
+  "protocol_sha256": "8d38de163708c148fbfa7ce960b7ba2357ed6d8ca84a0e5af0f2e39dc70221e9",
+  "analysis_sha256": "f50fa439913c06424555ab8995a4799e902c6a4de7b747c21a402d624968dd83",
+  "reused_window_analysis_sha256": "0294612c5a5e9803349790e7f8b48e671925f80646c111a1b7ea268bc1614d78",
+  "limitations": [
+    "Finite10s window is not asymptotic steady-state or capacity proof; TTL may stabilize overloaded queues.",
+    "The prior1s selection used a periodic channel-clock binary. This experiment matches the PFQ continuous-clock baseline; old/new absolute changes are not single-factor policy effects.",
+    "Frozen legacy MCS3 scoring retained to isolate the selected policy; no lookup correction.",
+    "Shared-host concurrent wall time is not controlled deployment latency."
+  ]
+}

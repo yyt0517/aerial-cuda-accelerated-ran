@@ -1,0 +1,40 @@
+{
+  "stage": "collect",
+  "seeds": [
+    49,
+    50
+  ],
+  "arms": [
+    "neural",
+    "physical_lns"
+  ],
+  "warmup": 1000,
+  "settling": 1000,
+  "measured": 4000,
+  "followup": 400,
+  "initial_sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409",
+  "checkpoint_sha256": null,
+  "training_seeds": [
+    41,
+    42,
+    43,
+    46,
+    47,
+    49
+  ],
+  "selection_seeds": [
+    44,
+    45,
+    48,
+    50
+  ],
+  "test_seeds": [
+    101,
+    102,
+    103
+  ],
+  "workers": 4,
+  "reward": "goodput/target - 2*expired_packet_payload/target - 0.5*mean squared post-service deficit",
+  "wall_time_scope": "Concurrent exploratory execution, not production latency",
+  "time_cutoff_ms": null
+}

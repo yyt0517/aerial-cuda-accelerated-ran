@@ -1,0 +1,9 @@
+{
+  "plan_sha256": "f4161ce98c765f3a861db4e0d37fcdbc9ac948ee007ac2b229dbdd31527680cc",
+  "training_blocks": 720,
+  "loss": "Listwise uniform high-yield coverage target at each depth with differentiable parent-prefix logprobs; .1 KL(original conditional||new)",
+  "original_feature_normalization_frozen": true,
+  "train_seed_positive_replay_only": true,
+  "selection_seed": 44,
+  "final_or_evaluation_labels_used_for_training": false
+}

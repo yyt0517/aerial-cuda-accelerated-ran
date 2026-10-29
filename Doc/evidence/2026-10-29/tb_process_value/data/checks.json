@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "input_sha256": {
+    ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed41_current_20000/states.pt": "f827ebe6db93b801ceffece3e9ebe793793aa7dfbeb73152164d2be1280e2724",
+    ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed42_current_20000/states.pt": "016a7d78ebc99c80ca1ee9ac8f6bf25db8498b61f1e6a91798fe085b37e532bd",
+    ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed43_current_20000/states.pt": "a526b25f4e545263780258a82ce47548883564bcfee05b90ebee485066f14991",
+    "deliverables/tb_joint_repair_20261027_native_v2/seed46_neural/states.pt": "6d7c0ca48b83842040392373633b106920e04e020d2af9163aa4f8aa3e5119d7",
+    "deliverables/tb_joint_repair_20261027_native_v2/seed47_neural/states.pt": "3e1b636715664eea96e180b99a582bf843895616fde53dde144ff07b5742236a",
+    "deliverables/tb_deadline_20261028_collection_v1/seed49_neural/states.pt": "26b3c82447f27be48ef0cdb524f58c03b4d987c69131bea4d322677aeb844887",
+    ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed44_current_20000/states.pt": "ab9615d83ed4615b3ae619f4edae2df278ba8e49374b00d3010a42afcc3dfb5b",
+    ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed45_current_20000/states.pt": "c703116d8df27df70116be5789cbd8fc375d521147b274411d8cf3c0bde91d10",
+    "deliverables/tb_deadline_20261028_validation_native_v1/seed48_risk_neural/states.pt": "8206b328399e4dfc1c2bc753929c867d4592c75c9bbe52ed307f28f4a43f114c",
+    "deliverables/tb_deadline_20261028_validation_native_v1/seed50_risk_neural/states.pt": "590a6994219434ab493fa489f88d623e33ffc22685f9c6d4d2d52f987fdb69c1"
+  },
+  "snapshots": 58,
+  "groups": 1392,
+  "candidate_occurrences": 214508,
+  "unique_candidates": 156492,
+  "features": 189,
+  "total_wall_s": 18.31226165406406,
+  "incremental_full_audits": 116,
+  "inputs_exclude_counterfactual_phy": true,
+  "future_outcomes_unused": true,
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3"
+}

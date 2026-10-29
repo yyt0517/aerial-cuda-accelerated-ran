@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "states": 6,
+  "methods": 15,
+  "timing_repeats": 3,
+  "final_phy_exact": true,
+  "all_runs_floor_and_j_guards_passed": true,
+  "repeats_deterministic": true,
+  "no_native_packet_delay_claim": true
+}

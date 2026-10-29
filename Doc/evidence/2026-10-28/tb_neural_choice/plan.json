@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-28",
+  "purpose": "Post-hoc explanation of paired neural/physical allocation and packet-delay differences; no policy or model selection",
+  "source": "deliverables/tb_direct_risk_20261028_native_v1",
+  "seeds": [104, 105, 106],
+  "arms": ["risk_neural", "risk_physical_direct"],
+  "measurement": {"first_tti": 4001, "last_tti": 14000, "tti_ms": 0.5},
+  "native_comparison": ["all measured UE slots and allocations", "TX-conditioned and common-TX SINR/MCS/layers", "resource occupancy and service breadth/batch size", "queue and service gaps", "identical-arrival packet matching, including common successes"],
+  "same_state_replay": "Both solvers on every measured saved state from both trajectories; additionally the common first post-warmup state at TTI2001 once per seed; no state selected by outcomes",
+  "block_audit": "Every graph block from frozen neural incumbent on neural-origin TTI4001 and TTI10001, for each seed; compare neural complete candidates and physical intermediate/final candidates under the same floor/physical/objective guards; trace pruning of the best physical candidate",
+  "physical_continuation": "The same six neural-origin states, original draft floor, physical search warm-started at the neural result; diagnostic extra computation, not a matched-budget policy comparison",
+  "checkpoint": "deliverables/tb_direct_risk_20261028_native_v1/repair_frozen.npz",
+  "checkpoint_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c",
+  "aggregation": "Seed is the independent replicate; report paired seed differences; saved states, UEs and packets are descriptive repeated observations",
+  "boundaries": ["Different native trajectories share exogenous channels/traffic but not queue/EMA/MCS states after divergence", "Replay holds all pre-action inputs fixed and measures one-step predicted consequences only", "No new native rollout or latency causal mediation claim", "Do not tune on seeds104-106", "MCS is supplied in the saved Problem, not independently chosen by the repair decoder"]
+}

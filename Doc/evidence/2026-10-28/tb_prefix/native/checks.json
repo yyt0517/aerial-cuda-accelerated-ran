@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "new_native_runs": 6,
+  "new_native_ttis": 26400,
+  "reused_neural_reference_runs": 2,
+  "seeds": [
+    48,
+    50
+  ],
+  "audits": [
+    {
+      "seed": 48,
+      "method": "verified",
+      "passed": true,
+      "all_tti_native_action_mcs_layer_tbs_dequeue_exact": true,
+      "exogenous_inputs_and_common_pfq_exact": true,
+      "mature_cohort": true,
+      "every_prefix_evaluation_counted": true,
+      "raw_sha256": {
+        "launch.json": "80d8601cc9f15ca954f0a0c493a772fda812544114599ef0437b24c870b7241f",
+        "execution.json": "1a128b8a79b02d9b18ddb45fc1acd4daef1d11361152f9cc2243fa44895f97a1",
+        "metrics.bin": "d5c89b0a19c0bca9310572916e8ca2d531540353aa4f819052f0fe1d7bba2497",
+        "metrics.json": "b82287aa8d532ff5faac78da6b3d5fe8fdbec6515461ac23a988f6475ff1a440",
+        "decisions.csv": "0db744d43e14c0b3b620092d322cc567a2fc9d2d46da240db4b3099dca32c7a8",
+        "packets.csv": "4b03af128aa22a4cbf3839f34d5a4d82b144165e24ead54735193fe9752c5033",
+        "prefix.npz": "461bf5a77c77dac970b54b8071ec50f3800dd8b1b99670ac2ef3e006599c724b"
+      }
+    },
+    {
+      "seed": 48,
+      "method": "verified_cover",
+      "passed": true,
+      "all_tti_native_action_mcs_layer_tbs_dequeue_exact": true,
+      "exogenous_inputs_and_common_pfq_exact": true,
+      "mature_cohort": true,
+      "every_prefix_evaluation_counted": true,
+      "raw_sha256": {
+        "launch.json": "3e4d53f4e70ab01188e3588c5fa9093719eed06a794cb090b54481dec0a0ca26",
+        "execution.json": "3ede5f7af73ca1dee4257e11c0bf4b5529130b0d152630c1b941bb834edd22be",
+        "metrics.bin": "c93abb3e8d0e84229d974f7bf29c591830d61c5c621ede64773d6d30a0cef981",
+        "metrics.json": "98adec9c4a62a42ddeff87cb5a47b2c4719a17bc1db6fc39de7d33d627f344de",
+        "decisions.csv": "bce8375592851bfcc5ae4f0a33b77562ad139b980942b392f164a0669c691efc",
+        "packets.csv": "5adc0868978169213ef7dbe3b2038daee03272c874f2a5d08514dbc3281b404c",
+        "prefix.npz": "faf52cb5f3f762ce0ffca0472dd02283ba5c01c2f8088aaf60e39eb9b7a254be"
+      }
+    },
+    {
+      "seed": 48,
+      "method": "physical_direct",
+      "passed": true,
+      "all_tti_native_action_mcs_layer_tbs_dequeue_exact": true,
+      "exogenous_inputs_and_common_pfq_exact": true,
+      "mature_cohort": true,
+      "every_prefix_evaluation_counted": false,
+      "raw_sha256": {
+        "launch.json": "586ce66ba6a32e83c2b73ea01fe8053830a1d76dc2c0a31bcda1dc79577efc65",
+        "execution.json": "105e2d0714b8e4a988adda1be2a4a7c4f56eb7164674535d846ccbf6a0e81fe1",
+        "metrics.bin": "d649257e012fd0ae929561f8ed252e9cbcd0214bd848cde05a3a1efbb627ee73",
+        "metrics.json": "0c3cef627931089b72b350f13244325bafa5a49f7e84e8cc1d44a4859152b1f5",
+        "decisions.csv": "7b18a440699184ec7bdb19679837f1894448244f907820605fb6d01cff867fec",
+        "packets.csv": "4f987979b43e826a77133151d341eb823f79dc62f62311ba057aab9dd0e31d6f",
+        "prefix.npz": "3acf89984cb5762366c1fafe894f6c8d6b8747d768f719c0271123d228cf137f"
+      }
+    },
+    {
+      "seed": 50,
+      "method": "verified",
+      "passed": true,
+      "all_tti_native_action_mcs_layer_tbs_dequeue_exact": true,
+      "exogenous_inputs_and_common_pfq_exact": true,
+      "mature_cohort": true,
+      "every_prefix_evaluation_counted": true,
+      "raw_sha256": {
+        "launch.json": "9e44fcf5e79fb1b501029efde8f2b64c168b58c4329cd74d40c6cb620d864cac",
+        "execution.json": "a04fb8fbf02698c74966fbc076a6ebc08e92832b219ee7abbeca2afe81c34d05",
+        "metrics.bin": "3bdd8241361dec47bfc4723f2737abbad1301d455ef0c389d88017dfbf9f7324",
+        "metrics.json": "1013f1b608f098006c34f3d5b2bc80d389e39f7dbdd2c164aaa1b912b53fe48d",
+        "decisions.csv": "7368d8af7861567bcafa1f3baad48d7e4aa0985e3885d3e44977881c9444317b",
+        "packets.csv": "5a747ffd0650c68e986f7defe433edcb9c53587e8e45caa61dc7f19e3c074933",
+        "prefix.npz": "fb7ebc0801e7acbc1a5095d31e8d94fcb0e1421980a81c6453cd9937c01466c8"
+      }
+    },
+    {
+      "seed": 50,
+      "method": "verified_cover",
+      "passed": true,
+      "all_tti_native_action_mcs_layer_tbs_dequeue_exact": true,
+      "exogenous_inputs_and_common_pfq_exact": true,
+      "mature_cohort": true,
+      "every_prefix_evaluation_counted": true,
+      "raw_sha256": {
+        "launch.json": "67f4f76dd63787f1e32c22372eb8c791f814537e614f442055aace8a8d433430",
+        "execution.json": "e1f3f19a545150cd786d4fb70c0b2869d0da7218b1011ccbec0e14668d98101e",
+        "metrics.bin": "a3d93ab0f93630fa5ebf73c4a2eeb021f4cdebd92e974aef2bc2693aed40b3a0",
+        "metrics.json": "1ed82cab6cc019e6a10bd6b67323f8bf0830e7ea9afb88a6a842c0635d01b354",
+        "decisions.csv": "df6e6a1cef9260c6de6c2d42610476ceba9d4a8a2f1e9c2939fae055698275b5",
+        "packets.csv": "fe9fd7434221f7d55272160301c8488f075e935aa00b79de437ed58170306e82",
+        "prefix.npz": "f77c2b32946c75d4bc84966501435d8f2c1fc8ad6ac9b478098e9a35d27d468e"
+      }
+    },
+    {
+      "seed": 50,
+      "method": "physical_direct",
+      "passed": true,
+      "all_tti_native_action_mcs_layer_tbs_dequeue_exact": true,
+      "exogenous_inputs_and_common_pfq_exact": true,
+      "mature_cohort": true,
+      "every_prefix_evaluation_counted": false,
+      "raw_sha256": {
+        "launch.json": "3a3efaa963ecbc24899d011c433f1353a434ae531a98ab743410ef87a07b624d",
+        "execution.json": "7a90f39005c0e83b871cbe54b7e60390074d885356955f88d723bae53d31f97d",
+        "metrics.bin": "2c53c956c9345affca862aa2c255a59b63cc69ede2d0eccabaa0b61a64886639",
+        "metrics.json": "748fbe4b64c322fb5ddf0a3f567030bc820f0652b0ec7b76e22872c05ad5780f",
+        "decisions.csv": "d94a7438cca181c3662194af8c5fbdfaba1d646825734ca0c0d497e65f19f574",
+        "packets.csv": "5bf7e45ea4718c0fc4bd7cc6fee102968b20442fe5427f50d3532ddae25400c2",
+        "prefix.npz": "2bfd5abc5d29d72cbbc820f44e3552836c73b134dabc329d5c8623c99a2f8ca6"
+      }
+    }
+  ],
+  "all_native_inputs_and_warmup_paired": true,
+  "all_cohorts_mature": true,
+  "all_prefix_verifications_counted": true,
+  "strict_descriptive_quality_screen": {
+    "physical_direct": false,
+    "verified": false,
+    "verified_cover": false
+  },
+  "evidence_scope": "Two known validation seeds, one second measured each; no unseen final test or statistical noninferiority claim"
+}

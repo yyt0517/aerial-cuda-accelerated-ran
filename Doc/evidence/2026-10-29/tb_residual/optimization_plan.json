@@ -1,0 +1,12 @@
+{
+  "stage": "posthoc_behavior_preserving_binding_optimization",
+  "trigger": "Actual full search slower despite lower exact-PHY counts; profiling identifies ndarray ctypes conversion plus repeated residual terms/unused standard deviation",
+  "weights_and_search_policy": "Frozen; no retraining or retuning",
+  "changes": ["Validated arrays pass addresses to private C binding", "Compute invariant approximate risk term once per ensemble", "Skip unused score standard deviation in mean-only search"],
+  "equality": "All draft arrays and residual mean scores byte-identical; complete chosen actions, final PHY arrays and exact work counts must remain identical",
+  "states": "Same six predetermined seed48/50 TTIs2001,3001,4000",
+  "methods": ["cached_original", "verified_original", "physical_direct", "trace_original_q8", "trace_fast_q8", "spatial_original_q16", "spatial_fast_q16", "residual_original_q8", "residual_fast_q8", "residual_new_actor_q8", "residual_fast_new_actor_q8"],
+  "repeats": 3,
+  "timing": "Serial rotating complete searches, includes all graph/root/feature/head/physical setup and destruction; compare within this session only",
+  "interpretation": "Cost optimization after negative quality findings; no native promotion and no realtime claim"
+}

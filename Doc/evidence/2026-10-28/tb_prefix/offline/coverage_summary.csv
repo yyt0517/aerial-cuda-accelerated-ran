@@ -1,0 +1,6 @@
+method,blocks,teacher_improving,method_improving,cached_missed,rescued_to_teacher,partially_improved_misses,worse_than_cached,mean_positive_teacher_gap,mean_candidates
+cached,263,35,24,15,0,0,0,25.70118531576938,16.0
+coverage,263,35,26,15,1,2,2,25.252784842520132,58.342205323193916
+physical_direct,263,35,35,15,15,15,0,0.0,502.8060836501901
+verified,263,35,34,15,13,13,0,5.267688825015346,152.27376425855513
+verified_cover,263,35,35,15,13,13,0,5.267688825015346,152.27376425855513

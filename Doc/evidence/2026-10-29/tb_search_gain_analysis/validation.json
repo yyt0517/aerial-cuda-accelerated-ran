@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "regret_identity_verified": true,
+  "rank_flips": 294,
+  "expanded_groups": 1283,
+  "feasible_rank_flips": 166,
+  "feasible_groups": 586,
+  "source_hashes_unchanged": true,
+  "new_phy_evaluations": 0,
+  "new_models_trained": false,
+  "algorithms_changed": false
+}

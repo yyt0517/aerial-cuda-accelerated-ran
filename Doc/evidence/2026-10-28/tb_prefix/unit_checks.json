@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "tests": 27,
+  "command": "python -m unittest discover -s training/stageb_lns -t . -p test_*.py",
+  "new_coverage": ["global and parent-local shortlist coverage", "stable branch reserve behavior", "incumbent suffix completion and unchanged outside-block tokens", "all physical evaluations counted", "candidate-budget truncation", "floor and original physical objective protection", "independent final physical values"],
+  "existing_reference_tests_passed": true
+}

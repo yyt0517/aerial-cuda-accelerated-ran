@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "every_replayed_feature_and_label_exact": true,
+  "original_candidates_npz_sha256": "ad2629c0e565f446e5eec649289d6b66b3f93d10484b5275cfa71b3eb6cdef94",
+  "root_anchored_physics_identity_passed": true,
+  "frozen_value_sha256": "3339d1dd30d7865f974deee9dcda93022ba5924c4e9370e851d3a0d6306e4cb5",
+  "control_uses_no_counterfactual_mmse": true,
+  "control_uses_native_bler_lookup": true,
+  "primary_gate_not_changed": true,
+  "additional_replay_evaluations": 214624
+}

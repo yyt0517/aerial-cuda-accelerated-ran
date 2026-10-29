@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "returncode": 0,
+      "elapsed_s": 415.0217946767807
+    },
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "returncode": 0,
+      "elapsed_s": 421.2388575533405
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "returncode": 0,
+      "elapsed_s": 422.67289249040186
+    },
+    {
+      "seed": 48,
+      "arm": "greedy",
+      "returncode": 0,
+      "elapsed_s": 586.2678212802857
+    },
+    {
+      "seed": 46,
+      "arm": "greedy",
+      "returncode": 0,
+      "elapsed_s": 627.4723476460204
+    },
+    {
+      "seed": 47,
+      "arm": "greedy",
+      "returncode": 0,
+      "elapsed_s": 628.862063119188
+    },
+    {
+      "seed": 48,
+      "arm": "legacy_current",
+      "returncode": 0,
+      "elapsed_s": 777.4553681695834
+    },
+    {
+      "seed": 48,
+      "arm": "hybrid",
+      "returncode": 0,
+      "elapsed_s": 918.47688371595
+    },
+    {
+      "seed": 47,
+      "arm": "legacy_current",
+      "returncode": 0,
+      "elapsed_s": 938.9944007340819
+    },
+    {
+      "seed": 48,
+      "arm": "physical_lns",
+      "returncode": 0,
+      "elapsed_s": 950.0763628277928
+    },
+    {
+      "seed": 46,
+      "arm": "legacy_current",
+      "returncode": 0,
+      "elapsed_s": 991.0682308441028
+    },
+    {
+      "seed": 46,
+      "arm": "physical_lns",
+      "returncode": 0,
+      "elapsed_s": 1001.3046127818525
+    },
+    {
+      "seed": 46,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1008.1351959286258
+    },
+    {
+      "seed": 47,
+      "arm": "hybrid",
+      "returncode": 0,
+      "elapsed_s": 1021.1143567198887
+    },
+    {
+      "seed": 46,
+      "arm": "hybrid",
+      "returncode": 0,
+      "elapsed_s": 1035.6403842829168
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1042.3262438829988
+    },
+    {
+      "seed": 47,
+      "arm": "physical_lns",
+      "returncode": 0,
+      "elapsed_s": 1072.9872618773952
+    },
+    {
+      "seed": 47,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1106.1218361947685
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "training_seeds": [
+    41,
+    42,
+    43,
+    46,
+    47,
+    49
+  ],
+  "validation_seeds": [
+    44,
+    45,
+    48,
+    50
+  ],
+  "final_test_seeds": [
+    101,
+    102,
+    103
+  ],
+  "initial_sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409",
+  "training_states": 214,
+  "validation_states": 158,
+  "training_sources": [
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed46_greedy",
+      "seed": 46,
+      "arm": "greedy",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed46_hybrid",
+      "seed": 46,
+      "arm": "hybrid",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed46_legacy_current",
+      "seed": 46,
+      "arm": "legacy_current",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed46_neural",
+      "seed": 46,
+      "arm": "neural",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed46_pfq0",
+      "seed": 46,
+      "arm": "pfq0",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed46_physical_lns",
+      "seed": 46,
+      "arm": "physical_lns",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed47_greedy",
+      "seed": 47,
+      "arm": "greedy",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed47_hybrid",
+      "seed": 47,
+      "arm": "hybrid",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed47_legacy_current",
+      "seed": 47,
+      "arm": "legacy_current",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed47_neural",
+      "seed": 47,
+      "arm": "neural",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed47_pfq0",
+      "seed": 47,
+      "arm": "pfq0",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed47_physical_lns",
+      "seed": 47,
+      "arm": "physical_lns",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_local27_v1/seed46_hybrid",
+      "seed": 46,
+      "arm": "hybrid",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_local27_v1/seed46_neural",
+      "seed": 46,
+      "arm": "neural",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_local27_v1/seed47_hybrid",
+      "seed": 47,
+      "arm": "hybrid",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_local27_v1/seed47_neural",
+      "seed": 47,
+      "arm": "neural",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_collection_v1/seed49_neural",
+      "seed": 49,
+      "arm": "neural",
+      "horizon": 6400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_collection_v1/seed49_physical_lns",
+      "seed": 49,
+      "arm": "physical_lns",
+      "horizon": 6400
+    }
+  ],
+  "validation_sources": [
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed48_greedy",
+      "seed": 48,
+      "arm": "greedy",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed48_hybrid",
+      "seed": 48,
+      "arm": "hybrid",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed48_legacy_current",
+      "seed": 48,
+      "arm": "legacy_current",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed48_neural",
+      "seed": 48,
+      "arm": "neural",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed48_pfq0",
+      "seed": 48,
+      "arm": "pfq0",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_v2/seed48_physical_lns",
+      "seed": 48,
+      "arm": "physical_lns",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_local27_v1/seed48_hybrid",
+      "seed": 48,
+      "arm": "hybrid",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_joint_repair_20261027_native_local27_v1/seed48_neural",
+      "seed": 48,
+      "arm": "neural",
+      "horizon": 5400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_collection_v1/seed50_neural",
+      "seed": 50,
+      "arm": "neural",
+      "horizon": 6400
+    },
+    {
+      "path": "/opt/nvidia/cuBB/deliverables/tb_deadline_20261028_collection_v1/seed50_physical_lns",
+      "seed": 50,
+      "arm": "physical_lns",
+      "horizon": 6400
+    }
+  ],
+  "blocks_per_root": 8,
+  "source_sha256": {
+    "training/stageb_lns/search.py": "64a175951a1ad21fb42a38d80c84129cf4ddb9ee3670dd566ef836baeb951aeb",
+    "training/stageb_lns/test_deadline.py": "6e03d42ad367c0c5a1a0b26e70888c4e4cb19c281aa7a6b002f65b8d90e29207",
+    "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+    "training/stageb_lns/deadline_campaign.py": "de4cbb7243534632afa14293db844285dbd863ec083d09d31b16d27fd72fbe25",
+    "training/stageb_lns/__init__.py": "e3034c875ac587d466cb60a300d539647889b0644f93c38ac77ce44995b30700",
+    "training/stageb_lns/deadline.py": "eda6b6e9f988924109cc97a0e9f6f90e4150b3b8dc31852d884f5c3fea9b3941",
+    "training/stageb_lns/native_campaign.py": "c14b1bf28b2d925d1a2f064d2b7c79f17b069ddcc428b086268d826a19729a40",
+    "training/stageb_lns/summarize_repair.py": "9e01f07a0c2c2a8fe728676f29dea33729f4d56e218781821518f9864b629743",
+    "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_lns/experiment.py": "d17d1e60b367b5c37457a029b66efcf7b3702611781737495a8b0f1c9f6effc2",
+    "training/stageb_lns/budget_learning.py": "f64951f1c88dfcb35bdb339383df14e4dc115626ebd0a141f32664ff7317291e",
+    "training/stageb_lns/summarize_deadline.py": "96442a79a632725182a2106999329d77f5ca9bc404c69192c4e328a7c5177aa4",
+    "training/stageb_lns/learning.py": "8b5c524d48d0d99e62ceda0d28a71e53706e8cd4ea33b66ac92f2b764dcb1afc",
+    "training/stageb_lns/archive.py": "df151308cc506caf1462675ee23de440bc0b040fa6af993eb18482b6c5602345",
+    "training/stageb_lns/eval_repair.py": "e43bf5ee517f93a4dbb39b2538adfa76c66ec7bfdcd5f253823c16d9b3c15498",
+    "training/stageb_lns/test_repair.py": "625fc7e0d39f4ac70e226f494598840c3d8863752efa92dd7a7942bf91722110",
+    "training/stageb_lns/ablate_repair.py": "97db2cd5cf5e1745de95ef6910968f6801f6de2da6fc898706106a7748bf4801",
+    "training/stageb_lns/closed_data.py": "4e2a470f8601b0c461e2ed54d1d2ad27a5b5ae6cf0184611eea87d242c985de3",
+    "training/stageb_lns/native_repair.py": "49f39f1532d6b28f93260e471c954b6ea3a82551e3022f176a1a67cab649990d",
+    "training/stageb_lns/build.py": "3d7cb01a5544f91ab507a3e43802853d9cff6e4bd7460497ddad18693649552c",
+    "training/stageb_lns/train_deadline.py": "d0852ac29a7169834b8015bece1b712050f2dacbc0c863228d60d60fd354880f",
+    "training/stageb_lns/neural_repair.py": "b83a6df3a38e4fc933ca7cbe35ccfe66b7c649c79974f1f460befe295005c6fc",
+    "training/stageb_lns/test_physics.py": "66bff8593242f9acf3061cdd2e13d8579495877bcf84a9064a8809e52394d3ad",
+    "training/stageb_lns/quality.py": "b56fefb705d3345f66b42311def0616a065d92133546926a730356d35d8f0930",
+    "training/stageb_lns/train_repair.py": "6a3c4d9a260dfafca33f91b8187e99487b8769df14ae83e2f6ed21350f23edd2",
+    "training/stageb_lns/physics.py": "52e28bc432f297cb7e807cb5c5f029adf9ffc19a47d20e24df177b500a96549a",
+    "training/stageb_lns/eval_deadline.py": "7b24bfc01e05be36a1ecb589a519fde864969ee8fa56238b30e252db7413d34f",
+    "cuMAC/src/cumac.h": "c8a34c9ff0dec0eb8cbfe1532ec046eb0924550e36d32e9b43bc1655fb9149f0",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/ctbs_headroom.py": "d80a45f7be75dc21e365b78a81587cf63dea0b65537e9d8a9b043a6f68e924ad",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/phy_tbs_alignment_audit.py": "b210487be6367613dfc2524853e20bd8d57a50373003550cd21b1dab79f42f97"
+  },
+  "feature_version": 2,
+  "features": 87,
+  "teacher_topk": 36,
+  "teacher_beam": 16,
+  "return_horizon_tti": 400,
+  "gamma": 0.9975,
+  "observed_reward": "mean(goodput/2400 - 2*expired_full_packet_payload/2400 - 0.5*post_service_deficit_squared)",
+  "local_proxy": "J + 0.5*urgent_expected - 0.5*urgent_service_shortfall + 0.5*weak_capped_expected",
+  "loss": "failure-priority weighted [0.25*best complete-sequence NLL + reward-softened candidate preference CE]",
+  "selection": "validation physically scored candidate preference; not imitation NLL",
+  "limitation": "Observed reward reweights corrective imitation cases. Counterfactual preferences are local risk proxies, not observed long-horizon returns."
+}

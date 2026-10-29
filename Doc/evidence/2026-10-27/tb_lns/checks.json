@@ -1,0 +1,15 @@
+{
+  "unit_tests_passed": 11,
+  "unit_test_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m unittest training.stageb_lns.test_physics -v",
+  "cpp_warnings_as_errors_build_passed": true,
+  "python_compileall_passed": true,
+  "git_diff_check_passed": true,
+  "states": 18,
+  "actions_checked": 630,
+  "max_canonical_legacy_abs_error": 2.091837814077735e-10,
+  "max_independent_numpy_abs_error": 2.1645973902195692e-10,
+  "incremental_full_batch_permutation_bitwise_equal": true,
+  "archived_draft_and_candidate_order_verified": true,
+  "median_ue_reduction_factor": 10.95187165775401,
+  "median_warm_evaluator_speedup": 1.9179520582488723
+}

@@ -1,0 +1,11 @@
+{
+  "selected_ratio_num": 90,
+  "denominator": 100,
+  "seed": 41,
+  "scope": "Single-seed development comparison; no independent generalization or statistical-equivalence claim.",
+  "floor": "ceil(ratio_num * own_current_PFQ_CTBS_draft_dequeue / 100)",
+  "model_required": false,
+  "external_floor_schedule_required": false,
+  "policy_sha256": "f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc",
+  "protocol_sha256": "757ff8bcff8766790cbf5c3eec868666329a4fd3f9a06bf2d1488cb7a6282428"
+}

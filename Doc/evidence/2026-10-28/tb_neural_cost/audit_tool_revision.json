@@ -1,0 +1,9 @@
+{
+  "path": "training/stageb_lns/audit_cached_native.py",
+  "before_sha256": "8f4ef1525f6a8e79d4edce503589224e5e3d76b26102ab5555ccf9a324795cb9",
+  "after_sha256": "fb25f6a7e7405e537356dae93fd56b2dae9f3896bbcf5c9852cb7ddefd25c49e",
+  "stage": "post_native_execution",
+  "reason": "Support frozen references predating per-decision neural counters; compare recorded per-decision physical work and total network calls/proposals; explicitly list absent counters",
+  "inference_sources_changed": false,
+  "both_native_execution_passed_before_revision": true
+}

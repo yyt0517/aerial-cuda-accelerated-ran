@@ -1,0 +1,21 @@
+{
+  "seeds": [
+    104,
+    105,
+    106
+  ],
+  "ttis": [
+    4001,
+    10001
+  ],
+  "origin": "risk_neural",
+  "root": "saved final neural incumbent",
+  "all_graph_blocks": true,
+  "physical_score_threshold_bytes": 16,
+  "risk_threshold": 1,
+  "floor": "ceil(.90*same-state original PFQ+CTBS draft dequeue)",
+  "physical_prefixes": "Original full-incumbent prefixes; all depths eligible, matching physical search mechanics",
+  "random_state": "seed0 per snapshot, carried over blocks",
+  "scope": "Fixed-root local candidate audit; no trajectory counterfactual or matched-compute comparison",
+  "model_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c"
+}

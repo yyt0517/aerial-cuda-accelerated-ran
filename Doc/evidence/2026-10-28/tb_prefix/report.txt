@@ -1,0 +1,115 @@
+前缀排序与候选覆盖：近期研究启发、实现和原生验证
+2026-10-28T18:23:47+08:00
+
+本轮结论
+已实现冻结神经提议器＋有限物理前缀价值验证，并用对照拆开覆盖机制；不改网络权重、风险目标或有效算法注册。
+离线恢复15个已知漏选中的13个，参考收益缺口降低约79.5%；物理候选约为直接物理的31%，串行成本约为其59%。
+相对旧缓存神经路径，完整串行成本增至约2.26倍；这是用额外有限验证换取更好候选，不能称为零成本优化。
+冻结严格原生保护门槛全部通过的神经版本：无。候选/价值改善尚不能代替完整质量门槛通过。
+以下为两个已使用验证seed、各1秒测量的结果，不构成未见seed或5秒长窗最终测试。
+
+研究联系（截至2026-10-28，技术依据为论文/正式会议页/作者预印本）
+ACL 2026 Evolutionary Guided Decoding：前缀任务价值与探索；本轮先用已有精确PHY完成评分验证方向，尚未训练价值头。https://aclanthology.org/2026.acl-long.148/
+IJCAI 2026 GSA-Beam：以结构状态组织搜索预算；本轮只迁移为不同首个UE/blank选择保留槽位，并未复现完整语法状态或动态束宽。https://ijcai.org/proceedings/2026/639
+2026年7月修订的无线离散约束DL框架：条件联合概率、动态上下文和可行性mask；本轮保持联合修复与合法集。https://arxiv.org/abs/2603.19322v2
+2026年9月Beam测试时扩展理论：保证依赖似然/奖励前缀对齐等条件；本项目未验证这些条件，不直接套用保证。https://arxiv.org/abs/2609.38672v1
+无线状态增强学习及有限rollout组合优化的补充联系、论文状态与适用边界详见research.txt。所有迁移是本项目推断，论文在其它任务的收益不是本项目证据。
+
+实现与消融
+prefix_repair.PrefixRepair：每深度由actor全局前16、各父前缀局部前2、incumbent锚点及剩余高概率扩展组成最多48个候选；仍保留束宽16和最多3轮。
+部分修复用当前incumbent后缀完成，形成完整合法调度；其评分只是这一种后缀完成的精确物理值，不是最优续写价值，也不是长期包回报。
+coverage：似然排序＋分支覆盖，验证选中的16个中间完成解；verified：先验证最多48个完成解，再按风险价值保留16；verified_cover另留4个首选择分支槽位。
+12个最佳核心加4个未覆盖分支仅是探索机制；不认为同组无线分配物理等价。没有调用LLM，actor仍是原87输入NumPy网络。
+所有评估通过solve.evaluate，初始draft与每个前缀的评估都进入候选计数和预算；沿用原始J单调保护、风险接受门槛及ceil(.90*own draft dequeue)。
+当前CLI默认reference未变，实验通过--decoder verified/verified_cover --prefix-budget 48 --prefix-reserve 4启用。
+
+离线同状态搜索（seed48/50；两个来源，共36个保存状态）
+每状态3次轮换方法顺序串行计时，取中位数，再按seed等权平均；包括缓存建立、actor、PHY和验收，模型加载在外。
+method | risk objective | physical candidates | actor option scores | serial ms
+cached | 83748.429 | 1940.250 | 60549.722 | 142.996
+coverage | 86181.548 | 7292.500 | 62435.333 | 245.738
+physical_direct | 88141.972 | 62511.278 | 0.000 | 548.569
+verified | 88325.919 | 19196.722 | 62989.556 | 323.099
+verified_cover | 87816.799 | 18912.972 | 62184.250 | 321.313
+
+verified相对cached：风险目标均值+5.466%；串行成本乘2.259，物理候选乘9.894。
+verified相对直接物理：物理候选减少69.291%；完整串行成本减少41.101%。
+风险目标均值接近物理参考只是点估计；两个seed方向不完全一致。相同束宽/轮数上限不代表实际轮数、候选、前向或FLOP相同。
+
+固定神经终态的全部263个块（6个预定验证状态）
+旧神经有15个物理参考更优的漏选机会。verified/verified_cover恢复其中13个到参考收益；平均正向参考缺口由25.701降到5.268，减少约79.5%。
+coverage（分支保留＋中间验收、无价值排序）只恢复1个，部分改善2个，也有2块低于旧候选收益。verified和verified_cover在这些块上没有低于旧候选收益的情况。
+残余2个漏选在第3步shortlist阶段丢失。两个版本的全部目标/收益重放与原覆盖测量一致；目标不注入解码。
+块有重叠，263块和15个机会都不是独立重复；物理参考为有限搜索，不能当全局oracle。
+带价值验证的版本在当前对照中收益更大，但额外候选暴露也有贡献，不能把总差值只归因于排序函数。verified与verified_cover未显示稳定的分支配额额外收益。
+
+事后等cap暴露对照（不参与本轮原生方法/参数选型）
+另外保留相同48候选cap和全部中间PHY验收，仅让下一束仍按actor累计似然选择；这是为了区分更多候选暴露与价值束排序。
+此对照风险均值87394.032，verified为88325.919；价值束排序均值再增加931.887，36状态中更好20、更差16。
+实际路径与工作量仍会变化，这不是完全等FLOP的因果实验；没有在并发原生运行中为该事后对照报告受控成本。总改善不能全部归于价值排序。
+
+原生闭环：各seed1000共同PFQ预热＋1000稳定化＋2000测量＋400随访
+新增6条完整轨迹，共26400TTI；复用旧冻结神经两条参考。方法、参数在原生结果前固定；所有方法/seed保留。
+均值按seed等权；native候选统计取测量窗。墙钟为并发诊断，不与旧参考墙钟作跨运行性能比较；受控成本采用上面的同状态串行测量。
+method | goodput Mbps | full payload Mbps | success mean ms | all-outcome mean ms | TTL % | UE P5 Mbps | physical candidates
+cached_reference | 1308.436784 | 1244.196000 | 13.899266 | 13.898336 | 0.000000 | 34.543539 | 1960.985
+physical_direct | 1296.979528 | 1246.836000 | 2.423490 | 2.441180 | 0.000000 | 34.268100 | 56748.419
+verified | 1296.873692 | 1244.808000 | 4.450493 | 4.457307 | 0.000000 | 34.338952 | 17968.147
+verified_cover | 1298.297108 | 1244.292000 | 4.579134 | 4.583717 | 0.000000 | 34.326190 | 17982.263
+
+逐seed相对冻结神经的变化（时延单位ms、TTL为百分点）
+seed | method | payload delta Mbps | mean-delay delta | outcome-mean delta | expiry delta | strict screen
+48 | verified | +3.960000 | -10.657138 | -10.639123 | +0.000000 | True
+48 | verified_cover | +2.424000 | -9.827786 | -9.805016 | +0.000000 | True
+48 | physical_direct | +6.120000 | -12.402285 | -12.384387 | +0.000000 | True
+50 | verified | -2.736000 | -8.240408 | -8.242934 | +0.000000 | False
+50 | verified_cover | -2.232000 | -8.812479 | -8.824221 | +0.000000 | False
+50 | physical_direct | -0.840000 | -10.549268 | -10.529924 | +0.000000 | False
+
+原生资源/PHY补充（同一测量窗、seed等权；SINR/MCS/层数按实际TX条件化）
+method | queue MB | served UEs/TTI | PRGs/TB | SINR dB | MCS | layers | good bytes/PRG
+cached_reference | 2.353710 | 19.596 | 2.032 | 10.621 | 9.339 | 3.701 | 2055.479
+physical_direct | 0.324749 | 20.347 | 1.888 | 11.236 | 10.162 | 3.678 | 2113.198
+verified | 0.681185 | 20.264 | 1.907 | 11.131 | 9.999 | 3.679 | 2099.663
+verified_cover | 0.707763 | 20.225 | 1.913 | 11.110 | 9.978 | 3.684 | 2100.805
+
+逐UE及固定弱UE补充（事后描述，不加入或修改冻结门槛）
+method | group | metric | mean delta | improved/worse/tied
+verified | all_ues | full_payload_mbps | +0.017000 | 37/31/4
+verified | all_ues | success_mean_ms | -9.483125 | 72/0/0
+verified | fixed_old_neural_bottom8 | full_payload_mbps | +0.000000 | 8/7/1
+verified | fixed_old_neural_bottom8 | success_mean_ms | -0.196513 | 16/0/0
+verified_cover | all_ues | full_payload_mbps | +0.002667 | 39/31/2
+verified_cover | all_ues | success_mean_ms | -9.346583 | 70/2/0
+verified_cover | fixed_old_neural_bottom8 | full_payload_mbps | +0.003000 | 9/6/1
+verified_cover | fixed_old_neural_bottom8 | success_mean_ms | -0.210970 | 14/2/0
+固定弱UE按旧冻结神经的同一测量窗goodput取末8名/seed，组内UE不随新策略重选。该选择有事后边界，72个UE观测或16个弱UE观测不当作独立样本；各策略成功包集合也可改变。
+
+共同成功包的事后逐包配对（新版本−旧冻结神经，非独立包样本检验）
+seed | method | common-success packets | mean-delay delta ms
+48 | verified | 47521 | -10.431872
+48 | verified_cover | 47405 | -9.612435
+48 | physical_direct | 47502 | -12.160520
+50 | verified | 46969 | -8.171624
+50 | verified_cover | 47033 | -8.763496
+50 | physical_direct | 47016 | -10.400736
+
+冻结严格门槛：两个验证seed各自的平均成功时延与全包终态均值均不增加、完整包payload不下降、TTL过期率不增加。它是描述性研究筛选，不是统计非劣检验。
+物理对照单列，不因新神经优于旧神经就推导已追平物理质量；吞吐、平均时延和P5均按各自指标报告。
+网络参数及训练输入没有改变。已暴露验证seed上的改善不能证明泛化；最终测试seed101–106没有用于新参数/模型选型或本轮评测。
+
+核验与有效性
+27项单元测试通过，覆盖短名单保留、稳定分支配额、incumbent后缀完成、预算截断、全部物理工作计数及独立PHY值；旧参考回归同时通过。
+离线36状态的旧神经原动作/值精确复现；所有方法独立PHY复算一致、floor/J保护通过，3次重复动作和计数确定。
+原生6/6轨迹返回0，所有TTI动作/MCS/层数/TBS/出队与原生结果一致，FIFO/字节守恒及物理抽样通过；外生H/W和流量一致、1000TTI预热逐步配对。
+两个新神经版本逐决策candidate_evaluations == neural_proposals + 1，确认前缀评分没有藏在计数之外。所有测量到达包随访成熟，无截尾。
+独立重复单位为seed，n=2；36状态、263块及大量包均为重复观察，不能当作独立统计样本。当前不宣称生产实时性或全局最优。
+
+下一阶段
+先按冻结质量门槛和直接物理差距选择后续候选；多样性配额不因论文启发而默认保留。任何最终结论要在新seed和2000预热＋2000稳定化＋10000测量＋400随访的5秒协议中检查。
+若继续降成本，在既定训练seed上采集物理前缀标签，纳入低概率高收益的off-policy组合，再蒸馏小价值头或改actor短名单；不要把本轮验证轨迹标签转入训练集。
+重点测量候选生成阶段和价值排序阶段各自的生存率、完整包交付、平均时延及总搜索成本；避免只优化似然/NLL或用稀疏快照分数代替包级结果。
+
+证据
+plan.json、research.txt、unit_checks.json；offline/{states.csv,timings.csv,state_medians.csv,per_seed.csv,means.csv,coverage_summary.csv,coverage_blocks.csv,remaining_coverage_diagnostics.csv,checks.json,source/}；
+native/{protocol.json,completion.json,checks.json,per_seed.csv,means.csv,paired_vs_reference.csv}及6条完整原生轨迹/源码快照；results.png/pdf；checks.json及manifest.json。

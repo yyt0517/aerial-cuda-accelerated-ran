@@ -1,0 +1,12 @@
+{
+  "kind": "posthoc_strengthened_control_and_depth_conditioning",
+  "value_model_sha256": "3339d1dd30d7865f974deee9dcda93022ba5924c4e9370e851d3a0d6306e4cb5",
+  "model_retraining": false,
+  "selection_not_reopened": true,
+  "no_new_final_seeds": true,
+  "reasons": [
+    "Frozen-BLER control cannot respond to interference changes",
+    "Cross-depth union ranking can confound actor cumulative likelihood with sequence length"
+  ],
+  "depth_audit": "Same frozen model; groups split by depth of first canonical occurrence. These are diagnostic metrics, not retuned primary selection gates"
+}

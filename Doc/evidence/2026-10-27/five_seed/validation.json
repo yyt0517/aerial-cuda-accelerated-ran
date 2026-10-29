@@ -1,0 +1,1269 @@
+{
+  "passed": true,
+  "algorithm_id": "pfq_ctbs_deficit_search_rho090_20261027",
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "new_rho090_runs": 5,
+  "reused_verified_pfq_runs": 5,
+  "measurement_rows": 10,
+  "new_native_ttis": 142000,
+  "native_actions_and_discrete_physics_exact": true,
+  "all_causal_floors_independently_verified": true,
+  "no_bc_or_coordinator_inference": true,
+  "no_external_floor_schedule": true,
+  "all_searches_converged": true,
+  "complete_five_seed_comparison": true,
+  "no_censoring": true,
+  "mature_packet_cohorts_match": true,
+  "all_practical_stability_checks_passed": true,
+  "stability_is_not_capacity_proof": true,
+  "independent_new_physical_samples": 30,
+  "pairing_and_inputs": [
+    {
+      "passed": true,
+      "seed": 41,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "historical_corrected_prefix": {
+          "pfq0": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "a04e88329461e9d2c10f1f89e211603bccad7ddccb91d0e9f757508b4b2223e3",
+            "prefix_sha256": "0bf6dac06d45e3868f450414368b4e809b86cc5ecf1e6025425bf527ec0a6895"
+          },
+          "current": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "708f48384de3376d6e5ea2d47f2fc746b0f98e276a65f7a7c06ddbcc7c5eb36e",
+            "prefix_sha256": "f01480e7902e753b988be2276e0f272887f61d38b262ee269e2210119acb1042"
+          }
+        },
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "51f6c02025df904d7452bd69c31ffaf65276c1851c5c71db315afa402672f24c",
+            "validation.json": "178d541c53508f3cdd5178e24b147c5a1d609a13a7852c8a86492fc6526ebbe0",
+            "physical_validation.json": "2f7ed96cedba23d435c96bb257a1d6709e6643152d6227ed30a33d0b3e4d991c",
+            "sim.log": "059afcd943a3632cc1416b749ad9eea6e4227d658655ac760931556e165922ab"
+          },
+          "current": {
+            "prefix.npz": "b0ddf789113952dd450b2312344ef65d354b8d21cd0d21469a41632f54893556",
+            "validation.json": "503d029771a79eacab9b7ae0c293608e9c86d407de2727c8e9d91a5e10f09670",
+            "physical_validation.json": "2b1ec17d089774d8c1c1a239dd6043796d7a1b3e2436794edef7e59bba20be36",
+            "sim.log": "ae83c7f55915e512ae01c3c7b678efedc2274b3e0b2c81f9dba1f34570e6b76e"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 41,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3395909199050164e-06,
+            "w_unitary_max_abs": 1.1618567468119068e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.8953002043863307e-05,
+            "subband_max_relative": 0.0017833386028950023,
+            "worst_relative_index": [
+              29,
+              13,
+              3
+            ],
+            "worst_relative_gamma": 3.213024589484617e-05,
+            "worst_relative_native": 3.218754500267096e-05,
+            "worst_relative_abs": 5.729910782478786e-08,
+            "wb_first_layer_max_abs_db": 8.625386431759807e-07
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2325160357202034e-06,
+            "w_unitary_max_abs": 1.2818268986247716e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.574863608055921e-05,
+            "subband_max_relative": 0.00011016598457604743,
+            "worst_relative_index": [
+              4,
+              11,
+              3
+            ],
+            "worst_relative_gamma": 0.00025287898559029433,
+            "worst_relative_native": 0.0002529068442527205,
+            "worst_relative_abs": 2.7858662426146884e-08,
+            "wb_first_layer_max_abs_db": 9.866026537963535e-07
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2236922626758723e-06,
+            "w_unitary_max_abs": 1.2405342511012662e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.788746527926378e-05,
+            "subband_max_relative": 0.0002545578416355903,
+            "worst_relative_index": [
+              12,
+              5,
+              3
+            ],
+            "worst_relative_gamma": 0.0004558885281547806,
+            "worst_relative_native": 0.0004560045781545341,
+            "worst_relative_abs": 1.1604999975350699e-07,
+            "wb_first_layer_max_abs_db": 1.335224702359028e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.4043300545433e-06,
+            "w_unitary_max_abs": 1.045194743642952e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.3439333808994434e-05,
+            "subband_max_relative": 0.00031500526633878445,
+            "worst_relative_index": [
+              10,
+              7,
+              3
+            ],
+            "worst_relative_gamma": 0.00038346594208451965,
+            "worst_relative_native": 0.00038334514829330146,
+            "worst_relative_abs": 1.20793791218187e-07,
+            "wb_first_layer_max_abs_db": 1.2068590908853594e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1849537485156603e-06,
+            "w_unitary_max_abs": 1.2282935473173495e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.815217610674381e-05,
+            "subband_max_relative": 0.001597768612856171,
+            "worst_relative_index": [
+              15,
+              12,
+              3
+            ],
+            "worst_relative_gamma": 2.2089498143873303e-05,
+            "worst_relative_native": 2.2054204237065278e-05,
+            "worst_relative_abs": 3.5293906808025414e-08,
+            "wb_first_layer_max_abs_db": 1.3446332314259735e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2587916175171614e-06,
+            "w_unitary_max_abs": 1.237025591516172e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.9420601219621858e-05,
+            "subband_max_relative": 0.0031282990234537296,
+            "worst_relative_index": [
+              19,
+              12,
+              3
+            ],
+            "worst_relative_gamma": 1.4230624102354594e-05,
+            "worst_relative_native": 1.418610645487206e-05,
+            "worst_relative_abs": 4.4517647482532983e-08,
+            "wb_first_layer_max_abs_db": 8.052985158713e-07
+          }
+        ],
+        "continuous_first_rollover": {
+          "passed": true,
+          "max_error_over_global_scale": 4.596895565672305e-08
+        },
+        "baseline_H_W_samples_exact": true
+      }
+    },
+    {
+      "passed": true,
+      "seed": 42,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "historical_corrected_prefix": {
+          "pfq0": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "95963e440349a298f80fa9eacc45f2a5c95de3ec21b24140638b0a89743a7e03",
+            "prefix_sha256": "6dd4f09a15eae058f28a8b0baed03f8641716ad3b4512c542fbb29b4646c40ec"
+          },
+          "current": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "598a29b170bf84e069c7fa07a96e6a6a61f80a47f36ef4a20414deeb09c977bd",
+            "prefix_sha256": "57f81c995f857e8a4440618b7d0d11de8a21990a3cf97fd71e9d7dd5b03c889b"
+          }
+        },
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "523a599f18e911bfe4dfe4cd3a566d9bcf41ae7e8da09cc54b3bde2f2c341238",
+            "validation.json": "6f2c412a23ac0af735a2d26c818bfdcf47aaf38f78544189cd0c58c3db7cce3f",
+            "physical_validation.json": "e19211fe277cad31d21909eebfa2c167e4cd71c88958e5c8eaa0e59e95b89032",
+            "sim.log": "6cccebbd17c7aa638bbd8f82324ee86e7ec99973e5b897b3323bc07a5b4a16ae"
+          },
+          "current": {
+            "prefix.npz": "7c53ee57a48a46823d1abef80cc9d59f4bead9464c04f01a6fbea3dc6474136f",
+            "validation.json": "e6718aae88d0eef5f242c95dfdc0ed6e941aa5ac6892e6601b99af62945a576a",
+            "physical_validation.json": "33aa51476e872da1632dcce8288b74e9eea1997924f2b289c8a774a9c649c42c",
+            "sim.log": "e1a7d55dcc77162f9b8ee3a73008383ec79a76abbec6276e5f368852e5bdad46"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 42,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3822953621422388e-06,
+            "w_unitary_max_abs": 1.1890475892784025e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 3.9556617309699504e-05,
+            "subband_max_relative": 0.0012197972793710863,
+            "worst_relative_index": [
+              26,
+              4,
+              3
+            ],
+            "worst_relative_gamma": 3.714936607612043e-05,
+            "worst_relative_native": 3.7194680771790445e-05,
+            "worst_relative_abs": 4.531469567001223e-08,
+            "wb_first_layer_max_abs_db": 8.119942620510301e-07
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3117711401877377e-06,
+            "w_unitary_max_abs": 1.1763452003599184e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.917061498346584e-05,
+            "subband_max_relative": 0.0005394026398752123,
+            "worst_relative_index": [
+              20,
+              13,
+              3
+            ],
+            "worst_relative_gamma": 0.0002804268920646716,
+            "worst_relative_native": 0.0002805781550705433,
+            "worst_relative_abs": 1.512630058716851e-07,
+            "wb_first_layer_max_abs_db": 9.466645938260854e-07
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3750816439543626e-06,
+            "w_unitary_max_abs": 1.3044129278938499e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.2201874611150743e-05,
+            "subband_max_relative": 0.00017565771540141643,
+            "worst_relative_index": [
+              2,
+              15,
+              3
+            ],
+            "worst_relative_gamma": 0.00015991675358775488,
+            "worst_relative_native": 0.00015994484419934452,
+            "worst_relative_abs": 2.8090611589636286e-08,
+            "wb_first_layer_max_abs_db": 1.1610241781312425e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2414466127797038e-06,
+            "w_unitary_max_abs": 1.345886644132932e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.4905917296914595e-05,
+            "subband_max_relative": 0.002452611587996557,
+            "worst_relative_index": [
+              29,
+              12,
+              3
+            ],
+            "worst_relative_gamma": 1.3318952473472633e-05,
+            "worst_relative_native": 1.3351618690649047e-05,
+            "worst_relative_abs": 3.2666217176414387e-08,
+            "wb_first_layer_max_abs_db": 8.927132810754301e-07
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.5646679035180205e-06,
+            "w_unitary_max_abs": 1.3137756731396166e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.738440940674991e-05,
+            "subband_max_relative": 0.0008705067119654202,
+            "worst_relative_index": [
+              16,
+              5,
+              3
+            ],
+            "worst_relative_gamma": 2.274968895924508e-05,
+            "worst_relative_native": 2.276949271617923e-05,
+            "worst_relative_abs": 1.9803756934148458e-08,
+            "wb_first_layer_max_abs_db": 9.819362993823688e-07
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2175956301799916e-06,
+            "w_unitary_max_abs": 1.0858610299813165e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.085178277866362e-05,
+            "subband_max_relative": 0.0009550526046877013,
+            "worst_relative_index": [
+              33,
+              16,
+              3
+            ],
+            "worst_relative_gamma": 0.00010149471448247682,
+            "worst_relative_native": 0.0001013977816910483,
+            "worst_relative_abs": 9.693279142852405e-08,
+            "wb_first_layer_max_abs_db": 1.0625330002511646e-06
+          }
+        ],
+        "continuous_first_rollover": {
+          "passed": true,
+          "max_error_over_global_scale": 3.943642876378348e-08
+        },
+        "baseline_H_W_samples_exact": true
+      }
+    },
+    {
+      "passed": true,
+      "seed": 43,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "historical_corrected_prefix": {
+          "pfq0": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "0d8d6f4a7c656c3c93c98d2a054a031bf7cec1169e6cf0ff739d03d3fa42130b",
+            "prefix_sha256": "3acc006b2f9a21c115492206837cbfe86c8922dde1c13cd3e89ee4d81d1b14d1"
+          },
+          "current": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "d7a92f24c0b2bf78e5b0237c41951ab57bec118d9a72ebcc26d69773a8d2cf63",
+            "prefix_sha256": "0c535aa7faf6391acb27f5bd9441bff26484bdab4e805a5eebdee122fd1b0f43"
+          }
+        },
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "7e4a4556705e7dd17fe30af16f136a09cedcf751d2db02f9265409622bc60615",
+            "validation.json": "52f54e9d3e0256bfde93365fd4e3090e748c119acf2a5748e7b4ca05a65c401b",
+            "physical_validation.json": "6b40341ca397bc49b1b8acd0ff2f656e705405cfb78694c85bd19d7229590fdc",
+            "sim.log": "c572aa8a26c4ff9940f3a5cce5f3d13648df803e2b89fa5f3a66b18fd3ca2c9d"
+          },
+          "current": {
+            "prefix.npz": "57c28d2dd315d9baca90f985843b901cef3b392d1b732f4b87a82477b249d38f",
+            "validation.json": "4d26d4f7918716ccf80b87c26b05d454556a17c9176d67a38e8f6875ad2483af",
+            "physical_validation.json": "cb10d1f5a0f2cf6dc972218d20ca37f5e99ce12baa4ce8fe9233a3daf1fa535e",
+            "sim.log": "b507bbbc90675ba10344310f83fe8bf3422dc4ce3e75e4cdd51701510b991992"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 43,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.396985905689375e-06,
+            "w_unitary_max_abs": 1.081149818560334e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.5040547022948658e-05,
+            "subband_max_relative": 0.004656233543519384,
+            "worst_relative_index": [
+              18,
+              9,
+              3
+            ],
+            "worst_relative_gamma": 1.946009472826904e-05,
+            "worst_relative_native": 1.955070547410287e-05,
+            "worst_relative_abs": 9.061074583383103e-08,
+            "wb_first_layer_max_abs_db": 1.04692921354399e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.4722828215162417e-06,
+            "w_unitary_max_abs": 1.4089279984919045e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.3150464930333783e-05,
+            "subband_max_relative": 0.00025645288375731316,
+            "worst_relative_index": [
+              33,
+              12,
+              3
+            ],
+            "worst_relative_gamma": 0.00021963504410777611,
+            "worst_relative_native": 0.00021969137014821172,
+            "worst_relative_abs": 5.6326040435603856e-08,
+            "wb_first_layer_max_abs_db": 1.187979014716234e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2325956050732026e-06,
+            "w_unitary_max_abs": 1.217490100291485e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.4159917501643804e-05,
+            "subband_max_relative": 0.002073548499094285,
+            "worst_relative_index": [
+              30,
+              3,
+              3
+            ],
+            "worst_relative_gamma": 1.5941244514684066e-05,
+            "worst_relative_native": 1.5974299458321184e-05,
+            "worst_relative_abs": 3.305494363711815e-08,
+            "wb_first_layer_max_abs_db": 9.622886851801127e-07
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1843781388624718e-06,
+            "w_unitary_max_abs": 1.204829419787501e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.8130108873369863e-05,
+            "subband_max_relative": 0.0012617929708308513,
+            "worst_relative_index": [
+              2,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 3.5599927492015755e-05,
+            "worst_relative_native": 3.564484723028727e-05,
+            "worst_relative_abs": 4.491973827151346e-08,
+            "wb_first_layer_max_abs_db": 8.834671572088837e-07
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3219477307519737e-06,
+            "w_unitary_max_abs": 1.4405753782087416e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.7937508036757208e-05,
+            "subband_max_relative": 0.0002852720733114899,
+            "worst_relative_index": [
+              31,
+              14,
+              3
+            ],
+            "worst_relative_gamma": 0.0002457015605087284,
+            "worst_relative_native": 0.0002456314687151462,
+            "worst_relative_abs": 7.009179358219344e-08,
+            "wb_first_layer_max_abs_db": 1.0778814596434927e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3167138320350418e-06,
+            "w_unitary_max_abs": 1.2905086466119542e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 3.232723132384763e-05,
+            "subband_max_relative": 0.0008387792471089801,
+            "worst_relative_index": [
+              8,
+              16,
+              3
+            ],
+            "worst_relative_gamma": 8.87143765932358e-05,
+            "worst_relative_native": 8.863996481522918e-05,
+            "worst_relative_abs": 7.441177800661684e-08,
+            "wb_first_layer_max_abs_db": 8.825223165587204e-07
+          }
+        ],
+        "continuous_first_rollover": {
+          "passed": true,
+          "max_error_over_global_scale": 4.388936863646063e-08
+        },
+        "baseline_H_W_samples_exact": true
+      }
+    },
+    {
+      "passed": true,
+      "seed": 44,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "historical_corrected_prefix": {
+          "pfq0": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "0743e1781b3ea2d18788b11c64e25f196237ddc8bac7eda531ced442be1bf3a1",
+            "prefix_sha256": "35151d6071b4e144811248856078135b7d7203a0edf57d2aa5309ba4f755b917"
+          },
+          "current": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "c62b7bdfd4a0a914d9b4324aeda1bab5ebc40acb4efeb3613f0fb1c5f2546914",
+            "prefix_sha256": "806aab7c5bedbf65201f2039b88f52512bd4daa43400c1577ab2ec5cf8a82dd2"
+          }
+        },
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "97f4ae9db101c61b2f72e187f667f4294695d44deac62ef1416b7c7b652a31b3",
+            "validation.json": "902349e9d8bf705268a40274d2ee8c7856dc6b59f763a737a216771877b17268",
+            "physical_validation.json": "1d873608c9c6eca847951ecca6ce14073890868413b6f2afdc0762a591dc7001",
+            "sim.log": "8dc1a64304776baf093cd81365c222adfe8420cb200031a2f82b442724331406"
+          },
+          "current": {
+            "prefix.npz": "4ae75e55e576ea017b56126bf0e2570c1165184e42e87672a956bb24b012060d",
+            "validation.json": "2bb4946236794861486ed843864aefd27d15fa50a5d0b5188f91a309fb653b40",
+            "physical_validation.json": "a8c7c1a04aa3965076e9476eeaec5d4c8cdabdd24b41180f53cc281c2ee08d07",
+            "sim.log": "b4ffed1a037d3e74ece2f2b7bf8c01453ce3838b72d9f9938ae9888439598dfc"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 44,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3191613067768512e-06,
+            "w_unitary_max_abs": 1.2474019002173264e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.0852462199627553e-05,
+            "subband_max_relative": 0.0002826252207621836,
+            "worst_relative_index": [
+              15,
+              11,
+              3
+            ],
+            "worst_relative_gamma": 0.0005848983446459915,
+            "worst_relative_native": 0.0005850636516697705,
+            "worst_relative_abs": 1.653070237790091e-07,
+            "wb_first_layer_max_abs_db": 1.245411043626632e-06
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.159991870693193e-06,
+            "w_unitary_max_abs": 1.2457141407296035e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.3798644857843101e-05,
+            "subband_max_relative": 0.0010266737504509638,
+            "worst_relative_index": [
+              32,
+              10,
+              3
+            ],
+            "worst_relative_gamma": 0.0001444123139271728,
+            "worst_relative_native": 0.00014426404959522188,
+            "worst_relative_abs": 1.4826433195091245e-07,
+            "wb_first_layer_max_abs_db": 1.0112948505280883e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.160847631282062e-06,
+            "w_unitary_max_abs": 1.11916728862127e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.5725802125009523e-05,
+            "subband_max_relative": 0.000713286556398629,
+            "worst_relative_index": [
+              22,
+              9,
+              3
+            ],
+            "worst_relative_gamma": 5.7540358287703625e-05,
+            "worst_relative_native": 5.7581401051720604e-05,
+            "worst_relative_abs": 4.1042764016979434e-08,
+            "wb_first_layer_max_abs_db": 1.0074224299216894e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2574392472214877e-06,
+            "w_unitary_max_abs": 1.0572255180196777e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.2887969741702818e-05,
+            "subband_max_relative": 0.0007471112578675843,
+            "worst_relative_index": [
+              9,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.00012807073229348286,
+            "worst_relative_native": 0.00012816641537938267,
+            "worst_relative_abs": 9.568308589980663e-08,
+            "wb_first_layer_max_abs_db": 1.1253744176542568e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.4162198147086443e-06,
+            "w_unitary_max_abs": 1.1117682574557364e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 2.1534712182358362e-05,
+            "subband_max_relative": 0.0006095085973672038,
+            "worst_relative_index": [
+              34,
+              5,
+              3
+            ],
+            "worst_relative_gamma": 0.0001604003538780281,
+            "worst_relative_native": 0.0001603025884833187,
+            "worst_relative_abs": 9.776539470940002e-08,
+            "wb_first_layer_max_abs_db": 1.0959169056690143e-06
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.5401713386297498e-06,
+            "w_unitary_max_abs": 1.1214648094615143e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.2221719373428641e-05,
+            "subband_max_relative": 0.0002480251023502174,
+            "worst_relative_index": [
+              34,
+              4,
+              3
+            ],
+            "worst_relative_gamma": 0.00034770209878556146,
+            "worst_relative_native": 0.0003476158599369228,
+            "worst_relative_abs": 8.623884863867429e-08,
+            "wb_first_layer_max_abs_db": 9.464895320832056e-07
+          }
+        ],
+        "continuous_first_rollover": {
+          "passed": true,
+          "max_error_over_global_scale": 3.36033153254632e-08
+        },
+        "baseline_H_W_samples_exact": true
+      }
+    },
+    {
+      "passed": true,
+      "seed": 45,
+      "causal_floor_decisions": 24400,
+      "full_search_converged": true,
+      "pairing": {
+        "passed": true,
+        "common_exogenous_H_W_ttis": 28400,
+        "shared_full_input_and_ctbs_hashes": 4001,
+        "shared_PFQ_actions_ttis": 4000,
+        "saved_native_decode_and_service_counts_ttis": 28400,
+        "historical_corrected_prefix": {
+          "pfq0": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "64a038051f1caa5f5804bd79c276e888d766bbc6dfd99103585341d3cfa5b1c2",
+            "prefix_sha256": "418af6a68aeb75fec863ce131678c24c9571bdb47b8dcb4ab03973e388f29718"
+          },
+          "current": {
+            "identical_ttis": 4000,
+            "later_equality_expected": false,
+            "reason": "Shared native channel clock is monotonic; legacy reset at TTI4001.",
+            "metrics_sha256": "f6dd8b48648b9d723137228ca4ce67de63a421080522899fffa65a16436bb36e",
+            "prefix_sha256": "379a0fae49181a172808c5b2562de2501c6d30f1952a0f42dfb20f394efe3999"
+          }
+        },
+        "post4001_full_state_equality_required": false,
+        "files": {
+          "pfq0": {
+            "prefix.npz": "ba749ddb8acd21062286a58b92f2ab065ef004562b89563c129a4817f2e72f5e",
+            "validation.json": "34f1978c7ecfa31da33b6598e88f5381562716b76f51788051f54fdd8416ffc8",
+            "physical_validation.json": "441a87c412960746b8b72caab01cc3e7cd4db892cf0cf9be7ee1bfa1edef146d",
+            "sim.log": "0efb8836c6927f9734cdf6d23554080b8b517ec37062d0c179df2041c32dc430"
+          },
+          "current": {
+            "prefix.npz": "4585b0d548f3df2e7e7ab2713227311b5a1b81c7022a6ce4f32eadecf1bb305f",
+            "validation.json": "b2f06f4ed70a5226c72288d6a452167e9b322a9e3b6efecd2aa9afa735be8eb8",
+            "physical_validation.json": "93f2d0b510d3cc412409cb69f414326a556f7ddba2f9a37aafda6cc714f8d3ed",
+            "sim.log": "be2ef4f416c51bdec10e4e58d3654b5356fb6dc021a43b55e8a3d00ee27e6dba"
+          }
+        }
+      },
+      "independent_inputs": {
+        "passed": true,
+        "available_checks_passed": true,
+        "seed": 45,
+        "observed_ttis": [
+          4000,
+          4001,
+          8000,
+          8001,
+          18000,
+          28000
+        ],
+        "samples": [
+          {
+            "tti": 4000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.312059193489302e-06,
+            "w_unitary_max_abs": 1.2377409677188922e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.1332392702456673e-05,
+            "subband_max_relative": 0.00048015299152892105,
+            "worst_relative_index": [
+              22,
+              14,
+              3
+            ],
+            "worst_relative_gamma": 0.0003197873061009546,
+            "worst_relative_native": 0.00031994085293263197,
+            "worst_relative_abs": 1.5354683167734815e-07,
+            "wb_first_layer_max_abs_db": 8.564856130988119e-07
+          },
+          {
+            "tti": 4001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3090732582336859e-06,
+            "w_unitary_max_abs": 1.2158792106475858e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 7.93468223392324e-06,
+            "subband_max_relative": 0.00010642162227275767,
+            "worst_relative_index": [
+              30,
+              6,
+              3
+            ],
+            "worst_relative_gamma": 0.001743424129731468,
+            "worst_relative_native": 0.0017436096677556634,
+            "worst_relative_abs": 1.8553802419549355e-07,
+            "wb_first_layer_max_abs_db": 1.0539889423455406e-06
+          },
+          {
+            "tti": 8000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.3242413346322768e-06,
+            "w_unitary_max_abs": 1.18515363922711e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.560464628980185e-05,
+            "subband_max_relative": 0.0005042988116588403,
+            "worst_relative_index": [
+              32,
+              9,
+              3
+            ],
+            "worst_relative_gamma": 0.0001671840405918267,
+            "worst_relative_native": 0.00016709972987882793,
+            "worst_relative_abs": 8.431071299878153e-08,
+            "wb_first_layer_max_abs_db": 1.1800390087302048e-06
+          },
+          {
+            "tti": 8001,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.2110394856359145e-06,
+            "w_unitary_max_abs": 1.126939330964305e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.1908389160097954e-05,
+            "subband_max_relative": 0.0006250245986026439,
+            "worst_relative_index": [
+              29,
+              4,
+              3
+            ],
+            "worst_relative_gamma": 4.234755594025379e-05,
+            "worst_relative_native": 4.232108767610043e-05,
+            "worst_relative_abs": 2.6468264153360133e-08,
+            "wb_first_layer_max_abs_db": 1.0532542118468768e-06
+          },
+          {
+            "tti": 18000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1543250369789154e-06,
+            "w_unitary_max_abs": 1.3235767353236838e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 1.0519702840383616e-05,
+            "subband_max_relative": 0.0002209649131470023,
+            "worst_relative_index": [
+              4,
+              5,
+              3
+            ],
+            "worst_relative_gamma": 0.0004780925571540664,
+            "worst_relative_native": 0.00047819819883443415,
+            "worst_relative_abs": 1.0564168036777651e-07,
+            "wb_first_layer_max_abs_db": 8.785318907911233e-07
+          },
+          {
+            "tti": 28000,
+            "layer_caps_exact": 612,
+            "serving_svd_offdiag_max": 1.1822396352349957e-06,
+            "w_unitary_max_abs": 1.0907725573883198e-06,
+            "subband_count": 2448,
+            "subband_max_abs": 9.246497306492074e-06,
+            "subband_max_relative": 0.00025519960403065195,
+            "worst_relative_index": [
+              15,
+              0,
+              3
+            ],
+            "worst_relative_gamma": 0.0003377478112050719,
+            "worst_relative_native": 0.0003378340043127537,
+            "worst_relative_abs": 8.619310768175374e-08,
+            "wb_first_layer_max_abs_db": 9.017643609610104e-07
+          }
+        ],
+        "continuous_first_rollover": {
+          "passed": true,
+          "max_error_over_global_scale": 3.4773596765723424e-08
+        },
+        "baseline_H_W_samples_exact": true
+      }
+    }
+  ],
+  "sources": [
+    {
+      "seed": 41,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed41_pfq0_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "fb009c646dbe1fcf4e3b3ddd74961161632f9f010e8f033b938631fdc4526d36",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "6356fed45a7aae7629b3e311897ff5edf1268929ce7a8e5e11b1ca5ec0015748",
+        "launch.json": "9cb67beba7d5fdab61652984ca72858b381eeb91171b76f8a48131783bcfa4b1"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed41_pfq0.csv.gz",
+        "rows": 577040,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "984a22f4a6690df863b4a7cfea4138571a599ae5737ba02ae44ed7e9c9d3e4b5"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "7b86ce229afda87ce21556d3e21a1a2aa56305a2731bd823eef34219f92443cf",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "cc6c4a7047ff4e63950b509c405a3134d3a00099f371677bcc38593d5084d3e2",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "8ec744c053db4009d0e228586ded154cd91f2afdeedbe68adeeb3680ac418f2d",
+        "launch.json": "a979a1576d91f7c71b17cfa1957775d57c9bfe2f5d9f19fad028e77065e92a7c"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed41_current_rho090.csv.gz",
+        "rows": 577040,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "9502cbb00cb0d963ca125d27ed5715aac7a89951cc7d1675fa7fc27bc1144b69"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed42_pfq0_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "de90f4e10afa57bb7d7f7de9d899e674d5910f120bdffd0d44b5cba3179d62f4",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "a140be3423cd0bf231265264eee2e23d1a9dbc85e7bc23c4a686d9a9a54c4637",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "8c11b88c3fe2cf331d376a5e338c75f3437ef3a48a9d0d2a24270dbc07bb6b40",
+        "launch.json": "ce3f28f1c2c8dd084ad578e2866f08ff8755948f00c3cca6eb799c3ec24da0df"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed42_pfq0.csv.gz",
+        "rows": 575616,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "afbb9a217c43dcc3584d20c178c31fc55c851b71fdc790c961f622e9ec21d7e0"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "9a6512de1b71363bd10675515b8c884ae890ef38c9977a25ed4881a43ac0477a",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "de9469a53a087ee78634bb5bc1119451c2566443a4f0df99830e6a3e6df1902e",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "8045234424cd99806b0654d59caf5de7b25306a3b23b99a893d99622013afc68",
+        "launch.json": "306b97b9b1bfe55f2c44e02808943af59f00b2ff2cc1a427c8bf082c0e98c34a"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed42_current_rho090.csv.gz",
+        "rows": 575616,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "81e04541cd0e533317d6f74afc7f5b509cf7932a107f5f9deefb54e64d7d8229"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed43_pfq0_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "9fa7aa24657f4bea2fdf1325f7f1f8e3cf5caad58076508ba5255becfcecb2cb",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "7f5bd762eeff9b3a5153c241eec849529662a44390ff1007f96f5460942b56d6",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "5769772348a2fbadf66f89273cb00fbee8dde60959bd1d4f37c032d9bf1be997",
+        "launch.json": "607cff9e0876ece4adbf0cae78da25b6f4d9b7911a414511b31b7cdcb9586b6b"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed43_pfq0.csv.gz",
+        "rows": 575744,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "c9b843c30e004d4f1824ead48c63ac892013930177dff261f40063b5148632e1"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "b4301ef0960338169782b71451c9232f9dc5206ec411c9188b88317f0f93bd08",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "085f15048ab5a1e675e2c8cbbd1f81de40a350959c968bf56f13e9ea1e1b3644",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "81e3565a0e87b302e44536b7e53596e760754443b94cd6214ff3574a694760e0",
+        "launch.json": "5c9b292ae83b8d745538c511e847f6bad29e8697d9cf8b537960e145d053f1c6"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed43_current_rho090.csv.gz",
+        "rows": 575744,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "4417bf04dcbf17ca3d72ed12a466ea37996e4bfc490033c04128250643eb652c"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed44_pfq0_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "235f2d1c008bf90eeb2cb802252a4e42f08d04f6711018dfe38a73a9793254c7",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ec7b26f5473a5c57dd3a482fe1028d81817dc1ae7df4975d6d244ee8527c3f88",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "26d837b1b66396812645e155cb2638ea489e67612bc116698cc0cedf93118ad4",
+        "launch.json": "6e3e144c573956d5c7eb4f26da33b574e292b9f050dcd9ecbc311de43ee3854e"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed44_pfq0.csv.gz",
+        "rows": 575953,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "6f9e7a14380be109aba05f22a186ac051f89a3b54f11b07f912151191a005deb"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "f205c33183f479adcae5b8a5b2686ce5cb446163766086dfa9f76b8974fbecfd",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ed037be34a9be65f5eeeeb30b2a6fda474d464feb8d42b762c7a4c12205a9847",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "a78c522a9b74e6d77ec090006fd7954177af9a8d4a06ae08e18b6d69a911b7f3",
+        "launch.json": "2743fb2c5a2353c9f2ebb1292fede1528a243452dc8a2f368129b8f28a7247ec"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed44_current_rho090.csv.gz",
+        "rows": 575953,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "ed4df96a45049c44896b359250650b4ac9b3d217e0a55c7fdaad49f0fabc7dc3"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "pfq0",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed45_pfq0_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "34c411ceba506948c1f9b9ec434b812229f3a5b65c440ac8691f6443389aa9b4",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "7c149fbb885e66ee7b62ef23eb6b96b98259d61e9cb0573c18be71c25e5e6c45",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "0d59c9b8ece41db71acac61c39195153f5ee8a859a8dae4f763ec1043b8ae896",
+        "launch.json": "f2ef0da3341fd601635c190bbcb33aad93fa0ea4a0308e1abb9af24eb8b13374"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed45_pfq0.csv.gz",
+        "rows": 575811,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "af95bcd73b53fb9f719f438de0e441ccac070e7628d3aaae64b52a69f7debcce"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "current_rho090",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "52c46767f12564d0e493dad8e938f21cc0616890b69a317d3fb58724afa28014",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "11ab82c29d3251948d2cc8ff30b076e91fb2f87c8a326a5ed0dd1deb3b46ec03",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "bb3d0590a7afe7ceba3dc16e592c04fccebce38bbcfce4e58ba8783256d4345d",
+        "launch.json": "8699132803544ca455fc322f7de59be53143f61c88817541aacd1983c4a019b0"
+      },
+      "packet_cohort_export": {
+        "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/packet_cohorts/seed45_current_rho090.csv.gz",
+        "rows": 575811,
+        "columns": [
+          "ue_id",
+          "packet_id",
+          "arrival_tti",
+          "packet_size_bytes",
+          "ttl_tti",
+          "remaining_bytes",
+          "successful_bytes",
+          "failed_dequeue_bytes",
+          "terminal_tti",
+          "outcome",
+          "system_time_ms",
+          "censored",
+          "successfully_delivered"
+        ],
+        "sha256": "315b239d6bcc75ff57058f6669d61848247fb915c7b317f54d40c2dc9cab132c"
+      }
+    }
+  ],
+  "protocol_sha256": "cb74a636a7e2fb3bffeb6eec7364d894dd53958e316099ec691b8d710e98a54f",
+  "analysis_sha256": "f50fa439913c06424555ab8995a4799e902c6a4de7b747c21a402d624968dd83",
+  "reused_window_analysis_sha256": "80e8bfa6507c1b717f3ddcbd7178240b6ba4924b7aeb99ca1cb20aba7392fcdd",
+  "limitations": [
+    "Finite10s window is not asymptotic steady-state or capacity proof; TTL may stabilize overloaded queues.",
+    "The prior1s selection used a periodic channel-clock binary. This experiment matches the PFQ continuous-clock baseline; old/new absolute changes are not single-factor policy effects.",
+    "Frozen legacy MCS3 scoring retained to isolate the selected policy; no lookup correction.",
+    "Shared-host concurrent wall time is not controlled deployment latency."
+  ]
+}

@@ -1,0 +1,11 @@
+seed,status,native_ttis,first_difference_tti,stopped_tti,native_metrics_bit_exact,reference_goodput_mbps,off_goodput_mbps,reference_complete_payload_mbps,off_complete_payload_mbps
+41,completed,6400,,,True,1365.052992,1365.0529920000001,1207.536,1207.536
+42,completed,6400,,,True,1412.801592,1412.801592,1221.984,1221.984
+43,completed,6400,,,True,1406.1441839999998,1406.1441839999998,1210.2,1210.2
+44,stopped_no_feasible_first_neighborhood,4937,4933.0,4938.0,False,,,,
+45,stopped_no_feasible_first_neighborhood,6000,5985.0,6001.0,False,,1419.684216,,
+46,completed,6400,,,True,1376.9167199999995,1376.9167199999997,1185.12,1185.12
+47,completed,6400,,,True,1369.190624,1369.190624,1181.544,1181.544
+48,completed,6400,,,True,1412.907368,1412.907368,1235.4,1235.4
+49,completed,6400,,,True,1378.7159439999998,1378.7159439999998,1203.0,1203.0
+50,completed,6400,,,True,1428.6263040000003,1428.6263040000003,1232.064,1232.064

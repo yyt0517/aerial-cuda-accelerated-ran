@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "states": 18,
+  "seeds": [
+    48,
+    50
+  ],
+  "all_feature_logit_proposal_bytes_exact": true,
+  "all_saved_native_actions_exact": true,
+  "all_search_work_exact": true,
+  "reference_ms": 225.2004519622359,
+  "cached_ms": 143.8842199018432,
+  "reduction_pct": 36.10837871410164,
+  "timing_scope": "complete select including PHY setup, cache initialization, graph and verification",
+  "profiles_state": {
+    "seed": 50,
+    "tti": 4400
+  },
+  "packet_delay": "Saved-state equivalence alone does not measure closed-loop packet delays"
+}

@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-28",
+  "priority": "preserve physical/packet gain; improve neural closed loop before runtime optimization",
+  "training_new_seeds": [
+    46,
+    47,
+    49
+  ],
+  "validation_new_seeds": [
+    48,
+    50
+  ],
+  "test_seeds": [
+    101,
+    102,
+    103
+  ],
+  "test_window": {
+    "warmup": 2000,
+    "settling": 2000,
+    "measured": 10000,
+    "followup": 400
+  },
+  "test_arms": [
+    "legacy_current",
+    "greedy",
+    "neural",
+    "risk_neural",
+    "risk_hybrid",
+    "risk_residual",
+    "neural_extra"
+  ],
+  "pure_neural_gate": {
+    "reference": "neural",
+    "mean_goodput_ratio_min": 1.0,
+    "mean_full_payload_ratio_min": 1.0,
+    "expiry_increase_pp_max": 0.1,
+    "p5_ratio_min": 0.99
+  },
+  "guarded_gate": {
+    "reference": "greedy",
+    "mean_goodput_ratio_min": 0.995,
+    "mean_full_payload_ratio_min": 0.995,
+    "expiry_increase_pp_max": 0.2,
+    "p5_ratio_min": 0.99
+  },
+  "interpretation": "Descriptive research gates, not significance tests. Failure is reported and does not change thresholds or the active algorithm.",
+  "loss_scope": "Corrective search distillation with observed delayed-reward case priorities and local deadline/weak-service preferences; no claim of PPO or observed counterfactual long-horizon returns.",
+  "extension_before_final_testing": {
+    "basis": "Validation direct policy improves goodput, expiry and P5 but payload ratio 0.999354 fails the unchanged strict gate",
+    "risk_residual": "old neural anchor, then one new risk-aware neural scan; original physical objective cannot decrease",
+    "neural_extra": "same anchor and one scan, same risk objective, using the old decoder as extra-search control",
+    "weights_unchanged": true,
+    "final_seeds_not_inspected": true,
+    "primary_gates_unchanged": true
+  }
+}

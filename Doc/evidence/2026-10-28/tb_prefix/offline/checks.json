@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "states": 36,
+  "methods": [
+    "cached",
+    "coverage",
+    "verified",
+    "verified_cover",
+    "physical_direct"
+  ],
+  "native_baseline_reproduced": true,
+  "all_final_phy_values_independent_exact": true,
+  "floor_and_physical_guards_passed": true,
+  "all_repeats_deterministic": true,
+  "coverage_blocks": 263,
+  "test_seeds_used_for_selection": false
+}

@@ -1,0 +1,16 @@
+{
+  "architecture": "tb_features_mlp",
+  "epoch": 10,
+  "features": 189,
+  "parameters_per_member": 10346,
+  "selection_recall_at10pct": 0.5301120100300428,
+  "selection_regret": 76.03997166074012,
+  "train_loss": 0.6053068659144741,
+  "checkpoint": "tb_features_mlp_epoch10.npz",
+  "checkpoint_sha256": "3339d1dd30d7865f974deee9dcda93022ba5924c4e9370e851d3a0d6306e4cb5",
+  "selection_seed": 44,
+  "data_sha256": "ad2629c0e565f446e5eec649289d6b66b3f93d10484b5275cfa71b3eb6cdef94",
+  "wall_s": 27.045345997437835,
+  "exported_numpy_torch_parity": true,
+  "calibration_and_evaluation_labels_used": false
+}

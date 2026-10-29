@@ -1,0 +1,9 @@
+{
+  "seed": 44,
+  "tti": 8000,
+  "block_calls": 122,
+  "neural_prefix_candidate_rows": 57990,
+  "complete_neural_proposals": 1952,
+  "physical_candidate_evaluations": 1953,
+  "timing_scope": "Profiling illustration, not realtime benchmark"
+}

@@ -1,0 +1,151 @@
+{
+  "passed": true,
+  "historical_manifest": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed41_current_20000/launch.json",
+  "checks": [
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/run_current.py",
+      "expected_sha256": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+      "actual_sha256": "704efffe1dc903fbc9248b54b9c34f831e82e33e82355f81d96fbff98e549dce",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_current_transfer_20261021_v1/protocol.json",
+      "expected_sha256": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+      "actual_sha256": "044a66069e926ef609c9bfa0a815fab8d2c618a76e38f29dce20784ba56c8761",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator",
+      "expected_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+      "actual_sha256": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/run.py",
+      "expected_sha256": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+      "actual_sha256": "61137b334feeb21b32583f8afcf623d2af845a231db47d7891c9f22dfff70251",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so",
+      "expected_sha256": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+      "actual_sha256": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_pfq_ctbs_replacement_20261016_v1/policy.py",
+      "expected_sha256": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+      "actual_sha256": "1b2f350e83a36aa7d33891cdccbbe2ed3d25fe56311898fb7c70e42f8e5341b8",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/policy.py",
+      "expected_sha256": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+      "actual_sha256": "fdafa49dbedbe93c6ddb2db396758f4abd4efc4e191e151e19e83f04eac89f70",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/phy.py",
+      "expected_sha256": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+      "actual_sha256": "61a6564f7b50bb7545448de697c67c41085622e12324545118f7bb5f90145aa9",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/candidates.py",
+      "expected_sha256": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+      "actual_sha256": "45faacc7153bf3567f3022b41d4c979773d965e7f6e2a9ccf11daad0bbba2899",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary75_search_acceleration_20261020_v1/physics_kernel.so",
+      "expected_sha256": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+      "actual_sha256": "cffad23e5095ec40afebd16c4a50195ad6630b847d8bc126bf2da65349582456",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_attention_20261008_v1/training/full.pt",
+      "expected_sha256": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+      "actual_sha256": "1e259ecef5b58b3cdf70e1f0e2e73dd6b16082505a547725844034d7bf39534f",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/run.py",
+      "expected_sha256": "f32a44c3c176c0c7187fd8a6480377327dbc907f59db194bd875f2e22c05f361",
+      "actual_sha256": "f32a44c3c176c0c7187fd8a6480377327dbc907f59db194bd875f2e22c05f361",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.py",
+      "expected_sha256": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+      "actual_sha256": "8ed2e7fbf4a37f294bf657b1b1feb5b954f3a893ad849f7d0f0bb82d84db503c",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/fresh_observation.h",
+      "expected_sha256": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+      "actual_sha256": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/instrumented_main.cpp",
+      "expected_sha256": "b2c8a9a0dfd7f025669f0f78cd0a94da85e868f170c6478972bbd8a24c2df9ee",
+      "actual_sha256": "b2c8a9a0dfd7f025669f0f78cd0a94da85e868f170c6478972bbd8a24c2df9ee",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/simulator",
+      "expected_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+      "actual_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/native_build_manifest.json",
+      "expected_sha256": "be232ad804b4a37b3282cd24ec29f1764d66877cc55b2e26ad19c787878a025a",
+      "actual_sha256": "be232ad804b4a37b3282cd24ec29f1764d66877cc55b2e26ad19c787878a025a",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/protocol.json",
+      "expected_sha256": "dde03f10f6502f7194e11244f69e3aa963803f015ed4cb2aa8c36c69005f9f71",
+      "actual_sha256": "dde03f10f6502f7194e11244f69e3aa963803f015ed4cb2aa8c36c69005f9f71",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/run.py",
+      "expected_sha256": "657f95c52fcb562511ba245ec96442abedccbb029863d6aeeadabeaa11f37afa",
+      "actual_sha256": "657f95c52fcb562511ba245ec96442abedccbb029863d6aeeadabeaa11f37afa",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/native_run_generated.py",
+      "expected_sha256": "0457ff323652fc81f7ae404d2ea960708189fd5f0b909828af43ae400f8e5a87",
+      "actual_sha256": "0457ff323652fc81f7ae404d2ea960708189fd5f0b909828af43ae400f8e5a87",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/policy.py",
+      "expected_sha256": "f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc",
+      "actual_sha256": "f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/search_ratio.py",
+      "expected_sha256": "8fbb133e2e9071cbf28368957224fc98d2985dc9690782ebb00be06dccd18a12",
+      "actual_sha256": "8fbb133e2e9071cbf28368957224fc98d2985dc9690782ebb00be06dccd18a12",
+      "matched": true
+    },
+    {
+      "path": "training/stageb_hgraph/current_algorithm.json",
+      "expected_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+      "actual_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+      "matched": true
+    },
+    {
+      "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/protocol.json",
+      "expected_sha256": "cb74a636a7e2fb3bffeb6eec7364d894dd53958e316099ec691b8d710e98a54f",
+      "actual_sha256": "cb74a636a7e2fb3bffeb6eec7364d894dd53958e316099ec691b8d710e98a54f",
+      "matched": true
+    }
+  ],
+  "scope": "Current files match the pre-existing effective-policy manifest; core new-policy sources were frozen separately per run"
+}

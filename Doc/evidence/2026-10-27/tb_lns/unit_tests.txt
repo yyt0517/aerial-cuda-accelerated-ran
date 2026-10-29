@@ -1,0 +1,16 @@
+test_activity_change_recomputes_all_physical_neighbors (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_anytime_budget_floor_and_reproducibility (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_and_incremental_match_independent_reference (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_greedy_result_is_independent_of_batch_size (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_invalid_inputs_and_context_are_rejected (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_joint_block_crosses_a_single_edit_reliability_valley (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_late_verification_cannot_replace_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_nonmonotonic_native_curve_is_batch_invariant (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_policy_can_stop_and_return_verified_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_tb_layer_change_recomputes_resources_outside_block (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_ue_swap_does_not_invalidate_neighbor_mmse (training.stageb_lns.test_physics.PhysicalTests) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.230s
+
+OK

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "groups": 572,
+  "trace_cpp_python_match": true,
+  "spatial_cpp_python_match": true,
+  "dense_sparse_scores_match": true,
+  "affected_features_bit_exact": true,
+  "benchmark_only_dense_code_sha256": "47f6f0c3cb455c4c63d09f3f5aed3f55cd216cf48f216375d13e1f48f709925b",
+  "source_kernel_sha256": "aa04d0e81c452583e08e1aee22a7cd7983491bf06efa16fb1b6f873315d11a25"
+}

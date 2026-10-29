@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "scientific_gate_passed": false,
+  "gate_definition": "Each evaluation seed macro block high-yield recall at10pct >=.95",
+  "gate_results": [
+    {
+      "seed": 48,
+      "recall": 0.5053491590376836,
+      "any_high_yield": 0.8852459016393442,
+      "actual_fraction": 0.10578114139022134,
+      "regret": 242.03391639037122
+    },
+    {
+      "seed": 50,
+      "recall": 0.5454791400355916,
+      "any_high_yield": 0.8870967741935484,
+      "actual_fraction": 0.10594285549847464,
+      "regret": 124.11380657076309
+    }
+  ],
+  "chosen_architecture": "tb_features_mlp",
+  "frozen_value_sha256": "3339d1dd30d7865f974deee9dcda93022ba5924c4e9370e851d3a0d6306e4cb5",
+  "no_model_selection_on_calibration_or_evaluation_labels": true,
+  "no_native_closed_loop_claim": true,
+  "no_end_to_end_cost_claim": true,
+  "teacher_pool_phy_generation_cost_not_part_of_screening_curve": true,
+  "no_final_test_seeds_read": true,
+  "registry_unchanged": true
+}

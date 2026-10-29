@@ -1,0 +1,51 @@
+近期研究与本次实现的对应（检索截止2026-10-28）
+
+只使用作者论文、正式会议页面或作者预印本作为技术依据。下列“迁移”是本项目的设计推断，不是对论文在本场景的复现或收益保证。
+
+1. Evolutionary Guided Decoding: Iterative Value Refinement for LLMs，ACL 2026（2026年7月）。
+   https://aclanthology.org/2026.acl-long.148/
+   https://aclanthology.org/2026.acl-long.148.pdf
+   论文研究前缀价值引导及价值模型训练分布过窄的问题，通过探索和迭代更新改善价值估计。
+   本项目迁移：排序应面向任务价值，保留低概率但可能有高物理收益的前缀。本次先使用已有精确PHY作有限候选的过程评分器，不新训价值模型；若效果成立，才考虑把这些前缀价值蒸馏到小网络。冻结旧actor以隔离解码改动。
+
+2. Grammar-State Aware Beam Search for Enhancing Structural Diversity in LLM Generation，IJCAI 2026，5739–5747。
+   https://ijcai.org/proceedings/2026/639
+   https://ijcai.org/proceedings/2026/0639.pdf
+   论文以约束状态组织束预算，关注高概率前缀占满搜索空间而结构覆盖不足的问题。
+   本项目迁移：为不同首个UE/blank选择保留4个分支覆盖槽位，另保留12个最优核心槽位。此分组是探索机制，不代表两个无线分配物理等价；不宣称实现了原论文的完整语法状态模型或动态束宽。
+
+3. Provable Test-Time Scaling for Beam Search in LLM Reasoning，2026-09-29预印本。
+   https://arxiv.org/abs/2609.38672v1
+   https://arxiv.org/html/2609.38672v1
+   理论需要前缀似然与最优奖励路径的对齐等假设，并区分采样预算与候选处理成本；论文也讨论了不满足对齐条件时的剪枝失败。
+   本项目迁移：不认为单纯加宽似然束即可解决已观察到的漏选；分别报告前缀覆盖、物理目标、候选计数及完整搜索墙钟。该理论的假设没有在本无线场景验证，不引用其保证为本算法背书。
+
+4. A General Deep Learning Framework for Wireless Resource Allocation under Discrete Constraints，2026-07-25修订版v2，预印本。
+   https://arxiv.org/abs/2603.19322v2
+   https://arxiv.org/html/2603.19322v2
+   论文对离散资源分配学习条件联合概率，使用可行性掩码和动态上下文表达顺序决策。
+   本项目迁移：继续保留合法UE掩码、部分分配上下文与联合修复；不把各PRG当独立分类。本项目的TB/CRC/FIFO场景及本次前缀验证策略不同于论文案例。
+
+5. Fast State-Augmented Learning for Wireless Resource Allocation with Dual Variable Regression，2026-07-23修订v2；已接受IEEE TSP。
+   https://arxiv.org/abs/2506.18748v2
+   https://doi.org/10.1109/TSP.2026.3717245
+   论文把动态约束状态加入策略输入，并研究对偶初始化与训练。
+   本项目迁移：持续携带已有deadline/服务缺口状态和物理约束。本轮不引入新对偶权重或改奖励，以免与前缀机制混杂；论文的功率控制结果不外推成本项目包时延收益。
+
+6. Scaling Combinatorial Optimization Neural Improvement Heuristics with Online Search and Adaptation，AAAI 2025，Limited Rollout Beam Search。
+   https://ojs.aaai.org/index.php/AAAI/article/view/34921
+   较早但方法直接相关：用有限rollout改进已有学习型局部搜索。
+   本项目迁移：保留incumbent后缀完成部分修复，及时验证中间完整调度；把额外计算显式计入预算。本项目不是TSP，也不复现该文性能。
+
+本轮实现
+actor先筛选最多48个扩展：全局前16，加各父前缀局部前2，再加入当前incumbent选择和剩余高概率候选。每深度仍只保留16个前缀。
+coverage消融：按似然和分支覆盖选16，验证选中的中间完整调度。
+verified消融：对最多48个incumbent后缀完成候选精确评分，按风险价值选16。
+verified_cover：同上，另为不同首选择保留4个分支槽位。
+所有PHY调用通过solve.evaluate，使用既有因果floor、物理J保护及候选预算；网络权重、风险目标和最大轮数不变。
+这是有限物理过程验证增强的神经搜索，非纯神经价值头，也不调用LLM。
+这里的“前缀价值”只是沿当前incumbent后缀完成后的单次精确物理评分，不是该前缀最优可达终局的真实价值，更不是长期包交付回报。
+
+验证边界
+不使用101–106做新模型/阈值选型。本轮只在既定验证seed48/50上比较；最终未见seed和5秒长窗留到冻结后单独评测。
+主要质量检查是成功包平均时延、全包终态均值、完整包payload和TTL；不能由同状态风险分数或覆盖率提升直接宣称原生时延改善。

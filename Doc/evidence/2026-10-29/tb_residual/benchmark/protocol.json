@@ -1,0 +1,14 @@
+{
+  "kernel_sha256": "aa04d0e81c452583e08e1aee22a7cd7983491bf06efa16fb1b6f873315d11a25",
+  "modified_condition": "remove affected-UE skip only",
+  "model_sha256": "55c6d818ed50e14205e5fefa8aa73b159fcf84652ea9fe7746b2d0e7f859fd50",
+  "repeats": 3,
+  "methods": [
+    "full_trace_py",
+    "all_ue_cpp",
+    "sparse_cpp",
+    "sparse_cpp_residual"
+  ],
+  "geometry_root_setup_reported_separately": true,
+  "no_parallel_training_or_replay": true
+}

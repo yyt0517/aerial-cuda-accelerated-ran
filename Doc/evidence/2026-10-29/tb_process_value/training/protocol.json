@@ -1,0 +1,27 @@
+{
+  "plan_sha256": "f2f77653fc32a55edcdb7b0d3e1d3833cdb2560c62fda9411e3734c8e9060820",
+  "candidates_sha256": "ad2629c0e565f446e5eec649289d6b66b3f93d10484b5275cfa71b3eb6cdef94",
+  "loss": "weighted smooth-L1(root_gain/2400)+.25*smooth-L1(parent_increment/2400); high-yield weight5 vs1; inverse group size normalization",
+  "checkpoints": [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60
+  ],
+  "selection_labels": "seed44 only",
+  "normalization": "unique training candidates only",
+  "ensemble_seeds": [
+    7301,
+    7302,
+    7303
+  ],
+  "calibration_and_evaluation_labels_used": false
+}

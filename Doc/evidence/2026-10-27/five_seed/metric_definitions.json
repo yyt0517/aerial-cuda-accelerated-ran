@@ -1,0 +1,33 @@
+{
+  "source_fields": [
+    "tti",
+    "ue_id",
+    "offered_bytes",
+    "accepted_bytes",
+    "rejected_bytes",
+    "expired_bytes",
+    "previous_post_queue_bytes",
+    "pre_queue_bytes",
+    "scheduled_dequeue_bytes",
+    "post_queue_bytes",
+    "successful_bytes",
+    "failed_bytes",
+    "actual_prg_count",
+    "mcs",
+    "layer",
+    "phy_sinr_db_cpu",
+    "predicted_bler_cpu",
+    "tb_tx_count",
+    "tb_err_count"
+  ],
+  "measurement": "8001..28000,10s; arrivals cohort followed through28400",
+  "goodput": "Successful segmented bytes in service window*8/10s/1e6",
+  "complete_payload": "Fully successful measured-arrival packet payload bits/10s/1e6",
+  "failure": "Total failed measured arrivals=expiry+CRC-failed MAC-completed packets; TB BLER has a different denominator.",
+  "latency": "Inclusive(terminal-arrival+1)*0.5ms. Success is conditional on full packet success; outcome includes all cohort packets.",
+  "windows": "Ten1s and two5s diagnostic windows; they are correlated and are not independent experimental units.",
+  "cdf": "Deadline delivery fraction includes failures/expiries in all-arrival denominator; success CDF conditions on complete success.",
+  "statistics": "Seed is independent unit; n5, sampleSD, nominal95%paired tCI df4, no multiplicity adjustment. Seed41 was used in prior ratio selection.",
+  "floor": "ceil(.9*own-current PFQ+CTBS draft dequeue), integer(90*D0+99)//100",
+  "raw": "Native metrics.bin is float64LE, shape28400x36x19, fields in source_fields; action/input fingerprints in prefix.npz."
+}

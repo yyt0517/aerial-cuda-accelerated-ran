@@ -1,0 +1,11 @@
+{
+  "block_calls": 122.77777777777777,
+  "logit_calls": 483.0,
+  "token_builds": 29.833333333333332,
+  "option_builds": 51.0,
+  "context_builds": 117.16666666666667,
+  "prefix_initializations": 122.77777777777777,
+  "token_build_reduction_pct": 75.70135746606334,
+  "option_build_reduction_pct": 89.44099378881988,
+  "prefix_rebuild_reduction_pct": 74.58017023234414
+}

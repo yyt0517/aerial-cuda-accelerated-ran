@@ -1,0 +1,14 @@
+{
+  "source_sha256": {
+    "deliverables/tb_residual_20261029_v1/data/candidates.npz": "93232250cd7918beb3ea2cabb5408b119a54af3a55cd95d3e03fe1439dd8c4da",
+    "deliverables/tb_residual_20261029_v1/data/groups.csv": "2c2a02366ada1d6381e7e9abefa97d31990eabd17cb77940b93ea0973533467c",
+    "deliverables/tb_residual_20261029_v1/evaluation/scores.npz": "0097d0106100fee2383df5a69135d08779403e723e9585288aca1016fb851007",
+    "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_lns/draft_repair.py": "d6befa0f25eb69166a19eff2d3e01185da702458036480c432347c8bf9390d20",
+    "training/stageb_lns/deadline.py": "eda6b6e9f988924109cc97a0e9f6f90e4150b3b8dc31852d884f5c3fea9b3941"
+  },
+  "new_phy_evaluations": 0,
+  "new_models_trained": false,
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "scope": "Analysis only; all proposed algorithms unimplemented and untested"
+}

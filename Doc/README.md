@@ -1,20 +1,27 @@
 # Stage-B 项目文档
 
-更新至 **2026-10-21**。当前研究主线是 `3cell / 36UE / boundary / rate0.8` 下，修正物理模型与输入时序后，对冻结的 PFQ、DPA 和 current 策略进行同条件比较。
+更新至 **2026-10-29**。当前有效算法是 **PFQ＋CTBS＋因果服务缺口加权物理局部搜索，出队下界 ρ=0.90**；boundary/rate0.8 与 uniform/rate1.0 的五 seed 长窗口对照均已完成。神经路径已完成若干成本与质量试验，尚未替换有效算法。
 
-`current` 指 **PFQ + CTBS 裁剪 + 冻结定向协调器 + 服务缺口加权局部搜索**。它不是旧 v9c/v10 checkpoint，也不是已经完成通用部署的 PPO 模型。最新实现位于独立实验 worktree；本次整理同步文档和小型证据，不代表实验代码已合入 `main`。
+## 主文档
 
-## 阅读顺序
+1. [当前进展与结论](stageB_current_progress.md)：维护已完成工作、有效结果、未通过门槛与下一步。
+2. [当前配置与指标口径](current_stageB_effective_configuration.md)：维护版本身份、两场景协议、运行依赖及统计定义。
+3. [算法注册表](../training/stageb_hgraph/current_algorithm.json)与[启动入口](../cuMAC/scripts/run_stageB_current_algorithm.sh)：当前 boundary 研究入口；完整运行仍依赖本地研究 worktree 与 CUDA 容器。
 
-1. [当前进展与结论](stageB_current_progress.md)：版本演进、十 seed 结果、证据边界与剩余问题；项目进展的唯一维护入口。
-2. [当前配置与指标口径](current_stageB_effective_configuration.md)：冻结策略、场景、窗口、版本身份和本地复现入口；配置的唯一维护入口。
-3. [2026-10-21 证据快照](evidence/2026-10-21/README.md)：逐 seed/UE 数据、协议、验证记录、构建/源码哈希与原始路径。
-4. [历史归档](archive/README.md)：旧 HGraph、基线、设计和机制实验；只用于追溯。
+## 按日期查证据
+
+| 日期 | 内容 |
+|---|---|
+| [2026-10-29](evidence/2026-10-29/README.md) | 过程价值蒸馏、近似物理残差、增量缓存、搜索收益诊断及联合修复 PHY 补表 |
+| [2026-10-28](evidence/2026-10-28/README.md) | uniform 五 seed、风险直接修复、解码缓存等价降本、配对机理与前缀验证 |
+| [2026-10-27](evidence/2026-10-27/README.md) | ρ0.90 选型、boundary 五 seed、外部下界负结果及联合块修复 |
+| [2026-10-21](evidence/2026-10-21/README.md) | 历史含协调器版本三臂十 seed、物理修正、跨版本比较及身份快照 |
+
+[历史归档](archive/README.md)保存独有设计、负结果、旧实验和本次合并去向；[历史计划](../docs/superpowers/README.md)中的复选框不代表当前实现或验收状态。
 
 ## 维护约定
 
-- 当前结果只在进展文档维护，配置只在配置文档维护；训练与脚本 README 链接到这两个入口。
-- 历史报告中的“当前”“最好”“已通过”按其原始版本理解，不继承为新环境结论。
-- [历史计划索引](../docs/superpowers/README.md)保留设计判据和实施记录；计划复选框不等于实际完成状态。
-- `output/`、训练 checkpoint、`deliverables/` 的压缩包和导出文件留在本地；长期引用的小型证据进入 `Doc/evidence/`，记录来源和 SHA-256。
-- 合并去向见[归档索引](archive/README.md)。独有负结果、逐 seed 数据和审计证据保留，重复摘要、写作底稿与重复导航删除。
+- 进展只在进展文档持续维护，配置只在配置文档持续维护；其它 README 提供入口，冻结报告不追写为“最新结论”。
+- 历史报告中的 `current`、“最好”和 `passed` 按原版本及检查范围解释，不能继承为新环境、质量晋级或生产就绪结论。
+- `output/`、`deliverables/`、checkpoint、大轨迹与演示导出留在本地；长期引用的小型证据进入 `Doc/evidence/`，保留来源及 SHA-256。来源清单可能同时列出未收录的大工件，具体见日期索引。
+- 删除已被最终报告覆盖的临时摘要，保留独有协议、逐 seed/UE 数据、负结果及审计记录。实际合并去向见[归档索引](archive/README.md)。

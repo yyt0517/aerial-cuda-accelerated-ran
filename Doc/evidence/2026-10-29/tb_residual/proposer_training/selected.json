@@ -1,0 +1,13 @@
+{
+  "epoch": 20,
+  "selection_recall_at48": 0.7988782965310766,
+  "outside_recall": 0.2077470036179149,
+  "entropy": 1.0550915189865124,
+  "train_loss": 1.7337701762841764,
+  "checkpoint": "actor_epoch20.npz",
+  "sha256": "a013e265a438c80e99e615b5ea39242a0cbdfa23b5d8f177101864330bd3539f",
+  "wall_s": 24.771297751925886,
+  "selection_seed": 44,
+  "calibration_evaluation_labels_used_for_training": false,
+  "outside_positive_labels_from_train_seeds_only": true
+}

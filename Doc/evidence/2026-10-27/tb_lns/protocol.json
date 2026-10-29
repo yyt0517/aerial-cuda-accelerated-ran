@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "seeds": [
+    43,
+    44,
+    45
+  ],
+  "budgets_ms": [
+    0.5,
+    2.0,
+    10.0,
+    50.0
+  ],
+  "repeats": 3,
+  "mode": "fixed_state_only",
+  "score": "native descending BLER scan; whole-TB weighted expected bytes",
+  "floor": "ceil(90 * own PFQ_CTBS draft dequeue / 100)",
+  "source_sha256": {
+    "training/stageb_lns/search.py": "e70b6108538f84f24e80dd69309e2d91faf0e77daa3e840369d07bd0e3e86461",
+    "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+    "training/stageb_lns/__init__.py": "e3034c875ac587d466cb60a300d539647889b0644f93c38ac77ce44995b30700",
+    "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_lns/experiment.py": "d17d1e60b367b5c37457a029b66efcf7b3702611781737495a8b0f1c9f6effc2",
+    "training/stageb_lns/budget_learning.py": "f64951f1c88dfcb35bdb339383df14e4dc115626ebd0a141f32664ff7317291e",
+    "training/stageb_lns/learning.py": "8b5c524d48d0d99e62ceda0d28a71e53706e8cd4ea33b66ac92f2b764dcb1afc",
+    "training/stageb_lns/archive.py": "31587bfa709b0f2f469996c199ae57693f04c7aaa392cbcf7f55134ea3ae4413",
+    "training/stageb_lns/build.py": "3d7cb01a5544f91ab507a3e43802853d9cff6e4bd7460497ddad18693649552c",
+    "training/stageb_lns/test_physics.py": "66bff8593242f9acf3061cdd2e13d8579495877bcf84a9064a8809e52394d3ad",
+    "training/stageb_lns/physics.py": "bdd9cdc50323fe7aee33eb1e32c6d42e7178f85ef80c059024ba326dcbfa79dd",
+    "cuMAC/src/cumac.h": "c8a34c9ff0dec0eb8cbfe1532ec046eb0924550e36d32e9b43bc1655fb9149f0",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/ctbs_headroom.py": "d80a45f7be75dc21e365b78a81587cf63dea0b65537e9d8a9b043a6f68e924ad",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/phy_tbs_alignment_audit.py": "b210487be6367613dfc2524853e20bd8d57a50373003550cd21b1dab79f42f97"
+  },
+  "active_registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "snapshot_sha256": {
+    "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed43_current_20000/states.pt": "a526b25f4e545263780258a82ce47548883564bcfee05b90ebee485066f14991",
+    "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed44_current_20000/states.pt": "ab9615d83ed4615b3ae619f4edae2df278ba8e49374b00d3010a42afcc3dfb5b",
+    "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed45_current_20000/states.pt": "c703116d8df27df70116be5789cbd8fc375d521147b274411d8cf3c0bde91d10"
+  },
+  "selection": "all six saved TTIs per requested seed; no outcome filtering",
+  "hardware": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "processor": "x86_64",
+  "numpy": "2.2.6",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "timing": "decoded snapshot to action: problem construction, CTBS prune, PHY prepare, graph, candidate generation, verification; excludes native PFQ production, IPC, pickle, cold process/compile/static TBS table initialization",
+  "limitations": [
+    "No live simulator or CRC rollout",
+    "Deadline checked between indivisible operations; overruns reported",
+    "Saved states are correlated and policy-conditioned",
+    "Full local search is a reference, not a global optimum"
+  ],
+  "base_config": {
+    "mode": "graph_lns",
+    "budget_ms": 10.0,
+    "max_candidates": 100000,
+    "max_rounds": 128,
+    "block_size": 4,
+    "neighbor_cells": 2,
+    "ue_topk": 3,
+    "repair_width": 4,
+    "batch_size": 16,
+    "floor_numerator": 90,
+    "floor_denominator": 100,
+    "seed": 0,
+    "tb_edges": true
+  },
+  "greedy_batch_size": 64,
+  "ranker_sha256": "c3caa189ff6cdfb451fcb94d4c62c78a9b580e1bb414dc09847e81fc0e2fdaa1",
+  "budget_ranker_sha256": "c8aacf5772846bb0114bc49dc1f94f354fc8d11eca773db282d367ba2afecff6",
+  "budget_initial_sha256": "e471c637808c38f5a8717094d709257c465c5b45f3020da1d757d7c8cf5bd131",
+  "arms": [
+    "greedy",
+    "graph_lns",
+    "random_lns",
+    "learned_lns",
+    "adaptive_lns",
+    "budget_rl_lns"
+  ]
+}

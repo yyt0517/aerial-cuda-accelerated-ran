@@ -1,0 +1,125 @@
+{
+  "passed": true,
+  "runs": 8,
+  "native_ttis": 35200,
+  "physical_samples": 80,
+  "matured_packets": 459632,
+  "max_sinr_error_db": 1.8322920416480315e-05,
+  "max_bler_error": 6.042652605176002e-06,
+  "audit": [
+    {
+      "seed": 48,
+      "arm": "greedy",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57697,
+      "sinr_max": 2.8408087118236836e-06,
+      "bler_max": 9.72124469977853e-07
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57697,
+      "sinr_max": 1.8322920416480315e-05,
+      "bler_max": 6.042652605176002e-06
+    },
+    {
+      "seed": 48,
+      "arm": "risk_hybrid",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57697,
+      "sinr_max": 9.486020204008128e-06,
+      "bler_max": 3.5255154294810964e-06
+    },
+    {
+      "seed": 48,
+      "arm": "risk_neural",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57697,
+      "sinr_max": 4.583158824900124e-06,
+      "bler_max": 2.077443305381621e-06
+    },
+    {
+      "seed": 50,
+      "arm": "greedy",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57211,
+      "sinr_max": 1.1862965902054157e-05,
+      "bler_max": 1.9657278673701484e-06
+    },
+    {
+      "seed": 50,
+      "arm": "neural",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57211,
+      "sinr_max": 6.632429114361571e-06,
+      "bler_max": 1.8957257675866757e-06
+    },
+    {
+      "seed": 50,
+      "arm": "risk_hybrid",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57211,
+      "sinr_max": 6.186268823427099e-06,
+      "bler_max": 4.596510763898998e-06
+    },
+    {
+      "seed": 50,
+      "arm": "risk_neural",
+      "ttis": 4400,
+      "samples": 10,
+      "matured_packets": 57211,
+      "sinr_max": 5.032782752323328e-06,
+      "bler_max": 2.826581756348867e-06
+    }
+  ],
+  "pairing": [
+    {
+      "seed": 48,
+      "arm": "greedy",
+      "passed": true
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "passed": true
+    },
+    {
+      "seed": 48,
+      "arm": "risk_neural",
+      "passed": true
+    },
+    {
+      "seed": 48,
+      "arm": "risk_hybrid",
+      "passed": true
+    },
+    {
+      "seed": 50,
+      "arm": "greedy",
+      "passed": true
+    },
+    {
+      "seed": 50,
+      "arm": "neural",
+      "passed": true
+    },
+    {
+      "seed": 50,
+      "arm": "risk_neural",
+      "passed": true
+    },
+    {
+      "seed": 50,
+      "arm": "risk_hybrid",
+      "passed": true
+    }
+  ]
+}

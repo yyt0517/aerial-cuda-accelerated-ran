@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "states": 6,
+  "repeats": 3,
+  "all_optimized_actions_values_phy_counts_exact": true,
+  "all_repeats_deterministic": true,
+  "same_frozen_models": true,
+  "no_native_delay_claim": true
+}

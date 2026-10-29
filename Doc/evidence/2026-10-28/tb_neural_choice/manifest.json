@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-28T17:23:00+08:00",
+  "source": "/opt/nvidia/cuBB/deliverables/tb_neural_choice_20261028_v1",
+  "sha256": {
+    "plan.json": "5caafbb66dc7914e45451b6b38226798b18ff6b1b5ef77d7cccae7a9deb79e6e",
+    "report.txt": "8e9aa64f019e405979a8e62e6214e356c4a2599260d76584d546b6f582aed80e",
+    "checks.json": "e6b4301fac72bcc580fde3a0e020f8a190cb1692c237f2278b6f6e7d06d33114",
+    "native_means.csv": "1ab8e6e3cac8ff6dc9b3a7058eb35a90facb43951ad7e0cbaa1ae0567defad10",
+    "native_per_seed.csv": "e53215e59e012a0630a225c4d11fe32d544bada7715349805f3b6c0a966c2841",
+    "native_paired_differences.csv": "b5715bcc537156cb59fd186b40baa50f248a8f8d30b2c0df1eefbced1ef94600",
+    "common_tx_per_seed.csv": "12eeb9f92aab45bc0eb7d2c55909c7881c6e4ab4a0726d4837755af2415a9dd9",
+    "packet_pairs.csv": "a49c61fba324594831004e201c4b0fd1b9dcd0546b4c21cd4fd602d05edc1aaf",
+    "packet_residence_accounting.csv": "7dd798c71da6283a64419df3727de6c4d33929e02537b2e2cb753410f8d3b1d5",
+    "packet_residence_accounting_differences.csv": "171c05cce39b9be8e4ca7f5ef4814202848e8a9ca9e1e585f061424016754372",
+    "paired_summary.json": "7c88f64de6a73ab029dd1936b0a65ecdf89bbd38099b1729d9595bf761277a03",
+    "native_high_bler.csv": "c269ca1164532ef5627792954e50dc2020da070eb02aefd1c3b74dde2d67918f",
+    "paired_native.png": "739cdabc1cc403af8947a4c836e9292f3c11237c402a920542861338c945a8d1",
+    "paired_native.pdf": "237337d78dec7c1156e94f052ae206d15e6958d1b44142f66dc0beb626a5da40",
+    "replay/paired_seed_means.csv": "3670e0b6d3ed42970f003ac230b4c568f83c3c46c872d1cd55bdf3d565dd5ef3",
+    "replay/paired_seed_origin_means.csv": "a75c14482c5822b133e802fa78160f67363666beaf163aa16baf6ade7fa737b3",
+    "replay/common_first.csv": "be695109954413bd87824fe2de31ea418342c5097e79d439577d1ec2d1a8f3e3",
+    "replay/common_tx_seed_means.csv": "4d82e5d71a60044c98277b6444910cbbc9041ccac6d744db6746ae128104bfde",
+    "replay/physical_continuation.csv": "f754ca2cb6ee8cc48697b355251cbe84c3bf96a8b9be38759099c496d5023f5f",
+    "blocks/paired_blocks.csv": "30c83d22653d7fe23d3c28d8f5d8d5a6d25a61b21bce8b96a0d6b4727e5a906d",
+    "blocks/checks.json": "548aef0fbac5638392638c5182e28729605ca52565fc7017377220b91a80fad6",
+    "blocks/protocol.json": "d45a99e99e1e1d5f1cef61d20609bfd78d2ed2a416e4b4c9d84709838ddb2366",
+    "example_selection.json": "2224a3816efdd1f920976d55ef42a7dd4d309ae1dca012cf5c5baa8160916472",
+    "example_affected_ues.csv": "b6f0dad382f00c852cfed7ae4286fa8848223d6831cb915f6925eef5346f6af5",
+    "example_changed_allocations.csv": "72e8876e604971c6340e796278fb95f72b92b798bbc6224901897a13994bbdcf"
+  }
+}

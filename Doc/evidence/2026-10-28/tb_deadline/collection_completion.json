@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "seed": 49,
+      "arm": "physical_lns",
+      "returncode": 0,
+      "elapsed_s": 1057.291305477731
+    },
+    {
+      "seed": 50,
+      "arm": "physical_lns",
+      "returncode": 0,
+      "elapsed_s": 1181.2180568091571
+    },
+    {
+      "seed": 49,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1237.4551590643823
+    },
+    {
+      "seed": 50,
+      "arm": "neural",
+      "returncode": 0,
+      "elapsed_s": 1244.7896940745413
+    }
+  ]
+}

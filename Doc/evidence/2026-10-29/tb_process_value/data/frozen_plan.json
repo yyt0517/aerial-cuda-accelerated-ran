@@ -1,0 +1,141 @@
+{
+  "plan": {
+    "date": "2026-10-29",
+    "stage": "offline_process_value_distillation_pilot",
+    "train_seeds": [
+      41,
+      42,
+      43,
+      46,
+      47,
+      49
+    ],
+    "selection_seeds": [
+      44
+    ],
+    "calibration_seeds": [
+      45
+    ],
+    "evaluation_seeds": [
+      48,
+      50
+    ],
+    "evaluation_status": "Previously exposed development seeds, not a blind final test",
+    "excluded_seeds": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      311,
+      312,
+      313,
+      314,
+      315
+    ],
+    "actor_checkpoint": "deliverables/tb_deadline_20261028_training_v1/repair.npz",
+    "actor_sha256": "2d3b3b3040a57df4d0e58cbfeb5315c1d9c182bd6aaa96cb660108bab513bd4c",
+    "states": "Five evenly spaced post-warmup snapshots per training/selection/calibration seed; all nine post-warmup snapshots per evaluation seed",
+    "roots": [
+      "own_pfqdraft_ctbs",
+      "saved_chosen"
+    ],
+    "blocks": "First eight graph-priority blocks plus four evenly spaced remaining blocks, without replacement; no outcome-based selection",
+    "collector": "Frozen verified-prefix teacher: width16, shortlist48, per_parent2; incumbent suffix completion; no acceptance changes to archived trajectories",
+    "candidate_population": "All shortlisted occurrences at each teacher prefix depth; canonical unique full actions per block for primary cost-recall curves",
+    "labels": [
+      "exact_R(completed_prefix)-exact_R(frozen_root)",
+      "exact_R(completed_prefix)-exact_R(parent_completed_prefix)"
+    ],
+    "target_scope": "One-step physical risk proxy, not PAV future-success advantage or native packet delivery",
+    "inputs": "Causal cached actor features; actor likelihood and depth; optional cheap full-TB and activity-trace summaries. No candidate exact values, future packet outcomes or exact parent score as model inputs",
+    "models": [
+      "actor_features_mlp",
+      "tb_features_mlp"
+    ],
+    "mlp": {
+      "hidden": [
+        48,
+        24
+      ],
+      "ensemble": 3,
+      "epochs": 60,
+      "batch_size": 2048,
+      "optimizer": "AdamW",
+      "lr": 0.001,
+      "weight_decay": 0.0001,
+      "random_seeds": [
+        7301,
+        7302,
+        7303
+      ]
+    },
+    "selection": "Choose architecture and epoch using selection-seed macro per-block top-decile recall at 10% unique-candidate budget; tie: lower exact best-score regret, then earlier epoch. Calibration/evaluation labels never used for selection",
+    "controls": [
+      "actor_likelihood",
+      "frozen_bler_tb_physics",
+      "exact_oracle"
+    ],
+    "budgets": [
+      0.05,
+      0.1,
+      0.2,
+      0.333333333333,
+      0.5,
+      0.8,
+      1.0
+    ],
+    "high_yield_definition": "All guard-eligible unique candidates with positive root-relative R gain in the highest decile of eligible gains, including ties; report both recall of this set and probability of retaining any member",
+    "guards": "Same-state exact J > root J+16, R > root R+1, dequeue >= ceil(.90*own PFQ+CTBS draft dequeue)",
+    "gate": "At 10% unique-candidate evaluation budget, high-yield recall >=95% separately on both development evaluation seeds; this is an offline necessary screen, not closed-loop noninferiority",
+    "calibration": "Empirical one-sided standardized residual threshold on seed45 only, plus honest seed-cluster split-conformal feasibility diagnostic; alpha .02, calibration seed count1, finite distribution-free seed-level bound unavailable",
+    "accounting": "Report label-collection PHY calls/time, deduplicated candidate curves, root setup evaluations, feature+head runtime separately. Curves on a frozen teacher pool do not establish end-to-end search savings",
+    "promotion": false,
+    "future_closed_loop": "Only after offline screen: freeze design and new seeds311-315, each>=5s, loads1.0/1.2/1.4/1.6, compare physical rho.90 with payload>=99.5%, expiry delta<=.1pp, mean/P95 delay<=control, UE P5>=control and a predeclared UE-regression-count limit"
+  },
+  "sha256": "f2f77653fc32a55edcdb7b0d3e1d3833cdb2560c62fda9411e3734c8e9060820",
+  "source_sha256": {
+    "training/stageb_lns/test_process_value.py": "aa57d7ce0d2827bbd534f6848e9d1145a5fa12d8a1cdfc3a98e00de40f27103b",
+    "training/stageb_lns/summarize_direct_risk.py": "2f2fb8d50dd51c069221c306732dc6cf2f832a6084549c055d53b0c6932338d3",
+    "training/stageb_lns/search.py": "e3381d5392b431ff1e33a1ffcb099006e0116c9f5b794ed0a7db8d36092c5491",
+    "training/stageb_lns/test_deadline.py": "6cd44430ed67f9188a5696cd931ebe8bce4442ab14f82dbc29cf4852b9425c59",
+    "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+    "training/stageb_lns/process_value.py": "4080faf00fd1ac3a21c4c1ed1bbe389ccd10cf805669dd6873dde1b4f884c11e",
+    "training/stageb_lns/direct_risk_campaign.py": "bf223e5e80ef2c235b2a167b69b04636b4be911bcc56d3137aae77f48e331d28",
+    "training/stageb_lns/deadline_campaign.py": "4913d1fb06fce070d352f5180ef723b6a78bc819f8d591953d49f79a075c41fb",
+    "training/stageb_lns/__init__.py": "e3034c875ac587d466cb60a300d539647889b0644f93c38ac77ce44995b30700",
+    "training/stageb_lns/deadline.py": "eda6b6e9f988924109cc97a0e9f6f90e4150b3b8dc31852d884f5c3fea9b3941",
+    "training/stageb_lns/native_campaign.py": "c14b1bf28b2d925d1a2f064d2b7c79f17b069ddcc428b086268d826a19729a40",
+    "training/stageb_lns/summarize_repair.py": "9e01f07a0c2c2a8fe728676f29dea33729f4d56e218781821518f9864b629743",
+    "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_lns/experiment.py": "d17d1e60b367b5c37457a029b66efcf7b3702611781737495a8b0f1c9f6effc2",
+    "training/stageb_lns/budget_learning.py": "f64951f1c88dfcb35bdb339383df14e4dc115626ebd0a141f32664ff7317291e",
+    "training/stageb_lns/residual_deadline.py": "b09c535293f8159b1dd528255aa99a13bd1b508d815a6ce078d37484da1b9d6b",
+    "training/stageb_lns/summarize_deadline.py": "d1c2acd76c43639426a4eff4b3ee2a9f7b208954918416818a02ec26232d8fcc",
+    "training/stageb_lns/prefix_repair.py": "8eee5400487e146d3f8ff9bc7f230f882882fa0453e8a67a66316e7e5019a704",
+    "training/stageb_lns/test_cached_repair.py": "d31dee3286b29ce2be3fce897e09530d66a9829feae8bd1101970987a46baad0",
+    "training/stageb_lns/benchmark_cached_repair.py": "891733b0c61c6011bc7b03ecfcb49d2dc01aa743a735faa3a170fadb95cb3950",
+    "training/stageb_lns/learning.py": "8d5a0577c643c831b463f8a0d1ede37928e9c0501cdcb74c65fef4efe3e0e915",
+    "training/stageb_lns/archive.py": "df151308cc506caf1462675ee23de440bc0b040fa6af993eb18482b6c5602345",
+    "training/stageb_lns/eval_repair.py": "e43bf5ee517f93a4dbb39b2538adfa76c66ec7bfdcd5f253823c16d9b3c15498",
+    "training/stageb_lns/test_repair.py": "d09d9f7e234cd4b17ac732ec49074adb06758ffd089785a8b7117e058409c538",
+    "training/stageb_lns/audit_cached_native.py": "fb25f6a7e7405e537356dae93fd56b2dae9f3896bbcf5c9852cb7ddefd25c49e",
+    "training/stageb_lns/ablate_repair.py": "97db2cd5cf5e1745de95ef6910968f6801f6de2da6fc898706106a7748bf4801",
+    "training/stageb_lns/cached_repair.py": "044d325de0a4202335caa632945ef0908bbe449ced070623ef439d10b19eba03",
+    "training/stageb_lns/closed_data.py": "4e2a470f8601b0c461e2ed54d1d2ad27a5b5ae6cf0184611eea87d242c985de3",
+    "training/stageb_lns/native_repair.py": "f5e04d713dc6c7666f266ff716a0f837caff0170e73796f5ebceb1df07aeaf87",
+    "training/stageb_lns/build.py": "3d7cb01a5544f91ab507a3e43802853d9cff6e4bd7460497ddad18693649552c",
+    "training/stageb_lns/train_deadline.py": "d0852ac29a7169834b8015bece1b712050f2dacbc0c863228d60d60fd354880f",
+    "training/stageb_lns/neural_repair.py": "a5537b7159fe069e025a514dddf4f02ec73646bbcca2bcbfd2ea071efe07404b",
+    "training/stageb_lns/test_physics.py": "66bff8593242f9acf3061cdd2e13d8579495877bcf84a9064a8809e52394d3ad",
+    "training/stageb_lns/quality.py": "7fdee53778b68e4b2e21913aa9bfcec9cc3875ffd5fc0d1a19d1a62af6779a5f",
+    "training/stageb_lns/train_repair.py": "6a3c4d9a260dfafca33f91b8187e99487b8769df14ae83e2f6ed21350f23edd2",
+    "training/stageb_lns/physics.py": "52e28bc432f297cb7e807cb5c5f029adf9ffc19a47d20e24df177b500a96549a",
+    "training/stageb_lns/eval_deadline.py": "7b24bfc01e05be36a1ecb589a519fde864969ee8fa56238b30e252db7413d34f",
+    "training/stageb_lns/test_prefix_repair.py": "145446e8aba21897509f9e8940123eeebe2102e262237d5c899cb4adc62774a2",
+    "cuMAC/src/cumac.h": "c8a34c9ff0dec0eb8cbfe1532ec046eb0924550e36d32e9b43bc1655fb9149f0",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/ctbs_headroom.py": "d80a45f7be75dc21e365b78a81587cf63dea0b65537e9d8a9b043a6f68e924ad",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/phy_tbs_alignment_audit.py": "b210487be6367613dfc2524853e20bd8d57a50373003550cd21b1dab79f42f97"
+  }
+}

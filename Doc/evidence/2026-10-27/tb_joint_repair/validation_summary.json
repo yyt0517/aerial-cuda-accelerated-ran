@@ -1,0 +1,42 @@
+[
+  {
+    "arm": "greedy",
+    "mean_gain": 57669.35227410804,
+    "gain_retained_ratio": 1.0,
+    "mean_delta_over_greedy": 0.0,
+    "improved_states": 0,
+    "worse_states": 0,
+    "mean_ms": 75.83571691066027,
+    "mean_candidates": 39807.75
+  },
+  {
+    "arm": "hybrid",
+    "mean_gain": 58587.935388524784,
+    "gain_retained_ratio": 1.015928445147964,
+    "mean_delta_over_greedy": 918.5831144167532,
+    "improved_states": 5,
+    "worse_states": 0,
+    "mean_ms": 202.73096719756722,
+    "mean_candidates": 42908.166666666664
+  },
+  {
+    "arm": "neural",
+    "mean_gain": 54517.23706289741,
+    "gain_retained_ratio": 0.9453415880894878,
+    "mean_delta_over_greedy": -3152.115211210626,
+    "improved_states": 4,
+    "worse_states": 8,
+    "mean_ms": 196.05428888462484,
+    "mean_candidates": 1940.5833333333333
+  },
+  {
+    "arm": "physical_lns",
+    "mean_gain": 58940.193282444154,
+    "gain_retained_ratio": 1.022036679071679,
+    "mean_delta_over_greedy": 1270.841008336128,
+    "improved_states": 7,
+    "worse_states": 0,
+    "mean_ms": 199.9016139501085,
+    "mean_candidates": 50737.833333333336
+  }
+]

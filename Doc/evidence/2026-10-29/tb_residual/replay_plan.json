@@ -1,0 +1,13 @@
+{
+  "freeze_before_evaluation": true,
+  "states": "seed48/50 risk_neural saved input states atTTI2001,3001,4000; six fixed common states",
+  "methods": ["cached_original", "verified_original", "physical_direct", "trace_original", "spatial_original", "residual_original", "residual_new_actor"],
+  "verification_quotas": [4,8,16],
+  "actor_shortlist_cap": 48,
+  "beam_width": 16,
+  "max_rounds": 3,
+  "repeats": 3,
+  "timing": "Serial rotating method order after all training jobs finish; model loading outside timing; graph/cache/root setup, actor and features, draft, head and exact acceptance all inside",
+  "prefix_semantics": "Carry16 potentially unverified prefixes by surrogate/verified-completion values. Exact verified quota candidates alone can update accepted schedule",
+  "scope": "Saved-state full search, not native trajectory or packet-delay evidence; equal per-depth quotas are not identical realized PHY calls or FLOPs"
+}

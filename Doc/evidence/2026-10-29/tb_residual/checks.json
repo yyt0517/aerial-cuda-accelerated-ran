@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "scientific_gate_passed": false,
+  "algorithm_promoted": false,
+  "mean_packet_delay_gate": "not_exercised_no_native_trajectory",
+  "final_seeds311_315_unused": true,
+  "seed_roles_disjoint": true,
+  "all_input_and_listed_source_hashes_unchanged": true,
+  "model_selection_reproduced": true,
+  "oracle_budget_bounds_exact": true,
+  "exact_changes_inside_sparse_dependency_closure": true,
+  "full_python_trace_and_spatial_references_match_cpp": true,
+  "dense_sparse_affected_features_bit_exact": true,
+  "optimized_complete_search_actions_values_and_phy_counts_exact": true,
+  "tests_passed": 36,
+  "full_suite_exit_code": 0,
+  "targeted_portable_fast_test_rerun_passed": true,
+  "registry_unchanged": true,
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "interpretation": "Engineering and provenance pass; neural quality/promotion gates do not. No native mean-delay or realtime claim."
+}

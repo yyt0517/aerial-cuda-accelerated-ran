@@ -1,0 +1,129 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2",
+  "seeds": [
+    46,
+    47,
+    48
+  ],
+  "arms": [
+    "pfq0",
+    "neural"
+  ],
+  "measured_tti": [
+    3001,
+    5000
+  ],
+  "measurement_seconds": 1,
+  "aggregation": "equal-weight mean of per-seed metrics; relative change is ratio of means",
+  "fields": [
+    "tti",
+    "ue_id",
+    "offered_bytes",
+    "accepted_bytes",
+    "rejected_bytes",
+    "expired_bytes",
+    "previous_post_queue_bytes",
+    "pre_queue_bytes",
+    "scheduled_dequeue_bytes",
+    "post_queue_bytes",
+    "successful_bytes",
+    "failed_bytes",
+    "actual_prg_count",
+    "mcs",
+    "layer",
+    "phy_sinr_db_cpu",
+    "predicted_bler_cpu",
+    "tb_tx_count",
+    "tb_err_count"
+  ],
+  "schema_reference": "/data/aerial-cuda-accelerated-ran/deliverables/tb_neural_choice_20261028_v1/native_analysis.py",
+  "definitions": {
+    "sinr_tx_mean_db": "Arithmetic dB mean over UE x TTI rows with actual_prg_count > 0",
+    "mcs_tx_mean": "Mean MCS index over same active rows; index percentage is not spectral-efficiency percentage",
+    "complete_packet_success_pct": "100 * completely successful packets / all packets arriving during measurement, followed to terminal outcome",
+    "cell_prg_occupancy_pct": "100 * allocated cell-PRG count / (2000 TTIs * 3 cells * 17 PRGs)",
+    "successful_bytes_per_used_cell_prg": "Measured successful segment bytes divided by measured allocated cell-PRG count"
+  },
+  "checks": {
+    "all_six_native_runs_passed": true,
+    "raw_goodput_matches_published": true,
+    "cohort_payload_and_success_match_published": true,
+    "all_cohorts_mature": true,
+    "raw_prg_counts_equal_saved_actions": true,
+    "raw_success_bytes_equal_saved_goodput": true
+  },
+  "provenance": [
+    {
+      "seed": 46,
+      "arm": "pfq0",
+      "raw_directory": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed46_pfq0",
+      "files": {
+        "launch.json": "70e80fad987946a18c286b9c764911498ed7364d97f0df4c92a067fbfdfa3d12",
+        "metrics.bin": "b6d03324c639eda141059dc0cb4fd00460466ead122f8085fec134c35d761ee2",
+        "metrics.json": "7d479d444e470033f3832e783e23310ea1faef90e3bdf3bd6ad54fae7feebaee",
+        "packets.csv": "d5451cccda1ba9247333749c697056de7f901400ac7dd470d9e88f5bc2e5f59a",
+        "prefix.npz": "7b938491b0a7a73635d1389ae483e1195d3b5569902a7149313f9f9be3dbde77"
+      }
+    },
+    {
+      "seed": 46,
+      "arm": "neural",
+      "raw_directory": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed46_neural",
+      "files": {
+        "launch.json": "83bf35311404fc524f5621764ebf3888b10639d69fd1e22e891f83f6a17937e5",
+        "metrics.bin": "e7113ac8968032de29ba1dc783ffc61bade98749d87312d6cf6d55fb7aae3f0a",
+        "metrics.json": "9de5a588c6b77c626388ab3f3c1c88515ed5a155f777de4e4d914c3f0c6820ca",
+        "packets.csv": "ccb585acb3a444e93c3bb63ca1ccca4d872398695b47ae2f034567105650cf39",
+        "prefix.npz": "fb92f56033ba0b2649c09d8613fac5df5e30cd3874fb93eef278f30377bc4ac2"
+      }
+    },
+    {
+      "seed": 47,
+      "arm": "pfq0",
+      "raw_directory": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed47_pfq0",
+      "files": {
+        "launch.json": "7cf89cbcad0b4adf3a8cdefb6717b484121fb2edef9ac0730f81ba62f5838936",
+        "metrics.bin": "b5c42acc2ea731c5ab03255eaa1f2df9a02ae23cbb8143120bb18fe1830e0d09",
+        "metrics.json": "64ccb9b7ceebea0e15a7d5ac19479a6ac90a911c49fcb2984ea64e6966b7959e",
+        "packets.csv": "efbdee57b84845cc80ea9705111397e36961177ae2aa4b60934e7695de040c1d",
+        "prefix.npz": "f0ea88048b11da672a058a161562f5aad0c688dfe8f25752deec8b74a124b99c"
+      }
+    },
+    {
+      "seed": 47,
+      "arm": "neural",
+      "raw_directory": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed47_neural",
+      "files": {
+        "launch.json": "7020b61f60d5247b848f765cab63fba423423ad47ecd31b1dced19007f898758",
+        "metrics.bin": "d6e863e2de113fa809a44a39bd24a0f5ccd08358995c1589e249837fc7a68bdb",
+        "metrics.json": "c5d1663ec3caa87f611fa2ac03c927dc02151671a16753856f18bed8d80337a8",
+        "packets.csv": "10e01521107ed873ae338c8f04f63f5e306155695041a7f3639a35db25905cce",
+        "prefix.npz": "fe2dac0bfcb8a877348a9d2f560f1371b4cf5f9da33fba73a930b9f0d92c98d4"
+      }
+    },
+    {
+      "seed": 48,
+      "arm": "pfq0",
+      "raw_directory": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed48_pfq0",
+      "files": {
+        "launch.json": "5fe510197be7c24cec289c53a00b3b66d277dcdcf1c288af8de39ff2efa6ba09",
+        "metrics.bin": "5acf65b68caf6ec6d5269dfa33db41473da4b88e33ae930e9df78b324fd875b6",
+        "metrics.json": "e73ee7b9823908760077072d872e56c9c9000e2c3b38d366268ea4fb9cc93d12",
+        "packets.csv": "da433c62bfb5bb127dae224045ba46fbb84723c4cf276bef79b074a17fbfea6f",
+        "prefix.npz": "6ed6fc1eb0e75333038181f964139ddacbfdb7afe451a1d4cb96c2e2853d6401"
+      }
+    },
+    {
+      "seed": 48,
+      "arm": "neural",
+      "raw_directory": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed48_neural",
+      "files": {
+        "launch.json": "7e21b5d3f57f24069d1ac2c4610172a0e19ce180e21b41cd00a34124dea2113f",
+        "metrics.bin": "27edafc53202815134ddbb6f38f811acaa4eda7a9c400b334bc28f488256a71e",
+        "metrics.json": "7a70fd6a394f69b143fccb3e53bd757b06a1b51aa904a8483f0f5d5cd22a4590",
+        "packets.csv": "0cac01d8ea463b12638984d303fed86d092ae0a805579b2fe575f933d79fb985",
+        "prefix.npz": "d626834bbfa75ca48c9e33aac097a74c9e57f4279e5f3ef1f6972376aaa8cd2d"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "mode": 0,
+  "epoch": 20,
+  "selection_recall": 0.8635458728713596,
+  "selection_regret": 4.838650376706743,
+  "train_loss": 0.052089074669241904,
+  "checkpoint": "mode0_epoch20.npz",
+  "parameters_per_member": 1601,
+  "sha256": "55c6d818ed50e14205e5fefa8aa73b159fcf84652ea9fe7746b2d0e7f859fd50",
+  "wall_s": 37.391637354157865,
+  "selection_seed": 44,
+  "calibration_evaluation_labels_used": false,
+  "numpy_torch_parity_passed": true,
+  "data_sha256": "c7e808aca8217d55b579ff5271a3c55f593041c3aabd1453242e8cba282118d5"
+}

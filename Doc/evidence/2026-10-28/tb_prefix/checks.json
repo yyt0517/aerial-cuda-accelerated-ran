@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "unit_tests": 27,
+  "offline_states": 36,
+  "coverage_blocks": 263,
+  "previously_missed": 15,
+  "rescued_to_reference": 13,
+  "new_native_runs": 6,
+  "new_native_ttis": 26400,
+  "validation_seeds": [
+    48,
+    50
+  ],
+  "model_weights_changed": false,
+  "active_registry_changed": false,
+  "all_prefix_phy_work_counted": true,
+  "all_cohorts_mature": true,
+  "strict_quality_screen_passed_methods": [],
+  "native_success_delay_ms": {
+    "cached_reference": 13.899266355626953,
+    "physical_direct": 2.423489697315906,
+    "verified": 4.4504929766610255,
+    "verified_cover": 4.579133746142883
+  },
+  "raw_native_checks": "native/checks.json",
+  "offline_checks": "offline/checks.json",
+  "limitations": "Validation only, n=2, one-second measured windows; not a new unseen-seed or noninferiority result"
+}

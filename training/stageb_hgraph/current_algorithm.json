@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "algorithm_id": "pfq_ctbs_deficit_search_rho090_20261027",
+  "effective_date": "2026-10-27",
+  "pipeline": ["fresh_native_pfq", "ctbs_pruning", "causal_service_deficit_weights", "full_physical_local_search"],
+  "floor": {"numerator": 90, "denominator": 100, "rounding": "ceil", "base": "own_current_pfq_ctbs_draft_total_dequeue_bytes"},
+  "bc_actor_required": false,
+  "directed_coordinator_required": false,
+  "external_floor_schedule_required": false,
+  "target_success_bytes_per_ue_per_tti": 2400,
+  "ema": {"decay": 0.995, "initial": 0, "include_pfq_warmup": true},
+  "runtime": {
+    "kind": "dedicated_native_research_runner",
+    "container": "c_aerial_oai2",
+    "container_workdir": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor",
+    "container_python": "/opt/nvidia/cuBB/.venv/bin/python",
+    "module": "output.pfq_independent_reuse.formal.boundary08_rho090_five_seed_20261027_v1.run",
+    "simulator_reference": "boundary08_steady_state_20261021_v1/simulator",
+    "continuous_channel_time": true,
+    "supported_scenario": "3cell_36UE_boundary_rate0.8_17PRG"
+  },
+  "selection_evidence": "Doc/evidence/2026-10-27/selection/selected_policy.json",
+  "five_seed_protocol": "Doc/evidence/2026-10-27/five_seed/protocol.json"
+}

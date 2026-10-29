@@ -1,0 +1,15 @@
+{
+  "states": 126,
+  "physical_risk_wins": 101,
+  "neural_risk_wins": 24,
+  "ties": 1,
+  "mean_state_relative_risk_delta_pct": -5.550984827372812,
+  "mean_state_relative_physical_score_delta_pct": -5.960266562828385,
+  "mean_expected_bytes_delta": -5017.912657073267,
+  "mean_dequeue_delta": -1261.4126984126985,
+  "mean_bler_delta_pp": 5.834903474812968,
+  "mean_common_tx_bler_delta_pp": 5.622142232927025,
+  "mean_common_tx_sinr_delta_db": -0.11065232853862413,
+  "identical_input_mcs_per_ue": true,
+  "physical_risk_wins_but_raw_score_lower": 3
+}

@@ -1,0 +1,51 @@
+{
+  "train_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "final_native_test_seeds": [
+    46,
+    47,
+    48
+  ],
+  "blocks_per_root": 16,
+  "roots": [
+    "PFQ_CTBS",
+    "greedy_4096_candidates",
+    "converged_greedy"
+  ],
+  "teacher": {
+    "ue_topk": 6,
+    "beam_width": 16,
+    "max_alternatives": 4
+  },
+  "objective": "weighted whole-sequence teacher-forced negative log likelihood; soft physical-score alternatives",
+  "feature_inputs": "causal source/victim, whole-TB base state, partial block assignment, native per-PRG SINR observation",
+  "no_counterfactual_physics_before_neural_proposal": true,
+  "epochs": 60,
+  "source_sha256": {
+    "training/stageb_lns/search.py": "41a1b1831efd73098697309f5fa592cffa5b178c888f036b4d9ef8678d997b2f",
+    "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+    "training/stageb_lns/__init__.py": "e3034c875ac587d466cb60a300d539647889b0644f93c38ac77ce44995b30700",
+    "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_lns/experiment.py": "d17d1e60b367b5c37457a029b66efcf7b3702611781737495a8b0f1c9f6effc2",
+    "training/stageb_lns/budget_learning.py": "f64951f1c88dfcb35bdb339383df14e4dc115626ebd0a141f32664ff7317291e",
+    "training/stageb_lns/learning.py": "8b5c524d48d0d99e62ceda0d28a71e53706e8cd4ea33b66ac92f2b764dcb1afc",
+    "training/stageb_lns/archive.py": "31e44629b0ebd8f5cdb8d3f85ca528f9659f3b6549c7a6278449f2457dbace00",
+    "training/stageb_lns/test_repair.py": "e61d78c2ba225bdfd7a100425353c6631c9baed47a085e84acca71613deb1731",
+    "training/stageb_lns/build.py": "3d7cb01a5544f91ab507a3e43802853d9cff6e4bd7460497ddad18693649552c",
+    "training/stageb_lns/neural_repair.py": "c25fdc1a584dda99c6ed702fc73a643a14cfe527b6e51db9491c944b3bd7ffc8",
+    "training/stageb_lns/test_physics.py": "66bff8593242f9acf3061cdd2e13d8579495877bcf84a9064a8809e52394d3ad",
+    "training/stageb_lns/train_repair.py": "6a3c4d9a260dfafca33f91b8187e99487b8769df14ae83e2f6ed21350f23edd2",
+    "training/stageb_lns/physics.py": "efcd7a5351e3d279d7d44ada43296312006bfedd3caf93cffd39a569480fadb2",
+    "cuMAC/src/cumac.h": "c8a34c9ff0dec0eb8cbfe1532ec046eb0924550e36d32e9b43bc1655fb9149f0",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/ctbs_headroom.py": "d80a45f7be75dc21e365b78a81587cf63dea0b65537e9d8a9b043a6f68e924ad",
+    ".worktrees/pfq-independent-reuse-actor/training/stageb_hgraph/phy_tbs_alignment_audit.py": "b210487be6367613dfc2524853e20bd8d57a50373003550cd21b1dab79f42f97"
+  },
+  "device": "cuda"
+}

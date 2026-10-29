@@ -1,0 +1,38 @@
+         71846 function calls (71768 primitive calls) in 0.180 seconds
+
+   Ordered by: cumulative time
+   List reduced from 263 to 30 due to restriction <30>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.179    0.179 /opt/nvidia/cuBB/training/stageb_lns/quality.py:12(select)
+        1    0.001    0.001    0.179    0.179 /opt/nvidia/cuBB/training/stageb_lns/search.py:189(solve)
+      127    0.023    0.000    0.150    0.001 /opt/nvidia/cuBB/training/stageb_lns/cached_repair.py:130(propose)
+      500    0.042    0.000    0.058    0.000 /opt/nvidia/cuBB/training/stageb_lns/cached_repair.py:74(features)
+      500    0.034    0.000    0.038    0.000 /opt/nvidia/cuBB/training/stageb_lns/neural_repair.py:104(logits)
+      127    0.003    0.000    0.022    0.000 /opt/nvidia/cuBB/training/stageb_lns/search.py:224(evaluate)
+      128    0.005    0.000    0.012    0.000 /opt/nvidia/cuBB/training/stageb_lns/physics.py:207(evaluate)
+     2655    0.002    0.000    0.011    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:51(_wrapfunc)
+     4941    0.010    0.000    0.010    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+      255    0.004    0.000    0.008    0.000 /opt/nvidia/cuBB/training/stageb_lns/physics.py:112(actions)
+      127    0.000    0.000    0.007    0.000 /opt/nvidia/cuBB/training/stageb_lns/cached_repair.py:124(cache_for)
+      127    0.001    0.000    0.007    0.000 /opt/nvidia/cuBB/training/stageb_lns/cached_repair.py:23(set_base)
+     2726    0.001    0.000    0.007    0.000 {method 'sum' of 'numpy.ndarray' objects}
+      500    0.001    0.000    0.006    0.000 /opt/nvidia/cuBB/training/stageb_lns/cached_repair.py:40(context)
+     2726    0.001    0.000    0.006    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/_methods.py:50(_sum)
+      127    0.004    0.000    0.006    0.000 /opt/nvidia/cuBB/training/stageb_lns/learning.py:66(pool_block_features)
+       35    0.004    0.000    0.006    0.000 /opt/nvidia/cuBB/training/stageb_lns/learning.py:24(token_features)
+        3    0.002    0.001    0.006    0.002 /opt/nvidia/cuBB/training/stageb_lns/search.py:70(blocks)
+      128    0.000    0.000    0.005    0.000 /opt/nvidia/cuBB/training/stageb_lns/deadline.py:44(<lambda>)
+      128    0.003    0.000    0.005    0.000 /opt/nvidia/cuBB/training/stageb_lns/deadline.py:29(components)
+     1000    0.003    0.000    0.005    0.000 /opt/nvidia/cuBB/training/stageb_lns/cached_repair.py:46(node)
+      698    0.001    0.000    0.005    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:2241(clip)
+      503    0.000    0.000    0.004    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:1130(argsort)
+      500    0.000    0.000    0.004    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/einsumfunc.py:1057(einsum)
+      944    0.001    0.000    0.004    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/numeric.py:646(flatnonzero)
+      500    0.004    0.000    0.004    0.000 {built-in method numpy._core._multiarray_umath.c_einsum}
+      503    0.003    0.000    0.003    0.000 {method 'argsort' of 'numpy.ndarray' objects}
+      698    0.000    0.000    0.003    0.000 {method 'clip' of 'numpy.ndarray' objects}
+     1199    0.000    0.000    0.003    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:2018(nonzero)
+      698    0.003    0.000    0.003    0.000 /opt/nvidia/cuBB/.venv/lib/python3.10/site-packages/numpy/_core/_methods.py:99(_clip)
+
+

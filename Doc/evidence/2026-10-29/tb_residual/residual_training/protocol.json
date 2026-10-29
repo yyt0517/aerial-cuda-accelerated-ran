@@ -1,0 +1,10 @@
+{
+  "plan_sha256": "f4161ce98c765f3a861db4e0d37fcdbc9ac948ee007ac2b229dbdd31527680cc",
+  "train_pairs": 500000,
+  "selection_pairs": 270522,
+  "sample_seed": 8300,
+  "loss": "SmoothL1 per affected UE expected-byte residual in units2400, weighted by causal risk sensitivity",
+  "selection_seed": 44,
+  "calibration_evaluation_labels_used": false,
+  "epoch0": "identity residual baseline"
+}

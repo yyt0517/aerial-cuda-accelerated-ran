@@ -1,0 +1,3 @@
+seed,goodput_mbps,full_payload_mbps,expiry_pct,ue_goodput_p5_mbps,success_delay_mean_ms,success_delay_p95_ms,outcome_mean_ms,cohort_packets,success_delay_mean_delta_ms,outcome_mean_delta_ms
+48,1307.75788,1247.184,0.0,34.672776,14.077444867798176,137.0,14.069206371215142,57697,0.0,0.0
+50,1309.1156879999999,1241.208,0.0,34.414302,13.72108784345573,128.0,13.727464997989896,57211,0.0,0.0

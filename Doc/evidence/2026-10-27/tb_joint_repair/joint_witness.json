@@ -1,0 +1,51 @@
+{
+  "seed": 44,
+  "tti": 8001,
+  "joint_gain": 444.40605347644305,
+  "best_single_change_gain": -1600.1549734334694,
+  "best_original_neighborhood_gain": -48.54146012093406,
+  "initial_score": 82673.68686491513,
+  "floor": 81945,
+  "changes": [
+    {
+      "cell": 1,
+      "prg": 10,
+      "old_ue": 12,
+      "new_ue": 19
+    },
+    {
+      "cell": 1,
+      "prg": 12,
+      "old_ue": 12,
+      "new_ue": 19
+    }
+  ],
+  "subset_scores": [
+    {
+      "mask": 0,
+      "gain": 0.0,
+      "dequeue": 83133.0,
+      "eligible": true
+    },
+    {
+      "mask": 1,
+      "gain": -4328.283278171875,
+      "dequeue": 83324.0,
+      "eligible": true
+    },
+    {
+      "mask": 2,
+      "gain": -1600.1549734334694,
+      "dequeue": 83324.0,
+      "eligible": true
+    },
+    {
+      "mask": 3,
+      "gain": 444.40605347644305,
+      "dequeue": 83578.0,
+      "eligible": true
+    }
+  ],
+  "independent_numpy_verified": true,
+  "source": "validation only, local27 proposal after converged greedy"
+}

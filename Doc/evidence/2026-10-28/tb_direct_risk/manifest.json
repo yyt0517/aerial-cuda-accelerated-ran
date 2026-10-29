@@ -1,0 +1,53 @@
+{
+  "snapshot_date": "2026-10-29",
+  "files": [
+    {
+      "file": "final_report.txt",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/final_report.txt",
+      "bytes": 7585,
+      "sha256": "b8564a0ff87a823d7904888604d711b3043bc47e11eb6c3b8808bb55bd61d013"
+    },
+    {
+      "file": "summary/checks.json",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/checks.json",
+      "bytes": 3827,
+      "sha256": "9c5be41af87a40bebd281b1f2f8cb0fb72b51004c77a593a27c85abb3694c6e4"
+    },
+    {
+      "file": "summary/input_manifest.json",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/input_manifest.json",
+      "bytes": 9735,
+      "sha256": "a79f8245d9893cb57dacccf76e030f63b2a9f5e1bccc564c164978db2bee5c9a"
+    },
+    {
+      "file": "summary/means.csv",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/means.csv",
+      "bytes": 1002,
+      "sha256": "7bbaaf41f4ff7aa119e77519dd15b03f1e16d344be9e36d5a41ecf239c68291c"
+    },
+    {
+      "file": "summary/paired_comparisons.csv",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/paired_comparisons.csv",
+      "bytes": 7935,
+      "sha256": "ee9785a0571102b1f52e166b98ee870703fe070f002f9b6b1a3e027d895a3e0c"
+    },
+    {
+      "file": "summary/per_seed.csv",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/per_seed.csv",
+      "bytes": 4416,
+      "sha256": "9ca457457c50a61eee370a2572f97e4655565667fb8a10bfb92b5c4e8bc95beb"
+    },
+    {
+      "file": "summary/per_ue_goodput.csv",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/per_ue_goodput.csv",
+      "bytes": 19169,
+      "sha256": "d9367bd070022f7bfe5a2e191d08ca84d3e0cbcb38af6b3daa94f901ca665433"
+    },
+    {
+      "file": "summary/std.csv",
+      "source": "deliverables/tb_direct_risk_20261028_native_v1/summary/std.csv",
+      "bytes": 1086,
+      "sha256": "720642abcace2fc40e9a656a37354bd858332364a396b123bf363155c9ef42f4"
+    }
+  ]
+}

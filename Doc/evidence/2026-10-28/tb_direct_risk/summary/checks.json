@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "runs": 15,
+  "native_ttis": 216000,
+  "physical_samples": 420,
+  "matured_cohort_packets": 4324215,
+  "audit": [
+    {
+      "seed": 104,
+      "arm": "legacy_current",
+      "ttis": 14400,
+      "matured_packets": 288671,
+      "samples": 28,
+      "max_sinr_error_db": 6.995781994589834e-06,
+      "max_bler_error": 1.0737339494581999e-05
+    },
+    {
+      "seed": 104,
+      "arm": "physical_lns",
+      "ttis": 14400,
+      "matured_packets": 288671,
+      "samples": 28,
+      "max_sinr_error_db": 7.821207240965578e-06,
+      "max_bler_error": 5.30223407985142e-06
+    },
+    {
+      "seed": 104,
+      "arm": "risk_physical_lns",
+      "ttis": 14400,
+      "matured_packets": 288671,
+      "samples": 28,
+      "max_sinr_error_db": 5.945625019876388e-06,
+      "max_bler_error": 5.209776752002071e-06
+    },
+    {
+      "seed": 104,
+      "arm": "risk_physical_direct",
+      "ttis": 14400,
+      "matured_packets": 288671,
+      "samples": 28,
+      "max_sinr_error_db": 5.8356353296318275e-06,
+      "max_bler_error": 3.2187030212793566e-06
+    },
+    {
+      "seed": 104,
+      "arm": "risk_neural",
+      "ttis": 14400,
+      "matured_packets": 288671,
+      "samples": 28,
+      "max_sinr_error_db": 6.276452300113533e-06,
+      "max_bler_error": 4.383998351509266e-06
+    },
+    {
+      "seed": 105,
+      "arm": "legacy_current",
+      "ttis": 14400,
+      "matured_packets": 287811,
+      "samples": 28,
+      "max_sinr_error_db": 7.395567246604173e-06,
+      "max_bler_error": 1.2576532935404394e-05
+    },
+    {
+      "seed": 105,
+      "arm": "physical_lns",
+      "ttis": 14400,
+      "matured_packets": 287811,
+      "samples": 28,
+      "max_sinr_error_db": 1.9189995462909337e-05,
+      "max_bler_error": 2.618188639058605e-06
+    },
+    {
+      "seed": 105,
+      "arm": "risk_physical_lns",
+      "ttis": 14400,
+      "matured_packets": 287811,
+      "samples": 28,
+      "max_sinr_error_db": 1.7752023679484807e-05,
+      "max_bler_error": 3.7539679703102458e-06
+    },
+    {
+      "seed": 105,
+      "arm": "risk_physical_direct",
+      "ttis": 14400,
+      "matured_packets": 287811,
+      "samples": 28,
+      "max_sinr_error_db": 1.3939718552791192e-05,
+      "max_bler_error": 9.1123428855866e-06
+    },
+    {
+      "seed": 105,
+      "arm": "risk_neural",
+      "ttis": 14400,
+      "matured_packets": 287811,
+      "samples": 28,
+      "max_sinr_error_db": 1.870890174338058e-05,
+      "max_bler_error": 4.090255074751248e-06
+    },
+    {
+      "seed": 106,
+      "arm": "legacy_current",
+      "ttis": 14400,
+      "matured_packets": 288361,
+      "samples": 28,
+      "max_sinr_error_db": 7.620919781459179e-06,
+      "max_bler_error": 2.8124239680460406e-06
+    },
+    {
+      "seed": 106,
+      "arm": "physical_lns",
+      "ttis": 14400,
+      "matured_packets": 288361,
+      "samples": 28,
+      "max_sinr_error_db": 9.229265693022626e-06,
+      "max_bler_error": 4.082265899207904e-06
+    },
+    {
+      "seed": 106,
+      "arm": "risk_physical_lns",
+      "ttis": 14400,
+      "matured_packets": 288361,
+      "samples": 28,
+      "max_sinr_error_db": 1.1298941403836693e-05,
+      "max_bler_error": 1.5573722984996152e-05
+    },
+    {
+      "seed": 106,
+      "arm": "risk_physical_direct",
+      "ttis": 14400,
+      "matured_packets": 288361,
+      "samples": 28,
+      "max_sinr_error_db": 7.919012656287805e-06,
+      "max_bler_error": 4.945381158083517e-06
+    },
+    {
+      "seed": 106,
+      "arm": "risk_neural",
+      "ttis": 14400,
+      "matured_packets": 288361,
+      "samples": 28,
+      "max_sinr_error_db": 7.523812339371716e-06,
+      "max_bler_error": 4.082265899207904e-06
+    }
+  ],
+  "interpretation": "Existing per-run native action/FIFO/PHY checks plus source/model/pairing/floor/counter and summary checks; not a new simulator rerun"
+}

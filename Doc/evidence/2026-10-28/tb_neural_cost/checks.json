@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "unit_tests": 23,
+  "native_runs": 2,
+  "new_native_ttis": 8800,
+  "policy_decisions": 6800,
+  "mature_measurement_arrivals": 114908,
+  "selection_seeds": [
+    48,
+    50
+  ],
+  "all_native_inputs_actions_services_and_packets_exact": true,
+  "all_search_work_exact": true,
+  "mean_packet_delay_delta_ms": 0,
+  "inference_sources_unchanged_since_replay": true,
+  "active_registry_unchanged": true,
+  "postrun_audit_tool_revision": {
+    "path": "training/stageb_lns/audit_cached_native.py",
+    "before_sha256": "8f4ef1525f6a8e79d4edce503589224e5e3d76b26102ab5555ccf9a324795cb9",
+    "after_sha256": "fb25f6a7e7405e537356dae93fd56b2dae9f3896bbcf5c9852cb7ddefd25c49e",
+    "stage": "post_native_execution",
+    "reason": "Support frozen references predating per-decision neural counters; compare recorded per-decision physical work and total network calls/proposals; explicitly list absent counters",
+    "inference_sources_changed": false,
+    "both_native_execution_passed_before_revision": true
+  },
+  "native_network_counter_scope": "Total calls/proposals exact; old reference lacks per-decision network counters and total option/logit counters; full streams exact on 18 replay states",
+  "serial_saved_state_reduction_pct": 36.10837871410164,
+  "prefix_ablation_reduction_pct": 10.776582991394735,
+  "limitation": "Implementation equivalence on two known one-second validation windows; no new quality or deployment claim"
+}

@@ -1,0 +1,25 @@
+Wed Oct 28 09:18:41 2026    /tmp/deadline_neural_profile.prof
+
+         120618 function calls (119666 primitive calls) in 0.370 seconds
+
+   Ordered by: cumulative time
+   List reduced from 381 to 15 due to restriction <15>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.370    0.370 /data/aerial-cuda-accelerated-ran/training/stageb_lns/quality.py:12(select)
+        1    0.001    0.001    0.370    0.370 /data/aerial-cuda-accelerated-ran/training/stageb_lns/search.py:188(solve)
+      122    0.017    0.000    0.312    0.003 /data/aerial-cuda-accelerated-ran/training/stageb_lns/neural_repair.py:112(propose)
+      477    0.002    0.000    0.174    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/neural_repair.py:109(features)
+      477    0.120    0.000    0.172    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/neural_repair.py:27(features)
+      477    0.043    0.000    0.048    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/neural_repair.py:103(logits)
+     6734    0.038    0.000    0.038    0.000 {method 'reduce' of 'numpy.ufunc' objects}
+      122    0.023    0.000    0.037    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/learning.py:24(block_features)
+      122    0.004    0.000    0.023    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/search.py:223(evaluate)
+     2893    0.002    0.000    0.020    0.000 {method 'sum' of 'numpy.ndarray' objects}
+     2893    0.001    0.000    0.019    0.000 /data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/_core/_methods.py:50(_sum)
+      123    0.008    0.000    0.018    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/physics.py:207(evaluate)
+      477    0.002    0.000    0.018    0.000 /data/aerial-cuda-accelerated-ran/training/stageb_lns/neural_repair.py:16(options)
+        1    0.001    0.001    0.017    0.017 /data/aerial-cuda-accelerated-ran/training/stageb_lns/physics.py:191(__init__)
+     2776    0.003    0.000    0.017    0.000 /data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/_core/fromnumeric.py:51(_wrapfunc)
+
+

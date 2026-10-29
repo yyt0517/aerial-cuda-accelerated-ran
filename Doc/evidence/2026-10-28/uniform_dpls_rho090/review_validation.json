@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "seed_count": 5,
+  "existing_metrics_checked": 83,
+  "additional_metrics": 15,
+  "packet_rows_checked": 7196252,
+  "checks": [
+    {
+      "seed": 41,
+      "arm": "pfq0",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719473,
+      "passed": true
+    },
+    {
+      "seed": 41,
+      "arm": "current_rho090",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719473,
+      "passed": true
+    },
+    {
+      "seed": 42,
+      "arm": "pfq0",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719116,
+      "passed": true
+    },
+    {
+      "seed": 42,
+      "arm": "current_rho090",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719116,
+      "passed": true
+    },
+    {
+      "seed": 43,
+      "arm": "pfq0",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 720466,
+      "passed": true
+    },
+    {
+      "seed": 43,
+      "arm": "current_rho090",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 720466,
+      "passed": true
+    },
+    {
+      "seed": 44,
+      "arm": "pfq0",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719383,
+      "passed": true
+    },
+    {
+      "seed": 44,
+      "arm": "current_rho090",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719383,
+      "passed": true
+    },
+    {
+      "seed": 45,
+      "arm": "pfq0",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719688,
+      "passed": true
+    },
+    {
+      "seed": 45,
+      "arm": "current_rho090",
+      "native_fields_recomputed": 11,
+      "cohort_metrics_recomputed": 16,
+      "packet_rows": 719688,
+      "passed": true
+    }
+  ],
+  "ue_effects": {
+    "fixed_window_goodput_mbps": {
+      "positive": 176,
+      "negative": 2,
+      "equal": 2
+    },
+    "complete_payload_mbps": {
+      "positive": 177,
+      "negative": 0,
+      "equal": 3
+    },
+    "complete_success_fraction": {
+      "positive": 177,
+      "negative": 0,
+      "equal": 3
+    },
+    "success_delay_mean_ms": {
+      "positive": 0,
+      "negative": 180,
+      "equal": 0
+    },
+    "sinr_tx_mean_db": {
+      "positive": 180,
+      "negative": 0,
+      "equal": 0
+    },
+    "mcs_tx_mean": {
+      "positive": 173,
+      "negative": 0,
+      "equal": 7
+    },
+    "outcome_p99_ms": {
+      "positive": 18,
+      "negative": 69,
+      "equal": 93
+    }
+  },
+  "raw_scope": "Independent arithmetic verification of five newly simulated uniform DPLS runs and five existing matched PFQ runs, including native service records and complete packet cohorts. Physical execution and input checks are recorded separately.",
+  "source_hashes": {
+    "per_seed_metrics.csv": "6aab90aa948bc6163eeee556c05dc2a692a349ed195a46e1aeb3d7eb1a1a65dd",
+    "per_ue_metrics.csv": "c16a54bc07a877f2e086ef19faaea68efc5bd972f3c62a853094547f5e89c08f",
+    "mean_std.csv": "590a51c730ee6f7e9e329011473d5186a49b2871d0bc11c21763a5c98aa0fb64",
+    "paired_mean_ci.csv": "a64d216b3307c68adb84522c45d918a80369bec434e64c4d96ef35a81eb8b256",
+    "protocol.json": "8d38de163708c148fbfa7ce960b7ba2357ed6d8ca84a0e5af0f2e39dc70221e9"
+  }
+}

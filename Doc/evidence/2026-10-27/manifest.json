@@ -1,0 +1,196 @@
+{
+  "files": [
+    {
+      "file": "selection/protocol.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/protocol.json",
+      "bytes": 3208,
+      "sha256": "757ff8bcff8766790cbf5c3eec868666329a4fd3f9a06bf2d1488cb7a6282428"
+    },
+    {
+      "file": "selection/selected_policy.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/selected_policy.json",
+      "bytes": 502,
+      "sha256": "9c6083169544b3616264bc089cf586a257ae9d91aa53dc67f8dd2eb0b32fd767"
+    },
+    {
+      "file": "selection/metrics.csv",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/metrics.csv",
+      "bytes": 8025,
+      "sha256": "b9fafe2be3321c2e281fa7f0cd01c20a496eab11ba867283694e32020fea6169"
+    },
+    {
+      "file": "selection/comparisons.csv",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/comparisons.csv",
+      "bytes": 1408,
+      "sha256": "1772b034ae63feddd1de692cc4e3058801543bea157e2db7bf63f7ec4b37e2a0"
+    },
+    {
+      "file": "selection/selector_preflight.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/selector_preflight.json",
+      "bytes": 386,
+      "sha256": "e3ffd7dc2a4c564b62aa47c6662235ad4a25672f2eb4c7598672fa8313027cf8"
+    },
+    {
+      "file": "selection/result.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/result.json",
+      "bytes": 42787,
+      "sha256": "11381e48c8bd2147a0928c104639506079bf5e3b3c369a74fde7fa99d35c28ad"
+    },
+    {
+      "file": "selection/search_and_floor_diagnostics.csv",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/search_and_floor_diagnostics.csv",
+      "bytes": 467,
+      "sha256": "55b441376f02638b5c26c06694bd1b011a380a1c4feee0075001b328d06928db"
+    },
+    {
+      "file": "selection/half_windows.csv",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_causal_floor_ratio_seed41_20261027_v1/half_windows.csv",
+      "bytes": 1839,
+      "sha256": "ff6aa63c1a2b9735083885b847a5af9015a7fa4e1604cc21c39597dbab570ae0"
+    },
+    {
+      "file": "fixed_floor/all_seed_status.csv",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/all_seed_status.csv",
+      "bytes": 918,
+      "sha256": "9ee0de164d955c7212d0a330310a21bbdd99044c84a1a1da2a4ec93251488112"
+    },
+    {
+      "file": "fixed_floor/experiment_result.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/experiment_result.json",
+      "bytes": 109149,
+      "sha256": "6c52d12efa47e192700889153a430ff28fa31eac91a7ef676f8557047bf9d135"
+    },
+    {
+      "file": "fixed_floor/divergence_seed44.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/divergence_seed44.json",
+      "bytes": 2647,
+      "sha256": "ac93dd09da010dd158f0842d40365aaa8105bae707b7fd517f21686ac4640864"
+    },
+    {
+      "file": "fixed_floor/divergence_seed45.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_no_coord_fixed_floor_20261027_v2/divergence_seed45.json",
+      "bytes": 2650,
+      "sha256": "0132901e2263d192f6a5bb66298771dcbf01549fd2c8c22ea4a5f105dd228216"
+    },
+    {
+      "file": "five_seed/protocol.json",
+      "source": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/protocol.json",
+      "bytes": 8695,
+      "sha256": "cb74a636a7e2fb3bffeb6eec7364d894dd53958e316099ec691b8d710e98a54f"
+    },
+    {
+      "file": "five_seed/per_seed_metrics.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/per_seed_metrics.csv",
+      "bytes": 11996,
+      "sha256": "e839398c190bdcad141dda010bcc28b0060ac483c703b0dad9e4181881f23515"
+    },
+    {
+      "file": "five_seed/mean_std.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/mean_std.csv",
+      "bytes": 10476,
+      "sha256": "9ffd1764517fe81b60689f42da1dbcd2faf56c5509de2f93a9cad82e9af294fe"
+    },
+    {
+      "file": "five_seed/per_ue_metrics.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/per_ue_metrics.csv",
+      "bytes": 149929,
+      "sha256": "ae8cc30ed750d0528b644eef7e97c25071376c31504a3c64cef95d047972da84"
+    },
+    {
+      "file": "five_seed/paired_mean_ci.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/paired_mean_ci.csv",
+      "bytes": 171608,
+      "sha256": "53e065b37652cf43659be624bb93d37755216689a87f6490876cbd00873a2fc1"
+    },
+    {
+      "file": "five_seed/stability.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/stability.csv",
+      "bytes": 1208,
+      "sha256": "bfd0e1cb307c2187349c1c8d35f4dfb51c230bc277c1e8af77d53ed40615a302"
+    },
+    {
+      "file": "five_seed/goodput_gain_balance.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/goodput_gain_balance.csv",
+      "bytes": 510,
+      "sha256": "f90f4d1764d9debbfe738aa740a21dc468f338978d89dfb08fa687bc00a83255"
+    },
+    {
+      "file": "five_seed/search_and_floor_diagnostics.csv",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/search_and_floor_diagnostics.csv",
+      "bytes": 989,
+      "sha256": "6b25301c1ba968f007107f4e7e702324445cb9fa242a96429e0688cb66c3d12c"
+    },
+    {
+      "file": "five_seed/metric_definitions.json",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/metric_definitions.json",
+      "bytes": 1544,
+      "sha256": "8f984acf800853e6250e7cc04682e5fc6b16c0bab5746265f29365aea97e69d4"
+    },
+    {
+      "file": "five_seed/validation.json",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/validation.json",
+      "bytes": 54003,
+      "sha256": "a4ae2b91d1087891484225450555bbb3158478224e38f557c3ae76950bc97b39"
+    },
+    {
+      "file": "five_seed/report.txt",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/report.txt",
+      "bytes": 8818,
+      "sha256": "7d4f57c1ac151c16f18f67e9762b3739fd303ff135b20f3fbb3d575aa77ac8fc"
+    },
+    {
+      "file": "five_seed/code/run.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/run.py",
+      "bytes": 4283,
+      "sha256": "657f95c52fcb562511ba245ec96442abedccbb029863d6aeeadabeaa11f37afa"
+    },
+    {
+      "file": "five_seed/code/validate.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/validate.py",
+      "bytes": 6324,
+      "sha256": "94be56b743a62dd27934c5869b2aaef576bf9a3ca95ab3142414245945268718"
+    },
+    {
+      "file": "five_seed/code/analyze.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/analyze.py",
+      "bytes": 10235,
+      "sha256": "f50fa439913c06424555ab8995a4799e902c6a4de7b747c21a402d624968dd83"
+    },
+    {
+      "file": "five_seed/code/make_report.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/make_report.py",
+      "bytes": 19916,
+      "sha256": "6e502132612babb0075b54e263c7050eb5661c193866ff9ebeecd4da93190df4"
+    },
+    {
+      "file": "five_seed/code/independent_review.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/independent_review.py",
+      "bytes": 6715,
+      "sha256": "e05f3259bcf71b4e373a1f9106cfedaf76698be21b11d360a843bf7473a8ad81"
+    },
+    {
+      "file": "five_seed/code/selected_rho_policy.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/selected_rho_policy.py",
+      "bytes": 3135,
+      "sha256": "f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc"
+    },
+    {
+      "file": "five_seed/code/search_ratio.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/search_ratio.py",
+      "bytes": 2504,
+      "sha256": "8fbb133e2e9071cbf28368957224fc98d2985dc9690782ebb00be06dccd18a12"
+    },
+    {
+      "file": "five_seed/code/reference_long_runner.py",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/code/reference_long_runner.py",
+      "bytes": 17203,
+      "sha256": "f32a44c3c176c0c7187fd8a6480377327dbc907f59db194bd875f2e22c05f361"
+    },
+    {
+      "file": "five_seed/independent_review.json",
+      "source": "/opt/nvidia/cuBB/deliverables/boundary08_rho090_five_seed_20261027/independent_review.json",
+      "bytes": 510,
+      "sha256": "decd597287c64ec382fd36356752aa303fadca743a0cc77c1d31befbab475f56"
+    }
+  ]
+}

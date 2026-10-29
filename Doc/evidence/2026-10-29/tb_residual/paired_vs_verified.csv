@@ -1,0 +1,5 @@
+method,quota,mean_risk_delta,wins,losses,ties,mean_cost_delta_ms
+trace_original,8,-84.85724611436792,1,5,0,-0.7739746943116282
+spatial_original,16,-427.35271103667765,2,3,1,14.305282228936742
+residual_original,8,-2876.4109799805374,1,5,0,65.34517913435896
+residual_new_actor,8,-3862.7484958643495,1,5,0,87.76926590750615

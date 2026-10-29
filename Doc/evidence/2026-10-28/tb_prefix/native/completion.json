@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "seed": 48,
+      "method": "verified",
+      "returncode": 0,
+      "elapsed_s": 1124.3878698358312
+    },
+    {
+      "seed": 48,
+      "method": "verified_cover",
+      "returncode": 0,
+      "elapsed_s": 1143.6795259844512
+    },
+    {
+      "seed": 50,
+      "method": "verified",
+      "returncode": 0,
+      "elapsed_s": 1167.4680888121948
+    },
+    {
+      "seed": 50,
+      "method": "verified_cover",
+      "returncode": 0,
+      "elapsed_s": 1181.4808334130794
+    },
+    {
+      "seed": 48,
+      "method": "physical_direct",
+      "returncode": 0,
+      "elapsed_s": 1814.3219349235296
+    },
+    {
+      "seed": 50,
+      "method": "physical_direct",
+      "returncode": 0,
+      "elapsed_s": 1931.5910412706435
+    }
+  ]
+}

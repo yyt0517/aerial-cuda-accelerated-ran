@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "tests": 23,
+  "command": "python -m unittest discover -s training/stageb_lns -t . -p test_*.py",
+  "scope": "reference physics/search/deadline plus cached decoder equivalence",
+  "source_frozen_by": "replay/protocol.json"
+}

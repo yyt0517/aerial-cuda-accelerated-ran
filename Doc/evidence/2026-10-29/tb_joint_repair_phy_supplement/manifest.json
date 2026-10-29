@@ -1,0 +1,29 @@
+{
+  "snapshot_date": "2026-10-29",
+  "files": [
+    {
+      "file": "comparison.csv",
+      "source": "deliverables/tb_joint_repair_phy_supplement_20261029_v1/comparison.csv",
+      "bytes": 826,
+      "sha256": "e421c1c16545555cb5d82d79f89c0e10d423ca1acef71559b14669e48b03fa70"
+    },
+    {
+      "file": "means.csv",
+      "source": "deliverables/tb_joint_repair_phy_supplement_20261029_v1/means.csv",
+      "bytes": 456,
+      "sha256": "9fa1b3940a041b92efad932398f4f1e1e564e8b3a2e5a990c08cc48f3dfd0396"
+    },
+    {
+      "file": "per_seed.csv",
+      "source": "deliverables/tb_joint_repair_phy_supplement_20261029_v1/per_seed.csv",
+      "bytes": 1021,
+      "sha256": "ed1ae7124ebe4dc4d8354b09ff3f3e2d958c82f284e134469135e07baac00825"
+    },
+    {
+      "file": "protocol_and_checks.json",
+      "source": "deliverables/tb_joint_repair_phy_supplement_20261029_v1/protocol_and_checks.json",
+      "bytes": 5711,
+      "sha256": "0914a81522cc12ac55e8c6801903e64b0b9d26a4c1f34a4ac820e10f79eba9cc"
+    }
+  ]
+}
