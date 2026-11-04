@@ -1,0 +1,30 @@
+test_compiled_reference_decoder_parity_and_same_ue_multiple_prgs (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_empty_legal_set_keeps_blank_and_zero_floor (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_mask_priority_reuse_preserves_all_sizes_and_visited_order (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_prefix_uses_only_past_targets_and_recomputes_removed_layer_bottleneck (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_solver_budget_acceptance_and_independent_physics (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_strict_greedy_certificate_enumerates_original_neighborhood (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_teacher_targets_preserve_complement_and_joint_loss_has_finite_gradients (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_torch_export_numpy_logits_match_and_context_invalidates (training.stageb_lns.test_masked_joint.MaskedJointTests) ... ok
+test_activity_change_recomputes_all_physical_neighbors (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_anytime_budget_floor_and_reproducibility (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_and_incremental_match_independent_reference (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_greedy_result_is_independent_of_batch_size (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_invalid_inputs_and_context_are_rejected (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_joint_block_crosses_a_single_edit_reliability_valley (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_late_verification_cannot_replace_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_nonmonotonic_native_curve_is_batch_invariant (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_policy_can_stop_and_return_verified_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_tb_layer_change_recomputes_resources_outside_block (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_ue_swap_does_not_invalidate_neighbor_mmse (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_deterministic_no_change_scan_stops_without_spending_two_more_passes (training.stageb_lns.test_repair.JointRepairTests) ... ok
+test_prefix_changes_features_and_outputs_remain_in_block (training.stageb_lns.test_repair.JointRepairTests) ... ok
+test_warm_start_keeps_original_floor (training.stageb_lns.test_repair.JointRepairTests) ... ok
+test_cache_reuses_incumbent_and_invalidates_new_base_or_graph (training.stageb_lns.test_cached_repair.CachedRepairTests) ... ok
+test_prefix_features_logits_and_tie_order_match_reference (training.stageb_lns.test_cached_repair.CachedRepairTests) ... ok
+test_verified_search_action_and_work_match_without_time_cutoff (training.stageb_lns.test_cached_repair.CachedRepairTests) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 1.694s
+
+OK

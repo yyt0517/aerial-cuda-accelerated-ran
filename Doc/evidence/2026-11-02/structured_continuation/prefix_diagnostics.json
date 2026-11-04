@@ -1,0 +1,9 @@
+{
+  "round0_groups": 287,
+  "round1_groups": 287,
+  "round1_prefixes_already_seen": 287,
+  "independently_visited_training_states": 18,
+  "teacher_candidate_evaluations": 258722,
+  "selected_checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/tb_structured_continuation_20261102_v2/value_r0_e00.npz",
+  "selected_epoch_zero": true
+}

@@ -1,0 +1,17 @@
+TOURNAMENT_GATE 0 252
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/audit_tournament.py", line 145, in <module>
+    p.add_argument('--cpu',type=int,default=251);p.add_argument('--repeats',type=int,default=3);main(p.parse_args())
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/audit_tournament.py", line 88, in main
+    aa,vv,rr=solve(row,arm,check);equal(a,aa,'final action');equal(v,vv,'final UE bits')
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/audit_tournament.py", line 49, in solve
+    return solve_tournament(p,draft,TournamentConfig(diagnostics=profile,direct_gamma=arm!='tree'),
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/tournament_dpls.py", line 55, in solve_tournament
+    raw=p.actions(raw_pfq)[0];warm=repair_warm_start(p,warm_start) if warm_start is not None else None
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/ranked_dpls.py", line 44, in repair_warm_start
+    valid[c, p] &= problem.legal[c, p, action[c, p]]
+numpy._core._exceptions._UFuncOutputCastingError: Cannot cast ufunc 'bitwise_and' output from dtype('uint8') to dtype('bool') with casting rule 'same_kind'

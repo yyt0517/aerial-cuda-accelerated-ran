@@ -1,0 +1,19 @@
+{
+  "paired": [
+    {
+      "seed": 44,
+      "ppo_vs_catalog_payload_pct": 0.253324889170381,
+      "ppo_vs_catalog_expiry_pp": -0.16788687540024594,
+      "ppo_vs_dpls_payload_pct": 0.23965162836461218
+    },
+    {
+      "seed": 45,
+      "ppo_vs_catalog_payload_pct": 0.20545368610920267,
+      "ppo_vs_catalog_expiry_pp": -0.2075119319360863,
+      "ppo_vs_dpls_payload_pct": 0.20642024847596918
+    }
+  ],
+  "ppo_vs_old_payload_pct": 52.780671616978836,
+  "ppo_vs_catalog_payload_pct": 0.22926886015084413,
+  "ppo_vs_dpls_payload_pct": 0.22295355295873787
+}

@@ -1,0 +1,52 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/repair_expansion_20261103_v1/collection",
+  "files": {
+    "training_observed_values.npz": "80cbe57034ce05a383e9a69ec6c407616e01d4fa7f2c6915e927d9f6d98bee95",
+    "training_observed_actions.npz": "1132e7ce0bfc89878597a475d6d3b3900a923f6160890d93b641606cea2171ce",
+    "training_teacher_values.npz": "948cf4622f65fcf2b1b9d8d2cc3ac389177a5e1ab2d85af3230525fd4fff61bb",
+    "training_teacher_actions.npz": "534f6b37da8537fdc631691a76c6262d489cda5bc8df123e2f6541cd952e36e0",
+    "training_input_manifest.json": "1b209c3f58f676aaab0dc26bfc55591f49e6bd0b5671f18b065b617edfaa5077",
+    "source_manifest.json": "7699950854fb2838952fdb1e9461ba2831ea93574ce3dd35710a283d26519ded"
+  },
+  "original_states": 36,
+  "unique_states": 30,
+  "duplicates": [
+    {
+      "duplicate": "pfq:seed41:tti4000",
+      "kept": "raw_global_deficit:seed41:tti4000",
+      "sha256": "8c935458281344e99aa2e6aef62f75c2d9117df1cddb8828979ed74534285a06"
+    },
+    {
+      "duplicate": "pfq:seed41:tti4001",
+      "kept": "raw_global_deficit:seed41:tti4001",
+      "sha256": "1463b9cf8f55f8debabf08ca84f9b5bf7bdef54a0a29bac6ed92b313ef109c5f"
+    },
+    {
+      "duplicate": "pfq:seed42:tti4000",
+      "kept": "raw_global_deficit:seed42:tti4000",
+      "sha256": "9b98845bab2970140b870f472e7d24f636f892d371e75e2fa11fb86cd4680c47"
+    },
+    {
+      "duplicate": "pfq:seed42:tti4001",
+      "kept": "raw_global_deficit:seed42:tti4001",
+      "sha256": "4fb275126ff2632978bdf8d8aed52168fbf70e836b6a8aa1514052f9178dffff"
+    },
+    {
+      "duplicate": "pfq:seed43:tti4000",
+      "kept": "raw_global_deficit:seed43:tti4000",
+      "sha256": "b2bc907cb91f86f9d233eff6478fa0fcd018086c3af96b48c777ce30501c7344"
+    },
+    {
+      "duplicate": "pfq:seed43:tti4001",
+      "kept": "raw_global_deficit:seed43:tti4001",
+      "sha256": "c3d9b4a7f1faca2c9835d4425391ef156fdbaa65ae2b2984653eb6d5ccb30bb1"
+    }
+  ],
+  "candidates": 6330,
+  "pairs": 56750,
+  "strict_pairs": 28224,
+  "tie_pairs": 28526,
+  "additional_training_native_scores": 0,
+  "reuse_reason": "terminal choices do not alter cached search; all visited archive remains on-policy for this frozen search",
+  "prior_teacher_cost_not_free_or_online": true
+}

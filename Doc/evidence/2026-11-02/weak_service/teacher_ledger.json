@@ -1,0 +1,22 @@
+{
+  "engineering": {
+    "decisions": 2,
+    "exact_scores": 148306,
+    "teacher_ms": 296.52332980185747
+  },
+  "validation": {
+    "decisions": 12,
+    "exact_scores": 617686,
+    "teacher_ms": 1223.9362709224224
+  },
+  "evaluation": {
+    "decisions": 9,
+    "exact_scores": 666850,
+    "teacher_ms": 1317.6440559327602
+  },
+  "total": {
+    "decisions": 23,
+    "exact_scores": 1432842,
+    "teacher_ms": 2838.10365665704
+  }
+}

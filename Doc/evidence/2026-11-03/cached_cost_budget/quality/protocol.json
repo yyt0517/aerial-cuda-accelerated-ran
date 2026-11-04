@@ -1,0 +1,24 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "reference": "/data/aerial-cuda-accelerated-ran/deliverables/canonical_cached_dpls_gate_20261103_v1",
+  "arms": [
+    "cached",
+    "cap4",
+    "M16",
+    "M32",
+    "M64"
+  ],
+  "mode": "same 12 captured causal states; source-arm predecessor provenance retained; no native closed-loop",
+  "batch": "cap4; distinct PRG and affected-UE sets; running aggregate dequeue floor; joint PHY verification charged online",
+  "dirty": "first scan full; clean valid cache retained, novel all paid; dirty-known old exact delta top M; labels may age",
+  "rank_floor": "no free current-eligibility screen before dirty ranking; exact current eligibility only for verified candidates",
+  "persistent_invalidity": "unscored dirty entries never become valid without fresh PHY",
+  "stop": "failed shortlist scans unscored dirty complement; convergence only when all candidates current and no >threshold gain",
+  "regret": "chosen single/first move exact delta / true maximum eligible delta; absolute regret also recorded; stop states separate",
+  "regret_teacher": "independent post-decision PHY scores only unscored dirty actions, plus audit root; charged separately",
+  "terminal": "original floating weighted J; expected-byte snapshot service, not native packets/latency or throughput",
+  "offline_snapshot_gate": "J>=99.5% full, no new unallocated UE, positive-service P5 and weak sum>=98%; report failures",
+  "quantization": "diagnostic only: round each weighted expected UE contribution to 1e-6B, sum int64, compare choice at same root; no quantized policy executed",
+  "learning": "no training; save old exact gain + affected-UE changes against newly evaluated exact dirty labels in cached arm",
+  "seeds": "all12 inputs seed41, correlated exposed development; labels are not independent scenes"
+}

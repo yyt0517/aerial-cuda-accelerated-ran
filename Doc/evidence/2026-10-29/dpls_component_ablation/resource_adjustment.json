@@ -1,0 +1,278 @@
+{
+  "reason": "30 separate GPU contexts cause warmup contention; switch to isolated task MPS server, verify exact native behavior again.",
+  "main_measurement_observed": false,
+  "interrupted_progress": [
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 254.0973126962781,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 257.67167738080025,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 259.1257155938074,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1600,
+      "horizon": 28400,
+      "elapsed_s": 256.7980036335066,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 256.9389835111797,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 255.8484854195267,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 254.80318000167608,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1600,
+      "horizon": 28400,
+      "elapsed_s": 256.05144050810486,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 261.2472291747108,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 263.14617194700986,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 250.2336804298684,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 250.69426968414336,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1600,
+      "horizon": 28400,
+      "elapsed_s": 250.96930191945285,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 256.52601992338896,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 256.7996638715267,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 263.06500039529055,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 256.33276963885874,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 256.4622287116945,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 264.0948804374784,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 251.5766270942986,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 262.74418283998966,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 255.70870856940746,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 259.3627392575145,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 261.21998904645443,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 259.3453598311171,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 260.4288295228034,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 257.73994306940585,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1800,
+      "horizon": 28400,
+      "elapsed_s": 263.1879312619567,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1700,
+      "horizon": 28400,
+      "elapsed_s": 254.60308313183486,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    },
+    {
+      "tti": 1600,
+      "horizon": 28400,
+      "elapsed_s": 252.61701645050198,
+      "decisions": 0,
+      "phy_audit_calls": 0
+    }
+  ],
+  "stopped_processes": [
+    7266,
+    7268,
+    7270,
+    7272,
+    7275,
+    7276,
+    7278,
+    7280,
+    7282,
+    7284,
+    7286,
+    7288,
+    7291,
+    7292,
+    7294,
+    7296,
+    7298,
+    7300,
+    7302,
+    7304,
+    7306,
+    7308,
+    7310,
+    7312,
+    7318,
+    7319,
+    7320,
+    7321,
+    7322,
+    7323,
+    7331,
+    7349,
+    7353,
+    7363,
+    7365,
+    7386,
+    7387,
+    7388,
+    7445,
+    7496,
+    7521,
+    7527,
+    7530,
+    7532,
+    7535,
+    7537,
+    7538,
+    7540,
+    7541,
+    7542,
+    7546,
+    7547,
+    7548,
+    7550,
+    7552,
+    7555,
+    7557,
+    7563,
+    7564,
+    7565
+  ]
+}

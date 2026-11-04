@@ -1,0 +1,25 @@
+{
+  "top_k": 4,
+  "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+  "sha256": "52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890",
+  "initial_sha256": "667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e",
+  "weights_changed": true,
+  "training_groups": 179,
+  "collected_groups": 144,
+  "new_states": 126,
+  "training_selection": {
+    "epoch": 10,
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+    "sha256": "52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890",
+    "metric": {
+      "quality": false,
+      "coverage": false,
+      "mean_ratio": 0.934516619931917,
+      "mean_time_ratio": 0.49244367628728275,
+      "mean_positive_p5": 0.384859047024234,
+      "mean_newly_unserved": 1.6666666666666665
+    }
+  },
+  "development_not_read_in_this_run": true,
+  "historical_exposure_retained": true
+}

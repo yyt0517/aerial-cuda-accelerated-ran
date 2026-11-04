@@ -1,0 +1,11 @@
+{
+  "states": 252,
+  "gate": "bit patterns of every round root/UE field, key, upper, exact/stale delta, D, status, selected key and final versus frozen heap; previous full-reference gates provide transitive equivalence",
+  "independent": "four synthetic independent full-oracle paths in test_tournament, both cache modes",
+  "numerical": "original Eigen fixed4x4 arithmetic untouched; direct cache copies original gamma; no Woodbury/batched arithmetic",
+  "priority": "persistent perPRG local trees plus one global leaf perPRG; dirty dependency updates; global floor crossings refreshed; cheap known-exact seeding still scans metadata",
+  "adapter": "native MCS/TBS/domain/PFQ mapping, NumPy deficit normalization and covariance/signal preprocessing retained for identical bits",
+  "scientific_B": "separate library, never substituted into any frozen B arm",
+  "timing": "separate serial CPU pin, four engineering arms plus full reference, rotating order, fresh adapter/context/search/close, three repeats per state, medians then mean; audit/profile disabled",
+  "tails": "saved-state cost P95/max, not a replacement for native measured-TTI tails"
+}

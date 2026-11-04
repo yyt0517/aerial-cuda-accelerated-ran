@@ -1,0 +1,11 @@
+{
+  "quality_candidate": "quota_exp",
+  "execution_cost_candidate": "quota_exp",
+  "execution_cost_feasible": false,
+  "validation_only": true,
+  "development_not_read": true,
+  "historical_exposure": true,
+  "teacher_preparation_excluded": true,
+  "rule": "same prior rule: all-state quality/service then mean quality shortfall, service shortfall, mean ratio; execution cost filter, lower time on ties",
+  "online_ai_claim": false
+}

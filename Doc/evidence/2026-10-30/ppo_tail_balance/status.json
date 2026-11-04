@@ -1,0 +1,48 @@
+{
+  "stage": "complete",
+  "all_experiments_complete": true,
+  "new_online_decisions": 36864,
+  "accepted_actor_updates": 2304,
+  "initial_actor_exact": true,
+  "independent_training_audit": true,
+  "native_validation": true,
+  "strict_requested_target_passed": false,
+  "positive_gains_and_p95_passed": false,
+  "seeds": [
+    {
+      "seed": 44,
+      "checks": {
+        "p95_no_worse_than_equal_dpls": true,
+        "payload_previous_gain_fully_retained": false,
+        "expiry_previous_gain_fully_retained": false,
+        "payload_still_above_both_physical_controls": true,
+        "expiry_still_below_both_physical_controls": false,
+        "mean_delay_no_worse_than_equal_dpls": true,
+        "ue_p5_no_worse_than_equal_dpls": false
+      },
+      "strict_requested_target_passed": false,
+      "positive_gains_and_p95_passed": false
+    },
+    {
+      "seed": 45,
+      "checks": {
+        "p95_no_worse_than_equal_dpls": true,
+        "payload_previous_gain_fully_retained": false,
+        "expiry_previous_gain_fully_retained": false,
+        "payload_still_above_both_physical_controls": false,
+        "expiry_still_below_both_physical_controls": false,
+        "mean_delay_no_worse_than_equal_dpls": true,
+        "ue_p5_no_worse_than_equal_dpls": false
+      },
+      "strict_requested_target_passed": false,
+      "positive_gains_and_p95_passed": false
+    }
+  ],
+  "project_quality_passed": false,
+  "selected_checkpoint": "fixed 12th balancing iteration; hyperparameters adjusted using prior exposed development results; no intermediate checkpoint selection",
+  "promoted": false,
+  "checkpoint_sha256": "900ec84339c1fb906e95aee381d2f42f556aae455d0139cb2f7886d961067c06",
+  "convergence_proven": false,
+  "new_native_training_ttis": 50400,
+  "new_native_evaluation_ttis": 24800
+}

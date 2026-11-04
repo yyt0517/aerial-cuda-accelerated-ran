@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "unit_tests": 33,
+  "phase_a_decisions": 180,
+  "evaluation_decisions": 189,
+  "independent_final_phy_checks": 123,
+  "paired_statistics_recomputed": true,
+  "training_seeds_only": true,
+  "training_unique_roots": 295,
+  "labels_from_actual_student_visits": true,
+  "posthoc_diagnostics_no_retraining": true,
+  "registry_unchanged": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

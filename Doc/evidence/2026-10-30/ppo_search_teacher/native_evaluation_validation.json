@@ -1,0 +1,172 @@
+{
+  "fast4_greedy_44_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 549.3256446067244
+  },
+  "fast4_greedy_44_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast8_greedy_44_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 496.3581534707919
+  },
+  "fast8_greedy_44_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast4_ppo_44_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 499.306596044451
+  },
+  "fast4_ppo_44_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast8_ppo_44_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 555.9305517422035
+  },
+  "fast8_ppo_44_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "full_shared_ppo_44_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 1420.4062706120312
+  },
+  "full_shared_ppo_44_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast4_greedy_45_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 534.8847208041698
+  },
+  "fast4_greedy_45_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast8_greedy_45_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 615.085759844631
+  },
+  "fast8_greedy_45_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast4_ppo_45_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 582.2447443101555
+  },
+  "fast4_ppo_45_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "fast8_ppo_45_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 598.1518180156127
+  },
+  "fast8_ppo_45_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "full_shared_ppo_45_validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 1479.318122010678
+  },
+  "full_shared_ppo_45_reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  }
+}

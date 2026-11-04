@@ -1,0 +1,14 @@
+{
+  "training/stageb_lns/audit_tournament.py": "aa83a27916e9a0617a0287afe8d6cf5e724358933a26583fee28b77f1a7b6d3f",
+  "training/stageb_lns/tournament_kernel.cpp": "d3512fd263b0f2fc3ada59244a5a38f600cf278a56804643cfcd74147da0ed6c",
+  "training/stageb_lns/tournament_dpls.py": "230b3ea41343317b3e43bea76db1e19d4ef0974cf17a8ef9c45db4b8948024bf",
+  "training/stageb_lns/native_schedule_inputs.py": "e8577d8bbfae05bc777368169a08505921e682f96592ff1f9a3cbde972bff837",
+  "training/stageb_lns/build_tournament.py": "69a71ac6a0cda1513cb72b560766e84107b35358c526f7ea6e7b1f449ae92fac",
+  "training/stageb_lns/_tournament.so": "a7da6466dc6b766ec7ca26c9ca2ce5b33f4671a08b37debc52e613a59f9912b4",
+  "training/stageb_lns/test_tournament.py": "2f5e38573b0d30220cf9211853d6990d5fbc4f36fff9cfe111d753cf96d58427",
+  "training/stageb_lns/bounded_kernel.cpp": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c",
+  "training/stageb_lns/bounded_dpls.py": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+  "training/stageb_lns/_bounded.so": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+  "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "training/stageb_lns/persistent_kernel.cpp": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090"
+}

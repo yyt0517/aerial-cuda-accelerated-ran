@@ -1,0 +1,15 @@
+{
+  "selected": "/data/aerial-cuda-accelerated-ran/deliverables/tb_structured_continuation_20261102_v2/value_r0_e00.npz",
+  "sha256": "bb92d8a011c461f91753b3407f3c0fe4b5ddbe01e7c7cb8fa51d43bfec690d27",
+  "round_candidates": [
+    {
+      "validation_j": 77713.04121334373,
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/tb_structured_continuation_20261102_v2/value_r0_e00.npz"
+    },
+    {
+      "validation_j": 77713.04121334373,
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/tb_structured_continuation_20261102_v2/value_r1_e00.npz"
+    }
+  ],
+  "evaluation_unread_at_selection": true
+}

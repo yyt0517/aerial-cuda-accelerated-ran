@@ -1,0 +1,18 @@
+{
+  "status": "four independent-reference toy paths pass; not formal performance evidence",
+  "design": "unknown and exact trees; simplifying exact-summary maintenance after exploratory shared-host timing regression",
+  "exploratory_ms": {
+    "base": {
+      "heap": 7.1094,
+      "tree": 7.7439
+    },
+    "x1.4": {
+      "heap": 11.7968,
+      "tree": 12.9838
+    },
+    "x1.6": {
+      "heap": 16.4222,
+      "tree": 18.8545
+    }
+  }
+}

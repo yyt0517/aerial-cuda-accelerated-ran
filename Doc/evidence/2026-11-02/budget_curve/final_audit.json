@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tests": 46,
+  "serial_decisions": 1197,
+  "independent_final_phy_checks": 399,
+  "summary_gates_and_deltas_recomputed": true,
+  "models_and_solver_unchanged": true,
+  "training_updates": 0,
+  "registry_unchanged": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

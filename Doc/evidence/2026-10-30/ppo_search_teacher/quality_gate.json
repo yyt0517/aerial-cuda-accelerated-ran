@@ -1,0 +1,57 @@
+{
+  "rows": [
+    {
+      "seed": 44,
+      "arm": "fast4_ppo",
+      "checks": {
+        "payload_original_retained": false,
+        "expiry_original_retained": false,
+        "p95_no_worse_than_equal_dpls": false,
+        "payload_full_shared_retained": false,
+        "expiry_full_shared_retained": false,
+        "no_full_search": true
+      },
+      "strict_quality_passed": false
+    },
+    {
+      "seed": 44,
+      "arm": "fast8_ppo",
+      "checks": {
+        "payload_original_retained": false,
+        "expiry_original_retained": false,
+        "p95_no_worse_than_equal_dpls": false,
+        "payload_full_shared_retained": false,
+        "expiry_full_shared_retained": false,
+        "no_full_search": true
+      },
+      "strict_quality_passed": false
+    },
+    {
+      "seed": 45,
+      "arm": "fast4_ppo",
+      "checks": {
+        "payload_original_retained": false,
+        "expiry_original_retained": false,
+        "p95_no_worse_than_equal_dpls": false,
+        "payload_full_shared_retained": false,
+        "expiry_full_shared_retained": false,
+        "no_full_search": true
+      },
+      "strict_quality_passed": false
+    },
+    {
+      "seed": 45,
+      "arm": "fast8_ppo",
+      "checks": {
+        "payload_original_retained": false,
+        "expiry_original_retained": false,
+        "p95_no_worse_than_equal_dpls": false,
+        "payload_full_shared_retained": false,
+        "expiry_full_shared_retained": false,
+        "no_full_search": true
+      },
+      "strict_quality_passed": false
+    }
+  ],
+  "promoted": false
+}

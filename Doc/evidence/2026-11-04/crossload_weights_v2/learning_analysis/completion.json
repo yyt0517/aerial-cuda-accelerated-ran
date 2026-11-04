@@ -1,0 +1,15 @@
+{
+  "completed": true,
+  "trained": true,
+  "new_native_runs": 0,
+  "weighted_states": 36,
+  "no_worse_all_loads_vs_fixed2": true,
+  "no_worse_all_loads_vs_oracle": true,
+  "no_worse_all_loads_vs_descriptive_oracle": false,
+  "no_worse_all_loads_vs_mlwdf_pf": false,
+  "no_worse_all_loads_vs_exp_pf": true,
+  "strict_improvement_any_point_vs_train_oracle": true,
+  "default_changed": false,
+  "retuned_after_evaluation": false,
+  "interpretation": "development regime-imitation tree only, no final confirmation/generalization claim"
+}

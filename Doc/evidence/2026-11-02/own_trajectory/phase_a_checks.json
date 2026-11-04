@@ -1,0 +1,308 @@
+{
+  "repeats_action_identical": true,
+  "independent_phy": [
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "full",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "heuristic_shallow",
+      "max_error": 4.149569576838985e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "initial_shallow",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "heuristic_deep",
+      "max_error": 2.4868995751603507e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "initial_deep",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "full",
+      "max_error": 1.0658141036401503e-14
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "heuristic_shallow",
+      "max_error": 4.092726157978177e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "initial_shallow",
+      "max_error": 3.456079866737127e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "heuristic_deep",
+      "max_error": 1.5347723092418164e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "initial_deep",
+      "max_error": 2.4556356947869062e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "full",
+      "max_error": 5.329070518200751e-15
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "heuristic_shallow",
+      "max_error": 4.547473508864641e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "initial_shallow",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "heuristic_deep",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "initial_deep",
+      "max_error": 3.2741809263825417e-11
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "full",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "heuristic_shallow",
+      "max_error": 4.149569576838985e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "initial_shallow",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "heuristic_deep",
+      "max_error": 2.4868995751603507e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "initial_deep",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "full",
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "heuristic_shallow",
+      "max_error": 1.0686562745831907e-11
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "initial_shallow",
+      "max_error": 1.7053025658242404e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "heuristic_deep",
+      "max_error": 1.0686562745831907e-11
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "initial_deep",
+      "max_error": 1.7053025658242404e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "full",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "heuristic_shallow",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "initial_shallow",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "heuristic_deep",
+      "max_error": 2.489741746103391e-11
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "initial_deep",
+      "max_error": 8.071765478234738e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "heuristic_shallow",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "initial_shallow",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "heuristic_deep",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "initial_deep",
+      "max_error": 6.366462912410498e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "full",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "heuristic_shallow",
+      "max_error": 2.5011104298755527e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "initial_shallow",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "heuristic_deep",
+      "max_error": 2.503242058082833e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "initial_deep",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "full",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "heuristic_shallow",
+      "max_error": 1.6825651982799172e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "initial_shallow",
+      "max_error": 4.263256414560601e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "heuristic_deep",
+      "max_error": 1.6825651982799172e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "initial_deep",
+      "max_error": 1.6825651982799172e-11
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "heuristic_shallow",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "initial_shallow",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "heuristic_deep",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "initial_deep",
+      "max_error": 6.366462912410498e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "full",
+      "max_error": 6.821210263296962e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "heuristic_shallow",
+      "max_error": 6.366462912410498e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "initial_shallow",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "heuristic_deep",
+      "max_error": 6.366462912410498e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "initial_deep",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "full",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "heuristic_shallow",
+      "max_error": 7.16227077646181e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "initial_shallow",
+      "max_error": 7.16227077646181e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "heuristic_deep",
+      "max_error": 1.7962520360015333e-11
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "initial_deep",
+      "max_error": 1.1368683772161603e-12
+    }
+  ],
+  "common_floor": true,
+  "ctbs": false,
+  "full_search_in_generator": false
+}

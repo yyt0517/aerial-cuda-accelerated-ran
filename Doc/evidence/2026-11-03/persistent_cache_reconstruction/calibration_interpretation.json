@@ -1,0 +1,11 @@
+{
+  "raw_cold_warm_pairs": 24,
+  "raw_cold_warm_passes": 6,
+  "raw_all_pairs": 360,
+  "raw_old_gate_passes": 194,
+  "distinct_patterns": 22,
+  "distinct_directed_pairs": 22,
+  "distinct_old_gate_passes": 0,
+  "distinct_J_close_pairs": 4,
+  "distinct_J_close_service_passes": 0
+}

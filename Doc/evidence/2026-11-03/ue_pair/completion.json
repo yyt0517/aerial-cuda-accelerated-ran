@@ -1,0 +1,17 @@
+{
+  "completed": true,
+  "formal_decisions": 378,
+  "formal_independent_finals": 126,
+  "new_offline_teachers": 21,
+  "engineering_decoders": 12,
+  "engineering_independent_finals": 12,
+  "reused_training_states": 18,
+  "unique_training_states": 15,
+  "new_training_teacher_scores": 0,
+  "new_training_decoder_scores": 0,
+  "training_updates": 1440,
+  "source_model_registry_unchanged": true,
+  "final_seeds_read": false,
+  "native_trajectories": 0,
+  "elapsed_s": 58.237765870057046
+}

@@ -1,0 +1,26 @@
+{
+  "engineering": {
+    "decisions": 2,
+    "exact_scores": 148306,
+    "teacher_ms": 465.57676047086716,
+    "independent_final_audits": 2
+  },
+  "validation": {
+    "decisions": 12,
+    "exact_scores": 617686,
+    "teacher_ms": 1225.4327414557338,
+    "independent_final_audits": 12
+  },
+  "evaluation": {
+    "decisions": 9,
+    "exact_scores": 666850,
+    "teacher_ms": 1313.2781479507685,
+    "independent_final_audits": 9
+  },
+  "total": {
+    "decisions": 23,
+    "exact_scores": 1432842,
+    "teacher_ms": 3004.2876498773694
+  },
+  "scope": "Offline teacher preparation only. Excludes formal runs, engineering decoder checks and independent NumPy audits, all reported separately."
+}

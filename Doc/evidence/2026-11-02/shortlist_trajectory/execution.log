@@ -1,0 +1,46 @@
+BENCH_SHORTLIST phase_a raw_global_deficit:seed44:tti4001
+BENCH_SHORTLIST phase_a raw_global_deficit:seed44:tti8001
+BENCH_SHORTLIST phase_a raw_global_deficit:seed44:tti18000
+BENCH_SHORTLIST phase_a pfq:seed44:tti4001
+BENCH_SHORTLIST phase_a pfq:seed44:tti8001
+BENCH_SHORTLIST phase_a pfq:seed44:tti18000
+BENCH_SHORTLIST phase_a raw_global_deficit:seed45:tti4001
+BENCH_SHORTLIST phase_a raw_global_deficit:seed45:tti8001
+BENCH_SHORTLIST phase_a raw_global_deficit:seed45:tti18000
+BENCH_SHORTLIST phase_a pfq:seed45:tti4001
+BENCH_SHORTLIST phase_a pfq:seed45:tti8001
+BENCH_SHORTLIST phase_a pfq:seed45:tti18000
+MECHANISM 4 {'quality': False, 'coverage': False, 'mean_ratio': 0.9135084863645242, 'mean_time_ratio': 0.5330907558517959, 'mean_positive_p5': 0.3026026792672687, 'mean_newly_unserved': 2.5}
+OWN_SHORTLIST raw_global_deficit:seed41:tti4001 27 8
+OWN_SHORTLIST raw_global_deficit:seed41:tti8001 27 8
+OWN_SHORTLIST raw_global_deficit:seed41:tti18000 27 8
+OWN_SHORTLIST pfq:seed41:tti4001 27 8
+OWN_SHORTLIST pfq:seed41:tti8001 27 8
+OWN_SHORTLIST pfq:seed41:tti18000 27 8
+OWN_SHORTLIST raw_global_deficit:seed42:tti4001 27 8
+OWN_SHORTLIST raw_global_deficit:seed42:tti8001 27 8
+OWN_SHORTLIST raw_global_deficit:seed42:tti18000 27 8
+OWN_SHORTLIST pfq:seed42:tti4001 27 8
+OWN_SHORTLIST pfq:seed42:tti8001 27 8
+OWN_SHORTLIST pfq:seed42:tti18000 27 8
+OWN_SHORTLIST raw_global_deficit:seed43:tti4001 27 8
+OWN_SHORTLIST raw_global_deficit:seed43:tti8001 27 8
+OWN_SHORTLIST raw_global_deficit:seed43:tti18000 27 8
+OWN_SHORTLIST pfq:seed43:tti4001 27 8
+OWN_SHORTLIST pfq:seed43:tti8001 27 8
+OWN_SHORTLIST pfq:seed43:tti18000 27 8
+FIT 1 0 {'quality': False, 'coverage': False, 'mean_ratio': 0.9135084863645242, 'mean_time_ratio': 0.5752149074612446, 'mean_positive_p5': 0.3026026792672687, 'mean_newly_unserved': 2.5}
+FIT 1 5 {'quality': False, 'coverage': False, 'mean_ratio': 0.9153428171567121, 'mean_time_ratio': 0.4992923460999827, 'mean_positive_p5': 0.22780383285347766, 'mean_newly_unserved': 1.8333333333333335}
+FIT 1 10 {'quality': False, 'coverage': False, 'mean_ratio': 0.934516619931917, 'mean_time_ratio': 0.49244367628728275, 'mean_positive_p5': 0.384859047024234, 'mean_newly_unserved': 1.6666666666666665}
+FIT 1 20 {'quality': False, 'coverage': False, 'mean_ratio': 0.9205175205807312, 'mean_time_ratio': 0.5026839436915861, 'mean_positive_p5': 0.16766754704962877, 'mean_newly_unserved': 2.0}
+SHORTLIST MODEL FROZEN {'top_k': 4, 'checkpoint': '/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz', 'sha256': '52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890', 'initial_sha256': '667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e', 'weights_changed': True, 'training_groups': 179, 'collected_groups': 144, 'new_states': 126, 'training_selection': {'epoch': 10, 'checkpoint': '/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz', 'sha256': '52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890', 'metric': {'quality': False, 'coverage': False, 'mean_ratio': 0.934516619931917, 'mean_time_ratio': 0.49244367628728275, 'mean_positive_p5': 0.384859047024234, 'mean_newly_unserved': 1.6666666666666665}}, 'development_not_read_in_this_run': True, 'historical_exposure_retained': True}
+BENCH_SHORTLIST evaluation pfq:seed46:tti3001
+BENCH_SHORTLIST evaluation pfq:seed46:tti4001
+BENCH_SHORTLIST evaluation pfq:seed46:tti5000
+BENCH_SHORTLIST evaluation pfq:seed47:tti3001
+BENCH_SHORTLIST evaluation pfq:seed47:tti4001
+BENCH_SHORTLIST evaluation pfq:seed47:tti5000
+BENCH_SHORTLIST evaluation pfq:seed48:tti3001
+BENCH_SHORTLIST evaluation pfq:seed48:tti4001
+BENCH_SHORTLIST evaluation pfq:seed48:tti5000
+SHORTLIST COMPLETE /data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1

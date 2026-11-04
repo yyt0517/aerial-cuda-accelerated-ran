@@ -1,0 +1,74 @@
+[
+  {
+    "arm": "bank_none212",
+    "bank_ms": 2.8633995292087393,
+    "matching_ms": 35.83241696469486,
+    "proxy_ms": 35.68254069735607,
+    "generation_ms": 8.976953104138374,
+    "proxy_candidates": 13941.166666666666,
+    "proxy_ue_rows": 501882.0,
+    "mmse_requests": 638878.5833333333,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2398.166666666667,
+    "feature_roots": 21.75,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 12
+    }
+  },
+  {
+    "arm": "quota_layer212",
+    "bank_ms": 2.8681547846645117,
+    "matching_ms": 14.024720372011263,
+    "proxy_ms": 25.270919160296522,
+    "generation_ms": 5.004210552821556,
+    "proxy_candidates": 8922.75,
+    "proxy_ue_rows": 321219.0,
+    "mmse_requests": 406593.0833333334,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2398.166666666667,
+    "feature_roots": 11.083333333333332,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 12
+    }
+  },
+  {
+    "arm": "activity212",
+    "bank_ms": 2.8676093400766454,
+    "matching_ms": 40.37595074623823,
+    "proxy_ms": 27.34861041729649,
+    "generation_ms": 7.396617283423742,
+    "proxy_candidates": 10328.5,
+    "proxy_ue_rows": 371826.0,
+    "mmse_requests": 477453.4166666666,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2398.166666666667,
+    "feature_roots": 19.416666666666664,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 12
+    }
+  },
+  {
+    "arm": "joint212",
+    "bank_ms": 2.877331804484129,
+    "matching_ms": 13.98186959947149,
+    "proxy_ms": 21.43585169687867,
+    "generation_ms": 4.288800526410341,
+    "proxy_candidates": 7264.083333333334,
+    "proxy_ue_rows": 261507.0,
+    "mmse_requests": 339196.4166666666,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2398.166666666667,
+    "feature_roots": 12.5,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 12
+    }
+  }
+]

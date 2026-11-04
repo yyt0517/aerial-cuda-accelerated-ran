@@ -1,0 +1,14 @@
+{
+  "preparation": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v1",
+  "preparation_evaluation_exposed": true,
+  "scalar_tie_mismatch": "seed48/tti5000, edits at rounds3/4 exchanged; final action identical",
+  "numerical_cause": "identical PHY rows accumulated differently by short strided NumPy matvec batches",
+  "correction": "same full-neighborhood score reduction shape and original row indices, cost fully included",
+  "unchanged_selected_weights": {
+    "scalar": true,
+    "spatial": true,
+    "block": true
+  },
+  "data_hyperparameters_and_budgets_unchanged": true,
+  "preparation_results_not_pooled": true
+}

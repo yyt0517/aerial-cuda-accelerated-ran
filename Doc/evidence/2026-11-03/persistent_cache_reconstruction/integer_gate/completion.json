@@ -1,0 +1,13 @@
+{
+  "completed": true,
+  "integer_equivalence_passed": true,
+  "audited_full_and_cache_rounds": 756,
+  "audited_full_and_cache_candidates": 1249340,
+  "guarded_envelope_passes": 12,
+  "guarded_states": 12,
+  "native_entry_authorized_by_gate": true,
+  "online_candidate_evaluations": 1764508,
+  "audit_candidate_evaluations": 499,
+  "numpy_terminal_audits": 48,
+  "new_native_runs": 0
+}

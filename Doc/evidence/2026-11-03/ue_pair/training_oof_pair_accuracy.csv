@@ -1,0 +1,16 @@
+state_id,seed,strict_pairs,pair_accuracy
+raw_global_deficit:seed41:tti4001,41,1024,0.9853515625
+raw_global_deficit:seed41:tti8001,41,338,1.0
+raw_global_deficit:seed41:tti18000,41,1024,0.5478515625
+pfq:seed41:tti8001,41,1024,0.9599609375
+pfq:seed41:tti18000,41,1024,0.9970703125
+raw_global_deficit:seed42:tti4001,42,1024,0.962890625
+raw_global_deficit:seed42:tti8001,42,1024,1.0
+raw_global_deficit:seed42:tti18000,42,988,0.9969635627530364
+pfq:seed42:tti8001,42,1024,0.923828125
+pfq:seed42:tti18000,42,1024,0.97265625
+raw_global_deficit:seed43:tti4001,43,1024,0.962890625
+raw_global_deficit:seed43:tti8001,43,1024,0.9873046875
+raw_global_deficit:seed43:tti18000,43,1024,0.9990234375
+pfq:seed43:tti8001,43,1024,0.96875
+pfq:seed43:tti18000,43,1024,0.98828125

@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "tests": 41,
+  "formal_decisions": 558,
+  "independent_final_phy_checks": 186,
+  "actual_own_states": 144,
+  "unique_physical_own_roots": 139,
+  "mask_provenance_and_training_seeds_verified": true,
+  "summary_gates_recomputed": true,
+  "posthoc_terminal_diagnostics_no_retraining": true,
+  "registry_unchanged": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

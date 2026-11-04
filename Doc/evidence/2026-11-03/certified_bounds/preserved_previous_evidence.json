@@ -1,0 +1,8 @@
+{
+  "labels_sha256": "5fae79e32523c7bb7502ff37e14e78a3491a31da1487e5c76cae57939e47db8d",
+  "labels": 161700,
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "previous_archive_files_unchanged": 290,
+  "cap4_seed44_failed_original_gate": true,
+  "new_native_controls_run": false
+}

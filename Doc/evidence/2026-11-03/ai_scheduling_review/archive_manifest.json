@@ -1,0 +1,20 @@
+{
+  "files": {
+    "attempts.csv": {
+      "sha256": "1cdedb3ad792651debc1f1e128101981cbcad9dcaaa05d11062370b88ee11dba",
+      "bytes": 5256
+    },
+    "recommended_implementation.json": {
+      "sha256": "8460e9f1b9af568300068fceef30ae7b5e0ef3067df73a6539cc0fff805769a8",
+      "bytes": 6884
+    },
+    "report.txt": {
+      "sha256": "b8b8f94539944101ac5256eedf47b55e4ad630dcbd167eb03f78b980509070d6",
+      "bytes": 12934
+    },
+    "source_evidence.json": {
+      "sha256": "809e1a8821caf3b662233e3a8b98da2f132a2458721627f189d899e6c15f841f",
+      "bytes": 5833
+    }
+  }
+}

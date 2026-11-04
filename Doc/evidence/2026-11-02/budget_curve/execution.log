@@ -1,0 +1,23 @@
+BUDGET_BENCH validation raw_global_deficit:seed44:tti4001
+BUDGET_BENCH validation raw_global_deficit:seed44:tti8001
+BUDGET_BENCH validation raw_global_deficit:seed44:tti18000
+BUDGET_BENCH validation pfq:seed44:tti4001
+BUDGET_BENCH validation pfq:seed44:tti8001
+BUDGET_BENCH validation pfq:seed44:tti18000
+BUDGET_BENCH validation raw_global_deficit:seed45:tti4001
+BUDGET_BENCH validation raw_global_deficit:seed45:tti8001
+BUDGET_BENCH validation raw_global_deficit:seed45:tti18000
+BUDGET_BENCH validation pfq:seed45:tti4001
+BUDGET_BENCH validation pfq:seed45:tti8001
+BUDGET_BENCH validation pfq:seed45:tti18000
+BUDGET SELECTION FROZEN {'quality_best': {'arm': 'trained_k4_b212', 'time_ratio': 0.7057471443918475}, 'within_cost_best': {'arm': 'trained_k4_b212', 'time_ratio': 0.7057471443918475, 'cost_feasible': True}, 'selection': 'validation only; shared prior key, complete-mean cost filter, lower cost/budget on exact ties', 'development_not_read_in_this_run': True, 'historical_exposure_retained': True}
+BUDGET_BENCH evaluation pfq:seed46:tti3001
+BUDGET_BENCH evaluation pfq:seed46:tti4001
+BUDGET_BENCH evaluation pfq:seed46:tti5000
+BUDGET_BENCH evaluation pfq:seed47:tti3001
+BUDGET_BENCH evaluation pfq:seed47:tti4001
+BUDGET_BENCH evaluation pfq:seed47:tti5000
+BUDGET_BENCH evaluation pfq:seed48:tti3001
+BUDGET_BENCH evaluation pfq:seed48:tti4001
+BUDGET_BENCH evaluation pfq:seed48:tti5000
+BUDGET CURVE COMPLETE /data/aerial-cuda-accelerated-ran/deliverables/budget_curve_20261102_v1

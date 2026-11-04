@@ -1,0 +1,168 @@
+{
+  "train_seed41": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 29088,
+      "exact_native_actions": 29088,
+      "fresh_input_checks": 29088,
+      "exact_mcs_layer_tbs_dequeue": 29088,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 5071.387832107022
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 29088
+    },
+    "long_credit_validation.json": {
+      "passed": true,
+      "steps": 24576,
+      "independently_reconstructed_full_packet_wait": true,
+      "independently_reconstructed_age_exposure": true,
+      "full_packet_base_verified": true,
+      "potential_endpoint_consistency": true,
+      "all_native_actions_exact": true,
+      "no_ctbs": true,
+      "no_business_weights": true
+    }
+  },
+  "train_seed42": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 29088,
+      "exact_native_actions": 29088,
+      "fresh_input_checks": 29088,
+      "exact_mcs_layer_tbs_dequeue": 29088,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 5071.481124455109
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 29088
+    },
+    "long_credit_validation.json": {
+      "passed": true,
+      "steps": 24576,
+      "independently_reconstructed_full_packet_wait": true,
+      "independently_reconstructed_age_exposure": true,
+      "full_packet_base_verified": true,
+      "potential_endpoint_consistency": true,
+      "all_native_actions_exact": true,
+      "no_ctbs": true,
+      "no_business_weights": true
+    }
+  },
+  "train_seed43": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 29088,
+      "exact_native_actions": 29088,
+      "fresh_input_checks": 29088,
+      "exact_mcs_layer_tbs_dequeue": 29088,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 5071.827866863459
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 29088
+    },
+    "long_credit_validation.json": {
+      "passed": true,
+      "steps": 24576,
+      "independently_reconstructed_full_packet_wait": true,
+      "independently_reconstructed_age_exposure": true,
+      "full_packet_base_verified": true,
+      "potential_endpoint_consistency": true,
+      "all_native_actions_exact": true,
+      "no_ctbs": true,
+      "no_business_weights": true
+    }
+  },
+  "eval_ppo_seed44": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 12400,
+      "exact_native_actions": 12400,
+      "fresh_input_checks": 12400,
+      "exact_mcs_layer_tbs_dequeue": 12400,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 1412.321290015243
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 12400
+    }
+  },
+  "eval_ppo_seed45": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 12400,
+      "exact_native_actions": 12400,
+      "fresh_input_checks": 12400,
+      "exact_mcs_layer_tbs_dequeue": 12400,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 1419.118427936919
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 12400
+    }
+  },
+  "eval_physical_greedy_seed44": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 12400,
+      "exact_native_actions": 12400,
+      "fresh_input_checks": 12400,
+      "exact_mcs_layer_tbs_dequeue": 12400,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 1461.4367387648672
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 12400
+    }
+  },
+  "eval_physical_greedy_seed45": {
+    "validation.json": {
+      "passed": true,
+      "horizon": 12400,
+      "exact_native_actions": 12400,
+      "fresh_input_checks": 12400,
+      "exact_mcs_layer_tbs_dequeue": 12400,
+      "no_ctbs_action_clipping": true,
+      "equal_ue_reward": true,
+      "sources_unchanged": true,
+      "elapsed_s": 1592.0039058784023
+    },
+    "reward_validation.json": {
+      "passed": true,
+      "full_payload_reward_exact": true,
+      "expiry_full_packet_reward_exact": true,
+      "tti": 12400
+    }
+  }
+}

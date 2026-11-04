@@ -1,0 +1,68 @@
+BENCH phase_a raw_global_deficit:seed44:tti4001
+BENCH phase_a raw_global_deficit:seed44:tti8001
+BENCH phase_a raw_global_deficit:seed44:tti18000
+BENCH phase_a pfq:seed44:tti4001
+BENCH phase_a pfq:seed44:tti8001
+BENCH phase_a pfq:seed44:tti18000
+BENCH phase_a raw_global_deficit:seed45:tti4001
+BENCH phase_a raw_global_deficit:seed45:tti8001
+BENCH phase_a raw_global_deficit:seed45:tti18000
+BENCH phase_a pfq:seed45:tti4001
+BENCH phase_a pfq:seed45:tti8001
+BENCH phase_a pfq:seed45:tti18000
+GEOMETRY shallow {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9386660858107059, 'mean_ratio': 0.8164421654357085, 'quality_shortfall': 0.1785578345642916, 'coverage_shortfall': 0.02777777777777778}
+OWN 1 raw_global_deficit:seed41:tti4001 visited 50 unique 47 labels 8
+OWN 1 raw_global_deficit:seed41:tti8001 visited 50 unique 43 labels 8
+OWN 1 raw_global_deficit:seed41:tti18000 visited 50 unique 44 labels 8
+OWN 1 pfq:seed41:tti4001 visited 50 unique 47 labels 8
+OWN 1 pfq:seed41:tti8001 visited 50 unique 48 labels 8
+OWN 1 pfq:seed41:tti18000 visited 49 unique 39 labels 8
+OWN 1 raw_global_deficit:seed42:tti4001 visited 50 unique 47 labels 8
+OWN 1 raw_global_deficit:seed42:tti8001 visited 49 unique 45 labels 8
+OWN 1 raw_global_deficit:seed42:tti18000 visited 50 unique 47 labels 8
+OWN 1 pfq:seed42:tti4001 visited 50 unique 47 labels 8
+OWN 1 pfq:seed42:tti8001 visited 50 unique 40 labels 8
+OWN 1 pfq:seed42:tti18000 visited 50 unique 45 labels 8
+OWN 1 raw_global_deficit:seed43:tti4001 visited 50 unique 43 labels 8
+OWN 1 raw_global_deficit:seed43:tti8001 visited 50 unique 44 labels 8
+OWN 1 raw_global_deficit:seed43:tti18000 visited 50 unique 48 labels 8
+OWN 1 pfq:seed43:tti4001 visited 50 unique 43 labels 8
+OWN 1 pfq:seed43:tti8001 visited 48 unique 45 labels 8
+OWN 1 pfq:seed43:tti18000 visited 50 unique 48 labels 8
+FIT 1 0 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9690591585303119, 'mean_ratio': 0.8164421654357085, 'quality_shortfall': 0.1785578345642916, 'coverage_shortfall': 0.02777777777777778}
+FIT 1 5 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.933442953194232, 'mean_ratio': 0.818223131783939, 'quality_shortfall': 0.176776868216061, 'coverage_shortfall': 0.03240740740740741}
+FIT 1 10 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9371926777202458, 'mean_ratio': 0.7976830355628726, 'quality_shortfall': 0.19731696443712746, 'coverage_shortfall': 0.02777777777777778}
+FIT 1 20 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9280943823645357, 'mean_ratio': 0.7967035849086939, 'quality_shortfall': 0.19829641509130616, 'coverage_shortfall': 0.025462962962962965}
+OWN 2 raw_global_deficit:seed41:tti4001 visited 50 unique 48 labels 8
+OWN 2 raw_global_deficit:seed41:tti8001 visited 49 unique 43 labels 8
+OWN 2 raw_global_deficit:seed41:tti18000 visited 50 unique 47 labels 8
+OWN 2 pfq:seed41:tti4001 visited 50 unique 48 labels 8
+OWN 2 pfq:seed41:tti8001 visited 50 unique 43 labels 8
+OWN 2 pfq:seed41:tti18000 visited 49 unique 45 labels 8
+OWN 2 raw_global_deficit:seed42:tti4001 visited 50 unique 35 labels 8
+OWN 2 raw_global_deficit:seed42:tti8001 visited 50 unique 46 labels 8
+OWN 2 raw_global_deficit:seed42:tti18000 visited 50 unique 50 labels 8
+OWN 2 pfq:seed42:tti4001 visited 50 unique 35 labels 8
+OWN 2 pfq:seed42:tti8001 visited 50 unique 45 labels 8
+OWN 2 pfq:seed42:tti18000 visited 50 unique 48 labels 8
+OWN 2 raw_global_deficit:seed43:tti4001 visited 50 unique 33 labels 8
+OWN 2 raw_global_deficit:seed43:tti8001 visited 50 unique 47 labels 8
+OWN 2 raw_global_deficit:seed43:tti18000 visited 50 unique 46 labels 8
+OWN 2 pfq:seed43:tti4001 visited 50 unique 33 labels 8
+OWN 2 pfq:seed43:tti8001 visited 50 unique 18 labels 8
+OWN 2 pfq:seed43:tti18000 visited 50 unique 41 labels 8
+FIT 2 0 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9353127156910084, 'mean_ratio': 0.818223131783939, 'quality_shortfall': 0.176776868216061, 'coverage_shortfall': 0.03240740740740741}
+FIT 2 5 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9380017281747718, 'mean_ratio': 0.7994560612533973, 'quality_shortfall': 0.19554393874660272, 'coverage_shortfall': 0.03240740740740741}
+FIT 2 10 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9356530853749837, 'mean_ratio': 0.7995576858468683, 'quality_shortfall': 0.1954423141531316, 'coverage_shortfall': 0.02546296296296296}
+FIT 2 20 {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9397327304347638, 'mean_ratio': 0.805073747241525, 'quality_shortfall': 0.18992625275847488, 'coverage_shortfall': 0.037037037037037035}
+MODEL FROZEN {'geometry': 'shallow', 'checkpoint': '/data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1/own_r2_e00.npz', 'sha256': 'b1f123161eb4f5b472d2c07cb5c5de0349c2b56f7e25c768565b1d305e018e15', 'initial_sha256': '667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e', 'weights_changed': True, 'rounds': [{'round': 1, 'collected_groups': 144, 'new_roots_vs_existing': 126, 'unique_own_roots': 144, 'combined_groups': 179, 'selection': {'epoch': 5, 'checkpoint': '/data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1/own_r1_e05.npz', 'sha256': 'b1f123161eb4f5b472d2c07cb5c5de0349c2b56f7e25c768565b1d305e018e15', 'metric': {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.933442953194232, 'mean_ratio': 0.818223131783939, 'quality_shortfall': 0.176776868216061, 'coverage_shortfall': 0.03240740740740741}}}, {'round': 2, 'collected_groups': 144, 'new_roots_vs_existing': 116, 'unique_own_roots': 260, 'combined_groups': 295, 'selection': {'epoch': 0, 'checkpoint': '/data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1/own_r2_e00.npz', 'sha256': 'b1f123161eb4f5b472d2c07cb5c5de0349c2b56f7e25c768565b1d305e018e15', 'metric': {'quality': False, 'coverage': False, 'cost': False, 'time_ratio': 0.9353127156910084, 'mean_ratio': 0.818223131783939, 'quality_shortfall': 0.176776868216061, 'coverage_shortfall': 0.03240740740740741}}}], 'evaluation_not_read_in_this_run': True, 'historical_exposure_retained': True}
+BENCH evaluation pfq:seed46:tti3001
+BENCH evaluation pfq:seed46:tti4001
+BENCH evaluation pfq:seed46:tti5000
+BENCH evaluation pfq:seed47:tti3001
+BENCH evaluation pfq:seed47:tti4001
+BENCH evaluation pfq:seed47:tti5000
+BENCH evaluation pfq:seed48:tti3001
+BENCH evaluation pfq:seed48:tti4001
+BENCH evaluation pfq:seed48:tti5000
+COMPLETE /data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1

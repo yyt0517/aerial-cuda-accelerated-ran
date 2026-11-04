@@ -1,0 +1,22 @@
+{
+  "completed": true,
+  "tests": 20,
+  "source_hash_checks": 31,
+  "input_hash_checks": 65,
+  "integer_equivalence_passed": true,
+  "native_exact_checked_steps": 49600,
+  "labels_sha256": "5fae79e32523c7bb7502ff37e14e78a3491a31da1487e5c76cae57939e47db8d",
+  "independently_recomputed_cohort_rows": 462420,
+  "independently_recomputed_per_ue_rows": 144,
+  "independently_recomputed_payload_expiry_delay_gap_and_cost": true,
+  "default_registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "default_registry_matches_historical_review": true,
+  "calibration_deduplicated": true,
+  "full_probability_distribution_claimed": false,
+  "native_quality_passed": false,
+  "native_PHY_cost_passed": false,
+  "matched_architecture_cache_wall_ratio": 0.4662092502463117,
+  "promotion": false,
+  "M_paused": true,
+  "learning_paused": true
+}

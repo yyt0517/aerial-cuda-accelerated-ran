@@ -1,0 +1,162 @@
+{
+  "reports": [
+    {
+      "path": "Doc/evidence/2026-10-29/dpls_component_ablation/report.txt",
+      "sha256": "7267a113984b9d04b7c355f977790b4befac2cccfb0bc5509d75054634bc6955",
+      "bytes": 6389
+    },
+    {
+      "path": "Doc/evidence/2026-10-27/tb_joint_repair/report.txt",
+      "sha256": "d44337276d955035113020b0ac57e1e4547441efab390f616ba6a38dc1f93c07",
+      "bytes": 8642
+    },
+    {
+      "path": "Doc/evidence/2026-10-28/tb_direct_risk/final_report.txt",
+      "sha256": "b8564a0ff87a823d7904888604d711b3043bc47e11eb6c3b8808bb55bd61d013",
+      "bytes": 7585
+    },
+    {
+      "path": "Doc/evidence/2026-10-28/tb_neural_cost/report.txt",
+      "sha256": "aef45c655af76056519d89949deffdfaf2bfda7c912d5859f1852cc00f2ffd02",
+      "bytes": 5084
+    },
+    {
+      "path": "Doc/evidence/2026-10-28/tb_prefix/report.txt",
+      "sha256": "1cf06bc982be9655f96a5cd7aa6088679a4286b3501977c63ff8dc65ff9eef9a",
+      "bytes": 11150
+    },
+    {
+      "path": "Doc/evidence/2026-10-30/ppo_service_choice/report.txt",
+      "sha256": "5f6c3bef88d7d4d89d7e7e2fe27ba40e2102961231ce77595ea5221b9b43da25",
+      "bytes": 13266
+    },
+    {
+      "path": "Doc/evidence/2026-10-30/ppo_tail_wait/report.txt",
+      "sha256": "1d5fd8da2eea6af700f47446c1e32a63d1b23a2e581ef79ba73aa41b5deb3080",
+      "bytes": 6219
+    },
+    {
+      "path": "Doc/evidence/2026-10-30/ppo_tail_balance/report.txt",
+      "sha256": "2ae1781b2c7b5158506f32ad5cca8f4b51c18ff7b6ad691b0884578ef3929fb4",
+      "bytes": 8464
+    },
+    {
+      "path": "Doc/evidence/2026-10-30/ppo_search_teacher/report.txt",
+      "sha256": "0c137338fe9716ecfdf7f91ecef9ad0cffe6b693f0e1171e7c0ae9ab7909fa9d",
+      "bytes": 11568
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/structured_continuation/report.txt",
+      "sha256": "6fd92ec788f41cb252ee022eb6ceca9bc3619b281a24759c4586ea1229f110cc",
+      "bytes": 6942
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/no_ctbs_ai_ranked_dpls/report.txt",
+      "sha256": "eaffe5af7a6d83ce0ca8ebaa4240a7ec83e16231a1197fcc018753370edd6213",
+      "bytes": 4762
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/three_bounded_ai_probes/report.txt",
+      "sha256": "cdc9ea0a5c8955477200f49aeeb8f18a42d9c10f08c7f6216051d934daf60535",
+      "bytes": 8812
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/own_trajectory/report.txt",
+      "sha256": "c2598e3c9fafe11873e84249656f73694eee2aad15a544af712eaca51be51395",
+      "bytes": 8827
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/shortlist_trajectory/report.txt",
+      "sha256": "4cf06d7b4b18ca21161c3e827158000bad8a217d0c4ebee10ef3434f56e22d00",
+      "bytes": 8695
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/budget_curve/report.txt",
+      "sha256": "d3d28254b2d74f158c9d8db7236bdbd567fdc2c72f53bc99357172716a213093",
+      "bytes": 7378
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/tb_macro_continuation/report.txt",
+      "sha256": "2dff238f61675ba1940ba556812590d8bd2975f8cebdb07382c46651e93e3034",
+      "bytes": 12036
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/selective_tb/report.txt",
+      "sha256": "b0af09fe218bdc17f147ff03d12c2e0dbd26249339d3e9bbcbfe76462b9e4607",
+      "bytes": 13349
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/service_repair/report.txt",
+      "sha256": "5c3f9070babcbc9b0ffaacb9adeb366ff2cfa2a0cd1f72b2b85ea2c3432b8a36",
+      "bytes": 13717
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/resource_conditions/report.txt",
+      "sha256": "4fe916813569a917bdf70277be0573776c05ad625b92932c1c69b2db7d6594c7",
+      "bytes": 12919
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/joint_reorder/report.txt",
+      "sha256": "efbc7f43ae8152677adae568dd6876193fba591e6c7e802edd0d6048978c2777",
+      "bytes": 12527
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/weak_service/report.txt",
+      "sha256": "b416551d12b03f4d1eb6c1bc31298fba91fe99a2f2be38417ea973c5bddd2d49",
+      "bytes": 12986
+    },
+    {
+      "path": "Doc/evidence/2026-11-02/directed_reorder/report.txt",
+      "sha256": "fbc1441b225e69e87c5c810140c40940e925e5ab58e4a9d6989f79582a87ed26",
+      "bytes": 13755
+    },
+    {
+      "path": "Doc/evidence/2026-11-03/terminal_service/report.txt",
+      "sha256": "f2c2ead093dc3b0e9f2dd47bdac1d1583543806254ef1186b46ab8713e50c504",
+      "bytes": 11503
+    },
+    {
+      "path": "Doc/evidence/2026-11-03/ue_pair/report.txt",
+      "sha256": "2d6ef7355c81c37680249877804a8613c1babeb91a6c375883640db2b57f972e",
+      "bytes": 12154
+    },
+    {
+      "path": "deliverables/repair_expansion_20261103_v1/report.txt",
+      "sha256": "a499072f7d5f3afbfcc0d8f5b3495f1909dad69888303b19be792ec4d25fa533",
+      "bytes": 11341
+    }
+  ],
+  "ppo_source_checks": [
+    {
+      "manifest": {
+        "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/source_manifest.json",
+        "sha256": "c24489d6056d9c99a4ce6de543cc7c3e49574eccf76803685131dcd47ee2f24f",
+        "bytes": 7342
+      },
+      "entries": 67,
+      "all_current_files_match": true
+    },
+    {
+      "manifest": {
+        "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/base_source_manifest.json",
+        "sha256": "3c7ae427338e0cf704db666d122053f17be60643be43d53f0935b6875f643a02",
+        "bytes": 6892
+      },
+      "entries": 63,
+      "all_current_files_match": true
+    },
+    {
+      "manifest": {
+        "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/runtime_supplement_manifest.json",
+        "sha256": "02d79c28bfd2892f976ef347786526edd8d4d416c170a29b9d78ca731b2a92b0",
+        "bytes": 463
+      },
+      "entries": 4,
+      "all_current_files_match": true
+    }
+  ],
+  "checkpoint_cpu_load_verified": true,
+  "native_tests_reused_not_rerun": true,
+  "no_new_training": true,
+  "no_default_change": true
+}

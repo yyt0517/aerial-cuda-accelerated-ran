@@ -1,0 +1,167 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "methods": [
+    "full",
+    "legacy_ai212",
+    "unprotected212",
+    "main180",
+    "all_pfq_guard212",
+    "heuristic_lock_repair32",
+    "learned_lock_repair32",
+    "heuristic_repair32",
+    "matched_repair32",
+    "learned_repair32",
+    "learned_repair64"
+  ],
+  "configs": {
+    "unprotected212": {
+      "source": "none",
+      "lock": false,
+      "repair_budget": 0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "main180": {
+      "source": "none",
+      "lock": false,
+      "repair_budget": 0,
+      "max_candidates": 180,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "heuristic_lock_repair32": {
+      "source": "heuristic",
+      "lock": true,
+      "repair_budget": 32,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "learned_lock_repair32": {
+      "source": "learned",
+      "lock": true,
+      "repair_budget": 32,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "heuristic_repair32": {
+      "source": "heuristic",
+      "lock": false,
+      "repair_budget": 32,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "matched_repair32": {
+      "source": "matched",
+      "lock": false,
+      "repair_budget": 32,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "learned_repair32": {
+      "source": "learned",
+      "lock": false,
+      "repair_budget": 32,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    },
+    "learned_repair64": {
+      "source": "learned",
+      "lock": false,
+      "repair_budget": 64,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "repair_passes": 4,
+      "quality_retention": 0.995
+    }
+  },
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "objective": "canonical native BLER, causal deficit-weighted J, raw PFQ90% dequeue floor",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "training_validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "training_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "teacher": "one fresh full-DPLS terminal/decision on training and validation only, labels COUNT>0 and EXPECTED>1B; explicit offline physics ledger and independent audit",
+  "features": "40 per-UE causal initial-PFQ/geometry/MCS/queue/weight/cell-rank/context features; one initial PHY is part of online212 cap",
+  "model": "40->24->12->2 ReLU, sigmoid sets; training-only normalization; BCE +0.1 cardinality loss",
+  "training": "one60epoch round, AdamW lr0.003 wd0.0001, seed20261102; checkpoints0/10/30/60",
+  "calibration": "validation9 threshold pairs0.3/0.5/0.7; per-state allocation/effective recall>=98% and mean size<=75% eligible; otherwise predefined recall/size/precision loss",
+  "heuristic": "calibrate allocated K=4/6/8 and effective K=2/4 per cell on same set objective; utility based on causal PFQ reliability/TBS/quality/weights",
+  "matched": "same learned cardinalities per cell, heuristic UE identities; model/cardinality cost remains included",
+  "main": "same incremental selective pool/proxy; >1B improving PFQ-feasible edits; optional fixed proposed-member count lock only, no all-PFQ P5 anchor",
+  "repair": "total212 scores; reserve32 or64 new exact scores; max4 fair PRG passes,1 candidate/block; root-local phase rejection and decision-local exact cache",
+  "repair_goal": "lexicographic proposed allocation coverage, proposed effective-positive count, P5/weak20% in1B bins, then J",
+  "repair_fence": "every accepted terminal action J>=99.5% fixed main-stage terminal J and raw PFQ dequeue floor; not a99.5%-full guarantee",
+  "conditional": "validation only, explicit diagnostic mode, teacher masks never enter formal online arms; single run per diagnostic, teacher preparation separately charged; not a complete upper bound",
+  "max_feature_roots": 56,
+  "main_sweeps": 5,
+  "repeats": 3,
+  "timing": "input/PFQ decode through fresh PHY, proposal features/network, caches/pools, exact verification and terminal repair/scoring/cleanup",
+  "exclusions": "archive/model/library IO and first immutable TBS setup; all labels, training, conditional probes and independent audits separate",
+  "quality_gate": "every state J>=99.5% full",
+  "coverage_gate": "no newly unallocated UE vs full; full-positive UE P5/bottom20%>=98% reference",
+  "cost_gate": "seed-equal complete per-state median mean<=80% full",
+  "learning_gate": "changed model, set recall/compression gate,>=6/9 J wins and positive every-seed J delta vs size-matched control, plus final joint gate",
+  "old_model": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+  "old_model_sha256": "52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

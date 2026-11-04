@@ -1,0 +1,279 @@
+{
+  "repeats_actions_values_identical": true,
+  "raw_floor_and_caps_valid": true,
+  "exact_conditions_audited": true,
+  "teacher_preparation_separate": true,
+  "no_teacher_UE_positions_in_solver": true,
+  "independent_phy": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "ordinary212",
+      "max_error": 4.729372449219227e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "bank_none212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "quota_layer212",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "activity212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "ordinary212",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "bank_none212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "activity212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint212",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "full",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "ordinary212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "bank_none212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "quota_layer212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "activity212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "full",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "ordinary212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "bank_none212",
+      "max_error": 2.3646862246096134e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "quota_layer212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "activity212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "full",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "ordinary212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "bank_none212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 1.1141310096718371e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "activity212",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint212",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "full",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "ordinary212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "bank_none212",
+      "max_error": 6.821210263296962e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "quota_layer212",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "activity212",
+      "max_error": 5.684341886080802e-14
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint212",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "full",
+      "max_error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "ordinary212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "bank_none212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "quota_layer212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "activity212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "ordinary212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "bank_none212",
+      "max_error": 1.1368683772161603e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "activity212",
+      "max_error": 3.183231456205249e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "ordinary212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "bank_none212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "quota_layer212",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "activity212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint212",
+      "max_error": 5.4569682106375694e-12
+    }
+  ]
+}

@@ -77,13 +77,15 @@ source .venv/bin/activate
 
 Run the legacy Stage-B training and evaluation commands from the activated shell. The current-policy launcher described below runs on the host and enters the existing CUDA container itself.
 
-Current Stage-B research status (updated 2026-10-29):
+Current Stage-B research status (updated 2026-11-04):
 
 - [Project documentation](Doc/README.md)
 - [Current progress and evidence](Doc/stageB_current_progress.md)
 - [Frozen experimental configuration](Doc/current_stageB_effective_configuration.md)
 
-The current research policy is PFQ + CTBS + causal deficit-weighted physical local search with a causal dequeue floor of rho=0.90. Five-seed, ten-second comparisons against PFQ are complete for boundary/rate0.8 and uniform/rate1.0. Neural repair, caching and value-learning experiments have not met all quality gates for replacing this policy. Its [version registry](training/stageb_hgraph/current_algorithm.json) and [launcher](cuMAC/scripts/run_stageB_current_algorithm.sh) identify the boundary entrypoint, which requires the existing CUDA container and research worktree. The documentation includes evidence snapshots; the full experimental runtime and local neural research package are not included in this documentation update.
+The registered research policy is PFQ + CTBS + causal deficit-weighted physical local search with a causal dequeue floor of rho=0.90. Five-seed, ten-second comparisons against PFQ are complete for boundary/rate0.8 and uniform/rate1.0. Its [version registry](training/stageb_hgraph/current_algorithm.json) and [launcher](cuMAC/scripts/run_stageB_current_algorithm.sh) identify the boundary entrypoint, which requires the existing CUDA container and research worktree.
+
+The latest Boundary/rate0.8 candidate combines M-LWDF-PF weights with exact upper-bound-pruned DPLS. On three development seeds and matching two-second arrival cohorts, complete-packet payload improves 68.96% over PFQ, successful mean delay falls 97.76%, and expiry is zero. This classical scheduling rule and heuristic search combination has no trained model. Higher-load results and inference-time comparisons have separate limits; see the [paired report](Doc/evidence/2026-11-04/mlwdf_pfq_boundary_comparison/report.txt). It has not replaced the registered policy. Research source packages and frozen evidence are included; complete native replay still requires local worktree, trace and model artifacts. Build research runtime libraries from the supplied scripts.
 
 ### Further Information
 

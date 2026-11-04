@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "tests": 84,
+  "version1_tests": 81,
+  "formal_decisions_per_version": 378,
+  "formal_decisions_total": 756,
+  "formal_independent_finals_total": 252,
+  "offline_teacher_independent_finals_total": 46,
+  "engineering_decoder_independent_finals_total": 16,
+  "terminal_independent_best_checks": 20,
+  "terminal_offline_phy": 1292,
+  "all21_states_six_arms_v1_v2_actions_values_and_work_identical": true,
+  "exact_conditions_and_raw_floor_valid": true,
+  "old_source_snapshot_hashes_valid": true,
+  "current_fast_sources_hashes_valid": true,
+  "registry_and_physics_source_unchanged": true,
+  "training_updates": 0,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

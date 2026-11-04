@@ -1,0 +1,10 @@
+{
+  "posthoc": true,
+  "validation_only": true,
+  "scope": "12 frozen joint212 terminal roots; entire same pair/3-cycle local pool, fixed counts/layers/activity",
+  "purpose": "separate finite decoder/proxy/budget omissions from infeasible conditional domain; not global bound",
+  "teacher_service": "used after queries only to diagnose existence of final quality/coverage passing neighbors; never online",
+  "online_policy_or_selection_changed": false,
+  "source_actions_sha256": "7dc735fe76ba6b27a76e4fdda096b0d667485accfb0c0a487608d62d669758f2",
+  "code_sha256": "e67d995d6ec6c8d431ab86cdb9d2f2f5f532de4a12b0fd8f5c43e0cab1ead412"
+}

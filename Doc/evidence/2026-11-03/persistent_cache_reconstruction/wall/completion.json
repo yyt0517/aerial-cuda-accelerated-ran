@@ -1,0 +1,9 @@
+{
+  "completed": true,
+  "timed_decisions": 360,
+  "profiled_decisions": 36,
+  "timed_candidate_evaluations": 11945990,
+  "profiled_candidate_evaluations": 984879,
+  "all_outputs_match_frozen_gate": true,
+  "new_native_runs": 0
+}

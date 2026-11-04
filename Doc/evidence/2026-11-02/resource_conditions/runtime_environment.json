@@ -1,0 +1,18 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "threads": 1,
+  "gpu_used": false,
+  "build": [
+    "g++",
+    "-O3",
+    "-std=c++17",
+    "-DNDEBUG",
+    "-ffp-contract=off",
+    "-shared",
+    "-fPIC",
+    "-I/usr/include/eigen3"
+  ],
+  "note": "Separate diagnostic PHY extension includes unchanged physics source; extra stateless pool extension."
+}

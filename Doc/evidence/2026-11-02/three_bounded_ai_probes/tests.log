@@ -1,0 +1,29 @@
+test_bounded_block_search_covers_all_prgs_before_deepening (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_certified_search_preserves_full_trajectory_and_ties (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_new_predictor_matches_torch_with_clipping_and_nonzero_weights (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_probability_bound_holds_over_all_native_piecewise_segments (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_probe_kernel_matches_independent_phy (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_residual_generator_never_calls_search_or_teacher (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_scalar_certificate_needs_no_spatial_bank_and_preserves_actions (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_sparse_score_layout_preserves_full_batch_ties (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_spatial_features_reconstruct_exact_tb_sinr_without_bler_queries (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_stale_closed_and_mult_prg_inputs_rejected (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_upper_bound_and_logical_dequeue_including_full_three_cell_edits (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_entire_timed_path_ignores_ctbs_and_demand_masks (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_metadata_detach_never_invokes_headroom_or_mcs_methods (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_physical_prg_availability_is_preserved_without_ue_demand_clipping (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_metadata_preferred_and_invalid_ema_or_native_mcs_rejected (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_pfq_retains_prgs_after_queue_saturation (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_pfq_validates_native_slot_semantics (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_stale_phy_or_queue_observation_is_rejected (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_upcoming_decision_clock_requires_matching_snapshot_identity (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_first_two_rejections_still_reach_round_three (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_full_matches_independent_fixed_root_reference (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_passive_teacher_observer_does_not_change_decisions (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_ranked_full_k_has_identical_choices_and_no_duplicate_fallback (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_tiny_shortlist_ends_with_exact_full_stop_and_independent_phy (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 2.080s
+
+OK

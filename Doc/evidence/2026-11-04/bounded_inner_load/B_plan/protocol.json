@@ -1,0 +1,27 @@
+{
+  "version": "B_causal_HOL_scan_v1",
+  "date": "2026-11-04",
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "coefficients": [
+    0,
+    0.25,
+    0.5,
+    1,
+    2
+  ],
+  "entry": "bounded12-state equivalence and40%wall pass, then load0.8/1.12/1.28 perload cost/equivalence stage",
+  "formula": "causal deficit base*(1+k*(1-HOL_slack/400)); mean-normalize; k0 exact unchanged base",
+  "warmup": 4000,
+  "settling": 4000,
+  "measured": 4000,
+  "followup": 400,
+  "aggregation": "mean seed payload; packet-pooled expiry/P95; worst expiry=max over seed/UE",
+  "B_rule": "perseed payload/expiry no worse, P95<=k0+1ms, worstUE<=max(k0worst+2pp,5%), no new zero/TTL-long-gap UE",
+  "historical_quality": "same original anytime step0 quality thresholds also reported",
+  "no_postselection": "all five points and all seeds retained; no grid/threshold tuning after outcomes",
+  "learning": "first coefficient scan only; zero gradient fitting, no sorting model training; no final confirmation"
+}

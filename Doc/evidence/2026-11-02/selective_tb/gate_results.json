@@ -1,0 +1,149 @@
+{
+  "selected_on_validation": {
+    "quality_best": "legacy_ai212",
+    "within_cost_best": "legacy_ai212",
+    "cost_feasible": true,
+    "rule": "validation only: quality/coverage, J shortfall, service shortfall, mean ratio; complete-cost filter for within-cost point",
+    "development_not_read_in_this_run": true,
+    "historical_exposure_retained": true
+  },
+  "selected_model": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/selective_tb_20261102_v1/selective_e05.npz",
+    "sha256": "d3bec2d68b9827849cf59d2c1a8887990784a9937b13b0d78c70cb5ab34a3ada",
+    "epoch": 5,
+    "normalization_training_only": true,
+    "one_training_round": true,
+    "development_not_read": true
+  },
+  "quality_coverage_cost": {
+    "legacy_ai212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "old_joint212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "increment_fixed_unprotected": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "increment_selective_unprotected": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "increment_single_guard": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "increment_fixed_guard": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "increment_selective_guard": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_guard": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_gain_only_guard": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    }
+  },
+  "engineering": {
+    "all21_final_actions_identical": true,
+    "incremental_proxy_equivalent": true,
+    "microbenchmark_mean_incremental_ms": 0.23448566207662225,
+    "microbenchmark_mean_wide_ms": 1.2464180472306907,
+    "complete_development_old_ms": 168.40295245250067,
+    "complete_development_new_ms": 71.76037463876935,
+    "complete_time_reduction_pct": 57.38769802209382,
+    "ai_credit": false
+  },
+  "learning": {
+    "selected_weights_changed": true,
+    "development_pair": {
+      "new": "trained_guard",
+      "old": "increment_selective_guard",
+      "wins": 4,
+      "losses": 5,
+      "ties": 0,
+      "mean_j_delta": -371.5417478327872,
+      "mean_j_delta_pct": -0.5466673375537412,
+      "mean_delta_pp": -0.48432322748645573,
+      "mean_ms_delta": 3.3226089759005446,
+      "mean_newly_unserved_delta": 0.0,
+      "mean_positive_p5_delta": 0.1112660577249819
+    },
+    "per_seed": [
+      {
+        "new": "trained_guard",
+        "old": "increment_selective_guard",
+        "seed": "46",
+        "j_delta": -1106.3874088395871,
+        "j_delta_pct": -1.6821840520755564
+      },
+      {
+        "new": "trained_guard",
+        "old": "increment_selective_guard",
+        "seed": "47",
+        "j_delta": -309.12916767579253,
+        "j_delta_pct": -0.3853407563365792
+      },
+      {
+        "new": "trained_guard",
+        "old": "increment_selective_guard",
+        "seed": "48",
+        "j_delta": 300.89133301701804,
+        "j_delta_pct": 0.427522795750912
+      }
+    ],
+    "directional_gate": false,
+    "joint_learning_gate": false
+  },
+  "guard_scope": {
+    "full_reference_anchor_passes": 0,
+    "states": 21,
+    "diagnosis": "locking every allocated PFQ UE imposes a stronger objective; no infeasibility theorem"
+  },
+  "next_path": {
+    "selected": "align causal service-set protection with terminal quality/coverage target before further distillation",
+    "implementation_status": "chosen next bounded probe, not implemented",
+    "retain": [
+      "incremental descriptor engine",
+      "raw PFQ90% floor",
+      "single/joint candidate pools",
+      "complete charging",
+      "unchanged final quality/service/cost gates"
+    ],
+    "next_probe": "training-only full-DPLS terminal allocation/effective-service labels for a causal UE service-set proposer; compare fixed-allocation lock with selective service-set protection and bounded terminal repair; first measure set recall and conditional quality-cost headroom",
+    "no_free_teacher": "full terminal sets are offline labels only, never online masks or development oracle actions",
+    "defer": [
+      "more training on current locked-set student",
+      "PPO",
+      "finite continuation value",
+      "default registry replacement"
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "learning": {
+    "shallow": {
+      "wins": 8,
+      "losses": 1,
+      "seed_j_deltas": {
+        "46": -59.51305191138332,
+        "47": 1088.2464340619965,
+        "48": 667.0253947800229
+      },
+      "mean_j_delta": 565.2529256435454,
+      "ratio_of_mean_gain_pct": 0.8342069025871535,
+      "stable_learning": false,
+      "joint_pass": false
+    },
+    "deep": {
+      "wins": 3,
+      "losses": 6,
+      "seed_j_deltas": {
+        "46": -500.57512123325677,
+        "47": -840.691459876621,
+        "48": -4223.38029299114
+      },
+      "mean_j_delta": -1854.8822913670058,
+      "ratio_of_mean_gain_pct": -2.7915623687946867,
+      "stable_learning": false,
+      "joint_pass": false
+    }
+  },
+  "quality_cost_coverage": {
+    "heuristic_shallow": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_shallow": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_deep": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_deep": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_shallow": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_deep": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    }
+  },
+  "ai_joint_target": false,
+  "coverage_p5_degenerate_states": 9,
+  "original_gates_not_redefined": true,
+  "posthoc_diagnostics": {
+    "validation:initial_deep": {
+      "stalled_states": 12,
+      "missed_qualifying": 12,
+      "topk_recoverable": {
+        "1": 0,
+        "2": 10,
+        "4": 11,
+        "8": 11
+      }
+    },
+    "validation:trained_deep": {
+      "stalled_states": 12,
+      "missed_qualifying": 12,
+      "topk_recoverable": {
+        "1": 0,
+        "2": 6,
+        "4": 10,
+        "8": 12
+      }
+    },
+    "evaluation:initial_deep": {
+      "stalled_states": 9,
+      "missed_qualifying": 9,
+      "topk_recoverable": {
+        "1": 0,
+        "2": 9,
+        "4": 9,
+        "8": 9
+      }
+    },
+    "evaluation:trained_deep": {
+      "stalled_states": 9,
+      "missed_qualifying": 9,
+      "topk_recoverable": {
+        "1": 0,
+        "2": 5,
+        "4": 9,
+        "8": 9
+      }
+    }
+  },
+  "next_path": {
+    "selected": "One verified trajectory with top2/top4 shortlist and per-root rejected-candidate deduplication",
+    "implementation_status": "selected for next experiment; not implemented in this campaign",
+    "reason": "32 attempts repeatedly chose the same failed edit; better verified edits exist at all observed stalled roots",
+    "keep": "shallow original model as control; teacher labels remain offline; shared optimization for heuristic controls",
+    "stop": [
+      "plain top1 depth32 expansion",
+      "additional identical immediate-gain training rounds",
+      "PPO integration"
+    ],
+    "next_minimum": "compare top2/top4 exact verification plus root-keyed rejected-edit cache under max56 feature roots/max106 PHY scores; only then collect that new trajectory own-state labels",
+    "limits": "posthoc topK recovery at fixed roots is not proof of complete-search quality, time or packet performance"
+  }
+}

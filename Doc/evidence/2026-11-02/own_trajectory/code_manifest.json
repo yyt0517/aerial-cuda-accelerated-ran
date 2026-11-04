@@ -1,0 +1,11 @@
+{
+  "note": "Original executed source snapshot is in deliverables/source; diagnostics/reporting/final tests added after model selection.",
+  "files": {
+    "test_own_trajectory.py": "fe7723362b254284e1e54dfedc40d021cd0f2bc81884d45414c71a87316d9184",
+    "own_trajectory_campaign.py": "ef9746c77e68c1570cc666f9b66fa4097d2b49d10f4d1532cb2f316cf79e3e94",
+    "own_trajectory.py": "5ccf14b21dcb45c5564c5a86eb0fccc11e6e91054dc064b14bc4eebb9a806b39",
+    "own_trajectory_diagnostics.py": "7d7756ad36c2fd17e0f7c3e1ec9ecf6df1c939b9daf1fb67aa91832acc12efda",
+    "own_trajectory_README.rst": "f6b4a3a1c4988ec1f1e3bbbf887bbd0fc4863a4b18530fdb1f907781215ad16c",
+    "report_own_trajectory.py": "5d086213135a3ff5fc742ac138a3b2410aaa3e9f93cf725fc08120cdf8492586"
+  }
+}

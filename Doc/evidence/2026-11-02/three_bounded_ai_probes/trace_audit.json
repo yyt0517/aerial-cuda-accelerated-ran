@@ -1,0 +1,194 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "bound",
+      "rounds": 52,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "scalar",
+      "rounds": 52,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned",
+      "rounds": 52,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "bound",
+      "rounds": 39,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "scalar",
+      "rounds": 39,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned",
+      "rounds": 39,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "bound",
+      "rounds": 39,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "scalar",
+      "rounds": 39,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned",
+      "rounds": 39,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "bound",
+      "rounds": 45,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "scalar",
+      "rounds": 45,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned",
+      "rounds": 45,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "bound",
+      "rounds": 49,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "scalar",
+      "rounds": 49,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned",
+      "rounds": 49,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "bound",
+      "rounds": 38,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "scalar",
+      "rounds": 38,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned",
+      "rounds": 38,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "bound",
+      "rounds": 50,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "scalar",
+      "rounds": 50,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned",
+      "rounds": 50,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "bound",
+      "rounds": 32,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "scalar",
+      "rounds": 32,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned",
+      "rounds": 32,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "bound",
+      "rounds": 47,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "scalar",
+      "rounds": 47,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned",
+      "rounds": 47,
+      "original_edit_indices_identical": true,
+      "final_action_identical": true
+    }
+  ]
+}

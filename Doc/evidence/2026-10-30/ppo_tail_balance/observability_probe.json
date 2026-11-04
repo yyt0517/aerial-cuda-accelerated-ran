@@ -1,0 +1,30 @@
+{
+  "existing_packet_features_identical": true,
+  "whole_wait_bytes_equal": true,
+  "first_packet_age_tti": 80,
+  "second_packet_ages_tti": [
+    10,
+    35
+  ],
+  "costs": [
+    {
+      "pending_packets": 2,
+      "pending_full_bytes": 6000,
+      "pending_age_sum_tti": 90.0,
+      "pending_over_threshold": 1,
+      "age_exposure_bytes": 3000.0,
+      "whole_wait_cost_bytes": 15.0,
+      "age_cost_bytes": 15.0
+    },
+    {
+      "pending_packets": 2,
+      "pending_full_bytes": 6000,
+      "pending_age_sum_tti": 115.0,
+      "pending_over_threshold": 2,
+      "age_exposure_bytes": 5250.0,
+      "whole_wait_cost_bytes": 15.0,
+      "age_cost_bytes": 26.25
+    }
+  ],
+  "interpretation": "HOL age, near-TTL fraction and counts do not uniquely determine the intermediate-age distribution. This is an observation-aliasing diagnostic, not a performance ablation or proof of the cause of any evaluation result."
+}

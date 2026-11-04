@@ -1,0 +1,88 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "objective": "canonical native-BLER J with causal deficit weights; not equal-weight PPO",
+  "floor": "ceil(90% own unpruned raw PFQ physical dequeue)",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "training_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "training_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "root_iterations": [
+    1,
+    5,
+    13
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "epochs": 30,
+  "checkpoints": [
+    0,
+    10,
+    20,
+    30
+  ],
+  "model": "32/16 ReLU residual MLP, same optimizer and lists",
+  "selection": "seed-equal validation regret@8, earliest epoch on ties, frozen before evaluation reads",
+  "input_probe": "48 scalar features vs 48+72 causal affected-UE spatial/TB features; gamma bank fully charged",
+  "near_optimal": "within max(16 bytes,0.5% best positive gain)",
+  "block_probe": "random/physical-risk/learned ordering; max4096 actual candidate scores, max4 sweeps; 2 alternatives/cell",
+  "bound_probe": "BLER in [0,1] upper certificate; batches32; stable original-index ties and thresholds; action parity required",
+  "generator_probe": "PFQ plus <=7 verified residual paths, depth8, <=2 proposals/path after first expansion; no teacher/PPO",
+  "methods": [
+    "full",
+    "cert_bound",
+    "cert_learned",
+    "block_random",
+    "block_heuristic",
+    "block_learned",
+    "gen_heuristic",
+    "gen_scalar",
+    "gen_spatial"
+  ],
+  "repeats": 3,
+  "timing": "serial raw numeric adapter/PFQ decode through fresh PHY/graph/bank/features/network/candidates/verifier/cleanup",
+  "excludes": "archive IO, model/library loading, first immutable TBS table construction; offline teacher work separately counted",
+  "quality_gate": "all evaluation states J>=99.5% full; floor and independent PHY valid",
+  "cost_gate": "seed-equal median complete time <=80% full; empirical state P95 reported",
+  "learning_gate": "nonzero trained checkpoint and improvement over matching heuristic under shared implementation",
+  "input_gate": "spatial vs scalar lower seed-equal regret@8 in every development seed; near-optimal hit not lower",
+  "native_gate": "no native rollout in this pilot; saved-state gates alone cannot promote scheduler",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

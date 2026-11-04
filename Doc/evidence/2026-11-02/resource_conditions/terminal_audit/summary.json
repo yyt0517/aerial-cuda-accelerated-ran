@@ -1,0 +1,113 @@
+{
+  "roots": 12,
+  "positive_roots": 1,
+  "positive_gt16_roots": 0,
+  "top8_positive_roots": 0,
+  "passing_neighbor_roots": 9,
+  "physical_scores": 1292,
+  "independent_best_checks": [
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "index": 23,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "index": 10,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "index": 1,
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "index": 128,
+      "max_error": 5.684341886080802e-14
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "index": 41,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "index": 23,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "index": 10,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "index": 88,
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "index": 4,
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "index": 5,
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "index": 47,
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "index": 32,
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "index": 16,
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "index": 6,
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "index": 0,
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "index": 47,
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "index": 81,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "index": 47,
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "index": 12,
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "index": 3,
+      "max_error": 2.7284841053187847e-12
+    }
+  ],
+  "elapsed_s": 0.25774301029741764,
+  "policy_or_selection_changed": false,
+  "note": "unvisited global/long-cycle solutions remain unknown; positive local gain does not alone certify the final target"
+}

@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "validation_states": 12,
+  "evaluation_states": 9,
+  "phase_a_decisions": 288,
+  "evaluation_decisions": 270,
+  "elapsed_s": 45.03967773169279,
+  "native_trajectories": 0,
+  "final_seeds_read": false,
+  "registry_unchanged": true
+}

@@ -1,0 +1,10 @@
+state_id,seed,joint_candidates,allowed_candidates,allowed_joint_candidates,good_bad_auc,best_good_rank,good_max_pair_confidence,good_max_score_gain,high_confidence_good,high_confidence_bad,unguarded_joint_pass,guarded_joint_pass,proposed_memo_index,proposed_confidence,guard_reason,oracle_auxiliary_heads_joint_pass,oracle_auxiliary_heads_j_ratio,oracle_auxiliary_heads_p5,oracle_auxiliary_heads_memo_index
+pfq:seed46:tti3001,46,65,115,65,1.0,1,0.5001045884876633,9.755648690017789e-06,0,0,True,True,118,0.5001045884876633,low_confidence,True,1.000794845916032,1.0,118
+pfq:seed46:tti4001,46,52,87,52,1.0,1,0.5,0.0,0,0,True,True,30,0.5,maxj_already_best,True,1.0009144180760214,1.0,30
+pfq:seed46:tti5000,46,73,163,73,0.9969558599695586,1,0.5,0.0,0,0,True,True,48,0.5,maxj_already_best,True,1.0005002038714077,1.0,48
+pfq:seed47:tti3001,47,90,141,90,1.0,1,0.5,0.0,0,0,True,True,181,0.5,maxj_already_best,True,1.0052121631303326,1.0,181
+pfq:seed47:tti4001,47,82,137,82,1.0,1,0.5,0.0,0,0,True,True,20,0.5,maxj_already_best,True,1.0008238321428184,1.0,20
+pfq:seed47:tti5000,47,27,93,27,0.9461279461279462,1,0.5,0.0,0,0,True,True,48,0.5,maxj_already_best,True,1.0003318141327784,1.0,48
+pfq:seed48:tti3001,48,130,173,130,0.9817531305903399,1,0.5,0.0,0,0,True,True,99,0.5,maxj_already_best,True,1.0026621922729737,1.0007154248701673,99
+pfq:seed48:tti4001,48,127,157,127,0.989501312335958,1,0.5,0.0,0,0,True,True,65,0.5,maxj_already_best,True,1.0010478234607407,1.0,65
+pfq:seed48:tti5000,48,89,124,89,0.9980738362760835,1,0.5115495072170014,0.0010891644309078351,0,0,True,True,154,0.5115495072170014,low_confidence,True,1.000139221596392,1.0,154

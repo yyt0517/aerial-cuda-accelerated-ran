@@ -1,0 +1,7 @@
+{
+  "status": "aborted_preparation",
+  "reason": "Current/rollout shortlist equalled retained beam width; corrected to 32 > 16 before formal comparison",
+  "selection_written": false,
+  "evaluation_inputs_read": false,
+  "used_for_final_comparison": false
+}

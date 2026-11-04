@@ -1,0 +1,117 @@
+{
+  "selection": {
+    "quality_candidate": "joint212",
+    "execution_cost_candidate": "joint212",
+    "execution_cost_feasible": true,
+    "validation_only": true,
+    "development_not_read": true,
+    "historical_exposure": true,
+    "selection_rule": "conditional validity/quality/service, J shortfall, service shortfall, ratio; execution-only cost filter",
+    "teacher_preparation_excluded": true,
+    "online_ai_claim": false
+  },
+  "development": {
+    "full": {
+      "condition_valid": true,
+      "quality_pass": true,
+      "coverage_pass": true,
+      "execution_cost_pass": false,
+      "conditional_target_pass": false
+    },
+    "ordinary212": {
+      "condition_valid": true,
+      "quality_pass": false,
+      "coverage_pass": false,
+      "execution_cost_pass": true,
+      "conditional_target_pass": false
+    },
+    "bank_none212": {
+      "condition_valid": true,
+      "quality_pass": false,
+      "coverage_pass": false,
+      "execution_cost_pass": true,
+      "conditional_target_pass": false
+    },
+    "quota_layer212": {
+      "condition_valid": true,
+      "quality_pass": false,
+      "coverage_pass": false,
+      "execution_cost_pass": true,
+      "conditional_target_pass": false
+    },
+    "activity212": {
+      "condition_valid": true,
+      "quality_pass": false,
+      "coverage_pass": false,
+      "execution_cost_pass": true,
+      "conditional_target_pass": false
+    },
+    "joint212": {
+      "condition_valid": true,
+      "quality_pass": false,
+      "coverage_pass": false,
+      "execution_cost_pass": true,
+      "conditional_target_pass": false
+    }
+  },
+  "selected_validation_condition_development": {
+    "arm": "joint212",
+    "mean_j": "79074.82038713439",
+    "mean_ms": "75.7696870714426",
+    "execution_time_ratio": "0.5181935861964243",
+    "mean_relative_j_pct": "-2.3398194234010905",
+    "worst_relative_j_pct": "-7.701887502494609",
+    "mean_actual_phy": "212.0",
+    "mean_mmse_requests": "412101.88888888893",
+    "mean_mmse_misses": "2448.0",
+    "mean_feature_roots": "11.0",
+    "mean_proxy_candidates": "8129.222222222222",
+    "mean_newly_unserved": "0.0",
+    "mean_positive_p5": "0.9478381126264767",
+    "worst_positive_p5": "0.7353408139051029",
+    "mean_positive_weak": "0.9980909357649611",
+    "condition_valid": "True",
+    "quality_pass": "False",
+    "coverage_pass": "False",
+    "execution_cost_pass": "True",
+    "conditional_target_pass": "False",
+    "online_ai_success": "False",
+    "teacher_cost_excluded": "True"
+  },
+  "training_started": false,
+  "online_ai_success": false,
+  "engineering": {
+    "all126_final_actions_values_identical": true,
+    "actual_non_timing_work_identical": true,
+    "joint_old_development_ms": 203.9482005768352,
+    "joint_new_development_ms": 75.7696870714426
+  },
+  "terminal_audit": {
+    "roots": 12,
+    "physical_scores": 1292,
+    "positive_gt16_roots": 0,
+    "current_quality_service_passes": 8,
+    "additional_roots_with_passing_neighbor": 1
+  },
+  "next_path": {
+    "selected": "improve joint-conditioned UE-to-PRG decoding and quality/service Pareto selection before causal proposer training",
+    "implementation_status": "chosen next experiment, not run",
+    "first": "compare wider multi-PRG cycles/global constrained redecoding and directly verified sparse neighborhoods under complete-cost budgets",
+    "selection": "retain J/service tradeoff candidates instead of only maximum weighted J; teacher service checks remain offline diagnostic labels",
+    "training_entry": "only after stable conditional quality/service and execution-cost headroom; then train causal quota/layer/activity proposals and test prediction perturbations",
+    "retain": [
+      "incremental engine",
+      "canonical full PHY",
+      "raw PFQ90% floor",
+      "unchanged final gates",
+      "separately charged teacher/MMSE work"
+    ],
+    "do_not_claim": "finite local stall is not a global bound; current conditional failure does not prove perfect conditions lack useful schedules",
+    "defer": [
+      "training larger causal upstream proposer now",
+      "PPO",
+      "continuation value",
+      "default replacement"
+    ]
+  }
+}

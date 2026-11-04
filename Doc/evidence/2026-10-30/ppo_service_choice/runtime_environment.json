@@ -1,0 +1,11 @@
+{
+  "python": "3.10.12 (main, Aug 15 2025, 14:32:43) [GCC 11.4.0]",
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "torch": "2.10.0+cu128",
+  "torch_cuda_build": "12.8",
+  "training_torch_threads": 1,
+  "training_mkldnn_enabled": false,
+  "simulator_container": "c_aerial_oai2",
+  "container_repository": "/opt/nvidia/cuBB"
+}

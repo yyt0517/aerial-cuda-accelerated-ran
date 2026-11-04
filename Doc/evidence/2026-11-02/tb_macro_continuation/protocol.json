@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-02",
+  "training": false,
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "methods": [
+    "full",
+    "shortlist_trained212",
+    "single_b212",
+    "joint_b212",
+    "single_continue_b212",
+    "joint_continue_b212",
+    "single_b424",
+    "joint_b424",
+    "joint_continue_b424"
+  ],
+  "configs": {
+    "single_b212": {
+      "family": "single",
+      "continuation": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    },
+    "joint_b212": {
+      "family": "joint",
+      "continuation": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    },
+    "single_continue_b212": {
+      "family": "single",
+      "continuation": true,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    },
+    "joint_continue_b212": {
+      "family": "joint",
+      "continuation": true,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    },
+    "single_b424": {
+      "family": "single",
+      "continuation": false,
+      "max_candidates": 424,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    },
+    "joint_b424": {
+      "family": "joint",
+      "continuation": false,
+      "max_candidates": 424,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    },
+    "joint_continue_b424": {
+      "family": "joint",
+      "continuation": true,
+      "max_candidates": 424,
+      "max_feature_roots": 56,
+      "max_sweeps": 5,
+      "continuation_blocks": 4
+    }
+  },
+  "model": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+  "model_sha256": "52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890",
+  "objective": "canonical native BLER, causal deficit-weighted J, own unpruned PFQ90% dequeue floor",
+  "direct": "first sweep 4 singles/PRG; later 4 singles or 2 singles+2 coordinated macros/PRG; logical full-TB floor filter",
+  "proxy": "fixed current-root reliability plus activity interference proxy; exact all-PRG TB count/min-layer/dequeue; no candidate BLER/MMSE",
+  "macro": "joint UE/activity on same PRG; cross-PRG move/swap/compensate, at most3 changed slots",
+  "continuation": "only after second full sweep; <=4 PRGs, width2, horizon<=2, fixed causal domains; all nodes paid exact PHY",
+  "speculative": "below-floor or low-J intermediate actions may expand, only exact feasible >1B final actions execute",
+  "missing": "truncated or absent continuation values are unknown, not zero; no optimal-value assertion",
+  "cache": "complete action exact memo local to immutable decision; logical descriptors keyed by complete incumbent; no cross-decision reuse",
+  "controls": "single and joint share pools, proxy, memo, descriptors, sweeps and timings; frozen trained top4/212 and full references",
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "repeats": 3,
+  "quality_gate": "every state J>=99.5% full",
+  "coverage_gate": "no newly unallocated UE vs full; effective-UE P5/bottom20% expected service each>=98% full",
+  "cost_gate": "seed-equal complete median mean<=80% full",
+  "timing": "input/PFQ decode through fresh PHY/cache/pools/proxies/exact nodes/ranking/final scoring and cleanup; no free continuation teacher",
+  "exclusions": "archive/model/library IO and first immutable TBS setup; independent audit after timing",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "old_solver_sha256": "7d7842028b9a90b658c2629333be4726c74f3a02f1d8770ab13451146ed72b46",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

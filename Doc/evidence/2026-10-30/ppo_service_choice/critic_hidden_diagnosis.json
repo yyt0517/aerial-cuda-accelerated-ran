@@ -1,0 +1,12 @@
+[
+  {
+    "layer": 1,
+    "fraction_abs_gt_0999": 0.0,
+    "std_across_states_mean": 0.004435685463249683
+  },
+  {
+    "layer": 3,
+    "fraction_abs_gt_0999": 1.0,
+    "std_across_states_mean": 6.848194516351214e-06
+  }
+]

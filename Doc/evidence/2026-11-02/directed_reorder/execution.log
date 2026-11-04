@@ -1,0 +1,77 @@
+RESOURCE_TEACHER engineering raw_global_deficit:seed41:tti4001
+RESOURCE_TEACHER engineering pfq:seed43:tti18000
+RESOURCE_TEACHER validation raw_global_deficit:seed44:tti4001
+RESOURCE_TEACHER validation raw_global_deficit:seed44:tti8001
+RESOURCE_TEACHER validation raw_global_deficit:seed44:tti18000
+RESOURCE_TEACHER validation pfq:seed44:tti4001
+RESOURCE_TEACHER validation pfq:seed44:tti8001
+RESOURCE_TEACHER validation pfq:seed44:tti18000
+RESOURCE_TEACHER validation raw_global_deficit:seed45:tti4001
+RESOURCE_TEACHER validation raw_global_deficit:seed45:tti8001
+RESOURCE_TEACHER validation raw_global_deficit:seed45:tti18000
+RESOURCE_TEACHER validation pfq:seed45:tti4001
+RESOURCE_TEACHER validation pfq:seed45:tti8001
+RESOURCE_TEACHER validation pfq:seed45:tti18000
+DIRECTED_REORDER validation raw_global_deficit:seed44:tti4001
+DIRECTED_REORDER validation raw_global_deficit:seed44:tti8001
+DIRECTED_REORDER validation raw_global_deficit:seed44:tti18000
+DIRECTED_REORDER validation pfq:seed44:tti4001
+DIRECTED_REORDER validation pfq:seed44:tti8001
+DIRECTED_REORDER validation pfq:seed44:tti18000
+DIRECTED_REORDER validation raw_global_deficit:seed45:tti4001
+DIRECTED_REORDER validation raw_global_deficit:seed45:tti8001
+DIRECTED_REORDER validation raw_global_deficit:seed45:tti18000
+DIRECTED_REORDER validation pfq:seed45:tti4001
+DIRECTED_REORDER validation pfq:seed45:tti8001
+DIRECTED_REORDER validation pfq:seed45:tti18000
+DIRECTED SELECTION FROZEN {'quality_candidate': 'joint4', 'execution_cost_candidate': 'baseline', 'execution_cost_feasible': False, 'validation_only': True, 'development_not_read': True, 'historical_exposure': True, 'teacher_preparation_excluded': True, 'rule': 'same prior rule: all-state quality/service then mean quality shortfall, service shortfall, mean ratio; execution cost filter, lower time on ties', 'online_ai_claim': False}
+RESOURCE_TEACHER evaluation pfq:seed46:tti3001
+RESOURCE_TEACHER evaluation pfq:seed46:tti4001
+RESOURCE_TEACHER evaluation pfq:seed46:tti5000
+RESOURCE_TEACHER evaluation pfq:seed47:tti3001
+RESOURCE_TEACHER evaluation pfq:seed47:tti4001
+RESOURCE_TEACHER evaluation pfq:seed47:tti5000
+RESOURCE_TEACHER evaluation pfq:seed48:tti3001
+RESOURCE_TEACHER evaluation pfq:seed48:tti4001
+RESOURCE_TEACHER evaluation pfq:seed48:tti5000
+DIRECTED_REORDER evaluation pfq:seed46:tti3001
+DIRECTED_REORDER evaluation pfq:seed46:tti4001
+DIRECTED_REORDER evaluation pfq:seed46:tti5000
+DIRECTED_REORDER evaluation pfq:seed47:tti3001
+DIRECTED_REORDER evaluation pfq:seed47:tti4001
+DIRECTED_REORDER evaluation pfq:seed47:tti5000
+DIRECTED_REORDER evaluation pfq:seed48:tti3001
+DIRECTED_REORDER evaluation pfq:seed48:tti4001
+DIRECTED_REORDER evaluation pfq:seed48:tti5000
+DIRECTED_RECALL validation raw_global_deficit:seed44:tti18000 baseline 640 1
+DIRECTED_RECALL validation raw_global_deficit:seed44:tti18000 joint4 664 2
+DIRECTED_RECALL evaluation pfq:seed48:tti5000 baseline 634 2
+DIRECTED_RECALL evaluation pfq:seed48:tti5000 joint4 581 20
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/directed_reorder_campaign.py", line 217, in <module>
+    parser=argparse.ArgumentParser();parser.add_argument('--output',required=True);main(parser.parse_args().output)
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/directed_reorder_campaign.py", line 169, in main
+    audit(out,CONFIGS)
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/directed_reorder_diagnosis.py", line 106, in audit
+    write_json(out/'checks.json',dict(passed=True,independent_phy=checks))
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/experiment.py", line 27, in write_json
+    json.dump(value, stream, indent=2, allow_nan=False)
+  File "/usr/lib/python3.10/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/usr/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.10/json/encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "/usr/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/usr/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable

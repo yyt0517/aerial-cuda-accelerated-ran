@@ -1,0 +1,205 @@
+{
+  "selected_on_validation": {
+    "quality_best": "legacy_ai212",
+    "within_cost_best": "legacy_ai212",
+    "cost_feasible": true,
+    "validation_only": true,
+    "development_not_read": true,
+    "conditional_masks_excluded": true,
+    "historical_exposure": true,
+    "rule": "quality/service, J shortfall, service shortfall, ratio; complete-cost filter for within-cost point"
+  },
+  "model": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/service_repair_20261102_v1/service_e10.npz",
+    "sha256": "3a15a2fc2c9fc34890aa845520b905d8155e5086b79ad70c824627461d675db8",
+    "epoch": 10,
+    "thresholds": [
+      0.3,
+      0.3
+    ],
+    "heuristic_counts": [
+      8,
+      4
+    ],
+    "calibration_rule": "all-state recall>=98% and mean size<=75%; otherwise declared recall/size/precision loss; smaller epoch/threshold-grid order on ties",
+    "development_not_read": true,
+    "training_only_normalization": true,
+    "feature_names": [
+      "log_queue",
+      "log_weight",
+      "weight",
+      "mcs",
+      "pfq_count",
+      "pfq_layer",
+      "pfq_dequeue",
+      "pfq_expected",
+      "pfq_reliability",
+      "pfq_sinr",
+      "mean_cap",
+      "min_cap",
+      "max_cap",
+      "cap1_fraction",
+      "quality_mean",
+      "quality_q25",
+      "quality_q75",
+      "quality_max",
+      "signal_mean",
+      "interference_mean",
+      "one_prg_tbs",
+      "four_prg_tbs",
+      "all_prg_tbs",
+      "legal_fraction",
+      "pfq_utilization",
+      "utility",
+      "cell_utility_rank",
+      "cell_quality_rank",
+      "cell_expected_rank",
+      "cell_weight_rank",
+      "cell_eligible",
+      "cell_queue_mean",
+      "cell_weight_mean",
+      "cell_quality_mean",
+      "cell_expected_mean",
+      "cell_reliability_mean",
+      "root_activity",
+      "root_j",
+      "root_dequeue",
+      "eligible"
+    ]
+  },
+  "quality_service_cost": {
+    "legacy_ai212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "unprotected212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "main180": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "all_pfq_guard212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_lock_repair32": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "learned_lock_repair32": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_repair32": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "matched_repair32": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "learned_repair32": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "learned_repair64": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    }
+  },
+  "service_set_gate": false,
+  "selected_weights_changed": true,
+  "learning_pair": {
+    "new": "learned_repair32",
+    "old": "matched_repair32",
+    "wins": 7,
+    "losses": 2,
+    "ties": 0,
+    "mean_j_delta": 30.094648713234676,
+    "mean_delta_pp": 0.03910843542275715,
+    "mean_ms_delta": -0.32375990930530757,
+    "mean_newly_unserved_delta": -0.4444444444444444,
+    "mean_p5_delta": 0.1999240591762312
+  },
+  "per_seed": [
+    {
+      "new": "learned_repair32",
+      "old": "matched_repair32",
+      "seed": "46",
+      "j_delta": 89.6132042635824
+    },
+    {
+      "new": "learned_repair32",
+      "old": "matched_repair32",
+      "seed": "47",
+      "j_delta": 33.87990944968866
+    },
+    {
+      "new": "learned_repair32",
+      "old": "matched_repair32",
+      "seed": "48",
+      "j_delta": -33.20916757356705
+    }
+  ],
+  "learning_direction": false,
+  "joint_learning_gate": false,
+  "teacher_conditional": {
+    "validation_only": true,
+    "decisions": 24,
+    "physical_scores": 5088,
+    "both_quality_and_service_fail": true,
+    "online_cost_claim": false,
+    "complete_upper_bound": false
+  },
+  "next_path": {
+    "selected": "whole-TB resource quota/min-layer and cell-activity joint conditional probes before another proposer training round",
+    "implementation_status": "chosen next experiment, not run",
+    "rationale": "correct binary membership still leaves observed count/layer/activity gaps and about5% J shortfall in this bounded repair",
+    "proposed_ablations": [
+      "teacher resource counts/min-layer only",
+      "teacher cell-activity pattern only",
+      "both together, without teacher UE-to-PRG positions"
+    ],
+    "teacher_use": "offline conditional diagnostics only; if headroom exists, train causal joint proposals with conservation-aware decoding",
+    "retain": [
+      "incremental engine",
+      "raw PFQ90% floor",
+      "exact full-schedule verifier",
+      "complete charging",
+      "unchanged final gates"
+    ],
+    "stop_as_primary": [
+      "more binary-set classifier training",
+      "hard service-set locking",
+      "larger late repair reserve"
+    ],
+    "no_claim": "conditional probes are not complete bounds or proof which gap causes the loss; no free teacher online",
+    "defer": [
+      "PPO",
+      "continuation value",
+      "default replacement"
+    ]
+  }
+}

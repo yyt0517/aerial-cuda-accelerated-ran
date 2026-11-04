@@ -1,0 +1,1202 @@
+[
+  {
+    "state": 0,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 21256,
+      "ue_evaluations": 74946,
+      "mmse_requests": 201430,
+      "mmse_misses": 1836
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 0,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 15493,
+      "ue_evaluations": 53847,
+      "mmse_requests": 132625,
+      "mmse_misses": 1836
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 0,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 6813,
+      "ue_evaluations": 22936,
+      "mmse_requests": 71599,
+      "mmse_misses": 1836
+    },
+    "regret_audit": {
+      "candidate_evaluations": 65401,
+      "ue_evaluations": 222545,
+      "mmse_requests": 535387,
+      "mmse_misses": 1836
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 0,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6451,
+      "ue_evaluations": 20916,
+      "mmse_requests": 51957,
+      "mmse_misses": 1836
+    },
+    "regret_audit": {
+      "candidate_evaluations": 57489,
+      "ue_evaluations": 198865,
+      "mmse_requests": 446812,
+      "mmse_misses": 1835
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 0,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 7913,
+      "ue_evaluations": 25455,
+      "mmse_requests": 69600,
+      "mmse_misses": 1836
+    },
+    "regret_audit": {
+      "candidate_evaluations": 52623,
+      "ue_evaluations": 186009,
+      "mmse_requests": 458970,
+      "mmse_misses": 1800
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 1,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 14153,
+      "ue_evaluations": 48655,
+      "mmse_requests": 100732,
+      "mmse_misses": 1829
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 1,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 12575,
+      "ue_evaluations": 42850,
+      "mmse_requests": 90302,
+      "mmse_misses": 1829
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 1,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 5733,
+      "ue_evaluations": 18947,
+      "mmse_requests": 36275,
+      "mmse_misses": 1829
+    },
+    "regret_audit": {
+      "candidate_evaluations": 35805,
+      "ue_evaluations": 120634,
+      "mmse_requests": 208420,
+      "mmse_misses": 1757
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 1,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 4984,
+      "ue_evaluations": 16154,
+      "mmse_requests": 28925,
+      "mmse_misses": 1829
+    },
+    "regret_audit": {
+      "candidate_evaluations": 33644,
+      "ue_evaluations": 114086,
+      "mmse_requests": 191414,
+      "mmse_misses": 1746
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 1,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 5522,
+      "ue_evaluations": 17600,
+      "mmse_requests": 31717,
+      "mmse_misses": 1829
+    },
+    "regret_audit": {
+      "candidate_evaluations": 34271,
+      "ue_evaluations": 118460,
+      "mmse_requests": 204398,
+      "mmse_misses": 1694
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 2,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 12385,
+      "ue_evaluations": 42006,
+      "mmse_requests": 81801,
+      "mmse_misses": 1911
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 2,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 10919,
+      "ue_evaluations": 36898,
+      "mmse_requests": 72704,
+      "mmse_misses": 1911
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 2,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 6349,
+      "ue_evaluations": 20858,
+      "mmse_requests": 40828,
+      "mmse_misses": 1911
+    },
+    "regret_audit": {
+      "candidate_evaluations": 32919,
+      "ue_evaluations": 110312,
+      "mmse_requests": 200825,
+      "mmse_misses": 1825
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 2,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6488,
+      "ue_evaluations": 21027,
+      "mmse_requests": 45117,
+      "mmse_misses": 1911
+    },
+    "regret_audit": {
+      "candidate_evaluations": 40737,
+      "ue_evaluations": 136815,
+      "mmse_requests": 275643,
+      "mmse_misses": 1825
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 2,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 6422,
+      "ue_evaluations": 20678,
+      "mmse_requests": 45639,
+      "mmse_misses": 1911
+    },
+    "regret_audit": {
+      "candidate_evaluations": 41127,
+      "ue_evaluations": 139317,
+      "mmse_requests": 289172,
+      "mmse_misses": 1837
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 3,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 13150,
+      "ue_evaluations": 44156,
+      "mmse_requests": 97943,
+      "mmse_misses": 1875
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 3,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 10550,
+      "ue_evaluations": 34752,
+      "mmse_requests": 76410,
+      "mmse_misses": 1875
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 3,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 6987,
+      "ue_evaluations": 22463,
+      "mmse_requests": 51147,
+      "mmse_misses": 1849
+    },
+    "regret_audit": {
+      "candidate_evaluations": 37838,
+      "ue_evaluations": 125690,
+      "mmse_requests": 278753,
+      "mmse_misses": 1719
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 3,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 8707,
+      "ue_evaluations": 27238,
+      "mmse_requests": 60247,
+      "mmse_misses": 1875
+    },
+    "regret_audit": {
+      "candidate_evaluations": 47089,
+      "ue_evaluations": 155407,
+      "mmse_requests": 320588,
+      "mmse_misses": 1749
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 3,
+    "source_arm": "cold_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 6963,
+      "ue_evaluations": 22209,
+      "mmse_requests": 45909,
+      "mmse_misses": 1875
+    },
+    "regret_audit": {
+      "candidate_evaluations": 42273,
+      "ue_evaluations": 137656,
+      "mmse_requests": 269404,
+      "mmse_misses": 1736
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 4,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 16682,
+      "ue_evaluations": 57977,
+      "mmse_requests": 137185,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 4,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 16573,
+      "ue_evaluations": 57255,
+      "mmse_requests": 153250,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 4,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 5777,
+      "ue_evaluations": 18813,
+      "mmse_requests": 56695,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 57391,
+      "ue_evaluations": 194713,
+      "mmse_requests": 494063,
+      "mmse_misses": 1817
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 4,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6207,
+      "ue_evaluations": 19959,
+      "mmse_requests": 56613,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 51343,
+      "ue_evaluations": 176678,
+      "mmse_requests": 445591,
+      "mmse_misses": 1847
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 4,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 7416,
+      "ue_evaluations": 23264,
+      "mmse_requests": 70407,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 50390,
+      "ue_evaluations": 177951,
+      "mmse_requests": 499271,
+      "mmse_misses": 1762
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 5,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 8221,
+      "ue_evaluations": 27241,
+      "mmse_requests": 86710,
+      "mmse_misses": 1834
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 5,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 5887,
+      "ue_evaluations": 18992,
+      "mmse_requests": 59641,
+      "mmse_misses": 1790
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 5,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 3945,
+      "ue_evaluations": 12750,
+      "mmse_requests": 38117,
+      "mmse_misses": 1834
+    },
+    "regret_audit": {
+      "candidate_evaluations": 12977,
+      "ue_evaluations": 43125,
+      "mmse_requests": 134882,
+      "mmse_misses": 1740
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 5,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 3404,
+      "ue_evaluations": 10753,
+      "mmse_requests": 32140,
+      "mmse_misses": 1834
+    },
+    "regret_audit": {
+      "candidate_evaluations": 15030,
+      "ue_evaluations": 50396,
+      "mmse_requests": 158493,
+      "mmse_misses": 1724
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 5,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 3622,
+      "ue_evaluations": 11335,
+      "mmse_requests": 34263,
+      "mmse_misses": 1834
+    },
+    "regret_audit": {
+      "candidate_evaluations": 11488,
+      "ue_evaluations": 39187,
+      "mmse_requests": 123647,
+      "mmse_misses": 1662
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 6,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 11173,
+      "ue_evaluations": 37845,
+      "mmse_requests": 101315,
+      "mmse_misses": 1787
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 6,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 9332,
+      "ue_evaluations": 31283,
+      "mmse_requests": 83507,
+      "mmse_misses": 1787
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 6,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 5007,
+      "ue_evaluations": 16034,
+      "mmse_requests": 42090,
+      "mmse_misses": 1788
+    },
+    "regret_audit": {
+      "candidate_evaluations": 22235,
+      "ue_evaluations": 74582,
+      "mmse_requests": 194443,
+      "mmse_misses": 1699
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 6,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 4317,
+      "ue_evaluations": 13827,
+      "mmse_requests": 37050,
+      "mmse_misses": 1789
+    },
+    "regret_audit": {
+      "candidate_evaluations": 20515,
+      "ue_evaluations": 67949,
+      "mmse_requests": 178815,
+      "mmse_misses": 1695
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 6,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 4871,
+      "ue_evaluations": 15396,
+      "mmse_requests": 42665,
+      "mmse_misses": 1815
+    },
+    "regret_audit": {
+      "candidate_evaluations": 20769,
+      "ue_evaluations": 68954,
+      "mmse_requests": 186248,
+      "mmse_misses": 1697
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 7,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 21766,
+      "ue_evaluations": 74217,
+      "mmse_requests": 191052,
+      "mmse_misses": 1990
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 7,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 16398,
+      "ue_evaluations": 53638,
+      "mmse_requests": 129376,
+      "mmse_misses": 1996
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 7,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 7438,
+      "ue_evaluations": 23838,
+      "mmse_requests": 50618,
+      "mmse_misses": 1960
+    },
+    "regret_audit": {
+      "candidate_evaluations": 36007,
+      "ue_evaluations": 119150,
+      "mmse_requests": 243327,
+      "mmse_misses": 1844
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 7,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 8031,
+      "ue_evaluations": 25769,
+      "mmse_requests": 55142,
+      "mmse_misses": 1961
+    },
+    "regret_audit": {
+      "candidate_evaluations": 33067,
+      "ue_evaluations": 110132,
+      "mmse_requests": 222830,
+      "mmse_misses": 1841
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 7,
+    "source_arm": "warm_full",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 7613,
+      "ue_evaluations": 24838,
+      "mmse_requests": 59478,
+      "mmse_misses": 1942
+    },
+    "regret_audit": {
+      "candidate_evaluations": 44983,
+      "ue_evaluations": 149938,
+      "mmse_requests": 330384,
+      "mmse_misses": 1910
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 8,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 16682,
+      "ue_evaluations": 57977,
+      "mmse_requests": 137185,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 8,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 16573,
+      "ue_evaluations": 57255,
+      "mmse_requests": 153250,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 8,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 5777,
+      "ue_evaluations": 18813,
+      "mmse_requests": 56695,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 57391,
+      "ue_evaluations": 194713,
+      "mmse_requests": 494063,
+      "mmse_misses": 1817
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 8,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6207,
+      "ue_evaluations": 19959,
+      "mmse_requests": 56613,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 51343,
+      "ue_evaluations": 176678,
+      "mmse_requests": 445591,
+      "mmse_misses": 1847
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 8,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4001,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 7416,
+      "ue_evaluations": 23264,
+      "mmse_requests": 70407,
+      "mmse_misses": 1862
+    },
+    "regret_audit": {
+      "candidate_evaluations": 50390,
+      "ue_evaluations": 177951,
+      "mmse_requests": 499271,
+      "mmse_misses": 1762
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 9,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 16866,
+      "ue_evaluations": 57013,
+      "mmse_requests": 162833,
+      "mmse_misses": 1814
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 9,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 14664,
+      "ue_evaluations": 48758,
+      "mmse_requests": 146216,
+      "mmse_misses": 1822
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 9,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 6345,
+      "ue_evaluations": 20149,
+      "mmse_requests": 65095,
+      "mmse_misses": 1819
+    },
+    "regret_audit": {
+      "candidate_evaluations": 35981,
+      "ue_evaluations": 118893,
+      "mmse_requests": 318933,
+      "mmse_misses": 1781
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 9,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6829,
+      "ue_evaluations": 21485,
+      "mmse_requests": 65898,
+      "mmse_misses": 1827
+    },
+    "regret_audit": {
+      "candidate_evaluations": 34451,
+      "ue_evaluations": 115962,
+      "mmse_requests": 311105,
+      "mmse_misses": 1762
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 9,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4009,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 7566,
+      "ue_evaluations": 23690,
+      "mmse_requests": 72796,
+      "mmse_misses": 1827
+    },
+    "regret_audit": {
+      "candidate_evaluations": 31124,
+      "ue_evaluations": 106310,
+      "mmse_requests": 285462,
+      "mmse_misses": 1692
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 10,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 16177,
+      "ue_evaluations": 55006,
+      "mmse_requests": 154053,
+      "mmse_misses": 1768
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 10,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 12827,
+      "ue_evaluations": 43205,
+      "mmse_requests": 113503,
+      "mmse_misses": 1768
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 10,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 5551,
+      "ue_evaluations": 18008,
+      "mmse_requests": 47804,
+      "mmse_misses": 1728
+    },
+    "regret_audit": {
+      "candidate_evaluations": 34133,
+      "ue_evaluations": 114211,
+      "mmse_requests": 266599,
+      "mmse_misses": 1715
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 10,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6198,
+      "ue_evaluations": 19844,
+      "mmse_requests": 53770,
+      "mmse_misses": 1768
+    },
+    "regret_audit": {
+      "candidate_evaluations": 33224,
+      "ue_evaluations": 112507,
+      "mmse_requests": 256318,
+      "mmse_misses": 1729
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 10,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4017,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 6135,
+      "ue_evaluations": 19305,
+      "mmse_requests": 51139,
+      "mmse_misses": 1728
+    },
+    "regret_audit": {
+      "candidate_evaluations": 29112,
+      "ue_evaluations": 101131,
+      "mmse_requests": 232016,
+      "mmse_misses": 1634
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 11,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "cached",
+    "online": {
+      "candidate_evaluations": 14568,
+      "ue_evaluations": 48441,
+      "mmse_requests": 115710,
+      "mmse_misses": 1835
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 11,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "cap4",
+    "online": {
+      "candidate_evaluations": 13249,
+      "ue_evaluations": 43434,
+      "mmse_requests": 97276,
+      "mmse_misses": 1794
+    },
+    "regret_audit": {
+      "candidate_evaluations": 0,
+      "ue_evaluations": 0,
+      "mmse_requests": 0,
+      "mmse_misses": 0
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 11,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M16",
+    "online": {
+      "candidate_evaluations": 8892,
+      "ue_evaluations": 28767,
+      "mmse_requests": 69756,
+      "mmse_misses": 1794
+    },
+    "regret_audit": {
+      "candidate_evaluations": 31931,
+      "ue_evaluations": 105144,
+      "mmse_requests": 240403,
+      "mmse_misses": 1723
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 11,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M32",
+    "online": {
+      "candidate_evaluations": 6764,
+      "ue_evaluations": 21263,
+      "mmse_requests": 48127,
+      "mmse_misses": 1794
+    },
+    "regret_audit": {
+      "candidate_evaluations": 39209,
+      "ue_evaluations": 128582,
+      "mmse_requests": 280818,
+      "mmse_misses": 1724
+    },
+    "numpy_terminal_audits": 1
+  },
+  {
+    "state": 11,
+    "source_arm": "warm_n3",
+    "seed": 41,
+    "tti": 4025,
+    "arm": "M64",
+    "online": {
+      "candidate_evaluations": 8208,
+      "ue_evaluations": 25940,
+      "mmse_requests": 61018,
+      "mmse_misses": 1794
+    },
+    "regret_audit": {
+      "candidate_evaluations": 37265,
+      "ue_evaluations": 123606,
+      "mmse_requests": 274027,
+      "mmse_misses": 1715
+    },
+    "numpy_terminal_audits": 1
+  }
+]

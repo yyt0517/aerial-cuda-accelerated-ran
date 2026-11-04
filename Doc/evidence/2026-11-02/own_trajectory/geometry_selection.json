@@ -1,0 +1,39 @@
+{
+  "geometry": "shallow",
+  "metric": {
+    "quality": false,
+    "coverage": false,
+    "cost": false,
+    "time_ratio": 0.9386660858107059,
+    "mean_ratio": 0.8164421654357085,
+    "quality_shortfall": 0.1785578345642916,
+    "coverage_shortfall": 0.02777777777777778
+  },
+  "alternatives": [
+    {
+      "geometry": "shallow",
+      "metric": {
+        "quality": false,
+        "coverage": false,
+        "cost": false,
+        "time_ratio": 0.9386660858107059,
+        "mean_ratio": 0.8164421654357085,
+        "quality_shortfall": 0.1785578345642916,
+        "coverage_shortfall": 0.02777777777777778
+      }
+    },
+    {
+      "geometry": "deep",
+      "metric": {
+        "quality": false,
+        "coverage": false,
+        "cost": true,
+        "time_ratio": 0.5692665256756037,
+        "mean_ratio": 0.7208248505782235,
+        "quality_shortfall": 0.2741751494217765,
+        "coverage_shortfall": 0.030092592592592598
+      }
+    }
+  ],
+  "development_results_not_read": true
+}

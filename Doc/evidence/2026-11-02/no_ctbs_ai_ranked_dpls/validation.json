@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "tests": 33,
+  "protected_source_files": 79,
+  "zero_residual_same_heuristic_actions": 21,
+  "independent_audits": 63,
+  "scientific_gate_passed": false,
+  "learned_contribution_gate_passed": false
+}

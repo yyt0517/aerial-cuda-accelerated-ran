@@ -1,0 +1,26 @@
+branch,date,protocol,learning_contribution,result,decision,evidence
+physical_components,10-29,"native 5 seeds,10s,deficit/equal ablations",no,full1236.070Mbps vsPFQ720.236; full expiry0.492%,retain physical default; objectives have delay tradeoffs,Doc/evidence/2026-10-29/dpls_component_ablation/report.txt
+neural_joint_hybrid,10-27,"native3seeds,own short-window protocol",not isolated superiority,hybrid payload+0.337%; physical block+0.636%,joint TB structure useful; no neural dominance,Doc/evidence/2026-10-27/tb_joint_repair/report.txt
+direct_risk,10-28,"native seeds104-106,5s",neural proposed actions,less PHY but worse delay,do not promote,Doc/evidence/2026-10-28/tb_direct_risk/final_report.txt
+neural_cache,10-28,same-state serial and native equivalence,engineering only,same outcomes lower feature/decode cost,retain cache,Doc/evidence/2026-10-28/tb_neural_cost/report.txt
+verified_prefix,10-28,"native48/50,1s; offline36states",mixed neural/extra physical verification,verified323.099ms vsdirect548.569; seed50 payload decline,no strict quality pass,Doc/evidence/2026-10-28/tb_prefix/report.txt
+service_choice_ppo,10-30,"native44/45,2s,equal,noCTBS","yes,matched pool payload/expiry gain",1240.686Mbps/0.663%/7.012ms/P9524.5ms,best retained complete AI research entry for payload/expiry; latency fails,Doc/evidence/2026-10-30/ppo_service_choice/report.txt
+tail_wait_ppo,10-30,"same native44/45,2s",learned tradeoff,1235.202Mbps/1.205%/4.341ms/P956.75ms,delay better; payload/expiry fail,Doc/evidence/2026-10-30/ppo_tail_wait/report.txt
+tail_balance_ppo,10-30,"same native44/45,2s",learned tradeoff,1235.232Mbps/1.306%/4.951ms/P957.5ms,joint gates fail,Doc/evidence/2026-10-30/ppo_tail_balance/report.txt
+fast_student_ppo,10-30,"native44/45,2s; policy-only timing",learned decode/select,4/8 candidates935/945Mbps; ~5x policy speedup,quality insufficient,Doc/evidence/2026-10-30/ppo_search_teacher/report.txt
+masked_structured,10-30 to11-02,finite prefix/candidate studies,no stable independent full-search gain,coverage and continuation errors remain,retain feasibility and exact small-block analysis,Doc/evidence/2026-11-02/structured_continuation/report.txt
+ranked_dpls,11-02,12validation+9development snapshots,"no,zero residual selected","AI same21actions as heuristic,slower",no learning gain,Doc/evidence/2026-11-02/no_ctbs_ai_ranked_dpls/report.txt
+three_bounded_probes,11-02,same frozen-state family,scalar limited positive gain,scalar improves matched heuristic; far belowfull,not full quality success,Doc/evidence/2026-11-02/three_bounded_ai_probes/report.txt
+own_trajectory,11-02,shallow7x8/deep1x32; training41-43,unstable,shallow validation better; repeated deep failures,do not only increase depth,Doc/evidence/2026-11-02/own_trajectory/report.txt
+topk_dedup,11-02,"top2/top4,106 budget",engineering plus mixed learning,removes duplicate failed queries; quality still insufficient,retain dedup,Doc/evidence/2026-11-02/shortlist_trajectory/report.txt
+budget_curve,11-02,"106/160/212,21snapshots",not sufficient,selectedtop4 J gaps9.944/7.781/6.285%; coverage worsens,do not choose by meanJ only,Doc/evidence/2026-11-02/budget_curve/report.txt
+tb_macro,11-02,joint TB/finite continuation,mostly candidate mechanism,joint coupling benefit exists,needs service protection,Doc/evidence/2026-11-02/tb_macro_continuation/report.txt
+selective_tb,11-02,cheap increment/selective joint,no stable protected learning gain,J improves with coverage tradeoff,retain cheap features,Doc/evidence/2026-11-02/selective_tb/report.txt
+causal_service_repair,11-02,causal group and budgeted terminal repair,small mixed gain,quality/service still fail,group prediction not sufficient,Doc/evidence/2026-11-02/service_repair/report.txt
+resource_conditions,11-02,teacher quota/layer/activity ablation,"no,teacher conditioned",activity meanJ+1.027% but newunserved5.778,conditional space only,Doc/evidence/2026-11-02/resource_conditions/report.txt
+wide_reorder_frontier,11-02,"teacher joint conditions,212scores",physical search,joint decoding and service Pareto,retain wide pool/frontier,Doc/evidence/2026-11-02/joint_reorder/report.txt
+continuous_weak_service,11-02,same conditional21states,engineering/metric,frontier equivalent136.78to100.76ms,retain continuous E/D and fast frontier,Doc/evidence/2026-11-02/weak_service/report.txt
+directed_reorder,11-02,budgeted2slots plus paid recall diagnosis,physical search,development quality repaired; validation archive has good candidates,retain existingpool2slots,Doc/evidence/2026-11-02/directed_reorder/report.txt
+terminal_cached_aggregate,11-03,same conditional21states,cache benefit; learned no gain,same queries9-11%faster; aggregate misranks failure,retain cache,Doc/evidence/2026-11-03/terminal_service/report.txt
+ue_pair_guard,11-03,"15unique train states,21historical eval",no terminal gain,all guarded finals equalmaxJ,retain UE losses and fallback; improve labels,Doc/evidence/2026-11-03/ue_pair/report.txt
+repair_expansion,11-03,"30unique train states,21historical eval",one matched-archive failure repaired,validation12/12anddev9/9J/service;86.32/95.68ms,retain conditional learning reference; cost/coverage incomplete,Doc/evidence/2026-11-03/repair_expansion/report.txt

@@ -1,0 +1,83 @@
+FIXED_GRID_ALL_COMPLETE
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/nvidia/cuBB/training/stageb_lns/crossload_learning.py", line 99, in <module>
+    p.add_argument('--workers',type=int,default=4);p.add_argument('--cpu',type=int,default=236);main(p.parse_args())
+  File "/opt/nvidia/cuBB/training/stageb_lns/crossload_learning.py", line 66, in main
+    write_json(out/'training.json',dict(fit_calls=1,rows=len(frame),features=list(FEATURES),train_seeds=[41,42],
+  File "/opt/nvidia/cuBB/training/stageb_lns/analyze_dpls_moves.py", line 28, in write_json
+    json.dump(value, handle, indent=2, ensure_ascii=False, allow_nan=False)
+  File "/usr/lib/python3.10/json/__init__.py", line 179, in dump
+    for chunk in iterable:
+  File "/usr/lib/python3.10/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.10/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/usr/lib/python3.10/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/usr/lib/python3.10/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type int64 is not JSON serializable
+Traceback (most recent call last):
+  File "/tmp/run_crossload_followups_20261104.py", line 12, in <module>
+    subprocess.run(['docker','exec','-w','/opt/nvidia/cuBB','c_aerial_oai2','env','OPENBLAS_NUM_THREADS=1','OMP_NUM_THREADS=1','MKL_NUM_THREADS=1','.venv/bin/python','-u','-m','training.stageb_lns.crossload_learning','--source',str(source),'--grid','deliverables/crossload_grid_analysis_20261104_v2','--output','deliverables/crossload_learning_20261104_v1','--workers','9','--cpu','235'],check=True)
+  File "/usr/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker', 'exec', '-w', '/opt/nvidia/cuBB', 'c_aerial_oai2', 'env', 'OPENBLAS_NUM_THREADS=1', 'OMP_NUM_THREADS=1', 'MKL_NUM_THREADS=1', '.venv/bin/python', '-u', '-m', 'training.stageb_lns.crossload_learning', '--source', 'deliverables/crossload_weights_20261104_v2', '--grid', 'deliverables/crossload_grid_analysis_20261104_v2', '--output', 'deliverables/crossload_learning_20261104_v1', '--workers', '9', '--cpu', '235']' returned non-zero exit status 1.
+BOUND_NATIVE 43 0.8 0.0 2000
+BOUND_NATIVE 42 1.12 0.0 2000
+BOUND_NATIVE 42 0.8 0.0 2000
+BOUND_NATIVE 43 1.28 0.0 2000
+BOUND_NATIVE 41 1.12 0.0 2000
+BOUND_NATIVE 41 0.8 0.0 2000
+BOUND_NATIVE 43 1.12 0.0 2000
+BOUND_NATIVE 41 1.28 0.0 2000
+BOUND_NATIVE 42 1.28 0.0 2000
+BOUND_NATIVE 41 0.8 0.0 4000
+BOUND_NATIVE 43 0.8 0.0 4000
+BOUND_NATIVE 42 0.8 0.0 4000
+BOUND_NATIVE 43 1.28 0.0 4000
+BOUND_NATIVE 42 1.12 0.0 4000
+BOUND_NATIVE 41 1.28 0.0 4000
+BOUND_NATIVE 43 1.12 0.0 4000
+BOUND_NATIVE 41 1.12 0.0 4000
+BOUND_NATIVE 42 1.28 0.0 4000
+BOUND_NATIVE 41 0.8 0.0 6000
+BOUND_NATIVE 43 0.8 0.0 6000
+BOUND_NATIVE 42 0.8 0.0 6000
+BOUND_NATIVE 42 1.12 0.0 6000
+BOUND_NATIVE 43 1.12 0.0 6000
+BOUND_NATIVE 43 1.28 0.0 6000
+BOUND_NATIVE 41 1.12 0.0 6000
+BOUND_NATIVE 41 1.28 0.0 6000
+BOUND_NATIVE 42 1.28 0.0 6000
+BOUND_NATIVE 41 0.8 0.0 8000
+BOUND_NATIVE 43 0.8 0.0 8000
+BOUND_NATIVE 42 0.8 0.0 8000
+BOUND_NATIVE 42 1.12 0.0 8000
+BOUND_NATIVE 43 1.12 0.0 8000
+BOUND_NATIVE 41 1.12 0.0 8000
+BOUND_NATIVE 43 1.28 0.0 8000
+BOUND_NATIVE 41 1.28 0.0 8000
+BOUND_NATIVE 42 1.28 0.0 8000
+BOUND_NATIVE 41 0.8 0.0 10000
+BOUND_NATIVE 43 0.8 0.0 10000
+BOUND_NATIVE 42 0.8 0.0 10000
+BOUND_NATIVE 42 1.12 0.0 10000
+BOUND_NATIVE 43 1.12 0.0 10000
+BOUND_NATIVE 41 1.12 0.0 10000
+BOUND_NATIVE 43 1.28 0.0 10000
+BOUND_NATIVE 41 1.28 0.0 10000
+BOUND_NATIVE 42 1.28 0.0 10000
+BOUND_NATIVE 41 0.8 0.0 12000
+BOUND_NATIVE 43 0.8 0.0 12000
+BOUND_NATIVE 42 0.8 0.0 12000
+BOUND_NATIVE 42 1.12 0.0 12000
+BOUND_NATIVE 41 1.12 0.0 12000
+BOUND_NATIVE 43 1.12 0.0 12000
+BOUND_NATIVE 41 1.28 0.0 12000
+BOUND_NATIVE 43 1.28 0.0 12000
+BOUND_NATIVE 42 1.28 0.0 12000

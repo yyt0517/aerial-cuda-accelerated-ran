@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-03",
+  "version": 1,
+  "methods": [
+    "full",
+    "existing2",
+    "cached_maxj",
+    "continuous",
+    "attainable",
+    "calibrated"
+  ],
+  "search_config": {
+    "wide": true,
+    "pareto": true,
+    "final_j_loss": 0.0,
+    "max_candidates": 212,
+    "max_feature_roots": 56,
+    "rounds": 56,
+    "seed_candidates": 16,
+    "batch_size": 8,
+    "beam_width": 4,
+    "seed": 20261102,
+    "metric": "quota_exp",
+    "log_epsilon": 0.01,
+    "tail_temperature": 0.1,
+    "directed_slots": 2,
+    "joint_candidates": false,
+    "alternate_sparse": false,
+    "target_count": 6,
+    "chain_depth": 4
+  },
+  "objective": "canonical native BLER causal deficit-weighted J; own raw unpruned PFQ90% dequeue floor",
+  "conditions": "fresh paid offline teacher counts/exact min-layer/activity only; no teacher UE positions,J,service or effective mask at runtime",
+  "cache": "decision-local deterministic wide pool keyed full root/wide/seed; lazy proxy keyed full root/candidate; no skipping periodic global RNG seed calls; ordered queries and physical values must match existing2",
+  "terminal": "same212 paid search for all conditional arms; maximumJ vs quota-exp vs attainable-envelope heuristic vs tiny calibrated neural coverage risk",
+  "risk_cap": 0.02,
+  "risk_cap_scope": "fraction of own maximumJ only; chosen from previously exposed diagnostic headroom, not a new blind hypothesis; global99.5%-fullJ gate unchanged",
+  "continuous": "lexicographic quota-exp thenmean reliability thenJ within2% ownbest",
+  "attainable": "own feasible-paid archive perUEmax E>1 group;min(candidateP5/envelopeP5,fixedweak20sum/envelopesum);choose maxJ withscore>=.98 else bestscore thenJ within2%",
+  "calibrated": "same causal feature summaries;42input->32tanh->16tanh->1 service-coverage logit;positive monotone Platt from leave-seed-out41-43;maxJ probability>=.9 else bestprob thenJ within2%",
+  "training": "18 own-visited states seeds41-43; all condition-and-floor-feasible paid candidates; offline full coverage labels;240 epochs fixed Adam lr.01 decay.001;3 leave-seed-out fits plus1all;no epoch/model tuning",
+  "splits": "group by seed, never random candidate split; all train normalization fitted only to fold training",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "train_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "repeats": 3,
+  "gates": "each J>=.995full,no newlyunallocatedUE,fullpositive P5/fixedweak20service>=.98full,seed-equal mean complete cost<=.8full",
+  "selection": "validation choose quality/service rule and separate cost-feasible route; cachedmaxJ eligible;freeze beforedevelopment;no tuning on44-48",
+  "timing": "numeric input/PFQ,freshPHY/MMSE,condition compression,all search/caches/terminalfeatures/network/contextcleanup; same memo event copies",
+  "exclusions": "teacherprep,compilation/immutablefirstTBS/library/model file IO,training,data/archiveIO,digests/independent audits",
+  "limits": "teacher-conditioned historical states;not online AI deployment timing or blind generalization;no additional recall scores/native trajectories/default promotion",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  },
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "physics_source_sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

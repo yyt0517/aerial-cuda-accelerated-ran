@@ -30,3 +30,6 @@ training/stageb_hgraph/exports/
 __pycache__/
 *.py[cod]
 /deliverables/
+
+# Rebuild Stage-B research runtime libraries from the versioned sources.
+/training/stageb_lns/*.so

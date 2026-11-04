@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-03",
+  "default_changed": false,
+  "all_objectives_ai_winner": null,
+  "selection_criterion": "for a complete native AI research implementation: actual learned decisions, matched candidate-pool attribution, payload/expiry prioritized; not a joint dominance claim",
+  "native_ai_research": {
+    "id": "service_choice_ppo_minibatch_round12_20261030",
+    "checkpoint": {
+      "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/ppo_final.pt",
+      "sha256": "1167d28b1141dc186fbb3d1e6828384c74177228c6f10969b09ba1bc1e6e3a8a",
+      "bytes": 405777
+    },
+    "frozen_neural_repair": {
+      "path": "deliverables/tb_joint_repair_20261027_train_v1/repair.npz",
+      "sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409",
+      "bytes": 31754
+    },
+    "actor": "training/stageb_ppo_v2/model.py::ServiceActor",
+    "catalog": "training/stageb_ppo_v2/catalog.py::Catalog",
+    "training_entry": "training.stageb_ppo_v2.refine",
+    "evaluation_entry": "training.stageb_ppo_v2.evaluate",
+    "usage": "training/stageb_ppo_v2/README.md",
+    "evidence": "Doc/evidence/2026-10-30/ppo_service_choice/report.txt",
+    "protocol": "seeds44-45 exposed; 4000 warmup +4000 stabilization +4000 measured arrival TTIs +400 follow-up; noCTBS/equalUE",
+    "quality": {
+      "payload_mbps": 1240.686,
+      "expiry_pct": 0.663140775786466,
+      "success_mean_ms": 7.012133541058531,
+      "success_p95_ms": 24.5,
+      "ue_payload_p5_mbps": 33.414
+    },
+    "matched_physical": {
+      "payload_mbps": 1237.848,
+      "expiry_pct": 0.8508401794546321,
+      "success_mean_ms": 5.653562699273025,
+      "success_p95_ms": 10.0,
+      "ue_payload_p5_mbps": 33.3765
+    },
+    "limitations": [
+      "average/P95 successful packet latency fails",
+      "full DPLS every TTI; no online speedup",
+      "two exposed development seeds; no generalization claim"
+    ],
+    "runtime": {
+      "container": "c_aerial_oai2",
+      "container_repo": "/opt/nvidia/cuBB",
+      "python": "/opt/nvidia/cuBB/.venv/bin/python",
+      "native_adapter": "training/stageb_ppo/native.py",
+      "native_simulator_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+      "required_worktree": ".worktrees/pfq-independent-reuse-actor",
+      "requires_cuda_native_simulator": true
+    },
+    "cpu_checkpoint_load_verified": true,
+    "current_source_manifests_verified": [
+      {
+        "manifest": {
+          "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/source_manifest.json",
+          "sha256": "c24489d6056d9c99a4ce6de543cc7c3e49574eccf76803685131dcd47ee2f24f",
+          "bytes": 7342
+        },
+        "entries": 67,
+        "all_current_files_match": true
+      },
+      {
+        "manifest": {
+          "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/base_source_manifest.json",
+          "sha256": "3c7ae427338e0cf704db666d122053f17be60643be43d53f0935b6875f643a02",
+          "bytes": 6892
+        },
+        "entries": 63,
+        "all_current_files_match": true
+      },
+      {
+        "manifest": {
+          "path": "deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation/runtime_supplement_manifest.json",
+          "sha256": "02d79c28bfd2892f976ef347786526edd8d4d416c170a29b9d78ca731b2a92b0",
+          "bytes": 463
+        },
+        "entries": 4,
+        "all_current_files_match": true
+      }
+    ],
+    "new_native_run_this_review": false
+  },
+  "conditional_learning_research": {
+    "id": "repair_guard_expanded_focused_20261103",
+    "checkpoint": {
+      "path": "deliverables/repair_expansion_20261103_v1/repair_guard/ue_pair_model.npz",
+      "sha256": "ad4995666c113bca382004fd10c63992946f7a02015d3243be0db8361f4fc177",
+      "bytes": 22343
+    },
+    "solver": "training/stageb_lns/ue_pair_solver.py::solve_ue_pair",
+    "selector": "training/stageb_lns/ue_pair_risk.py::select_terminal",
+    "train": "training/stageb_lns/repair_pair_train.py",
+    "campaign": "training.stageb_lns.repair_expansion",
+    "runtime_mode": "ue_pair_guard",
+    "budget": 212,
+    "confidence": 0.9,
+    "own_j_window": 0.02,
+    "validation": {
+      "arm": "repair_guard",
+      "mean_j": "79130.20979199163",
+      "mean_ms": "86.32460050284863",
+      "execution_time_ratio": "0.8404321748891617",
+      "mean_relative_j_pct": "0.22138350470908286",
+      "worst_relative_j_pct": "0.020267295125298013",
+      "mean_newly_unserved": "0.0",
+      "mean_positive_p5": "1.0000465096582063",
+      "worst_positive_p5": "0.9999929313139607",
+      "mean_positive_weak": "1.0021736760431126",
+      "worst_positive_weak": "0.9999937778529638",
+      "mean_actual_phy": "212.0",
+      "mean_feature_roots": "11.416666666666668",
+      "quality_failures": "0",
+      "coverage_failures": "0",
+      "quality_pass": "True",
+      "coverage_pass": "True",
+      "execution_cost_pass": "False",
+      "conditional_target_pass": "False",
+      "online_ai_success": "False"
+    },
+    "development": {
+      "arm": "repair_guard",
+      "mean_j": "81058.06274160901",
+      "mean_ms": "95.681332776116",
+      "execution_time_ratio": "0.65177689073786",
+      "mean_relative_j_pct": "0.1418142727483973",
+      "worst_relative_j_pct": "0.03318141327783852",
+      "mean_newly_unserved": "0.0",
+      "mean_positive_p5": "1.0000794916522409",
+      "worst_positive_p5": "1.0",
+      "mean_positive_weak": "1.0030957287024105",
+      "worst_positive_weak": "0.9956256968278342",
+      "mean_actual_phy": "212.0",
+      "mean_feature_roots": "10.666666666666666",
+      "quality_failures": "0",
+      "coverage_failures": "0",
+      "quality_pass": "True",
+      "coverage_pass": "True",
+      "execution_cost_pass": "True",
+      "conditional_target_pass": "True",
+      "online_ai_success": "False"
+    },
+    "teacher_condition_required": true,
+    "not_a_complete_online_ai_scheduler": true,
+    "limitations": [
+      "validation complete execution above 80% full",
+      "seed43 has no repairable training failure",
+      "1/3 leave-seed-out repairs",
+      "teacher condition generation absent from runtime cost"
+    ],
+    "evidence": "Doc/evidence/2026-11-03/repair_expansion/report.txt"
+  },
+  "physical_default": {
+    "registry": {
+      "path": "training/stageb_hgraph/current_algorithm.json",
+      "sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+      "bytes": 1274
+    },
+    "id": "pfq_ctbs_deficit_search_rho090_20261027",
+    "launcher": "cuMAC/scripts/run_stageB_current_algorithm.sh",
+    "status": "unchanged research default; no neural actor required",
+    "config": "Doc/current_stageB_effective_configuration.md"
+  },
+  "next_decision": "conditional repair has a local positive signal; freeze it for equivalent cost reduction; do not immediately train a larger proposer or PPO"
+}

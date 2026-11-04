@@ -1,0 +1,470 @@
+[
+  {
+    "iteration": 1,
+    "prefix_examples": 39168,
+    "epochs": 5,
+    "training": [
+      {
+        "epoch": 1,
+        "loss": 1.4904839618533265,
+        "teacher_forced_accuracy": 0.4731924019607843
+      },
+      {
+        "epoch": 2,
+        "loss": 1.1406349637149986,
+        "teacher_forced_accuracy": 0.5809334150326797
+      },
+      {
+        "epoch": 3,
+        "loss": 1.0306682524338266,
+        "teacher_forced_accuracy": 0.6168811274509803
+      },
+      {
+        "epoch": 4,
+        "loss": 1.0058848098212598,
+        "teacher_forced_accuracy": 0.6275531045751634
+      },
+      {
+        "epoch": 5,
+        "loss": 0.9904032423605327,
+        "teacher_forced_accuracy": 0.633093341503268
+      }
+    ],
+    "note": "teacher-forced training fit, not independent validation or closed-loop quality",
+    "collection": [
+      {
+        "seed": 42,
+        "iteration": 1,
+        "k": 4,
+        "first_tti": 4001,
+        "last_tti": 5536,
+        "teacher_queries": 256,
+        "teacher_seconds": 63.5689155254513,
+        "best_student_over_teacher_mean": 0.7300115192727031,
+        "best_student_over_teacher_p5": 0.6178427372663124,
+        "assignment_match": 0.32406556372549017,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 41,
+        "iteration": 1,
+        "k": 8,
+        "first_tti": 4001,
+        "last_tti": 5536,
+        "teacher_queries": 256,
+        "teacher_seconds": 60.47092717513442,
+        "best_student_over_teacher_mean": 0.7718823236841172,
+        "best_student_over_teacher_p5": 0.6314797371421779,
+        "assignment_match": 0.3635110294117647,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 43,
+        "iteration": 1,
+        "k": 8,
+        "first_tti": 4001,
+        "last_tti": 5536,
+        "teacher_queries": 256,
+        "teacher_seconds": 73.38691392354667,
+        "best_student_over_teacher_mean": 0.7502227413356503,
+        "best_student_over_teacher_p5": 0.6298774741125388,
+        "assignment_match": 0.28990502450980393,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      }
+    ],
+    "elapsed_s": 287.3174587059766
+  },
+  {
+    "iteration": 2,
+    "prefix_examples": 78336,
+    "epochs": 5,
+    "training": [
+      {
+        "epoch": 1,
+        "loss": 1.0756608130885106,
+        "teacher_forced_accuracy": 0.6034517973856209
+      },
+      {
+        "epoch": 2,
+        "loss": 1.053734004887101,
+        "teacher_forced_accuracy": 0.6119025735294118
+      },
+      {
+        "epoch": 3,
+        "loss": 1.0363082285800012,
+        "teacher_forced_accuracy": 0.6190257352941176
+      },
+      {
+        "epoch": 4,
+        "loss": 1.0244530260173323,
+        "teacher_forced_accuracy": 0.6225617851307189
+      },
+      {
+        "epoch": 5,
+        "loss": 1.0127346850688161,
+        "teacher_forced_accuracy": 0.6268382352941176
+      }
+    ],
+    "note": "teacher-forced training fit, not independent validation or closed-loop quality",
+    "collection": [
+      {
+        "seed": 41,
+        "iteration": 2,
+        "k": 4,
+        "first_tti": 5537,
+        "last_tti": 7072,
+        "teacher_queries": 256,
+        "teacher_seconds": 61.48751792404801,
+        "best_student_over_teacher_mean": 0.8774562076116224,
+        "best_student_over_teacher_p5": 0.7184978098518235,
+        "assignment_match": 0.47434129901960786,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 43,
+        "iteration": 2,
+        "k": 4,
+        "first_tti": 5537,
+        "last_tti": 7072,
+        "teacher_queries": 256,
+        "teacher_seconds": 61.082135347649455,
+        "best_student_over_teacher_mean": 0.862220230806535,
+        "best_student_over_teacher_p5": 0.6809491514202222,
+        "assignment_match": 0.4459252450980392,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 42,
+        "iteration": 2,
+        "k": 8,
+        "first_tti": 5537,
+        "last_tti": 7072,
+        "teacher_queries": 256,
+        "teacher_seconds": 61.92006188072264,
+        "best_student_over_teacher_mean": 0.8724100311829208,
+        "best_student_over_teacher_p5": 0.7019044925651201,
+        "assignment_match": 0.47801776960784315,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      }
+    ],
+    "elapsed_s": 447.06151333171874
+  },
+  {
+    "iteration": 3,
+    "prefix_examples": 117504,
+    "epochs": 5,
+    "training": [
+      {
+        "epoch": 1,
+        "loss": 1.0545354276441021,
+        "teacher_forced_accuracy": 0.6135365604575164
+      },
+      {
+        "epoch": 2,
+        "loss": 1.0436867971565729,
+        "teacher_forced_accuracy": 0.6175789760348583
+      },
+      {
+        "epoch": 3,
+        "loss": 1.0360176539888568,
+        "teacher_forced_accuracy": 0.6201746323529411
+      },
+      {
+        "epoch": 4,
+        "loss": 1.029513104548901,
+        "teacher_forced_accuracy": 0.623255378540305
+      },
+      {
+        "epoch": 5,
+        "loss": 1.0232566779475327,
+        "teacher_forced_accuracy": 0.6247361791938998
+      }
+    ],
+    "note": "teacher-forced training fit, not independent validation or closed-loop quality",
+    "collection": [
+      {
+        "seed": 42,
+        "iteration": 3,
+        "k": 4,
+        "first_tti": 7073,
+        "last_tti": 8608,
+        "teacher_queries": 256,
+        "teacher_seconds": 60.89250737242401,
+        "best_student_over_teacher_mean": 0.8798401601592942,
+        "best_student_over_teacher_p5": 0.7195419472119716,
+        "assignment_match": 0.48291973039215685,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 43,
+        "iteration": 3,
+        "k": 8,
+        "first_tti": 7073,
+        "last_tti": 8608,
+        "teacher_queries": 256,
+        "teacher_seconds": 65.09163566958159,
+        "best_student_over_teacher_mean": 0.8986936597218735,
+        "best_student_over_teacher_p5": 0.7186195059059907,
+        "assignment_match": 0.4714307598039216,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 41,
+        "iteration": 3,
+        "k": 8,
+        "first_tti": 7073,
+        "last_tti": 8608,
+        "teacher_queries": 256,
+        "teacher_seconds": 68.1239347923547,
+        "best_student_over_teacher_mean": 0.9002428159009168,
+        "best_student_over_teacher_p5": 0.7684079691045915,
+        "assignment_match": 0.4885876225490196,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      }
+    ],
+    "elapsed_s": 608.1586629906669
+  },
+  {
+    "iteration": 4,
+    "prefix_examples": 156672,
+    "epochs": 5,
+    "training": [
+      {
+        "epoch": 1,
+        "loss": 1.0559961410129772,
+        "teacher_forced_accuracy": 0.6147046058006536
+      },
+      {
+        "epoch": 2,
+        "loss": 1.04996557017557,
+        "teacher_forced_accuracy": 0.6159939236111112
+      },
+      {
+        "epoch": 3,
+        "loss": 1.0456717236369264,
+        "teacher_forced_accuracy": 0.6185023488562091
+      },
+      {
+        "epoch": 4,
+        "loss": 1.0401692117740906,
+        "teacher_forced_accuracy": 0.6202065461601307
+      },
+      {
+        "epoch": 5,
+        "loss": 1.0364010185977213,
+        "teacher_forced_accuracy": 0.6206980187908496
+      }
+    ],
+    "note": "teacher-forced training fit, not independent validation or closed-loop quality",
+    "collection": [
+      {
+        "seed": 41,
+        "iteration": 4,
+        "k": 4,
+        "first_tti": 8609,
+        "last_tti": 10144,
+        "teacher_queries": 256,
+        "teacher_seconds": 71.58544628787786,
+        "best_student_over_teacher_mean": 0.9048458270668025,
+        "best_student_over_teacher_p5": 0.7743662595999539,
+        "assignment_match": 0.500765931372549,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 43,
+        "iteration": 4,
+        "k": 4,
+        "first_tti": 8609,
+        "last_tti": 10144,
+        "teacher_queries": 256,
+        "teacher_seconds": 73.7370170308277,
+        "best_student_over_teacher_mean": 0.9046043499055604,
+        "best_student_over_teacher_p5": 0.7827914267202086,
+        "assignment_match": 0.4691329656862745,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 42,
+        "iteration": 4,
+        "k": 8,
+        "first_tti": 8609,
+        "last_tti": 10144,
+        "teacher_queries": 256,
+        "teacher_seconds": 70.1357255987823,
+        "best_student_over_teacher_mean": 0.8794304161738344,
+        "best_student_over_teacher_p5": 0.7345606828005393,
+        "assignment_match": 0.4639246323529412,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      }
+    ],
+    "elapsed_s": 770.1291025280952
+  },
+  {
+    "iteration": 5,
+    "prefix_examples": 195840,
+    "epochs": 5,
+    "training": [
+      {
+        "epoch": 1,
+        "loss": 1.051820178281248,
+        "teacher_forced_accuracy": 0.617172181372549
+      },
+      {
+        "epoch": 2,
+        "loss": 1.0481308023914013,
+        "teacher_forced_accuracy": 0.6186734068627451
+      },
+      {
+        "epoch": 3,
+        "loss": 1.0446497169195437,
+        "teacher_forced_accuracy": 0.6193933823529412
+      },
+      {
+        "epoch": 4,
+        "loss": 1.041928722500022,
+        "teacher_forced_accuracy": 0.6203635620915032
+      },
+      {
+        "epoch": 5,
+        "loss": 1.0400073646719938,
+        "teacher_forced_accuracy": 0.62109375
+      }
+    ],
+    "note": "teacher-forced training fit, not independent validation or closed-loop quality",
+    "collection": [
+      {
+        "seed": 41,
+        "iteration": 5,
+        "k": 8,
+        "first_tti": 10145,
+        "last_tti": 11680,
+        "teacher_queries": 256,
+        "teacher_seconds": 62.02294427063316,
+        "best_student_over_teacher_mean": 0.9119652148667126,
+        "best_student_over_teacher_p5": 0.7903947956212733,
+        "assignment_match": 0.5009191176470589,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 43,
+        "iteration": 5,
+        "k": 8,
+        "first_tti": 10145,
+        "last_tti": 11680,
+        "teacher_queries": 256,
+        "teacher_seconds": 65.9749161079526,
+        "best_student_over_teacher_mean": 0.9064938653900663,
+        "best_student_over_teacher_p5": 0.7639663186421202,
+        "assignment_match": 0.4673713235294118,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 42,
+        "iteration": 5,
+        "k": 4,
+        "first_tti": 10145,
+        "last_tti": 11680,
+        "teacher_queries": 256,
+        "teacher_seconds": 74.20825917366892,
+        "best_student_over_teacher_mean": 0.9073330448333037,
+        "best_student_over_teacher_p5": 0.7556538913240483,
+        "assignment_match": 0.4920343137254902,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      }
+    ],
+    "elapsed_s": 933.0989326657727
+  },
+  {
+    "iteration": 6,
+    "prefix_examples": 235008,
+    "epochs": 5,
+    "training": [
+      {
+        "epoch": 1,
+        "loss": 1.051913693319998,
+        "teacher_forced_accuracy": 0.6179364106753813
+      },
+      {
+        "epoch": 2,
+        "loss": 1.0496783066938646,
+        "teacher_forced_accuracy": 0.6189023352396514
+      },
+      {
+        "epoch": 3,
+        "loss": 1.0470869291841594,
+        "teacher_forced_accuracy": 0.6193959354575164
+      },
+      {
+        "epoch": 4,
+        "loss": 1.0463291097570349,
+        "teacher_forced_accuracy": 0.6193533837145969
+      },
+      {
+        "epoch": 5,
+        "loss": 1.0426803505238884,
+        "teacher_forced_accuracy": 0.620812908496732
+      }
+    ],
+    "note": "teacher-forced training fit, not independent validation or closed-loop quality",
+    "collection": [
+      {
+        "seed": 43,
+        "iteration": 6,
+        "k": 4,
+        "first_tti": 11681,
+        "last_tti": 13216,
+        "teacher_queries": 256,
+        "teacher_seconds": 64.35626706201583,
+        "best_student_over_teacher_mean": 0.8992838137477219,
+        "best_student_over_teacher_p5": 0.7490746523237849,
+        "assignment_match": 0.47051164215686275,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 42,
+        "iteration": 6,
+        "k": 8,
+        "first_tti": 11681,
+        "last_tti": 13216,
+        "teacher_queries": 256,
+        "teacher_seconds": 67.1483312426135,
+        "best_student_over_teacher_mean": 0.8900447651296087,
+        "best_student_over_teacher_p5": 0.7240281436150224,
+        "assignment_match": 0.46292892156862747,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      },
+      {
+        "seed": 41,
+        "iteration": 6,
+        "k": 4,
+        "first_tti": 11681,
+        "last_tti": 13216,
+        "teacher_queries": 256,
+        "teacher_seconds": 68.76485374383628,
+        "best_student_over_teacher_mean": 0.8957840311307907,
+        "best_student_over_teacher_p5": 0.77199006481681,
+        "assignment_match": 0.5161611519607843,
+        "student_acted_every_step": true,
+        "teacher_actions_executed_as_override": 0
+      }
+    ],
+    "elapsed_s": 1094.0403697201982
+  }
+]

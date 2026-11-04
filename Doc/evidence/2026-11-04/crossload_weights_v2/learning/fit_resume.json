@@ -1,0 +1,8 @@
+{
+  "refitted": false,
+  "fit_calls_total": 1,
+  "model_sha256": "9a20de40f133751e5e0a14e794c6489abf5f08c383e4326e889d1498607a7b30",
+  "features_sha256": "01c5913c0d38b00a13081d4e9822f016cc33b99c4f08280014b1d14c638fc9c8",
+  "failure": "NumPy int64 tree metadata was not JSON serializable; model/feature artifacts already complete",
+  "partial_metadata_sha256": "f69b6a05e2765f411e555630ddc695693e53c878ef78b98183ac984e05a8a1fc"
+}

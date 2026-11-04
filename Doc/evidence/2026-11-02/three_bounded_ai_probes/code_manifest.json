@@ -1,0 +1,11 @@
+{
+  "note": "Original run source hashes are in source_manifest.json; original full snapshot stays in deliverables/source. Exported code adds final reporting/tests/README; no experiment or training semantics changed.",
+  "files": {
+    "bounded_probes_README.rst": "8d875fdf992c66533aa69533804563e5e731f8996608ef8118f124b37c9037b4",
+    "test_bounded_probes.py": "2f678a200b563a9c03e90a4784fe1f993a10cefc02d118abf08c5e7e38001e65",
+    "bounded_probe_followup.py": "4c7a7e91a69f55980f9c980781295edb65bef80ed7132fc6e428b7e0c906922b",
+    "bounded_probes.py": "7e7f9c586437568bc0637831dafb263ee7d29c989b78b9012c42d4b4f71b7e06",
+    "audit_bounded_probes.py": "972221d5f2e8e04f400392b5029aefd331747e2d738500c316a2d8b206c24840",
+    "probe_kernel.cpp": "8614572ca36c5d4686f83c48f94dc467a9572e7862ccb8eb030fde368257a2f5"
+  }
+}

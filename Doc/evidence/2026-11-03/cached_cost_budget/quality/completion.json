@@ -1,0 +1,12 @@
+{
+  "completed": true,
+  "decisions": 60,
+  "new_native_runs": 0,
+  "online_candidate_evaluations": 566987,
+  "audit_candidate_evaluations": 1362965,
+  "online_mmse_misses": 110670,
+  "audit_mmse_misses": 63498,
+  "numpy_terminal_audits": 60,
+  "regret_roots": 1775,
+  "all_converged": true
+}

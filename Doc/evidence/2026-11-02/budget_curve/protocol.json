@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "training": false,
+  "ppo": false,
+  "ctbs": false,
+  "headroom_masks": false,
+  "models": {
+    "initial": {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/scalar_e10.npz",
+      "sha256": "667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e"
+    },
+    "trained": {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+      "sha256": "52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890"
+    }
+  },
+  "control": "same feature/rank cache, failed-index deduplication and canonical score layout for heuristic and both AI checkpoints",
+  "budgets": [
+    106,
+    160,
+    212
+  ],
+  "top_k": [
+    2,
+    4
+  ],
+  "max_feature_roots": 56,
+  "methods": [
+    "full",
+    "heuristic_k2_b106",
+    "heuristic_k4_b106",
+    "initial_k2_b106",
+    "initial_k4_b106",
+    "trained_k2_b106",
+    "trained_k4_b106",
+    "heuristic_k2_b160",
+    "heuristic_k4_b160",
+    "initial_k2_b160",
+    "initial_k4_b160",
+    "trained_k2_b160",
+    "trained_k4_b160",
+    "heuristic_k2_b212",
+    "heuristic_k4_b212",
+    "initial_k2_b212",
+    "initial_k4_b212",
+    "trained_k2_b212",
+    "trained_k4_b212"
+  ],
+  "numerical_and_acceptance": "unchanged shortlist solver; >1B edit acceptance, full DPLS original1/16B thresholds",
+  "floor": "ceil(90% own unpruned raw PFQ dequeue), causal deficit-weighted J",
+  "partial_batch": "last shortlist truncated to remaining scores; different budgets may change later paths; do not assume monotone J",
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "selection": "freeze quality-best and best within80%-full cost on validation, before reading development results in this run",
+  "quality_gate": "all states J>=99.5% full",
+  "coverage_gate": "no newly unallocated COUNT>0 UE vs full; P5 and bottom20% service among full expected>1B UEs each>=98%",
+  "cost_gate": "seed-equal medians complete mean time<=80% full",
+  "repeats": 3,
+  "timing": "numeric input/PFQ decode through fresh PHY/cache/features/network/validation/scoring/cleanup",
+  "excludes": "archive/model/library IO and first immutable TBS table setup",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "solver_sha256": "7d7842028b9a90b658c2629333be4726c74f3a02f1d8770ab13451146ed72b46",
+  "prior_protocol_sha256": "9a996963ba6045d5764a654e59dc610c720718926edac6c986d887cf92d0bcf4",
+  "prior_selection_sha256": "73ed9ffb2902d1a7e796b17021f8c09b4f4e2bd3c7f313f4bcbd261a22b0695c",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

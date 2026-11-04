@@ -1,0 +1,10 @@
+{
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/search.csv": "a2c6d37b44a6f135bfc81d9b6ba04234dc41ed5135a51cad49d936fc6531d947",
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/search.csv": "4e9ccb450af0466bd87377ba008f4f752bb92c959f003b69e23bfc890435a376",
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/search.csv": "bc616dd43d8fce7e21fbd3f2d4926d3887990a5751c055df3f9d8ba91703d30d",
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/search.csv": "6eb2c8ca870a56781df11af6bc8350331fcd2ecf745aa89b5253211544079ee2",
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/search.csv": "a3664484228943e790b9604781e13fceb4fc124bbdf81a0f6224e4835787d839",
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/search.csv": "329f882e2a7112663cc668d832d459dd6cde5b257152c4ba874106dc4a75f7b6",
+  "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_analysis_20261104_v1/work_ledger.json": "0e05163c4dd9b26578b1a9101e2697193887faf15c44a820ce068defab85173b",
+  "/data/aerial-cuda-accelerated-ran/training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b"
+}

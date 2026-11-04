@@ -1,0 +1,15 @@
+{
+  "collected": "after execution in same venv",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "configured_threads": {
+    "OPENBLAS_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  },
+  "gpu": false,
+  "kernels": "existing shared libraries unchanged; binary hashes in source_manifest.json",
+  "timing": "serial;3 repeats;per-state medians then seed-equal means;see protocol.json"
+}

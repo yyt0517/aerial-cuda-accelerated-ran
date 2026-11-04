@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "independent_phy": [
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "baseline",
+      "index": -1,
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "baseline",
+      "index": 389,
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "baseline",
+      "index": 638,
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "baseline",
+      "index": 

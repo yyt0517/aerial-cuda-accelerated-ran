@@ -1,0 +1,469 @@
+{
+  "protocol": {
+    "seeds": [
+      41,
+      42,
+      43
+    ],
+    "first_tti": 8001,
+    "last_tti": 12000,
+    "TTI_ms": 0.5,
+    "measurement_seconds": 2.0,
+    "followup_TTIs": 400,
+    "scenario": "Boundary/rate0.8",
+    "aggregation": "Throughputs, UE P5, Jain, PRG and TB error: seed means; packet rates and delays: pooled; worst UE: maximum over seed,UE",
+    "timing": "Concurrent quality-run wall times are descriptive only. No fair speed comparison to PFQ or full under M-LWDF-PF weights.",
+    "new_native_steps": 0,
+    "new_PHY_evaluations": 0,
+    "new_training_steps": 0
+  },
+  "aggregate": [
+    {
+      "arm": "PFQ",
+      "payload_mbps": 742.516,
+      "goodput_mbps": 991.7120960000001,
+      "ue_p5_mbps": 9.055,
+      "ue_min_mbps": 6.472,
+      "jain": 0.8577581690347033,
+      "PRG_utilization_pct": 100.0,
+      "tb_error_pct": 9.093776946011035,
+      "cohort_packets": 345471,
+      "successful_packets": 185629,
+      "success_pct": 53.73215117911489,
+      "expiry_pct": 31.75375067661251,
+      "other_nondelivery_pct": 14.514098144272602,
+      "mean_ms": 122.50234607739092,
+      "P95_ms": 200.0,
+      "P99_ms": 200.0,
+      "terminal_mean_ms": 148.26336074518557,
+      "terminal_P99_ms": 200.0,
+      "worst_ue_expiry_pct": 82.88288288288288,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0
+    },
+    {
+      "arm": "M-LWDF-PF + bounded DPLS",
+      "payload_mbps": 1254.58,
+      "goodput_mbps": 1311.4370093333334,
+      "ue_p5_mbps": 33.597,
+      "ue_min_mbps": 33.38400000000001,
+      "jain": 0.99942933384601,
+      "PRG_utilization_pct": 86.0732026143791,
+      "tb_error_pct": 9.09148775111404,
+      "cohort_packets": 345471,
+      "successful_packets": 313645,
+      "success_pct": 90.78764932512425,
+      "expiry_pct": 0.0,
+      "other_nondelivery_pct": 9.212350674875749,
+      "mean_ms": 2.74313475426039,
+      "P95_ms": 5.5,
+      "P99_ms": 7.0,
+      "terminal_mean_ms": 2.72273070677423,
+      "terminal_P99_ms": 7.0,
+      "worst_ue_expiry_pct": 0.0,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0
+    }
+  ],
+  "comparison": [
+    {
+      "metric": "payload_mbps",
+      "PFQ": 742.516,
+      "M_LWDF_PF_bounded": 1254.58,
+      "delta": 512.064,
+      "relative_change_pct": 68.96336240565859
+    },
+    {
+      "metric": "goodput_mbps",
+      "PFQ": 991.7120960000001,
+      "M_LWDF_PF_bounded": 1311.4370093333334,
+      "delta": 319.72491333333335,
+      "relative_change_pct": 32.239690795637266
+    },
+    {
+      "metric": "ue_p5_mbps",
+      "PFQ": 9.055,
+      "M_LWDF_PF_bounded": 33.597,
+      "delta": 24.542,
+      "relative_change_pct": 271.03257868580897
+    },
+    {
+      "metric": "ue_min_mbps",
+      "PFQ": 6.472,
+      "M_LWDF_PF_bounded": 33.38400000000001,
+      "delta": 26.912000000000006,
+      "relative_change_pct": 415.822002472188
+    },
+    {
+      "metric": "jain",
+      "PFQ": 0.8577581690347033,
+      "M_LWDF_PF_bounded": 0.99942933384601,
+      "delta": 0.1416711648113067,
+      "relative_change_pct": 16.5164460014108
+    },
+    {
+      "metric": "PRG_utilization_pct",
+      "PFQ": 100.0,
+      "M_LWDF_PF_bounded": 86.0732026143791,
+      "delta": -13.926797385620901,
+      "relative_change_pct": -13.926797385620905
+    },
+    {
+      "metric": "tb_error_pct",
+      "PFQ": 9.093776946011035,
+      "M_LWDF_PF_bounded": 9.09148775111404,
+      "delta": -0.002289194896995639,
+      "relative_change_pct": -0.025173202626216362
+    },
+    {
+      "metric": "cohort_packets",
+      "PFQ": 345471,
+      "M_LWDF_PF_bounded": 345471,
+      "delta": 0,
+      "relative_change_pct": 0.0
+    },
+    {
+      "metric": "successful_packets",
+      "PFQ": 185629,
+      "M_LWDF_PF_bounded": 313645,
+      "delta": 128016,
+      "relative_change_pct": 68.96336240565859
+    },
+    {
+      "metric": "success_pct",
+      "PFQ": 53.73215117911489,
+      "M_LWDF_PF_bounded": 90.78764932512425,
+      "delta": 37.05549814600936,
+      "relative_change_pct": 68.96336240565861
+    },
+    {
+      "metric": "expiry_pct",
+      "PFQ": 31.75375067661251,
+      "M_LWDF_PF_bounded": 0.0,
+      "delta": -31.75375067661251,
+      "relative_change_pct": -100.0
+    },
+    {
+      "metric": "other_nondelivery_pct",
+      "PFQ": 14.514098144272602,
+      "M_LWDF_PF_bounded": 9.212350674875749,
+      "delta": -5.301747469396853,
+      "relative_change_pct": -36.528259742331784
+    },
+    {
+      "metric": "mean_ms",
+      "PFQ": 122.50234607739092,
+      "M_LWDF_PF_bounded": 2.74313475426039,
+      "delta": -119.75921132313053,
+      "relative_change_pct": -97.76074920840503
+    },
+    {
+      "metric": "P95_ms",
+      "PFQ": 200.0,
+      "M_LWDF_PF_bounded": 5.5,
+      "delta": -194.5,
+      "relative_change_pct": -97.25
+    },
+    {
+      "metric": "P99_ms",
+      "PFQ": 200.0,
+      "M_LWDF_PF_bounded": 7.0,
+      "delta": -193.0,
+      "relative_change_pct": -96.5
+    },
+    {
+      "metric": "terminal_mean_ms",
+      "PFQ": 148.26336074518557,
+      "M_LWDF_PF_bounded": 2.72273070677423,
+      "delta": -145.54063003841134,
+      "relative_change_pct": -98.16358492543975
+    },
+    {
+      "metric": "terminal_P99_ms",
+      "PFQ": 200.0,
+      "M_LWDF_PF_bounded": 7.0,
+      "delta": -193.0,
+      "relative_change_pct": -96.5
+    },
+    {
+      "metric": "worst_ue_expiry_pct",
+      "PFQ": 82.88288288288288,
+      "M_LWDF_PF_bounded": 0.0,
+      "delta": -82.88288288288288,
+      "relative_change_pct": -100.0
+    },
+    {
+      "metric": "zero_UEs",
+      "PFQ": 0,
+      "M_LWDF_PF_bounded": 0,
+      "delta": 0,
+      "relative_change_pct": null
+    },
+    {
+      "metric": "long_gap_UEs",
+      "PFQ": 0,
+      "M_LWDF_PF_bounded": 0,
+      "delta": 0,
+      "relative_change_pct": null
+    }
+  ],
+  "per_seed": [
+    {
+      "seed": 41,
+      "arm": "PFQ",
+      "cohort_packets": 115734,
+      "payload_mbps": 774.3,
+      "goodput_mbps": 1011.145104,
+      "success_pct": 55.75284704581195,
+      "expiry_pct": 29.578170632657645,
+      "other_nondelivery_pct": 14.668982321530406,
+      "mean_ms": 94.53049205734212,
+      "P95_ms": 200.0,
+      "P99_ms": 200.0,
+      "terminal_mean_ms": 127.08781775450602,
+      "terminal_P99_ms": 200.0,
+      "ue_p5_mbps": 7.023,
+      "ue_min_mbps": 4.74,
+      "jain": 0.8508067137578422,
+      "worst_ue_expiry_pct": 82.75755706354101,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0,
+      "PRG_utilization_pct": 100.0,
+      "tb_error_pct": 9.092322148978713
+    },
+    {
+      "seed": 41,
+      "arm": "M-LWDF-PF + bounded DPLS",
+      "cohort_packets": 115734,
+      "payload_mbps": 1263.6960000000001,
+      "goodput_mbps": 1318.615064,
+      "success_pct": 90.99141133979643,
+      "expiry_pct": 0.0,
+      "other_nondelivery_pct": 9.00858866020357,
+      "mean_ms": 2.410847229080412,
+      "P95_ms": 5.0,
+      "P99_ms": 6.5,
+      "terminal_mean_ms": 2.393432353500268,
+      "terminal_P99_ms": 6.5,
+      "ue_p5_mbps": 34.005,
+      "ue_min_mbps": 33.648,
+      "jain": 0.9994815655071724,
+      "worst_ue_expiry_pct": 0.0,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0,
+      "PRG_utilization_pct": 86.04166666666667,
+      "tb_error_pct": 9.116340059736286
+    },
+    {
+      "seed": 42,
+      "arm": "PFQ",
+      "cohort_packets": 115235,
+      "payload_mbps": 715.956,
+      "goodput_mbps": 974.562756,
+      "success_pct": 51.77506833861239,
+      "expiry_pct": 34.04607975007593,
+      "other_nondelivery_pct": 14.178851911311668,
+      "mean_ms": 126.61865812982921,
+      "P95_ms": 200.0,
+      "P99_ms": 200.0,
+      "terminal_mean_ms": 152.68948236212955,
+      "terminal_P99_ms": 200.0,
+      "ue_p5_mbps": 9.876,
+      "ue_min_mbps": 5.004,
+      "jain": 0.8471956967342639,
+      "worst_ue_expiry_pct": 82.88288288288288,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0,
+      "PRG_utilization_pct": 100.0,
+      "tb_error_pct": 9.095194871903123
+    },
+    {
+      "seed": 42,
+      "arm": "M-LWDF-PF + bounded DPLS",
+      "cohort_packets": 115235,
+      "payload_mbps": 1255.2959999999996,
+      "goodput_mbps": 1311.723156,
+      "success_pct": 90.77797544148913,
+      "expiry_pct": 0.0,
+      "other_nondelivery_pct": 9.222024558510869,
+      "mean_ms": 2.8182213597430406,
+      "P95_ms": 5.5,
+      "P99_ms": 7.0,
+      "terminal_mean_ms": 2.7975875385082656,
+      "terminal_P99_ms": 7.0,
+      "ue_p5_mbps": 33.089999999999996,
+      "ue_min_mbps": 32.892,
+      "jain": 0.9991529034115457,
+      "worst_ue_expiry_pct": 0.0,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0,
+      "PRG_utilization_pct": 85.70588235294117,
+      "tb_error_pct": 9.059299903171855
+    },
+    {
+      "seed": 43,
+      "arm": "PFQ",
+      "cohort_packets": 114502,
+      "payload_mbps": 737.292,
+      "goodput_mbps": 989.428428,
+      "success_pct": 53.65932472795235,
+      "expiry_pct": 31.64573544566907,
+      "other_nondelivery_pct": 14.694939826378578,
+      "mean_ms": 147.88104034765058,
+      "P95_ms": 200.0,
+      "P99_ms": 200.0,
+      "terminal_mean_ms": 165.2122888683167,
+      "terminal_P99_ms": 200.0,
+      "ue_p5_mbps": 10.266,
+      "ue_min_mbps": 9.672,
+      "jain": 0.8752720966120038,
+      "worst_ue_expiry_pct": 67.27216748768473,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0,
+      "PRG_utilization_pct": 100.0,
+      "tb_error_pct": 9.093813817151272
+    },
+    {
+      "seed": 43,
+      "arm": "M-LWDF-PF + bounded DPLS",
+      "cohort_packets": 114502,
+      "payload_mbps": 1244.748,
+      "goodput_mbps": 1303.972808,
+      "success_pct": 90.59143071736739,
+      "expiry_pct": 0.0,
+      "other_nondelivery_pct": 9.408569282632618,
+      "mean_ms": 3.0047575894879928,
+      "P95_ms": 5.5,
+      "P99_ms": 7.0,
+      "terminal_mean_ms": 2.9802361530802957,
+      "terminal_P99_ms": 7.0,
+      "ue_p5_mbps": 33.696,
+      "ue_min_mbps": 33.612,
+      "jain": 0.9996535326193119,
+      "worst_ue_expiry_pct": 0.0,
+      "zero_UEs": 0,
+      "long_gap_UEs": 0,
+      "PRG_utilization_pct": 86.47205882352941,
+      "tb_error_pct": 9.098823290433975
+    }
+  ],
+  "quality_run_cost": {
+    "quality_run_wall_mean_ms": 9.75684591801837,
+    "quality_run_wall_P95_ms": 20.799419283866882,
+    "quality_run_wall_max_ms": 27.15490572154522,
+    "candidate_work_ratio": 0.025925350369146,
+    "candidate_ratio_P95": 0.03726311287624291,
+    "candidates_mean": 1111.5706666666667,
+    "mmse_misses_mean": 568.328
+  },
+  "common_success_pairing": [
+    {
+      "seed": 41,
+      "count": 58342,
+      "mean_delta_ms": -92.58826402934422,
+      "faster": 54944,
+      "equal": 2431,
+      "slower": 967
+    },
+    {
+      "seed": 42,
+      "count": 53700,
+      "mean_delta_ms": -124.2942923649907,
+      "faster": 50958,
+      "equal": 1835,
+      "slower": 907
+    },
+    {
+      "seed": 43,
+      "count": 55229,
+      "mean_delta_ms": -145.1923808144272,
+      "faster": 55229,
+      "equal": 0,
+      "slower": 0
+    }
+  ],
+  "validation": {
+    "matching_cohort_fields": [
+      "ue_id",
+      "packet_id",
+      "arrival_tti",
+      "packet_size_bytes",
+      "ttl_tti"
+    ],
+    "matched_cohort_packets": 345471,
+    "all_cohorts_uncensored": true,
+    "proposed_metrics_equal_archived_summaries_atol": 1e-08,
+    "service_rows_per_seed": 144000,
+    "matched_seed_UEs": 108,
+    "higher_payload_UEs": 108,
+    "lower_success_mean_UEs": 108
+  },
+  "engineering_timing": [
+    {
+      "rate": 0.8,
+      "load_multiplier": 1.0,
+      "arm": "heap",
+      "full_mean_ms": 15.247542469296604,
+      "mean_ms": 5.491763830650598,
+      "reduction_pct": 63.98262971420377,
+      "speedup": 2.7764381243412393,
+      "input_weights": "old k0 deficit weights; not M-LWDF-PF",
+      "statistic": "mean of saved-state median wall times"
+    },
+    {
+      "rate": 0.8,
+      "load_multiplier": 1.0,
+      "arm": "native_direct",
+      "full_mean_ms": 15.247542469296604,
+      "mean_ms": 5.169017531443387,
+      "reduction_pct": 66.09933999625159,
+      "speedup": 2.949795077409789,
+      "input_weights": "old k0 deficit weights; not M-LWDF-PF",
+      "statistic": "mean of saved-state median wall times"
+    },
+    {
+      "rate": 1.12,
+      "load_multiplier": 1.4000000000000001,
+      "arm": "heap",
+      "full_mean_ms": 18.290627072565258,
+      "mean_ms": 7.944515778217465,
+      "reduction_pct": 56.56509890722272,
+      "speedup": 2.3022960219570714,
+      "input_weights": "old k0 deficit weights; not M-LWDF-PF",
+      "statistic": "mean of saved-state median wall times"
+    },
+    {
+      "rate": 1.12,
+      "load_multiplier": 1.4000000000000001,
+      "arm": "native_direct",
+      "full_mean_ms": 18.290627072565258,
+      "mean_ms": 7.540772098582238,
+      "reduction_pct": 58.772479102737265,
+      "speedup": 2.425564230485646,
+      "input_weights": "old k0 deficit weights; not M-LWDF-PF",
+      "statistic": "mean of saved-state median wall times"
+    },
+    {
+      "rate": 1.28,
+      "load_multiplier": 1.5999999999999999,
+      "arm": "heap",
+      "full_mean_ms": 19.703407818451524,
+      "mean_ms": 9.544624108821154,
+      "reduction_pct": 51.5585111125652,
+      "speedup": 2.06434612760094,
+      "input_weights": "old k0 deficit weights; not M-LWDF-PF",
+      "statistic": "mean of saved-state median wall times"
+    },
+    {
+      "rate": 1.28,
+      "load_multiplier": 1.5999999999999999,
+      "arm": "native_direct",
+      "full_mean_ms": 19.703407818451524,
+      "mean_ms": 9.13794784573838,
+      "reduction_pct": 53.62250058499514,
+      "speedup": 2.1562180208371955,
+      "input_weights": "old k0 deficit weights; not M-LWDF-PF",
+      "statistic": "mean of saved-state median wall times"
+    }
+  ]
+}

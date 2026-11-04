@@ -1,0 +1,8 @@
+{
+  "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/selective_tb_20261102_v1/selective_e05.npz",
+  "sha256": "d3bec2d68b9827849cf59d2c1a8887990784a9937b13b0d78c70cb5ab34a3ada",
+  "epoch": 5,
+  "normalization_training_only": true,
+  "one_training_round": true,
+  "development_not_read": true
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "tests": 118,
+  "formal_decisions": 378,
+  "formal_independent_finals": 126,
+  "teacher_independent_finals": 23,
+  "engineering_decoder_finals": 12,
+  "paid_recall_exact_scores": 2523,
+  "paid_recall_roots": 4,
+  "paid_recall_independent_audits": 21,
+  "recovery_repeated_independent_audits": 21,
+  "recovery_native_scores": 0,
+  "baseline_previous_actions_values_equal_states": 21,
+  "disabled_engineering_full_query_parity_states": 2,
+  "existing2_joint2_final_equal_states": 20,
+  "source_policy_kernel_registry_hashes_valid": true,
+  "diagnostic_json_int_cast_only_patch": true,
+  "training_updates": 0,
+  "native_trajectories": 0,
+  "final_seeds_read": false,
+  "all_validation_and_development_gates_passed": false,
+  "selected_development_gate_passed": true
+}

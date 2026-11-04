@@ -1,0 +1,794 @@
+[
+  {
+    "state": 0,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 84224840336,
+    "rounds": 44,
+    "converged": true,
+    "candidate_evaluations": 76297,
+    "ue_evaluations": 253608,
+    "mmse_requests": 608913,
+    "mmse_misses": 1836
+  },
+  {
+    "state": 0,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 76297,
+    "ue_evaluations": 253608,
+    "mmse_requests": 608913,
+    "mmse_misses": 1836
+  },
+  {
+    "state": 0,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 21256,
+    "ue_evaluations": 74946,
+    "mmse_requests": 201430,
+    "mmse_misses": 1836
+  },
+  {
+    "state": 0,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 14,
+    "ue_evaluations": 504,
+    "mmse_requests": 714,
+    "mmse_misses": 91
+  },
+  {
+    "state": 0,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 15482,
+    "ue_evaluations": 53769,
+    "mmse_requests": 132458,
+    "mmse_misses": 1836
+  },
+  {
+    "state": 0,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 42,
+    "ue_evaluations": 1512,
+    "mmse_requests": 2142,
+    "mmse_misses": 94
+  },
+  {
+    "state": 0,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 20938,
+    "ue_evaluations": 73816,
+    "mmse_requests": 198085,
+    "mmse_misses": 1836
+  },
+  {
+    "state": 1,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 75270577707,
+    "rounds": 32,
+    "converged": true,
+    "candidate_evaluations": 52759,
+    "ue_evaluations": 172424,
+    "mmse_requests": 316466,
+    "mmse_misses": 1829
+  },
+  {
+    "state": 1,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 52759,
+    "ue_evaluations": 172424,
+    "mmse_requests": 316466,
+    "mmse_misses": 1829
+  },
+  {
+    "state": 1,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 14153,
+    "ue_evaluations": 48655,
+    "mmse_requests": 100732,
+    "mmse_misses": 1829
+  },
+  {
+    "state": 1,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 14,
+    "ue_evaluations": 504,
+    "mmse_requests": 688,
+    "mmse_misses": 86
+  },
+  {
+    "state": 1,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 12567,
+    "ue_evaluations": 42789,
+    "mmse_requests": 90199,
+    "mmse_misses": 1829
+  },
+  {
+    "state": 1,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 28,
+    "ue_evaluations": 1008,
+    "mmse_requests": 1375,
+    "mmse_misses": 85
+  },
+  {
+    "state": 1,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 13902,
+    "ue_evaluations": 47674,
+    "mmse_requests": 98730,
+    "mmse_misses": 1829
+  },
+  {
+    "state": 2,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 74872493734,
+    "rounds": 29,
+    "converged": true,
+    "candidate_evaluations": 48589,
+    "ue_evaluations": 157374,
+    "mmse_requests": 307537,
+    "mmse_misses": 1911
+  },
+  {
+    "state": 2,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 48589,
+    "ue_evaluations": 157374,
+    "mmse_requests": 307537,
+    "mmse_misses": 1911
+  },
+  {
+    "state": 2,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 12385,
+    "ue_evaluations": 42006,
+    "mmse_requests": 81801,
+    "mmse_misses": 1911
+  },
+  {
+    "state": 2,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 10,
+    "ue_evaluations": 360,
+    "mmse_requests": 484,
+    "mmse_misses": 84
+  },
+  {
+    "state": 2,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 10911,
+    "ue_evaluations": 36832,
+    "mmse_requests": 72588,
+    "mmse_misses": 1911
+  },
+  {
+    "state": 2,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 26,
+    "ue_evaluations": 936,
+    "mmse_requests": 1254,
+    "mmse_misses": 82
+  },
+  {
+    "state": 2,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 11862,
+    "ue_evaluations": 40043,
+    "mmse_requests": 77738,
+    "mmse_misses": 1911
+  },
+  {
+    "state": 3,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 75174293595,
+    "rounds": 29,
+    "converged": true,
+    "candidate_evaluations": 44644,
+    "ue_evaluations": 141663,
+    "mmse_requests": 307865,
+    "mmse_misses": 1875
+  },
+  {
+    "state": 3,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 44644,
+    "ue_evaluations": 141663,
+    "mmse_requests": 307865,
+    "mmse_misses": 1875
+  },
+  {
+    "state": 3,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 13150,
+    "ue_evaluations": 44156,
+    "mmse_requests": 97943,
+    "mmse_misses": 1875
+  },
+  {
+    "state": 3,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 11,
+    "ue_evaluations": 396,
+    "mmse_requests": 508,
+    "mmse_misses": 87
+  },
+  {
+    "state": 3,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 10542,
+    "ue_evaluations": 34681,
+    "mmse_requests": 76281,
+    "mmse_misses": 1875
+  },
+  {
+    "state": 3,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 25,
+    "ue_evaluations": 900,
+    "mmse_requests": 1156,
+    "mmse_misses": 86
+  },
+  {
+    "state": 3,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 12558,
+    "ue_evaluations": 42027,
+    "mmse_requests": 90487,
+    "mmse_misses": 1875
+  },
+  {
+    "state": 4,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 82423761652,
+    "rounds": 37,
+    "converged": true,
+    "candidate_evaluations": 63368,
+    "ue_evaluations": 208803,
+    "mmse_requests": 476577,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 4,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 63368,
+    "ue_evaluations": 208803,
+    "mmse_requests": 476577,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 4,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 16682,
+    "ue_evaluations": 57977,
+    "mmse_requests": 137185,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 4,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 15,
+    "ue_evaluations": 540,
+    "mmse_requests": 751,
+    "mmse_misses": 92
+  },
+  {
+    "state": 4,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 16562,
+    "ue_evaluations": 57177,
+    "mmse_requests": 153078,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 4,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 35,
+    "ue_evaluations": 1260,
+    "mmse_requests": 1751,
+    "mmse_misses": 88
+  },
+  {
+    "state": 4,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 16386,
+    "ue_evaluations": 56867,
+    "mmse_requests": 135371,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 5,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 75962065330,
+    "rounds": 13,
+    "converged": true,
+    "candidate_evaluations": 19941,
+    "ue_evaluations": 63328,
+    "mmse_requests": 190396,
+    "mmse_misses": 1834
+  },
+  {
+    "state": 5,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 19941,
+    "ue_evaluations": 63328,
+    "mmse_requests": 190396,
+    "mmse_misses": 1834
+  },
+  {
+    "state": 5,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 8221,
+    "ue_evaluations": 27241,
+    "mmse_requests": 86710,
+    "mmse_misses": 1834
+  },
+  {
+    "state": 5,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 6,
+    "ue_evaluations": 216,
+    "mmse_requests": 274,
+    "mmse_misses": 62
+  },
+  {
+    "state": 5,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 5884,
+    "ue_evaluations": 18969,
+    "mmse_requests": 59565,
+    "mmse_misses": 1790
+  },
+  {
+    "state": 5,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 14,
+    "ue_evaluations": 504,
+    "mmse_requests": 650,
+    "mmse_misses": 66
+  },
+  {
+    "state": 5,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 8221,
+    "ue_evaluations": 27241,
+    "mmse_requests": 86710,
+    "mmse_misses": 1834
+  },
+  {
+    "state": 6,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 79918959972,
+    "rounds": 20,
+    "converged": true,
+    "candidate_evaluations": 32681,
+    "ue_evaluations": 103665,
+    "mmse_requests": 269324,
+    "mmse_misses": 1787
+  },
+  {
+    "state": 6,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 32681,
+    "ue_evaluations": 103665,
+    "mmse_requests": 269324,
+    "mmse_misses": 1787
+  },
+  {
+    "state": 6,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 11173,
+    "ue_evaluations": 37845,
+    "mmse_requests": 101315,
+    "mmse_misses": 1787
+  },
+  {
+    "state": 6,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 9,
+    "ue_evaluations": 324,
+    "mmse_requests": 415,
+    "mmse_misses": 67
+  },
+  {
+    "state": 6,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 9327,
+    "ue_evaluations": 31247,
+    "mmse_requests": 83423,
+    "mmse_misses": 1787
+  },
+  {
+    "state": 6,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 21,
+    "ue_evaluations": 756,
+    "mmse_requests": 967,
+    "mmse_misses": 67
+  },
+  {
+    "state": 6,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 11173,
+    "ue_evaluations": 37845,
+    "mmse_requests": 101315,
+    "mmse_misses": 1787
+  },
+  {
+    "state": 7,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 76325668409,
+    "rounds": 43,
+    "converged": true,
+    "candidate_evaluations": 70665,
+    "ue_evaluations": 224885,
+    "mmse_requests": 530309,
+    "mmse_misses": 1990
+  },
+  {
+    "state": 7,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 70665,
+    "ue_evaluations": 224885,
+    "mmse_requests": 530309,
+    "mmse_misses": 1990
+  },
+  {
+    "state": 7,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 21766,
+    "ue_evaluations": 74217,
+    "mmse_requests": 191052,
+    "mmse_misses": 1990
+  },
+  {
+    "state": 7,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 15,
+    "ue_evaluations": 540,
+    "mmse_requests": 683,
+    "mmse_misses": 101
+  },
+  {
+    "state": 7,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 16387,
+    "ue_evaluations": 53543,
+    "mmse_requests": 129185,
+    "mmse_misses": 1996
+  },
+  {
+    "state": 7,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 35,
+    "ue_evaluations": 1260,
+    "mmse_requests": 1625,
+    "mmse_misses": 99
+  },
+  {
+    "state": 7,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 19479,
+    "ue_evaluations": 65999,
+    "mmse_requests": 164646,
+    "mmse_misses": 1990
+  },
+  {
+    "state": 8,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 82423761652,
+    "rounds": 37,
+    "converged": true,
+    "candidate_evaluations": 63368,
+    "ue_evaluations": 208803,
+    "mmse_requests": 476577,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 8,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 63368,
+    "ue_evaluations": 208803,
+    "mmse_requests": 476577,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 8,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 16682,
+    "ue_evaluations": 57977,
+    "mmse_requests": 137185,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 8,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 15,
+    "ue_evaluations": 540,
+    "mmse_requests": 751,
+    "mmse_misses": 92
+  },
+  {
+    "state": 8,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 16562,
+    "ue_evaluations": 57177,
+    "mmse_requests": 153078,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 8,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 35,
+    "ue_evaluations": 1260,
+    "mmse_requests": 1751,
+    "mmse_misses": 88
+  },
+  {
+    "state": 8,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 16386,
+    "ue_evaluations": 56867,
+    "mmse_requests": 135371,
+    "mmse_misses": 1862
+  },
+  {
+    "state": 9,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 81440476669,
+    "rounds": 32,
+    "converged": true,
+    "candidate_evaluations": 52229,
+    "ue_evaluations": 165672,
+    "mmse_requests": 428681,
+    "mmse_misses": 1814
+  },
+  {
+    "state": 9,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 52229,
+    "ue_evaluations": 165672,
+    "mmse_requests": 428681,
+    "mmse_misses": 1814
+  },
+  {
+    "state": 9,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 16866,
+    "ue_evaluations": 57013,
+    "mmse_requests": 162833,
+    "mmse_misses": 1814
+  },
+  {
+    "state": 9,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 13,
+    "ue_evaluations": 468,
+    "mmse_requests": 603,
+    "mmse_misses": 82
+  },
+  {
+    "state": 9,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 14655,
+    "ue_evaluations": 48694,
+    "mmse_requests": 146051,
+    "mmse_misses": 1822
+  },
+  {
+    "state": 9,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 29,
+    "ue_evaluations": 1044,
+    "mmse_requests": 1338,
+    "mmse_misses": 80
+  },
+  {
+    "state": 9,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 16009,
+    "ue_evaluations": 53869,
+    "mmse_requests": 151819,
+    "mmse_misses": 1814
+  },
+  {
+    "state": 10,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 87676601283,
+    "rounds": 31,
+    "converged": true,
+    "candidate_evaluations": 50209,
+    "ue_evaluations": 162243,
+    "mmse_requests": 376177,
+    "mmse_misses": 1768
+  },
+  {
+    "state": 10,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 50209,
+    "ue_evaluations": 162243,
+    "mmse_requests": 376177,
+    "mmse_misses": 1768
+  },
+  {
+    "state": 10,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 16177,
+    "ue_evaluations": 55006,
+    "mmse_requests": 154053,
+    "mmse_misses": 1768
+  },
+  {
+    "state": 10,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 14,
+    "ue_evaluations": 504,
+    "mmse_requests": 672,
+    "mmse_misses": 78
+  },
+  {
+    "state": 10,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 12821,
+    "ue_evaluations": 43158,
+    "mmse_requests": 113412,
+    "mmse_misses": 1768
+  },
+  {
+    "state": 10,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 31,
+    "ue_evaluations": 1116,
+    "mmse_requests": 1488,
+    "mmse_misses": 79
+  },
+  {
+    "state": 10,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 16007,
+    "ue_evaluations": 54352,
+    "mmse_requests": 151529,
+    "mmse_misses": 1768
+  },
+  {
+    "state": 11,
+    "arm": "integer_reference",
+    "kind": "online",
+    "score_q": 87093731219,
+    "rounds": 31,
+    "converged": true,
+    "candidate_evaluations": 49940,
+    "ue_evaluations": 156579,
+    "mmse_requests": 361885,
+    "mmse_misses": 1835
+  },
+  {
+    "state": 11,
+    "arm": "full",
+    "kind": "online",
+    "candidate_evaluations": 49940,
+    "ue_evaluations": 156579,
+    "mmse_requests": 361885,
+    "mmse_misses": 1835
+  },
+  {
+    "state": 11,
+    "arm": "cached",
+    "kind": "online",
+    "candidate_evaluations": 14568,
+    "ue_evaluations": 48441,
+    "mmse_requests": 115710,
+    "mmse_misses": 1835
+  },
+  {
+    "state": 11,
+    "arm": "cap4",
+    "kind": "root_audit",
+    "candidate_evaluations": 13,
+    "ue_evaluations": 468,
+    "mmse_requests": 585,
+    "mmse_misses": 83
+  },
+  {
+    "state": 11,
+    "arm": "cap4",
+    "kind": "online",
+    "candidate_evaluations": 13239,
+    "ue_evaluations": 43363,
+    "mmse_requests": 97127,
+    "mmse_misses": 1794
+  },
+  {
+    "state": 11,
+    "arm": "guarded4",
+    "kind": "root_audit",
+    "candidate_evaluations": 29,
+    "ue_evaluations": 1044,
+    "mmse_requests": 1306,
+    "mmse_misses": 80
+  },
+  {
+    "state": 11,
+    "arm": "guarded4",
+    "kind": "online",
+    "candidate_evaluations": 14189,
+    "ue_evaluations": 47066,
+    "mmse_requests": 111023,
+    "mmse_misses": 1835
+  }
+]

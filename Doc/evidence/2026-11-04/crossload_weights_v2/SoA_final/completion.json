@@ -1,0 +1,16 @@
+{
+  "completed": true,
+  "bitwise_passed": false,
+  "states": 252,
+  "mismatch_states": 252,
+  "mismatch_scalars": 1304256,
+  "checked_scalars": 2467584,
+  "max_abs": 3.439026841078885e-12,
+  "max_rel": 2.1653194312718465e-10,
+  "new_MMSE_problems": 1233792,
+  "AVX512_instruction_lines": 1505,
+  "FMA_instructions": 0,
+  "integrated_into_solver": false,
+  "engineering_stopped": true,
+  "new_native_runs": 0
+}

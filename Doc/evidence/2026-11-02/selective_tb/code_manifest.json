@@ -1,0 +1,13 @@
+{
+  "note": "Solver, logical kernel, training, campaign, tests and README copied from pre-execution snapshot; reporter added after formal measurements. Full dependency/binary snapshot stays in local deliverables/source.",
+  "files": {
+    "selective_tb_README.rst": "b4c38da264b51bcedaa23d5bb08ee5694cb43f4ad297a5b5bda05a9b48d7ca44",
+    "report_selective_tb.py": "5ed81eb3e2bf18ab05608531b0b24b9efb2725658ec2b652d888790f11bf5c6d",
+    "test_selective_tb.py": "4a76c5d99a0b70fa3b477bcacf78fa3d0e48341b02310307f619c033ab286a6e",
+    "selective_tb_campaign.py": "493274ba644f381ced34def7286391824e02d611c4f595565d7fdf84c6dabcf9",
+    "selective_tb_training.py": "368884280b7948d8ec976a00132ff0fc1f5c842ea3b344a678e0ec826c90ea1b",
+    "selective_tb_kernel.cpp": "2875f7778fe043eff6964dc16f61c17dae04fd197fc79c3117090b36562da09b",
+    "selective_tb.py": "6ca4ba1bc0e3dca6facaa66c7d1ad834a1d4f322dc62d66f69ad6400a4fbf24c"
+  },
+  "full_executed_manifest_sha256": "cde42cbf0e661a85c607a25120b87b215e0537a985e1d77759ae713d8bdb92c2"
+}

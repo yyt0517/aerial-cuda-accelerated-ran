@@ -1,0 +1,7 @@
+rate,load_multiplier,arm,full_mean_ms,mean_ms,reduction_pct,speedup,input_weights,statistic
+0.8,1.0,heap,15.247542469296604,5.491763830650598,63.98262971420377,2.7764381243412393,old k0 deficit weights; not M-LWDF-PF,mean of saved-state median wall times
+0.8,1.0,native_direct,15.247542469296604,5.169017531443387,66.09933999625159,2.949795077409789,old k0 deficit weights; not M-LWDF-PF,mean of saved-state median wall times
+1.12,1.4000000000000001,heap,18.290627072565258,7.944515778217465,56.56509890722272,2.3022960219570714,old k0 deficit weights; not M-LWDF-PF,mean of saved-state median wall times
+1.12,1.4000000000000001,native_direct,18.290627072565258,7.540772098582238,58.772479102737265,2.425564230485646,old k0 deficit weights; not M-LWDF-PF,mean of saved-state median wall times
+1.28,1.5999999999999999,heap,19.703407818451524,9.544624108821154,51.5585111125652,2.06434612760094,old k0 deficit weights; not M-LWDF-PF,mean of saved-state median wall times
+1.28,1.5999999999999999,native_direct,19.703407818451524,9.13794784573838,53.62250058499514,2.1562180208371955,old k0 deficit weights; not M-LWDF-PF,mean of saved-state median wall times

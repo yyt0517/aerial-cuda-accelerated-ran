@@ -1,0 +1,61 @@
+{
+  "completed": true,
+  "mode": "crossload_weights",
+  "runs": [
+    {
+      "directory": "/opt/nvidia/cuBB/deliverables/crossload_weights_smoke_20261104_v1/r0p8_mlwdf_pf_seed41",
+      "seed": 41,
+      "rate": 0.8,
+      "coefficient": 0.0,
+      "smoke": true,
+      "native_passed": true,
+      "wall_mean_ms": 6.087802583351731,
+      "wall_P95_ms": 11.483815079554912,
+      "wall_max_ms": 14.408493414521217,
+      "candidates_mean": 334.0,
+      "candidate_fraction_mean": 0.006408257134856387,
+      "candidate_fraction_P95": 0.009523020658383827,
+      "candidate_fraction_max": 0.009718711781492051,
+      "candidate_work_ratio": 0.006343508587002455,
+      "weight_family": "mlwdf_pf"
+    },
+    {
+      "directory": "/opt/nvidia/cuBB/deliverables/crossload_weights_smoke_20261104_v1/r0p8_k2_seed41",
+      "seed": 41,
+      "rate": 0.8,
+      "coefficient": 2.0,
+      "smoke": true,
+      "native_passed": true,
+      "wall_mean_ms": 9.885995532386005,
+      "wall_P95_ms": 27.93927933089434,
+      "wall_max_ms": 34.20334588736296,
+      "candidates_mean": 287.125,
+      "candidate_fraction_mean": 0.00625442321454826,
+      "candidate_fraction_P95": 0.00903684426425881,
+      "candidate_fraction_max": 0.009214029845028063,
+      "candidate_work_ratio": 0.006254629024528384,
+      "weight_family": "ttl"
+    },
+    {
+      "directory": "/opt/nvidia/cuBB/deliverables/crossload_weights_smoke_20261104_v1/r1p28_exp_pf_seed41",
+      "seed": 41,
+      "rate": 1.28,
+      "coefficient": 0.0,
+      "smoke": true,
+      "native_passed": true,
+      "wall_mean_ms": 9.830801514908671,
+      "wall_P95_ms": 18.845192994922392,
+      "wall_max_ms": 24.3955347687006,
+      "candidates_mean": 477.625,
+      "candidate_fraction_mean": 0.008358477915637454,
+      "candidate_fraction_P95": 0.012537841384233412,
+      "candidate_fraction_max": 0.013798833240016616,
+      "candidate_work_ratio": 0.008391273602515844,
+      "weight_family": "exp_pf"
+    }
+  ],
+  "reused_runs": [],
+  "new_native_runs": 3,
+  "new_native_steps": 48,
+  "training_steps": 0
+}

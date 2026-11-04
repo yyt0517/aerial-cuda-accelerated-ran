@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "methods": [
+    "full",
+    "legacy_ai212",
+    "old_joint212",
+    "increment_fixed_unprotected",
+    "increment_selective_unprotected",
+    "increment_single_guard",
+    "increment_fixed_guard",
+    "increment_selective_guard",
+    "trained_guard",
+    "trained_gain_only_guard"
+  ],
+  "configs": {
+    "increment_fixed_unprotected": {
+      "mode": "fixed",
+      "protect": false,
+      "gain_only": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    },
+    "increment_selective_unprotected": {
+      "mode": "selective",
+      "protect": false,
+      "gain_only": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    },
+    "increment_single_guard": {
+      "mode": "single",
+      "protect": true,
+      "gain_only": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    },
+    "increment_fixed_guard": {
+      "mode": "fixed",
+      "protect": true,
+      "gain_only": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    },
+    "increment_selective_guard": {
+      "mode": "selective",
+      "protect": true,
+      "gain_only": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    },
+    "trained_guard": {
+      "mode": "selective",
+      "protect": true,
+      "gain_only": false,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    },
+    "trained_gain_only_guard": {
+      "mode": "selective",
+      "protect": true,
+      "gain_only": true,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "max_sweeps": 5
+    }
+  },
+  "max_candidates": 212,
+  "max_feature_roots": 56,
+  "max_sweeps": 5,
+  "objective": "canonical native BLER, causal deficit-weighted J; own unpruned PFQ90% dequeue floor",
+  "incremental": "C++ logical layer histogram updates on edited UEs, sparse activity-denominator updates; equivalent frozen old proxy; no candidate BLER/MMSE",
+  "features": "60 causal dimensions:12 global including nominal weak-service risk and6 semantic UE slots x8; normalization training only",
+  "model": "60->32->16->2 ReLU; residual gain plus feasibility logit; score=prior+3000*residual-3000*(1-sigmoid(logit))",
+  "protection": "exact no newly unallocated UE, effective P5 and bottom20%>=98% vs both immutable initial PFQ and current root; candidate count prefilter exact",
+  "quota": "first full sweep4 single edits, no model; then reserve2 singles and allocate remaining2 by joint/single score; fixed2+2 and single-only controls",
+  "cache": "complete-action exact values local to immutable decision; rejection mask root-local, including unsafe failures; unsafe cache values may be reconsidered at new root",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "training_validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "training_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "own_states": "one initial zero-residual/heuristic selective guarded student; <=4 actual post-first-sweep visits/decision; root/PRG/failed mask preserved",
+  "teacher": "separate post-decision fresh PHY, full local single/joint pool, exact service labels; all scores and replay work charged offline",
+  "training": {
+    "rounds": 1,
+    "epochs": 20,
+    "checkpoints": [
+      0,
+      5,
+      10,
+      20
+    ],
+    "seed": 20261102,
+    "optimizer": "fresh AdamW lr0.001",
+    "loss": "safe listwise near-optimal gain with retained-root option +0.25 feasibility BCE +0.1 gain residual Huber"
+  },
+  "checkpoint_selection": "validation trajectory quality/coverage only, smaller epoch on ties; cost tested in formal repeated benchmark",
+  "policy_selection": "quality-best and complete-cost<=80% best frozen on formal validation before development is read",
+  "learning_gate": "changed selected weights, positive mean J delta every development seed and>=6/9 wins vs same selective guarded heuristic, plus joint quality/service/cost gate",
+  "quality_gate": "each state J>=99.5% full",
+  "coverage_gate": "no newly unallocated UE vs full; effective full-positive UE P5 and bottom20%>=98% full",
+  "cost_gate": "seed-equal mean of complete per-state medians<=80% full",
+  "repeats": 3,
+  "timing": "numerical input/PFQ decode through fresh PHY/cache/pools/features/network/exact validation/guard/final scoring/cleanup",
+  "exclusions": "archive/model/library IO, compilation and first immutable TBS setup; teachers/training/independent audits separate",
+  "old_model": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+  "old_model_sha256": "52a6b123673b741abf311f66b35891c9038445c3376ebfcfe73aa00968b59890",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

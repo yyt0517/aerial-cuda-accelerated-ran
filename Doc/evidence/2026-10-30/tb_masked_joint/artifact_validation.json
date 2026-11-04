@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "source_files_verified": 60,
+  "evidence_files_verified": 17,
+  "checkpoint_sha256": "86ba123166592e47701104c712da3db2f52c2b664f396fff7738c6da38f521e5",
+  "frozen79_unchanged": true,
+  "both_evaluations_match_checkpoint": true,
+  "logs": {
+    "training.log": "f6b2d725461166d4b730e404d011446ce49f094ec13b151440cd8f3dd77ff9b1",
+    "evaluation_before.log": "3027df0ccdb7e8850abd7bdac7c704cd737948bf450ac8a0d10464d1beff10d4",
+    "evaluation_final.log": "269bbb95b519e4db820a0e580b76158f95db3237988d2e4b4f9cc07b4942c2f6",
+    "diagnosis.log": "ec182defc57c3d6014fa3a68e51f9fac99e0ead3c92c70a888fc04e8a994df37",
+    "report.log": "492714e3e9a4e93a6eb75ab2907a2166df583f6ef30110ae4b3570b4533a7d53"
+  }
+}

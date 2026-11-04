@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "iterations": 12,
+  "actor_updates": 24,
+  "steps": 6144,
+  "native_actions_and_fifo_rewards_verified": true,
+  "final_sha256": "4f0d90f36ff9867f135a144afd77742e822eebc683022711f7fcd5a9b3d09a08",
+  "elapsed_s": 698.9933376293629
+}

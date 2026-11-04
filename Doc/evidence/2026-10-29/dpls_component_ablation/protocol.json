@@ -1,0 +1,293 @@
+{
+  "date": "2026-10-29",
+  "objective": "Attribute the established boundary DPLS gains to CTBS, global physical search, and deficit weighting; separately compare independent cell optimization.",
+  "scene": "boundary / rate0.8 / 3cells / 36UE / 17PRGx16PRB",
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45
+  ],
+  "arms": {
+    "pfq": {
+      "ctbs": false,
+      "search": "none",
+      "deficit": false,
+      "reused": true
+    },
+    "ctbs": {
+      "ctbs": true,
+      "search": "none",
+      "deficit": false,
+      "reused": false
+    },
+    "raw_global_equal": {
+      "ctbs": false,
+      "search": "global",
+      "deficit": false,
+      "reused": false
+    },
+    "raw_global_deficit": {
+      "ctbs": false,
+      "search": "global",
+      "deficit": true,
+      "reused": false
+    },
+    "ctbs_global_equal": {
+      "ctbs": true,
+      "search": "global",
+      "deficit": false,
+      "reused": false
+    },
+    "full": {
+      "ctbs": true,
+      "search": "global",
+      "deficit": true,
+      "reused": true
+    },
+    "ctbs_independent_equal": {
+      "ctbs": true,
+      "search": "independent",
+      "deficit": false,
+      "reused": false
+    },
+    "ctbs_independent_deficit": {
+      "ctbs": true,
+      "search": "independent",
+      "deficit": true,
+      "reused": false
+    }
+  },
+  "warmup": 4000,
+  "settling": 4000,
+  "measured": 20000,
+  "followup": 400,
+  "horizon": 28400,
+  "measurement_first": 8001,
+  "measurement_last": 28000,
+  "measurement_seconds": 10,
+  "ttl_ttis": 400,
+  "tti_ms": 0.5,
+  "common_native_pfq_warmup": true,
+  "target_success_bytes_per_ue_tti": 2400,
+  "ema_decay": 0.995,
+  "ema_initial": 0,
+  "weight": "clip(target/max(EMA,1e-9),1,4), then mean-normalize; all-one control.",
+  "floor": "Every search uses ceil(.90 * its own current draft dequeue). CTBS changes draft AND any downstream floor; raw-vs-pruned dequeue differences are audited, not assumed zero.",
+  "global_search": "Exactly frozen legacy scorer, ordered full neighborhood, argmax tie breaking, >1B first2 then >16B, complete convergence, 256 cap is failure.",
+  "independent_control": "Each cell optimizes only its own weighted expected bytes, with other cells FIXED to initial CTBS draft; independent per-cell ceil(.9*Dcell); all three final actions commit simultaneously. This control also removes shared floor-budget pooling and joint edits; no claim to isolate those submechanisms.",
+  "factorial": "2x2x2 CTBS C / global-search G / weights W; W has no behavioral effect when G=0, so 8 logical cells collapse to6 unique policies. Two extra independent controls distinguish global search from within-cell optimization.",
+  "primary_metric": "complete_payload_mbps",
+  "secondary_metrics": [
+    "goodput_mbps",
+    "expiry_pct",
+    "complete_success_pct",
+    "success_delay_mean_ms",
+    "success_delay_p95_ms",
+    "outcome_mean_ms",
+    "ue_complete_payload_p5_mbps",
+    "ue_goodput_jain",
+    "tb_bler_pct",
+    "prg_utilization"
+  ],
+  "contrasts": [
+    [
+      "ctbs",
+      "pfq"
+    ],
+    [
+      "ctbs_global_equal",
+      "ctbs"
+    ],
+    [
+      "full",
+      "ctbs_global_equal"
+    ],
+    [
+      "full",
+      "raw_global_deficit"
+    ],
+    [
+      "raw_global_equal",
+      "pfq"
+    ],
+    [
+      "raw_global_deficit",
+      "raw_global_equal"
+    ],
+    [
+      "ctbs_global_equal",
+      "raw_global_equal"
+    ],
+    [
+      "ctbs_independent_equal",
+      "ctbs"
+    ],
+    [
+      "ctbs_global_equal",
+      "ctbs_independent_equal"
+    ],
+    [
+      "ctbs_independent_deficit",
+      "ctbs_independent_equal"
+    ],
+    [
+      "full",
+      "ctbs_independent_deficit"
+    ]
+  ],
+  "attribution": "Report direct additions/removals, CTBSxsearch interaction at W=0, CTBSxweight interaction under G=1, and per-seed Shapley over all6 component orders; Shapley is an allocation convention, not unique causal contribution.",
+  "statistics": "Seed is experimental unit n5, equal-seed mean/sampleSD, paired nominal95%t intervals df4; Holm correction across11 predeclared primary contrasts. Windows/UE/packets are not independent replicates.",
+  "no_tuning": true,
+  "stop": "Exactly30 new full native trajectories; retain unfavorable outcomes. No new seeds or shortened measurement. Smoke/preflight only establish correctness.",
+  "limits": [
+    "Existing development seeds, not blind tests.",
+    "Boundary-only attribution; uniform not evaluated in this campaign.",
+    "Frozen legacy BLER interpolation is preserved.",
+    "No HARQ; full finite mature packet cohorts.",
+    "Concurrent shared-host timing is descriptive, not deployment latency or a controlled speed comparison.",
+    "Factorial G includes physical optimization as well as coordination; independent controls address this distinction.",
+    "No claim of global optimality or asymptotic stability."
+  ],
+  "simulator_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "reference": {
+    "pfq/41": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed41_pfq0_20000",
+      "files": {
+        "launch.json": "9cb67beba7d5fdab61652984ca72858b381eeb91171b76f8a48131783bcfa4b1",
+        "execution.json": "6356fed45a7aae7629b3e311897ff5edf1268929ce7a8e5e11b1ca5ec0015748",
+        "validation.json": "178d541c53508f3cdd5178e24b147c5a1d609a13a7852c8a86492fc6526ebbe0",
+        "prefix.npz": "51f6c02025df904d7452bd69c31ffaf65276c1851c5c71db315afa402672f24c",
+        "metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "fb009c646dbe1fcf4e3b3ddd74961161632f9f010e8f033b938631fdc4526d36",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5"
+      }
+    },
+    "pfq/42": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed42_pfq0_20000",
+      "files": {
+        "launch.json": "ce3f28f1c2c8dd084ad578e2866f08ff8755948f00c3cca6eb799c3ec24da0df",
+        "execution.json": "8c11b88c3fe2cf331d376a5e338c75f3437ef3a48a9d0d2a24270dbc07bb6b40",
+        "validation.json": "6f2c412a23ac0af735a2d26c818bfdcf47aaf38f78544189cd0c58c3db7cce3f",
+        "prefix.npz": "523a599f18e911bfe4dfe4cd3a566d9bcf41ae7e8da09cc54b3bde2f2c341238",
+        "metrics.bin": "de90f4e10afa57bb7d7f7de9d899e674d5910f120bdffd0d44b5cba3179d62f4",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "a140be3423cd0bf231265264eee2e23d1a9dbc85e7bc23c4a686d9a9a54c4637",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d"
+      }
+    },
+    "pfq/43": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed43_pfq0_20000",
+      "files": {
+        "launch.json": "607cff9e0876ece4adbf0cae78da25b6f4d9b7911a414511b31b7cdcb9586b6b",
+        "execution.json": "5769772348a2fbadf66f89273cb00fbee8dde60959bd1d4f37c032d9bf1be997",
+        "validation.json": "52f54e9d3e0256bfde93365fd4e3090e748c119acf2a5748e7b4ca05a65c401b",
+        "prefix.npz": "7e4a4556705e7dd17fe30af16f136a09cedcf751d2db02f9265409622bc60615",
+        "metrics.bin": "9fa7aa24657f4bea2fdf1325f7f1f8e3cf5caad58076508ba5255becfcecb2cb",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "7f5bd762eeff9b3a5153c241eec849529662a44390ff1007f96f5460942b56d6",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789"
+      }
+    },
+    "pfq/44": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed44_pfq0_20000",
+      "files": {
+        "launch.json": "6e3e144c573956d5c7eb4f26da33b574e292b9f050dcd9ecbc311de43ee3854e",
+        "execution.json": "26d837b1b66396812645e155cb2638ea489e67612bc116698cc0cedf93118ad4",
+        "validation.json": "902349e9d8bf705268a40274d2ee8c7856dc6b59f763a737a216771877b17268",
+        "prefix.npz": "97f4ae9db101c61b2f72e187f667f4294695d44deac62ef1416b7c7b652a31b3",
+        "metrics.bin": "235f2d1c008bf90eeb2cb802252a4e42f08d04f6711018dfe38a73a9793254c7",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ec7b26f5473a5c57dd3a482fe1028d81817dc1ae7df4975d6d244ee8527c3f88",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c"
+      }
+    },
+    "pfq/45": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed45_pfq0_20000",
+      "files": {
+        "launch.json": "f2ef0da3341fd601635c190bbcb33aad93fa0ea4a0308e1abb9af24eb8b13374",
+        "execution.json": "0d59c9b8ece41db71acac61c39195153f5ee8a859a8dae4f763ec1043b8ae896",
+        "validation.json": "34f1978c7ecfa31da33b6598e88f5381562716b76f51788051f54fdd8416ffc8",
+        "prefix.npz": "ba749ddb8acd21062286a58b92f2ab065ef004562b89563c129a4817f2e72f5e",
+        "metrics.bin": "34c411ceba506948c1f9b9ec434b812229f3a5b65c440ac8691f6443389aa9b4",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "7c149fbb885e66ee7b62ef23eb6b96b98259d61e9cb0573c18be71c25e5e6c45",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd"
+      }
+    },
+    "full/41": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed41_current_20000",
+      "files": {
+        "launch.json": "a979a1576d91f7c71b17cfa1957775d57c9bfe2f5d9f19fad028e77065e92a7c",
+        "execution.json": "8ec744c053db4009d0e228586ded154cd91f2afdeedbe68adeeb3680ac418f2d",
+        "validation.json": "503d029771a79eacab9b7ae0c293608e9c86d407de2727c8e9d91a5e10f09670",
+        "prefix.npz": "b0ddf789113952dd450b2312344ef65d354b8d21cd0d21469a41632f54893556",
+        "metrics.bin": "7b86ce229afda87ce21556d3e21a1a2aa56305a2731bd823eef34219f92443cf",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "cc6c4a7047ff4e63950b509c405a3134d3a00099f371677bcc38593d5084d3e2",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5"
+      }
+    },
+    "full/42": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed42_current_20000",
+      "files": {
+        "launch.json": "306b97b9b1bfe55f2c44e02808943af59f00b2ff2cc1a427c8bf082c0e98c34a",
+        "execution.json": "8045234424cd99806b0654d59caf5de7b25306a3b23b99a893d99622013afc68",
+        "validation.json": "e6718aae88d0eef5f242c95dfdc0ed6e941aa5ac6892e6601b99af62945a576a",
+        "prefix.npz": "7c53ee57a48a46823d1abef80cc9d59f4bead9464c04f01a6fbea3dc6474136f",
+        "metrics.bin": "9a6512de1b71363bd10675515b8c884ae890ef38c9977a25ed4881a43ac0477a",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "de9469a53a087ee78634bb5bc1119451c2566443a4f0df99830e6a3e6df1902e",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d"
+      }
+    },
+    "full/43": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed43_current_20000",
+      "files": {
+        "launch.json": "5c9b292ae83b8d745538c511e847f6bad29e8697d9cf8b537960e145d053f1c6",
+        "execution.json": "81e3565a0e87b302e44536b7e53596e760754443b94cd6214ff3574a694760e0",
+        "validation.json": "4d26d4f7918716ccf80b87c26b05d454556a17c9176d67a38e8f6875ad2483af",
+        "prefix.npz": "57c28d2dd315d9baca90f985843b901cef3b392d1b732f4b87a82477b249d38f",
+        "metrics.bin": "b4301ef0960338169782b71451c9232f9dc5206ec411c9188b88317f0f93bd08",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "085f15048ab5a1e675e2c8cbbd1f81de40a350959c968bf56f13e9ea1e1b3644",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789"
+      }
+    },
+    "full/44": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed44_current_20000",
+      "files": {
+        "launch.json": "2743fb2c5a2353c9f2ebb1292fede1528a243452dc8a2f368129b8f28a7247ec",
+        "execution.json": "a78c522a9b74e6d77ec090006fd7954177af9a8d4a06ae08e18b6d69a911b7f3",
+        "validation.json": "2bb4946236794861486ed843864aefd27d15fa50a5d0b5188f91a309fb653b40",
+        "prefix.npz": "4ae75e55e576ea017b56126bf0e2570c1165184e42e87672a956bb24b012060d",
+        "metrics.bin": "f205c33183f479adcae5b8a5b2686ce5cb446163766086dfa9f76b8974fbecfd",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ed037be34a9be65f5eeeeb30b2a6fda474d464feb8d42b762c7a4c12205a9847",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c"
+      }
+    },
+    "full/45": {
+      "path": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed45_current_20000",
+      "files": {
+        "launch.json": "8699132803544ca455fc322f7de59be53143f61c88817541aacd1983c4a019b0",
+        "execution.json": "bb3d0590a7afe7ceba3dc16e592c04fccebce38bbcfce4e58ba8783256d4345d",
+        "validation.json": "b2f06f4ed70a5226c72288d6a452167e9b322a9e3b6efecd2aa9afa735be8eb8",
+        "prefix.npz": "4585b0d548f3df2e7e7ab2713227311b5a1b81c7022a6ce4f32eadecf1bb305f",
+        "metrics.bin": "52c46767f12564d0e493dad8e938f21cc0616890b69a317d3fb58724afa28014",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "11ab82c29d3251948d2cc8ff30b076e91fb2f87c8a326a5ed0dd1deb3b46ec03",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd"
+      }
+    }
+  },
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "source_sha256": {
+    "common.py": "863611baff090c1a33b016cac8f20bdb6d8967e0e7af89ff17d02033accdedab",
+    "policy.py": "c9e6a046fcdde37f9f8c50bde9ae616510c1e77acb27c2380fe3264165c02e55",
+    "run.py": "32a266224d4bb9683b313c70ac6c337fa34fbc39c602baeb0d7989edb78d0a8b",
+    "native_run_generated.py": "b8dca6b56d2ffd40fd51e1669d1289b0d806a3e0673bc2ffdbf669b1473e7c42"
+  }
+}

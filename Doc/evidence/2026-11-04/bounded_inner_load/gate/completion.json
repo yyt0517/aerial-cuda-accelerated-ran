@@ -1,0 +1,15 @@
+{
+  "completed": true,
+  "equivalence_passed": true,
+  "states": 12,
+  "audited_rounds": 378,
+  "audited_candidates": 624670,
+  "bounded_scored": 7363,
+  "required_set": 7363,
+  "UB_order_over_required": 1.0,
+  "wall_passed": true,
+  "bounded_wall_ms": 4.46259827973942,
+  "native_runs": 0,
+  "training_steps": 0,
+  "timed_decisions": 180
+}

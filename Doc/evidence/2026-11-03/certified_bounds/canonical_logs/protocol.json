@@ -1,0 +1,16 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "baseline_version": "canonical_dependency_v1",
+  "epsilon_bytes": 1e-06,
+  "tie": "true eligible qualifying maximum anchored epsilon band, then smallest canonical PRG/overwrite-target key",
+  "threshold": "each selected delta strictly >1B in rounds1/2, >16B later; epsilon does not soften acceptance",
+  "paid_work": "one newly scored complete canonical baseline + one cached decision per captured input; separate NumPy terminal audit",
+  "initializers": "source-arm actual predecessor, current legality/current PHY; bootstrap and PFQ evaluation charged",
+  "gate": "bitwise equality of all candidate PHY fields, scores, eligibility, root, chosen key and terminal action each round",
+  "cache": "affected-UE exact values; current-root unaffected fields; full original-layout J/D reductions, no cached global delta",
+  "timing": "observer includes storing/checking all candidate fields; no fair wall-time speedup gate claimed",
+  "snapshots": 12,
+  "native_runs": 0,
+  "confirmation_seeds_used": false,
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3"
+}

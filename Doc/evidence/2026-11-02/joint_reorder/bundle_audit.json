@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "formal_decisions": 567,
+  "formal_independent_finals": 189,
+  "teacher_independent_finals": 23,
+  "engineering_decoder_finals": 8,
+  "all_small_arrays_archived": true,
+  "report_and_local_copy_identical": true,
+  "source_and_registry_checks": "passed before packaging; final_audit.json and source_manifest.json",
+  "compile_and_diff_checks": "py_compile and git diff --check passed; no policy source changed after execution",
+  "teacher_ledger_verified": true,
+  "new_document_links_valid": true,
+  "scientific_gate_passed": false
+}

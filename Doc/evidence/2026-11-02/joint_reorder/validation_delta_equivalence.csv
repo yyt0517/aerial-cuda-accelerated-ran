@@ -1,0 +1,13 @@
+state_id,actions_equal,values_equal
+raw_global_deficit:seed44:tti4001,True,True
+raw_global_deficit:seed44:tti8001,True,True
+raw_global_deficit:seed44:tti18000,True,True
+pfq:seed44:tti4001,True,True
+pfq:seed44:tti8001,True,True
+pfq:seed44:tti18000,True,True
+raw_global_deficit:seed45:tti4001,True,True
+raw_global_deficit:seed45:tti8001,True,True
+raw_global_deficit:seed45:tti18000,True,True
+pfq:seed45:tti4001,True,True
+pfq:seed45:tti8001,True,True
+pfq:seed45:tti18000,True,True

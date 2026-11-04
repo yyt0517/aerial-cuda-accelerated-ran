@@ -1,0 +1,6 @@
+{
+  "verified": true,
+  "zero_residual": true,
+  "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e00.npz",
+  "sha256": "50049d2e7ed7bbb02536766a5468d6093c2f5d47b99182b914a8c5b341d7c267"
+}

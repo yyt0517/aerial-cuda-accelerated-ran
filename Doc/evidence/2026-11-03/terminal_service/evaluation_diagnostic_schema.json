@@ -1,0 +1,15 @@
+{
+  "columns": [
+    "memo_index",
+    "J/fullJ",
+    "attainable_score",
+    "calibrated_probability",
+    "coverage_label",
+    "inside2pct_cap",
+    "joint_label"
+  ],
+  "posthoc": true,
+  "additional_native_scores": 0,
+  "retraining": false,
+  "threshold_tuning": false
+}

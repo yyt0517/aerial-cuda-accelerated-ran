@@ -1,0 +1,26 @@
+{
+  "epochs": 60,
+  "optimizer_steps": 1080,
+  "history": [
+    {
+      "epoch": 0,
+      "loss": null
+    },
+    {
+      "epoch": 10,
+      "loss": 0.3840742889377806
+    },
+    {
+      "epoch": 30,
+      "loss": 0.2829866260290146
+    },
+    {
+      "epoch": 60,
+      "loss": 0.18628330445951885
+    }
+  ],
+  "groups": 18,
+  "training_ue_rows": 621,
+  "elapsed_s": 1.4033209569752216,
+  "target": "full terminal COUNT>0 and EXPECTED>1B two binary sets; BCE +0.1 cardinality calibration"
+}

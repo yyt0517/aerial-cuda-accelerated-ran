@@ -1,0 +1,74 @@
+[
+  {
+    "arm": "bank_none212",
+    "bank_ms": 2.8713724265495935,
+    "matching_ms": 36.26079370992051,
+    "proxy_ms": 32.272448763251305,
+    "generation_ms": 8.87297559529543,
+    "proxy_candidates": 13040.333333333334,
+    "proxy_ue_rows": 469452.0,
+    "mmse_requests": 614827.4444444445,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2397.0,
+    "feature_roots": 20.0,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 9
+    }
+  },
+  {
+    "arm": "quota_layer212",
+    "bank_ms": 2.8799181390139794,
+    "matching_ms": 14.582055517368849,
+    "proxy_ms": 25.42760357674625,
+    "generation_ms": 4.847136326134205,
+    "proxy_candidates": 8668.666666666666,
+    "proxy_ue_rows": 312072.0,
+    "mmse_requests": 438706.22222222225,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2397.0,
+    "feature_roots": 11.0,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 9
+    }
+  },
+  {
+    "arm": "activity212",
+    "bank_ms": 2.877629672487577,
+    "matching_ms": 44.06288462794489,
+    "proxy_ms": 27.853307624657948,
+    "generation_ms": 7.699126170741188,
+    "proxy_candidates": 10627.444444444445,
+    "proxy_ue_rows": 382588.0,
+    "mmse_requests": 537249.4444444444,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2397.0,
+    "feature_roots": 19.222222222222218,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 9
+    }
+  },
+  {
+    "arm": "joint212",
+    "bank_ms": 2.8895056909985013,
+    "matching_ms": 14.780819726487001,
+    "proxy_ms": 24.71526525914669,
+    "generation_ms": 4.730338748130534,
+    "proxy_candidates": 8129.222222222222,
+    "proxy_ue_rows": 292652.0,
+    "mmse_requests": 412101.88888888893,
+    "mmse_misses": 2448.0,
+    "bank_mmse_requests": 4896.0,
+    "bank_mmse_misses": 2397.0,
+    "feature_roots": 11.0,
+    "decode_failures": 0.0,
+    "stop_counts": {
+      "physical_budget": 9
+    }
+  }
+]

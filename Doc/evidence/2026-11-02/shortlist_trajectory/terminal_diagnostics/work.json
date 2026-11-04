@@ -1,0 +1,1013 @@
+{
+  "replay_and_teacher_work": [
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 18901,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 17059,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1668,
+        "ue_evaluations": 5420,
+        "mmse_requests": 17327,
+        "mmse_misses": 1769
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 15147,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1101,
+        "ue_evaluations": 3155,
+        "mmse_requests": 7442,
+        "mmse_misses": 1198
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1137,
+        "ue_evaluations": 3331,
+        "mmse_requests": 7140,
+        "mmse_misses": 1238
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1050,
+        "ue_evaluations": 2864,
+        "mmse_requests": 4755,
+        "mmse_misses": 1147
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1093,
+        "ue_evaluations": 3068,
+        "mmse_requests": 5256,
+        "mmse_misses": 1194
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1256,
+        "ue_evaluations": 3777,
+        "mmse_requests": 9631,
+        "mmse_misses": 1357
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1205,
+        "ue_evaluations": 3480,
+        "mmse_requests": 7070,
+        "mmse_misses": 1306
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1211,
+        "ue_evaluations": 3524,
+        "mmse_requests": 6533,
+        "mmse_misses": 1308
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1209,
+        "ue_evaluations": 3516,
+        "mmse_requests": 6887,
+        "mmse_misses": 1306
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 18901,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 17059,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1668,
+        "ue_evaluations": 5420,
+        "mmse_requests": 17327,
+        "mmse_misses": 1769
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 15147,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 17069,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1673,
+        "ue_evaluations": 5440,
+        "mmse_requests": 15928,
+        "mmse_misses": 1774
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1625,
+        "ue_evaluations": 5174,
+        "mmse_requests": 17110,
+        "mmse_misses": 1726
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1625,
+        "ue_evaluations": 5174,
+        "mmse_requests": 16636,
+        "mmse_misses": 1726
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1687,
+        "ue_evaluations": 5533,
+        "mmse_requests": 17280,
+        "mmse_misses": 1788
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1687,
+        "ue_evaluations": 5533,
+        "mmse_requests": 14972,
+        "mmse_misses": 1788
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1687,
+        "ue_evaluations": 5533,
+        "mmse_requests": 11020,
+        "mmse_misses": 1788
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1687,
+        "ue_evaluations": 5533,
+        "mmse_requests": 10716,
+        "mmse_misses": 1788
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1635,
+        "ue_evaluations": 5251,
+        "mmse_requests": 14454,
+        "mmse_misses": 1736
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1660,
+        "ue_evaluations": 5388,
+        "mmse_requests": 15411,
+        "mmse_misses": 1761
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1566,
+        "ue_evaluations": 4864,
+        "mmse_requests": 16235,
+        "mmse_misses": 1667
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1566,
+        "ue_evaluations": 4864,
+        "mmse_requests": 15035,
+        "mmse_misses": 1667
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1182,
+        "ue_evaluations": 3226,
+        "mmse_requests": 5838,
+        "mmse_misses": 1271
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1163,
+        "ue_evaluations": 3133,
+        "mmse_requests": 5349,
+        "mmse_misses": 1252
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1204,
+        "ue_evaluations": 3363,
+        "mmse_requests": 5804,
+        "mmse_misses": 1293
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1196,
+        "ue_evaluations": 3298,
+        "mmse_requests": 5938,
+        "mmse_misses": 1285
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1109,
+        "ue_evaluations": 3275,
+        "mmse_requests": 6522,
+        "mmse_misses": 1202
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1079,
+        "ue_evaluations": 3097,
+        "mmse_requests": 5846,
+        "mmse_misses": 1172
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1050,
+        "ue_evaluations": 2923,
+        "mmse_requests": 4987,
+        "mmse_misses": 1143
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1083,
+        "ue_evaluations": 3129,
+        "mmse_requests": 5789,
+        "mmse_misses": 1172
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1635,
+        "ue_evaluations": 5251,
+        "mmse_requests": 14454,
+        "mmse_misses": 1736
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1660,
+        "ue_evaluations": 5388,
+        "mmse_requests": 15411,
+        "mmse_misses": 1761
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1566,
+        "ue_evaluations": 4864,
+        "mmse_requests": 16235,
+        "mmse_misses": 1667
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1566,
+        "ue_evaluations": 4864,
+        "mmse_requests": 15035,
+        "mmse_misses": 1667
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1613,
+        "ue_evaluations": 5126,
+        "mmse_requests": 15578,
+        "mmse_misses": 1714
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1638,
+        "ue_evaluations": 5263,
+        "mmse_requests": 15285,
+        "mmse_misses": 1739
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1622,
+        "ue_evaluations": 5162,
+        "mmse_requests": 20195,
+        "mmse_misses": 1723
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1647,
+        "ue_evaluations": 5299,
+        "mmse_requests": 15666,
+        "mmse_misses": 1748
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1488,
+        "ue_evaluations": 4669,
+        "mmse_requests": 15313,
+        "mmse_misses": 1589
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1488,
+        "ue_evaluations": 4669,
+        "mmse_requests": 15313,
+        "mmse_misses": 1589
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1368,
+        "ue_evaluations": 4014,
+        "mmse_requests": 16481,
+        "mmse_misses": 1469
+      }
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1398,
+        "ue_evaluations": 4169,
+        "mmse_requests": 14959,
+        "mmse_misses": 1499
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1697,
+        "ue_evaluations": 5573,
+        "mmse_requests": 29936,
+        "mmse_misses": 1798
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1697,
+        "ue_evaluations": 5573,
+        "mmse_requests": 15860,
+        "mmse_misses": 1798
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1697,
+        "ue_evaluations": 5573,
+        "mmse_requests": 21170,
+        "mmse_misses": 1798
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1697,
+        "ue_evaluations": 5573,
+        "mmse_requests": 20432,
+        "mmse_misses": 1798
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1716,
+        "ue_evaluations": 5686,
+        "mmse_requests": 25737,
+        "mmse_misses": 1817
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1716,
+        "ue_evaluations": 5686,
+        "mmse_requests": 16875,
+        "mmse_misses": 1817
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1716,
+        "ue_evaluations": 5686,
+        "mmse_requests": 14589,
+        "mmse_misses": 1817
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1716,
+        "ue_evaluations": 5686,
+        "mmse_requests": 11313,
+        "mmse_misses": 1817
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1713,
+        "ue_evaluations": 5674,
+        "mmse_requests": 19116,
+        "mmse_misses": 1814
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1713,
+        "ue_evaluations": 5674,
+        "mmse_requests": 15624,
+        "mmse_misses": 1814
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1713,
+        "ue_evaluations": 5674,
+        "mmse_requests": 12054,
+        "mmse_misses": 1814
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1713,
+        "ue_evaluations": 5674,
+        "mmse_requests": 12684,
+        "mmse_misses": 1814
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 17026,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 16288,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 14612,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 10492,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1672,
+        "ue_evaluations": 5436,
+        "mmse_requests": 16877,
+        "mmse_misses": 1773
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1672,
+        "ue_evaluations": 5436,
+        "mmse_requests": 14255,
+        "mmse_misses": 1773
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 14602,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 12638,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 11226,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1714,
+        "ue_evaluations": 5678,
+        "mmse_requests": 11245,
+        "mmse_misses": 1815
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1693,
+        "ue_evaluations": 5557,
+        "mmse_requests": 19722,
+        "mmse_misses": 1794
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1714,
+        "ue_evaluations": 5678,
+        "mmse_requests": 11339,
+        "mmse_misses": 1815
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1666,
+        "ue_evaluations": 5412,
+        "mmse_requests": 17593,
+        "mmse_misses": 1767
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1689,
+        "ue_evaluations": 5541,
+        "mmse_requests": 16064,
+        "mmse_misses": 1790
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1643,
+        "ue_evaluations": 5283,
+        "mmse_requests": 13620,
+        "mmse_misses": 1744
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1689,
+        "ue_evaluations": 5541,
+        "mmse_requests": 10316,
+        "mmse_misses": 1790
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1672,
+        "ue_evaluations": 5436,
+        "mmse_requests": 15637,
+        "mmse_misses": 1773
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1669,
+        "ue_evaluations": 5424,
+        "mmse_requests": 14342,
+        "mmse_misses": 1770
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1649,
+        "ue_evaluations": 5307,
+        "mmse_requests": 14458,
+        "mmse_misses": 1750
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1655,
+        "ue_evaluations": 5331,
+        "mmse_requests": 13854,
+        "mmse_misses": 1756
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "initial_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1692,
+        "ue_evaluations": 5553,
+        "mmse_requests": 13049,
+        "mmse_misses": 1793
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "initial_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1689,
+        "ue_evaluations": 5541,
+        "mmse_requests": 10922,
+        "mmse_misses": 1790
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "trained_2",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1689,
+        "ue_evaluations": 5541,
+        "mmse_requests": 11104,
+        "mmse_misses": 1790
+      }
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "trained_4",
+      "student_replay_scores": 106,
+      "teacher": {
+        "candidate_evaluations": 1712,
+        "ue_evaluations": 5670,
+        "mmse_requests": 11259,
+        "mmse_misses": 1813
+      }
+    }
+  ],
+  "models_unchanged": true
+}

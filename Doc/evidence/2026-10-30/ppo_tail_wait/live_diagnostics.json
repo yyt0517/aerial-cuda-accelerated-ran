@@ -1,0 +1,722 @@
+[
+  {
+    "iteration": 1,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -0.6901576519012451,
+        "policy_entropy": 2.710582733154297,
+        "mean_greedy_probability": 0.09690466523170471,
+        "mean_pending_packet_age_ms": 76.13608880671244,
+        "pending_over_10ms_pct": 86.44877430533273
+      },
+      {
+        "seed": 42,
+        "critic_ev": -4.976162433624268,
+        "policy_entropy": 2.7263927459716797,
+        "mean_greedy_probability": 0.09371916949748993,
+        "mean_pending_packet_age_ms": 72.84551597443411,
+        "pending_over_10ms_pct": 84.62034583987152
+      },
+      {
+        "seed": 43,
+        "critic_ev": 0.6440584063529968,
+        "policy_entropy": 2.7282819747924805,
+        "mean_greedy_probability": 0.0947454646229744,
+        "mean_pending_packet_age_ms": 73.78411322427085,
+        "pending_over_10ms_pct": 88.97007022074835
+      }
+    ]
+  },
+  {
+    "iteration": 2,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": 0.451582670211792,
+        "policy_entropy": 2.723367929458618,
+        "mean_greedy_probability": 0.09250600636005402,
+        "mean_pending_packet_age_ms": 72.18905918818778,
+        "pending_over_10ms_pct": 85.13511327047848
+      },
+      {
+        "seed": 42,
+        "critic_ev": 0.0041724443435668945,
+        "policy_entropy": 2.731003522872925,
+        "mean_greedy_probability": 0.09034217894077301,
+        "mean_pending_packet_age_ms": 77.85107429946602,
+        "pending_over_10ms_pct": 85.13741576100537
+      },
+      {
+        "seed": 43,
+        "critic_ev": -0.6360440254211426,
+        "policy_entropy": 2.726714611053467,
+        "mean_greedy_probability": 0.09357907623052597,
+        "mean_pending_packet_age_ms": 67.5849030808899,
+        "pending_over_10ms_pct": 81.84041937029774
+      }
+    ]
+  },
+  {
+    "iteration": 3,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -0.5258798599243164,
+        "policy_entropy": 2.711585760116577,
+        "mean_greedy_probability": 0.0933874174952507,
+        "mean_pending_packet_age_ms": 79.24397675083733,
+        "pending_over_10ms_pct": 85.11732128801685
+      },
+      {
+        "seed": 42,
+        "critic_ev": -2.414360761642456,
+        "policy_entropy": 2.73618745803833,
+        "mean_greedy_probability": 0.08833355456590652,
+        "mean_pending_packet_age_ms": 75.20200440816201,
+        "pending_over_10ms_pct": 84.62058319829818
+      },
+      {
+        "seed": 43,
+        "critic_ev": 0.5172213315963745,
+        "policy_entropy": 2.731624126434326,
+        "mean_greedy_probability": 0.08838323503732681,
+        "mean_pending_packet_age_ms": 51.61138672643211,
+        "pending_over_10ms_pct": 78.52228959027525
+      }
+    ]
+  },
+  {
+    "iteration": 4,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -0.9871234893798828,
+        "policy_entropy": 2.7244644165039062,
+        "mean_greedy_probability": 0.09056197106838226,
+        "mean_pending_packet_age_ms": 81.12698908606181,
+        "pending_over_10ms_pct": 84.47888027993002
+      },
+      {
+        "seed": 42,
+        "critic_ev": -1.0189955234527588,
+        "policy_entropy": 2.7329530715942383,
+        "mean_greedy_probability": 0.0885724276304245,
+        "mean_pending_packet_age_ms": 68.12399500198975,
+        "pending_over_10ms_pct": 81.51006009753202
+      },
+      {
+        "seed": 43,
+        "critic_ev": -0.7788432836532593,
+        "policy_entropy": 2.7300491333007812,
+        "mean_greedy_probability": 0.08727256208658218,
+        "mean_pending_packet_age_ms": 63.83723634095819,
+        "pending_over_10ms_pct": 82.72950679703915
+      }
+    ]
+  },
+  {
+    "iteration": 5,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -2.004659652709961,
+        "policy_entropy": 2.709639549255371,
+        "mean_greedy_probability": 0.09419971704483032,
+        "mean_pending_packet_age_ms": 77.81546012850804,
+        "pending_over_10ms_pct": 83.06155561006891
+      },
+      {
+        "seed": 42,
+        "critic_ev": -0.11523473262786865,
+        "policy_entropy": 2.728177070617676,
+        "mean_greedy_probability": 0.09056184440851212,
+        "mean_pending_packet_age_ms": 83.95803237561901,
+        "pending_over_10ms_pct": 86.99996433093756
+      },
+      {
+        "seed": 43,
+        "critic_ev": -6.737256050109863,
+        "policy_entropy": 2.723560094833374,
+        "mean_greedy_probability": 0.09146448224782944,
+        "mean_pending_packet_age_ms": 72.65802186013497,
+        "pending_over_10ms_pct": 83.38472360065909
+      }
+    ]
+  },
+  {
+    "iteration": 6,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -0.4555511474609375,
+        "policy_entropy": 2.7125675678253174,
+        "mean_greedy_probability": 0.09495599567890167,
+        "mean_pending_packet_age_ms": 80.31178187363605,
+        "pending_over_10ms_pct": 86.2040859253806
+      },
+      {
+        "seed": 42,
+        "critic_ev": -7.182385444641113,
+        "policy_entropy": 2.729292631149292,
+        "mean_greedy_probability": 0.09252402186393738,
+        "mean_pending_packet_age_ms": 73.13810460451934,
+        "pending_over_10ms_pct": 82.89545915268033
+      },
+      {
+        "seed": 43,
+        "critic_ev": -0.09682571887969971,
+        "policy_entropy": 2.7264010906219482,
+        "mean_greedy_probability": 0.09176436811685562,
+        "mean_pending_packet_age_ms": 74.39977226184033,
+        "pending_over_10ms_pct": 84.64342123171686
+      }
+    ]
+  },
+  {
+    "iteration": 7,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -1.8540105819702148,
+        "policy_entropy": 2.7111430168151855,
+        "mean_greedy_probability": 0.09719523787498474,
+        "mean_pending_packet_age_ms": 79.44385272129772,
+        "pending_over_10ms_pct": 85.75241324956838
+      },
+      {
+        "seed": 42,
+        "critic_ev": -1.995248794555664,
+        "policy_entropy": 2.71972393989563,
+        "mean_greedy_probability": 0.09523393213748932,
+        "mean_pending_packet_age_ms": 76.91547667889036,
+        "pending_over_10ms_pct": 85.18065342844801
+      },
+      {
+        "seed": 43,
+        "critic_ev": -3.1956419944763184,
+        "policy_entropy": 2.7195658683776855,
+        "mean_greedy_probability": 0.09555327892303467,
+        "mean_pending_packet_age_ms": 77.97875485031827,
+        "pending_over_10ms_pct": 85.06539477891776
+      }
+    ]
+  },
+  {
+    "iteration": 8,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -2.529890298843384,
+        "policy_entropy": 2.7128820419311523,
+        "mean_greedy_probability": 0.09622501581907272,
+        "mean_pending_packet_age_ms": 68.14660342109431,
+        "pending_over_10ms_pct": 80.70071333562981
+      },
+      {
+        "seed": 42,
+        "critic_ev": -4.657674789428711,
+        "policy_entropy": 2.7216787338256836,
+        "mean_greedy_probability": 0.09373893588781357,
+        "mean_pending_packet_age_ms": 75.87560831926807,
+        "pending_over_10ms_pct": 84.58371699700612
+      },
+      {
+        "seed": 43,
+        "critic_ev": -6.2491044998168945,
+        "policy_entropy": 2.7214627265930176,
+        "mean_greedy_probability": 0.09610988199710846,
+        "mean_pending_packet_age_ms": 74.84145175432492,
+        "pending_over_10ms_pct": 86.33811637973028
+      }
+    ]
+  },
+  {
+    "iteration": 9,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -2.8474178314208984,
+        "policy_entropy": 2.7098240852355957,
+        "mean_greedy_probability": 0.09833752363920212,
+        "mean_pending_packet_age_ms": 68.97084312046424,
+        "pending_over_10ms_pct": 81.89185439619581
+      },
+      {
+        "seed": 42,
+        "critic_ev": -3.1633553504943848,
+        "policy_entropy": 2.721036911010742,
+        "mean_greedy_probability": 0.0945921465754509,
+        "mean_pending_packet_age_ms": 67.00635461180497,
+        "pending_over_10ms_pct": 81.09502988023111
+      },
+      {
+        "seed": 43,
+        "critic_ev": -3.9010791778564453,
+        "policy_entropy": 2.7251274585723877,
+        "mean_greedy_probability": 0.09507811069488525,
+        "mean_pending_packet_age_ms": 66.9874714334533,
+        "pending_over_10ms_pct": 84.28012302303478
+      }
+    ]
+  },
+  {
+    "iteration": 10,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -16.444793701171875,
+        "policy_entropy": 2.6983237266540527,
+        "mean_greedy_probability": 0.10550379753112793,
+        "mean_pending_packet_age_ms": 84.01671230944036,
+        "pending_over_10ms_pct": 83.70716738510995
+      },
+      {
+        "seed": 42,
+        "critic_ev": -2.632960319519043,
+        "policy_entropy": 2.7180087566375732,
+        "mean_greedy_probability": 0.09739973396062851,
+        "mean_pending_packet_age_ms": 77.90174517064719,
+        "pending_over_10ms_pct": 85.53306611091979
+      },
+      {
+        "seed": 43,
+        "critic_ev": -2.596357583999634,
+        "policy_entropy": 2.7167704105377197,
+        "mean_greedy_probability": 0.10125996917486191,
+        "mean_pending_packet_age_ms": 71.99671145896838,
+        "pending_over_10ms_pct": 85.34424118969132
+      }
+    ]
+  },
+  {
+    "iteration": 11,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -1.2203547954559326,
+        "policy_entropy": 2.7088050842285156,
+        "mean_greedy_probability": 0.09984593838453293,
+        "mean_pending_packet_age_ms": 75.69134952891189,
+        "pending_over_10ms_pct": 82.52655643820432
+      },
+      {
+        "seed": 42,
+        "critic_ev": -16.36493492126465,
+        "policy_entropy": 2.7126502990722656,
+        "mean_greedy_probability": 0.09883206337690353,
+        "mean_pending_packet_age_ms": 75.87873490477797,
+        "pending_over_10ms_pct": 85.49519978024347
+      },
+      {
+        "seed": 43,
+        "critic_ev": -0.42071759700775146,
+        "policy_entropy": 2.7154464721679688,
+        "mean_greedy_probability": 0.105218306183815,
+        "mean_pending_packet_age_ms": 68.41816725745043,
+        "pending_over_10ms_pct": 84.6410660364973
+      }
+    ]
+  },
+  {
+    "iteration": 12,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -12.564984321594238,
+        "policy_entropy": 2.710517168045044,
+        "mean_greedy_probability": 0.1033833846449852,
+        "mean_pending_packet_age_ms": 82.80216205365578,
+        "pending_over_10ms_pct": 83.88909880974873
+      },
+      {
+        "seed": 42,
+        "critic_ev": -5.271193981170654,
+        "policy_entropy": 2.711895704269409,
+        "mean_greedy_probability": 0.1025041863322258,
+        "mean_pending_packet_age_ms": 80.58070139856177,
+        "pending_over_10ms_pct": 86.11400261876143
+      },
+      {
+        "seed": 43,
+        "critic_ev": -21.411331176757812,
+        "policy_entropy": 2.714690923690796,
+        "mean_greedy_probability": 0.10507442057132721,
+        "mean_pending_packet_age_ms": 75.60057676591461,
+        "pending_over_10ms_pct": 85.16694812921551
+      }
+    ]
+  },
+  {
+    "iteration": 13,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -16.790151596069336,
+        "policy_entropy": 2.7007288932800293,
+        "mean_greedy_probability": 0.1048203557729721,
+        "mean_pending_packet_age_ms": 81.05840190660065,
+        "pending_over_10ms_pct": 83.67863345424226
+      },
+      {
+        "seed": 42,
+        "critic_ev": -2.805292844772339,
+        "policy_entropy": 2.706766128540039,
+        "mean_greedy_probability": 0.10323133319616318,
+        "mean_pending_packet_age_ms": 90.37747333995176,
+        "pending_over_10ms_pct": 87.91480709662609
+      },
+      {
+        "seed": 43,
+        "critic_ev": -2.0579912662506104,
+        "policy_entropy": 2.7096705436706543,
+        "mean_greedy_probability": 0.10899315774440765,
+        "mean_pending_packet_age_ms": 76.3994172870163,
+        "pending_over_10ms_pct": 84.96142356009304
+      }
+    ]
+  },
+  {
+    "iteration": 14,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -3.560091018676758,
+        "policy_entropy": 2.697864532470703,
+        "mean_greedy_probability": 0.10548378527164459,
+        "mean_pending_packet_age_ms": 74.80806404961068,
+        "pending_over_10ms_pct": 85.12096074416021
+      },
+      {
+        "seed": 42,
+        "critic_ev": -15.634149551391602,
+        "policy_entropy": 2.714675188064575,
+        "mean_greedy_probability": 0.09991134703159332,
+        "mean_pending_packet_age_ms": 84.31246243908402,
+        "pending_over_10ms_pct": 86.98271433913888
+      },
+      {
+        "seed": 43,
+        "critic_ev": -4.139011383056641,
+        "policy_entropy": 2.706571340560913,
+        "mean_greedy_probability": 0.10823789238929749,
+        "mean_pending_packet_age_ms": 73.58420534664417,
+        "pending_over_10ms_pct": 85.81133838066954
+      }
+    ]
+  },
+  {
+    "iteration": 15,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -6.593262672424316,
+        "policy_entropy": 2.6943955421447754,
+        "mean_greedy_probability": 0.10978886485099792,
+        "mean_pending_packet_age_ms": 66.49189275496438,
+        "pending_over_10ms_pct": 84.80065344568776
+      },
+      {
+        "seed": 42,
+        "critic_ev": -8.44149398803711,
+        "policy_entropy": 2.7046003341674805,
+        "mean_greedy_probability": 0.10258833318948746,
+        "mean_pending_packet_age_ms": 83.8665210625287,
+        "pending_over_10ms_pct": 87.47740830992699
+      },
+      {
+        "seed": 43,
+        "critic_ev": -2.3484387397766113,
+        "policy_entropy": 2.708944797515869,
+        "mean_greedy_probability": 0.1068081185221672,
+        "mean_pending_packet_age_ms": 83.26295021481054,
+        "pending_over_10ms_pct": 84.64038438107548
+      }
+    ]
+  },
+  {
+    "iteration": 16,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -5.093140602111816,
+        "policy_entropy": 2.690110206604004,
+        "mean_greedy_probability": 0.10830811411142349,
+        "mean_pending_packet_age_ms": 75.44088206715551,
+        "pending_over_10ms_pct": 82.26825139239492
+      },
+      {
+        "seed": 42,
+        "critic_ev": -0.996708869934082,
+        "policy_entropy": 2.7141032218933105,
+        "mean_greedy_probability": 0.1030740737915039,
+        "mean_pending_packet_age_ms": 87.27875562999529,
+        "pending_over_10ms_pct": 86.80912327735399
+      },
+      {
+        "seed": 43,
+        "critic_ev": -8.913581848144531,
+        "policy_entropy": 2.7063488960266113,
+        "mean_greedy_probability": 0.1084119901061058,
+        "mean_pending_packet_age_ms": 65.59003830555318,
+        "pending_over_10ms_pct": 83.4733969208517
+      }
+    ]
+  },
+  {
+    "iteration": 17,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -0.6168900728225708,
+        "policy_entropy": 2.6933372020721436,
+        "mean_greedy_probability": 0.10954353213310242,
+        "mean_pending_packet_age_ms": 73.7648667360612,
+        "pending_over_10ms_pct": 83.20420021202993
+      },
+      {
+        "seed": 42,
+        "critic_ev": -7.529681205749512,
+        "policy_entropy": 2.708153486251831,
+        "mean_greedy_probability": 0.10472140461206436,
+        "mean_pending_packet_age_ms": 80.11114988830755,
+        "pending_over_10ms_pct": 86.15635248188971
+      },
+      {
+        "seed": 43,
+        "critic_ev": -0.19503521919250488,
+        "policy_entropy": 2.704385757446289,
+        "mean_greedy_probability": 0.10654572397470474,
+        "mean_pending_packet_age_ms": 63.107944422327655,
+        "pending_over_10ms_pct": 80.96712720343021
+      }
+    ]
+  },
+  {
+    "iteration": 18,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -2.429396152496338,
+        "policy_entropy": 2.6952755451202393,
+        "mean_greedy_probability": 0.11353567242622375,
+        "mean_pending_packet_age_ms": 77.50818599292766,
+        "pending_over_10ms_pct": 86.08717218426484
+      },
+      {
+        "seed": 42,
+        "critic_ev": -1.954099178314209,
+        "policy_entropy": 2.6918859481811523,
+        "mean_greedy_probability": 0.11054958403110504,
+        "mean_pending_packet_age_ms": 86.40949806746234,
+        "pending_over_10ms_pct": 87.14448703171296
+      },
+      {
+        "seed": 43,
+        "critic_ev": 0.4512745141983032,
+        "policy_entropy": 2.7035677433013916,
+        "mean_greedy_probability": 0.10700905323028564,
+        "mean_pending_packet_age_ms": 70.131286389015,
+        "pending_over_10ms_pct": 82.25530254155616
+      }
+    ]
+  },
+  {
+    "iteration": 19,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -2.3195724487304688,
+        "policy_entropy": 2.6889944076538086,
+        "mean_greedy_probability": 0.11426381766796112,
+        "mean_pending_packet_age_ms": 77.12443468318713,
+        "pending_over_10ms_pct": 86.38398785451793
+      },
+      {
+        "seed": 42,
+        "critic_ev": -1.2184267044067383,
+        "policy_entropy": 2.7047979831695557,
+        "mean_greedy_probability": 0.10922563821077347,
+        "mean_pending_packet_age_ms": 82.8854719598551,
+        "pending_over_10ms_pct": 85.99743895631998
+      },
+      {
+        "seed": 43,
+        "critic_ev": -0.9294724464416504,
+        "policy_entropy": 2.689892292022705,
+        "mean_greedy_probability": 0.11705520749092102,
+        "mean_pending_packet_age_ms": 78.5708332286248,
+        "pending_over_10ms_pct": 84.56833558107651
+      }
+    ]
+  },
+  {
+    "iteration": 20,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -0.2170271873474121,
+        "policy_entropy": 2.682893753051758,
+        "mean_greedy_probability": 0.116860032081604,
+        "mean_pending_packet_age_ms": 74.54338430435794,
+        "pending_over_10ms_pct": 85.34613470263913
+      },
+      {
+        "seed": 42,
+        "critic_ev": -10.786897659301758,
+        "policy_entropy": 2.684077024459839,
+        "mean_greedy_probability": 0.11467002332210541,
+        "mean_pending_packet_age_ms": 87.23981455174373,
+        "pending_over_10ms_pct": 86.09634592733782
+      },
+      {
+        "seed": 43,
+        "critic_ev": -8.84863567352295,
+        "policy_entropy": 2.685816526412964,
+        "mean_greedy_probability": 0.1154240146279335,
+        "mean_pending_packet_age_ms": 77.57756683516524,
+        "pending_over_10ms_pct": 84.1132957724886
+      }
+    ]
+  },
+  {
+    "iteration": 21,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -10.371267318725586,
+        "policy_entropy": 2.659198045730591,
+        "mean_greedy_probability": 0.11855805665254593,
+        "mean_pending_packet_age_ms": 83.51251206090487,
+        "pending_over_10ms_pct": 83.51872838962558
+      },
+      {
+        "seed": 42,
+        "critic_ev": -41.14860534667969,
+        "policy_entropy": 2.686697483062744,
+        "mean_greedy_probability": 0.11282225698232651,
+        "mean_pending_packet_age_ms": 90.97065187231969,
+        "pending_over_10ms_pct": 88.62490493558622
+      },
+      {
+        "seed": 43,
+        "critic_ev": -1.484656572341919,
+        "policy_entropy": 2.6935794353485107,
+        "mean_greedy_probability": 0.11638648062944412,
+        "mean_pending_packet_age_ms": 66.57433864782823,
+        "pending_over_10ms_pct": 84.10756996431722
+      }
+    ]
+  },
+  {
+    "iteration": 22,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": 0.17081046104431152,
+        "policy_entropy": 2.672848701477051,
+        "mean_greedy_probability": 0.1168190985918045,
+        "mean_pending_packet_age_ms": 73.34027531968736,
+        "pending_over_10ms_pct": 84.07198102422016
+      },
+      {
+        "seed": 42,
+        "critic_ev": -0.02014458179473877,
+        "policy_entropy": 2.6929190158843994,
+        "mean_greedy_probability": 0.11310143023729324,
+        "mean_pending_packet_age_ms": 85.25889500615148,
+        "pending_over_10ms_pct": 87.14307415025475
+      },
+      {
+        "seed": 43,
+        "critic_ev": -1.9748225212097168,
+        "policy_entropy": 2.6853857040405273,
+        "mean_greedy_probability": 0.11826581507921219,
+        "mean_pending_packet_age_ms": 76.84342351068982,
+        "pending_over_10ms_pct": 85.19790940395659
+      }
+    ]
+  },
+  {
+    "iteration": 23,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -10.144488334655762,
+        "policy_entropy": 2.6804358959198,
+        "mean_greedy_probability": 0.11673973500728607,
+        "mean_pending_packet_age_ms": 76.079481255449,
+        "pending_over_10ms_pct": 85.83452484742807
+      },
+      {
+        "seed": 42,
+        "critic_ev": -4.825922012329102,
+        "policy_entropy": 2.686626434326172,
+        "mean_greedy_probability": 0.11384822428226471,
+        "mean_pending_packet_age_ms": 89.00726898391021,
+        "pending_over_10ms_pct": 87.10193136191788
+      },
+      {
+        "seed": 43,
+        "critic_ev": -2.737626552581787,
+        "policy_entropy": 2.6931207180023193,
+        "mean_greedy_probability": 0.1149747371673584,
+        "mean_pending_packet_age_ms": 76.94333110742106,
+        "pending_over_10ms_pct": 85.13497392666008
+      }
+    ]
+  },
+  {
+    "iteration": 24,
+    "rollout_reward_independently_recomputed": true,
+    "seeds": [
+      {
+        "seed": 41,
+        "critic_ev": -4.710354804992676,
+        "policy_entropy": 2.667236089706421,
+        "mean_greedy_probability": 0.11840785294771194,
+        "mean_pending_packet_age_ms": 78.51992835030957,
+        "pending_over_10ms_pct": 85.38878902869317
+      },
+      {
+        "seed": 42,
+        "critic_ev": -0.7481180429458618,
+        "policy_entropy": 2.675841808319092,
+        "mean_greedy_probability": 0.11752430349588394,
+        "mean_pending_packet_age_ms": 82.39554892310602,
+        "pending_over_10ms_pct": 83.49411264009079
+      },
+      {
+        "seed": 43,
+        "critic_ev": -4.225528240203857,
+        "policy_entropy": 2.6898293495178223,
+        "mean_greedy_probability": 0.11518213152885437,
+        "mean_pending_packet_age_ms": 82.15383333614565,
+        "pending_over_10ms_pct": 85.74658724668005
+      }
+    ]
+  }
+]

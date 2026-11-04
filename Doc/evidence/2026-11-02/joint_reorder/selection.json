@@ -1,0 +1,11 @@
+{
+  "quality_candidate": "wide_pareto_j",
+  "execution_cost_candidate": "narrow_delta_j",
+  "execution_cost_feasible": true,
+  "validation_only": true,
+  "development_not_read": true,
+  "historical_exposure": true,
+  "teacher_preparation_excluded": true,
+  "rule": "final quality/service, J shortfall, service shortfall, mean ratio; execution cost filter and lower time on ties",
+  "online_ai_claim": false
+}

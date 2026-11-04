@@ -1,0 +1,20 @@
+{
+  "features": [
+    "old_exact_gain",
+    "affected_ues",
+    "sum_weighted_expected_change",
+    "sum_abs_weighted_expected_change",
+    "max_abs_weighted_expected_change",
+    "sum_resource_count_change",
+    "sum_layer_change",
+    "sum_bler_change"
+  ],
+  "target": "current exact delta J in bytes",
+  "labels": 161700,
+  "source": "fresh scored dirty-known candidates in exact cached control; no added PHY labels",
+  "independent_seeds": 1,
+  "training_started": false,
+  "captured_inputs": 12,
+  "independent_states_not_established": true,
+  "note": "12 input rows include correlated/shared-warmup histories; not12 independent wireless scenes"
+}

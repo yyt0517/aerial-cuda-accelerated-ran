@@ -1,0 +1,23 @@
+{
+  "completed": true,
+  "completed_by_archive_recovery": true,
+  "formal_decisions": 378,
+  "formal_independent_finals": 126,
+  "offline_teacher_decisions": 23,
+  "engineering_decoder_decisions": 12,
+  "validation_states": 12,
+  "development_states": 9,
+  "diagnostic_roots": 4,
+  "diagnostic_exact_scores": 2523,
+  "diagnostic_independent_audits": 21,
+  "recovery_additional_independent_audits": 21,
+  "training_updates": 0,
+  "registry_and_physics_unchanged": true,
+  "executed_sources_snapshot_valid": true,
+  "diagnostic_serialization_only_patch": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false,
+  "formal_elapsed_s": null,
+  "elapsed_s": null,
+  "wall_time_note": "final process wall timers were not persisted before the JSON error; per-decision timings are intact"
+}

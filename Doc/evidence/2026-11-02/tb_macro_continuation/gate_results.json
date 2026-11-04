@@ -1,0 +1,123 @@
+{
+  "selected_on_validation": {
+    "quality_best": "single_b424",
+    "within_cost_best": "shortlist_trained212",
+    "cost_feasible": true,
+    "rule": "validation only; gates, J shortfall, service shortfall, mean ratio; lower complete time on ties",
+    "development_not_read_in_this_run": true,
+    "historical_exposure": true
+  },
+  "quality_coverage_cost": {
+    "shortlist_trained212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "single_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "joint_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "single_continue_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "joint_continue_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "single_b424": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "joint_b424": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    },
+    "joint_continue_b424": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": false,
+      "joint_pass": false
+    }
+  },
+  "selected_development": {
+    "arm": "shortlist_trained212",
+    "mean_j": "75848.16688009993",
+    "mean_ms": "79.04063682589266",
+    "time_ratio": "0.5422511609071389",
+    "mean_relative_j_pct": "-6.285123968994954",
+    "worst_relative_j_pct": "-9.556473915872255",
+    "mean_actual_phy": "212.0",
+    "mean_feature_roots": "29.222222222222218",
+    "mean_newly_unserved": "2.444444444444444",
+    "mean_positive_p5": "0.36677369650703123",
+    "worst_positive_p5": "0.0",
+    "mean_positive_weak": "1.2596571649675774",
+    "mean_macro_accepts": "",
+    "mean_continuation_phy": "",
+    "continuation_rescues": "0",
+    "quality_pass": "False",
+    "coverage_pass": "False",
+    "cost_pass": "True",
+    "joint_pass": "False"
+  },
+  "new_joint_family_and_continuation_promoted": false,
+  "independent_ai_contribution_proven": false,
+  "posthoc_headroom": {
+    "validation_only": true,
+    "blocks": 48,
+    "physical_scores": 6219,
+    "independent_audits": 184,
+    "joint_positive_blocks": 20,
+    "single_positive_blocks": 13,
+    "joint_positive_with_no_single_improvement": 16,
+    "joint_positive_missed_by_proxy_top2": 10,
+    "protected_joint_positive_blocks": 19,
+    "protected_joint_positive_with_no_single_improvement_in41_common_blocks": 13
+  },
+  "next_path": {
+    "selected": "cheap incremental whole-TB descriptors plus service-protected selective joint proposal/ranking",
+    "implementation_status": "chosen next experiment, not implemented in this campaign",
+    "retain": [
+      "single edits",
+      "current-root fallback",
+      "raw PFQ90% floor",
+      "full-schedule PRG coverage",
+      "unchanged quality/service/cost gates"
+    ],
+    "sequence": [
+      "verify equivalent logical descriptor outputs and complete cost",
+      "regenerate real visited-state labels on training seeds41-43 only, charge offline exact queries",
+      "small protected near-optimal/top2 ranking distillation and selective quota against same-mechanism heuristic"
+    ],
+    "defer": [
+      "finite continuation value training",
+      "larger fixed continuation domains",
+      "PPO",
+      "more same scalar immediate-J training"
+    ],
+    "limitations": [
+      "root protection does not guarantee full-reference coverage",
+      "posthoc headroom is not policy performance",
+      "observed finite gains are not optimal values",
+      "424 controls stopped at sweep/domain caps, not scoring convergence"
+    ]
+  }
+}

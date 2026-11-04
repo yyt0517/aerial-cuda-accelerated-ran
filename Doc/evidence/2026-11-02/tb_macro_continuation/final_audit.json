@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "tests": 53,
+  "serial_decisions": 567,
+  "independent_phy": 189,
+  "summary_and_paired_metrics_recomputed": true,
+  "executed_sources_unchanged": true,
+  "model_and_registry_unchanged": true,
+  "training_updates": 0,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

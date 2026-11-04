@@ -1,0 +1,23 @@
+{
+  "arms": [
+    "float_python_full",
+    "integer_python_full",
+    "full",
+    "cached",
+    "cap4",
+    "guarded4"
+  ],
+  "repeats": 5,
+  "cpu_affinity": [
+    255
+  ],
+  "timing": "single-process alternating/rotating arms; fresh metadata -> PHY/context -> search/close; immutable imports/table/library outside",
+  "profiling": false,
+  "observers": false,
+  "audits_inside_timing": false,
+  "history": false,
+  "reference": "report both native full-refresh and old Python full; compile/persistent generation savings are not independent cache savings",
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "gate": "/data/aerial-cuda-accelerated-ran/deliverables/persistent_integer_gate_20261103_v1",
+  "shared_host": true
+}

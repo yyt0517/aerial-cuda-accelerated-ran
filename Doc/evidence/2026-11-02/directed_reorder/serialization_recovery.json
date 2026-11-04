@@ -1,0 +1,11 @@
+{
+  "reason": "NumPy index failed JSON serialization after all native scores and independent checks completed",
+  "file": "directed_reorder_diagnosis.py",
+  "executed_sha256": "c56d1672d1995513891824b19b98cb0d29758979e47d586de6a002e594edc1fd",
+  "fixed_sha256": "328f6783d3ae57699d3d5d119f57ee2dbc773f5443ee2c655d2176a594339ae4",
+  "only_change": "index=i -> index=int(i) in diagnostic audit record",
+  "policy_or_native_kernel_changed": false,
+  "original_partial_preserved": "recall_diagnosis/checks.partial.json",
+  "additional_native_scores": 0,
+  "additional_independent_reference_checks": 21
+}

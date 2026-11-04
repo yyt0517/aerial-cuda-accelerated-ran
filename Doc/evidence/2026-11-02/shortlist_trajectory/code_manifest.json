@@ -1,0 +1,11 @@
+{
+  "note": "Executed source snapshot stays in deliverables/source; terminal diagnostics and reporter added after final selection.",
+  "files": {
+    "test_shortlist_trajectory.py": "6559d93ac0d81797de4db7e97cacfc05d4389888d41e829ccbdbb680c95f8cc4",
+    "report_shortlist.py": "16c2d23fdc81a49302fd69a13c175a4c59e74faadc1111e191e6b0401968a7a6",
+    "shortlist_README.rst": "53ef6cdebb4977c8a01846798a9341e23339d6d2aabb514ed4316be2df61566a",
+    "shortlist_diagnostics.py": "fe9c17860550941d71a8e1f9c791ff493266c32f2150abf1cadb990e5b175257",
+    "shortlist_trajectory.py": "7d7842028b9a90b658c2629333be4726c74f3a02f1d8770ab13451146ed72b46",
+    "shortlist_campaign.py": "beddad570f3809376ae6a2c8d52b83029cf2f16caf451a4b59e05e323db2750b"
+  }
+}

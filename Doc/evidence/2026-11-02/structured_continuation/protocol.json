@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "date": "2026-11-02",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "training_and_validation_sources": [
+    "current",
+    "pfq0"
+  ],
+  "training_and_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "evaluation_sources": [
+    "pfq0",
+    "neural",
+    "greedy"
+  ],
+  "historical_development_states": true,
+  "untouched_final_seeds": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "frozen79": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_train_v1/repair.npz",
+  "frozen79_sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "objective": "unchanged weighted expected-byte J; own PFQ+CTBS 90% dequeue floor",
+  "extra_features": [
+    "legal_suffix_slots",
+    "lower_layer_suffix_slots",
+    "reachable_count",
+    "reachable_min_layer",
+    "reachable_dequeue",
+    "queue_gap_before",
+    "queue_gap_after",
+    "reachable_gain_after",
+    "same_layer_suffix_slots",
+    "editable_same_prg_neighbors",
+    "root_failure_exposure",
+    "weighted_reachable_gain",
+    "suffix_min_layer",
+    "suffix_max_layer",
+    "logical_floor_slack",
+    "continuation_horizon"
+  ],
+  "student_prefix_sampling": "first retained parent, each depth, first four visited blocks",
+  "teacher": {
+    "horizon": 2,
+    "width": 4,
+    "all_legal": true,
+    "max_candidates_per_option": 128,
+    "missing_value": "masked; not zero",
+    "query_after_student_decision": true
+  },
+  "self_rounds": 2,
+  "epochs_per_round": 20,
+  "selection": "validation seed-equal complete-search J, no evaluation read",
+  "candidate_cap": 4096,
+  "physical_reference_cap": 1000000,
+  "structure_blocks": 8,
+  "combined_structure_blocks": 4,
+  "prefix_shortlist": 32,
+  "rollout_horizon": 2,
+  "rollout_width": 2,
+  "repeats": 3,
+  "quality_gate": "every development state J >= 99.5% of physical4; mean decision cost <= cached79",
+  "timing": "serial decoded snapshot to action; fresh contexts; common floor probe counted; excludes weights/archive IO/immutable TBS setup",
+  "native_gate": "not entered in this pilot; existing payload/TTL/mean/P95/UE-P5 and degraded-UE gates remain required"
+}

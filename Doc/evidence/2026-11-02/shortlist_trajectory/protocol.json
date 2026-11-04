@@ -1,0 +1,110 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "objective": "canonical native-BLER deficit-weighted J; own unpruned PFQ90% dequeue floor",
+  "initial": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/scalar_e10.npz",
+    "sha256": "667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e",
+    "epoch": 10
+  },
+  "initial_context": "original scalar ranker; previous shallow-only finetuning retained as history",
+  "top_k_grid": [
+    2,
+    4
+  ],
+  "max_feature_roots": 56,
+  "max_candidates": 106,
+  "root_cache": "candidate/features/ranking cached at same root for every arm; all refreshed after accepting edit",
+  "rejection": "failed exact candidate indices skipped only at the same decision/root; caches never cross decisions/CSI",
+  "threshold": "every accepted edit >1B, matching scalar generator; full DPLS retains native1/16B thresholds",
+  "numerical_scores": "full original-neighborhood reduction layout/row indices, entirely inside timer",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "train_validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "train_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "phase_a_methods": [
+    "full",
+    "legacy_top1",
+    "heuristic_2",
+    "initial_2",
+    "heuristic_4",
+    "initial_4",
+    "repeat_2",
+    "repeat_4"
+  ],
+  "selection": "validation only; joint first, J shortfall, positive-service coverage shortfall, mean J ratio; smaller K on ties",
+  "training_entry": "after engineering checks, one bounded diagnostic training round on selected mechanism, even if final quality gate is not passed",
+  "training_rounds": 1,
+  "training_epochs": 20,
+  "checkpoints": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "max_own_states_per_decision": 8,
+  "visited_state_key": "stateID/root SHA/failed-mask SHA; correlated rejection states not independent physical scenes",
+  "teacher": "independent post-decision full-neighborhood gain; availability excludes student failed-before indices",
+  "anchors": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/training_groups.pt",
+  "anchor_sha256": "8cf31fa0554aa1ef2e7bfc7398d9db4cca614ffd9cb758748d6dee1aa23a8ad0",
+  "training": "frozen scalar normalization, warm weights, fresh AdamW lr0.0005; same fine_tune as own_trajectory",
+  "quality_gate": "all states J>=99.5% full",
+  "coverage_gate": "all states no newly unserved UE; P5 and bottom20% service among full expected>1B UEs each >=98% reference",
+  "cost_gate": "seed-equal median complete time<=80% full",
+  "learning_gate": "changed weights, positive J gain every seed and at least6/9 state wins vs initial same K; joint gate required",
+  "evaluation_methods": [
+    "full",
+    "legacy_top1",
+    "heuristic_2",
+    "initial_2",
+    "heuristic_4",
+    "initial_4",
+    "repeat_2",
+    "repeat_4",
+    "trained_2",
+    "trained_4"
+  ],
+  "repeats": 3,
+  "timing": "raw numerical input/PFQ decode through fresh PHY/caches, candidates/features/network, validation, scoring and cleanup",
+  "exclusions": "archive/model/library IO and first immutable TBS setup; offline teacher/training separately charged",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

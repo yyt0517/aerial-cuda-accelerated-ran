@@ -1,0 +1,92 @@
+{
+  "completed": true,
+  "points": 63,
+  "weighted_states": 200,
+  "weighted_candidates": 8694100,
+  "new_native_runs": 0,
+  "gradient_steps": 0,
+  "new_grid": true,
+  "old_results_unchanged": true,
+  "learning": {
+    "completed": true,
+    "grid_points": 45,
+    "all_points": 63,
+    "train_only_oracle": [
+      {
+        "rate": 0.8,
+        "load": 1.0,
+        "family": "ttl",
+        "coefficient": 8.0,
+        "payload_mbps": 1248.1860000000001,
+        "expiry_pct": 0.0,
+        "P95_ms": 13.0,
+        "worst_ue_expiry_pct": 0.0
+      },
+      {
+        "rate": 1.12,
+        "load": 1.4000000000000001,
+        "family": "ttl",
+        "coefficient": 2.0,
+        "payload_mbps": 1539.042,
+        "expiry_pct": 13.23740116665893,
+        "P95_ms": 199.5,
+        "worst_ue_expiry_pct": 56.29198387819078
+      },
+      {
+        "rate": 1.28,
+        "load": 1.5999999999999999,
+        "family": "ttl",
+        "coefficient": 0.0,
+        "payload_mbps": 1673.256,
+        "expiry_pct": 18.296743455780838,
+        "P95_ms": 200.0,
+        "worst_ue_expiry_pct": 63.78431372549019
+      }
+    ],
+    "all_seed_descriptive_oracle": [
+      {
+        "rate": 0.8,
+        "load": 1.0,
+        "family": "ttl",
+        "coefficient": 8.0,
+        "payload_mbps": 1243.352,
+        "expiry_pct": 0.0,
+        "P95_ms": 13.0,
+        "worst_ue_expiry_pct": 0.0,
+        "pareto4D": true,
+        "pareto_all_forms": false
+      },
+      {
+        "rate": 1.12,
+        "load": 1.4000000000000001,
+        "family": "ttl",
+        "coefficient": 1.0,
+        "payload_mbps": 1526.912,
+        "expiry_pct": 14.081353248274212,
+        "P95_ms": 199.5,
+        "worst_ue_expiry_pct": 56.40394088669951,
+        "pareto4D": true,
+        "pareto_all_forms": true
+      },
+      {
+        "rate": 1.28,
+        "load": 1.5999999999999999,
+        "family": "ttl",
+        "coefficient": 0.0,
+        "payload_mbps": 1661.82,
+        "expiry_pct": 18.84017422477017,
+        "P95_ms": 200.0,
+        "worst_ue_expiry_pct": 63.78431372549019,
+        "pareto4D": true,
+        "pareto_all_forms": true
+      }
+    ],
+    "train_oracle_varies": true,
+    "all_fixed_high_load_residual_expiry": true,
+    "universal_near_optimal_coefficients": [],
+    "learning_signal_present": true,
+    "train_low_dimensional_policy": true,
+    "common_near_optimal_blocks_training": true,
+    "interpretation": "different oracle labels permit development classifier; residual loss is not a lower bound on achievable adaptive benefit; all-seed oracle never used as training label"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "README.rst": "7792a5e3d1617a73ddbb1f5bdd08029656e1373a7a9cc0d4565a4a565f00d4a8",
+  "bc_fit_diagnostic.json": "d8893514e52d5d76130be91b1b1446096a39a5b55e353d2e3c94a1abdd33bd45",
+  "checkpoint_chain_validation.json": "716770dbbd4f214b031f00f9288343acba354d7f4e0c675b9e28228a28e522fd",
+  "evaluation.csv": "28b8985952c70c914a104173e1d7fd505f4a8b22859d24661d67e9a3c03fa003",
+  "evaluation_gate.json": "7feb5a30090773c3ade2520e5a037591586c797baa917386940996ecab412086",
+  "evaluation_progress.json": "cfe0bd24a7382eece3c670a967ec47a71d1e45c8adc03bdf0fb9f5a405db4797",
+  "implementation_sha256.json": "2dce106d4af0e0f2b2b8c291f2721d9485d57bc264acf7fd32667f1d4f7494da",
+  "native_evaluation_checks.json": "1546486185ea60772c47a59ce19240c162fbaf3c992147371780bd02ac03e3d5",
+  "native_training_checks.json": "9e524052b6c1f5d5ec51538af0e29c811341ffc34b92f7829e742de576bfdcfa",
+  "protocol.json": "445f945dc99f4dd31b8a5ac0a2576651bf11f8bab4810101a9d439eae886d13c",
+  "report.txt": "6df2101ed0ad4648fdb119e8e4fc3a5b1c9a018a7d3752a0e3828eef654bdb8c",
+  "status.json": "281aa11394874efdcc7c3fe0763e4fab700173e85835b773ed640fc2460f9022",
+  "summary.json": "7be3ed38f4e4e45f63f506f53647213df2e24055959704a505268878678f8179",
+  "training_metrics.json": "5b99ba9178b576ef7cdc9d7daefb6851026f93b09d0a01a82db5ff10a4df7b13",
+  "training_validation.json": "7794cf3f122fa12886578e053c95fb50488f765ed3576603a7fdceff9b72393c",
+  "unit_checks.json": "51c6d9db722c4eca6646c6ea104ed70a617044bf072992999ef70212c1cb6b95",
+  "verify_training.py": "031d48fd02e0f9b0d6774375aba88e86758a7bafc40ba64bcc0741a720852400"
+}

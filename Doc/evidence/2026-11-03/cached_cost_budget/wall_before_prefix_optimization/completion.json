@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "timed_decisions": 360,
+  "profiling_decisions": 72,
+  "timed_candidate_evaluations": 5958385,
+  "profiling_candidate_evaluations": 1191677,
+  "timed_mmse_misses": 664365,
+  "profiling_mmse_misses": 132873,
+  "new_native_runs": 0,
+  "all_timed_outputs_match_frozen_quality": true
+}

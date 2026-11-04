@@ -1,0 +1,11 @@
+{
+  "single_final_attempt": true,
+  "keys": "all4 interferer masks per UE/PRG, including unused keys",
+  "implementation": "SoA real/imag arrays, AVX512 eight independent keys per vector, lane-specific LDLT pivots, triangular solve, adjoint product, cofactor inverse",
+  "arithmetic": "same pivoted LDLT/cofactor identities; match scalar expression order where explicit; original Eigen packet/reduction order still requires bitwise gate",
+  "flags": "-O3 -ffp-contract=off -fno-fast-math; SIMD TU avx512f/dq; original Eigen reference TU original architecture",
+  "acceptance": "all Gamma bit patterns must equal frozen-form Eigen reference before solver integration; no tolerance substitution",
+  "fallback": "if numerical gate or wall fails, stop40% engineering effort; retain34/41/46% existing exact curve",
+  "scientific": "new library only, never enters weight grid or literature/learning arms",
+  "timing": "gate only while native quality runs; no fair end-to-end speed claim from concurrent microtiming"
+}

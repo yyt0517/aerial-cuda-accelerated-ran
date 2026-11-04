@@ -1,0 +1,13 @@
+{
+  "completed": true,
+  "validation_states": 12,
+  "evaluation_states": 9,
+  "validation_decisions": 684,
+  "evaluation_decisions": 513,
+  "frozen_models_and_solver_unchanged": true,
+  "registry_unchanged": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false,
+  "training_updates": 0,
+  "elapsed_s": 86.29106688313186
+}

@@ -1,0 +1,32 @@
+{
+  "selected_quality": "repair_guard",
+  "selected_cost_fallback": "cached_maxj",
+  "validation_cost_feasible": false,
+  "validation_quality_service_pass": true,
+  "development_quality_service_cost_pass": true,
+  "all_stages_joint_pass": false,
+  "training_cross_seed_coverage_pass": false,
+  "independent_online_ai_success": false,
+  "learned_same_archive_service_repair": {
+    "states_changed": 1,
+    "failures_repaired": 1,
+    "new_joint_failures": 0,
+    "exposed_states": 21,
+    "scope": "historically exposed frozen states with paid teacher resource/layer/activity conditions; not native packet-level gain"
+  },
+  "cost_gap_ms": 4.152972064912319,
+  "validation_time_ratio": 0.8404321748891617,
+  "training_repairable_by_seed": {
+    "41": 2,
+    "42": 1,
+    "43": 0
+  },
+  "focused_oof_repairs": 1,
+  "focused_repairable_states": 3,
+  "next_path": "freeze repair_guard and verify query-equivalent proxy/frontier/terminal cost reduction; repair coverage and time-held-out generalization prerequisite before causal resource/activity proposals",
+  "next_phase_implemented": false,
+  "no_more_threshold_or_network_sweep": true,
+  "default_changed": false,
+  "stop_rule": "if bounded held-time repair audit remains unstable or equivalent cost reduction has insufficient room, stop expanding this conditional terminal branch; retain native service PPO research reference and physical default",
+  "caveat": "combined pair sampling/state weighting/UE auxiliary weighting intervention; no individual factor attribution"
+}

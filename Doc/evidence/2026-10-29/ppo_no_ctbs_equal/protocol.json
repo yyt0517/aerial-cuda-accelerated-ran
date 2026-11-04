@@ -1,0 +1,59 @@
+{
+  "config": {
+    "train_seeds": [
+      41,
+      42,
+      43
+    ],
+    "validation_seeds": [
+      44,
+      45
+    ],
+    "warmup": 4000,
+    "teacher_steps": 128,
+    "iterations": 12,
+    "rollout": 512,
+    "bc_epochs": 60,
+    "ppo_epochs": 2,
+    "critic_epochs": 4,
+    "gamma": 0.9982686325973925,
+    "gae_lambda": 0.995,
+    "clip": 0.1,
+    "target_kl": 0.02,
+    "actor_lr": 3e-05,
+    "critic_lr": 0.0003,
+    "entropy_coef": 0.002,
+    "ctbs": false,
+    "business_weights": false,
+    "deficit_weights": false,
+    "action": "autoregressive 51 PRG/cell tokens; all associated nonempty UEs plus blank; static legality only",
+    "initialization": "new model; equal no-CTBS DPLS behavior cloning on training trajectories only",
+    "reward": "(fully successful completed packet payload - full expired packet payload - 0.01*postqueue bytes)/86400",
+    "expiry_timing": "charged at causal pre-action removal, one TTI after last usable slot",
+    "ppo_floor": "none; rho0.90 applies only to teacher and physical-search comparator",
+    "validation_warmup": 4000,
+    "validation_settling": 4000,
+    "validation_measured": 4000,
+    "validation_followup": 400,
+    "selection": "final fixed-budget PPO checkpoint; also evaluate BC endpoint; no training-peak promotion",
+    "comparator": "raw_global_equal and PFQ, matched 8001..12000 arrivals with full followup",
+    "limits": [
+      "Development seeds, not blind tests.",
+      "2-second pilot measurement, not historical 10-second validation.",
+      "New compact joint actor; not a continuation of historical HGraph weights.",
+      "No automatic replacement of current_algorithm.json."
+    ],
+    "smoke": false
+  },
+  "source_sha256": {
+    "training/stageb_ppo/model.py": "8776b07977bc3640d4afbf96805053fdc787f661779d08f1176a4781022ec9ae",
+    "training/stageb_ppo/__init__.py": "1eab8874f09312cf249f52ba240810eba5e06892612887f237e38ea38c8f9242",
+    "training/stageb_ppo/native.py": "9b761ac4a1859c2325ee20ceb8f57e1eaf90f2a0dbbf2bb97990101137edf710",
+    "training/stageb_ppo/evaluate.py": "2492c92379fd2fad260330df8d21f9b4f5fee018054fdcf50393afa5bb691f34",
+    "training/stageb_ppo/learn.py": "5cc155a5ce9d79770fa43144058ab428026c2705d428cfde1274e1474605a2e3",
+    "training/stageb_ppo/campaign.py": "d686d0c179a44932235d464b1c89eb59fc128dfd4eba471204fa5aa1db0f4008",
+    "training/stageb_ppo/reward.py": "fd53abb03e153294d5dd99b54d2137f98c49c9ef55c0ca979133c86930b3b17c"
+  },
+  "ablation_protocol_sha256": "39926f1cc9f9d377c06f5719101c6e6f1e2fce867356d4442bd198720d2a3482",
+  "date": "2026-10-29"
+}

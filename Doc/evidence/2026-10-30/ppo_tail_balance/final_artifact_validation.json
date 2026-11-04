@@ -1,0 +1,19 @@
+{
+  "formal": {
+    "samples": 73728,
+    "updates": 4608,
+    "sources_verified": 72,
+    "checkpoint_sha256": "cb4408ecbdaa363af0f02fe8d412ad5f1988a7a3c0ba092efb7e62d5606da6f0",
+    "strict_target_passed": false
+  },
+  "balanced": {
+    "samples": 36864,
+    "updates": 2304,
+    "sources_verified": 77,
+    "checkpoint_sha256": "900ec84339c1fb906e95aee381d2f42f556aae455d0139cb2f7886d961067c06",
+    "strict_target_passed": false
+  },
+  "total_new_samples": 110592,
+  "total_new_actor_updates": 6912,
+  "passed": true
+}

@@ -1,0 +1,27 @@
+{
+  "arms": [
+    "full",
+    "cached",
+    "cap4",
+    "M16",
+    "M32",
+    "M64"
+  ],
+  "repeats": 5,
+  "cpu_affinity": [
+    255
+  ],
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "quality": "/data/aerial-cuda-accelerated-ran/deliverables/cached_budget_quality_20261103_v1",
+  "reference": "/data/aerial-cuda-accelerated-ran/deliverables/canonical_cached_dpls_gate_20261103_v1",
+  "timed_scope": "raw pre-action metadata -> MCS/TBS/PFQ -> fresh PHY decision -> close; immutable warmup excluded",
+  "diagnostics": false,
+  "history": false,
+  "teacher_queries": false,
+  "audits": false,
+  "logging_in_decision": false,
+  "ordering": "serial one process; rotate/reverse arms per state/repetition; alternate state order",
+  "post_timing_validation": "all outputs exactly match frozen quality campaign; outside measured intervals",
+  "profiles": "one separate diagnostic run per state/arm for first-scan/setup share; not instrumentation inside timing runs",
+  "host": "shared host, single pinned CPU and BLAS thread; same exposed seed41 inputs, no deployment guarantee"
+}

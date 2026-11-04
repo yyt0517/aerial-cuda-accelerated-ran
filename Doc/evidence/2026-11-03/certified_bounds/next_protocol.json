@@ -1,0 +1,20 @@
+{
+  "status": "design frozen for next paid implementation gate; not executed this turn",
+  "numerical": "unchanged persistent_q1e6_v1 objective/strict thresholds/max-anchored1-unit canonical key",
+  "first_bound": "capacity only; positive weights and native BLER[0,1], same per-UE nearest-even operations",
+  "tighter_bound": "theory only; defer Eigen finite-error certificate; little incremental gain here",
+  "representation": "separate versioned native library, sparse persistent edit table; only dirty PRG/UE bounds refreshed",
+  "heap": "version every entry; all novel edits present; invalid old bounds cannot terminate a round",
+  "ranking_controls": [
+    "upper bound descending",
+    "stale exact delta, novel fallback upper bound"
+  ],
+  "learned_ordering": "deferred until engineering/wall gate; existing161700 correlated labels may rank only, never prune",
+  "certificate": "unseen UB>threshold and (UB>=known max or UB==known max-1 with smaller key) still needs evaluation",
+  "exact_cache": "reuse only current valid exact payload; skipped entries stay unscored/dirty, never become clean by root advance",
+  "equivalence": "pay for independent full integer baseline, compare every root/choice/terminal; full candidate audit outside timing",
+  "costs": "serial alternating all12 states; no observer/log/history/profiling inside timing; report bound/heap/UE/MMSE requests/misses/first scan",
+  "early_stop": "no time/evaluation budget may bypass a certificate",
+  "future_approximate_trajectory": "before another approximate service gate, run paired canonical-full/random-tie-full native controls with same initialization/offered traffic and fixed random seeds; record tie opportunities and per-UE expiry/path variation; freeze a prospective protocol, never retroactively change cap4 failure",
+  "native_controls": "not launched; a tie-free/identical-path control is noninformative about broader local-optimum variability"
+}

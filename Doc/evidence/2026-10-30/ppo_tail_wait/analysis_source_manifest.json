@@ -1,0 +1,23 @@
+{
+  "deliverables/ppo_tail_wait_20261030_v1/balance_monitor.py": "9aff2f5da40b41d029501ba6a631ae9d1e6304633c46e0308dd7409c1b7be04b",
+  "deliverables/ppo_tail_wait_20261030_v1/finalize.py": "cef9428f821e685636b5cdfed6a26d5d9a7f3b5cab52af71f5dc45d8da5b6e67",
+  "deliverables/ppo_tail_wait_20261030_v1/observability_probe.py": "536d2bbca67d0e1f63693e5e281a9db4e5a3e068e5b62f62a4e68ac58bb6fba0",
+  "deliverables/ppo_tail_wait_20261030_v1/plot.py": "c2edd5a18a614bb2e195e28fb8daea3af794ff30d11360b419782c416d59cf11",
+  "deliverables/ppo_tail_wait_20261030_v1/verify_initialization.py": "13e6cd3ce6dcf6f20750a21187d102f3c9fb013325d7c2d7bb39b2f0d77490b4",
+  "deliverables/ppo_tail_wait_20261030_v1/baseline_delay_diagnosis.py": "7ce36a51d13ddf7e13eefb0aa81862e463108c8693d7bd2be6d8243a4d362958",
+  "deliverables/ppo_tail_wait_20261030_v1/finalize_balance.py": "add3e8276a453e068e330af4641125ce2efab1fb4106ec2c2627901951869456",
+  "deliverables/ppo_tail_wait_20261030_v1/plot_balance.py": "752e06bc08fb1612bb6881da14ea587413c5dc90e9608cbee513571fc9229bc7",
+  "deliverables/ppo_tail_wait_20261030_v1/monitor.py": "56f18a3efd3a60f81812f711435599d074f7f5d9fb5cb77cb784e3593bfbb625",
+  "deliverables/ppo_tail_wait_20261030_v1/fifo_composition.py": "aeba81f753376bc992a89e4d0b6a27efc65d823af1e19ae4178c8ecf0642df3c",
+  "deliverables/ppo_tail_wait_20261030_v1/balance_pipeline.py": "58da00714be2d19f3019b7d4db5ce8980a9c4d1de2f7d3f0ba1488d1c535c661",
+  "deliverables/ppo_tail_wait_20261030_v1/summarize_balance_outcome.py": "c3e1f9c9f447ebda1afec45dc1ac54f93b01331a10112be128faaf50fe38f413",
+  "deliverables/ppo_tail_wait_20261030_v1/benchmark.py": "c3cf1b6bc34be11725740f49d1b359aa68d6ab20fe3cf5e99b63ad5978e4130a",
+  "deliverables/ppo_tail_wait_20261030_v1/audit.py": "01713e93b85af5ffe7d67e014631ab51f73f224feaee93e63fe79baa7a764343",
+  "deliverables/ppo_tail_wait_20261030_v1/critic_probe.py": "ff699abfca2a1c020a1c1d664320136977dbea7ed11f4368d3b61e9f4259a685",
+  "deliverables/ppo_tail_wait_20261030_v1/document_results.py": "9f6da10b31c5d4e6249972a6cf4c57e6d7e7fc431fd7e7cb47c09d83b99e0169",
+  "deliverables/ppo_tail_wait_20261030_v1/verify_balance_initialization.py": "295b09a20b8fda245f6e535500cbfe1bbaf907900cf1312717245642e6a45b94",
+  "deliverables/ppo_tail_wait_20261030_v1/balance_live_diagnostics.py": "11507a3abbd07822cedcf3ba033b160ca68403ea9d521ca7794eca3abd4a2be4",
+  "deliverables/ppo_tail_wait_20261030_v1/pipeline.py": "f32375f73f8e4c6e59e58ad0b1ed67b6103220a8443963f53fc047644eb12dc6",
+  "deliverables/ppo_tail_wait_20261030_v1/document_balance.py": "62f75dff5741c494378e4999c0c0c399d94d05de78b019434b9bb45e494ee39c",
+  "deliverables/ppo_tail_wait_20261030_v1/live_diagnostics.py": "31324bfd048b48c0b1a185db12ecda5e3418cffcbb57f8f3b1e892ba0e991018"
+}

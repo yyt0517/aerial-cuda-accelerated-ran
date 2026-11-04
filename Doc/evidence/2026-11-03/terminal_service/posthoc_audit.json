@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "additional_native_scores": 0,
+  "model_unchanged": true,
+  "source_registry_physics_valid": true,
+  "timing_and_gates_recomputed": true,
+  "candidate_labels_offline_only": true,
+  "selection_trace_recovered": true
+}

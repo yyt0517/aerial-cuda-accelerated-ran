@@ -1,0 +1,11 @@
+{
+  "full_mean_ms": 182.3022512253374,
+  "cached_mean_ms": 114.86650134126346,
+  "ratio_of_means": 0.6300882220005118,
+  "mean_state_ratio": 0.6458338727916207,
+  "full_p50_ms": 184.57024497911334,
+  "full_p95_ms": 252.34812838025388,
+  "cached_p50_ms": 114.32921793311834,
+  "cached_p95_ms": 157.05031580291688,
+  "checks": "all timed results exactly equal frozen gate actions/PHY; outside timing"
+}

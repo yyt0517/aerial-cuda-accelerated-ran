@@ -1,0 +1,6 @@
+{
+  "field": "independent_states",
+  "correction": "v1 generator used12 as captured input count; rename captured_inputs, independence not established",
+  "numeric_results_or_labels_changed": false,
+  "raw_metadata": "label_schema_raw.json"
+}

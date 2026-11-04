@@ -1,0 +1,85 @@
+{
+  "baseline": "freeze same no-CTBS causal-deficit canonical-BLER full DPLS; no cross-protocol ratios",
+  "development": {
+    "seeds": [
+      44,
+      45
+    ],
+    "measured_ttis": 4000,
+    "mature_cohort": true,
+    "historical_snapshots": 21,
+    "role": "exposed development only"
+  },
+  "confirmation": {
+    "seeds": "five fresh seeds avoiding exposed41--48; freeze once before outcomes",
+    "measured_seconds": 10,
+    "scenario": "boundary/rate0.8 plus a higher-load robustness arm"
+  },
+  "quality": {
+    "payload_paired_mean_min_ratio": 0.997,
+    "payload_each_seed_min_ratio": 0.994,
+    "expiry_max_increase_pp": 0.1,
+    "success_mean_delay_max_increase_ms": 0.5,
+    "success_p95_delay_max_increase_ms": 1.0,
+    "weak_ue_payload_p5_min_ratio": 0.97,
+    "worst_ue_expiry_limit": "max(full worst +2 percentage points, 5%)",
+    "newly_persistently_unserved_ues": 0
+  },
+  "final_cost": {
+    "phy_mean_max_ratio": 0.25,
+    "phy_p95_max_ratio": 0.4,
+    "wall_mean_max_ratio": 0.4,
+    "wall_quantiles": [
+      "p50",
+      "p95",
+      "maximum"
+    ]
+  },
+  "A": {
+    "continue_if": "all development quality gates and PHY mean <=40%",
+    "controls": "cold/warm rounds1,2,3,5/full plus equal candidate budgets106/160/212"
+  },
+  "E": {
+    "gain_retention_min": 0.97,
+    "rounds_reduction_vs_best_heuristic_min": 0.2,
+    "controls": [
+      "fixed rounds",
+      "fixed delta threshold"
+    ],
+    "worst_tti_tail_fraction": 0.05
+  },
+  "F": {
+    "arms": [
+      "teacher conditions",
+      "own executed t-1 conditions",
+      "no conditions"
+    ],
+    "continue_if": "J/service passing count >=half teacher arm and clearly exceeds no-condition arm",
+    "predecessor": "true consecutive TTI, not previous sparse saved state; teacher work charged separately"
+  },
+  "B": {
+    "initial_urgency_values": 5,
+    "low_dimensional_parameters": "2--6",
+    "training_seeds": [
+      41,
+      42,
+      43
+    ],
+    "continue_if": "payload/expiry not worse and P95 <=full+1ms"
+  },
+  "C": {
+    "start_only_if": "A/E quality or <=25% PHY target still unmet",
+    "k": 16,
+    "best_action_recall_min": 0.9,
+    "learned_recall_advantage_min_pp": 5
+  },
+  "D": {
+    "start_only_if": "A/E quality or cost gap persists",
+    "repair_round_reduction_vs_t_minus_1_min": 0.3
+  },
+  "freezes": [
+    "no service PPO continuation",
+    "no repair_guard confidence sweep or larger network"
+  ],
+  "status": "predeclared next experiments; none of these scientific gates certified by the short smoke"
+}

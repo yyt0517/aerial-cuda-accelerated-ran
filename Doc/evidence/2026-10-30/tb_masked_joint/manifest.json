@@ -1,0 +1,23 @@
+{
+  "files": {
+    "report.txt": "236cf70b2ca59df500e02b1df5d15ce08a28218b34b20d93c823a53386828053",
+    "assessment.json": "02ba321d706580956cffb88de819ca5c4677933cff65348e2638ea2fcbd09d38",
+    "tests.log": "319a17f9adb06e4feceef0da66dc2d38ea308701c9258c166a6207413adb144e",
+    "protocol.json": "404691c1aeb527a85cf3e83193cff83dedae16b6a9562723716e2cab1d273d0d",
+    "training.json": "a89f32718fa335e2e7ec6dd0df380d962fdfd9f76305271c66c11174fab18982",
+    "summary.csv": "db503bf600b9bceb3b734b6888c8802b4ee101aa3147b2b2feb9a4122907243d",
+    "escape_summary.csv": "6171536ae36c1ea68b18d74c558809093ca1e85da2398ae45eebbee772af4ab0",
+    "per_state.csv": "2dc0ff86f5a9d260645222a41a2dcce9f2f53dd6c2c648d99ae5da318fd4f6f9",
+    "checks.json": "0d864be3c8d7ddd6cfffbb003956f869b6245bd792dc49b8d531e31df670e993",
+    "certificates.json": "abf070d629f4a37af844a68d0dc4194fcc83b6c71265f402ecfe4a177a9bc6cc",
+    "mask_reuse_parity.json": "565054990aa0091a9875c8cfd9864b30abe6e1aba2af509abca12cd817374e1d",
+    "diagnosis_summary.json": "9c2f2e0aeb5dd862a3a78da1a3213589fd679786cd2f7344416d30c2874c22e3",
+    "reproduction.rst": "c89d557ec8ed82f69effc886beb46172fb12fb32d0a4721d90ac23f4e7b9d687",
+    "quality_cost.png": "b03e075f1c2117795dfa261eb40d949ef27e03bbc7631c7746dc494f065dde10",
+    "quality_cost.pdf": "8de89fa29cd59528eb68db061815f8a0b918f51bd5bc36d77542e2fb83cbc436",
+    "timing_breakdown.png": "f51317021c8b9e7e940391f06e264018a0160791366e1a2ac144159d44899744",
+    "timing_breakdown.pdf": "159fa7618c1a48b53c2a88a62f4e39efcaecea45cf0595aaaeaed3b10f4b7311"
+  },
+  "checkpoint_sha256": "86ba123166592e47701104c712da3db2f52c2b664f396fff7738c6da38f521e5",
+  "source_manifest_sha256": "1fdcfd4288021849a1c48f0cd38b546fa352fad955837870d2cc6f3b4ef13085"
+}

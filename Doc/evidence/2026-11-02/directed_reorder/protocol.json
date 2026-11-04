@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "methods": [
+    "full",
+    "baseline",
+    "existing2",
+    "joint2",
+    "joint4",
+    "sparse2"
+  ],
+  "configs": {
+    "existing2": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0.0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102,
+      "metric": "quota_exp",
+      "log_epsilon": 0.01,
+      "tail_temperature": 0.1,
+      "directed_slots": 2,
+      "joint_candidates": false,
+      "alternate_sparse": false,
+      "target_count": 6,
+      "chain_depth": 4
+    },
+    "joint2": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0.0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102,
+      "metric": "quota_exp",
+      "log_epsilon": 0.01,
+      "tail_temperature": 0.1,
+      "directed_slots": 2,
+      "joint_candidates": true,
+      "alternate_sparse": false,
+      "target_count": 6,
+      "chain_depth": 4
+    },
+    "joint4": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0.0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102,
+      "metric": "quota_exp",
+      "log_epsilon": 0.01,
+      "tail_temperature": 0.1,
+      "directed_slots": 4,
+      "joint_candidates": true,
+      "alternate_sparse": false,
+      "target_count": 6,
+      "chain_depth": 4
+    },
+    "sparse2": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0.0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102,
+      "metric": "quota_exp",
+      "log_epsilon": 0.01,
+      "tail_temperature": 0.1,
+      "directed_slots": 2,
+      "joint_candidates": true,
+      "alternate_sparse": true,
+      "target_count": 6,
+      "chain_depth": 4
+    }
+  },
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "training": false,
+  "objective": "canonical native BLER, causal deficit-weighted J; own unpruned rawPFQ90% dequeue floor",
+  "conditions": "fresh paid offline teacher counts/exact min-layer/activity only; no teacher positions/J/service/group in solver",
+  "baseline": "previous quota_exp fast frontier; same complete query/value observation hook, final maximum exact observed J",
+  "targets": "interleave3 lowest E/D and3 highest weight*(D-E), deduplicate at most6; causal positive-dequeue quota UEs only; exclude saturated",
+  "directed_pool": "up to4 disjoint target-acquisition swaps/UE; donor penalties0/.25/1; each intermediate keeps exact counts/layers/activity; combine first/last anchor plans across disjoint cells;<=256 proposals/root",
+  "target_selector": "rotate causal targets by iteration, reserve2 or4 exact candidates for positive projected target reliability gains, proxyJ>=95%root; retain2 global service slots and fill with J",
+  "budget": "212 exact complete actions includinginitialPFQ;56 roots;16 seeds;8 perbatch; no additional online teacher",
+  "sparse": "alternate odd iterations use directed pool only if nonempty, even use wide+directed; fallback to wide if empty; this changes search, not an equivalence optimization",
+  "fallback": "keep own exact archive/root and original wide/service proposals; no guarantee of matching separately run baseline after reallocating budget",
+  "diagnostics": "after validation selection AND development:up to2 failing states/phase by10*Jshortfall+P5shortfall+weakshortfall;baseline+quality-selected method<=8 roots;score all unseen wide+directed candidates<=8192/root;replay root and MMSE separately charged;independent selected audits",
+  "diagnostic_limits": "finite one-step pool excludes main visited actions and seed rematching;labels only,no policy change;iteration0 synthetic shortlist,not claimed as actual continuation",
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "engineering": "2 training states41-43 x6 decoders including disabled-mechanism equivalence;no tuning",
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "repeats": 3,
+  "gates": "each J>=99.5%full; no newly unallocatedUE;full-positive P5/bottom20%>=98%;complete execution mean<=80%full",
+  "selection": "prior quality/service shortfall rule on validation, baseline eligible;separate cost-feasible route;no development reselection",
+  "timing": "numeric input/PFQ,freshPHY/MMSE bank,condition compression,all pools/proxies/frontiers/exact scoring/final selection/context cleanup;common memo event copying included",
+  "exclusions": "teacher preparation,compilation/library/archiveIO,first immutableTBS setup,digests/independent audits/separate paid recall diagnosis",
+  "work": "all exact scores,2448 unique MMSE,native requests,direct proxy/seed/directed gamma reads,directed attempts/compositions and selected slots",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  },
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "physics_source_sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

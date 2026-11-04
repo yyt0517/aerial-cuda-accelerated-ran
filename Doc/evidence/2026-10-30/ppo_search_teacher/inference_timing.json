@@ -1,0 +1,46 @@
+{
+  "paired_states": 256,
+  "order_rotated": true,
+  "solo_benchmark": true,
+  "timing": {
+    "dpls": {
+      "mean_ms": 171.01265010933275,
+      "p50_ms": 173.71220281347632,
+      "p95_ms": 231.62494879215956,
+      "mean_actor_ms": 0.0
+    },
+    "fast4": {
+      "mean_ms": 28.766370716766687,
+      "p50_ms": 32.229021191596985,
+      "p95_ms": 35.43640463612974,
+      "mean_actor_ms": 0.44396666271495633,
+      "speedup_over_dpls": 5.944880979012649,
+      "efficiency_target_passed": true
+    },
+    "fast8": {
+      "mean_ms": 33.08681377166067,
+      "p50_ms": 36.311575677245855,
+      "p95_ms": 40.008681593462825,
+      "mean_actor_ms": 0.4469191080715973,
+      "speedup_over_dpls": 5.168604365761188,
+      "efficiency_target_passed": true
+    },
+    "full_original": {
+      "mean_ms": 205.66468458491727,
+      "p50_ms": 211.2465868704021,
+      "p95_ms": 284.76598975248635,
+      "mean_actor_ms": 0.5147079682501499
+    },
+    "full_shared": {
+      "mean_ms": 211.3980425565387,
+      "p50_ms": 216.6640148498118,
+      "p95_ms": 289.68643862754107,
+      "mean_actor_ms": 0.4991408823116217
+    }
+  },
+  "student_checkpoint_sha256": "b4f435b83882e126236576fc67047a0129fcdb74d08d1c07c4e4e5c9e0c40a5c",
+  "generator_sha256": "55ddfb0c3c6c89f08bca966a18b349f22a0afc0482f05c0183f6daad8fa8a9c3",
+  "original_checkpoint_sha256": "1167d28b1141dc186fbb3d1e6828384c74177228c6f10969b09ba1bc1e6e3a8a",
+  "included": "Ready observation to complete selected action: feature construction, proposal generation, all validation, policy selection. Native environment advancement excluded.",
+  "limits": "Research Python wall time; no production deadline claim. Two training-seed state distributions; teacher CPU time excluded only for fast paths which never invoke teacher."
+}

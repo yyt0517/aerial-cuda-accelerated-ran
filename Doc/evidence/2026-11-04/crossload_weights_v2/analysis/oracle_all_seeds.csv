@@ -1,0 +1,4 @@
+rate,load,family,coefficient,payload_mbps,expiry_pct,P95_ms,worst_ue_expiry_pct,pareto4D,pareto_all_forms
+0.8,1.0,ttl,8.0,1243.352,0.0,13.0,0.0,True,False
+1.12,1.4000000000000001,ttl,1.0,1526.912,14.081353248274212,199.5,56.40394088669951,True,True
+1.28,1.5999999999999999,ttl,0.0,1661.82,18.84017422477017,200.0,63.78431372549019,True,True

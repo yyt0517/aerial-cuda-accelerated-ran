@@ -1,0 +1,65 @@
+[
+  {
+    "arm": "cold_full",
+    "accepted_rounds": 1048,
+    "accepted_round_fraction": 0.9703703703703703,
+    "parallel_positive_accepted_lower": 8.320610687022901,
+    "parallel_positive_accepted_upper": 8.340648854961833,
+    "parallel_greedy_accepted": 6.4465648854961835,
+    "parallel_positive_after5_lower": 7.135135135135135,
+    "parallel_positive_after5_upper": 7.135135135135135,
+    "parallel_qualifying_after5_lower": 6.878378378378378,
+    "saved_input_accepted_rounds": 130,
+    "saved_input_structural_lower": 8.146153846153846,
+    "saved_input_floor_lower": 8.146153846153846,
+    "saved_input_floor_upper": 8.146153846153846,
+    "saved_input_floor_greedy": 6.223076923076923,
+    "accepted_moves_changing_activity_fraction": 0.13072519083969467,
+    "own_full_trajectory_first5_gain_retention": {
+      "mean": 0.5726714071368786,
+      "p50": 0.6043099063597765,
+      "p95": 0.7057679951357602,
+      "maximum": 0.7430551891845542
+    }
+  },
+  {
+    "arm": "warm_full",
+    "accepted_rounds": 744,
+    "accepted_round_fraction": 0.9587628865979382,
+    "parallel_positive_accepted_lower": 6.40994623655914,
+    "parallel_positive_accepted_upper": 6.420698924731183,
+    "parallel_greedy_accepted": 5.026881720430108,
+    "parallel_positive_after5_lower": 5.376712328767123,
+    "parallel_positive_after5_upper": 5.376712328767123,
+    "parallel_qualifying_after5_lower": 5.054794520547945,
+    "saved_input_accepted_rounds": 109,
+    "saved_input_structural_lower": 7.10091743119266,
+    "saved_input_floor_lower": 7.10091743119266,
+    "saved_input_floor_upper": 7.10091743119266,
+    "saved_input_floor_greedy": 5.614678899082569,
+    "accepted_moves_changing_activity_fraction": 0.14919354838709678,
+    "own_full_trajectory_first5_gain_retention": {
+      "mean": 0.7387598055360111,
+      "p50": 0.7393788346563677,
+      "p95": 0.9284644174155778,
+      "maximum": 0.9736073514405945
+    }
+  },
+  {
+    "arm": "warm_n3",
+    "accepted_rounds": 96,
+    "accepted_round_fraction": 1.0,
+    "parallel_positive_accepted_lower": 13.90625,
+    "parallel_positive_accepted_upper": 14.03125,
+    "parallel_greedy_accepted": 9.677083333333334,
+    "parallel_positive_after5_lower": null,
+    "parallel_positive_after5_upper": null,
+    "parallel_qualifying_after5_lower": null,
+    "saved_input_accepted_rounds": 12,
+    "saved_input_structural_lower": 13.5,
+    "saved_input_floor_lower": 13.5,
+    "saved_input_floor_upper": 13.5,
+    "saved_input_floor_greedy": 9.75,
+    "accepted_moves_changing_activity_fraction": 0.4895833333333333
+  }
+]

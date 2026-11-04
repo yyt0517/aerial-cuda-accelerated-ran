@@ -1,0 +1,8 @@
+{
+  "training/stageb_lns/benchmark_cached_dpls.py": "f1144322998052ecaf66c21a512b0f4180a67f18a790fad4e389ea4d5eba1722",
+  "training/stageb_lns/cached_dpls.py": "f8af9940f0cea79793826ac00fb6cf9d4c755f5866e7da06019f8e24316c5f53",
+  "training/stageb_lns/dpls_operations.py": "9c59ae0a558b1585325df0136220cff8f439a48bebdb7d3b4b217b0d52d5fbd1",
+  "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+  "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0"
+}

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "arrival_window": [
+    8001,
+    12000
+  ],
+  "all_packet_keys_matched": true,
+  "all_cohorts_uncensored": true,
+  "scope": "Common-success subset is diagnostic; it does not replace the full arrival-cohort quality gates."
+}

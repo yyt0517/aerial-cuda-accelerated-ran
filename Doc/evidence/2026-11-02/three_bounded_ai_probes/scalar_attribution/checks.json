@@ -1,0 +1,187 @@
+{
+  "completed": true,
+  "exact_action_parity": true,
+  "audits": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "full",
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "bound",
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "scalar",
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "spatial",
+      "error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "bound",
+      "error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "scalar",
+      "error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "spatial",
+      "error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "full",
+      "error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "scalar",
+      "error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "spatial",
+      "error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "full",
+      "error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "bound",
+      "error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "spatial",
+      "error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "full",
+      "error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "bound",
+      "error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "scalar",
+      "error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "full",
+      "error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "bound",
+      "error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "scalar",
+      "error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "spatial",
+      "error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "bound",
+      "error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "scalar",
+      "error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "spatial",
+      "error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "full",
+      "error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "scalar",
+      "error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "spatial",
+      "error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "full",
+      "error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "bound",
+      "error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "spatial",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "full",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "bound",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "scalar",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "full",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "bound",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "scalar",
+      "error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "spatial",
+      "error": 1.8189894035458565e-12
+    }
+  ],
+  "registry_unchanged": true
+}

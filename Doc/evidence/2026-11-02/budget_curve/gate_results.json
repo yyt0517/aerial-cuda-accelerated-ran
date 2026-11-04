@@ -1,0 +1,179 @@
+{
+  "selected_on_validation": {
+    "quality_best": {
+      "arm": "trained_k4_b212",
+      "time_ratio": 0.7057471443918475
+    },
+    "within_cost_best": {
+      "arm": "trained_k4_b212",
+      "time_ratio": 0.7057471443918475,
+      "cost_feasible": true
+    },
+    "selection": "validation only; shared prior key, complete-mean cost filter, lower cost/budget on exact ties",
+    "development_not_read_in_this_run": true,
+    "historical_exposure_retained": true
+  },
+  "selected_development": {
+    "mean_j": "75848.16688009993",
+    "mean_ms": "79.27623463587629",
+    "mean_relative_j_pct": "-6.285123968994954",
+    "worst_relative_j_pct": "-9.556473915872255",
+    "mean_newly_unserved": "2.444444444444444",
+    "mean_positive_p5": "0.36677369650703123"
+  },
+  "quality_coverage_cost": {
+    "heuristic_k2_b106": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_k4_b106": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_k2_b106": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_k4_b106": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_k2_b106": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_k4_b106": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_k2_b160": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_k4_b160": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_k2_b160": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_k4_b160": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_k2_b160": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_k4_b160": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_k2_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_k4_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_k2_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_k4_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_k2_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_k4_b212": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    }
+  },
+  "paired_budget_increments": {
+    "validation:106->160": {
+      "states_and_curves": 72,
+      "positive": 69,
+      "negative": 0,
+      "tied": 3
+    },
+    "validation:160->212": {
+      "states_and_curves": 72,
+      "positive": 62,
+      "negative": 0,
+      "tied": 10
+    },
+    "evaluation:106->160": {
+      "states_and_curves": 54,
+      "positive": 54,
+      "negative": 0,
+      "tied": 0
+    },
+    "evaluation:160->212": {
+      "states_and_curves": 54,
+      "positive": 54,
+      "negative": 0,
+      "tied": 0
+    }
+  },
+  "feature_budget_stops_validation": 0,
+  "feature_budget_stops_development": 0,
+  "independent_ai_joint_target": false,
+  "next_path": {
+    "selected": "TB-aware coordinated macro candidates and a bounded continuation-value probe",
+    "implementation_status": "chosen next experiment; not run in this campaign",
+    "rationale": "larger tested budgets improve J but no point meets quality/coverage, and some service metrics worsen",
+    "saturation_proven": false,
+    "larger_budget_ruled_out": false,
+    "next_minimum": "compare the frozen212-score reference with small same-PRG cross-cell activity and cross-PRG same-TB compensating edits; protect full-schedule coverage and measure complete cost before training a proposer",
+    "teacher": "finite continuation teacher only after validating candidate headroom; charge all offline queries explicitly",
+    "shared_controls": "physical heuristic and AI share candidate family, cache and complete timing; no free exact oracle",
+    "paused": [
+      "additional uniform single-edit budget expansion as primary route",
+      "same immediate-gain training",
+      "PPO"
+    ],
+    "caution": "curves show no J saturation; a larger budget remains a control, and instantaneous UE service is not packet fairness"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "training/stageb_lns/persistent_kernel.cpp": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090",
+  "training/stageb_lns/persistent_dpls.py": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+  "training/stageb_lns/test_persistent_dpls.py": "eeed4ae43a0e94365e1056f0bad99324cac3d5e0fd4a4db09c2030310086f74a",
+  "training/stageb_lns/persistent_campaign.py": "811d07d1baba570860e16dc5e2b1b94abfe616c128be888f1f30b487a6fba760",
+  "training/stageb_lns/benchmark_persistent.py": "aadcd7f6316926451b9c4befa0c46aba0635a73b64f79ddbe1ffcf359c05e656",
+  "training/stageb_lns/service_gate_calibration.py": "f7064317bbdabceba6c0a55793eaddd702f97df77c629a131e0c6d9c8aa157ba",
+  "training/stageb_lns/persistent_native.py": "3640da353c7747217089649af90edf34545bac0c8a9bf4b8a227e135e23e3285",
+  "training/stageb_lns/report_persistent_reconstruction.py": "e2d11afecbfeb27d07634ab5ac7005f03e30356beb5be655a6015ac329b762ce",
+  "training/stageb_lns/persistent_README.rst": "0686c2b3ba8a6144fd9d1f557dba3bd4d0fbc45b9d9b6866b14f069ee63453b5",
+  "training/stageb_lns/calibrated_envelope.py": "277b1bc0c033f4e7d6612f4e46497866af167c62a0b445bdb8a46a4330a17717",
+  "training/stageb_lns/build_persistent.py": "8636ccd43551c79af61cad4519b9e83f4f948fe4a2952cd99d980be3865bc5eb",
+  "training/stageb_lns/summarize_persistent_native.py": "0e7ece666e006796920e5501029d6f6fdb7a445c178daa0b19127aa1cd8bcf56"
+}

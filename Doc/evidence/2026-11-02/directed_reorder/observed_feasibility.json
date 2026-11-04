@@ -1,0 +1,80 @@
+{
+  "posthoc": true,
+  "additional_native_scores": 0,
+  "policy_changed": false,
+  "privileged_membership_and_quality_labels_offline_only": true,
+  "summary": [
+    {
+      "phase": "validation",
+      "arm": "baseline",
+      "states": 12,
+      "states_with_joint_candidate": 11,
+      "max_required_internal_loss_pct": 0.0
+    },
+    {
+      "phase": "validation",
+      "arm": "existing2",
+      "states": 12,
+      "states_with_joint_candidate": 12,
+      "max_required_internal_loss_pct": 1.696687133990249
+    },
+    {
+      "phase": "validation",
+      "arm": "joint2",
+      "states": 12,
+      "states_with_joint_candidate": 12,
+      "max_required_internal_loss_pct": 1.696687133990249
+    },
+    {
+      "phase": "validation",
+      "arm": "joint4",
+      "states": 12,
+      "states_with_joint_candidate": 12,
+      "max_required_internal_loss_pct": 1.1991849965262036
+    },
+    {
+      "phase": "validation",
+      "arm": "sparse2",
+      "states": 12,
+      "states_with_joint_candidate": 12,
+      "max_required_internal_loss_pct": 1.1821111783137606
+    },
+    {
+      "phase": "evaluation",
+      "arm": "baseline",
+      "states": 9,
+      "states_with_joint_candidate": 8,
+      "max_required_internal_loss_pct": 0.0
+    },
+    {
+      "phase": "evaluation",
+      "arm": "existing2",
+      "states": 9,
+      "states_with_joint_candidate": 9,
+      "max_required_internal_loss_pct": 0.0
+    },
+    {
+      "phase": "evaluation",
+      "arm": "joint2",
+      "states": 9,
+      "states_with_joint_candidate": 9,
+      "max_required_internal_loss_pct": 0.0
+    },
+    {
+      "phase": "evaluation",
+      "arm": "joint4",
+      "states": 9,
+      "states_with_joint_candidate": 9,
+      "max_required_internal_loss_pct": 0.0
+    },
+    {
+      "phase": "evaluation",
+      "arm": "sparse2",
+      "states": 9,
+      "states_with_joint_candidate": 9,
+      "max_required_internal_loss_pct": 0.0
+    }
+  ],
+  "initial_pfq_excluded": true,
+  "scope": "already-paid212 archive excluding initialPFQ;not a deployable oracle selector or complete search certificate"
+}

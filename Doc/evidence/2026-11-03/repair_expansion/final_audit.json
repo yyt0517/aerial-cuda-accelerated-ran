@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "tests": 89,
+  "formal_decisions": 378,
+  "independent_finals": 195,
+  "max_independent_phy_error": 4.956746124662459e-11,
+  "training_updates": 2880,
+  "source_model_registry_valid": true,
+  "models_frozen_before_validation": true,
+  "all_terminal_query_archive_equivalent": true,
+  "previous_maxj_exact_equal_states": 21,
+  "complete_timing_recomputed": true,
+  "posthoc_native_scores": 0,
+  "validation_quality_service_pass": true,
+  "development_quality_service_pass": true,
+  "validation_cost_pass": false,
+  "training_cross_seed_coverage_pass": false,
+  "online_ai_success": false,
+  "final_seeds_read": false,
+  "native_trajectories": 0
+}

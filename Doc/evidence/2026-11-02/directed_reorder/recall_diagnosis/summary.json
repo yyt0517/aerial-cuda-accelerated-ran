@@ -1,0 +1,17 @@
+{
+  "post_selection": true,
+  "policy_changed": false,
+  "training": false,
+  "selected_quality": "joint4",
+  "roots": 4,
+  "max_roots": 8,
+  "exact_scores": 2523,
+  "unique_mmse": 9792,
+  "independent_audits": 21,
+  "recovery_additional_independent_audits": 21,
+  "all_finite_pools_complete": true,
+  "rule": "up to2 failing states per phase by combined quality/service shortfall; baseline and validation-selected quality method",
+  "scores_separate_from_formal212": true,
+  "teacher_preparation_reused_from_paid_campaign": true,
+  "limits": "finite unseen one-step pool only; iteration0 synthetic shortlist,not an actual policy continuation; teacher-positive labels offline only"
+}

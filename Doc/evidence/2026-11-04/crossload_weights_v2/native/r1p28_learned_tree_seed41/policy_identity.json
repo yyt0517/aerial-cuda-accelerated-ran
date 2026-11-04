@@ -1,0 +1,17 @@
+{
+  "model_sha256": "9a20de40f133751e5e0a14e794c6489abf5f08c383e4326e889d1498607a7b30",
+  "features": [
+    "queue_mean_norm",
+    "queue_P95_norm",
+    "active_fraction",
+    "urgency_mean",
+    "urgency_P95",
+    "ema_mean_norm"
+  ],
+  "choices_measured": {
+    "0.0": 4000
+  },
+  "true_load_input": false,
+  "perload_oracle_input": false,
+  "future_outcome_input": false
+}

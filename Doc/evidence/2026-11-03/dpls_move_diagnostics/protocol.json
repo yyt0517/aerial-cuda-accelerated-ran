@@ -1,0 +1,15 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "tolerance_bytes": 1e-06,
+  "new_native_runs": 0,
+  "new_candidate_phy_evaluations": 0,
+  "new_mmse_evaluations": 0,
+  "operation_identity": "PRG and overwritten cell targets; unchanged cell is a distinct sentinel",
+  "changed_delta": "compare matching operators across an accepted move; abs difference > tolerance",
+  "dependency": "same PRG OR overlapping affected UE sets; source/target UEs plus all active PRG neighbors on activity changes",
+  "packing": "one move per PRG and disjoint affected UEs; logged eligible delta>1e-6B; original1/16B qualifying subset separate",
+  "floor": "structural packing alone is not a shared-floor certificate; exact logical floor checked on saved-input subset",
+  "sir": "TB-aware weighted dequeue*log1p(mean trace SIR); secondary local one-PRG log1p SIR; no BLER/MMSE",
+  "packing_seconds": 0.25,
+  "sample": "96 correlated seed41 transient TTIs; scalar inputs only12 TTIs; no new-seed inference"
+}

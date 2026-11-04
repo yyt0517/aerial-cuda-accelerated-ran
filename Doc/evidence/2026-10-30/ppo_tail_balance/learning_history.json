@@ -1,0 +1,1610 @@
+[
+  {
+    "iteration": 1,
+    "samples": 3072,
+    "reward_mean": 0.7779521346092224,
+    "reward_by_seed": [
+      0.8159733231127213,
+      0.7838647839441517,
+      0.7340183012363195
+    ],
+    "critic_ev_before": 0.0,
+    "critic_ev_after": 0.6103343367576599,
+    "critic_normalized_mse": 0.0028297423850744963,
+    "value_mean": 4.5102057456970215,
+    "target_mean": 4.496793270111084,
+    "target_std": 0.0824640542268753,
+    "advantage_std": 0.0824640542268753,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0008319452754221857,
+        "loss": -0.0024159500220169642,
+        "gradient_norm": 0.40019859932363033,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001191372168250382,
+        "loss": -0.004366672520215311,
+        "gradient_norm": 0.36321395946045715,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001775952405296266,
+        "loss": -0.005800291216777018,
+        "gradient_norm": 0.39037867200871307,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014935401268303394,
+        "loss": -0.006719100444267195,
+        "gradient_norm": 0.37463191399971646,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014349790289998055,
+        "loss": -0.0068131129567821766,
+        "gradient_norm": 0.40528152137994766,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0018191359704360366,
+        "loss": -0.008479432474511366,
+        "gradient_norm": 0.39196132868528366,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017186846816912293,
+        "loss": -0.009247777207444113,
+        "gradient_norm": 0.36529931984841824,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0020789513364434242,
+        "loss": -0.009301968268118799,
+        "gradient_norm": 0.41223719840248424,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 78744.140625,
+        "expired_payload_bytes": 1538.0859375,
+        "whole_wait_cost_bytes": 3601.8017578125,
+        "age_cost_bytes": 1512.6806030273438,
+        "pending_packets": 480.240234375,
+        "pending_over_threshold": 417.2841796875,
+        "pending_age_sum_tti": 81970.373046875
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 77777.34375,
+        "expired_payload_bytes": 1274.4140625,
+        "whole_wait_cost_bytes": 5231.8798828125,
+        "age_cost_bytes": 2203.7794189453125,
+        "pending_packets": 697.583984375,
+        "pending_over_threshold": 607.9716796875,
+        "pending_age_sum_tti": 115376.83203125
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 79623.046875,
+        "expired_payload_bytes": 1253.90625,
+        "whole_wait_cost_bytes": 9558.18603515625,
+        "age_cost_bytes": 4065.98876953125,
+        "pending_packets": 1274.4248046875,
+        "pending_over_threshold": 1131.64453125,
+        "pending_age_sum_tti": 187157.1533203125
+      }
+    ],
+    "elapsed_s": 423.0353927966207
+  },
+  {
+    "iteration": 2,
+    "samples": 3072,
+    "reward_mean": 0.7902724742889404,
+    "reward_by_seed": [
+      0.8158137083009606,
+      0.7551409067584023,
+      0.7998624268714585
+    ],
+    "critic_ev_before": 0.29404395818710327,
+    "critic_ev_after": 0.4248785972595215,
+    "critic_normalized_mse": 0.004131227266043425,
+    "value_mean": 4.5343852043151855,
+    "target_mean": 4.533693313598633,
+    "target_std": 0.0847490057349205,
+    "advantage_std": 0.07120712101459503,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0012954905396327376,
+        "loss": -0.0020217932760715485,
+        "gradient_norm": 0.3296267706900835,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0016260676784440875,
+        "loss": -0.00462724749619762,
+        "gradient_norm": 0.3517399287472169,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0010870728874579072,
+        "loss": -0.005368567110660177,
+        "gradient_norm": 0.33573783685763675,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0019361097365617752,
+        "loss": -0.006557228974998,
+        "gradient_norm": 0.32386247875789803,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0011040250537917018,
+        "loss": -0.007675964540491501,
+        "gradient_norm": 0.34632522612810135,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0016517451731488109,
+        "loss": -0.0068330510985106264,
+        "gradient_norm": 0.347280574341615,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014927779557183385,
+        "loss": -0.007677438901737332,
+        "gradient_norm": 0.3442059997469187,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014039445668458939,
+        "loss": -0.00821451497419427,
+        "gradient_norm": 0.3308265594144662,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 76760.7421875,
+        "expired_payload_bytes": 673.828125,
+        "whole_wait_cost_bytes": 3440.9912109375,
+        "age_cost_bytes": 1429.7698974609375,
+        "pending_packets": 458.798828125,
+        "pending_over_threshold": 396.3720703125,
+        "pending_age_sum_tti": 71233.662109375
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76456.0546875,
+        "expired_payload_bytes": 1845.703125,
+        "whole_wait_cost_bytes": 5245.9130859375,
+        "age_cost_bytes": 2198.8297119140625,
+        "pending_packets": 699.455078125,
+        "pending_over_threshold": 606.4365234375,
+        "pending_age_sum_tti": 123412.771484375
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 77821.2890625,
+        "expired_payload_bytes": 820.3125,
+        "whole_wait_cost_bytes": 5056.5380859375,
+        "age_cost_bytes": 1933.6503295898438,
+        "pending_packets": 674.205078125,
+        "pending_over_threshold": 550.6796875,
+        "pending_age_sum_tti": 81750.2890625
+      }
+    ],
+    "elapsed_s": 635.9476569993421
+  },
+  {
+    "iteration": 3,
+    "samples": 3072,
+    "reward_mean": 0.7922033667564392,
+    "reward_by_seed": [
+      0.8156839469851043,
+      0.7710635148573071,
+      0.7898625537270475
+    ],
+    "critic_ev_before": 0.36709457635879517,
+    "critic_ev_after": 0.4274195432662964,
+    "critic_normalized_mse": 0.0035085848066955805,
+    "value_mean": 4.533126354217529,
+    "target_mean": 4.537396430969238,
+    "target_std": 0.07807573676109314,
+    "advantage_std": 0.06211342290043831,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0019081216305494308,
+        "loss": -0.002530779301499328,
+        "gradient_norm": 0.3589675600330035,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001391711994074285,
+        "loss": -0.004743679989284523,
+        "gradient_norm": 0.3158012355367343,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015017833793535829,
+        "loss": -0.006326824659481646,
+        "gradient_norm": 0.30558272637426853,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014220502926036716,
+        "loss": -0.0071926850941963485,
+        "gradient_norm": 0.3150436406334241,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001389173325151205,
+        "loss": -0.007935423015927276,
+        "gradient_norm": 0.3385772481560707,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017170564970001578,
+        "loss": -0.008321834262460474,
+        "gradient_norm": 0.31839469633996487,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017164316959679127,
+        "loss": -0.008400309830904007,
+        "gradient_norm": 0.31260152844091255,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017902366816997528,
+        "loss": -0.008852515136823056,
+        "gradient_norm": 0.32425210004051525,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 77493.1640625,
+        "expired_payload_bytes": 486.328125,
+        "whole_wait_cost_bytes": 4256.2060546875,
+        "age_cost_bytes": 1736.1024169921875,
+        "pending_packets": 567.494140625,
+        "pending_over_threshold": 485.919921875,
+        "pending_age_sum_tti": 76967.3056640625
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76300.78125,
+        "expired_payload_bytes": 1582.03125,
+        "whole_wait_cost_bytes": 4559.9560546875,
+        "age_cost_bytes": 1885.3229370117188,
+        "pending_packets": 607.994140625,
+        "pending_over_threshold": 520.8515625,
+        "pending_age_sum_tti": 97578.6650390625
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 76637.6953125,
+        "expired_payload_bytes": 541.9921875,
+        "whole_wait_cost_bytes": 5280.06591796875,
+        "age_cost_bytes": 1947.3762817382812,
+        "pending_packets": 704.0087890625,
+        "pending_over_threshold": 561.8427734375,
+        "pending_age_sum_tti": 76422.9716796875
+      }
+    ],
+    "elapsed_s": 846.8466945709661
+  },
+  {
+    "iteration": 4,
+    "samples": 3072,
+    "reward_mean": 0.7909014821052551,
+    "reward_by_seed": [
+      0.8130820216877171,
+      0.7911303051377807,
+      0.7684923134182398
+    ],
+    "critic_ev_before": 0.6725730895996094,
+    "critic_ev_after": 0.7116627097129822,
+    "critic_normalized_mse": 0.0013850753894075751,
+    "value_mean": 4.5533528327941895,
+    "target_mean": 4.547510623931885,
+    "target_std": 0.06844915449619293,
+    "advantage_std": 0.03916744515299797,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015603696228936315,
+        "loss": -0.002911017237541575,
+        "gradient_norm": 0.3499693038562934,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0016526241088286042,
+        "loss": -0.006076911231502892,
+        "gradient_norm": 0.31582695556183654,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002084621461108327,
+        "loss": -0.0072113604207212694,
+        "gradient_norm": 0.321903000275294,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001484783017076552,
+        "loss": -0.007097329090659818,
+        "gradient_norm": 0.36720651760697365,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0024315037298947573,
+        "loss": -0.00856642562818403,
+        "gradient_norm": 0.3252639037867387,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0020999270491302013,
+        "loss": -0.008884256162370242,
+        "gradient_norm": 0.32961202040314674,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0027951246593147516,
+        "loss": -0.00914871894444028,
+        "gradient_norm": 0.3738602629552285,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0025511879939585924,
+        "loss": -0.009633891982957731,
+        "gradient_norm": 0.33565969082216424,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 77355.46875,
+        "expired_payload_bytes": 1582.03125,
+        "whole_wait_cost_bytes": 2774.18701171875,
+        "age_cost_bytes": 1106.926025390625,
+        "pending_packets": 369.8916015625,
+        "pending_over_threshold": 309.560546875,
+        "pending_age_sum_tti": 61195.23046875
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76186.5234375,
+        "expired_payload_bytes": 1374.0234375,
+        "whole_wait_cost_bytes": 3632.3291015625,
+        "age_cost_bytes": 1368.1190185546875,
+        "pending_packets": 484.310546875,
+        "pending_over_threshold": 386.5439453125,
+        "pending_age_sum_tti": 69045.9423828125
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 75875.9765625,
+        "expired_payload_bytes": 893.5546875,
+        "whole_wait_cost_bytes": 5473.26416015625,
+        "age_cost_bytes": 2154.3565063476562,
+        "pending_packets": 729.7685546875,
+        "pending_over_threshold": 610.1474609375,
+        "pending_age_sum_tti": 101659.755859375
+      }
+    ],
+    "elapsed_s": 1046.0782487131655
+  },
+  {
+    "iteration": 5,
+    "samples": 3072,
+    "reward_mean": 0.7762446403503418,
+    "reward_by_seed": [
+      0.8156285115870422,
+      0.7684952884319431,
+      0.7446099787457459
+    ],
+    "critic_ev_before": 0.4219702482223511,
+    "critic_ev_after": 0.6107715368270874,
+    "critic_normalized_mse": 0.0045597143471241,
+    "value_mean": 4.507325649261475,
+    "target_mean": 4.524990081787109,
+    "target_std": 0.10446583479642868,
+    "advantage_std": 0.07942356169223785,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0007573342300020158,
+        "loss": -0.0016672783143197503,
+        "gradient_norm": 0.38797854632139206,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0009531124378554523,
+        "loss": -0.0033631650342916455,
+        "gradient_norm": 0.3834881453464429,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0012708536814898252,
+        "loss": -0.004407820097791653,
+        "gradient_norm": 0.3871872698267301,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001129237236455083,
+        "loss": -0.004643985458339252,
+        "gradient_norm": 0.379556892439723,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0011781529756262898,
+        "loss": -0.005295647191815075,
+        "gradient_norm": 0.38238223517934483,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017044293927028775,
+        "loss": -0.006107624154537918,
+        "gradient_norm": 0.37347802706062794,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0011910732137039304,
+        "loss": -0.005533421412110327,
+        "gradient_norm": 0.40539546062548953,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0013875513104721904,
+        "loss": -0.006302445816497011,
+        "gradient_norm": 0.37126755341887474,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 78269.53125,
+        "expired_payload_bytes": 1215.8203125,
+        "whole_wait_cost_bytes": 3773.25439453125,
+        "age_cost_bytes": 1533.1318359375,
+        "pending_packets": 503.1005859375,
+        "pending_over_threshold": 428.150390625,
+        "pending_age_sum_tti": 76442.9404296875
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 75541.9921875,
+        "expired_payload_bytes": 1951.171875,
+        "whole_wait_cost_bytes": 3665.33935546875,
+        "age_cost_bytes": 1498.9231567382812,
+        "pending_packets": 488.7119140625,
+        "pending_over_threshold": 415.2666015625,
+        "pending_age_sum_tti": 78302.9951171875
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 75662.109375,
+        "expired_payload_bytes": 1754.8828125,
+        "whole_wait_cost_bytes": 5450.2880859375,
+        "age_cost_bytes": 2275.3271484375,
+        "pending_packets": 726.705078125,
+        "pending_over_threshold": 630.33984375,
+        "pending_age_sum_tti": 117480.607421875
+      }
+    ],
+    "elapsed_s": 1240.3909737933427
+  },
+  {
+    "iteration": 6,
+    "samples": 3072,
+    "reward_mean": 0.794940173625946,
+    "reward_by_seed": [
+      0.8104539833964185,
+      0.798099967380044,
+      0.7762663725720516
+    ],
+    "critic_ev_before": 0.7561962604522705,
+    "critic_ev_after": 0.7728070020675659,
+    "critic_normalized_mse": 0.003097967943176627,
+    "value_mean": 4.540523529052734,
+    "target_mean": 4.542579650878906,
+    "target_std": 0.11669286340475082,
+    "advantage_std": 0.05761883035302162,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0009888041531667113,
+        "loss": -0.002638988507290682,
+        "gradient_norm": 0.38437145700057346,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002370556117966771,
+        "loss": -0.005403552514811352,
+        "gradient_norm": 0.39111062201360863,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0013051419518887997,
+        "loss": -0.006561392918229101,
+        "gradient_norm": 0.40986712152759236,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014381561195477843,
+        "loss": -0.00721909567558517,
+        "gradient_norm": 0.3777606251339118,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002110711531713605,
+        "loss": -0.008284983962463837,
+        "gradient_norm": 0.3766392841935158,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014801264042034745,
+        "loss": -0.007657734677195552,
+        "gradient_norm": 0.4097369698186715,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015917541459202766,
+        "loss": -0.007560893582801025,
+        "gradient_norm": 0.4199497240285079,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014793463051319122,
+        "loss": -0.008546280752246577,
+        "gradient_norm": 0.36702356363336247,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 77047.8515625,
+        "expired_payload_bytes": 1274.4140625,
+        "whole_wait_cost_bytes": 3152.67333984375,
+        "age_cost_bytes": 1257.0518188476562,
+        "pending_packets": 420.3564453125,
+        "pending_over_threshold": 353.1259765625,
+        "pending_age_sum_tti": 64239.564453125
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 75834.9609375,
+        "expired_payload_bytes": 940.4296875,
+        "whole_wait_cost_bytes": 3543.603515625,
+        "age_cost_bytes": 1379.9468994140625,
+        "pending_packets": 472.48046875,
+        "pending_over_threshold": 385.0341796875,
+        "pending_age_sum_tti": 69867.3154296875
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 75811.5234375,
+        "expired_payload_bytes": 805.6640625,
+        "whole_wait_cost_bytes": 5045.2734375,
+        "age_cost_bytes": 2015.5572509765625,
+        "pending_packets": 672.703125,
+        "pending_over_threshold": 565.5986328125,
+        "pending_age_sum_tti": 98279.375
+      }
+    ],
+    "elapsed_s": 1430.9958823435009
+  },
+  {
+    "iteration": 7,
+    "samples": 3072,
+    "reward_mean": 0.7781440615653992,
+    "reward_by_seed": [
+      0.8067586459517779,
+      0.7586378035146528,
+      0.7690356604839984
+    ],
+    "critic_ev_before": 0.6962711811065674,
+    "critic_ev_after": 0.780831515789032,
+    "critic_normalized_mse": 0.002832755446434021,
+    "value_mean": 4.52675199508667,
+    "target_mean": 4.529815196990967,
+    "target_std": 0.11349982023239136,
+    "advantage_std": 0.06255156546831131,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015170472906902432,
+        "loss": -0.0025599082000553604,
+        "gradient_norm": 0.3979759067296982,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0025798913557082415,
+        "loss": -0.0051338973377520825,
+        "gradient_norm": 0.3825796494881312,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002392407041043043,
+        "loss": -0.006325289063776533,
+        "gradient_norm": 0.36684170986215275,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0020369249396026134,
+        "loss": -0.0067874880429978175,
+        "gradient_norm": 0.3883693590760231,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0018535788403823972,
+        "loss": -0.007708372703442973,
+        "gradient_norm": 0.39478464300433797,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002089037327095866,
+        "loss": -0.00810856674797833,
+        "gradient_norm": 0.4103310629725456,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002020599553361535,
+        "loss": -0.009068384494942922,
+        "gradient_norm": 0.3415190577507019,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0024767741560935974,
+        "loss": -0.008622080553323032,
+        "gradient_norm": 0.39676871336996555,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 77062.5,
+        "expired_payload_bytes": 1658.203125,
+        "whole_wait_cost_bytes": 2823.45703125,
+        "age_cost_bytes": 1155.5249633789062,
+        "pending_packets": 376.4609375,
+        "pending_over_threshold": 318.7890625,
+        "pending_age_sum_tti": 66184.09375
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76198.2421875,
+        "expired_payload_bytes": 1792.96875,
+        "whole_wait_cost_bytes": 4913.5107421875,
+        "age_cost_bytes": 2070.06005859375,
+        "pending_packets": 655.134765625,
+        "pending_over_threshold": 572.181640625,
+        "pending_age_sum_tti": 108801.861328125
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 76312.5,
+        "expired_payload_bytes": 1338.8671875,
+        "whole_wait_cost_bytes": 5078.9794921875,
+        "age_cost_bytes": 2024.5213623046875,
+        "pending_packets": 677.197265625,
+        "pending_over_threshold": 567.064453125,
+        "pending_age_sum_tti": 100942.6748046875
+      }
+    ],
+    "elapsed_s": 1622.349294721149
+  },
+  {
+    "iteration": 8,
+    "samples": 3072,
+    "reward_mean": 0.7883525490760803,
+    "reward_by_seed": [
+      0.8176070148882222,
+      0.7751402459342058,
+      0.772310458168243
+    ],
+    "critic_ev_before": 0.6470186114311218,
+    "critic_ev_after": 0.6820329427719116,
+    "critic_normalized_mse": 0.0033439325634390116,
+    "value_mean": 4.5427470207214355,
+    "target_mean": 4.535237789154053,
+    "target_std": 0.1016821637749672,
+    "advantage_std": 0.06041164696216583,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0009112482075579464,
+        "loss": -0.0020928325441976407,
+        "gradient_norm": 0.36489677242934704,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001261236029677093,
+        "loss": -0.004148879321292043,
+        "gradient_norm": 0.4216269937654336,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0012541796313598752,
+        "loss": -0.005706307517054181,
+        "gradient_norm": 0.3679168758292993,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014830310828983784,
+        "loss": -0.005791685970810553,
+        "gradient_norm": 0.40290915717681247,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002097264165058732,
+        "loss": -0.006512540276162328,
+        "gradient_norm": 0.3827503075202306,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001785383210517466,
+        "loss": -0.007492228760384024,
+        "gradient_norm": 0.3741700214644273,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001629614387638867,
+        "loss": -0.005966478299039102,
+        "gradient_norm": 0.41119155287742615,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017455816268920898,
+        "loss": -0.0071862238692119735,
+        "gradient_norm": 0.37636268697679043,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 76801.7578125,
+        "expired_payload_bytes": 1092.7734375,
+        "whole_wait_cost_bytes": 2805.53466796875,
+        "age_cost_bytes": 1103.570068359375,
+        "pending_packets": 374.0712890625,
+        "pending_over_threshold": 307.8232421875,
+        "pending_age_sum_tti": 61533.8603515625
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76526.3671875,
+        "expired_payload_bytes": 1122.0703125,
+        "whole_wait_cost_bytes": 5150.57373046875,
+        "age_cost_bytes": 2088.0602416992188,
+        "pending_packets": 686.7431640625,
+        "pending_over_threshold": 581.896484375,
+        "pending_age_sum_tti": 107981.3984375
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 75829.1015625,
+        "expired_payload_bytes": 1125.0,
+        "whole_wait_cost_bytes": 4823.7451171875,
+        "age_cost_bytes": 1940.0245971679688,
+        "pending_packets": 643.166015625,
+        "pending_over_threshold": 543.3486328125,
+        "pending_age_sum_tti": 92529.4091796875
+      }
+    ],
+    "elapsed_s": 1820.2939165579155
+  },
+  {
+    "iteration": 9,
+    "samples": 3072,
+    "reward_mean": 0.7800332903862,
+    "reward_by_seed": [
+      0.8014240879700254,
+      0.7585800503835174,
+      0.7800955730464105
+    ],
+    "critic_ev_before": 0.7529438138008118,
+    "critic_ev_after": 0.782037079334259,
+    "critic_normalized_mse": 0.0023867380805313587,
+    "value_mean": 4.514343738555908,
+    "target_mean": 4.522696018218994,
+    "target_std": 0.10310222208499908,
+    "advantage_std": 0.05124669522047043,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0016969399293884635,
+        "loss": -0.00230502220802009,
+        "gradient_norm": 0.387547992169857,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014590617502108216,
+        "loss": -0.004028192100425565,
+        "gradient_norm": 0.39142982475459576,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0012392520438879728,
+        "loss": -0.004806524918725092,
+        "gradient_norm": 0.39838625987370807,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017098808893933892,
+        "loss": -0.006501749739982187,
+        "gradient_norm": 0.3987557714184125,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0016805719351395965,
+        "loss": -0.007243007654324167,
+        "gradient_norm": 0.4361004438251257,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0011883896077051759,
+        "loss": -0.0062845431966707084,
+        "gradient_norm": 0.42617229868968326,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0021400616969913244,
+        "loss": -0.0069353493163362145,
+        "gradient_norm": 0.4527646414935589,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002110841451212764,
+        "loss": -0.008639329927973447,
+        "gradient_norm": 0.3964564750591914,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 76608.3984375,
+        "expired_payload_bytes": 1751.953125,
+        "whole_wait_cost_bytes": 2696.9677734375,
+        "age_cost_bytes": 1116.9656982421875,
+        "pending_packets": 359.595703125,
+        "pending_over_threshold": 307.712890625,
+        "pending_age_sum_tti": 64564.42578125
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76681.640625,
+        "expired_payload_bytes": 1737.3046875,
+        "whole_wait_cost_bytes": 5354.8681640625,
+        "age_cost_bytes": 2230.941650390625,
+        "pending_packets": 713.982421875,
+        "pending_over_threshold": 617.689453125,
+        "pending_age_sum_tti": 121803.205078125
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 76998.046875,
+        "expired_payload_bytes": 1168.9453125,
+        "whole_wait_cost_bytes": 5130.94482421875,
+        "age_cost_bytes": 2064.6591796875,
+        "pending_packets": 684.1259765625,
+        "pending_over_threshold": 577.1826171875,
+        "pending_age_sum_tti": 100375.2333984375
+      }
+    ],
+    "elapsed_s": 2021.8259378634393
+  },
+  {
+    "iteration": 10,
+    "samples": 3072,
+    "reward_mean": 0.7783856391906738,
+    "reward_by_seed": [
+      0.8122211771294869,
+      0.7556924049069701,
+      0.7672436857112082
+    ],
+    "critic_ev_before": 0.7658182382583618,
+    "critic_ev_after": 0.8008579015731812,
+    "critic_normalized_mse": 0.0017380259232595563,
+    "value_mean": 4.508084774017334,
+    "target_mean": 4.5166826248168945,
+    "target_std": 0.09141288697719574,
+    "advantage_std": 0.04423682764172554,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0011074722278863192,
+        "loss": -0.0018898648559115823,
+        "gradient_norm": 0.40381527195374173,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015159995527938008,
+        "loss": -0.0044507332107362645,
+        "gradient_norm": 0.39935631180802983,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0013083541998639703,
+        "loss": -0.005372150878732404,
+        "gradient_norm": 0.41345541179180145,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015748058212921023,
+        "loss": -0.005984950383814673,
+        "gradient_norm": 0.38562655324737233,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.002109458902850747,
+        "loss": -0.007121124692882098,
+        "gradient_norm": 0.39946118742227554,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0020430271979421377,
+        "loss": -0.0068301504943519805,
+        "gradient_norm": 0.4309644065797329,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0018304204568266869,
+        "loss": -0.007239166414365173,
+        "gradient_norm": 0.36754005526502925,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0018237686017528176,
+        "loss": -0.007674368952090544,
+        "gradient_norm": 0.3870103371640046,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 76356.4453125,
+        "expired_payload_bytes": 1092.7734375,
+        "whole_wait_cost_bytes": 2787.92724609375,
+        "age_cost_bytes": 1150.5164794921875,
+        "pending_packets": 371.7236328125,
+        "pending_over_threshold": 318.5595703125,
+        "pending_age_sum_tti": 64285.6767578125
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76083.984375,
+        "expired_payload_bytes": 1945.3125,
+        "whole_wait_cost_bytes": 4785.3076171875,
+        "age_cost_bytes": 2045.1740112304688,
+        "pending_packets": 638.041015625,
+        "pending_over_threshold": 561.9462890625,
+        "pending_age_sum_tti": 112145.017578125
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 76412.109375,
+        "expired_payload_bytes": 1415.0390625,
+        "whole_wait_cost_bytes": 5178.544921875,
+        "age_cost_bytes": 2023.4119262695312,
+        "pending_packets": 690.47265625,
+        "pending_over_threshold": 572.9033203125,
+        "pending_age_sum_tti": 91480.0302734375
+      }
+    ],
+    "elapsed_s": 2215.9527862481773
+  },
+  {
+    "iteration": 11,
+    "samples": 3072,
+    "reward_mean": 0.7773969769477844,
+    "reward_by_seed": [
+      0.8165471235666047,
+      0.7528499762931676,
+      0.7627938205699781
+    ],
+    "critic_ev_before": 0.48180443048477173,
+    "critic_ev_after": 0.6007932424545288,
+    "critic_normalized_mse": 0.004678459372371435,
+    "value_mean": 4.492998123168945,
+    "target_mean": 4.48611307144165,
+    "target_std": 0.10770636796951294,
+    "advantage_std": 0.0775332897901535,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0010552933672443032,
+        "loss": -0.0017999948468059297,
+        "gradient_norm": 0.42932706450422603,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001129811629652977,
+        "loss": -0.004268322916080553,
+        "gradient_norm": 0.38101258377234143,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0019328654743731022,
+        "loss": -0.005453716963529584,
+        "gradient_norm": 0.3850695341825485,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.001578877097927034,
+        "loss": -0.005998229258693759,
+        "gradient_norm": 0.4025861161450545,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0019490085542201996,
+        "loss": -0.00731986714527011,
+        "gradient_norm": 0.4132709087183078,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017764774383977056,
+        "loss": -0.0072967653007557,
+        "gradient_norm": 0.3852619131406148,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0019261870766058564,
+        "loss": -0.008079602421882253,
+        "gradient_norm": 0.3756672851741314,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0022879804018884897,
+        "loss": -0.007745692195991676,
+        "gradient_norm": 0.41508469730615616,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 77000.9765625,
+        "expired_payload_bytes": 1010.7421875,
+        "whole_wait_cost_bytes": 3152.34375,
+        "age_cost_bytes": 1233.43798828125,
+        "pending_packets": 420.3125,
+        "pending_over_threshold": 347.26171875,
+        "pending_age_sum_tti": 63997.9091796875
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 75714.84375,
+        "expired_payload_bytes": 1702.1484375,
+        "whole_wait_cost_bytes": 5021.81396484375,
+        "age_cost_bytes": 2174.0245971679688,
+        "pending_packets": 669.5751953125,
+        "pending_over_threshold": 596.2802734375,
+        "pending_age_sum_tti": 121213.5908203125
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 76461.9140625,
+        "expired_payload_bytes": 1245.1171875,
+        "whole_wait_cost_bytes": 5676.58447265625,
+        "age_cost_bytes": 2324.05078125,
+        "pending_packets": 756.8779296875,
+        "pending_over_threshold": 650.697265625,
+        "pending_age_sum_tti": 108034.720703125
+      }
+    ],
+    "elapsed_s": 2414.0045796567574
+  },
+  {
+    "iteration": 12,
+    "samples": 3072,
+    "reward_mean": 0.7765578627586365,
+    "reward_by_seed": [
+      0.8093166596946278,
+      0.7526967395523136,
+      0.7676602327529651
+    ],
+    "critic_ev_before": 0.7975589036941528,
+    "critic_ev_after": 0.8345966339111328,
+    "critic_normalized_mse": 0.0027397058438509703,
+    "value_mean": 4.467809200286865,
+    "target_mean": 4.4815826416015625,
+    "target_std": 0.12416478246450424,
+    "advantage_std": 0.055866021662950516,
+    "behavior_max_logprob_error": 0.0,
+    "actor_steps": 192,
+    "steps": [
+      {
+        "epoch": 1,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0006420796853490174,
+        "loss": -0.0016918036077792414,
+        "gradient_norm": 0.4168941428263982,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 2,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0010747716296464205,
+        "loss": -0.00386999318531404,
+        "gradient_norm": 0.3988899290561676,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 3,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0011664624325931072,
+        "loss": -0.005214841493094962,
+        "gradient_norm": 0.44642715404431027,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 4,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017082532867789268,
+        "loss": -0.005604982026852667,
+        "gradient_norm": 0.4693833788235982,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 5,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0014437902718782425,
+        "loss": -0.006710879504680634,
+        "gradient_norm": 0.4718336785833041,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 6,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0017618428682908416,
+        "loss": -0.007481175183784215,
+        "gradient_norm": 0.4847753532230854,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 7,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0015918625285848975,
+        "loss": -0.007197077192055681,
+        "gradient_norm": 0.4392680786550045,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      },
+      {
+        "epoch": 8,
+        "attempt": 1,
+        "accepted": true,
+        "kl": 0.0018561113392934203,
+        "loss": -0.00783240395442893,
+        "gradient_norm": 0.4509318222602208,
+        "lr": 0.0003,
+        "optimizer_steps": 24
+      }
+    ],
+    "reward_components_by_seed": [
+      {
+        "seed": 41,
+        "complete_payload_bytes": 77411.1328125,
+        "expired_payload_bytes": 1368.1640625,
+        "whole_wait_cost_bytes": 3325.5029296875,
+        "age_cost_bytes": 1346.1882934570312,
+        "pending_packets": 443.400390625,
+        "pending_over_threshold": 375.818359375,
+        "pending_age_sum_tti": 70796.4990234375
+      },
+      {
+        "seed": 42,
+        "complete_payload_bytes": 76019.53125,
+        "expired_payload_bytes": 1593.75,
+        "whole_wait_cost_bytes": 5428.63037109375,
+        "age_cost_bytes": 2270.8489379882812,
+        "pending_packets": 723.8173828125,
+        "pending_over_threshold": 628.84375,
+        "pending_age_sum_tti": 124662.7724609375
+      },
+      {
+        "seed": 43,
+        "complete_payload_bytes": 75720.703125,
+        "expired_payload_bytes": 1417.96875,
+        "whole_wait_cost_bytes": 4605.02197265625,
+        "age_cost_bytes": 1875.8150024414062,
+        "pending_packets": 614.0029296875,
+        "pending_over_threshold": 521.59765625,
+        "pending_age_sum_tti": 95965.970703125
+      }
+    ],
+    "elapsed_s": 2615.266578038223
+  }
+]

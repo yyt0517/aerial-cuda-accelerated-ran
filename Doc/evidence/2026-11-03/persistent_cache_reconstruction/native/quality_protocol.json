@@ -1,0 +1,16 @@
+{
+  "payload_paired_mean_min_ratio": 0.997,
+  "payload_each_seed_min_ratio": 0.994,
+  "expiry_max_increase_pp": 0.1,
+  "mean_success_delay_max_increase_ms": 0.5,
+  "p95_success_delay_max_increase_ms": 1.0,
+  "ue_payload_P5_min_ratio": 0.97,
+  "worst_ue_expiry": "<=max(reference worst+2 percentage points,5%)",
+  "newly_zero_complete_payload_ues": 0,
+  "newly_TTL_long_service_gap_ues": 0,
+  "TTL_gap": "400 consecutive measurement TTIs without successful bytes =200ms; report actual perUE maxima",
+  "mature_cohort": true,
+  "packet_metrics": "same offered arrival window8001--12000 with400TTI followup",
+  "costs": "report paired candidate counts; fair wall time remains the separate serial saved-input benchmark",
+  "inference": "two exposed development seeds; no final confidence/generalization claim"
+}

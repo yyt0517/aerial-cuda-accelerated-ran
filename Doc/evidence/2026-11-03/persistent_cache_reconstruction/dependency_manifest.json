@@ -1,0 +1,19 @@
+{
+  "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+  "training/stageb_lns/analyze_dpls_moves.py": "c9827e0790f6da59c0183b53143a934016bd0cc22d9e9e4955acbe721a6fa5e4",
+  "training/stageb_lns/archive.py": "df151308cc506caf1462675ee23de440bc0b040fa6af993eb18482b6c5602345",
+  "training/stageb_lns/cached_budget_campaign.py": "954214722ee2c3e26d45f14e7526b845f2fc88f1968c7ed398036533d1785111",
+  "training/stageb_lns/cached_dpls.py": "f8af9940f0cea79793826ac00fb6cf9d4c755f5866e7da06019f8e24316c5f53",
+  "training/stageb_lns/dpls_operations.py": "c10e3bb71c312fec24cdeeb8279af3e53a3cebf1b1745af34b0e91184da835c4",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+  "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+  "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "training/stageb_lns/ranked_dpls.py": "b42a20d90b8cbd90a5381d28114f318220bd3562896985f5f1893de5c9a32a3d",
+  "training/stageb_ppo/__init__.py": "1eab8874f09312cf249f52ba240810eba5e06892612887f237e38ea38c8f9242",
+  "training/stageb_ppo/campaign.py": "d686d0c179a44932235d464b1c89eb59fc128dfd4eba471204fa5aa1db0f4008",
+  "training/stageb_ppo/evaluate.py": "2492c92379fd2fad260330df8d21f9b4f5fee018054fdcf50393afa5bb691f34",
+  "training/stageb_ppo/learn.py": "5cc155a5ce9d79770fa43144058ab428026c2705d428cfde1274e1474605a2e3",
+  "training/stageb_ppo/model.py": "8776b07977bc3640d4afbf96805053fdc787f661779d08f1176a4781022ec9ae",
+  "training/stageb_ppo/native.py": "9b761ac4a1859c2325ee20ceb8f57e1eaf90f2a0dbbf2bb97990101137edf710",
+  "training/stageb_ppo/reward.py": "fd53abb03e153294d5dd99b54d2137f98c49c9ef55c0ca979133c86930b3b17c"
+}

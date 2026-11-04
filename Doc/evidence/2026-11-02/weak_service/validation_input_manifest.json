@@ -1,0 +1,22 @@
+{
+  "files": {
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed44_current_20000/states.pt": "38e4ca805517e4234369e454bc707e70af3a94bff9fe21272850d3e478b0fa30",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed44_pfq0/states.pt": "0c26acda204c8f9fd9a9cc5d0ea97811e97049493a6bcd018385d838c5ce2f4d",
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed45_current_20000/states.pt": "eafa46bf0fe586083656fc0c23d8c48cf85b097fd3663ea510410cca86aaf3fe",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed45_pfq0/states.pt": "0325a3611f99fb8cbf2e6c1a35ac86a35931217297e7e225111ae6cac9650d4a"
+  },
+  "states": [
+    "raw_global_deficit:seed44:tti4001",
+    "raw_global_deficit:seed44:tti8001",
+    "raw_global_deficit:seed44:tti18000",
+    "pfq:seed44:tti4001",
+    "pfq:seed44:tti8001",
+    "pfq:seed44:tti18000",
+    "raw_global_deficit:seed45:tti4001",
+    "raw_global_deficit:seed45:tti8001",
+    "raw_global_deficit:seed45:tti18000",
+    "pfq:seed45:tti4001",
+    "pfq:seed45:tti8001",
+    "pfq:seed45:tti18000"
+  ]
+}

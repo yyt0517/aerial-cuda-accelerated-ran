@@ -1,0 +1,16 @@
+{
+  "selected": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e00.npz",
+  "sha256": "50049d2e7ed7bbb02536766a5468d6093c2f5d47b99182b914a8c5b341d7c267",
+  "top_k": 128,
+  "selected_epoch": 0,
+  "selected_round": 0,
+  "zero_residual": true,
+  "validation": {
+    "quality_pass": false,
+    "quality_shortfall": 0.006492140046159144,
+    "mean_ms": 79.69218608923256,
+    "worst_relative_j": -0.07577832878768664,
+    "mean_j": 80746.0454737276
+  },
+  "evaluation_unread_at_selection": true
+}

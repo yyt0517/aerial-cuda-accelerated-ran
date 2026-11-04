@@ -1,0 +1,20 @@
+{
+  "version": "full_empirical_envelope_v2",
+  "input": "/data/aerial-cuda-accelerated-ran/deliverables/full_service_calibration_20261103_v1",
+  "members": [
+    "cold_canonical",
+    "warm_canonical",
+    "cold_random17",
+    "warm_random17",
+    "cold_random29",
+    "warm_random29"
+  ],
+  "correction": "72/72 raw leave-one-out comparisons reused duplicate terminal patterns; not independent calibration evidence",
+  "dedup": "COUNT vector plus per-UE expected bytes rounded1e-6B; only1--3 patterns/state",
+  "rule": "J>=99.5% minimum full J; absolute count/effective/P5/causal-deficit-weak metrics inside empirical full min/max envelope",
+  "rationale": "few distinct full optima cannot estimate5/95% tails; use an explicitly descriptive empirical support, no probability guarantee",
+  "timing": "frozen using full-only outputs before new persistent guarded4 is evaluated",
+  "entry": "guarded4 must pass all12 frozen envelope rows; only then two-seed2s native development; long-term service judged there",
+  "old_gate": "source-local J/service checks still reported alongside; not silently overwritten",
+  "native_scope": "development, not final promotion or blind confirmation"
+}

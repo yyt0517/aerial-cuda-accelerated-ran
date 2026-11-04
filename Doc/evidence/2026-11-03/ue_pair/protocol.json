@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-03",
+  "version": 1,
+  "methods": [
+    "full",
+    "cached_maxj",
+    "aggregate_guard",
+    "ue_heuristic_guard",
+    "ue_pair",
+    "ue_pair_guard"
+  ],
+  "search_config": {
+    "wide": true,
+    "pareto": true,
+    "final_j_loss": 0.0,
+    "max_candidates": 212,
+    "max_feature_roots": 56,
+    "rounds": 56,
+    "seed_candidates": 16,
+    "batch_size": 8,
+    "beam_width": 4,
+    "seed": 20261102,
+    "metric": "quota_exp",
+    "log_epsilon": 0.01,
+    "tail_temperature": 0.1,
+    "directed_slots": 2,
+    "joint_candidates": false,
+    "alternate_sparse": false,
+    "target_count": 6,
+    "chain_depth": 4
+  },
+  "objective": "canonical native BLER causal deficit-weightedJ,own rawPFQ90%dequeue floor",
+  "conditions": "paid offline teacher counts/exact min-layer/activity only;no teacher UE positions/J/service/effective membership at runtime",
+  "unchanged_search": "same existing-pool directed2 slots,quota-exp frontier,root-local pool/proxy cache;212 complete-action scores/56 roots/16 seeds/8batch",
+  "terminal": "only already paid condition/floor-feasible archive;2%ownbestJwindow unchanged;full99.5%J gate unchanged",
+  "features": "20 causal context features perUE;7 monotone ownservice-loss bases plus learned reference loss;no UE ID embedding;shared20-24tanh-10 model",
+  "loss": "within-state risk=10*relu(.995-J/fullJ)+relu(.98-P5ratio)+relu(.98-fixedweakratio);pair gap>.005;ties<=.0001;up to1024each/state,prioritize maxJ pairs",
+  "auxiliary": "0.2*(referencepositive BCE+referenceE/D MSE),teacher labels only in training",
+  "training": "reuse previous paid own-visited41-43 archives;deduplicate by immutable inputs/archive/reference hash;3leave-seed-out fits forpositive calibration scale;3all-training initialization fits",
+  "fixed_training": "240epochs each Adam lr.01 decay.001;pairlogit scale20;no epoch/model/threshold search;1440gradientsteps",
+  "calibration": "monotone zero-intercept pair probability from held-seed predictions,including ties;heuristic scale from same training-only pairs",
+  "confidence": "propose highest mean pairscore within2%;accept only if every ensemble member calibrated P(win vs maxJ)>=.9 and positive delta,else return exact maxJ;this is a relative model confidence,not a hard feasibility guarantee",
+  "heuristic": "sameperUE losses with uniform coefficients,ownpositive frequency andq90reference;single score with its training-fitted probabilityscale andsame.9gate",
+  "controls": "aggregate_guard uses frozen previous aggregate model but falls back to maxJ when no>=.9 candidate;ue_pair disables guard solely for attribution and cannot be validation-selected",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "train_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "repeats": 3,
+  "gates": "eachJ>=.995full,nonewlyunallocatedUE,fullpositiveP5/fixedweak20>=.98full,seed-equalcompleteexecution<=.8full",
+  "timing": "input/PFQ,freshPHY/MMSE,conditioncompression,unchangedsearch,terminalfeatures/3modelinference/calibration/fallback,cleanup;common memoevent copies included",
+  "exclusions": "teachers,training,initiallibrary/TBS/modelIO,archiveIO,digests and independent audits",
+  "selection": "validation only;cachedmaxJ,aggregate_guard,ue_heuristic_guard,ue_pair_guard eligible;freeze beforedevelopment;no development tuning",
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "native_trajectories": 0,
+  "ctbs": false,
+  "ppo": false,
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "physics_source_sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "previous_aggregate_model_sha256": "e4aa1cb86ac122b79c94d68ee4c03b595845d73f6a6876c5794603a099af4236",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  }
+}

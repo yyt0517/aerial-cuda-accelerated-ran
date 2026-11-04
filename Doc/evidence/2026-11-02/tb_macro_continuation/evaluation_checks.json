@@ -1,0 +1,413 @@
+{
+  "repeat_actions_values_identical": true,
+  "common_first_sweep": true,
+  "all_prgs_visited_twice_before_continuation": true,
+  "caps_and_floor_valid": true,
+  "independent_phy": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "shortlist_trained212",
+      "max_error": 2.3646862246096134e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "single_b212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint_b212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "single_continue_b212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint_continue_b212",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "single_b424",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint_b424",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint_continue_b424",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "shortlist_trained212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "single_b212",
+      "max_error": 4.774847184307873e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint_b212",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "single_continue_b212",
+      "max_error": 4.774847184307873e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint_continue_b212",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "single_b424",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint_b424",
+      "max_error": 4.774847184307873e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint_continue_b424",
+      "max_error": 4.774847184307873e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "full",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "shortlist_trained212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "single_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "single_continue_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint_continue_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "single_b424",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint_b424",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint_continue_b424",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "full",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "shortlist_trained212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "single_b212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint_b212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "single_continue_b212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint_continue_b212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "single_b424",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint_b424",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint_continue_b424",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "full",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "shortlist_trained212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "single_b212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint_b212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "single_continue_b212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint_continue_b212",
+      "max_error": 7.048583938740194e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "single_b424",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint_b424",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint_continue_b424",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "full",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "shortlist_trained212",
+      "max_error": 4.547473508864641e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "single_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint_b212",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "single_continue_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint_continue_b212",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "single_b424",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint_b424",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint_continue_b424",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "full",
+      "max_error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "shortlist_trained212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "single_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "single_continue_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint_continue_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "single_b424",
+      "max_error": 6.184563972055912e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint_b424",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint_continue_b424",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "shortlist_trained212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "single_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "single_continue_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint_continue_b212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "single_b424",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint_b424",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint_continue_b424",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "shortlist_trained212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "single_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint_b212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "single_continue_b212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint_continue_b212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "single_b424",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint_b424",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint_continue_b424",
+      "max_error": 7.275957614183426e-12
+    }
+  ]
+}

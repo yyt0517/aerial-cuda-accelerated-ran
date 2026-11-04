@@ -1,0 +1,5 @@
+arm,j_wins,j_losses,j_ties,mean_j_delta,mean_ms_delta,changed_states
+aggregate_guard,0,0,9,0.0,3.548868310948213,0
+ue_heuristic_guard,0,0,9,0.0,1.3645477592945099,0
+ue_pair,0,1,8,-3.2308270762037457,1.9523365837004452,2
+ue_pair_guard,0,0,9,0.0,2.136563054389424,0

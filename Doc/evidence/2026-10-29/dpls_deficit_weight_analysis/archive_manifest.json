@@ -1,0 +1,21 @@
+{
+  "canonical_source": "/data/aerial-cuda-accelerated-ran/deliverables/dpls_deficit_weight_analysis_20261029_v1",
+  "files": {
+    "tradeoff.png": "48112c850072f4c1ff4e1aed6c41a3e6cce07e7d8989c66b965b6ad53e60aaa5",
+    "common_success.csv": "7ef1c33acdb80f2e55b37848cfc3806a5b552fc7db48fb111275f3dad2c803db",
+    "README.rst": "41b1abedfe74191d47e4934ae9061e56450939cfa64c82c82c478bc6ea8cc139",
+    "report.txt": "4f0a6f8d5dcca25a86a8b9b8a7bff4201da20eda18123c6a88f496d066062021",
+    "checks.json": "aead5b2b30400ddbc6736848ec27b7feb81250160672a4278777a50d6d6cdb17",
+    "per_seed_selected.csv": "92c6a50ea4a4038cc55f31193c2ca0cceb9edd27ec40107e8986efd2e2e8913c",
+    "weak_ue_pairs.csv": "c7bc2f36d13c4ad0b9b0194772a35cbe1087da83dc9f6173f7e313a61dabb424",
+    "resource_search_cost.csv": "00d29b7905741e38c26d2426f5d446d42feadb3b69ead9b9c9c76b7dfbfb3078",
+    "outcome_transitions.csv": "2b018b1a1cc8e8e1c1475d2d60a3b65708e62b5016595070d7d76551ee4d10d1",
+    "ue_change_counts.csv": "e929984627f2ad5ec5661a5749470c1e9502856c47c0866bfafb84ef71a65ce5",
+    "analyze.py": "d53a1ae5032018219f0a8a2483a5a0e0af57dfb4545fea6aa1a2079d455202fe",
+    "deadline_delivery.csv": "c0cbae053ad1eb78fe857e3348a7e86f555658ed42002f5e4c9f9198a360280e",
+    "metric_comparison.csv": "b3275ad1d9f0dec1459930bf2d61172287370d2b29ad4c727d9c902b08e828fd",
+    "manifest.json": "80a943884ef7f3a0c9ec51ab399ee180c9a44dd462353a24750b0cf230562e14",
+    "tradeoff.pdf": "ad73fd7d22a0b9a4d7e26ebe9c62e7b6e74d93273d9359bf52ff582c8b69a65c"
+  },
+  "excluded": "Previous native trajectories and packet cohorts remain in their original local directories."
+}

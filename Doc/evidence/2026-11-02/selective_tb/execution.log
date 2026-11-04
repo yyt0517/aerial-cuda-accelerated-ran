@@ -1,0 +1,45 @@
+SELECTIVE_OWN raw_global_deficit:seed41:tti4001 groups 4
+SELECTIVE_OWN raw_global_deficit:seed41:tti8001 groups 4
+SELECTIVE_OWN raw_global_deficit:seed41:tti18000 groups 4
+SELECTIVE_OWN pfq:seed41:tti4001 groups 4
+SELECTIVE_OWN pfq:seed41:tti8001 groups 4
+SELECTIVE_OWN pfq:seed41:tti18000 groups 4
+SELECTIVE_OWN raw_global_deficit:seed42:tti4001 groups 4
+SELECTIVE_OWN raw_global_deficit:seed42:tti8001 groups 4
+SELECTIVE_OWN raw_global_deficit:seed42:tti18000 groups 4
+SELECTIVE_OWN pfq:seed42:tti4001 groups 4
+SELECTIVE_OWN pfq:seed42:tti8001 groups 4
+SELECTIVE_OWN pfq:seed42:tti18000 groups 4
+SELECTIVE_OWN raw_global_deficit:seed43:tti4001 groups 4
+SELECTIVE_OWN raw_global_deficit:seed43:tti8001 groups 4
+SELECTIVE_OWN raw_global_deficit:seed43:tti18000 groups 4
+SELECTIVE_OWN pfq:seed43:tti4001 groups 4
+SELECTIVE_OWN pfq:seed43:tti8001 groups 4
+SELECTIVE_OWN pfq:seed43:tti18000 groups 4
+SELECTIVE_FIT 0 {'mean_relative_j_pct': -19.352845019217813, 'quality': False, 'coverage': False, 'mean_positive_p5': 0.2876407675676072}
+SELECTIVE_FIT 5 {'mean_relative_j_pct': -15.912662809622313, 'quality': False, 'coverage': False, 'mean_positive_p5': 0.707131840665497}
+SELECTIVE_FIT 10 {'mean_relative_j_pct': -16.58444161045123, 'quality': False, 'coverage': False, 'mean_positive_p5': 0.6457622176640431}
+SELECTIVE_FIT 20 {'mean_relative_j_pct': -17.02361376956043, 'quality': False, 'coverage': False, 'mean_positive_p5': 0.5659042006451565}
+SELECTIVE_BENCH validation raw_global_deficit:seed44:tti4001
+SELECTIVE_BENCH validation raw_global_deficit:seed44:tti8001
+SELECTIVE_BENCH validation raw_global_deficit:seed44:tti18000
+SELECTIVE_BENCH validation pfq:seed44:tti4001
+SELECTIVE_BENCH validation pfq:seed44:tti8001
+SELECTIVE_BENCH validation pfq:seed44:tti18000
+SELECTIVE_BENCH validation raw_global_deficit:seed45:tti4001
+SELECTIVE_BENCH validation raw_global_deficit:seed45:tti8001
+SELECTIVE_BENCH validation raw_global_deficit:seed45:tti18000
+SELECTIVE_BENCH validation pfq:seed45:tti4001
+SELECTIVE_BENCH validation pfq:seed45:tti8001
+SELECTIVE_BENCH validation pfq:seed45:tti18000
+SELECTIVE SELECTION FROZEN {'quality_best': 'legacy_ai212', 'within_cost_best': 'legacy_ai212', 'cost_feasible': True, 'rule': 'validation only: quality/coverage, J shortfall, service shortfall, mean ratio; complete-cost filter for within-cost point', 'development_not_read_in_this_run': True, 'historical_exposure_retained': True}
+SELECTIVE_BENCH evaluation pfq:seed46:tti3001
+SELECTIVE_BENCH evaluation pfq:seed46:tti4001
+SELECTIVE_BENCH evaluation pfq:seed46:tti5000
+SELECTIVE_BENCH evaluation pfq:seed47:tti3001
+SELECTIVE_BENCH evaluation pfq:seed47:tti4001
+SELECTIVE_BENCH evaluation pfq:seed47:tti5000
+SELECTIVE_BENCH evaluation pfq:seed48:tti3001
+SELECTIVE_BENCH evaluation pfq:seed48:tti4001
+SELECTIVE_BENCH evaluation pfq:seed48:tti5000
+SELECTIVE COMPLETE /data/aerial-cuda-accelerated-ran/deliverables/selective_tb_20261102_v1

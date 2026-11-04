@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "tests": 106,
+  "formal_decisions": 441,
+  "formal_independent_finals": 147,
+  "teacher_independent_finals": 23,
+  "engineering_decoder_finals": 10,
+  "fast_parity_formal_states": 21,
+  "fast_parity_engineering_states": 2,
+  "ordered_query_roots_all_observed_values_work_groups_equal": true,
+  "source_and_registry_hashes_valid": true,
+  "posthoc_diagnostic_scores": 0,
+  "training_updates": 0,
+  "native_trajectories": 0,
+  "final_seeds_read": false,
+  "scientific_gate_passed": false
+}

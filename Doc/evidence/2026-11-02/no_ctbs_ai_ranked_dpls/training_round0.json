@@ -1,0 +1,193 @@
+{
+  "groups": 1202,
+  "features": 48,
+  "parameters": 2113,
+  "epochs": 20,
+  "candidate_sampling": "64 exact leaders + 64 heuristic leaders + 64 uniform; full labels retained",
+  "selection": "quality first (all J>=99.5% and converged), then mean shortfall, then seed-equal wall time",
+  "selected": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e00.npz",
+  "top_k": 128,
+  "selected_epoch": 0,
+  "history": [
+    {
+      "epoch": 0,
+      "loss": null,
+      "validation": [
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.008156075278111833,
+          "mean_ms": 83.82493172151347,
+          "worst_relative_j": -0.09372180476189584,
+          "mean_j": 80370.2254528588,
+          "top_k": 64,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e00.npz",
+          "epoch": 0,
+          "round": 0
+        },
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.006492140046159144,
+          "mean_ms": 78.59169885826608,
+          "worst_relative_j": -0.07577832878768664,
+          "mean_j": 80746.0454737276,
+          "top_k": 128,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e00.npz",
+          "epoch": 0,
+          "round": 0
+        }
+      ]
+    },
+    {
+      "epoch": 1,
+      "loss": 5.217270512329905
+    },
+    {
+      "epoch": 2,
+      "loss": 4.852204849845485
+    },
+    {
+      "epoch": 3,
+      "loss": 4.804336472561485
+    },
+    {
+      "epoch": 4,
+      "loss": 4.781923118390535
+    },
+    {
+      "epoch": 5,
+      "loss": 4.76904747360631,
+      "validation": [
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.010233205536759474,
+          "mean_ms": 95.39573290385306,
+          "worst_relative_j": -0.07598089080404657,
+          "mean_j": 80323.62325897737,
+          "top_k": 64,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e05.npz",
+          "epoch": 5,
+          "round": 0
+        },
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.012010049570047704,
+          "mean_ms": 96.59590164665133,
+          "worst_relative_j": -0.11838339871719694,
+          "mean_j": 80100.16247073298,
+          "top_k": 128,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e05.npz",
+          "epoch": 5,
+          "round": 0
+        }
+      ]
+    },
+    {
+      "epoch": 6,
+      "loss": 4.75866164659199
+    },
+    {
+      "epoch": 7,
+      "loss": 4.749724337929173
+    },
+    {
+      "epoch": 8,
+      "loss": 4.74609785330923
+    },
+    {
+      "epoch": 9,
+      "loss": 4.738083488062808
+    },
+    {
+      "epoch": 10,
+      "loss": 4.7341336953012565,
+      "validation": [
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.013745517871785093,
+          "mean_ms": 102.57453987530121,
+          "worst_relative_j": -0.11838339871719694,
+          "mean_j": 79647.47128904937,
+          "top_k": 64,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e10.npz",
+          "epoch": 10,
+          "round": 0
+        },
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.010189749711237941,
+          "mean_ms": 97.67952968832105,
+          "worst_relative_j": -0.11838339871719694,
+          "mean_j": 79729.57013187898,
+          "top_k": 128,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e10.npz",
+          "epoch": 10,
+          "round": 0
+        }
+      ]
+    },
+    {
+      "epoch": 11,
+      "loss": 4.729636782094052
+    },
+    {
+      "epoch": 12,
+      "loss": 4.726043588236759
+    },
+    {
+      "epoch": 13,
+      "loss": 4.721727797859593
+    },
+    {
+      "epoch": 14,
+      "loss": 4.719530921233328
+    },
+    {
+      "epoch": 15,
+      "loss": 4.715995612897371
+    },
+    {
+      "epoch": 16,
+      "loss": 4.714606197256791
+    },
+    {
+      "epoch": 17,
+      "loss": 4.713159824672498
+    },
+    {
+      "epoch": 18,
+      "loss": 4.711311064268413
+    },
+    {
+      "epoch": 19,
+      "loss": 4.709327597367136
+    },
+    {
+      "epoch": 20,
+      "loss": 4.708153059608058,
+      "validation": [
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.013286259902501851,
+          "mean_ms": 96.08042484614998,
+          "worst_relative_j": -0.12239447823833305,
+          "mean_j": 79272.46294750748,
+          "top_k": 64,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e20.npz",
+          "epoch": 20,
+          "round": 0
+        },
+        {
+          "quality_pass": false,
+          "quality_shortfall": 0.017640732468756453,
+          "mean_ms": 86.25132959180823,
+          "worst_relative_j": -0.11838339871719694,
+          "mean_j": 78890.57383477455,
+          "top_k": 128,
+          "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1/edit_ranker_r0_e20.npz",
+          "epoch": 20,
+          "round": 0
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "passed": true,
+  "validation_only": true,
+  "policy_selection_changed": false,
+  "diagnostic_decisions": 24,
+  "independent_phy": [
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "teacher_repair32",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "teacher_repair32",
+      "max_error": 4.6838977141305804e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "teacher_repair32",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "teacher_lock_repair32",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "teacher_repair32",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "teacher_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "teacher_repair32",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "teacher_lock_repair32",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "teacher_repair32",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "teacher_repair32",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 1.1459633242338896e-10
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "teacher_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "teacher_lock_repair32",
+      "max_error": 5.684341886080802e-14
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "teacher_repair32",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "teacher_repair32",
+      "max_error": 1.9554136088117957e-11
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "teacher_lock_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "teacher_repair32",
+      "max_error": 7.73070496506989e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "teacher_lock_repair32",
+      "max_error": 6.548361852765083e-11
+    }
+  ],
+  "elapsed_s": 2.585755334235728,
+  "physical_scores": 5088,
+  "interpretation": "teacher masks are an offline conditional mechanism probe, not a complete upper bound or deployable algorithm; times exclude separately charged teacher solve"
+}

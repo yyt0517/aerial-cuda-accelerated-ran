@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "new_native_runs": 0,
+  "source_manifest_verified": true,
+  "original_primary_contrast_reproduced": true,
+  "ten_complete_cohorts_checked": true,
+  "matching_packet_identities": true,
+  "no_censoring": true,
+  "packet_success_failure_count_conservation": true,
+  "counts": {
+    "cohort_packets": 2880164,
+    "success_delta": 9892,
+    "expiry_delta": -13630,
+    "crc_failure_delta": 3738
+  },
+  "source_files": {
+    "per_seed_metrics.csv": "6b22b2e614dbfcec0d1d0fc3f21ee3dc3e545fd594ddff1e0fa269eb2ed451e0",
+    "per_ue_metrics.csv": "949bca6cd52ac072efeb062a09c65acce96a51c770d681bd03adf89ee1669494",
+    "contrasts.csv": "5d0c3c264911d50240005ee5dc2b631fc529b641dee787ca5cfe1663a057936f",
+    "search_costs.csv": "788e8343cb5936cb8387467524fee4e5a94bf5109368f7560391bfa84fa37afe",
+    "validation.json": "25313a6dd3b50704b9231cbffdce8c8a7eb099a2889e75a389b507ee34e62035",
+    "protocol.json": "39926f1cc9f9d377c06f5719101c6e6f1e2fce867356d4442bd198720d2a3482"
+  },
+  "packet_cohorts_sha256": {
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/ctbs_global_equal_seed41.csv.gz": "1ad0892517dce1af498f81627912439c4264450998a72bb5fca4325597d09044",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/full_seed41.csv.gz": "4dc35a9cd5cbaf4991b1c1379696ab696101a7b907eb7b2cbefebd3fa91b46e4",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/ctbs_global_equal_seed42.csv.gz": "124b05b9277d1b7ae40ad6981f02eb0da9a098754429795e48cbbca0a04557a7",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/full_seed42.csv.gz": "3931d9a71fa5c3eb54b867bcd79e848054814b0484aa895f41579aec49ac5323",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/ctbs_global_equal_seed43.csv.gz": "6bba94cd648d098b38e5dd0576779913b0081e5ff76cf52125b9a3029c0f519c",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/full_seed43.csv.gz": "cc974cc9aa6764bd08b2677f00ccca3c2abfa303e4829a77d0c29b2d035559db",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/ctbs_global_equal_seed44.csv.gz": "e940d8d6aff276b869c7e22d880dca2e3484c005838ab2275aaa01f0e7cfc7f6",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/full_seed44.csv.gz": "6ef202069468be55d3dc2f9a0e1b074ad2f72eb9bb07eaf227005635859abfe2",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/ctbs_global_equal_seed45.csv.gz": "b003792bf61fc14367488aab3de5c7f382d912a62eceb293e48219d2351f86c9",
+    "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/full_seed45.csv.gz": "aa29b06189948cf3e5c865e7dd70feb644b7b83fde6bdea104bc7d845044bf74"
+  },
+  "limitations": [
+    "Post-hoc exploratory metrics; nominal unadjusted intervals.",
+    "Seed is independent unit n=5; UE and packet counts are descriptive.",
+    "Weak UE selected from equal-arm outcomes; no unseen subgroup validation.",
+    "Both-success packet subset is post-treatment conditional, not an identified causal principal stratum.",
+    "Frozen boundary/rate0.8, no HARQ; not a new blind test.",
+    "Concurrent timing is not a controlled comparison."
+  ],
+  "independent_stdlib_paired_arithmetic_all_metrics": true,
+  "deadline_curves_match_original_1ms_5ms_and_total_success": true
+}

@@ -1,0 +1,24 @@
+{
+  "post_selection": true,
+  "retraining": false,
+  "checkpoint_selection": false,
+  "selection_sha256": "de98c5662358848e2947f9702644bf514b1d2a266cbb9316286e93934b5d39fd",
+  "roles": [
+    "validation",
+    "evaluation"
+  ],
+  "students": [
+    "initial_deep",
+    "trained_deep"
+  ],
+  "stall_probe": "most frequently visited failed root, one/student/state; exact full neighborhood queried only after decisions",
+  "k_diagnostics": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "positive_coverage": "P5 and bottom20% among reference expected bytes>1B",
+  "gates_unchanged": true,
+  "limits": "posthoc development diagnostics, not new blind tests or an online speedup"
+}

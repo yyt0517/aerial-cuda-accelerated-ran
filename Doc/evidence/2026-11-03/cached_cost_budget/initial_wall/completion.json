@@ -1,0 +1,10 @@
+{
+  "completed": true,
+  "timed_decisions": 120,
+  "profiling_decisions": 24,
+  "new_native_runs": 0,
+  "timed_candidate_evaluations": 4038845,
+  "profiling_candidate_evaluations": 807769,
+  "timed_mmse_misses": 222030,
+  "profiling_mmse_misses": 44406
+}

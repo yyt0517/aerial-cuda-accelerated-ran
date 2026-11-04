@@ -1,0 +1,11 @@
+{
+  "quality_candidate": "joint212",
+  "execution_cost_candidate": "joint212",
+  "execution_cost_feasible": false,
+  "validation_only": true,
+  "development_not_read": true,
+  "historical_exposure": true,
+  "selection_rule": "conditional validity/quality/service, J shortfall, service shortfall, ratio; execution-only cost filter",
+  "teacher_preparation_excluded": true,
+  "online_ai_claim": false
+}

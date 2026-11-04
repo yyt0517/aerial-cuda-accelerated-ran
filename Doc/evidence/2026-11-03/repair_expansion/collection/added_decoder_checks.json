@@ -1,0 +1,76 @@
+{
+  "independent_phy": [
+    {
+      "state_id": "raw_global_deficit:seed41:tti4000",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed41:tti8000",
+      "max_error": 2.4556356947869062e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed41:tti28000",
+      "max_error": 4.956746124662459e-11
+    },
+    {
+      "state_id": "pfq:seed41:tti4000",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed41:tti8000",
+      "max_error": 2.1827872842550278e-11
+    },
+    {
+      "state_id": "pfq:seed41:tti28000",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed42:tti4000",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed42:tti8000",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed42:tti28000",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "pfq:seed42:tti4000",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "pfq:seed42:tti8000",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed42:tti28000",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed43:tti4000",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed43:tti8000",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed43:tti28000",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed43:tti4000",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed43:tti8000",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "pfq:seed43:tti28000",
+      "max_error": 9.094947017729282e-13
+    }
+  ]
+}

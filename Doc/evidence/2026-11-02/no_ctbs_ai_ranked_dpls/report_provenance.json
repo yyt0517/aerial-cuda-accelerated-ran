@@ -1,0 +1,42 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/no_ctbs_ai_ranked_dpls_20261102_v1",
+  "copied_artifacts": [
+    "protocol.json",
+    "source_manifest.json",
+    "input_manifest.json",
+    "evaluation_input_manifest.json",
+    "runtime_environment.json",
+    "training_round0.json",
+    "training_round1.json",
+    "collection_round0.json",
+    "collection_round1.json",
+    "selection.json",
+    "measurements.csv",
+    "per_state.csv",
+    "summary.csv",
+    "evaluation_checks.json",
+    "completion.json"
+  ],
+  "copied_new_sources": [
+    "no_ctbs_inputs.py",
+    "test_no_ctbs_inputs.py",
+    "edit_ranker.py",
+    "test_edit_ranker.py",
+    "ranked_dpls.py",
+    "test_ranked_dpls.py",
+    "ranked_dpls_campaign.py",
+    "report_ranked_dpls.py",
+    "edit_features.cpp",
+    "build_edit_ranker.py",
+    "ranked_dpls_README.rst"
+  ],
+  "full_control_pairing": "state_id; duplicate full-K labels require equal J",
+  "ai_contribution_pairing": "same state_id and same top_k only",
+  "source_completed": {
+    "completed": true,
+    "ctbs": false,
+    "protected_registry_unchanged": true,
+    "final_seeds_not_read": true,
+    "native_trajectories": 0
+  }
+}

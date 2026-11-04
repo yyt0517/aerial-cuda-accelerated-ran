@@ -1,0 +1,11 @@
+{
+  "posthoc": true,
+  "selection_or_policy_changed": false,
+  "reason": "separate poor shortlist/proxy from limited coordinated candidate space after failed formal gate",
+  "states": "12 validation states only, saved single_b212 terminal roots, 4 causal-priority PRGs/root",
+  "query": "score entire single/joint candidate pools on fixed root, no trajectory changes; no free oracle in benchmark",
+  "gates": "raw PFQ90% floor; additional root protection: no newly unallocated UE, effective-root P5/bottom20%>=98%",
+  "missing": "no eligible candidate is unknown, not zero",
+  "source_actions_sha256": "ce090fb3ffa25e97492c9e27413f9938928c82a9be3a1d1e39deda2a71b4300f",
+  "code_sha256": "000fc9e85e2d0cc1794a93941b6f03e8af61de60cf49aa5e3fb7e547084e2bad"
+}

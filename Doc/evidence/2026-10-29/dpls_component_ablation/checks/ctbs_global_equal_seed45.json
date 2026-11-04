@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "arm": "ctbs_global_equal",
+  "seed": 45,
+  "full_exogenous_ttis": 28400,
+  "common_pfq_ttis": 4000,
+  "common_first_decision_input": true,
+  "native_decode_counts_and_goodput_exact": true,
+  "independent_input_samples": [
+    {
+      "tti": 4000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.312059193489302e-06,
+      "w_unitary_max_abs": 1.2377409677188922e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.1332392702456673e-05,
+      "subband_max_relative": 0.00048015299152892105,
+      "worst_relative_index": [
+        22,
+        14,
+        3
+      ],
+      "worst_relative_gamma": 0.0003197873061009546,
+      "worst_relative_native": 0.00031994085293263197,
+      "worst_relative_abs": 1.5354683167734815e-07,
+      "wb_first_layer_max_abs_db": 8.564856130988119e-07
+    },
+    {
+      "tti": 4001,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3090732582336859e-06,
+      "w_unitary_max_abs": 1.2158792106475858e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 7.93468223392324e-06,
+      "subband_max_relative": 0.00010642162227275767,
+      "worst_relative_index": [
+        30,
+        6,
+        3
+      ],
+      "worst_relative_gamma": 0.001743424129731468,
+      "worst_relative_native": 0.0017436096677556634,
+      "worst_relative_abs": 1.8553802419549355e-07,
+      "wb_first_layer_max_abs_db": 1.0539889423455406e-06
+    },
+    {
+      "tti": 8000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3242413346322768e-06,
+      "w_unitary_max_abs": 1.18515363922711e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.560464628980185e-05,
+      "subband_max_relative": 0.0005042988116588403,
+      "worst_relative_index": [
+        32,
+        9,
+        3
+      ],
+      "worst_relative_gamma": 0.0001671840405918267,
+      "worst_relative_native": 0.00016709972987882793,
+      "worst_relative_abs": 8.431071299878153e-08,
+      "wb_first_layer_max_abs_db": 1.1800390087302048e-06
+    },
+    {
+      "tti": 8001,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.2110394856359145e-06,
+      "w_unitary_max_abs": 1.126939330964305e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.1908389160097954e-05,
+      "subband_max_relative": 0.0006250245986026439,
+      "worst_relative_index": [
+        29,
+        4,
+        3
+      ],
+      "worst_relative_gamma": 4.234755594025379e-05,
+      "worst_relative_native": 4.232108767610043e-05,
+      "worst_relative_abs": 2.6468264153360133e-08,
+      "wb_first_layer_max_abs_db": 1.0532542118468768e-06
+    },
+    {
+      "tti": 18000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.1543250369789154e-06,
+      "w_unitary_max_abs": 1.3235767353236838e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.0519702840383616e-05,
+      "subband_max_relative": 0.0002209649131470023,
+      "worst_relative_index": [
+        4,
+        5,
+        3
+      ],
+      "worst_relative_gamma": 0.0004780925571540664,
+      "worst_relative_native": 0.00047819819883443415,
+      "worst_relative_abs": 1.0564168036777651e-07,
+      "wb_first_layer_max_abs_db": 8.785318907911233e-07
+    },
+    {
+      "tti": 28000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.1822396352349957e-06,
+      "w_unitary_max_abs": 1.0907725573883198e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 9.246497306492074e-06,
+      "subband_max_relative": 0.00025519960403065195,
+      "worst_relative_index": [
+        15,
+        0,
+        3
+      ],
+      "worst_relative_gamma": 0.0003377478112050719,
+      "worst_relative_native": 0.0003378340043127537,
+      "worst_relative_abs": 8.619310768175374e-08,
+      "wb_first_layer_max_abs_db": 9.017643609610104e-07
+    }
+  ],
+  "complete_horizon": true,
+  "files": {
+    "metrics.bin": "3e8df4a691158ee95211a6ed062b12f764253a3c708ee723d642fc5e46d6754a",
+    "prefix.npz": "f2c5080b6020bed3420a7f76a8781947156a3aec804b6932259a747d5d5cb498",
+    "launch.json": "89b5fc91e062a82a60dc0136c0378495225bdaa88e66a20920a5f6d7180f90f8",
+    "execution.json": "0bbd2c6cd3ffc0eed85dcd68ea7b2ca9ad3a05d86080a5d22311314dba9892f1",
+    "validation.json": "9b64a29593f906d66ed8216f97248fc64d43c4cfe09456109dd5d1939724adaf",
+    "physical_validation.json": "19acb150481b28b5313fbb36edf78d9bb7cf681991af8dcc1319be9769c3712e"
+  }
+}

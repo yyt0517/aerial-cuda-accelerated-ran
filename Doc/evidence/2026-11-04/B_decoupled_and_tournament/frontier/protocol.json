@@ -1,0 +1,20 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/B_ttl_decoupled_20261104_v1",
+  "coefficients": [
+    0,
+    0.25,
+    0.5,
+    1,
+    2
+  ],
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "aggregation": "mean seed payload; expiry and success-P95 pooled across mature packets; worst expiry=max over all seed/UE pairs",
+  "pareto": "maximize payload; minimize expiry/P95/worstUE expiry; all four objectives, no outcome-driven scalar score",
+  "B_rule": "perseed payload/expiry no worse, P95<=baseline+1ms, worstUE<=max(baseworst+2pp,5%), no new zero or TTL gap",
+  "baseline": "same exact bounded solver, same initialized FIFO/EMA/native PHY; only weight urgency coefficient changes",
+  "confidence": "exposed training/development frontier, no holdout/generalization claim; no learned policy fitted"
+}

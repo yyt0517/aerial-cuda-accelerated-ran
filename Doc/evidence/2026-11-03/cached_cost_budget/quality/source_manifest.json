@@ -1,0 +1,8 @@
+{
+  "training/stageb_lns/cached_budget_campaign.py": "ec9af2e860b684620235b853a7063b6f3c4fc39d042490d31c3e27272a40b535",
+  "training/stageb_lns/budgeted_cached_dpls.py": "b17f03eaa606f7789df815d39927a088f88ee6775e2373b5e95903d6ceae578b",
+  "training/stageb_lns/dpls_operations.py": "9c59ae0a558b1585325df0136220cff8f439a48bebdb7d3b4b217b0d52d5fbd1",
+  "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+  "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4"
+}

@@ -1,0 +1,44 @@
+{
+  "stage": "complete",
+  "all_experiments_complete": true,
+  "teacher_training": {
+    "stage": "complete",
+    "iterations": 6,
+    "student_decisions": 27648,
+    "teacher_queries": 4608,
+    "generator_sha256": "55ddfb0c3c6c89f08bca966a18b349f22a0afc0482f05c0183f6daad8fa8a9c3",
+    "elapsed_s": 1094.0479553146288,
+    "no_teacher_action_overrides": true,
+    "convergence_proven": false
+  },
+  "ppo_training": {
+    "stage": "complete",
+    "samples": 36864,
+    "actor_updates": 2304,
+    "generator_unchanged": true,
+    "full_search_calls": 0,
+    "checkpoint_sha256": "b4f435b83882e126236576fc67047a0129fcdb74d08d1c07c4e4e5c9e0c40a5c",
+    "elapsed_s": 778.8234966965392,
+    "convergence_proven": false,
+    "promoted": false
+  },
+  "requested_target": {
+    "k4": {
+      "quality_passed": false,
+      "efficiency_passed": true,
+      "joint_passed": false,
+      "complete_search_calls_in_fast_inference": 0,
+      "promoted": false
+    },
+    "k8": {
+      "quality_passed": false,
+      "efficiency_passed": true,
+      "joint_passed": false,
+      "complete_search_calls_in_fast_inference": 0,
+      "promoted": false
+    }
+  },
+  "native_training_verified": true,
+  "native_evaluation_verified": true,
+  "promoted": false
+}

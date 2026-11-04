@@ -1,0 +1,12 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "threads": 1,
+  "gpu_used": false,
+  "dependency": "reuses frozen incremental C++ descriptor kernel; no kernel or physics rebuild in this campaign",
+  "timing_exclusions": [
+    "archive/model/library IO",
+    "first immutable TBS setup"
+  ]
+}

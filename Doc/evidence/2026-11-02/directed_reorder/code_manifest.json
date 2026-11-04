@@ -1,0 +1,48 @@
+{
+  "directed_reorder.py": {
+    "sha256": "2fe0d206a1a22a356fa42bdd8888f3f570a27d23cf13edee6f3ce51acc254bb4",
+    "origin": "deliverables/directed_reorder_20261102_v1/source/directed_reorder.py",
+    "role": "frozen before experiment"
+  },
+  "directed_reorder_kernel.cpp": {
+    "sha256": "3e884606f62df0d284e534d9d6e018b0ee4f6b6f99d5e036efbd28f516e7a50d",
+    "origin": "deliverables/directed_reorder_20261102_v1/source/directed_reorder_kernel.cpp",
+    "role": "frozen before experiment"
+  },
+  "directed_reorder_campaign.py": {
+    "sha256": "8d99f59ff4490f15f54c36d373b48842344c4a969779d7da9e036658417b107b",
+    "origin": "deliverables/directed_reorder_20261102_v1/source/directed_reorder_campaign.py",
+    "role": "frozen before experiment"
+  },
+  "test_directed_reorder.py": {
+    "sha256": "e4d647d7b0e7fe60907159d66deef05ce68ad9eae7316708a459ede78d1d5ce9",
+    "origin": "deliverables/directed_reorder_20261102_v1/source/test_directed_reorder.py",
+    "role": "frozen before experiment"
+  },
+  "directed_reorder_README.rst": {
+    "sha256": "b5cebe1bcaee611a9349889fe062a077f4659c05c15b6b49f17e4f33130eaca1",
+    "origin": "deliverables/directed_reorder_20261102_v1/source/directed_reorder_README.rst",
+    "role": "frozen before experiment"
+  },
+  "directed_reorder_diagnosis.py": {
+    "sha256": "328f6783d3ae57699d3d5d119f57ee2dbc773f5443ee2c655d2176a594339ae4",
+    "executed_sha256": "c56d1672d1995513891824b19b98cb0d29758979e47d586de6a002e594edc1fd",
+    "origin": "training/stageb_lns/directed_reorder_diagnosis.py",
+    "role": "one post-run JSON-index int cast;original in code/executed/;no scoring/policy change"
+  },
+  "executed/directed_reorder_diagnosis.py": {
+    "sha256": "c56d1672d1995513891824b19b98cb0d29758979e47d586de6a002e594edc1fd",
+    "origin": "deliverables/directed_reorder_20261102_v1/source/directed_reorder_diagnosis.py",
+    "role": "exact executed diagnostic source before JSON serialization fix"
+  },
+  "finalize_directed_reorder.py": {
+    "sha256": "9c81a857b7d631687ba62681f20959d84caa231d764b627b9b80053832128ad6",
+    "origin": "training/stageb_lns/finalize_directed_reorder.py",
+    "role": "post-execution archival recovery/audit/report;no new native scores"
+  },
+  "report_directed_reorder.py": {
+    "sha256": "160b0cc62062939c1c54e1682c9733ecce41c0a258bc76462f1659f5646597cb",
+    "origin": "training/stageb_lns/report_directed_reorder.py",
+    "role": "post-execution archival recovery/audit/report;no new native scores"
+  }
+}

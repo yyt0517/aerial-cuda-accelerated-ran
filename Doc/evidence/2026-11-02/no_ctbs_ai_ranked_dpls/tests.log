@@ -1,0 +1,38 @@
+test_entire_timed_path_ignores_ctbs_and_demand_masks (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_metadata_detach_never_invokes_headroom_or_mcs_methods (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_physical_prg_availability_is_preserved_without_ue_demand_clipping (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_metadata_preferred_and_invalid_ema_or_native_mcs_rejected (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_pfq_retains_prgs_after_queue_saturation (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_pfq_validates_native_slot_semantics (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_stale_phy_or_queue_observation_is_rejected (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_upcoming_decision_clock_requires_matching_snapshot_identity (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_activity_proxy_includes_unchanged_victim_ues (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_compiled_features_match_independent_numpy_reference (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_cross_prg_min_layer_lift_and_block_complement (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_feature_stream_permutation_invariance_and_empty_stream (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_incumbent_cache_refreshes_after_verified_action_changes (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_invalid_neighborhood_and_stale_context_are_rejected (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_no_candidate_physics_or_bler_query_and_full_logical_dequeues (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_ue_relabeling_preserves_features_and_scores (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_zero_output_is_exact_heuristic_and_numpy_matches_torch (training.stageb_lns.test_edit_ranker.EditRankerTests) ... ok
+test_first_two_rejections_still_reach_round_three (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_full_matches_independent_fixed_root_reference (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_passive_teacher_observer_does_not_change_decisions (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_ranked_full_k_has_identical_choices_and_no_duplicate_fallback (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_tiny_shortlist_ends_with_exact_full_stop_and_independent_phy (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_activity_change_recomputes_all_physical_neighbors (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_anytime_budget_floor_and_reproducibility (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_and_incremental_match_independent_reference (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_greedy_result_is_independent_of_batch_size (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_invalid_inputs_and_context_are_rejected (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_joint_block_crosses_a_single_edit_reliability_valley (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_late_verification_cannot_replace_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_nonmonotonic_native_curve_is_batch_invariant (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_policy_can_stop_and_return_verified_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_tb_layer_change_recomputes_resources_outside_block (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_ue_swap_does_not_invalidate_neighbor_mmse (training.stageb_lns.test_physics.PhysicalTests) ... ok
+
+----------------------------------------------------------------------
+Ran 33 tests in 2.107s
+
+OK

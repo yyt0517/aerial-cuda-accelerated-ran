@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "timing_gates_recomputed": true,
+  "source_model_registry_valid": true,
+  "training_changed": false,
+  "additional_native_scores": 0,
+  "oracle_heads_diagnostic_only": true
+}

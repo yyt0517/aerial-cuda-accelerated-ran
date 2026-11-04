@@ -1,0 +1,70 @@
+整包等待与包龄奖励 PPO 续训
+日期：2026-10-30
+
+推理成本：同状态、交替顺序、单计时进程，256 个状态来自训练 seeds 41–42，使用续训起点参数；本次网络与候选结构不变。纯 DPLS 平均 136.724 ms，完整候选池+PPO 平均 155.273 ms，为 1.136 倍；PPO 小网络自身 0.511 ms（总时间 0.329%）。当前完整 DPLS 仍逐时隙执行，没有搜索加速。测量为研究 Python 流程 wall time，不含原生环境推进；不是生产或 GPU kernel 延迟，也不是新策略闭环状态分布上的隔离计时。
+
+奖励：保留真实完整成功包 C 与整包过期 E。将剩余字节代价改为所有未结束整包 N×3000/400；另加 2×3000/400×Σclip((age−20)/20,0,1)。age 单位为 0.5 ms；10 ms 后上升、20 ms 后瞬时代价封顶。包含部分传输与 CRC 受损包，所有 UE 系数一致。原有清洁部分包进度势函数保留。原生独立包生命周期核验完整等待与包龄代价，不使用未来信息。
+
+复用：相同状态、候选生成、冻结神经修复、物理验证、98% 即时服务保留与 90% 原始 PFQ 出队下界。恢复上一轮 actor 和 Adam，因奖励目标变化重新初始化 critic。三个环境从相同 PFQ/DPLS 预热重启，不声称原生状态无缝接续。CTBS 裁剪及业务/服务缺口权重始终关闭。
+
+训练：固定 24 轮，新采样 73728 个决策，接受 actor 更新 4608 次。固定终点，不按开发集挑选检查点。行为概率、采样器、动作、GAE 边界、源码与原生整包核验通过。达到预算不等于收敛。
+
+开发验证：seeds 44–45，每条轨迹 4000 PFQ 预热+4000 稳定化+4000 测量+400 随访；同一成熟到达 cohort 8001–12000。既有基线按相同协议和输入核验复用，不重复计入新运行。以下是两个 seed 的等权均值，P95 是逐 seed P95 的均值：
+
+                  complete_payload_mbps  expiry_pct  success_delay_mean_ms  success_delay_p95_ms  ue_complete_payload_p5_mbps
+arm                                                                                                                          
+physical_greedy             1237.848000    0.850840               5.653563             10.000000                    33.376500
+previous_ppo                1240.686000    0.663141               7.012134             24.500000                    33.414000
+raw_global_equal            1237.926000    0.797593               5.886920             13.000000                    33.142500
+tail_ppo                    1235.202000    1.204550               4.340916              6.750000                    33.469500
+
+逐 seed 门槛：
+{
+  "strict_requested_target_passed": false,
+  "positive_gains_and_p95_passed": false,
+  "seeds": [
+    {
+      "seed": 44,
+      "checks": {
+        "p95_no_worse_than_equal_dpls": true,
+        "payload_previous_gain_fully_retained": false,
+        "expiry_previous_gain_fully_retained": false,
+        "payload_still_above_both_physical_controls": false,
+        "expiry_still_below_both_physical_controls": false,
+        "mean_delay_no_worse_than_equal_dpls": true,
+        "ue_p5_no_worse_than_equal_dpls": true
+      },
+      "strict_requested_target_passed": false,
+      "positive_gains_and_p95_passed": false
+    },
+    {
+      "seed": 45,
+      "checks": {
+        "p95_no_worse_than_equal_dpls": true,
+        "payload_previous_gain_fully_retained": false,
+        "expiry_previous_gain_fully_retained": false,
+        "payload_still_above_both_physical_controls": false,
+        "expiry_still_below_both_physical_controls": false,
+        "mean_delay_no_worse_than_equal_dpls": true,
+        "ue_p5_no_worse_than_equal_dpls": true
+      },
+      "strict_requested_target_passed": false,
+      "positive_gains_and_p95_passed": false
+    }
+  ],
+  "project_quality_passed": false,
+  "selected_checkpoint": "fixed 24th additional iteration, no development checkpoint selection",
+  "promoted": false
+}
+
+共同成功包对照用于区分等待改变与成功人群改变，见 matched_packets.csv；不替代全部到达 cohort 的吞吐、过期与时延门槛。所有到达包按 UE/包 ID/到达时隙精确对齐且测量 cohort 无截尾。
+
+优势与限制：复用物理能力保证动作可行，并把学习集中在跨时隙的整包完成/等待取舍。端到端成本增加；相比旧 PPO 的大幅恢复不能都归于强化学习。旧检查点与新奖励同时存在额外训练预算和 critic 重置差异，不能声称严格隔离了奖励的因果效应。44–45 已有开发暴露，仅两个 seed 的短窗口不支持统计显著性或泛化结论；311–315 未使用。没有晋级或更换默认算法。
+
+训练诊断：末轮逐 seed 的 GAE 目标解释方差为 41: -4.710355, 42: -0.748118, 43: -4.225528。这属于训练标签拟合指标，并非未见真实回报精度。
+状态可观测性检查：构造相同队首年龄、整包数、剩余量和近 TTL 比例的两条队列，中间包年龄不同，新包龄成本也不同，而既有包状态特征完全相同。这说明现有状态不能完整区分中间包年龄分布；只是一项观察别名诊断，不能单凭它确定最终性能差异的原因。见 observability_probe.json。
+价值预测补充检查：在第 6/8/10 轮的固定 GAE 标签上，用相同聚合特征比较带正则的线性模型；每个 seed 前 75% 拟合、后 25% 时间留出。简单模型没有获得跨轮次一致的留出 MSE 改善，因而未据此更换正在训练的 critic。该回归诊断不是真实回报或策略收益验证，见 critic_probe.csv。
+队列组成检查：上一轮开发窗口中，受损包仅占时间平均未结束包的约 0.5%，所占包龄代价不足 0.1%；整包等待代价比剩余字节代价增加约 3.6%–3.8%。本次增加的包龄项主要作用于仍有成功机会的包。新版同口径队列组成见 fifo_composition.csv；等待中包龄是长度偏置的在队统计，不应当作成功包时延。
+
+最终检查点：/opt/nvidia/cuBB/deliverables/ppo_tail_wait_20261030_v1/formal/ppo_final.pt
+SHA256：cb4408ecbdaa363af0f02fe8d412ad5f1988a7a3c0ba092efb7e62d5606da6f0

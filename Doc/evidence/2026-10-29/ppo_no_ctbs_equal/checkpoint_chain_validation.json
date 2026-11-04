@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "iterations": [
+    {
+      "iteration": 1,
+      "seed": 41,
+      "native_actions": 512,
+      "actor_optimizer_steps": 2,
+      "critic_optimizer_steps": 64,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 2,
+      "seed": 42,
+      "native_actions": 512,
+      "actor_optimizer_steps": 4,
+      "critic_optimizer_steps": 128,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 3,
+      "seed": 43,
+      "native_actions": 512,
+      "actor_optimizer_steps": 6,
+      "critic_optimizer_steps": 192,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 4,
+      "seed": 41,
+      "native_actions": 512,
+      "actor_optimizer_steps": 8,
+      "critic_optimizer_steps": 256,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 5,
+      "seed": 42,
+      "native_actions": 512,
+      "actor_optimizer_steps": 10,
+      "critic_optimizer_steps": 320,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 6,
+      "seed": 43,
+      "native_actions": 512,
+      "actor_optimizer_steps": 12,
+      "critic_optimizer_steps": 384,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 7,
+      "seed": 41,
+      "native_actions": 512,
+      "actor_optimizer_steps": 14,
+      "critic_optimizer_steps": 448,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 8,
+      "seed": 42,
+      "native_actions": 512,
+      "actor_optimizer_steps": 16,
+      "critic_optimizer_steps": 512,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 9,
+      "seed": 43,
+      "native_actions": 512,
+      "actor_optimizer_steps": 18,
+      "critic_optimizer_steps": 576,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 10,
+      "seed": 41,
+      "native_actions": 512,
+      "actor_optimizer_steps": 20,
+      "critic_optimizer_steps": 640,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 11,
+      "seed": 42,
+      "native_actions": 512,
+      "actor_optimizer_steps": 22,
+      "critic_optimizer_steps": 704,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    },
+    {
+      "iteration": 12,
+      "seed": 43,
+      "native_actions": 512,
+      "actor_optimizer_steps": 24,
+      "critic_optimizer_steps": 768,
+      "behavior_distribution_exact_first_state": true,
+      "sampler_chain_exact": true
+    }
+  ],
+  "total_native_ppo_actions": 6144,
+  "actor_optimizer_steps": 24,
+  "final_critic_optimizer_steps": 768
+}

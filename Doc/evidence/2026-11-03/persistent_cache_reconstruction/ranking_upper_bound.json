@@ -1,0 +1,10 @@
+{
+  "cache_profile_ms": 10.980696029340228,
+  "cache_PHY_ms": 8.146076583333334,
+  "remaining_non_PHY_ms": 2.8346194460068936,
+  "deleting_all_PHY_further_speedup_upper_bound": 3.8737813800045187,
+  "first_scan_wall_fraction_mean": 0.2556342138909495,
+  "interpretation": "very loose Amdahl bound: unrealistically deletes all PHY including mandatory first scan; excludes ranking/verification overhead; not an M forecast",
+  "M_paused": true,
+  "learning_paused": true
+}

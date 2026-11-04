@@ -1,0 +1,907 @@
+{
+  "posthoc": true,
+  "additional_physical_scores": 0,
+  "teacher_positive_used_only_in_audit": true,
+  "groups": [
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "quota_p5",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "quota_log",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "quota_exp",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "frontier_reference",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "frontier_fast",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "quota_p5",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "quota_log",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "quota_exp",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "frontier_reference",
+      "group_size": 17,
+      "missing_reference_positive": [
+        34
+      ],
+      "extra_nonreference": [
+        5,
+        25
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "frontier_fast",
+      "group_size": 17,
+      "missing_reference_positive": [
+        34
+      ],
+      "extra_nonreference": [
+        5,
+        25
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "quota_p5",
+      "group_size": 19,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        5,
+        23,
+        25
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "quota_log",
+      "group_size": 19,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        5,
+        23,
+        25
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "quota_exp",
+      "group_size": 19,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        5,
+        23,
+        25
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "quota_p5",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "quota_log",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "quota_exp",
+      "group_size": 13,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "frontier_reference",
+      "group_size": 15,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "frontier_fast",
+      "group_size": 15,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "quota_p5",
+      "group_size": 15,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "quota_log",
+      "group_size": 15,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "quota_exp",
+      "group_size": 15,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "frontier_reference",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "frontier_fast",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "quota_p5",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "quota_log",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "quota_exp",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 15,
+      "missing_reference_positive": [
+        16
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 15,
+      "missing_reference_positive": [
+        16
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "quota_p5",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "quota_log",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "quota_exp",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "frontier_reference",
+      "group_size": 17,
+      "missing_reference_positive": [
+        35
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "frontier_fast",
+      "group_size": 17,
+      "missing_reference_positive": [
+        35
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "quota_p5",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "quota_log",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "quota_exp",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "frontier_reference",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        20,
+        27
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "frontier_fast",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        20,
+        27
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "quota_p5",
+      "group_size": 19,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        13,
+        20,
+        27
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "quota_log",
+      "group_size": 19,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        13,
+        20,
+        27
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "quota_exp",
+      "group_size": 19,
+      "missing_reference_positive": [],
+      "extra_nonreference": [
+        13,
+        20,
+        27
+      ]
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 15,
+      "missing_reference_positive": [
+        16
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 15,
+      "missing_reference_positive": [
+        16
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "quota_p5",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "quota_log",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "quota_exp",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "frontier_reference",
+      "group_size": 14,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "frontier_fast",
+      "group_size": 14,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "quota_p5",
+      "group_size": 14,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "quota_log",
+      "group_size": 14,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "quota_exp",
+      "group_size": 14,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "frontier_reference",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "frontier_fast",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "quota_p5",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "quota_log",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "quota_exp",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "frontier_reference",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "frontier_fast",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "quota_p5",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "quota_log",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "quota_exp",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "quota_p5",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "quota_log",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "quota_exp",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "frontier_reference",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "frontier_fast",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "quota_p5",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "quota_log",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "quota_exp",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "frontier_reference",
+      "group_size": 15,
+      "missing_reference_positive": [
+        26
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "frontier_fast",
+      "group_size": 15,
+      "missing_reference_positive": [
+        26
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "quota_p5",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "quota_log",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "quota_exp",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "quota_p5",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "quota_log",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "quota_exp",
+      "group_size": 12,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "frontier_reference",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "frontier_fast",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "quota_p5",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "quota_log",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "quota_exp",
+      "group_size": 16,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "frontier_reference",
+      "group_size": 20,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "frontier_fast",
+      "group_size": 20,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "quota_p5",
+      "group_size": 20,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "quota_log",
+      "group_size": 20,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "quota_exp",
+      "group_size": 20,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "frontier_reference",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "frontier_fast",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "quota_p5",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "quota_log",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "quota_exp",
+      "group_size": 18,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "frontier_reference",
+      "group_size": 16,
+      "missing_reference_positive": [
+        0
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "frontier_fast",
+      "group_size": 16,
+      "missing_reference_positive": [
+        0
+      ],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "quota_p5",
+      "group_size": 17,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "quota_log",
+      "group_size": 17,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "quota_exp",
+      "group_size": 17,
+      "missing_reference_positive": [],
+      "extra_nonreference": []
+    }
+  ]
+}

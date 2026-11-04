@@ -1,0 +1,7 @@
+{
+  "training/stageb_lns/gamma_soa.cpp": "0ab55b71f542848d9d662455946db85d087303f1a14ab71389451765b7029356",
+  "training/stageb_lns/gamma_bridge.cpp": "e65827aa7bbf92df78000738ea82d1ed128aa04ec3cfb9783687a8d51a008cb7",
+  "training/stageb_lns/build_gamma_soa.py": "f7a9a439896ce11f320cc09667ff5baf58dfba0fff169f9c854ffed25e2d755d",
+  "training/stageb_lns/_gamma_soa.so": "98acff5e7a3330d3d8ec5431fe6dea5797b8a2e7a4829e83b12e478f389578e6",
+  "training/stageb_lns/audit_gamma_soa.py": "1947fc6de34545bd40cd949838f45e47778793f6f1c1e5618aeaea99c3d72cdd"
+}

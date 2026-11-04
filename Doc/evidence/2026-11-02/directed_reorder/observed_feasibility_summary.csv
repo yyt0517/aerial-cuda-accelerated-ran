@@ -1,0 +1,11 @@
+phase,arm,states,states_with_joint_candidate,max_required_internal_loss_pct
+validation,baseline,12,11,0.0
+validation,existing2,12,12,1.696687133990249
+validation,joint2,12,12,1.696687133990249
+validation,joint4,12,12,1.1991849965262036
+validation,sparse2,12,12,1.1821111783137606
+evaluation,baseline,9,8,0.0
+evaluation,existing2,9,9,0.0
+evaluation,joint2,9,9,0.0
+evaluation,joint4,9,9,0.0
+evaluation,sparse2,9,9,0.0

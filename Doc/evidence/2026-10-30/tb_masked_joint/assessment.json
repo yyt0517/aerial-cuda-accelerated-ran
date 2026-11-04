@@ -1,0 +1,31 @@
+{
+  "engineering_checks_passed": true,
+  "tests_passed": 25,
+  "quality_and_speed_improvement_demonstrated": false,
+  "strict_local_escapes": 0,
+  "physical_beam_stop_escapes": 0,
+  "actual_speed_ratio_vs_79": 12.962305315607058,
+  "actual_speed_ratio_vs_physical4": 42.882725469439166,
+  "relative_J_vs_physical4_pct": -45.10046685368653,
+  "optimization_identical_actions_and_work": true,
+  "optimization_identical_escape_results": true,
+  "timing_before_ms": 17.474170877701706,
+  "timing_after_ms": 10.851721693244246,
+  "timing_parts_before": {
+    "context": 1.9314606087627233,
+    "masks": 9.186259953788033,
+    "neural": 4.698481928143236,
+    "verification": 0.5560927437963309,
+    "other": 1.1018756432113825
+  },
+  "timing_parts_after": {
+    "context": 1.9555460937597133,
+    "masks": 2.5034281597645194,
+    "neural": 4.712980723491421,
+    "verification": 0.5521708064609103,
+    "other": 1.127595909767681
+  },
+  "baseline_79_unchanged": true,
+  "no_active_algorithm_replacement": true,
+  "scope": "27 historical frozen states, three seeds; no new native closed-loop rollout"
+}

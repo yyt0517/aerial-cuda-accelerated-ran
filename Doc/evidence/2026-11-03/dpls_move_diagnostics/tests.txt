@@ -1,0 +1,11 @@
+test_delta_matching_removes_global_score_shift_without_phy (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_operator_keys_survive_unrelated_root_and_row_order_changes (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_roundoff_in_reused_gain_can_break_original_index_tie (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_scalar_proxy_and_logical_tb_match_independent_full_actions (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_structurally_independent_moves_can_violate_combined_floor (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_support_distinguishes_swap_and_neighbor_activity_change (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.024s
+
+OK

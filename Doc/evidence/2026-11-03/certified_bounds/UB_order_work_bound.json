@@ -1,0 +1,24 @@
+[
+  {
+    "method": "capacity",
+    "conditional_evaluations_upper_bound": 23718,
+    "initializations_retained": 20,
+    "total_evaluations_upper_bound": 23738,
+    "ratio_original_full": 0.03799964782532136,
+    "ratio_existing_cache": 0.1296598736064759,
+    "basis": "UB-priority descending, valid bounds, exhaustive logical domain, tie-safe certificate; count all entries each round, even deferred/never-cached entries",
+    "interpretation": "mathematical scoring-count bound on frozen path, not an executed lazy trajectory or wall-time claim",
+    "finite_kernel_certificate": true
+  },
+  {
+    "method": "theory_added",
+    "conditional_evaluations_upper_bound": 23428,
+    "initializations_retained": 20,
+    "total_evaluations_upper_bound": 23448,
+    "ratio_original_full": 0.03753541756711329,
+    "ratio_existing_cache": 0.12807585796295587,
+    "basis": "UB-priority descending, valid bounds, exhaustive logical domain, tie-safe certificate; count all entries each round, even deferred/never-cached entries",
+    "interpretation": "mathematical scoring-count bound on frozen path, not an executed lazy trajectory or wall-time claim",
+    "finite_kernel_certificate": false
+  }
+]

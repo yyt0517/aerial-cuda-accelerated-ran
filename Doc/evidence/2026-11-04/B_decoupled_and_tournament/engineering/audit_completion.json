@@ -1,0 +1,9 @@
+{
+  "completed": true,
+  "bitwise_equivalence_passed": true,
+  "states": 252,
+  "rounds": 6905,
+  "candidates": 10006941,
+  "new_native_runs": 0,
+  "training_steps": 0
+}

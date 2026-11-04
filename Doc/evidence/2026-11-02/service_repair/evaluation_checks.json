@@ -1,0 +1,505 @@
+{
+  "repeats_actions_values_sets_identical": true,
+  "unlocked_main_prefix_identical": true,
+  "matched_cardinalities": true,
+  "quality_fence_and_floor_valid": true,
+  "caps_valid": true,
+  "teacher_masks_never_online": true,
+  "independent_phy": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "legacy_ai212",
+      "max_error": 2.3646862246096134e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "unprotected212",
+      "max_error": 4.729372449219227e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "main180",
+      "max_error": 4.729372449219227e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "all_pfq_guard212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned_lock_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "heuristic_repair32",
+      "max_error": 4.729372449219227e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "matched_repair32",
+      "max_error": 4.729372449219227e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned_repair32",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned_repair64",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "legacy_ai212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "unprotected212",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "main180",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "all_pfq_guard212",
+      "max_error": 4.092726157978177e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 4.774847184307873e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned_lock_repair32",
+      "max_error": 4.774847184307873e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "heuristic_repair32",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "matched_repair32",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned_repair32",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned_repair64",
+      "max_error": 4.547473508864641e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "full",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "legacy_ai212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "unprotected212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "main180",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "all_pfq_guard212",
+      "max_error": 6.821210263296962e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned_lock_repair32",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "heuristic_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "matched_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned_repair64",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "full",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "legacy_ai212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "unprotected212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "main180",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "all_pfq_guard212",
+      "max_error": 2.7284841053187847e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned_lock_repair32",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "heuristic_repair32",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "matched_repair32",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned_repair32",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned_repair64",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "full",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "legacy_ai212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "unprotected212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "main180",
+      "max_error": 7.048583938740194e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "all_pfq_guard212",
+      "max_error": 7.048583938740194e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned_lock_repair32",
+      "max_error": 7.048583938740194e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "heuristic_repair32",
+      "max_error": 7.048583938740194e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "matched_repair32",
+      "max_error": 1.2732925824820995e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned_repair64",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "full",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "legacy_ai212",
+      "max_error": 4.547473508864641e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "unprotected212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "main180",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "all_pfq_guard212",
+      "max_error": 2.6858515411731787e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned_lock_repair32",
+      "max_error": 2.6858515411731787e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "heuristic_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "matched_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned_repair32",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned_repair64",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "full",
+      "max_error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "legacy_ai212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "unprotected212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "main180",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "all_pfq_guard212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned_lock_repair32",
+      "max_error": 7.048583938740194e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "heuristic_repair32",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "matched_repair32",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned_repair32",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned_repair64",
+      "max_error": 6.821210263296962e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "legacy_ai212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "unprotected212",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "main180",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "all_pfq_guard212",
+      "max_error": 3.282707439211663e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned_lock_repair32",
+      "max_error": 4.092726157978177e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "heuristic_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "matched_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned_repair32",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned_repair64",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "legacy_ai212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "unprotected212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "main180",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "all_pfq_guard212",
+      "max_error": 1.5347723092418164e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "heuristic_lock_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned_lock_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "heuristic_repair32",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "matched_repair32",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned_repair32",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned_repair64",
+      "max_error": 7.275957614183426e-12
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+new,old,seed,j_delta
+unprotected212,main180,44,419.24256451936526
+unprotected212,main180,45,295.0018977279372
+learned_repair32,main180,44,90.0026065318137
+learned_repair32,main180,45,111.00350450535431
+learned_repair32,unprotected212,44,-329.2399579875516
+learned_repair32,unprotected212,45,-183.9983932225829
+learned_repair32,matched_repair32,44,273.1531697732983
+learned_repair32,matched_repair32,45,189.4432041898035
+learned_repair32,heuristic_repair32,44,178.07286687101927
+learned_repair32,heuristic_repair32,45,172.32806044171107
+learned_lock_repair32,heuristic_lock_repair32,44,1504.3596855790117
+learned_lock_repair32,heuristic_lock_repair32,45,74.14046339756653
+learned_lock_repair32,all_pfq_guard212,44,10670.89740902333
+learned_lock_repair32,all_pfq_guard212,45,5751.339241718969
+learned_repair64,learned_repair32,44,-330.74103271139273
+learned_repair64,learned_repair32,45,199.62822309183443

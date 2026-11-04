@@ -1,0 +1,7 @@
+{
+  "previous_partial": "deliverables/crossload_report_partial_20261104_v1",
+  "reason": "diagnostic reader was started before extra phase columns were added; supplement phases directly from immutable npy",
+  "new_native_steps_due_to_retry": 0,
+  "new_PHY_due_to_retry": 0,
+  "refitted": false
+}

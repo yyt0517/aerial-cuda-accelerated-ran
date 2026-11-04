@@ -1,0 +1,7 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1",
+  "thresholds": "inherited unchanged from anytime_dpls_step0/next_protocol.json; per-load work mean<=.25/P95<=.40, serial wallmean/full<=.40",
+  "wall": "all240 saved states, three serial alternating repeats, mean of per-state medians; shared host",
+  "native_tail": "all4000 measuredTTIs per seed/load, sequential CPU255; max retained, no invented realtime deadline",
+  "load": "baseline0.8; x1.4=1.12 x1.6=1.28; density growth versus baseline reported without hiding it"
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "arm": "unprotected212",
+    "main_phy": 211.0,
+    "repair_phy": 0.0,
+    "repair_submitted": 0.0,
+    "repair_accepted": 0.0,
+    "repair_j_losses": 0.0,
+    "main_ms": 69.2782062623236,
+    "repair_ms": 0.00028550210926267836,
+    "proposal_ms": 0.0,
+    "feature_ms": 15.63238456017441,
+    "candidate_generation_ms": 37.00068479196892,
+    "proxy_candidates": 7329.88888888889,
+    "memo_hits": 0.3333333333333333,
+    "feature_roots": 29.0,
+    "repair_stop_counts": {
+      "disabled": 9
+    }
+  },
+  {
+    "arm": "main180",
+    "main_phy": 180.0,
+    "repair_phy": 0.0,
+    "repair_submitted": 0.0,
+    "repair_accepted": 0.0,
+    "repair_j_losses": 0.0,
+    "main_ms": 59.04931626800033,
+    "repair_ms": 0.0002916074461407131,
+    "proposal_ms": 0.0,
+    "feature_ms": 13.413351339598497,
+    "candidate_generation_ms": 31.519850095113117,
+    "proxy_candidates": 6269.11111111111,
+    "memo_hits": 0.3333333333333333,
+    "feature_roots": 27.11111111111111,
+    "repair_stop_counts": {
+      "disabled": 9
+    }
+  },
+  {
+    "arm": "heuristic_lock_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.0,
+    "repair_accepted": 3.555555555555556,
+    "repair_j_losses": 1.8888888888888886,
+    "main_ms": 60.348783412741284,
+    "repair_ms": 50.48749833885167,
+    "proposal_ms": 0.665172210170163,
+    "feature_ms": 22.583250370290546,
+    "candidate_generation_ms": 54.4152022856805,
+    "proxy_candidates": 10817.77777777778,
+    "memo_hits": 0.1111111111111111,
+    "feature_roots": 30.11111111111111,
+    "repair_stop_counts": {
+      "repair_budget": 9
+    }
+  },
+  {
+    "arm": "learned_lock_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.0,
+    "repair_accepted": 3.0,
+    "repair_j_losses": 1.777777777777778,
+    "main_ms": 59.857553285029205,
+    "repair_ms": 50.57280376139614,
+    "proposal_ms": 0.6943344035082394,
+    "feature_ms": 22.34877263092332,
+    "candidate_generation_ms": 53.86029980662796,
+    "proxy_candidates": 10710.444444444443,
+    "memo_hits": 0.1111111111111111,
+    "feature_roots": 29.555555555555557,
+    "repair_stop_counts": {
+      "repair_budget": 9
+    }
+  },
+  {
+    "arm": "heuristic_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.0,
+    "repair_accepted": 4.111111111111111,
+    "repair_j_losses": 2.6666666666666665,
+    "main_ms": 58.57434889508618,
+    "repair_ms": 50.099060560266174,
+    "proposal_ms": 0.6543179560038778,
+    "feature_ms": 22.221183197365864,
+    "candidate_generation_ms": 53.73403833558162,
+    "proxy_candidates": 10698.555555555557,
+    "memo_hits": 0.3333333333333333,
+    "feature_roots": 31.444444444444446,
+    "repair_stop_counts": {
+      "repair_budget": 9
+    }
+  },
+  {
+    "arm": "matched_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.0,
+    "repair_accepted": 4.0,
+    "repair_j_losses": 2.888888888888889,
+    "main_ms": 58.392157881624165,
+    "repair_ms": 50.37788653539287,
+    "proposal_ms": 0.7440639245841237,
+    "feature_ms": 22.18560077663925,
+    "candidate_generation_ms": 53.56246326118708,
+    "proxy_candidates": 10698.888888888889,
+    "memo_hits": 0.3333333333333333,
+    "feature_roots": 31.333333333333332,
+    "repair_stop_counts": {
+      "repair_budget": 9
+    }
+  },
+  {
+    "arm": "learned_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.0,
+    "repair_accepted": 4.111111111111111,
+    "repair_j_losses": 2.6666666666666665,
+    "main_ms": 58.64730032367839,
+    "repair_ms": 50.32223732107215,
+    "proposal_ms": 0.6883198188410865,
+    "feature_ms": 22.234705173306995,
+    "candidate_generation_ms": 53.65984804100461,
+    "proxy_candidates": 10699.0,
+    "memo_hits": 0.3333333333333333,
+    "feature_roots": 31.555555555555554,
+    "repair_stop_counts": {
+      "repair_budget": 9
+    }
+  },
+  {
+    "arm": "learned_repair64",
+    "main_phy": 148.0,
+    "repair_phy": 64.0,
+    "repair_submitted": 64.1111111111111,
+    "repair_accepted": 5.777777777777779,
+    "repair_j_losses": 3.5555555555555554,
+    "main_ms": 48.123360197577206,
+    "repair_ms": 100.74123916112715,
+    "proposal_ms": 0.691646503077613,
+    "feature_ms": 28.79956333587567,
+    "candidate_generation_ms": 70.40954267399178,
+    "proxy_candidates": 14028.666666666666,
+    "memo_hits": 0.3333333333333333,
+    "feature_roots": 31.0,
+    "repair_stop_counts": {
+      "repair_budget": 9
+    }
+  }
+]

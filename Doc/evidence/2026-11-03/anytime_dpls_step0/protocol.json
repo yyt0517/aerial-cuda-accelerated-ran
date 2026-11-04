@@ -1,0 +1,27 @@
+{
+  "output": "deliverables/anytime_dpls_20261103_smoke_v3",
+  "seeds": [
+    41
+  ],
+  "arms": [
+    "cold_full",
+    "warm_full",
+    "warm_n3"
+  ],
+  "warmup": 4000,
+  "settling": 0,
+  "measured": 32,
+  "followup": 0,
+  "trace_every": 1,
+  "save_every": 8,
+  "replay": null,
+  "repeats": 3,
+  "scope": "step0/A controls; no learned component, no promotion",
+  "objective": "canonical native BLER, no CTBS, causal deficit EMA(.995), own raw PFQ ceil90% floor",
+  "overlap": "exact slot, active-slot assignment Jaccard, and activity-only agreement; adjacent executed actions",
+  "counters": "all scored complete candidates incl PFQ/warm initialization; affected UE and MMSE requests/misses separate",
+  "traces": "all candidate exact J/delta, eligibility, compressed actions, chosen action; no extra scoring",
+  "residual_time": "other_ms includes NumPy/C/allocations and Python; not an exclusive Python profile",
+  "phase_gate": "Smoke/capture does not establish unified quality/weak-UE or speed gates",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3"
+}

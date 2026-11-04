@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "arm": "raw_global_equal",
+  "seed": 42,
+  "full_exogenous_ttis": 28400,
+  "common_pfq_ttis": 4000,
+  "common_first_decision_input": true,
+  "native_decode_counts_and_goodput_exact": true,
+  "independent_input_samples": [
+    {
+      "tti": 4000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3822953621422388e-06,
+      "w_unitary_max_abs": 1.1890475892784025e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 3.9556617309699504e-05,
+      "subband_max_relative": 0.0012197972793710863,
+      "worst_relative_index": [
+        26,
+        4,
+        3
+      ],
+      "worst_relative_gamma": 3.714936607612043e-05,
+      "worst_relative_native": 3.7194680771790445e-05,
+      "worst_relative_abs": 4.531469567001223e-08,
+      "wb_first_layer_max_abs_db": 8.119942620510301e-07
+    },
+    {
+      "tti": 4001,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3117711401877377e-06,
+      "w_unitary_max_abs": 1.1763452003599184e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.917061498346584e-05,
+      "subband_max_relative": 0.0005394026398752123,
+      "worst_relative_index": [
+        20,
+        13,
+        3
+      ],
+      "worst_relative_gamma": 0.0002804268920646716,
+      "worst_relative_native": 0.0002805781550705433,
+      "worst_relative_abs": 1.512630058716851e-07,
+      "wb_first_layer_max_abs_db": 9.466645938260854e-07
+    },
+    {
+      "tti": 8000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3750816439543626e-06,
+      "w_unitary_max_abs": 1.3044129278938499e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.2201874611150743e-05,
+      "subband_max_relative": 0.00017565771540141643,
+      "worst_relative_index": [
+        2,
+        15,
+        3
+      ],
+      "worst_relative_gamma": 0.00015991675358775488,
+      "worst_relative_native": 0.00015994484419934452,
+      "worst_relative_abs": 2.8090611589636286e-08,
+      "wb_first_layer_max_abs_db": 1.1610241781312425e-06
+    },
+    {
+      "tti": 8001,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.2414466127797038e-06,
+      "w_unitary_max_abs": 1.345886644132932e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.4905917296914595e-05,
+      "subband_max_relative": 0.002452611587996557,
+      "worst_relative_index": [
+        29,
+        12,
+        3
+      ],
+      "worst_relative_gamma": 1.3318952473472633e-05,
+      "worst_relative_native": 1.3351618690649047e-05,
+      "worst_relative_abs": 3.2666217176414387e-08,
+      "wb_first_layer_max_abs_db": 8.927132810754301e-07
+    },
+    {
+      "tti": 18000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.5646679035180205e-06,
+      "w_unitary_max_abs": 1.3137756731396166e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 2.738440940674991e-05,
+      "subband_max_relative": 0.0008705067119654202,
+      "worst_relative_index": [
+        16,
+        5,
+        3
+      ],
+      "worst_relative_gamma": 2.274968895924508e-05,
+      "worst_relative_native": 2.276949271617923e-05,
+      "worst_relative_abs": 1.9803756934148458e-08,
+      "wb_first_layer_max_abs_db": 9.819362993823688e-07
+    },
+    {
+      "tti": 28000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.2175956301799916e-06,
+      "w_unitary_max_abs": 1.0858610299813165e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 2.085178277866362e-05,
+      "subband_max_relative": 0.0009550526046877013,
+      "worst_relative_index": [
+        33,
+        16,
+        3
+      ],
+      "worst_relative_gamma": 0.00010149471448247682,
+      "worst_relative_native": 0.0001013977816910483,
+      "worst_relative_abs": 9.693279142852405e-08,
+      "wb_first_layer_max_abs_db": 1.0625330002511646e-06
+    }
+  ],
+  "complete_horizon": true,
+  "files": {
+    "metrics.bin": "ba31e3703299f2705c6fae432f57cc4573641d0a50508b17fd2b4292f26c1000",
+    "prefix.npz": "46ae59573fa631f571e50b28cd023a4b4a85a3923b242c78e13514650e6c8162",
+    "launch.json": "8eb9df624530da244e4f999e65808e98f894ef66f84da69f32be37c22df470d4",
+    "execution.json": "5534447e23ce71725262695779661460b42e4e82b503ddb03b7669e599612282",
+    "validation.json": "28a8ca4a3370447c31b5f340461cdfde85ce06452a354e351866b7afbade4e04",
+    "physical_validation.json": "75b25429c35bbb616930509ef57320cd26fc8e51d3b25411ffa576a1d53a1534"
+  }
+}

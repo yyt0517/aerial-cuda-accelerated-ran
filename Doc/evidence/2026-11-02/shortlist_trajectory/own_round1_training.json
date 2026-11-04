@@ -1,0 +1,51 @@
+{
+  "groups": 179,
+  "epochs": 20,
+  "normalization": "frozen original scalar training mean/scale",
+  "optimizer": "fresh AdamW lr0.0005",
+  "labels": "immediate exact whole-TB gain; no multi-TTI or suffix-value supervision",
+  "selected_epoch": 10,
+  "selected": "/data/aerial-cuda-accelerated-ran/deliverables/shortlist_trajectory_20261102_v1/own_r1_e10.npz",
+  "history": [
+    {
+      "epoch": 0,
+      "loss": null,
+      "quality": false,
+      "coverage": false,
+      "mean_ratio": 0.9135084863645242,
+      "mean_time_ratio": 0.5752149074612446,
+      "mean_positive_p5": 0.3026026792672687,
+      "mean_newly_unserved": 2.5
+    },
+    {
+      "epoch": 5,
+      "loss": 4.066681052219934,
+      "quality": false,
+      "coverage": false,
+      "mean_ratio": 0.9153428171567121,
+      "mean_time_ratio": 0.4992923460999827,
+      "mean_positive_p5": 0.22780383285347766,
+      "mean_newly_unserved": 1.8333333333333335
+    },
+    {
+      "epoch": 10,
+      "loss": 3.991983533571552,
+      "quality": false,
+      "coverage": false,
+      "mean_ratio": 0.934516619931917,
+      "mean_time_ratio": 0.49244367628728275,
+      "mean_positive_p5": 0.384859047024234,
+      "mean_newly_unserved": 1.6666666666666665
+    },
+    {
+      "epoch": 20,
+      "loss": 3.893032326045649,
+      "quality": false,
+      "coverage": false,
+      "mean_ratio": 0.9205175205807312,
+      "mean_time_ratio": 0.5026839436915861,
+      "mean_positive_p5": 0.16766754704962877,
+      "mean_newly_unserved": 2.0
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "engineering_passed": true,
+  "full_step0_complete": false,
+  "A_quality_gate_evaluated": false,
+  "A_cost_gate_evaluated": false,
+  "weak_ue_gate_evaluated": false,
+  "learned_component_added": false,
+  "registry_changed": false
+}

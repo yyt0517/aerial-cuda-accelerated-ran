@@ -1,0 +1,8 @@
+{
+  "quality_best": "single_b424",
+  "within_cost_best": "shortlist_trained212",
+  "cost_feasible": true,
+  "rule": "validation only; gates, J shortfall, service shortfall, mean ratio; lower complete time on ties",
+  "development_not_read_in_this_run": true,
+  "historical_exposure": true
+}

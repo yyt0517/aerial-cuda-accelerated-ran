@@ -1,0 +1,53 @@
+{
+  "geometry": "shallow",
+  "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1/own_r2_e00.npz",
+  "sha256": "b1f123161eb4f5b472d2c07cb5c5de0349c2b56f7e25c768565b1d305e018e15",
+  "initial_sha256": "667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e",
+  "weights_changed": true,
+  "rounds": [
+    {
+      "round": 1,
+      "collected_groups": 144,
+      "new_roots_vs_existing": 126,
+      "unique_own_roots": 144,
+      "combined_groups": 179,
+      "selection": {
+        "epoch": 5,
+        "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1/own_r1_e05.npz",
+        "sha256": "b1f123161eb4f5b472d2c07cb5c5de0349c2b56f7e25c768565b1d305e018e15",
+        "metric": {
+          "quality": false,
+          "coverage": false,
+          "cost": false,
+          "time_ratio": 0.933442953194232,
+          "mean_ratio": 0.818223131783939,
+          "quality_shortfall": 0.176776868216061,
+          "coverage_shortfall": 0.03240740740740741
+        }
+      }
+    },
+    {
+      "round": 2,
+      "collected_groups": 144,
+      "new_roots_vs_existing": 116,
+      "unique_own_roots": 260,
+      "combined_groups": 295,
+      "selection": {
+        "epoch": 0,
+        "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/own_trajectory_20261102_v1/own_r2_e00.npz",
+        "sha256": "b1f123161eb4f5b472d2c07cb5c5de0349c2b56f7e25c768565b1d305e018e15",
+        "metric": {
+          "quality": false,
+          "coverage": false,
+          "cost": false,
+          "time_ratio": 0.9353127156910084,
+          "mean_ratio": 0.818223131783939,
+          "quality_shortfall": 0.176776868216061,
+          "coverage_shortfall": 0.03240740740740741
+        }
+      }
+    }
+  ],
+  "evaluation_not_read_in_this_run": true,
+  "historical_exposure_retained": true
+}

@@ -1,0 +1,7 @@
+|--- queue_P95_norm <= 630.81
+|   |--- queue_P95_norm <= 489.58
+|   |   |--- class: 8.0
+|   |--- queue_P95_norm >  489.58
+|   |   |--- class: 2.0
+|--- queue_P95_norm >  630.81
+|   |--- class: 0.0

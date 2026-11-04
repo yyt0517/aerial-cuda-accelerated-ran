@@ -1,0 +1,59 @@
+[
+  {
+    "arm": "cached_maxj",
+    "generation_ms": 9.107349233494865,
+    "proxy_ms": 29.054993349644874,
+    "service_ms": 10.62483537114329,
+    "matching_ms": 14.79905533293883,
+    "terminal_ms": 0.18111740549405417,
+    "cache_payload_bytes": 6891467.0
+  },
+  {
+    "arm": "previous_guard",
+    "generation_ms": 9.088245427442923,
+    "proxy_ms": 28.892721980810165,
+    "service_ms": 10.56640926334593,
+    "matching_ms": 14.771123623682392,
+    "terminal_ms": 2.3430245411064887,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 1.001977568699254,
+    "terminal_network_ms": 1.0342522420816949,
+    "terminal_selection_ms": 0.08896231237385009
+  },
+  {
+    "arm": "expanded_ordinary",
+    "generation_ms": 9.134075914820036,
+    "proxy_ms": 28.96236017760303,
+    "service_ms": 10.587195865809917,
+    "matching_ms": 14.729472601579296,
+    "terminal_ms": 2.344618965354231,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 1.0029720142483711,
+    "terminal_network_ms": 1.0378359713488157,
+    "terminal_selection_ms": 0.08756274150477515
+  },
+  {
+    "arm": "repair_guard",
+    "generation_ms": 9.108357855843174,
+    "proxy_ms": 28.831166732642384,
+    "service_ms": 10.567917488515377,
+    "matching_ms": 14.764316586984528,
+    "terminal_ms": 2.367716800007555,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 1.001121269332038,
+    "terminal_network_ms": 1.0647112503647804,
+    "terminal_selection_ms": 0.08547926942507426
+  },
+  {
+    "arm": "repair_unguarded",
+    "generation_ms": 9.135420020255777,
+    "proxy_ms": 28.848487469885086,
+    "service_ms": 10.533464969032343,
+    "matching_ms": 14.764065957731672,
+    "terminal_ms": 2.3471285692519612,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 0.9978186960021654,
+    "terminal_network_ms": 1.0469013618098364,
+    "terminal_selection_ms": 0.0850905974706014
+  }
+]

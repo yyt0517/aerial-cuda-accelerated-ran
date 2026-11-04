@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_learning_20261104_v1/r1p28_learned_tree_seed41/states/tti008001.pt",
+    "sha256": "0d8d8e576183f8beb1a7425c108b0b098f6fc392e1b8bb24a36874abfed14dac"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_learning_20261104_v1/r1p28_learned_tree_seed41/states/tti009001.pt",
+    "sha256": "39ed5ff8bcd548623927ae9808289c6c1be08ec176bb8c50a113b047f56d12f2"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_learning_20261104_v1/r1p28_learned_tree_seed41/states/tti010001.pt",
+    "sha256": "414f491ce4deb592d906baa315bf62152cbf916e4c923395bfcd68f04da85128"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_learning_20261104_v1/r1p28_learned_tree_seed41/states/tti011001.pt",
+    "sha256": "300a3aac6f84ebad56d05c1e42ac149f6b37c55cfef3b89e4720aab8e30eb57c"
+  }
+]

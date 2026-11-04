@@ -1,0 +1,50 @@
+{
+  "training": {
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed41_current_20000/states.pt": "812e9809a225d01e78b3b5b80d37a56d48e243da156ed8b636af30a7592ab7f5",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed41_pfq0/states.pt": "454e608a6ffb30b7044772497d9be4ae0c62d8b959f84b23dd579c8c93104e4a",
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed42_current_20000/states.pt": "5d96d865e053e928da321301b54c900b0557ea62daf585d380367f9fc10465c8",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed42_pfq0/states.pt": "d3618a928b6ec85a021b43e2950a6f6ef6f00f1609d09faf869c377f381fde57",
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed43_current_20000/states.pt": "5526af210e5ce11f4b69a0c40d30c53a5ba8253fd67c915f47fa9b6561da7077",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed43_pfq0/states.pt": "4590ad6583b5b825e4e4f1ec646486a65d7b7677db7f722339e8c680c6834f26"
+  },
+  "validation": {
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed44_current_20000/states.pt": "38e4ca805517e4234369e454bc707e70af3a94bff9fe21272850d3e478b0fa30",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed44_pfq0/states.pt": "0c26acda204c8f9fd9a9cc5d0ea97811e97049493a6bcd018385d838c5ce2f4d",
+    "/data/aerial-cuda-accelerated-ran/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed45_current_20000/states.pt": "eafa46bf0fe586083656fc0c23d8c48cf85b097fd3663ea510410cca86aaf3fe",
+    "/data/aerial-cuda-accelerated-ran/deliverables/boundary08_rho090_five_seed_20261027/raw_runs/seed45_pfq0/states.pt": "0325a3611f99fb8cbf2e6c1a35ac86a35931217297e7e225111ae6cac9650d4a"
+  },
+  "training_state_ids": [
+    "raw_global_deficit:seed41:tti4001",
+    "raw_global_deficit:seed41:tti8001",
+    "raw_global_deficit:seed41:tti18000",
+    "pfq:seed41:tti4001",
+    "pfq:seed41:tti8001",
+    "pfq:seed41:tti18000",
+    "raw_global_deficit:seed42:tti4001",
+    "raw_global_deficit:seed42:tti8001",
+    "raw_global_deficit:seed42:tti18000",
+    "pfq:seed42:tti4001",
+    "pfq:seed42:tti8001",
+    "pfq:seed42:tti18000",
+    "raw_global_deficit:seed43:tti4001",
+    "raw_global_deficit:seed43:tti8001",
+    "raw_global_deficit:seed43:tti18000",
+    "pfq:seed43:tti4001",
+    "pfq:seed43:tti8001",
+    "pfq:seed43:tti18000"
+  ],
+  "validation_state_ids": [
+    "raw_global_deficit:seed44:tti4001",
+    "raw_global_deficit:seed44:tti8001",
+    "raw_global_deficit:seed44:tti18000",
+    "pfq:seed44:tti4001",
+    "pfq:seed44:tti8001",
+    "pfq:seed44:tti18000",
+    "raw_global_deficit:seed45:tti4001",
+    "raw_global_deficit:seed45:tti8001",
+    "raw_global_deficit:seed45:tti18000",
+    "pfq:seed45:tti4001",
+    "pfq:seed45:tti8001",
+    "pfq:seed45:tti18000"
+  ]
+}

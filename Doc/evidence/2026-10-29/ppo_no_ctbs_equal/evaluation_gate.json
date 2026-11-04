@@ -1,0 +1,39 @@
+{
+  "completed": true,
+  "quality_passed": false,
+  "seeds": [
+    {
+      "seed": 44,
+      "checks": {
+        "payload": false,
+        "expiry": false,
+        "mean_delay": false,
+        "p95_delay": false,
+        "ue_p5": false
+      },
+      "passed": false,
+      "ppo_minus_bc_payload_mbps": 9.095999999999776
+    },
+    {
+      "seed": 45,
+      "checks": {
+        "payload": false,
+        "expiry": false,
+        "mean_delay": false,
+        "p95_delay": false,
+        "ue_p5": false
+      },
+      "passed": false,
+      "ppo_minus_bc_payload_mbps": 20.327999999999975
+    }
+  ],
+  "promoted": false,
+  "selection": "fixed final checkpoint",
+  "measurement_seconds": 2.0,
+  "limits": [
+    "Development seeds, not blind tests.",
+    "2-second pilot measurement, not historical 10-second validation.",
+    "New compact joint actor; not a continuation of historical HGraph weights.",
+    "No automatic replacement of current_algorithm.json."
+  ]
+}

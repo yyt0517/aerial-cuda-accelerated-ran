@@ -1,0 +1,369 @@
+{
+  "repeats_actions_values_identical": true,
+  "raw_floor_and_caps_valid": true,
+  "exact_conditions_audited": true,
+  "teacher_preparation_separate": true,
+  "no_teacher_UE_positions_in_solver": true,
+  "independent_phy": [
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "full",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "ordinary212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "bank_none212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "activity212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "joint212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "full",
+      "max_error": 1.0658141036401503e-14
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "ordinary212",
+      "max_error": 4.6838977141305804e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "bank_none212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "quota_layer212",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "activity212",
+      "max_error": 1.6370904631912708e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "joint212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "full",
+      "max_error": 5.329070518200751e-15
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "ordinary212",
+      "max_error": 4.320099833421409e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "bank_none212",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "quota_layer212",
+      "max_error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "activity212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "joint212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "full",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "ordinary212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "bank_none212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "activity212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "joint212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "full",
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "ordinary212",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "bank_none212",
+      "max_error": 5.9117155615240335e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "quota_layer212",
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "activity212",
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "joint212",
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "full",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "ordinary212",
+      "max_error": 6.366462912410498e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "bank_none212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "quota_layer212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "activity212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "joint212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "ordinary212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "bank_none212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 8.185452315956354e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "activity212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "joint212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "full",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "ordinary212",
+      "max_error": 1.8189894035458565e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "bank_none212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "quota_layer212",
+      "max_error": 5.329070518200751e-15
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "activity212",
+      "max_error": 1.6370904631912708e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "joint212",
+      "max_error": 7.275957614183426e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "full",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "ordinary212",
+      "max_error": 1.7280399333685637e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "bank_none212",
+      "max_error": 6.366462912410498e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "quota_layer212",
+      "max_error": 4.547473508864641e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "activity212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "joint212",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "ordinary212",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "bank_none212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "quota_layer212",
+      "max_error": 8.185452315956354e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "activity212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "joint212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "full",
+      "max_error": 6.821210263296962e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "ordinary212",
+      "max_error": 1.2505552149377763e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "bank_none212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "quota_layer212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "activity212",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "joint212",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "full",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "ordinary212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "bank_none212",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "quota_layer212",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "activity212",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "joint212",
+      "max_error": 2.7284841053187847e-12
+    }
+  ]
+}

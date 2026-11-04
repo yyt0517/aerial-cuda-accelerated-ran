@@ -1,0 +1,124 @@
+{
+  "training_protocol": {
+    "version": 1,
+    "training_seeds": [
+      41,
+      42,
+      43
+    ],
+    "validation_seeds": [
+      44,
+      45
+    ],
+    "evaluation_seeds": [
+      46,
+      47,
+      48
+    ],
+    "training_sources": [
+      "current",
+      "pfq0"
+    ],
+    "evaluation_sources": [
+      "pfq0",
+      "neural",
+      "greedy"
+    ],
+    "evaluation_ttis": [
+      3001,
+      4001,
+      5000
+    ],
+    "historical_test_states": true,
+    "seed": 3717,
+    "dim": 32,
+    "heads": 4,
+    "proposals_per_mask": 8,
+    "global_reconstruction": true,
+    "local_rounds": 2,
+    "blocks_per_round": 4,
+    "local_sizes": [
+      4,
+      8,
+      16,
+      8
+    ],
+    "candidate_cap_direct": 73,
+    "objective": "J weighted expected bytes, original draft 90% floor",
+    "teacher": {
+      "width": 16,
+      "all_legal_ues": true,
+      "mask_candidate_limit": 8192,
+      "blocks_per_root": 8
+    },
+    "epochs": 40,
+    "self_rounds": 2,
+    "self_epochs": 10,
+    "best_k_updates": 36,
+    "selection": "highest mean frozen-state validation J at fixed 73-candidate envelope",
+    "timing": "CPU single-thread complete decoded-snapshot decision; model/library loading excluded",
+    "frozen79": "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_train_v1/repair.npz",
+    "frozen79_sha256": "b53b7193f5b0b9e962a948664b689fb6b6a77351646f0e4bb48adde4d394d409"
+  },
+  "checkpoint_sha256": "86ba123166592e47701104c712da3db2f52c2b664f396fff7738c6da38f521e5",
+  "input_files": {
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed46_pfq0/states.pt": "8aa5299eaa19ba6c8d27dd8f17daf947fdf0c8092f71e29f825813747722b22f",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed46_neural/states.pt": "6d7c0ca48b83842040392373633b106920e04e020d2af9163aa4f8aa3e5119d7",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed46_greedy/states.pt": "edd7f85e679c233ae0b77462b2321fb54c9fed9095a0fd31413e992618eb5692",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed47_pfq0/states.pt": "9453192cb7a3e03588f98557f781f41460bbf7a18477eb3cac2a6bc0b2e25b11",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed47_neural/states.pt": "3e1b636715664eea96e180b99a582bf843895616fde53dde144ff07b5742236a",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed47_greedy/states.pt": "f64750abbbafe6981318f3f08cb7e9fc165ecb89732a8e00d1a1caa88e83a228",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed48_pfq0/states.pt": "7fc3e264fd1e6847f16f18417716a57e11aaba5046e5ce9c2d2bb5f8c5aa61da",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed48_neural/states.pt": "ca4921ea2a563e4b65fb9c56794cc2dbbdf49a4acdd5afce859f7c8d9f750d80",
+    "/data/aerial-cuda-accelerated-ran/deliverables/tb_joint_repair_20261027_native_v2/seed48_greedy/states.pt": "14605af4224428bf4278804eecf90d7f849b894b112e481bdee5d1971c59911c"
+  },
+  "states": [
+    "pfq0:seed46:tti3001",
+    "pfq0:seed46:tti4001",
+    "pfq0:seed46:tti5000",
+    "neural:seed46:tti3001",
+    "neural:seed46:tti4001",
+    "neural:seed46:tti5000",
+    "greedy:seed46:tti3001",
+    "greedy:seed46:tti4001",
+    "greedy:seed46:tti5000",
+    "pfq0:seed47:tti3001",
+    "pfq0:seed47:tti4001",
+    "pfq0:seed47:tti5000",
+    "neural:seed47:tti3001",
+    "neural:seed47:tti4001",
+    "neural:seed47:tti5000",
+    "greedy:seed47:tti3001",
+    "greedy:seed47:tti4001",
+    "greedy:seed47:tti5000",
+    "pfq0:seed48:tti3001",
+    "pfq0:seed48:tti4001",
+    "pfq0:seed48:tti5000",
+    "neural:seed48:tti3001",
+    "neural:seed48:tti4001",
+    "neural:seed48:tti5000",
+    "greedy:seed48:tti3001",
+    "greedy:seed48:tti4001",
+    "greedy:seed48:tti5000"
+  ],
+  "arms": [
+    "greedy",
+    "neural79_cached",
+    "physical4",
+    "physical16",
+    "masked_joint",
+    "neural79_cap73",
+    "physical4_cap73",
+    "masked_no_global"
+  ],
+  "repeats": 3,
+  "order_seed": 9917,
+  "host": "lenovo-05",
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "cpu": "x86_64",
+  "timing": "serial; decoded snapshot to action; includes conversion, PHY setup, features, model, generation, verification, cleanup",
+  "excluded": "archive reading, model/library loading, one-time immutable TBS tables, IPC and simulator",
+  "escape": "strict original-neighborhood local certificate and converged bounded physical4 beam stop; preparation excluded from continuation timing"
+}

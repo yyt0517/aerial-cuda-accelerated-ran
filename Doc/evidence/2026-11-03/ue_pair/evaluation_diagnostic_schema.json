@@ -1,0 +1,21 @@
+{
+  "columns": [
+    "memo_index",
+    "J/fullJ",
+    "coverage",
+    "joint",
+    "inside2pct",
+    "heuristic_score",
+    "heuristic_pair_confidence",
+    "model0_score",
+    "model1_score",
+    "model2_score",
+    "mean_score",
+    "minimum_pair_confidence",
+    "oracle_aux_heads_mean_score"
+  ],
+  "posthoc": true,
+  "additional_native_scores": 0,
+  "model_changed": false,
+  "oracle": "replace only perUE effective/reference heads with teacher labels; preserve learned weights; not deployable"
+}

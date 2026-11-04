@@ -1,0 +1,222 @@
+{
+  "passed": true,
+  "recomputed": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "learned_repair64"
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "heuristic_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned_lock_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "heuristic_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "matched_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned_repair32"
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "learned_repair64"
+    }
+  ],
+  "teacher_reference_used_after_timing_only": true
+}

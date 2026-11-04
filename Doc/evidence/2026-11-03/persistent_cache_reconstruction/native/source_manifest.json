@@ -1,0 +1,9 @@
+{
+  "training/stageb_lns/persistent_native.py": "3640da353c7747217089649af90edf34545bac0c8a9bf4b8a227e135e23e3285",
+  "training/stageb_lns/persistent_dpls.py": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+  "training/stageb_lns/persistent_kernel.cpp": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090",
+  "training/stageb_lns/_persistent.so": "a2a02219a8f042f37f4f7c75a6874425cafcfa9ded29d782f2dcd4a4444cce07",
+  "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0"
+}

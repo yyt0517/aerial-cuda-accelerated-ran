@@ -1,0 +1,37 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/terminal_service_20261103_v1",
+  "files": {
+    "training_observed_values.npz": "e446e5ac73d63919bc3368e3b3cee319fca58a031534d7b2ebb493a616b230a3",
+    "training_observed_actions.npz": "5e8686911f4acb1bab063e22471d738f8364d7f833b2b7f0fef27dca42bfc504",
+    "training_teacher_values.npz": "d1a7e5ce73fc7e7b4a91f2020537a68d53701a332ec06351c645a1104822dd16",
+    "training_teacher_actions.npz": "47eabd5f3908d2d4e8e3c0d7a1c9832a5ae2db01067e62d1b3cdaf85b224cea5",
+    "training_input_manifest.json": "3b4ee32cf39fcdeaca044ad4fa3e6a5b3c043ffefd8c539b5ada4f375c6bb217",
+    "source_manifest.json": "34b2fe615d4b7fb11112692178fb2919d120e9583f312c017de253ff8613e843"
+  },
+  "original_states": 18,
+  "unique_states": 15,
+  "duplicates": [
+    {
+      "duplicate": "pfq:seed41:tti4001",
+      "kept": "raw_global_deficit:seed41:tti4001",
+      "sha256": "1463b9cf8f55f8debabf08ca84f9b5bf7bdef54a0a29bac6ed92b313ef109c5f"
+    },
+    {
+      "duplicate": "pfq:seed42:tti4001",
+      "kept": "raw_global_deficit:seed42:tti4001",
+      "sha256": "4fb275126ff2632978bdf8d8aed52168fbf70e836b6a8aa1514052f9178dffff"
+    },
+    {
+      "duplicate": "pfq:seed43:tti4001",
+      "kept": "raw_global_deficit:seed43:tti4001",
+      "sha256": "c3d9b4a7f1faca2c9835d4425391ef156fdbaa65ae2b2984653eb6d5ccb30bb1"
+    }
+  ],
+  "candidates": 3165,
+  "pairs": 29569,
+  "strict_pairs": 14638,
+  "tie_pairs": 14931,
+  "additional_training_native_scores": 0,
+  "reuse_reason": "terminal choices do not alter cached search; all visited archive remains on-policy for this frozen search",
+  "prior_teacher_cost_not_free_or_online": true
+}

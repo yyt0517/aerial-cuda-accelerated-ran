@@ -1,0 +1,51 @@
+{
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "warmup": 4000,
+  "settling": 512,
+  "rollout": 1024,
+  "max_iterations": 24,
+  "gamma": 0.9982686325973925,
+  "gae_lambda": 0.999,
+  "reward_scale": 0.01,
+  "holding": 0.0025,
+  "age_threshold_tti": 20,
+  "age_ramp_tti": 20,
+  "age_multiplier": 2.0,
+  "actor_minibatch": 128,
+  "retention": 0.98,
+  "actor_lr": 0.0003,
+  "critic_lr": 0.001,
+  "ppo_epochs": 8,
+  "critic_epochs": 8,
+  "target_kl": 0.02,
+  "entropy_coef": 0.001,
+  "ctbs": false,
+  "business_weights": false,
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_warmup": 4000,
+  "validation_settling": 4000,
+  "validation_measured": 4000,
+  "validation_followup": 400,
+  "checkpoint_selection": "fixed final iteration; no evaluation-based selection",
+  "stopping": "fixed 24 additional iterations; reaching the budget is not evidence of convergence",
+  "physical_prior": "unchanged unweighted expected successful bytes; actor and Adam continued from previous final checkpoint",
+  "limits": [
+    "full equal DPLS remains in every catalog; no speed claim",
+    "development seeds 44–45 already exposed; no independent generalization claim",
+    "2-second measurement; no automatic promotion"
+  ],
+  "source_run": "/opt/nvidia/cuBB/deliverables/ppo_diagnosis_continue_20261030_v1/minibatch_continuation",
+  "initial_checkpoint_sha256": "1167d28b1141dc186fbb3d1e6828384c74177228c6f10969b09ba1bc1e6e3a8a",
+  "critic_initialization": "new critic and Adam because reward objective changed",
+  "actor_initialization": "restore trained actor and Adam; restart native streams with common PFQ/DPLS warmup",
+  "reward": "complete - expired - full pending packet bytes/400 - 2*clipped age exposure bytes/400 + potential difference",
+  "experiment_scope": "reward continuation; same state, candidates, neural repair, physics, actor architecture and PPO rules",
+  "success_target": "both development seeds: P95 <= equal DPLS; payload and expiry gains checked separately against previous PPO and catalog greedy"
+}

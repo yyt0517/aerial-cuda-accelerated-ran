@@ -1,0 +1,16 @@
+{
+  "k4": {
+    "quality_passed": false,
+    "efficiency_passed": true,
+    "joint_passed": false,
+    "complete_search_calls_in_fast_inference": 0,
+    "promoted": false
+  },
+  "k8": {
+    "quality_passed": false,
+    "efficiency_passed": true,
+    "joint_passed": false,
+    "complete_search_calls_in_fast_inference": 0,
+    "promoted": false
+  }
+}

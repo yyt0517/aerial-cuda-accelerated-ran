@@ -1,0 +1,8 @@
+{
+  "distinct_service_patterns": 22,
+  "states_with_one_pattern": 3,
+  "deduplicated_loo_passes": 4,
+  "deduplicated_loo_comparisons": 19,
+  "informative_P5_states": 0,
+  "interpretation": "empirical envelope screening only; leave-one-pattern-out has very small support"
+}

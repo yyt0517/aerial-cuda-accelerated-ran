@@ -1,0 +1,67 @@
+{
+  "mode": "stress",
+  "seeds": [
+    41,
+    42
+  ],
+  "jobs": [
+    {
+      "seed": 41,
+      "rate": 0.8,
+      "coefficient": 0.0
+    },
+    {
+      "seed": 42,
+      "rate": 0.8,
+      "coefficient": 0.0
+    },
+    {
+      "seed": 41,
+      "rate": 1.12,
+      "coefficient": 0.0
+    },
+    {
+      "seed": 42,
+      "rate": 1.12,
+      "coefficient": 0.0
+    },
+    {
+      "seed": 41,
+      "rate": 1.28,
+      "coefficient": 0.0
+    },
+    {
+      "seed": 42,
+      "rate": 1.28,
+      "coefficient": 0.0
+    }
+  ],
+  "warmup": 4000,
+  "settling": 4000,
+  "measured": 4000,
+  "followup": 400,
+  "initializer": "cold raw PFQ; fixed causal deficit weights at coefficient0",
+  "weights": "base deficit weights*(1+k*(1-HOL_slack/400)), normalized mean1; k0 preserves exact baseline bits",
+  "feature": "causal FIFO remaining head, read without mutating expiry accounting",
+  "baseline_rate": 0.8,
+  "load_multipliers": [
+    1,
+    1.4,
+    1.6
+  ],
+  "coefficients": [
+    0.0,
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "selection": "single grid frozen before outcomes; no online training or coefficient reselection",
+  "gate": "/opt/nvidia/cuBB/deliverables/bounded_gate_wall_20261104_v1",
+  "workers": 1,
+  "cpu_pins": [
+    255
+  ],
+  "timing": "serial perTTI cost including causal adaptation/PFQ/context/search/close",
+  "scientific_scope": "training41--43 development; no final confirmation seeds"
+}

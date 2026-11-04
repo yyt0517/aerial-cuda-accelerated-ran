@@ -1,0 +1,68 @@
+{
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "warmup": 4000,
+  "dagger_rounds": 6,
+  "dagger_rollout": 1536,
+  "teacher_stride": 6,
+  "generator_epochs": 5,
+  "generator_lr": 0.001,
+  "settling": 512,
+  "max_iterations": 12,
+  "rollout": 512,
+  "gamma": 0.9982686325973925,
+  "gae_lambda": 0.999,
+  "reward_scale": 0.01,
+  "holding": 0.0025,
+  "age_threshold_tti": 20,
+  "age_ramp_tti": 20,
+  "age_multiplier": 0.5,
+  "expiry_penalty": 2.0,
+  "actor_lr": 0.0003,
+  "critic_lr": 0.001,
+  "ppo_epochs": 8,
+  "critic_epochs": 8,
+  "actor_minibatch": 128,
+  "target_kl": 0.02,
+  "entropy_coef": 0.001,
+  "ctbs": false,
+  "business_weights": false,
+  "validation_warmup": 4000,
+  "validation_settling": 4000,
+  "validation_measured": 4000,
+  "validation_followup": 400,
+  "candidate_budgets": [
+    4,
+    8
+  ],
+  "candidate_budget_definition": "includes one unmodified raw PFQ fallback; no refill of duplicates",
+  "teacher": "equal global DPLS, queried only on student-executed training trajectories",
+  "generator": "frozen 79-feature cached neural repair plus trainable 93-feature residual; complete autoregressive reconstruction",
+  "teacher_objective": "single-TTI physical improvement; not a multi-TTI return oracle",
+  "ppo_initialization": "new zero-residual selector and critic because deployable state/reference and proposal distribution changed",
+  "ppo_training": "one shared selector; six persistent streams for all seed x K pairs; frozen generator throughout PPO",
+  "rewards": "same previous balanced whole-packet wait/age reward; uniform coefficients across all UEs",
+  "quality_target": "each development seed: payload >= original service PPO, expiry <= original service PPO, P95 <= equal DPLS",
+  "efficiency_target": "zero complete DPLS calls in fast inference; mean policy time <= one third of pure DPLS, P95 <= one half",
+  "checkpoint_selection": "fixed final DAgger and PPO iterations; no development checkpoint selection",
+  "test_seeds_unused": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "limits": [
+    "development seeds 44/45 already exposed; no generalization claim",
+    "raw-PFQ dequeue floor 90% remains; 98% of unknown DPLS is not an online guarantee",
+    "candidate count reduction is not a wall-clock speed claim",
+    "no automatic promotion"
+  ]
+}

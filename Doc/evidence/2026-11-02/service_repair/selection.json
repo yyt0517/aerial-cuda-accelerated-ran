@@ -1,0 +1,10 @@
+{
+  "quality_best": "legacy_ai212",
+  "within_cost_best": "legacy_ai212",
+  "cost_feasible": true,
+  "validation_only": true,
+  "development_not_read": true,
+  "conditional_masks_excluded": true,
+  "historical_exposure": true,
+  "rule": "quality/service, J shortfall, service shortfall, ratio; complete-cost filter for within-cost point"
+}

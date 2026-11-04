@@ -1,0 +1,11 @@
+{
+  "cold_warm_pairs": 24,
+  "cold_warm_old_gate_passes": 6,
+  "all_full_pairs": 360,
+  "old_gate_passes": 194,
+  "J_close_pairs": 216,
+  "J_close_service_passes": 194,
+  "leave_one_out_service_passes": 72,
+  "leave_one_out_comparisons": 72,
+  "informative_P5_states": 0
+}

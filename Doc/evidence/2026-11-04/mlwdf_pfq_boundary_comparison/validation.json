@@ -1,0 +1,26 @@
+{
+  "all_previous_result_sections_match": true,
+  "native_steps_added": 0,
+  "PHY_evaluations_added": 0,
+  "training_steps_added": 0,
+  "focused_tests_passed": 17,
+  "test_command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 .venv/bin/python -m unittest training.stageb_lns.test_bounded_dpls training.stageb_lns.test_certified_bounds training.stageb_lns.test_tournament training.stageb_lns.test_crossload_weights",
+  "paired_checks": {
+    "matching_cohort_fields": [
+      "ue_id",
+      "packet_id",
+      "arrival_tti",
+      "packet_size_bytes",
+      "ttl_tti"
+    ],
+    "matched_cohort_packets": 345471,
+    "all_cohorts_uncensored": true,
+    "proposed_metrics_equal_archived_summaries_atol": 1e-08,
+    "service_rows_per_seed": 144000,
+    "matched_seed_UEs": 108,
+    "higher_payload_UEs": 108,
+    "lower_success_mean_UEs": 108
+  },
+  "default_registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "work_count_scope": "Report recomputation only; synthetic focused unit-test PHY calls excluded from formal experiment work totals."
+}

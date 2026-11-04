@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "tests": 72,
+  "formal_decisions": 693,
+  "formal_independent_finals": 231,
+  "conditional_independent_finals": 24,
+  "offline_teacher_independent_finals": 30,
+  "summary_set_and_paired_metrics_recomputed": true,
+  "phase_fences_and_budgets_valid": true,
+  "matched_cardinality_valid": true,
+  "unlocked_main_prefix_identical": true,
+  "source_model_and_registry_hashes_valid": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

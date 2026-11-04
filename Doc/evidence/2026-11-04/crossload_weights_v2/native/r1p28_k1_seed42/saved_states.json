@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k1_seed42/states/tti008001.pt",
+    "sha256": "52de4ddf27b2e22314c31f0a6ee7fbfb75f13b6f9731af2a04e149e7bb850f6f"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k1_seed42/states/tti009001.pt",
+    "sha256": "d6dcda0057e94233b6e33c93eb5ee2041f678ccc2f5df678030dc88f6b1332ef"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k1_seed42/states/tti010001.pt",
+    "sha256": "b40fa556385aec070b0e6a63e427e424f2d6f7a11493571fdb3fa64c86f2fb7b"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k1_seed42/states/tti011001.pt",
+    "sha256": "60e180507b0a4e53f2e6f722c2f7ec0d75191c383044eca978d74ca2f3bf5162"
+  }
+]

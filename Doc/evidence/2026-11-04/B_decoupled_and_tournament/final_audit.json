@@ -1,0 +1,27 @@
+{
+  "completed": true,
+  "tests": 13,
+  "new_native_steps": 161200,
+  "reused_steps_not_new": 24800,
+  "quality_points": 15,
+  "mature_cohort_rows": 1727355,
+  "previous_files_unchanged": 477,
+  "old_solver_unchanged": true,
+  "scientific_solver_frozen": true,
+  "labels_sha256": "5fae79e32523c7bb7502ff37e14e78a3491a31da1487e5c76cae57939e47db8d",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "default_changed": false,
+  "B_wall_decoupled_by_user": true,
+  "old_deployment_failure_unchanged": true,
+  "weighted_oracle_states": 52,
+  "engineering_bitwise_states": 252,
+  "new_saved_state_wall_gate": false,
+  "new_continuous_tail": false,
+  "B_nonzero_no_worse": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "ranking_training_steps": 0,
+  "gradient_training_steps": 0
+}

@@ -1,0 +1,11 @@
+{
+  "scope": "post-hoc BC training-fit diagnostic, not validation",
+  "states": 48,
+  "means": {
+    "match": 0.3966503357514739,
+    "actor_unique": 14.375,
+    "teacher_unique": 14.333333333333334,
+    "actor_blank": 9.708333333333334,
+    "teacher_blank": 8.979166666666666
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "origin": "deliverables/joint_reorder_20261102_v1",
+  "files": {
+    "bundle_audit.json": {
+      "sha256": "d3824c8ba826e594682b1e07eb34d971a77eafe18fa2269fd9fb6d274cc0ebec",
+      "bytes": 556
+    },
+    "code/joint_reorder.py": {
+      "sha256": "29e4d6ea472cd72b094a2c7ccc33b667c404a4b836c275b718da41ed9d1ad873",
+      "bytes": 13191
+    },
+    "code/joint_reorder_README.rst": {
+      "sha256": "f1a8688bb4429f5262d958312590541e5778043ba7db33735327e61c4860888a",
+      "bytes": 3886
+    },
+    "code/joint_reorder_campaign.py": {
+      "sha256": "43ad949fb3b83b4053f44e15152be4ab6a828cc8ad575f8fbb9b3a81ea71e460",
+      "bytes": 14858
+    },
+    "code/joint_reorder_kernel.cpp": {
+      "sha256": "fd99b550e1c29fb4ffd9ab97f14ae4de5f31cc05e703a579aacd269af1e869c2",
+      "bytes": 4386
+    },
+    "code/report_joint_reorder.py": {
+      "sha256": "d2bcf2f02ff9deba168a0f862833f968bbecfb86baf3474db6ec0817b22b053d",
+      "bytes": 12252
+    },
+    "code/test_joint_reorder.py": {
+      "sha256": "be32a84e649916a9f8adc946a0c52532724320c7a2ffa03c6b9e62d1debacadb",
+      "bytes": 4904
+    },
+    "code_manifest.json": {
+      "sha256": "a5dace1b0eff705d9033ec4d4e33a67d4e283befb01264b619230d92b0f461ac",
+      "bytes": 1527
+    },
+    "completion.json": {
+      "sha256": "42b1d21876b7d20e981cd9d88619b9c95c890ed20c0e5902cbc59b1acc1aa182",
+      "bytes": 465
+    },
+    "engineering_checks.json": {
+      "sha256": "122485e06a6fa9d99c4a8aed0cb0cd7831f47940aa44069a419f40b31bf97b35",
+      "bytes": 356
+    },
+    "engineering_input_manifest.json": {
+      "sha256": "58f8b83d939ecb9479e47699555434e0dccd7a5f30a8d794ab5ddaa914cb3e7d",
+      "bytes": 1321
+    },
+    "engineering_per_state.csv": {
+      "sha256": "129a62f6b5e19ba48cb8011ee7cdcf7043bbd600e77d5228e95b600cee04f146",
+      "bytes": 3287
+    },
+    "engineering_teacher_actions.npz": {
+      "sha256": "f0325676cd69bfee98db2f674a1bc1feee610c58333eefcce72ae9da06119f5e",
+      "bytes": 608
+    },
+    "engineering_teacher_checks.json": {
+      "sha256": "c0164ad5a500fcfe8988a2813aa3bb50f52b74d8e957a7257eb6277d1bfc3aa4",
+      "bytes": 426
+    },
+    "engineering_teacher_values.npz": {
+      "sha256": "6b643e9489609b2ce04db6021ab41a35b82ae83279e1131561f99c82898fddbb",
+      "bytes": 1626
+    },
+    "engineering_teacher_work.csv": {
+      "sha256": "1485225343adaeab211fd5a1cb4bd9d72cfb2a444f4765167d93e4a706da5e59",
+      "bytes": 981
+    },
+    "evaluation_actions.npz": {
+      "sha256": "3a9e1ad152383af3c3b7b55c9c81dd4da9a8c793f52d1f1a392e3dc43b2b95ba",
+      "bytes": 25082
+    },
+    "evaluation_checks.json": {
+      "sha256": "46db85e3f1278a2c56d4672568330a5a18a12c094d0796069bf67997b0ea419c",
+      "bytes": 10314
+    },
+    "evaluation_delta_equivalence.csv": {
+      "sha256": "eaf8a42012a2b0183385832b1cb83c04eaaf6419852f77f644f19fdd0a2231e2",
+      "bytes": 307
+    },
+    "evaluation_input_manifest.json": {
+      "sha256": "687ec9e20372c7c8a1eefad903e050a5282f1b02d0e6055d29552987a625a065",
+      "bytes": 809
+    },
+    "evaluation_measurements.csv": {
+      "sha256": "8c138254b046e96ca03a2d0f07aea7b4e601417ccc456ec6e26a79922761afd1",
+      "bytes": 83324
+    },
+    "evaluation_paired.csv": {
+      "sha256": "0ade461d67e0eab170f48c47cc6f78de7c71da388f6927a2595216fb25ec4244",
+      "bytes": 7203
+    },
+    "evaluation_paired_per_seed.csv": {
+      "sha256": "59daf07559e062a60e411198f58b04c1aa3658f7b9268ed5fc9b224f6be99ecc",
+      "bytes": 1166
+    },
+    "evaluation_paired_summary.csv": {
+      "sha256": "4fa39333840c2d546f86a588b9208c5f39ed61b3d8cd21986107ad131f231a9c",
+      "bytes": 942
+    },
+    "evaluation_per_state.csv": {
+      "sha256": "3e407dae57fec53529b9ac5f86e37aab94492bcd4034cdb60c134ef32e5c3da0",
+      "bytes": 37863
+    },
+    "evaluation_service_groups.npz": {
+      "sha256": "9c8762ff516e597ee848b388162e740aa76be2b591dba51ac2c53e9da864ebc9",
+      "bytes": 13708
+    },
+    "evaluation_summary.csv": {
+      "sha256": "e30bfd41f55fe178724fcbfccd539b89653f17f38bac414e862703254a785393",
+      "bytes": 2211
+    },
+    "evaluation_teacher_actions.npz": {
+      "sha256": "5e64916e0134bfe09ec3f7f0a3585a375982b16bdfd440c0d4de20c70e5f8975",
+      "bytes": 2572
+    },
+    "evaluation_teacher_checks.json": {
+      "sha256": "b42a41a153eea49bf3a74c0d5cd1878e737c78e9dfa994b2c8738cf5473593fc",
+      "bytes": 1073
+    },
+    "evaluation_teacher_values.npz": {
+      "sha256": "700da2103e7bb98f2346af2edc6c44557c4e6b0d2bd05961af7d431f239663e4",
+      "bytes": 7551
+    },
+    "evaluation_teacher_work.csv": {
+      "sha256": "028cbcdc0b042bd9eb0a235f124f94d0f756693b8eeea124bc72d6df855bdc0c",
+      "bytes": 2879
+    },
+    "evaluation_values.npz": {
+      "sha256": "6287fef74ba6dfad3ca21bd96c91391d0896e56ffe3e2702fcbb1a851e50fd33",
+      "bytes": 67320
+    },
+    "evaluation_work.json": {
+      "sha256": "bb107894ddadda1a181a5b9be71532ecbeb4b5cd237982a4caaf694ec52089be",
+      "bytes": 3858
+    },
+    "execution.log": {
+      "sha256": "b0a7859a0682eff4f33c4ae3b5b3f3c6d40ec496909c86b4e0e781cc4e1672a6",
+      "bytes": 2719
+    },
+    "final_audit.json": {
+      "sha256": "aba779d947d2afd8678200bd54e8cc493a6e357ed97c50b37a9e7008664dafcf",
+      "bytes": 491
+    },
+    "gate_results.json": {
+      "sha256": "3839035cf234d8fef4abc79b27dec20b3ee6518766e8202a44fae5ec57c7817b",
+      "bytes": 4891
+    },
+    "posthoc_group_diagnosis.json": {
+      "sha256": "0a7f950e374bc58951d0369a76cfec1a8377fca6d6b8377cc1447e48292b0948",
+      "bytes": 8308
+    },
+    "protocol.json": {
+      "sha256": "903e669e26920208cb08ff5828cd82ae82a2be617d035585df63449f3504351d",
+      "bytes": 4523
+    },
+    "quality_cost.pdf": {
+      "sha256": "3c9c05260a21a04541fde125956b304e77063b52805b4beaa03d0b53eafeef3c",
+      "bytes": 30529
+    },
+    "quality_cost.png": {
+      "sha256": "82db4b89ca27c817f65a9b60495f51a6847350e6a147b7291b77d512de83cf6d",
+      "bytes": 181779
+    },
+    "report.txt": {
+      "sha256": "efbc7f43ae8152677adae568dd6876193fba591e6c7e802edd0d6048978c2777",
+      "bytes": 12527
+    },
+    "runtime_environment.json": {
+      "sha256": "7d8bc89c507af83d953d81f3da5e420208a24385936e2ce9cbfcbec6058dc80f",
+      "bytes": 577
+    },
+    "selection.json": {
+      "sha256": "afa0ad64459d6bb54d4d9ed444185eda0b2ce71c91dc376dd9f47d7635752b4f",
+      "bytes": 409
+    },
+    "source_manifest.json": {
+      "sha256": "b7ac83c1a5dfc7ca7b0bf66533f7fc8c0fe47c163538086d8f1981f0e05022ba",
+      "bytes": 12979
+    },
+    "teacher_ledger.json": {
+      "sha256": "62d9c320d34e7d886f1224d369a373dd97cc3658b7f5cd2b360603c73d4dffc2",
+      "bytes": 692
+    },
+    "tests.log": {
+      "sha256": "1e11c9f256804167c5a09ceee9700d42b2e7153327b3ba0a44b1a2905aec96f3",
+      "bytes": 11590
+    },
+    "validation_actions.npz": {
+      "sha256": "9c34a195a23c7fa929f333d0e375ff040a53273d012462c6ca81ce0a75be79d1",
+      "bytes": 35539
+    },
+    "validation_checks.json": {
+      "sha256": "0d425f4bea2074c488d5d65bf6cd376b075c04715fa46f4ad2ebc60f3e1b3f2e",
+      "bytes": 14539
+    },
+    "validation_delta_equivalence.csv": {
+      "sha256": "770716074de1bb14dc5d835edaa9dd3870174df543e941ed7a37a500b1e26c8f",
+      "bytes": 491
+    },
+    "validation_input_manifest.json": {
+      "sha256": "2bdbe3a225df0de206f3e7243d4b10ab62f4d585ec9e1ec30397a3f41b98bcba",
+      "bytes": 1254
+    },
+    "validation_measurements.csv": {
+      "sha256": "d09b904c31aa9535e14e8ecec4f2e69cb8dc566980b19ceb885d8c3509dfdf3a",
+      "bytes": 115920
+    },
+    "validation_paired.csv": {
+      "sha256": "91f0befc9cd9521d19dd38192627e5c68772d7a69f2dfe96645b1746d55e9866",
+      "bytes": 10866
+    },
+    "validation_paired_per_seed.csv": {
+      "sha256": "237371fd960adfe4fa98d403e812029f0f8ec29060096388f2371460f1868cc7",
+      "bytes": 783
+    },
+    "validation_paired_summary.csv": {
+      "sha256": "3726246191f82a5899ca017a9d48f515a265ce69bc32ac04fa136f46bfe5a460",
+      "bytes": 903
+    },
+    "validation_per_state.csv": {
+      "sha256": "4a973282096032a6a4b300fb1012a4ce1a830e88d651e902eb99cf9b53ad1fdb",
+      "bytes": 52160
+    },
+    "validation_service_groups.npz": {
+      "sha256": "e710f40f6631399b0692a90605ce5c892e2e761bf6e0370b948960f1447ecff5",
+      "bytes": 19348
+    },
+    "validation_summary.csv": {
+      "sha256": "9266d16f2be39e476a6396e4bda220f6696f1f45f87ffd916a75e80e20a29d09",
+      "bytes": 2216
+    },
+    "validation_teacher_actions.npz": {
+      "sha256": "319bf421d98f4117351adbe67ead57d7f024ceb60a2a305ea1ca5d26990433e8",
+      "bytes": 3647
+    },
+    "validation_teacher_checks.json": {
+      "sha256": "d9144fdba3720da5a7c9f90573cfb1e3ce439b7a217ba8eb98cb6444fc7a3aea",
+      "bytes": 1451
+    },
+    "validation_teacher_values.npz": {
+      "sha256": "1f6cd6cd4cacf90ba682c364514b0be9795bcd00cedb742da6b821fe813c0de3",
+      "bytes": 9807
+    },
+    "validation_teacher_work.csv": {
+      "sha256": "0015013d0c6d679cdcafe60cbff2d00d007a256aa74c41d2a1af7bf956da2ce0",
+      "bytes": 3779
+    },
+    "validation_values.npz": {
+      "sha256": "eea75e6dfbd8fc440fccfee105cc7b66954eb6b4d9f23d5b94a5f29c1b7b1809",
+      "bytes": 88804
+    },
+    "validation_work.json": {
+      "sha256": "168af7b09fcf7a0589b3ddd1573c65a03edb8b8970bc210d80dcef87625e2af8",
+      "bytes": 3761
+    }
+  },
+  "full_dependency_snapshot": "Local source/ and source_manifest.json; only this iteration core source is included in code/",
+  "teacher_scope": "teacher_ledger.json counts all 23 separately paid preparations; excluded from conditional execution timing",
+  "no_training": true
+}

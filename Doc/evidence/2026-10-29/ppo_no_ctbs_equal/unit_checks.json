@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "count": 5,
+  "command": ".venv/bin/python -m unittest discover -s training/stageb_ppo/tests -v",
+  "checks": [
+    "sampling_probability_replay_and_identity",
+    "empty_queues_allow_blank_only",
+    "no_deficit_features_or_ctbs_headroom_mask",
+    "fifo_partial_crc_and_full_expiry",
+    "truncation_bootstraps_next_state"
+  ],
+  "execution": "c_aerial_oai2, 2026-10-29; observed unittest exit status 0"
+}

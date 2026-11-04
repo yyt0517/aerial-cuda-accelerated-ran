@@ -1,0 +1,8 @@
+{
+  "full_teacher_groups": 1202,
+  "student_groups": 1273,
+  "student_unique_visited_roots": 1273,
+  "student_roots_already_in_teacher": 204,
+  "student_roots_outside_teacher": 1069,
+  "caveat": "Saved rows, adjacent TTIs and roots are correlated; seed is the independent repeat"
+}

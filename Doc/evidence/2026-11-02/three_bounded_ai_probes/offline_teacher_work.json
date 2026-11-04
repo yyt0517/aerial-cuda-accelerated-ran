@@ -1,0 +1,55 @@
+{
+  "full_root_generation": {
+    "training": {
+      "states": 18,
+      "candidate_evaluations": 1011932,
+      "ue_evaluations": 3295322,
+      "mmse_requests": 7685113,
+      "mmse_misses": 33254
+    },
+    "validation": {
+      "states": 12,
+      "candidate_evaluations": 617686,
+      "ue_evaluations": 1983896,
+      "mmse_requests": 5049989,
+      "mmse_misses": 21743
+    },
+    "evaluation": {
+      "states": 9,
+      "candidate_evaluations": 666850,
+      "ue_evaluations": 2189842,
+      "mmse_requests": 5571652,
+      "mmse_misses": 16919
+    }
+  },
+  "root_labels": {
+    "training": {
+      "states": 18,
+      "roots": 53,
+      "candidate_labels": 86158,
+      "additional_root_label_candidate_evaluations": 86229,
+      "distinct_roots": 53,
+      "gamma_bank_mmse_misses": 44064
+    },
+    "validation": {
+      "states": 12,
+      "roots": 36,
+      "candidate_labels": 55802,
+      "additional_root_label_candidate_evaluations": 55850,
+      "distinct_roots": 36,
+      "gamma_bank_mmse_misses": 29376
+    },
+    "evaluation": {
+      "states": 9,
+      "roots": 27,
+      "candidate_labels": 46214,
+      "additional_root_label_candidate_evaluations": 46250,
+      "distinct_roots": 27,
+      "gamma_bank_mmse_misses": 22032
+    }
+  },
+  "training_and_validation_block_candidate_labels": 92320,
+  "block_root_candidate_evaluations": 89,
+  "accounting": "Deterministic replay of frozen full roots plus actual saved label lengths; not original teacher timing. These offline calls are not charged as online inference and not hidden as free online capability.",
+  "audit_replay_elapsed_s": 13.199429132975638
+}

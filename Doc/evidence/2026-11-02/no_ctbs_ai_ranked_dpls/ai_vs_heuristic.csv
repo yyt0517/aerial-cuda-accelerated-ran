@@ -1,0 +1,2 @@
+ai_arm,heuristic_arm,top_k,states,seeds,mean_j_delta,mean_relative_j_pct,worst_relative_j_pct,mean_ms_delta,ratio_of_mean_cost_change_pct,wins,losses,ties
+ai,heuristic,128,21,3,0.0,0.0,0.0,14.482264495676475,15.73976034340312,0,0,21

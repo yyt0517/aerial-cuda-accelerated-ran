@@ -1,0 +1,21 @@
+{
+  "completed": true,
+  "points": 15,
+  "coefficients": 5,
+  "seeds": 3,
+  "parameter_scan_only": true,
+  "gradient_training_steps": 0,
+  "ranking_training_steps": 0,
+  "Pareto_coefficients": [
+    2.0
+  ],
+  "B_no_worse_nonzero_coefficients": [
+    0.5,
+    1.0,
+    2.0
+  ],
+  "new_native_runs": 0,
+  "default_changed": false,
+  "weighted_equivalence_states": 52,
+  "weighted_equivalence_candidates": 1638547
+}

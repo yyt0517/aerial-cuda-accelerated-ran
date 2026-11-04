@@ -1,0 +1,13 @@
+{
+  "prior": "/data/aerial-cuda-accelerated-ran/deliverables/terminal_service_20261103_v1",
+  "prior_files": {
+    "training_observed_values.npz": "e446e5ac73d63919bc3368e3b3cee319fca58a031534d7b2ebb493a616b230a3",
+    "training_observed_actions.npz": "5e8686911f4acb1bab063e22471d738f8364d7f833b2b7f0fef27dca42bfc504",
+    "training_teacher_values.npz": "d1a7e5ce73fc7e7b4a91f2020537a68d53701a332ec06351c645a1104822dd16",
+    "training_teacher_actions.npz": "47eabd5f3908d2d4e8e3c0d7a1c9832a5ae2db01067e62d1b3cdaf85b224cea5"
+  },
+  "reused_states": 18,
+  "new_states": 18,
+  "merged_archive_is_not_all_new": true,
+  "teacher_and_decoder_costs_separately_recorded": true
+}

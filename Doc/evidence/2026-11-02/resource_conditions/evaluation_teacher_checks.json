@@ -1,0 +1,45 @@
+{
+  "independent_phy": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "max_error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "max_error": 1.8189894035458565e-12
+    }
+  ],
+  "states": 9,
+  "elapsed_s": 1.3465603170916438,
+  "physical_scores": 666850,
+  "teacher_preparation_outside_solver_timing": true,
+  "complete_teacher_position_not_passed_to_solver": true
+}

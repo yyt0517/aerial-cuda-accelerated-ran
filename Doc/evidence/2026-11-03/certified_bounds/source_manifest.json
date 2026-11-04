@@ -1,0 +1,10 @@
+{
+  "training/stageb_lns/analyze_certified_bounds.py": "41ad4537b625a8efc22f2a5d900bd8e3d3b12e98bed01136de1ace3117d4033f",
+  "training/stageb_lns/certified_bounds.py": "45f58d53876b61398aafb8847153c7bfc88d8bc036a9b8cb169af3794a9f023f",
+  "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+  "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "training/stageb_lns/dpls_operations.py": "c10e3bb71c312fec24cdeeb8279af3e53a3cebf1b1745af34b0e91184da835c4",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+  "training/stageb_lns/persistent_dpls.py": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+  "cuMAC/src/cumac.h": "c8a34c9ff0dec0eb8cbfe1532ec046eb0924550e36d32e9b43bc1655fb9149f0"
+}

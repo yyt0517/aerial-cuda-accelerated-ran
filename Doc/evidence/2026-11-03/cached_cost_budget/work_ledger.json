@@ -1,0 +1,47 @@
+{
+  "initial_wall": {
+    "completed": true,
+    "timed_decisions": 120,
+    "profiling_decisions": 24,
+    "new_native_runs": 0,
+    "timed_candidate_evaluations": 4038845,
+    "profiling_candidate_evaluations": 807769,
+    "timed_mmse_misses": 222030,
+    "profiling_mmse_misses": 44406
+  },
+  "quality": {
+    "completed": true,
+    "decisions": 60,
+    "new_native_runs": 0,
+    "online_candidate_evaluations": 566987,
+    "audit_candidate_evaluations": 1362965,
+    "online_mmse_misses": 110670,
+    "audit_mmse_misses": 63498,
+    "numpy_terminal_audits": 60,
+    "regret_roots": 1775,
+    "all_converged": true
+  },
+  "wall_v1": {
+    "completed": true,
+    "timed_decisions": 360,
+    "profiling_decisions": 72,
+    "timed_candidate_evaluations": 5958385,
+    "profiling_candidate_evaluations": 1191677,
+    "timed_mmse_misses": 664365,
+    "profiling_mmse_misses": 132873,
+    "new_native_runs": 0,
+    "all_timed_outputs_match_frozen_quality": true
+  },
+  "wall_v2": {
+    "completed": true,
+    "timed_decisions": 360,
+    "profiling_decisions": 72,
+    "timed_candidate_evaluations": 5958385,
+    "profiling_candidate_evaluations": 1191677,
+    "timed_mmse_misses": 664365,
+    "profiling_mmse_misses": 132873,
+    "new_native_runs": 0,
+    "all_timed_outputs_match_frozen_quality": true,
+    "all_round_and_candidate_counts_match_frozen_quality": true
+  }
+}

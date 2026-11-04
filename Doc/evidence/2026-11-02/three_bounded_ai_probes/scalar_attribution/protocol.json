@@ -1,0 +1,26 @@
+{
+  "fixed_selection_sha256": "bcc75e3867045a42682b7f746da83b2ae92da354ebfd38582636d2d355453d64",
+  "retraining": false,
+  "evaluation_already_exposed": true,
+  "seeds": [
+    46,
+    47,
+    48
+  ],
+  "ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "repeats": 3,
+  "methods": [
+    "full",
+    "bound",
+    "scalar",
+    "spatial"
+  ],
+  "gate": "all-state exact full action and mean time <=80% full",
+  "purpose": "isolate spatial bank cost vs scalar candidate ranking; no hyperparameter tuning",
+  "timing": "same adapter/fresh PHY/feature/network/search/cleanup boundary as parent pilot",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3"
+}

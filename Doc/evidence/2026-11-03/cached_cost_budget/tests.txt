@@ -1,0 +1,41 @@
+test_batch_floor_and_terminal_phy (training.stageb_lns.test_budgeted_cached_dpls.BudgetedCacheTests) ... ok
+test_diagnostics_off_does_not_change_budget_behavior (training.stageb_lns.test_budgeted_cached_dpls.BudgetedCacheTests) ... ok
+test_dirty_invalid_entries_persist_and_stop_has_complete_verification (training.stageb_lns.test_budgeted_cached_dpls.BudgetedCacheTests) ... ok
+test_exact_control_preserves_canonical_trajectory_and_work (training.stageb_lns.test_budgeted_cached_dpls.BudgetedCacheTests) ... ok
+test_full_first_scan_and_all_online_evaluations_are_charged (training.stageb_lns.test_budgeted_cached_dpls.BudgetedCacheTests) ... ok
+test_disabled_diagnostics_has_identical_actions_phy_and_work (training.stageb_lns.test_cached_dpls.CachedDplsTests) ... ok
+test_empty_neighborhood_retains_verified_zero_floor (training.stageb_lns.test_cached_dpls.CachedDplsTests) ... ok
+test_every_candidate_phy_every_round_matches_fresh_full (training.stageb_lns.test_cached_dpls.CachedDplsTests) ... ok
+test_warm_bootstrap_is_current_phy_and_common_budget_floor (training.stageb_lns.test_cached_dpls.CachedDplsTests) ... ok
+test_batch_union_is_union_not_product (training.stageb_lns.test_dpls_joint_cost.JointDiagnosticsTests) ... ok
+test_canonical_selection_is_permutation_invariant_and_max_anchored (training.stageb_lns.test_dpls_joint_cost.JointDiagnosticsTests) ... ok
+test_compact_domain_and_keys_equal_original_stream (training.stageb_lns.test_dpls_joint_cost.JointDiagnosticsTests) ... ok
+test_limited_ranking_is_identical_full_order_prefix (training.stageb_lns.test_dpls_joint_cost.JointDiagnosticsTests) ... ok
+test_stale_order_never_reads_new_gains (training.stageb_lns.test_dpls_joint_cost.JointDiagnosticsTests) ... ok
+test_delta_matching_removes_global_score_shift_without_phy (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_operator_keys_survive_unrelated_root_and_row_order_changes (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_roundoff_in_reused_gain_can_break_original_index_tie (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_scalar_proxy_and_logical_tb_match_independent_full_actions (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_structurally_independent_moves_can_violate_combined_floor (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_support_distinguishes_swap_and_neighbor_activity_change (training.stageb_lns.test_dpls_move_analysis.MoveAnalysisTests) ... ok
+test_first_two_rejections_still_reach_round_three (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_full_matches_independent_fixed_root_reference (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_passive_teacher_observer_does_not_change_decisions (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_ranked_full_k_has_identical_choices_and_no_duplicate_fallback (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_tiny_shortlist_ends_with_exact_full_stop_and_independent_phy (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_activity_change_recomputes_all_physical_neighbors (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_anytime_budget_floor_and_reproducibility (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_and_incremental_match_independent_reference (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_greedy_result_is_independent_of_batch_size (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_invalid_inputs_and_context_are_rejected (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_joint_block_crosses_a_single_edit_reliability_valley (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_late_verification_cannot_replace_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_nonmonotonic_native_curve_is_batch_invariant (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_policy_can_stop_and_return_verified_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_tb_layer_change_recomputes_resources_outside_block (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_ue_swap_does_not_invalidate_neighbor_mmse (training.stageb_lns.test_physics.PhysicalTests) ... ok
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.731s
+
+OK

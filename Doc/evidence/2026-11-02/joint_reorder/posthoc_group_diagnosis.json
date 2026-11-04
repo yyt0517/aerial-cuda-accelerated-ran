@@ -1,0 +1,300 @@
+{
+  "posthoc": true,
+  "policy_or_selection_changed": false,
+  "records": [
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "seed": "44",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.11147528219379588,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "seed": "44",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": -0.020366023294715596,
+      "positive_p5_ratio": 0.9991370827395105,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "seed": "44",
+      "quality_pass": true,
+      "coverage_pass": false,
+      "relative_j_pct": 1.5832411141689873,
+      "positive_p5_ratio": 0.0,
+      "omitted_reference_positive": [
+        34
+      ],
+      "extra_nonreference": [
+        5,
+        25
+      ],
+      "missing_count": 1,
+      "extra_count": 2
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "seed": "44",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.11147528219379588,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "seed": "44",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.023482205300173753,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "seed": "44",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.07819311717367494,
+      "positive_p5_ratio": 1.0005651845845152,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "seed": "45",
+      "quality_pass": false,
+      "coverage_pass": false,
+      "relative_j_pct": -3.446445347132121,
+      "positive_p5_ratio": 0.7499121427551217,
+      "omitted_reference_positive": [
+        16
+      ],
+      "extra_nonreference": [],
+      "missing_count": 1,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "seed": "45",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.2566197689770622,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [
+        35
+      ],
+      "extra_nonreference": [],
+      "missing_count": 1,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "seed": "45",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 1.7249117401180625,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [
+        20,
+        27
+      ],
+      "missing_count": 0,
+      "extra_count": 2
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "seed": "45",
+      "quality_pass": false,
+      "coverage_pass": false,
+      "relative_j_pct": -3.446445347132121,
+      "positive_p5_ratio": 0.7499121427551217,
+      "omitted_reference_positive": [
+        16
+      ],
+      "extra_nonreference": [],
+      "missing_count": 1,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "seed": "45",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.02870756284019116,
+      "positive_p5_ratio": 0.9999929313139607,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "seed": "45",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.11547779993645868,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "seed": "46",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.08061522128026688,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "seed": "46",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.09144180760214393,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "seed": "46",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.05002038714077006,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "seed": "47",
+      "quality_pass": false,
+      "coverage_pass": true,
+      "relative_j_pct": -1.0773738431461788,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [
+        26
+      ],
+      "extra_nonreference": [],
+      "missing_count": 1,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "seed": "47",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.08238321428184481,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "seed": "47",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.03318141327783852,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "seed": "48",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.2662192272973707,
+      "positive_p5_ratio": 1.0007154248701673,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "seed": "48",
+      "quality_pass": true,
+      "coverage_pass": true,
+      "relative_j_pct": 0.10478234607407266,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [],
+      "extra_nonreference": [],
+      "missing_count": 0,
+      "extra_count": 0
+    },
+    {
+      "phase": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "seed": "48",
+      "quality_pass": false,
+      "coverage_pass": true,
+      "relative_j_pct": -1.6390665353091527,
+      "positive_p5_ratio": 1.0,
+      "omitted_reference_positive": [
+        0
+      ],
+      "extra_nonreference": [],
+      "missing_count": 1,
+      "extra_count": 0
+    }
+  ],
+  "scope": "teacher-positive membership used only after timing to diagnose bootstrap group; never supplied to search",
+  "finding": "some failed states coincide with omitted positive UEs; validation also has extra group UEs and zero-P5 degeneration",
+  "caution": "coincidence is not proof of a unique cause; a future continuous all-quota metric needs a controlled ablation"
+}

@@ -1,0 +1,17 @@
+new,old,seed,j_delta
+narrow_delta_j,joint_reference,44,0.0
+narrow_delta_j,joint_reference,45,0.0
+wide_j,narrow_delta_j,44,409.3698694345342
+wide_j,narrow_delta_j,45,4.872629302507751
+narrow_pareto005,narrow_delta_j,44,402.7717480427964
+narrow_pareto005,narrow_delta_j,45,-29.058099439770256
+wide_pareto_j,wide_j,44,-28.237761151741626
+wide_pareto_j,wide_j,45,1.6158935414083924
+wide_pareto005,wide_pareto_j,44,-48.42195172388407
+wide_pareto005,wide_pareto_j,45,-0.03190947163723953
+wide_pareto02,wide_pareto005,44,0.0
+wide_pareto02,wide_pareto005,45,0.0
+wide_pareto_j,joint_reference,44,381.1321082827926
+wide_pareto_j,joint_reference,45,6.488522843916144
+wide_pareto_j,activity_reference,44,1743.1037131966998
+wide_pareto_j,activity_reference,45,1854.9892389387944

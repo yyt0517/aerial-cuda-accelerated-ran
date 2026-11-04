@@ -1,0 +1,17 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "epsilon_bytes": 1e-06,
+  "packing": "gain-ordered disjoint affected-UE/PRG moves, logged first move retained; above original1/16B threshold",
+  "shared_floor": "enforced only on 12 saved-input states; structural-only others explicitly marked",
+  "unions": "regenerate logical post-batch neighborhood; match canonical operations; novel + dirty common must refresh",
+  "work_model": "per TTI N_first + sum(observed accepted transition post_batch_refresh/k); no multiply of independent savings",
+  "work_model_limit": "logged-root local rate projection, not a simulated batch trajectory or speed measurement",
+  "ranking": "historical exact deltas only; unknown operations last; max-anchored epsilon bands then canonical key",
+  "ranking_target": "historical accepted operator at the logged root, not a rerun of canonical-tie search",
+  "dirty_budget": "clean common free; eligible novel always paid; at most M dirty common, ordered by previous exact delta",
+  "floor_filter": "current eligibility from logs stands in for cheap logical count/layer/TBS screen; unfiltered ranks also reported",
+  "cross_tti": "prior final scored neighborhood; full arms have labels at executed terminal root; warm_n3 is before last accepted edit",
+  "new_candidate_phy_evaluations": 0,
+  "new_mmse_evaluations": 0,
+  "new_native_runs": 0
+}

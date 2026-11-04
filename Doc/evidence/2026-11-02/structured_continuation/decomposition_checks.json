@@ -1,0 +1,141 @@
+{
+  "passed": true,
+  "blocks": [
+    {
+      "state_id": "current:seed41:tti4001",
+      "prg": 0,
+      "oracle_j": 58301.780696209986,
+      "decomposed_j": 58301.780696209986,
+      "cartesian_candidates": 2156,
+      "factored_work": {
+        "candidate_evaluations": 141,
+        "ue_evaluations": 686,
+        "mmse_requests": 739,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed41:tti4001",
+      "prg": 8,
+      "oracle_j": 59663.770692806625,
+      "decomposed_j": 59663.7706928066,
+      "cartesian_candidates": 2156,
+      "factored_work": {
+        "candidate_evaluations": 141,
+        "ue_evaluations": 686,
+        "mmse_requests": 1011,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed41:tti4001",
+      "prg": 16,
+      "oracle_j": 59490.34969584299,
+      "decomposed_j": 59490.349695842975,
+      "cartesian_candidates": 2156,
+      "factored_work": {
+        "candidate_evaluations": 141,
+        "ue_evaluations": 613,
+        "mmse_requests": 802,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed42:tti4001",
+      "prg": 0,
+      "oracle_j": 63224.14217690568,
+      "decomposed_j": 63224.14217690566,
+      "cartesian_candidates": 2100,
+      "factored_work": {
+        "candidate_evaluations": 141,
+        "ue_evaluations": 686,
+        "mmse_requests": 924,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed42:tti4001",
+      "prg": 8,
+      "oracle_j": 60995.3106375711,
+      "decomposed_j": 60995.31063757109,
+      "cartesian_candidates": 2100,
+      "factored_work": {
+        "candidate_evaluations": 141,
+        "ue_evaluations": 683,
+        "mmse_requests": 785,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed42:tti4001",
+      "prg": 16,
+      "oracle_j": 62383.22544869173,
+      "decomposed_j": 62383.22544869172,
+      "cartesian_candidates": 2100,
+      "factored_work": {
+        "candidate_evaluations": 141,
+        "ue_evaluations": 685,
+        "mmse_requests": 1059,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed43:tti4001",
+      "prg": 0,
+      "oracle_j": 61909.92660002915,
+      "decomposed_j": 61909.926600029146,
+      "cartesian_candidates": 2184,
+      "factored_work": {
+        "candidate_evaluations": 140,
+        "ue_evaluations": 615,
+        "mmse_requests": 754,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed43:tti4001",
+      "prg": 8,
+      "oracle_j": 64072.19573257858,
+      "decomposed_j": 64072.19573257859,
+      "cartesian_candidates": 2184,
+      "factored_work": {
+        "candidate_evaluations": 140,
+        "ue_evaluations": 681,
+        "mmse_requests": 955,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    },
+    {
+      "state_id": "current:seed43:tti4001",
+      "prg": 16,
+      "oracle_j": 62068.6917969017,
+      "decomposed_j": 62068.6917969017,
+      "cartesian_candidates": 2184,
+      "factored_work": {
+        "candidate_evaluations": 140,
+        "ue_evaluations": 681,
+        "mmse_requests": 1090,
+        "mmse_misses": 141
+      },
+      "patterns": 8,
+      "local_assignments": 156
+    }
+  ],
+  "scope": "Prescribed single-PRG blocks; independent final NumPy check plus native all-legal Cartesian oracle"
+}

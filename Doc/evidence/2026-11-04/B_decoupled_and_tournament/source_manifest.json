@@ -1,0 +1,14 @@
+{
+  "training/stageb_lns/report_decoupled_B.py": "42183441546c04b944c9c04e2713965f7ab7b419cfbab8a9ce6997d79009c2c3",
+  "training/stageb_lns/ttl_decoupled_campaign.py": "548fe8198d87a817038d563d4d9ef6d73279dc543b9cee87e9b135caac1c658d",
+  "training/stageb_lns/analyze_ttl_frontier.py": "3a686d88e05e01dffb997884c6924e4c2a3cc0e568672100faee3a22c852b03f",
+  "training/stageb_lns/analyze_activity_mmse.py": "f8fd019cbb1e21871bec0deb55c97465691fe7cd3de7ab937f0235071aa04484",
+  "training/stageb_lns/tournament_kernel.cpp": "d3512fd263b0f2fc3ada59244a5a38f600cf278a56804643cfcd74147da0ed6c",
+  "training/stageb_lns/tournament_dpls.py": "230b3ea41343317b3e43bea76db1e19d4ef0974cf17a8ef9c45db4b8948024bf",
+  "training/stageb_lns/build_tournament.py": "69a71ac6a0cda1513cb72b560766e84107b35358c526f7ea6e7b1f449ae92fac",
+  "training/stageb_lns/_tournament.so": "a7da6466dc6b766ec7ca26c9ca2ce5b33f4671a08b37debc52e613a59f9912b4",
+  "training/stageb_lns/native_schedule_inputs.py": "e8577d8bbfae05bc777368169a08505921e682f96592ff1f9a3cbde972bff837",
+  "training/stageb_lns/test_tournament.py": "2f5e38573b0d30220cf9211853d6990d5fbc4f36fff9cfe111d753cf96d58427",
+  "training/stageb_lns/audit_tournament.py": "aa83a27916e9a0617a0287afe8d6cf5e724358933a26583fee28b77f1a7b6d3f",
+  "training/stageb_lns/decoupled_B_README.rst": "74a0b5b6cfb1b11b66d1305309b20225a1e2df8ce49d63a6c085bd7c00642e12"
+}

@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "objective": "canonical native-BLER deficit-weighted J; own raw PFQ 90% floor",
+  "geometries": {
+    "shallow": {
+      "width": 7,
+      "depth": 8,
+      "max_roots": 56,
+      "max_candidates": 106
+    },
+    "deep": {
+      "width": 1,
+      "depth": 32,
+      "max_roots": 56,
+      "max_candidates": 106
+    }
+  },
+  "resource_comparison": "same max56 feature roots/max106 physical scores; actual usage and time reported, not equal wall time",
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "train_validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "train_validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "prior_scalar": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/scalar_e10.npz",
+    "sha256": "667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e",
+    "epoch": 10
+  },
+  "prior_selection_sha256": "bcc75e3867045a42682b7f746da83b2ae92da354ebfd38582636d2d355453d64",
+  "phase_a_methods": [
+    "full",
+    "heuristic_shallow",
+    "initial_shallow",
+    "heuristic_deep",
+    "initial_deep"
+  ],
+  "geometry_selection": "validation only: joint first, mean J shortfall, coverage shortfall, mean J ratio; prefer deep on exact ties",
+  "own_rounds": 2,
+  "max_unique_roots_per_state_per_round": 8,
+  "own_root_sampling": "deduplicate actual student roots, at most8 evenly spaced first visits after decision completed",
+  "anchor_groups": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/training_groups.pt",
+  "anchor_sha256": "8cf31fa0554aa1ef2e7bfc7398d9db4cca614ffd9cb758748d6dee1aa23a8ad0",
+  "teacher": "separate post-decision full one-PRG neighborhood; immediate exact gain, no suffix/MPC oracle",
+  "training": "warm scalar weights and frozen normalization; fresh AdamW lr0.0005 each round; 20epochs; CE temp0.15 +0.1 Huber",
+  "sampling": "up to32 exact leaders +32 current-model leaders +32 heuristic leaders +32 uniform per eligible list",
+  "checkpoints": [
+    0,
+    5,
+    10,
+    20
+  ],
+  "model_selection": "full validation generator output under the selected geometry; same quality/coverage key; earliest tie",
+  "evaluation_methods": [
+    "full",
+    "heuristic_shallow",
+    "initial_shallow",
+    "heuristic_deep",
+    "initial_deep",
+    "trained_shallow",
+    "trained_deep"
+  ],
+  "repeats": 3,
+  "quality_gate": "each state J>=99.5% full",
+  "coverage_gate": "each state no newly unserved UE vs full and expected-service P5>=98% full; other UE diagnostics reported",
+  "cost_gate": "seed-equal median complete time<=80% full",
+  "learning_gate": "changed nonzero weights, positive J gain in every seed vs initial same geometry, at least6/9 state wins, quality+coverage+cost",
+  "timing": "raw numeric state/PFQ decode through fresh PHY/feature context, generation, inference, verification and cleanup",
+  "exclusions": "archive/model/library IO and first immutable TBS table; teacher labels/training separately charged",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

@@ -1,0 +1,13 @@
+state_id,previous_baseline_equal,cached_maxj_final_equal,all_terminal_arms_query_archive_equal
+raw_global_deficit:seed44:tti4001,True,True,True
+raw_global_deficit:seed44:tti8001,True,True,True
+raw_global_deficit:seed44:tti18000,True,True,True
+pfq:seed44:tti4001,True,True,True
+pfq:seed44:tti8001,True,True,True
+pfq:seed44:tti18000,True,True,True
+raw_global_deficit:seed45:tti4001,True,True,True
+raw_global_deficit:seed45:tti8001,True,True,True
+raw_global_deficit:seed45:tti18000,True,True,True
+pfq:seed45:tti4001,True,True,True
+pfq:seed45:tti8001,True,True,True
+pfq:seed45:tti18000,True,True,True

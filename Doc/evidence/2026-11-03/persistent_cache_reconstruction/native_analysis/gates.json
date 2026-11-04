@@ -1,0 +1,42 @@
+{
+  "seeds": [
+    {
+      "seed": 44,
+      "checks": {
+        "payload_each_seed": true,
+        "expiry": true,
+        "mean_delay": true,
+        "p95_delay": true,
+        "weak_P5": true,
+        "worst_ue_expiry": false,
+        "no_new_zero_payload": true,
+        "no_new_TTL_long_service_gap": true
+      },
+      "quality_passed": false,
+      "cost_mean_PHY_passed": false,
+      "cost_P95_PHY_passed": true
+    },
+    {
+      "seed": 45,
+      "checks": {
+        "payload_each_seed": true,
+        "expiry": true,
+        "mean_delay": true,
+        "p95_delay": true,
+        "weak_P5": true,
+        "worst_ue_expiry": true,
+        "no_new_zero_payload": true,
+        "no_new_TTL_long_service_gap": true
+      },
+      "quality_passed": true,
+      "cost_mean_PHY_passed": false,
+      "cost_P95_PHY_passed": true
+    }
+  ],
+  "payload_paired_mean_ratio": 1.0002371580421767,
+  "payload_paired_mean_passed": true,
+  "all_native_quality_passed": false,
+  "all_native_PHY_cost_passed": false,
+  "final_promotion": false,
+  "interpretation": "exposed44/45 development; not five-new-seed10s confirmation"
+}

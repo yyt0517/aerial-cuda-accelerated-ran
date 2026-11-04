@@ -1,0 +1,16 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "native_phy": {
+    "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/_physics.so",
+    "sha256": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4"
+  },
+  "cuda_used": false
+}

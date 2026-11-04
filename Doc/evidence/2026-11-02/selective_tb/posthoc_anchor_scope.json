@@ -1,0 +1,11 @@
+{
+  "posthoc": true,
+  "policy_selection_changed": false,
+  "purpose": "diagnose additional guard scope, not alter acceptance gates or prove infeasibility",
+  "full_anchor_passes": 0,
+  "states": 21,
+  "numpy_pfq_scores": 21,
+  "elapsed_s": 2.335175192914903,
+  "finding": "all allocated PFQ UEs are a stronger protection set than full-DPLS allocation/service reference",
+  "limitation": "full reference violating a constraint is not proof no other near-full-J schedule satisfies it"
+}

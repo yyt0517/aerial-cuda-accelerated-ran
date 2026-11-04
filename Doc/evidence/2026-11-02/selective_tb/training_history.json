@@ -1,0 +1,44 @@
+{
+  "groups": 72,
+  "epochs": 20,
+  "optimizer_steps": 1440,
+  "history": [
+    {
+      "epoch": 0,
+      "loss": null,
+      "mean_relative_j_pct": -19.352845019217813,
+      "quality": false,
+      "coverage": false,
+      "mean_positive_p5": 0.2876407675676072
+    },
+    {
+      "epoch": 5,
+      "loss": 3.2128173841370478,
+      "mean_relative_j_pct": -15.912662809622313,
+      "quality": false,
+      "coverage": false,
+      "mean_positive_p5": 0.707131840665497
+    },
+    {
+      "epoch": 10,
+      "loss": 3.0033287091387644,
+      "mean_relative_j_pct": -16.58444161045123,
+      "quality": false,
+      "coverage": false,
+      "mean_positive_p5": 0.6457622176640431
+    },
+    {
+      "epoch": 20,
+      "loss": 2.8097191883458033,
+      "mean_relative_j_pct": -17.02361376956043,
+      "quality": false,
+      "coverage": false,
+      "mean_positive_p5": 0.5659042006451565
+    }
+  ],
+  "selected_epoch": 5,
+  "elapsed_s": 6.4614767245948315,
+  "normalization_training_only": true,
+  "target": "safe near-optimal listwise rank with retained-root option + feasibility BCE + residual-gain regression",
+  "checkpoint_selection": "validation trajectory J/service only; complete-cost gate checked in formal three-repeat benchmark"
+}

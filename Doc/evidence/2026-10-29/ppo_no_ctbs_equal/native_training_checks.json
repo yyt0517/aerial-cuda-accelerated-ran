@@ -1,0 +1,53 @@
+{
+  "train_seed41/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 6176
+  },
+  "train_seed41/validation.json": {
+    "passed": true,
+    "horizon": 6176,
+    "exact_native_actions": 6176,
+    "fresh_input_checks": 6176,
+    "exact_mcs_layer_tbs_dequeue": 6176,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 693.1584720462561
+  },
+  "train_seed42/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 6176
+  },
+  "train_seed42/validation.json": {
+    "passed": true,
+    "horizon": 6176,
+    "exact_native_actions": 6176,
+    "fresh_input_checks": 6176,
+    "exact_mcs_layer_tbs_dequeue": 6176,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 568.5598276862875
+  },
+  "train_seed43/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 6176
+  },
+  "train_seed43/validation.json": {
+    "passed": true,
+    "horizon": 6176,
+    "exact_native_actions": 6176,
+    "fresh_input_checks": 6176,
+    "exact_mcs_layer_tbs_dequeue": 6176,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 442.50788677018136
+  }
+}

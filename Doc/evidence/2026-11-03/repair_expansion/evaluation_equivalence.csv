@@ -1,0 +1,10 @@
+state_id,previous_baseline_equal,cached_maxj_previous_final_equal,all_terminal_arms_query_archive_equal
+pfq:seed46:tti3001,True,True,True
+pfq:seed46:tti4001,True,True,True
+pfq:seed46:tti5000,True,True,True
+pfq:seed47:tti3001,True,True,True
+pfq:seed47:tti4001,True,True,True
+pfq:seed47:tti5000,True,True,True
+pfq:seed48:tti3001,True,True,True
+pfq:seed48:tti4001,True,True,True
+pfq:seed48:tti5000,True,True,True

@@ -1,0 +1,50 @@
+test_dedup_escapes_a_rejected_top_candidate (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_invalid_configuration_is_rejected (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_new_roots_and_new_decisions_begin_without_old_failed_indices (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_observer_is_passive (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_own_labels_preserve_actual_failed_mask_and_availability (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... OWN_SHORTLIST fixture:seed41:tti4001 6 6
+ok
+test_partial_last_shortlist_and_small_budgets_are_respected (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_selection_cost_is_ratio_of_seed_equal_complete_means (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_top2_and_top4_never_rescore_a_root_candidate_or_hide_full_search (training.stageb_lns.test_shortlist_trajectory.ShortlistTests) ... ok
+test_attempted_depth_does_not_claim_successful_edits (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_coverage_exposes_newly_unserved_and_tail_service (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_finetuning_keeps_original_weights_on_validation_ties (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... FIT 1 0 {'mean_ratio': 0.5}
+FIT 1 1 {'mean_ratio': 0.5}
+ok
+test_invalid_geometry_is_rejected (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_observer_mutation_cannot_change_action_or_work (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_positive_service_diagnostic_exposes_zero_inclusive_p5_degeneracy (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_resource_truncation_preserves_a_verified_parent_and_floor (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_shallow_and_deep_reproduce_previous_generator (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... ok
+test_teacher_labels_only_actual_deduplicated_student_roots (training.stageb_lns.test_own_trajectory.TrajectoryTests) ... OWN 1 fixture:seed41:tti4001 visited 32 unique 1 labels 1
+ok
+test_bounded_block_search_covers_all_prgs_before_deepening (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_certified_search_preserves_full_trajectory_and_ties (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_new_predictor_matches_torch_with_clipping_and_nonzero_weights (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_probability_bound_holds_over_all_native_piecewise_segments (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_probe_kernel_matches_independent_phy (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_residual_generator_never_calls_search_or_teacher (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_scalar_certificate_needs_no_spatial_bank_and_preserves_actions (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_sparse_score_layout_preserves_full_batch_ties (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_spatial_features_reconstruct_exact_tb_sinr_without_bler_queries (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_stale_closed_and_mult_prg_inputs_rejected (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_upper_bound_and_logical_dequeue_including_full_three_cell_edits (training.stageb_lns.test_bounded_probes.ProbeTests) ... ok
+test_entire_timed_path_ignores_ctbs_and_demand_masks (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_metadata_detach_never_invokes_headroom_or_mcs_methods (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_physical_prg_availability_is_preserved_without_ue_demand_clipping (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_metadata_preferred_and_invalid_ema_or_native_mcs_rejected (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_pfq_retains_prgs_after_queue_saturation (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_raw_pfq_validates_native_slot_semantics (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_stale_phy_or_queue_observation_is_rejected (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_upcoming_decision_clock_requires_matching_snapshot_identity (training.stageb_lns.test_no_ctbs_inputs.NoCtbsInputsTests) ... ok
+test_first_two_rejections_still_reach_round_three (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_full_matches_independent_fixed_root_reference (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_passive_teacher_observer_does_not_change_decisions (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_ranked_full_k_has_identical_choices_and_no_duplicate_fallback (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+test_tiny_shortlist_ends_with_exact_full_stop_and_independent_phy (training.stageb_lns.test_ranked_dpls.RankedDplsTests) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 3.020s
+
+OK

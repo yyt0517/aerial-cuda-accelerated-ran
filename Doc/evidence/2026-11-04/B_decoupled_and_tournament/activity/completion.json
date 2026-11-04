@@ -1,0 +1,16 @@
+{
+  "completed": true,
+  "new_candidate_PHY": 0,
+  "new_MMSE": 0,
+  "cells": 3,
+  "users": 36,
+  "PRGs": 17,
+  "mask_states_per_pair": 4,
+  "MMSE_problems_upper_per_TTI": 2448,
+  "checked_native_policy_TTIs": 50400,
+  "checked_full_replay_states": 240,
+  "per_key_log_available": false,
+  "proof": "gamma strips own serving-cell bit; cache indexed byUE/PRG and remaining activitymask; miss increments only on new mask key",
+  "limitation": "coverage is tuple count from cache-miss counters, not reconstructed per-pair key frequencies; coincident covariance matrices can reduce distinct problems further",
+  "small_matrix": "kernel already uses Eigen::Matrix<complex<double>,4,4,RowMajor>; no new batch/woodbury arithmetic executed"
+}

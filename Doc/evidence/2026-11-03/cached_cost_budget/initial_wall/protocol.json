@@ -1,0 +1,18 @@
+{
+  "cpu_affinity": [
+    255
+  ],
+  "repeats": 5,
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "python": "3.10.12",
+  "timing": "current saved raw metadata -> MCS/TBS/raw PFQ -> fresh PHY/search -> action and close; immutable imports/table/library excluded",
+  "decision_logging": false,
+  "decision_history": false,
+  "decision_profiling": false,
+  "decision_audit": false,
+  "ordering": "serial one process, reverse state order on alternating repetitions; alternate full/cached per state",
+  "post_timing_checks": "all repetitions match frozen canonical gate actions/PHY, outside every measured interval",
+  "profiling": "separate paid run with diagnostics; first-scan/setup shares are approximate profiled shares, not timing-run instrumentation",
+  "host": "shared host; no real-time or packet-delay claim",
+  "independent_scene_seeds": 1
+}

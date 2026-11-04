@@ -1,0 +1,23 @@
+{
+  "/opt/nvidia/cuBB/deliverables/crossload_grid_analysis_20261104_v2/learning_entry.json": "64608616e3c540d12c9ad45283126f6689e16b38773bd62c749e5df6aff4e2bd",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r0p8_k4_seed41/search.csv": "e00b992dc8025d8b56952bae8f790ecb569b04985e3510e558948caf4880a540",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r0p8_k4_seed42/search.csv": "77dcbb43ecb952c3d0673b22e6569be5ec85c4818f8c9a20c8ffa9dec9d6cc4e",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r0p8_k8_seed41/search.csv": "0f89678bf90822a8e86e8c3974d506563fe62a764b6ee3ff4de71cb506880e52",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r0p8_k8_seed42/search.csv": "97755f8182b4044471390b0a5573270afb157c9df8b48cbff8ec6a3986baca86",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k1_seed41/search.csv": "c52ff600aae359c9d5266ca09d2388f8836567a7bf288c024e0b57489374061f",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k1_seed42/search.csv": "9cb8c40a0e437f64a273912c31faa34b729fe51e655fbf2ab83e1f0f49715bdf",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k2_seed41/search.csv": "beea8e0efadc2ade9c6f198023c648a8a80890b7cb0db1c47bee5c6af0431fb9",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k2_seed42/search.csv": "8c8ae424cac907cbf8d0657ae03d59262cca12a2ad7ca014715d05b3ed9b2c89",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k4_seed41/search.csv": "c52678f10fa0a09453e26b6a4c3b2f372a57920ae3395039917996190bc4053f",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k4_seed42/search.csv": "b3a61fcff1a7ba432ad337ebb2124a837994692eaa09c6a429c2acc9a58b5de5",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k8_seed41/search.csv": "29e47609acb068bf5cf99ad23386870db3f91c11527e3b015393827adfd52017",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p12_k8_seed42/search.csv": "4a349eecb6c6bfb5138edc2d11769c2091ab27fda06c992ec1128269e432b991",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k1_seed41/search.csv": "404b953af4f5123ec9968cb621b255f5c981d2ce4c22d23d8a7c54537f2d5e4f",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k1_seed42/search.csv": "485942c5036be062828af52820e5dbb1888eee545acb6ffd1c57ac915581ce18",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k2_seed41/search.csv": "6620fa6dfa0bffb3cdfb0bfc6585e788e2571a038aa64e75f069fa78aac60516",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k2_seed42/search.csv": "5d87f7130a70444799e7aa95d78da8edbb62096eb1faec96ddd2606a1f359303",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k4_seed41/search.csv": "8af0fc9f3cb674a4ffadb33a7306189edf99148b669598655b3f0ce5e854af7e",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k4_seed42/search.csv": "63f27b74aa4fda909c4729b1c6b70aee5a17001395cdf353cc8cf5829885b61a",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k8_seed41/search.csv": "11d7fb0dc4b1fce9e0eb44fd585ca8bf3732364834996e5f7f1c63281f55cb5c",
+  "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/r1p28_k8_seed42/search.csv": "07eec056621d65206d86401a8437a790382594709b5c6063dd2ec4c312830fb9"
+}

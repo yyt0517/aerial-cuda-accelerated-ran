@@ -1,0 +1,25 @@
+[
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v1",
+    "completed": false,
+    "native_checks": {}
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v2",
+    "completed": false,
+    "error": "AssertionError('DataFrame are different\\n\\nDataFrame shape mismatch\\n[left]:  (116220, 5)\\n[right]: (116191, 5)')",
+    "native_checks": {
+      "cold_full_seed41/validation.json": {
+        "passed": true,
+        "horizon": 4032,
+        "exact_native_actions": 4032,
+        "fresh_input_checks": 4032,
+        "exact_mcs_layer_tbs_dequeue": 4032,
+        "no_ctbs_action_clipping": true,
+        "equal_ue_reward": true,
+        "sources_unchanged": true,
+        "elapsed_s": 142.1371306721121
+      }
+    }
+  }
+]

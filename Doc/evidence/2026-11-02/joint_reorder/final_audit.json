@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "tests": 94,
+  "formal_decisions": 567,
+  "formal_independent_finals": 189,
+  "offline_teacher_independent_finals": 23,
+  "engineering_independent_decoder_finals": 8,
+  "sparse_dense_proxy_checks": 2,
+  "all21_sparse_narrow_actions_values_identical": true,
+  "selector_only_search_group_and_budget_parity": true,
+  "source_hashes_valid": true,
+  "registry_and_physics_unchanged": true,
+  "training_updates": 0,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

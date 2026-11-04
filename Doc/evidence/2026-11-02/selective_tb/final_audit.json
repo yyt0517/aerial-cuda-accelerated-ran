@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "tests": 63,
+  "formal_decisions": 630,
+  "independent_final_phy": 210,
+  "training_independent_candidate_checks": 420,
+  "whole_tb_engineering_batches": 16,
+  "summary_and_paired_metrics_recomputed": true,
+  "all21_final_engineering_actions_identical": true,
+  "source_model_and_registry_hashes_valid": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false
+}

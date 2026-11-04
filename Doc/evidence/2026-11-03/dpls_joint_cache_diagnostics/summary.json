@@ -1,0 +1,182 @@
+{
+  "cold_full": {
+    "1": {
+      "mean_k": 1.0,
+      "union_common_fraction": 0.26326507180602904,
+      "projected_round_ratio": 1.0,
+      "projected_combined_candidate_ratio": 0.2874493105559182,
+      "projected_batch_only_candidate_ratio": 1.0,
+      "incorrect_product_ratio": 0.2874493105559182
+    },
+    "2": {
+      "mean_k": 1.9284351145038168,
+      "union_common_fraction": 0.4468060854504612,
+      "projected_round_ratio": 0.549537037037037,
+      "projected_combined_candidate_ratio": 0.2588123816964462,
+      "projected_batch_only_candidate_ratio": 0.5493898665079328,
+      "incorrect_product_ratio": 0.15792173835411322
+    },
+    "4": {
+      "mean_k": 3.523854961832061,
+      "union_common_fraction": 0.6572136817674484,
+      "projected_round_ratio": 0.352854938271605,
+      "projected_combined_candidate_ratio": 0.2211436094754829,
+      "projected_batch_only_candidate_ratio": 0.3526887060292207,
+      "incorrect_product_ratio": 0.10138012538895841
+    },
+    "8": {
+      "mean_k": 5.693702290076335,
+      "union_common_fraction": 0.7932959938483022,
+      "projected_round_ratio": 0.28208443562610225,
+      "projected_combined_candidate_ratio": 0.1889049384994652,
+      "projected_batch_only_candidate_ratio": 0.28197677853467357,
+      "incorrect_product_ratio": 0.08105403058257075
+    },
+    "all": {
+      "mean_k": 6.279580152671755,
+      "union_common_fraction": 0.8051605126155638,
+      "projected_round_ratio": 0.2753700517589406,
+      "projected_combined_candidate_ratio": 0.1836709372034714,
+      "projected_batch_only_candidate_ratio": 0.2751770546337518,
+      "incorrect_product_ratio": 0.07909945463528019
+    },
+    "within": {
+      "count": 1016,
+      "known_winner": 1016,
+      "top16_all": 0.8011811023622047,
+      "top16_floor": 0.8041338582677166,
+      "dirty_known_winners": 393,
+      "dirty_known_top16": 0.6259541984732825,
+      "dirty_top16_best_recovered": 0.8553149606299213,
+      "mean_fresh_candidates": 19.444881889763778,
+      "clean_winners": 623,
+      "novel_winners": 0
+    },
+    "cross_tti": {
+      "count": 31,
+      "known_winner": 16,
+      "top16_all": 0.0,
+      "top16_floor": 0.0
+    }
+  },
+  "warm_full": {
+    "1": {
+      "mean_k": 1.0,
+      "union_common_fraction": 0.3096599924474398,
+      "projected_round_ratio": 1.0,
+      "projected_combined_candidate_ratio": 0.34019094721341914,
+      "projected_batch_only_candidate_ratio": 1.0,
+      "incorrect_product_ratio": 0.34019094721341914
+    },
+    "2": {
+      "mean_k": 1.8897849462365592,
+      "union_common_fraction": 0.49501715227713583,
+      "projected_round_ratio": 0.5734536082474226,
+      "projected_combined_candidate_ratio": 0.2966764301033964,
+      "projected_batch_only_candidate_ratio": 0.5732013668811422,
+      "incorrect_product_ratio": 0.19499791594332233
+    },
+    "4": {
+      "mean_k": 3.295698924731183,
+      "union_common_fraction": 0.6790925299122696,
+      "projected_round_ratio": 0.40002147766323026,
+      "projected_combined_candidate_ratio": 0.25336631827736694,
+      "projected_batch_only_candidate_ratio": 0.3995509085864891,
+      "incorrect_product_ratio": 0.13592360205201998
+    },
+    "8": {
+      "mean_k": 4.553763440860215,
+      "union_common_fraction": 0.7534436494494045,
+      "projected_round_ratio": 0.3565568237604319,
+      "projected_combined_candidate_ratio": 0.23097309205221186,
+      "projected_batch_only_candidate_ratio": 0.355927149213666,
+      "incorrect_product_ratio": 0.12108319402996902
+    },
+    "all": {
+      "mean_k": 4.794354838709677,
+      "union_common_fraction": 0.7582444966295552,
+      "projected_round_ratio": 0.35379226300618044,
+      "projected_combined_candidate_ratio": 0.22878839323247757,
+      "projected_batch_only_candidate_ratio": 0.35311442085822675,
+      "incorrect_product_ratio": 0.12012632930647808
+    },
+    "within": {
+      "count": 712,
+      "known_winner": 712,
+      "top16_all": 0.8047752808988764,
+      "top16_floor": 0.8061797752808989,
+      "dirty_known_winners": 305,
+      "dirty_known_top16": 0.659016393442623,
+      "dirty_top16_best_recovered": 0.8539325842696629,
+      "mean_fresh_candidates": 20.4873595505618,
+      "clean_winners": 407,
+      "novel_winners": 0
+    },
+    "cross_tti": {
+      "count": 31,
+      "known_winner": 27,
+      "top16_all": 0.0,
+      "top16_floor": 0.0
+    }
+  },
+  "warm_n3": {
+    "1": {
+      "mean_k": 1.0,
+      "union_common_fraction": 0.26478952990078114,
+      "projected_round_ratio": 1.0,
+      "projected_combined_candidate_ratio": 0.523647094894987,
+      "projected_batch_only_candidate_ratio": 1.0,
+      "incorrect_product_ratio": 0.523647094894987
+    },
+    "2": {
+      "mean_k": 2.0,
+      "union_common_fraction": 0.46206468465905415,
+      "projected_round_ratio": 0.6666666666666666,
+      "projected_combined_candidate_ratio": 0.49612269405692677,
+      "projected_batch_only_candidate_ratio": 0.6673629209463948,
+      "incorrect_product_ratio": 0.3494626547942125
+    },
+    "4": {
+      "mean_k": 4.0,
+      "union_common_fraction": 0.7103834042858354,
+      "projected_round_ratio": 0.5,
+      "projected_combined_candidate_ratio": 0.4565415964024733,
+      "projected_batch_only_candidate_ratio": 0.5009725203127395,
+      "incorrect_product_ratio": 0.2623328048839859
+    },
+    "8": {
+      "mean_k": 7.96875,
+      "union_common_fraction": 0.9451205888151409,
+      "projected_round_ratio": 0.41703869047619047,
+      "projected_combined_candidate_ratio": 0.4141745691071155,
+      "projected_batch_only_candidate_ratio": 0.41844756739887434,
+      "incorrect_product_ratio": 0.2191188530342948
+    },
+    "all": {
+      "mean_k": 9.666666666666666,
+      "union_common_fraction": 0.9782789262735998,
+      "projected_round_ratio": 0.4028226114163615,
+      "projected_combined_candidate_ratio": 0.4028952892330557,
+      "projected_batch_only_candidate_ratio": 0.40424946853641475,
+      "incorrect_product_ratio": 0.21168405981193603
+    },
+    "within": {
+      "count": 64,
+      "known_winner": 64,
+      "top16_all": 0.734375,
+      "top16_floor": 0.765625,
+      "dirty_known_winners": 18,
+      "dirty_known_top16": 0.3888888888888889,
+      "dirty_top16_best_recovered": 0.828125,
+      "mean_fresh_candidates": 21.671875,
+      "clean_winners": 46,
+      "novel_winners": 0
+    },
+    "cross_tti": {
+      "count": 31,
+      "known_winner": 30,
+      "top16_all": 0.06451612903225806,
+      "top16_floor": 0.06451612903225806
+    }
+  }
+}

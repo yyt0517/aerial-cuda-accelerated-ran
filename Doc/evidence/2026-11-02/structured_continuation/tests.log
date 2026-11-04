@@ -1,0 +1,32 @@
+test_continuation_honors_fixed_prefix_and_matches_exhaustive_suffix (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_decomposition_limits_and_callback_budget_do_not_claim_optimum (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_empty_legal_and_no_feasible_schedule_are_explicit (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_exact_factorization_matches_independent_exhaustive_blocks (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_likelihood_adapter_preserves_frozen_search_and_recording_is_passive (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_missing_feasible_future_is_not_zero_and_truncation_is_recorded (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_pareto_keeps_floor_tradeoff_and_tiny_real_gain (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_search_budgets_cover_decomposition_and_explicit_rollouts (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_teacher_uses_real_student_prefix_and_does_not_mutate_observation (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_value_ranking_requires_actual_pruning_space (training.stageb_lns.test_structured_continuation.StructuredContinuationTests) ... ok
+test_cache_reuses_incumbent_and_invalidates_new_base_or_graph (training.stageb_lns.test_cached_repair.CachedRepairTests) ... ok
+test_prefix_features_logits_and_tie_order_match_reference (training.stageb_lns.test_cached_repair.CachedRepairTests) ... ok
+test_verified_search_action_and_work_match_without_time_cutoff (training.stageb_lns.test_cached_repair.CachedRepairTests) ... ok
+test_activity_change_recomputes_all_physical_neighbors (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_anytime_budget_floor_and_reproducibility (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_and_incremental_match_independent_reference (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_full_greedy_result_is_independent_of_batch_size (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_invalid_inputs_and_context_are_rejected (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_joint_block_crosses_a_single_edit_reliability_valley (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_late_verification_cannot_replace_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_nonmonotonic_native_curve_is_batch_invariant (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_policy_can_stop_and_return_verified_incumbent (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_tb_layer_change_recomputes_resources_outside_block (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_ue_swap_does_not_invalidate_neighbor_mmse (training.stageb_lns.test_physics.PhysicalTests) ... ok
+test_deterministic_no_change_scan_stops_without_spending_two_more_passes (training.stageb_lns.test_repair.JointRepairTests) ... ok
+test_prefix_changes_features_and_outputs_remain_in_block (training.stageb_lns.test_repair.JointRepairTests) ... ok
+test_warm_start_keeps_original_floor (training.stageb_lns.test_repair.JointRepairTests) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 1.083s
+
+OK

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/audit_bounded_probes.py", line 200, in <module>
+    p.add_argument('--tests-log',required=True);a=p.parse_args();main(a.source,a.destination,a.tests_log)
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_lns/audit_bounded_probes.py", line 43, in main
+    assert trace==[h['best_index'] for h in record['history']]
+AssertionError

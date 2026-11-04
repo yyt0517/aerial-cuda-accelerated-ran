@@ -1,0 +1,16 @@
+Collecting scikit-learn==1.7.2
+  Downloading scikit_learn-1.7.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting joblib==1.5.2
+  Downloading joblib-1.5.2-py3-none-any.whl.metadata (5.6 kB)
+Collecting threadpoolctl==3.6.0
+  Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Downloading scikit_learn-1.7.2-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.7/9.7 MB 258.4 kB/s  0:02:59
+Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
+Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Installing collected packages: threadpoolctl, scikit-learn, joblib
+
+Successfully installed joblib-1.5.2 scikit-learn-1.7.2 threadpoolctl-3.6.0
+
+[notice] A new release of pip is available: 26.0.1 -> 26.3
+[notice] To update, run: /opt/nvidia/cuBB/.venv/bin/python -m pip install --upgrade pip

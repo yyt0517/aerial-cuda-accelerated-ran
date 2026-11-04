@@ -1,0 +1,21 @@
+{
+  "note": "Executed V1 originals and V2 implementation snapshots retained. Reporter and validation-only terminal audit were added after formal timing. Full dependencies and binaries remain in local deliverables/source.",
+  "files": {
+    "resource_conditions_fast.py": "dd604733fb54c1f51346aba02500b3fc4dbc5dc1478943768523556054f0b0f5",
+    "resource_terminal_audit.py": "e67d995d6ec6c8d431ab86cdb9d2f2f5f532de4a12b0fd8f5c43e0cab1ead412",
+    "resource_pool_kernel.cpp": "cfa846a2e608f7bdeb926231d2d10a85e38e9d2f7c40cfaf64ae809eadc724dd",
+    "report_resource_conditions.py": "c69eda92fddfb098e20709da0556b0a51efd6f3b8529ce16424d2c3234b70aa3",
+    "resource_condition_kernel.cpp": "6c067e2ff0cf153dcec91af10c15cead6eefcbd031e1e0bffc66a41522a1ed81",
+    "resource_conditions_README.rst": "5f358192048a4601d9778c152c01382dcf90b6cb99b2359929766f4038f09b03",
+    "test_resource_conditions.py": "0228dd43152e096f907de59e9041dcaddaa3af2f0af922275b52b4003a854475",
+    "test_resource_fast.py": "e2a623fc94caa24c5b800005f34207659df96704f8200fa7c49007dd848104bf",
+    "resource_conditions.py": "4583c915098237aafd7fc0dcf89a65b95fdd11dcb8a4870e0f74c4dd432424a6",
+    "resource_condition_fast_campaign.py": "6dccd8cf382d63edafae9e765ccd831eb6986a0ccb64b07930fced3eee36dc71",
+    "resource_condition_campaign.py": "1f6338f3ca1392fdec8e73d9ac395fbe4f1498309a256a1752a4dea45b2eefb1",
+    "v1/resource_conditions_README.rst": "a86d79bd6601c171f5be2671bb497b514d3675cd3f30a271cceff57dd9f47932",
+    "v1/resource_conditions.py": "9bcedaae65e3ede93a9a955ac1bee88dba976b13daefba74b33ea76445d4c02f",
+    "v1/resource_condition_campaign.py": "ac3710b00f14f1cd8795332123089bbe4782666895ec1a27d4180394975301a0"
+  },
+  "v1_manifest_sha256": "74fd684a56fbecd9db9e0385e497fcacfec1bd4444f2ee4d152f60549cabac27",
+  "v2_manifest_sha256": "0360dc427921ab8628957eeef740d0cc0705177ec32a27bee9dd92efc113a8b2"
+}

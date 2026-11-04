@@ -1,0 +1,155 @@
+{
+  "unique_states": 15,
+  "candidates": 3165,
+  "architecture": [
+    20,
+    24,
+    10
+  ],
+  "shared_per_ue": true,
+  "monotone_candidate_loss": true,
+  "epochs_per_fit": 240,
+  "model_fits": 6,
+  "gradient_steps": 1440,
+  "auxiliary": "0.2*(UE reference-positive BCE + reference E/D MSE), training-only full targets",
+  "risk_label": "10*relu(.995-J/fullJ)+relu(.98-P5ratio)+relu(.98-fixedweakratio)",
+  "pair_rule": "within each state own2%Jwindow;strict risk gap>.005, ties<=.0001;up to1024 each, prioritize maximumJ comparisons;ambiguous ignored",
+  "alpha": 42.963483023321295,
+  "heuristic_alpha": 60.425117620560876,
+  "threshold": 0.9,
+  "folds": [
+    {
+      "held_seed": 41,
+      "training_states": [
+        "raw_global_deficit:seed42:tti4001",
+        "raw_global_deficit:seed42:tti8001",
+        "raw_global_deficit:seed42:tti18000",
+        "pfq:seed42:tti8001",
+        "pfq:seed42:tti18000",
+        "raw_global_deficit:seed43:tti4001",
+        "raw_global_deficit:seed43:tti8001",
+        "raw_global_deficit:seed43:tti18000",
+        "pfq:seed43:tti8001",
+        "pfq:seed43:tti18000"
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "rank_loss": 0.6552279359925266,
+          "auxiliary_loss": 0.9933995861116395
+        },
+        {
+          "epoch": 240,
+          "rank_loss": 0.5528938161310407,
+          "auxiliary_loss": 0.005621202300553903
+        }
+      ]
+    },
+    {
+      "held_seed": 42,
+      "training_states": [
+        "raw_global_deficit:seed41:tti4001",
+        "raw_global_deficit:seed41:tti8001",
+        "raw_global_deficit:seed41:tti18000",
+        "pfq:seed41:tti8001",
+        "pfq:seed41:tti18000",
+        "raw_global_deficit:seed43:tti4001",
+        "raw_global_deficit:seed43:tti8001",
+        "raw_global_deficit:seed43:tti18000",
+        "pfq:seed43:tti8001",
+        "pfq:seed43:tti18000"
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "rank_loss": 0.6570378056018672,
+          "auxiliary_loss": 0.9742550193639125
+        },
+        {
+          "epoch": 240,
+          "rank_loss": 0.5682291052205724,
+          "auxiliary_loss": 0.032571938537657115
+        }
+      ]
+    },
+    {
+      "held_seed": 43,
+      "training_states": [
+        "raw_global_deficit:seed41:tti4001",
+        "raw_global_deficit:seed41:tti8001",
+        "raw_global_deficit:seed41:tti18000",
+        "pfq:seed41:tti8001",
+        "pfq:seed41:tti18000",
+        "raw_global_deficit:seed42:tti4001",
+        "raw_global_deficit:seed42:tti8001",
+        "raw_global_deficit:seed42:tti18000",
+        "pfq:seed42:tti8001",
+        "pfq:seed42:tti18000"
+      ],
+      "history": [
+        {
+          "epoch": 1,
+          "rank_loss": 0.6593390121581,
+          "auxiliary_loss": 0.9748464540218711
+        },
+        {
+          "epoch": 240,
+          "rank_loss": 0.5590221744889022,
+          "auxiliary_loss": 0.03428981355491113
+        }
+      ]
+    }
+  ],
+  "final_models": [
+    {
+      "initialization": 20261103,
+      "history": [
+        {
+          "epoch": 1,
+          "rank_loss": 0.6570812011774626,
+          "auxiliary_loss": 0.9801403502201793
+        },
+        {
+          "epoch": 240,
+          "rank_loss": 0.5614477956877589,
+          "auxiliary_loss": 0.02803424267581993
+        }
+      ]
+    },
+    {
+      "initialization": 20261104,
+      "history": [
+        {
+          "epoch": 1,
+          "rank_loss": 0.6606575506065282,
+          "auxiliary_loss": 1.00128435909464
+        },
+        {
+          "epoch": 240,
+          "rank_loss": 0.5612831628391266,
+          "auxiliary_loss": 0.027703339084580003
+        }
+      ]
+    },
+    {
+      "initialization": 20261105,
+      "history": [
+        {
+          "epoch": 1,
+          "rank_loss": 0.6526032687879519,
+          "auxiliary_loss": 0.814200638078796
+        },
+        {
+          "epoch": 240,
+          "rank_loss": 0.5612043238556693,
+          "auxiliary_loss": 0.027326869676864256
+        }
+      ]
+    }
+  ],
+  "confidence": "minimum calibrated pair-win probability across3 initializations versus same maximumJ incumbent; not an absolute feasibility guarantee",
+  "calibration_diagnostic_not_independent": true,
+  "elapsed_s": 13.499800168909132,
+  "validation_read": false,
+  "development_read": false
+}

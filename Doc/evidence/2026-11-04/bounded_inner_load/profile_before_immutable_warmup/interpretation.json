@@ -1,0 +1,4 @@
+{
+  "first_immutable_TBS_build_in_e2e": true,
+  "note": "native component times usable; end-to-end profile mean contains first immutable adapter/table construction; fair timing and native tails unaffected; v2 warms this outside profile"
+}

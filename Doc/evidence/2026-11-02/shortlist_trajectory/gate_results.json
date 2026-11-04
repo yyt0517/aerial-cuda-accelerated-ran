@@ -1,0 +1,168 @@
+{
+  "learning": {
+    "2": {
+      "wins": 6,
+      "losses": 3,
+      "seed_j_deltas": {
+        "46": -500.8795986866414,
+        "47": 2421.0917805753415,
+        "48": 1336.0760559139162
+      },
+      "mean_j_delta": 1085.4294126008722,
+      "ratio_of_mean_gain_pct": 1.4702272701231145,
+      "stable_learning": false,
+      "joint_pass": false
+    },
+    "4": {
+      "wins": 3,
+      "losses": 6,
+      "seed_j_deltas": {
+        "46": 816.643404028131,
+        "47": -1288.9032061307855,
+        "48": -541.6253874137037
+      },
+      "mean_j_delta": -337.9617298387861,
+      "ratio_of_mean_gain_pct": -0.46171856778847165,
+      "stable_learning": false,
+      "joint_pass": false
+    }
+  },
+  "quality_coverage_cost": {
+    "legacy_top1": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_2": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_2": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "heuristic_4": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "initial_4": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "repeat_2": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "repeat_4": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_2": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    },
+    "trained_4": {
+      "quality_pass": false,
+      "coverage_pass": false,
+      "cost_pass": true,
+      "joint_pass": false
+    }
+  },
+  "selected_k_before_training": 4,
+  "final_training_epoch": 10,
+  "independent_ai_joint_target": false,
+  "terminal": {
+    "validation:initial_2": {
+      "states": 12,
+      "remaining_gain_gt16": 12,
+      "top4_gain_gt16": 8,
+      "median_first_positive_rank": 2.0,
+      "mean_best_gain": 1017.8331350453918
+    },
+    "validation:initial_4": {
+      "states": 12,
+      "remaining_gain_gt16": 12,
+      "top4_gain_gt16": 5,
+      "median_first_positive_rank": 5.5,
+      "mean_best_gain": 1001.987537723208
+    },
+    "validation:trained_2": {
+      "states": 12,
+      "remaining_gain_gt16": 12,
+      "top4_gain_gt16": 2,
+      "median_first_positive_rank": 11.0,
+      "mean_best_gain": 830.1447074493553
+    },
+    "validation:trained_4": {
+      "states": 12,
+      "remaining_gain_gt16": 11,
+      "top4_gain_gt16": 4,
+      "median_first_positive_rank": 6.0,
+      "mean_best_gain": 771.4344516416895
+    },
+    "evaluation:initial_2": {
+      "states": 9,
+      "remaining_gain_gt16": 9,
+      "top4_gain_gt16": 4,
+      "median_first_positive_rank": 6.0,
+      "mean_best_gain": 1092.5007018958454
+    },
+    "evaluation:initial_4": {
+      "states": 9,
+      "remaining_gain_gt16": 9,
+      "top4_gain_gt16": 5,
+      "median_first_positive_rank": 2.0,
+      "mean_best_gain": 1011.1504595010467
+    },
+    "evaluation:trained_2": {
+      "states": 9,
+      "remaining_gain_gt16": 9,
+      "top4_gain_gt16": 3,
+      "median_first_positive_rank": 6.0,
+      "mean_best_gain": 760.3856132848887
+    },
+    "evaluation:trained_4": {
+      "states": 9,
+      "remaining_gain_gt16": 9,
+      "top4_gain_gt16": 4,
+      "median_first_positive_rank": 5.0,
+      "mean_best_gain": 844.0774205310186
+    }
+  },
+  "next_path": {
+    "selected": "Freeze models and measure PHY-budget/quality curves before any further training",
+    "implementation_status": "chosen next experiment, not run in this campaign",
+    "grid": {
+      "top_k": [
+        2,
+        4
+      ],
+      "max_candidates": [
+        106,
+        160,
+        212
+      ],
+      "max_feature_roots": 56
+    },
+    "reason": "all development paths exhaust106 scores and every terminal initial/trained state retains >16B improvement",
+    "gates": "select only on validation, retain all-state99.5% J, positive-UE service and <=80% full cost criteria",
+    "learning": "original/trained AI and matching heuristic share every cache/negative-mask mechanism; no new fine tuning yet",
+    "conditional": "if extra budget cannot reach quality under full cost gate, investigate score/regret and structured joint edits/continuation targets",
+    "limitations": "terminal opportunities do not prove that larger budgets recover full DPLS or improve packet metrics"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "samples": 256,
+  "states_identical": true,
+  "order_alternated": true,
+  "checkpoint_sha256": "1167d28b1141dc186fbb3d1e6828384c74177228c6f10969b09ba1bc1e6e3a8a",
+  "included": "Python policy wall time: complete equal DPLS versus complete catalog plus PPO selection; native step excluded",
+  "conditions": "one benchmark process, CPU threads 1, MKLDNN off; simulator and existing GPU physics; no training concurrently",
+  "pipeline_over_dpls": 1.1356714134886328,
+  "actor_share_of_pipeline_pct": 0.32883816614701034,
+  "timing_ms": {
+    "pure_dpls_ms": {
+      "mean": 136.72356275856146,
+      "median": 136.1680426634848,
+      "p95": 173.61656995490193
+    },
+    "catalog_ms": {
+      "mean": 154.76244475212297,
+      "median": 155.08861560374498,
+      "p95": 189.34902385808527
+    },
+    "actor_ms": {
+      "mean": 0.5105970230943058,
+      "median": 0.5071018822491169,
+      "p95": 0.5327682010829449
+    },
+    "pipeline_ms": {
+      "mean": 155.27304177521728,
+      "median": 155.59845324605703,
+      "p95": 189.8430164437741
+    }
+  },
+  "limits": "research implementation, two training seeds and 256 live states; not a GPU-kernel or production latency benchmark"
+}

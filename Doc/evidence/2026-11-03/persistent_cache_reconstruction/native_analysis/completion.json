@@ -1,0 +1,6 @@
+{
+  "completed": true,
+  "new_native_runs": 0,
+  "new_phy_evaluations": 0,
+  "analysis": "only completed native outputs; no parameter/checkpoint/seed reselection"
+}

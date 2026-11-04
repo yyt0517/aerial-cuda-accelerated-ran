@@ -1,0 +1,6 @@
+arm,changed,repaired,harmed,j_wins,j_losses,j_ties,mean_j_delta,mean_ms_delta
+cached_maxj,0,0,0,0,0,12,0.0,0.0
+previous_guard,0,0,0,0,0,12,0.0,2.176971795658271
+expanded_ordinary,0,0,0,0,0,12,0.0,2.071334281936288
+repair_guard,1,1,0,0,1,11,-102.95029678105372,2.056597654397289
+repair_unguarded,2,1,0,0,1,11,-102.96932557898133,2.0635476491103573

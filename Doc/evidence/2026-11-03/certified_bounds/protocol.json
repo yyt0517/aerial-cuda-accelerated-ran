@@ -1,0 +1,19 @@
+{
+  "version": "certified_bound_offline_v1",
+  "input": "same12 correlated seed41 causal states and stored full roots/per-UE exact PHY",
+  "methods": {
+    "capacity": "all affected contributions bounded by nearest-even(weight*min(Q,TBS)*1e6); BLER lower0",
+    "theory_added": "add-only interference + unchanged victim assignment: upper contribution is stored root contribution; exact-arithmetic model only"
+  },
+  "dirty": "existing full-cache local refresh set only; not a rollout of cache entries deferred by a lazy solver",
+  "integer_best": "stored per-UE roots/next-root give selected integer gain b; stored quantization choice equality proves true maximum in[b,b+1]; report both endpoints",
+  "confirmation": "no accepted move => threshold certificate UB<=threshold; true subthreshold maximum was not saved",
+  "fraction_denominator": "exact cheap floor-feasible candidates; all-domain counts also retained",
+  "tie": "max-anchored1 integer unit; unseen UB==known maximum-1 can win by smaller key",
+  "no_PHY": "constructors/evaluators and numpy inverse/solve patched to raise; no MMSE/BLER counterfactual scoring",
+  "safeguards": "no pruning deployed online; no learned ordering fitted; no wall-time or actual scoring-saving claim",
+  "cap4": "existing seed44 failure unchanged; any future approximate-trajectory protocol first needs full canonical/random-tie native path-variation controls",
+  "new_PHY": 0,
+  "new_native_runs": 0,
+  "training_steps": 0
+}

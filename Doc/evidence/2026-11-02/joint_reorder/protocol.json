@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "methods": [
+    "full",
+    "activity_reference",
+    "joint_reference",
+    "narrow_delta_j",
+    "wide_j",
+    "narrow_pareto005",
+    "wide_pareto_j",
+    "wide_pareto005",
+    "wide_pareto02"
+  ],
+  "configs": {
+    "narrow_delta_j": {
+      "wide": false,
+      "pareto": false,
+      "final_j_loss": 0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102
+    },
+    "wide_j": {
+      "wide": true,
+      "pareto": false,
+      "final_j_loss": 0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102
+    },
+    "narrow_pareto005": {
+      "wide": false,
+      "pareto": true,
+      "final_j_loss": 0.005,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102
+    },
+    "wide_pareto_j": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102
+    },
+    "wide_pareto005": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0.005,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102
+    },
+    "wide_pareto02": {
+      "wide": true,
+      "pareto": true,
+      "final_j_loss": 0.02,
+      "max_candidates": 212,
+      "max_feature_roots": 56,
+      "rounds": 56,
+      "seed_candidates": 16,
+      "batch_size": 8,
+      "beam_width": 4,
+      "seed": 20261102
+    }
+  },
+  "ctbs": false,
+  "headroom_masks": false,
+  "ppo": false,
+  "training": false,
+  "objective": "canonical native BLER, causal deficit-weighted J; own unpruned PFQ90% dequeue floor",
+  "conditions": "fresh offline teacher counts/exact min-layer/activity only; no UE-to-PRG positions, teacher J/service/group in solver",
+  "wider": "all active PRG3-cycles plus4-slot cyclic windows in8 deterministic orders, allPRG coverage; paired narrow pool remains first6",
+  "sparse_proxy": "same root-anchored smooth reliability but update affected UE gamma sums only; no candidate native BLER or exact J; no new MMSE solves after bank",
+  "work": "count native gamma requests/misses PLUS direct gamma array reads, seed matching reads, generation attempts and approximate candidates; equal212 is not equal work/time",
+  "service_group": "freeze union of >1B UE service observed in paid16-seed archive, before main search; no teacher-positive mask",
+  "frontier": "exact-observed J/P5/bottom20% nondomination; 4 roots incl maxJ/service extremes within95% best available-root J; at most2/8 proposals for projected service",
+  "final_selector": "max J or maximize observed service within0.5%/2% of ONE fixed archive bestJ; does not relax final99.5%-full gate",
+  "engineering": "2 training states41-43,8solver runs and sparse/dense proxy checks, no tuning",
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "evaluation_seeds": [
+    46,
+    47,
+    48
+  ],
+  "evaluation_sources": [
+    "pfq"
+  ],
+  "evaluation_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "repeats": 3,
+  "selection": "freeze breadth/frontier/final selector on validation before development results; no larger model trained this round",
+  "gates": "each J>=99.5% full, no newly unallocated UE, full-positive P5/bottom20%>=98%, execution mean<=80% full",
+  "timing": "numeric input/PFQ through new PHY/MMSE bank, condition compression, reorder pools, proxies/frontiers, exact scoring, final selection/cleanup",
+  "exclusions": "fresh teacher preparation, compilation/archive/library IO and first immutable TBS setup; all teacher/proxy work separately recorded",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "physics_source_sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

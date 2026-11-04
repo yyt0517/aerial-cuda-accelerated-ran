@@ -1,0 +1,12 @@
+{
+  "checkpoint_unchanged": true,
+  "states": 27,
+  "masks": 243,
+  "neural_positive_masks": 0,
+  "teacher_positive_masks": 40,
+  "states_with_teacher_improvement": 23,
+  "mean_unique_of_8": 4.403292181069959,
+  "floor_violation_fraction": 0.1815843621399177,
+  "teacher_candidate_evaluations": 480886,
+  "interpretation": "post-hoc diagnosis of the same masks on strict greedy roots; larger offline teacher work is not inference acceleration; no labels feed back into training"
+}

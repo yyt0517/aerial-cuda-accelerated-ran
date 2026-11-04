@@ -1,0 +1,14 @@
+{
+  "passed": false,
+  "required": "at least1 independent repairable failure per trainingseed,and>=3 total",
+  "unique_states": 30,
+  "per_seed_repairable": {
+    "41": 2,
+    "42": 1,
+    "43": 0
+  },
+  "new_repairable_states": 2,
+  "training_role": "controlled diagnostic continuation only",
+  "frozen_before_validation": true,
+  "no_new_native_trajectory": true
+}

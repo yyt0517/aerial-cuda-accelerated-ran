@@ -1,0 +1,5 @@
+mode,old_single_passes,envelope_passes,rounds,candidate_evaluations,PHY_ratio,generated_edits,accepted_batches,guard_rejections,minimum_old_J_ratio
+full,12,12,378,624690,1.0,55951,0,0,1.0
+cached,12,12,378,183079,0.293071763594743,55951,0,0,1.0
+cap4,4,7,137,154939,0.24802542060862187,57404,101,0,0.9866351451948068
+guarded4,9,12,338,177110,0.28351662424562585,55942,19,290,0.9996110888631524

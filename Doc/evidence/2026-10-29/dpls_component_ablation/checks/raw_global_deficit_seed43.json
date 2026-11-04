@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "arm": "raw_global_deficit",
+  "seed": 43,
+  "full_exogenous_ttis": 28400,
+  "common_pfq_ttis": 4000,
+  "common_first_decision_input": true,
+  "native_decode_counts_and_goodput_exact": true,
+  "independent_input_samples": [
+    {
+      "tti": 4000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.396985905689375e-06,
+      "w_unitary_max_abs": 1.081149818560334e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.5040547022948658e-05,
+      "subband_max_relative": 0.004656233543519384,
+      "worst_relative_index": [
+        18,
+        9,
+        3
+      ],
+      "worst_relative_gamma": 1.946009472826904e-05,
+      "worst_relative_native": 1.955070547410287e-05,
+      "worst_relative_abs": 9.061074583383103e-08,
+      "wb_first_layer_max_abs_db": 1.04692921354399e-06
+    },
+    {
+      "tti": 4001,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.4722828215162417e-06,
+      "w_unitary_max_abs": 1.4089279984919045e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.3150464930333783e-05,
+      "subband_max_relative": 0.00025645288375731316,
+      "worst_relative_index": [
+        33,
+        12,
+        3
+      ],
+      "worst_relative_gamma": 0.00021963504410777611,
+      "worst_relative_native": 0.00021969137014821172,
+      "worst_relative_abs": 5.6326040435603856e-08,
+      "wb_first_layer_max_abs_db": 1.187979014716234e-06
+    },
+    {
+      "tti": 8000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.2325956050732026e-06,
+      "w_unitary_max_abs": 1.217490100291485e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 1.4159917501643804e-05,
+      "subband_max_relative": 0.002073548499094285,
+      "worst_relative_index": [
+        30,
+        3,
+        3
+      ],
+      "worst_relative_gamma": 1.5941244514684066e-05,
+      "worst_relative_native": 1.5974299458321184e-05,
+      "worst_relative_abs": 3.305494363711815e-08,
+      "wb_first_layer_max_abs_db": 9.622886851801127e-07
+    },
+    {
+      "tti": 8001,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.1843781388624718e-06,
+      "w_unitary_max_abs": 1.204829419787501e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 2.8130108873369863e-05,
+      "subband_max_relative": 0.0012617929708308513,
+      "worst_relative_index": [
+        2,
+        10,
+        3
+      ],
+      "worst_relative_gamma": 3.5599927492015755e-05,
+      "worst_relative_native": 3.564484723028727e-05,
+      "worst_relative_abs": 4.491973827151346e-08,
+      "wb_first_layer_max_abs_db": 8.834671572088837e-07
+    },
+    {
+      "tti": 18000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3219477307519737e-06,
+      "w_unitary_max_abs": 1.4405753782087416e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 2.7937508036757208e-05,
+      "subband_max_relative": 0.0002852720733114899,
+      "worst_relative_index": [
+        31,
+        14,
+        3
+      ],
+      "worst_relative_gamma": 0.0002457015605087284,
+      "worst_relative_native": 0.0002456314687151462,
+      "worst_relative_abs": 7.009179358219344e-08,
+      "wb_first_layer_max_abs_db": 1.0778814596434927e-06
+    },
+    {
+      "tti": 28000,
+      "layer_caps_exact": 612,
+      "serving_svd_offdiag_max": 1.3167138320350418e-06,
+      "w_unitary_max_abs": 1.2905086466119542e-06,
+      "subband_count": 2448,
+      "subband_max_abs": 3.232723132384763e-05,
+      "subband_max_relative": 0.0008387792471089801,
+      "worst_relative_index": [
+        8,
+        16,
+        3
+      ],
+      "worst_relative_gamma": 8.87143765932358e-05,
+      "worst_relative_native": 8.863996481522918e-05,
+      "worst_relative_abs": 7.441177800661684e-08,
+      "wb_first_layer_max_abs_db": 8.825223165587204e-07
+    }
+  ],
+  "complete_horizon": true,
+  "files": {
+    "metrics.bin": "d6381677868b0e7c58569ea9ffa062ca210982184907a997c1bf4dd8d385df2e",
+    "prefix.npz": "f79a0bd88409aaae417f99e0487a63f949701a8e80d659d666cb70b4c640a4c4",
+    "launch.json": "8f9330c054f86f58a52c61184de6feb86be381ddae033c775fc9d855ea9e9b05",
+    "execution.json": "604b901b45bea65cde3cc8085614a84cd2e06fa976e276619bb2d0ff3457e07d",
+    "validation.json": "990379b50839f9e6e708f3396f4ed5d153a4b4b59f55fe4f90727b0a40f8bd54",
+    "physical_validation.json": "07d7fda7c865799036a7abfd0d0ef1ca9ad04d09b5ae10327788063ffd878896"
+  }
+}

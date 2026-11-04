@@ -1,0 +1,23 @@
+{
+  "ensemble": [
+    "cold_canonical",
+    "warm_canonical",
+    "cold_random17",
+    "warm_random17",
+    "cold_random29",
+    "warm_random29"
+  ],
+  "seed_rule": "fixed17/29 plus source-state index",
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "reference": "/data/aerial-cuda-accelerated-ran/deliverables/canonical_cached_dpls_gate_20261103_v1",
+  "original_gate": "J>=single full99.5%, no new allocated-UE loss, positive-service P5 and weak sum>=98%",
+  "diagnostic": "report full-vs-full gate and J-close conditional service gate separately; cold/warm paired both directions",
+  "ensemble_gate": "retain J>=source canonical99.5%; service absolute metrics within fixed full ensemble5/95% bands, 98% lower tolerance on byte metrics",
+  "service_metrics": "current positive-queue universe: unallocated/effective count, P5 expected bytes, top20% causal deficit-weight UE expected sum",
+  "weak_set": "positive-queue highest deficit weights, stable UE-id tie; does not read a teacher terminal",
+  "degenerate": "zero P5 band is explicitly reported as noninformative",
+  "loo": "leave-one-variant-out service false rejection diagnostic; not a confidence or long-term fairness guarantee",
+  "negative_control": "canonical source initializer plus shuffled candidate enumeration must match source canonical",
+  "source_initializers": "same captured input and actual source predecessor, no new native trajectories",
+  "native_entry": "guarded cap4 only if all12 states pass source J and frozen ensemble service gate; native packets decide long-term service"
+}

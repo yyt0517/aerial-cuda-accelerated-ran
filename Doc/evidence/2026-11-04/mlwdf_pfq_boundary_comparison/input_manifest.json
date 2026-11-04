@@ -1,0 +1,23 @@
+{
+  ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/build.py": "85ce68af110ee562acf637faf7fe3d59f59b16794102c208055190d7c3a94405",
+  ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed41_pfq0_20000/metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+  ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed42_pfq0_20000/metrics.bin": "de90f4e10afa57bb7d7f7de9d899e674d5910f120bdffd0d44b5cba3179d62f4",
+  ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed43_pfq0_20000/metrics.bin": "9fa7aa24657f4bea2fdf1325f7f1f8e3cf5caad58076508ba5255becfcecb2cb",
+  "Doc/evidence/2026-11-04/B_decoupled_and_tournament/engineering/wall_summary.csv": "eeb0d134cf4434e166fdd7c773c90bd826e6511c0c3256c3b953ecb11c246c0d",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed41/cohort.csv.gz": "fbdfa2b3aa70f1728f8f8df141ea158d2537ac26e393a1b32239516a6f8ee3ba",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed41/search.csv.gz": "92742476e5961e4a58e7abdaa6e91d525010773afcd29cc48e30613dd64e64d8",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed41/summary.json": "2ff2871271b099c37542d214a8c23aeb85eb3461360c4fb7e1841a3c534631b5",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed42/cohort.csv.gz": "c8f06c1b3df816098f21387aa974b8ea068324a68405399a6ad0d8e29b4e8d8b",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed42/search.csv.gz": "f72895f7e5e8716d36a22873cddf6faf1810ba4ca97913ae72a8f3be9015b0d6",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed42/summary.json": "6454961891bcf10f8f1d5f37f04837efb78cacb45391ef2fdd8b1c04a19b9e85",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed43/cohort.csv.gz": "bbea2755e96d19164f1b1491fcf8c06b0e71b91e2689610a16c1fb07628dd382",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed43/search.csv.gz": "5dc1df70113d8991e5096a0331faebb46c2f1f6e28b1e4c398853fb0c45cd7e5",
+  "Doc/evidence/2026-11-04/crossload_weights_v2/native/r0p8_mlwdf_pf_seed43/summary.json": "cbd6546056f2d7ca40bc903f5149243a14d37fcffe7ba8dc9acd84000a9da4fc",
+  "deliverables/crossload_weights_20261104_v2/r0p8_mlwdf_pf_seed41/metrics.bin": "01de3cf005a65a540d579b95833b89ab0f3f98f1b3457f6053059e237007b163",
+  "deliverables/crossload_weights_20261104_v2/r0p8_mlwdf_pf_seed42/metrics.bin": "f038adf98b5b3717d0a130e4ccc58d347b9536d067221520cd56a39bb53e7782",
+  "deliverables/crossload_weights_20261104_v2/r0p8_mlwdf_pf_seed43/metrics.bin": "ea44de0a7e7415fab199724318e3035f6ec88ce2f043a2d9006f5da39ae18f20",
+  "deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/pfq_seed41.csv.gz": "fb76a3b97f6e278c83846223232157acf44f2d4fb30502393de5fdab551783ec",
+  "deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/pfq_seed42.csv.gz": "c1fa01127956473152ba9210e8c20e697eaebd79fd280d075f28a9ea373a4bbb",
+  "deliverables/dpls_component_ablation_20261029_v1/packet_cohorts/pfq_seed43.csv.gz": "344b62c0621fc8e0ded8e7f511495add2361655387e0bd79052ab8b8b8a249fa",
+  "training/stageb_lns/compare_mlwdf_pfq.py": "4ea4aff0a8546f279a3eba4dda7375703384f444c5ecdcef14b9dfe827e0c9eb"
+}

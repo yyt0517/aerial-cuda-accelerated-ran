@@ -1,0 +1,11 @@
+{
+  "training/stageb_lns/cached_dpls.py": "663a10c1a7f1f140e876816acd61b7cfe371aaebd618cc51cf3c6fcd909d611a",
+  "training/stageb_lns/cached_dpls_gate.py": "aafb42b933cc1ec70d770282ab2e0676ebbaf401b6346a1e2e1debc6d611c443",
+  "training/stageb_lns/dpls_operations.py": "9c59ae0a558b1585325df0136220cff8f439a48bebdb7d3b4b217b0d52d5fbd1",
+  "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+  "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "training/stageb_lns/_physics.so": "ee2ec319e82901fcac255b3ece825faf5144c05fd53ce6455dea94868ee6a6f4",
+  "training/stageb_lns/ranked_dpls.py": "b42a20d90b8cbd90a5381d28114f318220bd3562896985f5f1893de5c9a32a3d",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+  "training/stageb_lns/archive.py": "df151308cc506caf1462675ee23de440bc0b040fa6af993eb18482b6c5602345"
+}

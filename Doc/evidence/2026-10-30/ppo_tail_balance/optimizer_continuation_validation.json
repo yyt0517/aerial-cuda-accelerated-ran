@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "initial_actor_exact": true,
+  "initial_adam_exact": true,
+  "new_adam_steps_per_parameter": [
+    2304
+  ],
+  "initial_step_min": 5808,
+  "final_step_min": 8112,
+  "actor_parameters_compared": 12,
+  "source_checkpoint_sha256": "cb4408ecbdaa363af0f02fe8d412ad5f1988a7a3c0ba092efb7e62d5606da6f0",
+  "final_checkpoint_sha256": "900ec84339c1fb906e95aee381d2f42f556aae455d0139cb2f7886d961067c06"
+}

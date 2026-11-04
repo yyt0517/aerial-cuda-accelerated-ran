@@ -1,0 +1,15 @@
+{
+  "formal_decisions": 378,
+  "formal_exact_scores": 3920388,
+  "training_and_engineering_decisions": 20,
+  "training_and_engineering_exact_scores": 4240,
+  "teacher": {
+    "decisions": 39,
+    "exact_scores": 2296468,
+    "teacher_ms": 4553.359087556601
+  },
+  "additional_native_diagnostic_scores": 0,
+  "training_candidate_labels": 3798,
+  "independent_numpy_final_audits": 185,
+  "total_native_exact_scores": 6221096
+}

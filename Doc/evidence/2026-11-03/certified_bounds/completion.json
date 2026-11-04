@@ -1,0 +1,18 @@
+{
+  "completed": true,
+  "states": 12,
+  "rounds": 378,
+  "candidate_bound_pairs": 624670,
+  "baseline_cached_dirty": 183059,
+  "integer_best_count_ambiguities": 328,
+  "integer_initializers_proved_stable": 12,
+  "observed_monotone_pairs": 43,
+  "max_observed_SINR_violation_db": 0.0,
+  "new_candidate_PHY": 0,
+  "new_UE_PHY": 0,
+  "new_MMSE": 0,
+  "new_native_runs": 0,
+  "training_steps": 0,
+  "online_pruning_enabled": false,
+  "wall_speedup_evaluated": false
+}

@@ -1,0 +1,10 @@
+{
+  "audit_formal.py": "5080b103a296610313ad177812ae0d284bcc7764250317bdcc25613855b38ff6",
+  "compare_training_rewards.py": "bd3de85c8538f5dcc7e9c97e2db871ce5930d4085ec6c8ea94b104ea9fa1e81f",
+  "critic_representation_probe.py": "2d6c507e258a5c61b7540a3afadb4bc2d067c2704d6e920bfd6756151bef9a30",
+  "finalize.py": "f78a45b8299761ea4e391094f466108a7f0fab6c0a08ced48f49324143f698dd",
+  "finalize_continuation.py": "15619f13b88355629a7eab432d31fa31991653d067981720b2140798111cc027",
+  "inspect_learning.py": "381507a87258832ad1150e0c603059ec47c80be11e74edc9ad811d7841d85103",
+  "matched_packet_analysis.py": "ab90a0a2bd74767df153c168b0ecab67209270e97e751cdd949974f9688cdf43",
+  "plot_optimizer_comparison.py": "4fab07b883f1f4de15488287f75661390a41e62034527b985c9e9897a7410186"
+}

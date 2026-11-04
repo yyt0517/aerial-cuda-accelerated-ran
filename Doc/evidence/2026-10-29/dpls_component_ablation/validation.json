@@ -1,0 +1,694 @@
+{
+  "passed": true,
+  "all_40_trajectories_checked": true,
+  "new_runs": 30,
+  "reused_runs": 10,
+  "no_censoring": true,
+  "matched_cohort_and_warmup_all_seeds": true,
+  "primary_contrasts": 11,
+  "current_registry_unchanged": true,
+  "source_protocol_unchanged": true,
+  "practical_stability_passes": 40,
+  "sources": [
+    {
+      "seed": 41,
+      "arm": "pfq",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed41_pfq0_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "fb009c646dbe1fcf4e3b3ddd74961161632f9f010e8f033b938631fdc4526d36",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "6356fed45a7aae7629b3e311897ff5edf1268929ce7a8e5e11b1ca5ec0015748",
+        "launch.json": "9cb67beba7d5fdab61652984ca72858b381eeb91171b76f8a48131783bcfa4b1"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "pfq",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed42_pfq0_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "de90f4e10afa57bb7d7f7de9d899e674d5910f120bdffd0d44b5cba3179d62f4",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "a140be3423cd0bf231265264eee2e23d1a9dbc85e7bc23c4a686d9a9a54c4637",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "8c11b88c3fe2cf331d376a5e338c75f3437ef3a48a9d0d2a24270dbc07bb6b40",
+        "launch.json": "ce3f28f1c2c8dd084ad578e2866f08ff8755948f00c3cca6eb799c3ec24da0df"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "pfq",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed43_pfq0_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "9fa7aa24657f4bea2fdf1325f7f1f8e3cf5caad58076508ba5255becfcecb2cb",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "7f5bd762eeff9b3a5153c241eec849529662a44390ff1007f96f5460942b56d6",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "5769772348a2fbadf66f89273cb00fbee8dde60959bd1d4f37c032d9bf1be997",
+        "launch.json": "607cff9e0876ece4adbf0cae78da25b6f4d9b7911a414511b31b7cdcb9586b6b"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "pfq",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed44_pfq0_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "235f2d1c008bf90eeb2cb802252a4e42f08d04f6711018dfe38a73a9793254c7",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ec7b26f5473a5c57dd3a482fe1028d81817dc1ae7df4975d6d244ee8527c3f88",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "26d837b1b66396812645e155cb2638ea489e67612bc116698cc0cedf93118ad4",
+        "launch.json": "6e3e144c573956d5c7eb4f26da33b574e292b9f050dcd9ecbc311de43ee3854e"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "pfq",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed45_pfq0_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "34c411ceba506948c1f9b9ec434b812229f3a5b65c440ac8691f6443389aa9b4",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "7c149fbb885e66ee7b62ef23eb6b96b98259d61e9cb0573c18be71c25e5e6c45",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "0d59c9b8ece41db71acac61c39195153f5ee8a859a8dae4f763ec1043b8ae896",
+        "launch.json": "f2ef0da3341fd601635c190bbcb33aad93fa0ea4a0308e1abb9af24eb8b13374"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "ctbs",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "fb009c646dbe1fcf4e3b3ddd74961161632f9f010e8f033b938631fdc4526d36",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "e7e3aacb397cfe806150a4e6d9e580c7a7f0d7cd86adf2c6c182f3a295b525fc",
+        "launch.json": "03bf87afd7c042cb6c295e3769308465002615da6e69644864d1e551d35b0b98"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "ctbs",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "de90f4e10afa57bb7d7f7de9d899e674d5910f120bdffd0d44b5cba3179d62f4",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "a140be3423cd0bf231265264eee2e23d1a9dbc85e7bc23c4a686d9a9a54c4637",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "f14a770110eb42ddab9f8a29c7a5101fcfebe26d9d4c450d1c137f1344f90404",
+        "launch.json": "667ab930e2bcc036a95109d1f60bfc7d68bfb0405a03b769ab598da4ff41a97b"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "ctbs",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "9fa7aa24657f4bea2fdf1325f7f1f8e3cf5caad58076508ba5255becfcecb2cb",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "7f5bd762eeff9b3a5153c241eec849529662a44390ff1007f96f5460942b56d6",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "f4e63159faf70a2aac8a85a2a710d132d900735a4eb2ac9e01948ea7ba695ade",
+        "launch.json": "9c0d1d2006d5369eb775f4c893605db60f33305e2a9c708888ab59a8d315b55c"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "ctbs",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "1cd5e20ad8fe0f354ce1ca5b4b867f2c5c338da4bc02a9dc664bc441b09120fc",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ec7b26f5473a5c57dd3a482fe1028d81817dc1ae7df4975d6d244ee8527c3f88",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "95545b0f3d196d5c798f47496d6490799ecbf96462645623b8f79b8f8535a89d",
+        "launch.json": "9b7222a613aaf0c1aff85cc90b1b3a11400848bdf7c98a4754758275c48eeb21"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "ctbs",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "daa3f08b8d292d06c2743377bb7a5e42b4e754d6ff73f466ac2a0b24d2dfe5e7",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "28f2907bc9c6b18a53917bf63a8de8a13e4e32650a1405c02e556e50bc6fd452",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "419c19b637e4a9de2f278414ecea479bf0619641138b24deed17615cd6ad3bd2",
+        "launch.json": "68dee711ba88fba606dabe726820927f5f2d21a49fdbc1c28f38733ad449dd6e"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "raw_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "184a230aeecad19da4bca04f6f994c932b5aaf8af53819d2c358daf024e9565a",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "777c032b4d2c03ccaa0b10213f38ad40cf604a79a61e091ebe9bf30e0304fb66",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "d0777afc956504467f2d247b9b4ebf43bc525b0c730babead878fbb411aae4c1",
+        "launch.json": "4dba9ce0546ffd8d9bed3b9f88d27dc79f8525200543580f0e5f291c187bb640"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "raw_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "ba31e3703299f2705c6fae432f57cc4573641d0a50508b17fd2b4292f26c1000",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "0d30e5a640d618b0e9bca57e98050a3a97f8af5eddaaacefce06a7122881b1cf",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "5534447e23ce71725262695779661460b42e4e82b503ddb03b7669e599612282",
+        "launch.json": "8eb9df624530da244e4f999e65808e98f894ef66f84da69f32be37c22df470d4"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "raw_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "a596986c93365e1fcab77dcb35241151d55c2143abab0585b8f4c89bff90f95c",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "3d32d5785ed83b1f051920ff41848026b47532d0620480ab8e934c218f346e3d",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "1e5cf956577afc9a79a738b6caa5c0424804d9af1c879771c5cabdd2425cfcf6",
+        "launch.json": "f614fa780abb01e659b08ef5179aa065be56abab469573e244085e2943f55702"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "raw_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "52140fc6513ce9dd0e1f952e1a4419be2b0ae199697aa468ea4933318e29cf24",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "59bb96dd5c6f65127e911edf49448e2211024bb58e41360b6b912ef9ef320a98",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "8a130fd97fda8f2efdf1ad18522e008eb567fccf73ebb4575460460c5e65f258",
+        "launch.json": "3301650cd622b7550eac87d4c47de3a37106e978132789646724ba24fdd7ddf8"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "raw_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "b45d7fd565602932db96af0c18bcef8320f9215a6b16c549b91a3e7503776b3c",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "7be7c9138876d145e4adff4200080dbf799b581789f836609b3471a493f5706a",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "ed09c9986def16f3a1a698a89089c43aad4cb09ccc678d32a731a7810898a8bf",
+        "launch.json": "28a4b7b7f12faa9c94631acfdea2a8dce23d265f48705b3ef81153bf06f40c68"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "raw_global_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "4ddce41c374766ff8cd083e8355c9369c7380e8c4e592ce0a86a285828203ae6",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "ca9dc98047944e28239b145dd6b95bdc53561f9af0646b1d48e852cba0d34003",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "3c423a819533db3c2ab686d8f4ab137c6cad14537723dc53b0cd790c422683eb",
+        "launch.json": "c95208d64d7ebdc910b95558f96767623a01e1b0091ad71000080f4cb85caf2c"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "raw_global_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "3ec4332adf74a1b59fbde4f796fa368e74406f345ab26589fbc4cb181803e23f",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "3ebcf79b2d4ba1da8b0742cb8415ae9021ec7921272f29421b53d98d94eb9ec3",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "372972c2fc423088d47d1c8dc78d713f76f80cc872c6bab59c74cc952aa0bea2",
+        "launch.json": "3d9b7a33361ac7a2f1da187afb460fb070dfaa6cb2d775d60bd652e56133aebd"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "raw_global_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "d6381677868b0e7c58569ea9ffa062ca210982184907a997c1bf4dd8d385df2e",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "8057397dddd1e0ce59a7e634bb1dad75688c5a68acc70d40741b3cf54880ac39",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "604b901b45bea65cde3cc8085614a84cd2e06fa976e276619bb2d0ff3457e07d",
+        "launch.json": "8f9330c054f86f58a52c61184de6feb86be381ddae033c775fc9d855ea9e9b05"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "raw_global_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "b38ff37155838ec0cbc4525553c55ebbc0e5a5f78e41f87b2c8a9c1e3d9554bd",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "e041a2fa2d39a8bbbb841f73a714090c794e0a97cde93f64fabc7b74c002a9a5",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "c672fa74a574045034c41c3c8a306681e7a226ee4832387ca9e45f6d0f99ac16",
+        "launch.json": "08d9a4c24602c9be9e496f1edaa25ff79ed778718ea7a512290fa374b37bd8f1"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "raw_global_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "f70d7a3aec8db2de5817966f968c97225fb301ec515ae4e5aba0c5d9a21a20d0",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "fa4340e6f747216d19e9c73fd4a55fd6464b4927ec2eb91fd50c638e31e9a80c",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "19dae9155967f2939b83b6c5644e9b3ff33ec7dfd86da9efa7849c5dece5c35e",
+        "launch.json": "a452f49f0b3e78d013647d7dc88e17f64c9f81a0b821094b1e836e2615e8cb48"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "ctbs_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "0f0af9ca521301488bef2d4e4eba001bfe16e0022ba0981007c5e87bbcaaadb8",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "c594ebf77b07d6fa2f3e454e53a097fe6d2950a7e36557dc4b0887cbad55479a",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "608e479777c8b824373e0e331343f03dac92c436e67c2a3a8beaf272df7fef45",
+        "launch.json": "49917f773fbef922a64271b55832c43390d2f47c8a7aed7777ab0a3f788a1f40"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "ctbs_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "bcff9104f57af0da9ebfbe640682a91826333eec664d63d04316c355cc41a361",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "62790f50ecf6c68d5dac0b7b69d370a3f407e2f92d5ebaaf3bdc5fef7c57c8ae",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "8cd2dd763229e02ba035714e85c65a9fd1891593cdd65dd6e010f05177b70f9a",
+        "launch.json": "a91470744abb4a8a42ea863b90169778ffbce7361838f072f9dfe3faaec095d1"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "ctbs_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "f85f7115cacf83a65a6f379c689335a9efc31f677856d29c4ee06aa016744c9e",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "b7397d2d561f7fed1eefc00427bc7b740727ff4879e2b4b5289c04398a74d31f",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "cf59170615a3d9afdcbb4ad69d0eca7bca012384f4d29777f6308b8ae904446b",
+        "launch.json": "42c9a841026e5ccc842ab6fc46662fef5a432a7869aa7ffe89dded9725b8ac4e"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "ctbs_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "14c1ac467828e04a850a7be84b698298207b084d3f878d1d9d3a4e2fa5f0193f",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "d21aa4d4111b8792763211684fa868f528a276df7b8739a97b56f15d15319418",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "ed9b056420244ead9f26082d3f78acf099275b8becdc1b91ac303fb264a93b98",
+        "launch.json": "84b9cb3467c9306a044b8724d50142b55627ccaf33c2ba0fc180289937958379"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "ctbs_global_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "3e8df4a691158ee95211a6ed062b12f764253a3c708ee723d642fc5e46d6754a",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "00ebd54870f9d85b9d47c349a24b3cf177f6c282977f91869b74d5aaff82ea46",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "0bbd2c6cd3ffc0eed85dcd68ea7b2ca9ad3a05d86080a5d22311314dba9892f1",
+        "launch.json": "89b5fc91e062a82a60dc0136c0378495225bdaa88e66a20920a5f6d7180f90f8"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "7b86ce229afda87ce21556d3e21a1a2aa56305a2731bd823eef34219f92443cf",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "cc6c4a7047ff4e63950b509c405a3134d3a00099f371677bcc38593d5084d3e2",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "8ec744c053db4009d0e228586ded154cd91f2afdeedbe68adeeb3680ac418f2d",
+        "launch.json": "a979a1576d91f7c71b17cfa1957775d57c9bfe2f5d9f19fad028e77065e92a7c"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "9a6512de1b71363bd10675515b8c884ae890ef38c9977a25ed4881a43ac0477a",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "de9469a53a087ee78634bb5bc1119451c2566443a4f0df99830e6a3e6df1902e",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "8045234424cd99806b0654d59caf5de7b25306a3b23b99a893d99622013afc68",
+        "launch.json": "306b97b9b1bfe55f2c44e02808943af59f00b2ff2cc1a427c8bf082c0e98c34a"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "b4301ef0960338169782b71451c9232f9dc5206ec411c9188b88317f0f93bd08",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "085f15048ab5a1e675e2c8cbbd1f81de40a350959c968bf56f13e9ea1e1b3644",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "81e3565a0e87b302e44536b7e53596e760754443b94cd6214ff3574a694760e0",
+        "launch.json": "5c9b292ae83b8d745538c511e847f6bad29e8697d9cf8b537960e145d053f1c6"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "f205c33183f479adcae5b8a5b2686ce5cb446163766086dfa9f76b8974fbecfd",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "ed037be34a9be65f5eeeeb30b2a6fda474d464feb8d42b762c7a4c12205a9847",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "a78c522a9b74e6d77ec090006fd7954177af9a8d4a06ae08e18b6d69a911b7f3",
+        "launch.json": "2743fb2c5a2353c9f2ebb1292fede1528a243452dc8a2f368129b8f28a7247ec"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "full",
+      "source": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_rho090_five_seed_20261027_v1/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "52c46767f12564d0e493dad8e938f21cc0616890b69a317d3fb58724afa28014",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "11ab82c29d3251948d2cc8ff30b076e91fb2f87c8a326a5ed0dd1deb3b46ec03",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "bb3d0590a7afe7ceba3dc16e592c04fccebce38bbcfce4e58ba8783256d4345d",
+        "launch.json": "8699132803544ca455fc322f7de59be53143f61c88817541aacd1983c4a019b0"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "ctbs_independent_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "f91a8ac68535f9c443f7bf5b5eba512e8e33db614c1da9f9132778feed99ea24",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "1490cf77de2a4c3fa66b6b3f4281cf06e8c9ffb40a2c6075ec806ac56732243e",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "8f7ce0d0d6566731343095bc7e31e67b9ff551aabf9cc23dc1db0fd6cd5d269a",
+        "launch.json": "8308d183f290e69aa1f1c94bdadd8aeb35c03b43e150f06a14c04162137a8ae4"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "ctbs_independent_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "ed339b3f7eb67ea47620c39c6e6aa38e805e50802390d03414f6ef17c16cd5cb",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "4153acde44d7b0d224c35d4bc998298aa6accdd1d8bda98ddf7aa2fa6a54f664",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "db1dbe30a6979e1be95188047e3b90fade126831e5c6c0f8c93fb4750eb9e7c7",
+        "launch.json": "3a05eff1390b5a44eda4582a1369e59a19950082a19cc6d5e2385ec2158351d6"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "ctbs_independent_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "09db72294bfe5853f42ea15dde82e9c56c7bb48128634d24b1190be85a1dfea8",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "27aabe7bb7baea3e1b0dd312514e2ccfab1777b821e71bb7b107aadbb253d0dd",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "1c49a117ccd7e61f2f73c085994eb6e6c2194866607d5382080b84423a6a48ac",
+        "launch.json": "90f2372b0ba9cc226bfad5381c65b8c34559239d79df8cbc395783c7e0a8bc7a"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "ctbs_independent_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "5e7390fece7cad136aed3ec380e67e135a7923a90abf3f80ae185058dc531116",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "cb22f549f550f79fabceb11730f13f9773f703d5ce01097b42f38d974e443d04",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "4e6b84be42fb315a264f27b8636592db4f2e98e6976a63b1bada9e86b848fca1",
+        "launch.json": "9125f41457af992a0022713566d9e9baae6f7d314e2cf480d742778944ec64ca"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "ctbs_independent_equal",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "d5ccfd22ee7fb8aed64a409341ba051eac8c62d99970440a0cbc08b14a6642e7",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "4adbc6564b0b8b32ad4fae7f8ce0859962fef1fbb3262c6395a7b86ff2a85aa3",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "9a2f6e2b9018219d2dd7e66c1175bf811cdeeecda3c54b73b43f881ab6a3b1ac",
+        "launch.json": "595060da1bddb3dfc47615ff90bcc4021109a4349ea74904e319ee81b077301b"
+      }
+    },
+    {
+      "seed": 41,
+      "arm": "ctbs_independent_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed41_current_20000",
+      "mature_cohort_packets": 577040,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "256609738aa7e9c9267a01b9f8419f71166f5a40a7fd1a54cfa856f9d613b95a",
+      "first4000_service_sha256": "76479002cb2f3643637053187aed76045bc3f0e107dc0bb8ddd9135aa33c6f25",
+      "files": {
+        "metrics.bin": "981cf9f1fdb14817044848d271ac528273fe113c82caa0d306d289ec12ebd8ca",
+        "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+        "packet_outcome_samples.csv": "c82c93922b73d85ddb18ec457a1a15f60d7fd60f2704505937cbc047669d27d7",
+        "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+        "execution.json": "5c293c12bc0ae3c672be8e3f2b197bab38021ef62b2cfe7410c98275c8ab145e",
+        "launch.json": "80c1349968f7f3b0601b3b10d3477354120fb41086afa89d02c33cc54f41f9f4"
+      }
+    },
+    {
+      "seed": 42,
+      "arm": "ctbs_independent_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed42_current_20000",
+      "mature_cohort_packets": 575616,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "03336a8525a606ea581c66c006d9bdf372984f02f097ae4f406826fb00f4b42e",
+      "first4000_service_sha256": "47b71c45256dd2dce9ea94d8c617b8d06c8db68f9af2b6086fa27fe613668ee0",
+      "files": {
+        "metrics.bin": "6106d29535f4eb5c5d66a91e65e1b8be5c7e1f1142a6a9c7f4a8df57efdd1fa3",
+        "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+        "packet_outcome_samples.csv": "ee65bcc6ebc41fc082c6ab749647de958944e215221bb91661f9b2a7edd63e07",
+        "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+        "execution.json": "38eaaf3f4d5f5795d20b5202dab1c8398dfd453a3997be8f03ff7dcd9692f81e",
+        "launch.json": "0d1fe174aaf5c09aa7482bef8727f2be214705c1b802ca1e855e4c4038ff1a66"
+      }
+    },
+    {
+      "seed": 43,
+      "arm": "ctbs_independent_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed43_current_20000",
+      "mature_cohort_packets": 575744,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "b39157a8328f3458e4ebde53111f03dae66ee4adeaf9f67ca60225c4ad52d809",
+      "first4000_service_sha256": "369e95dea13965802fbc39ed87184b574109a5978fa9c60322cc7d0e75d52e12",
+      "files": {
+        "metrics.bin": "15c15ed21dfa5c0434ba16fec5ece2d3bd07a5fa98adc778c8bb2c2d9447eea9",
+        "traffic_offered_packets.csv": "68715d0befb4dc82ef0ef65e7a081db0542b0a6dc2b06cb0cc1e6535e7a4556f",
+        "packet_outcome_samples.csv": "c794ba21e304d9626b759af38586df2fc743629751104b427b4b787b779f9834",
+        "ue_topology.csv": "85fb7368fe40d0226617f923734f3772c3471ffb4ccd1c0f6c24de87dade6789",
+        "execution.json": "76b9bdd88c4dd0f8116b1c429b42f2c45bcf86f58c70fb5fdf0d6322df10bd08",
+        "launch.json": "37764d9ddaeab74eaa8eb078e0967a9c92528f8ee6a4659d8d3ccc617cb154ea"
+      }
+    },
+    {
+      "seed": 44,
+      "arm": "ctbs_independent_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed44_current_20000",
+      "mature_cohort_packets": 575953,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "2420d1c3eedcf9941317a2098912abb628bf8d8917d7c08e113c83cefdcb7cce",
+      "first4000_service_sha256": "da112d52b1eb98b4df37bfa013d894a5c1b702762455584f008fec38bdec568c",
+      "files": {
+        "metrics.bin": "6483af160eb2cd53e35969efe07d185a73157cb3371db4b267161300a5905972",
+        "traffic_offered_packets.csv": "6cb9ca2704f1ea504f0683247466ded77b636436bbf08ad4d30ae17d8735d403",
+        "packet_outcome_samples.csv": "5e8d20bfce43f4c4c405904f855d539896c0164ddb15d5c143fb60725550e0cd",
+        "ue_topology.csv": "1744e5955a288484b989482940e4683b7dc54ecc3b30631269078b524856997c",
+        "execution.json": "f05400c0d84fedfafab85dd514431a6dd178721ea4fe38b1a84d24c546dbb950",
+        "launch.json": "d83dab9919e4673bfc56506a1ff91b2550e84c2bbcc127f83414d1fbf24515c3"
+      }
+    },
+    {
+      "seed": 45,
+      "arm": "ctbs_independent_deficit",
+      "source": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed45_current_20000",
+      "mature_cohort_packets": 575811,
+      "no_censoring": true,
+      "mature_cohort_identity_sha256": "d5e83c649c1fb4c7c02b4a9e919f264ca904af6404f44f6697b9de549e1bc701",
+      "first4000_service_sha256": "a9e30719312de79715f225933c83ecc327164ed63528131c59c00ab89b7c5f4f",
+      "files": {
+        "metrics.bin": "4aa2e4fa4c5dcd4527fa46db9b8bdcb82edff54861a3db31790589796c669379",
+        "traffic_offered_packets.csv": "9666e6a91539aa70c93ad4a61f6fbe9aef088129b42c6e3fa31bb60655112357",
+        "packet_outcome_samples.csv": "b6ca2929ae25d8815d05c44576a623a6445bfdec832cc89408d2c3c052af9c4f",
+        "ue_topology.csv": "735b14186d8d52633cbd6df6d4c90ea19869c9d88e4deac3e5161733b1baaabd",
+        "execution.json": "49196223a621129c82aabfe3d9cf590404eafeb09b2d3a27165a2999f7113a06",
+        "launch.json": "71bc6c85cfd76bb30e1b519b56de5b9e57fc25af2983d4756c07a59ce40d267e"
+      }
+    }
+  ]
+}

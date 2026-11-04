@@ -1,0 +1,30 @@
+{
+  "steps_per_arm": 400,
+  "rows": [
+    {
+      "scale": 1.0,
+      "split": "fit",
+      "mse": 88002.6328125,
+      "explained_variance": 0.0
+    },
+    {
+      "scale": 1.0,
+      "split": "time_holdout",
+      "mse": 16324.287109375,
+      "explained_variance": 0.0
+    },
+    {
+      "scale": 0.01,
+      "split": "fit",
+      "mse": 1204.8759765625,
+      "explained_variance": 0.0
+    },
+    {
+      "scale": 0.01,
+      "split": "time_holdout",
+      "mse": 37612.48828125,
+      "explained_variance": -1.1920928955078125e-07
+    }
+  ],
+  "scope": "Fixed saved GAE targets; temporal split within one rollout, diagnostic only, not an independent return test."
+}

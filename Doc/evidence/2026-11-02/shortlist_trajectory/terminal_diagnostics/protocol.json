@@ -1,0 +1,21 @@
+{
+  "post_selection": true,
+  "retraining": false,
+  "checkpoint_selection": false,
+  "selection_sha256": "73ed9ffb2902d1a7e796b17021f8c09b4f4e2bd3c7f313f4bcbd261a22b0695c",
+  "roles": [
+    "validation",
+    "evaluation"
+  ],
+  "models": [
+    "initial",
+    "trained"
+  ],
+  "top_k": [
+    2,
+    4
+  ],
+  "audit": "replay fixed complete decisions; query terminal full original neighborhood independently with failed-after mask",
+  "improvement_threshold": 16,
+  "scope": "terminal one-step opportunity only; not a global bound or free online teacher"
+}

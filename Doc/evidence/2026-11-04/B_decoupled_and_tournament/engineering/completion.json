@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "bitwise_equivalence_passed": true,
+  "states": 252,
+  "timed_decisions": 3780,
+  "profiled_decisions": 252,
+  "new_native_runs": 0,
+  "deployment_wall_all_stress_passed": false,
+  "scientific_B_solver_unchanged": true,
+  "native_tail_not_repeated": true
+}

@@ -1,0 +1,7 @@
+{
+  "decisions": 192,
+  "exact_terminal_audits": 192,
+  "limitation": "Warm replay uses source-arm history; only a fixed-input cost/quality diagnostic",
+  "completed": true,
+  "registry_unchanged": true
+}

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "tests": 27,
+  "frozen_source_files_unchanged": 61,
+  "native_library_unchanged": true,
+  "zero_value_fallback_actions_exact": 27,
+  "independent_final_audits": 243,
+  "max_independent_phy_error": 1.6552803572267294e-10,
+  "scientific_gate_passed": false
+}

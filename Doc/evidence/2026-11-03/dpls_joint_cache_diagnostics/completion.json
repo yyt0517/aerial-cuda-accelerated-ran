@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "traces": 96,
+  "new_native_runs": 0,
+  "new_candidate_phy_evaluations": 0,
+  "new_mmse_evaluations": 0,
+  "guarded_phy_entrypoints": true,
+  "union_rows": 9440,
+  "within_predictions": 1792,
+  "cross_tti_predictions": 93
+}

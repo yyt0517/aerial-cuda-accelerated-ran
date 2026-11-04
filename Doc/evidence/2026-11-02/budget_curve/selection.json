@@ -1,0 +1,14 @@
+{
+  "quality_best": {
+    "arm": "trained_k4_b212",
+    "time_ratio": 0.7057471443918475
+  },
+  "within_cost_best": {
+    "arm": "trained_k4_b212",
+    "time_ratio": 0.7057471443918475,
+    "cost_feasible": true
+  },
+  "selection": "validation only; shared prior key, complete-mean cost filter, lower cost/budget on exact ties",
+  "development_not_read_in_this_run": true,
+  "historical_exposure_retained": true
+}

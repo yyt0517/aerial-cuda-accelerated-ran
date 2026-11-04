@@ -1,6 +1,6 @@
 # Stage-B 当前有效实验配置
 
-更新至 **2026-10-29**。有效算法仍为 2026-10-27 冻结的 **PFQ＋CTBS＋因果服务缺口加权物理搜索，因果出队下界 ρ=0.90**（DPLS）；已完成 boundary/rate0.8 和 uniform/rate1.0 两项五 seed 长窗口验证。[当前进展](stageB_current_progress.md)维护结果；旧含协调器 current 保留原版本身份。
+更新至 **2026-11-04**。有效算法仍为 2026-10-27 冻结的 **PFQ＋CTBS＋因果服务缺口加权物理搜索，因果出队下界 ρ=0.90**（DPLS）；已完成 boundary/rate0.8 和 uniform/rate1.0 两项五 seed 长窗口验证。最新 M-LWDF-PF 精确剪枝内层作为独立研究候选在下文列出。[当前进展](stageB_current_progress.md)维护结果；旧含协调器 current 保留原版本身份。
 
 ## 0. 当前算法与统一入口
 
@@ -16,6 +16,24 @@ bash cuMAC/scripts/run_stageB_current_algorithm.sh --seed 41 --gpu 0
 ```
 
 入口调用现有 `c_aerial_oai2` CUDA容器及研究worktree中的 `FORMAL/boundary08_rho090_five_seed_20261027_v1/run.py`；`--smoke`运行136TTI，已有同名结果目录拒绝覆盖。当前策略复用 `boundary08_causal_floor_ratio_seed41_20261027_v1/policy.py`，SHA-256为 `f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc`，入口将比例固定为90/100。**注册表与此启动脚本目前仅对应 boundary 场景**，不会自动启动 uniform 验证。研究运行时仍依赖原工件，不等同于通用生产调度器集成。
+
+### 0.1 最新独立研究候选：M-LWDF-PF＋精确剪枝DPLS
+
+此候选使用 `training/stageb_lns/crossload_native.py` 的 `mlwdf_pf` 权重与冻结 `capacity_bound_q1e6_v1` 内层，未注册成当前默认，也未替换第0节启动入口。Boundary/rate0.8、seed41–43、4000共同PFQ预热＋4000稳定＋4000测量＋400TTL追踪的同窗口PFQ比较见[独立报告](evidence/2026-11-04/mlwdf_pfq_boundary_comparison/report.txt)。这组2秒开发证据与第2节五seed10秒配置分别解释。
+
+| 环节 | 研究候选配置 |
+|---|---|
+| 权重 | `age=max(1,400−HOLslack)`，`a=−ln(.01)/400`，`w=a*age/max(EMA,1e−9)`后均值归一；空队列服务为0 |
+| 成功服务EMA | `.995*EMA + .005*realized_successful_bytes`，含共同预热，未截断PF分母 |
+| 初始化与floor | 原始PFQ，无CTBS裁剪；本臂当前PFQ总出队量的90%向上取整 |
+| 邻域 | 每PRG换UE、单小区静默、一个小区静默加邻区换UE |
+| 物理目标 | 固定本次MCS，协方差/MMSE SINR与原生BLER得到`Σw*min(Q,TBS)*(1−BLER)` |
+| 精确规范 | 正权重；逐UEnearest-even量化到1e−6B后int64求和；同一规范键、阈值、候选全集及收敛条件 |
+| 加速 | `w*min(Q,TBS)`容量上界、最佳优先精评、键感知停止证书、持久稀疏编辑表与依赖失效；保持规范完整局部搜索等价 |
+| AI称谓 | 经典AI启发式搜索；M-LWDF为经典规则，此组合没有训练模型，不代表全局最优或已验证学习收益 |
+| 成本边界 | M-LWDF-PF并发墙钟仅描述；相对完整DPLS的公平串行曲线来自旧κ0保存输入，尚无该组合相对PFQ的公平时延比 |
+
+权重形式和原文来源见[跨负载说明](../training/stageb_lns/crossload_README.rst)，精确内层契约见[容量界说明](../training/stageb_lns/bounded_README.rst)。研究源码已纳入主仓库；运行库需按构建脚本生成，原生仿真仍依赖下文worktree/容器与本地大工件。未以新研究结果追改旧冻结报告或原失败门槛。
 
 ## 1. 实现与版本边界
 
@@ -114,7 +132,7 @@ uniform 的同协议配对、原生/FIFO、完整 cohort 与稳定性核验见[�
 
 ## 6. 神经研究路径的独立配置边界
 
-`training/stageb_lns` 是本地研究包，相关实现尚未随本次文档提交整体纳入；`deliverables/tb_*` 保存模型、候选、原生轨迹及版本化脚本。研究入口需具备这些工件和容器挂载，不能把证据目录内的源码快照当作独立可运行包。
+`training/stageb_lns` 及相关 `stageb_ppo*`、`stageb_student` 源码已随主仓库保存；`deliverables/tb_*` 保存模型、候选、原生轨迹及版本化脚本。生成的运行库按各模块`build*.py`构建，研究入口仍需具备本地工件和容器挂载；证据目录中的冻结源码/二进制用于审计，不自动成为当前运行库。
 
 原生修复入口默认 `--decoder reference`；`cached`、`verified`、`verified_cover` 和近似物理/残差搜索属于显式实验选项。缓存等价验证保持冻结的87维actor、width16、最多3轮及物理验收；后续候选/排序变化不继承其等价结论。当前有效版本优化缺口加权物理目标 J；风险研究另用因果交付风险代理 R，并保护 J 与原草案 floor。两种物理对照应分别报告，不能用 R 点值代替包结果。
 

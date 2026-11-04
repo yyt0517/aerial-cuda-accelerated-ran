@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "normalization_training_only": true,
+  "sampled_group_per_seed": [
+    {
+      "state_id": "raw_global_deficit:seed41:tti4001",
+      "seed": 41,
+      "candidate_checks": 140,
+      "max_gain_error": 1.4551915228366852e-11
+    },
+    {
+      "state_id": "raw_global_deficit:seed42:tti4001",
+      "seed": 42,
+      "candidate_checks": 140,
+      "max_gain_error": 5.820766091346741e-10
+    },
+    {
+      "state_id": "raw_global_deficit:seed43:tti4001",
+      "seed": 43,
+      "candidate_checks": 140,
+      "max_gain_error": 5.820766091346741e-11
+    }
+  ],
+  "training_states_only": true,
+  "actual_visit_keys_preserved": true,
+  "fit_scope": "72 correlated bootstrap visit groups; held-in fit diagnostic, not generalization or final policy",
+  "total_independent_candidate_checks": 420
+}

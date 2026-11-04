@@ -1,0 +1,79 @@
+{
+  "input_spatial_gate": false,
+  "scalar_vs_heuristic_regret_reduction_pct": 81.99993829034362,
+  "ranking": {
+    "heuristic": {
+      "regret": 701.060261172178,
+      "near": 0.22222222222222224,
+      "retained": 0.42392092975339746
+    },
+    "scalar": {
+      "regret": 126.19127963287018,
+      "near": 0.3703703703703703,
+      "retained": 0.8787276214690906
+    },
+    "spatial": {
+      "regret": 124.04635209485558,
+      "near": 0.4444444444444444,
+      "retained": 0.891641132049254
+    }
+  },
+  "quality_cost": {
+    "cert_bound": {
+      "quality": true,
+      "cost": false,
+      "joint": false
+    },
+    "cert_learned": {
+      "quality": true,
+      "cost": false,
+      "joint": false
+    },
+    "block_random": {
+      "quality": false,
+      "cost": true,
+      "joint": false
+    },
+    "block_heuristic": {
+      "quality": false,
+      "cost": true,
+      "joint": false
+    },
+    "block_learned": {
+      "quality": false,
+      "cost": true,
+      "joint": false
+    },
+    "gen_heuristic": {
+      "quality": false,
+      "cost": true,
+      "joint": false
+    },
+    "gen_scalar": {
+      "quality": false,
+      "cost": true,
+      "joint": false
+    },
+    "gen_spatial": {
+      "quality": false,
+      "cost": false,
+      "joint": false
+    }
+  },
+  "generator_scalar_vs_heuristic": {
+    "wins": 7,
+    "losses": 2,
+    "ties": 0,
+    "mean_j_delta": 3250.444168368175,
+    "ratio_of_mean_gain_pct": 5.038754931127309
+  },
+  "ai_joint_target_passed": false,
+  "default_registry_changed": false,
+  "next_path": "Scalar residual generator with deeper single trajectories and own-prefix teacher correction; certified physics is its offline teacher and quality reference, not an established AI speedup.",
+  "paused_paths": [
+    "full spatial candidate feature bank",
+    "learned block ordering",
+    "PPO integration"
+  ],
+  "limits": "9 old development states, 3 radio seeds; no native/cohort/real-time/generalization conclusion"
+}

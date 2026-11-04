@@ -1,0 +1,62 @@
+{
+  "base_actor_steps": 96,
+  "continuation_actor_steps": 1200,
+  "base_last_kl": 4.564196487422123e-08,
+  "continuation_last_kl": 0.0010418541496619582,
+  "native_prefix_replay": {
+    "41": {
+      "passed": true,
+      "checkpoint_iteration": 6,
+      "native_prefix_ttis": 10656,
+      "ppo_replayed": 6144,
+      "max_reward_error": 0.0,
+      "terminal_catalog_features_match": true,
+      "sampler_state_resumed": true,
+      "catalog_audit_scope": "new continuation decisions only; earlier PPO prefix reproduced from saved exact actions"
+    },
+    "42": {
+      "passed": true,
+      "checkpoint_iteration": 6,
+      "native_prefix_ttis": 10656,
+      "ppo_replayed": 6144,
+      "max_reward_error": 0.0,
+      "terminal_catalog_features_match": true,
+      "sampler_state_resumed": true,
+      "catalog_audit_scope": "new continuation decisions only; earlier PPO prefix reproduced from saved exact actions"
+    },
+    "43": {
+      "passed": true,
+      "checkpoint_iteration": 6,
+      "native_prefix_ttis": 10656,
+      "ppo_replayed": 6144,
+      "max_reward_error": 0.0,
+      "terminal_catalog_features_match": true,
+      "sampler_state_resumed": true,
+      "catalog_audit_scope": "new continuation decisions only; earlier PPO prefix reproduced from saved exact actions"
+    }
+  },
+  "paired_first_rollout": {
+    "41": {
+      "passed": true,
+      "iteration": 7,
+      "matched_fullbatch_control": true,
+      "states_actions_rewards_distributions_match": true
+    },
+    "42": {
+      "passed": true,
+      "iteration": 7,
+      "matched_fullbatch_control": true,
+      "states_actions_rewards_distributions_match": true
+    },
+    "43": {
+      "passed": true,
+      "iteration": 7,
+      "matched_fullbatch_control": true,
+      "states_actions_rewards_distributions_match": true
+    }
+  },
+  "total_executed_online_training_decisions": 55296,
+  "paired_duplicate_first_rollout_decisions": 3072,
+  "total_native_training_ttis": 100800,
+  "total_distinct_native_evaluation_ttis": 74400
+}

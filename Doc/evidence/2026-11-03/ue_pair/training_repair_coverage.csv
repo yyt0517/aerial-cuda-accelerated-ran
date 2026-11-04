@@ -1,0 +1,16 @@
+state_id,seed,baseline_joint_pass,joint_candidates,allowed_joint_candidates,repairable_failure,strict_pairs,good_vs_bad_pairs,repair_vs_maxj_pairs,in_sample_pair_accuracy,in_sample_good_bad_auc,oof_good_bad_auc,best_good_rank,in_sample_unguarded_joint_pass,in_sample_guarded_joint_pass,guard_reason
+raw_global_deficit:seed41:tti4001,41,True,141,141,False,1024,966,0,0.9853515625,1.0,1.0,1,True,True,maxj_already_best
+raw_global_deficit:seed41:tti8001,41,True,169,169,False,338,338,0,1.0,1.0,1.0,1,True,True,maxj_already_best
+raw_global_deficit:seed41:tti18000,41,False,2,2,True,1024,57,2,0.6875,0.49382716049382713,0.3333333333333333,42,False,False,maxj_already_best
+pfq:seed41:tti8001,41,True,107,107,False,1024,961,0,0.9599609375,0.9697636063771303,0.9697636063771303,1,True,True,maxj_already_best
+pfq:seed41:tti18000,41,True,109,109,False,1024,951,0,0.998046875,1.0,1.0,1,True,True,maxj_already_best
+raw_global_deficit:seed42:tti4001,42,True,70,70,False,1024,766,0,0.962890625,0.9970350404312669,0.9970350404312669,1,True,True,maxj_already_best
+raw_global_deficit:seed42:tti8001,42,True,71,71,False,1024,907,0,0.9970703125,1.0,1.0,1,True,True,maxj_already_best
+raw_global_deficit:seed42:tti18000,42,True,85,85,False,988,935,0,0.9757085020242915,1.0,1.0,1,True,True,maxj_already_best
+pfq:seed42:tti8001,42,True,112,112,False,1024,871,0,0.92578125,0.9411139455782312,0.9411139455782312,1,True,True,maxj_already_best
+pfq:seed42:tti18000,42,True,95,95,False,1024,886,0,0.9814453125,0.9983981693363845,0.9983981693363845,1,True,True,maxj_already_best
+raw_global_deficit:seed43:tti4001,43,True,36,36,False,1024,523,0,0.962890625,0.9985065710872163,0.9985065710872163,1,True,True,maxj_already_best
+raw_global_deficit:seed43:tti8001,43,False,0,0,False,1024,0,0,0.9873046875,,,,False,False,maxj_already_best
+raw_global_deficit:seed43:tti18000,43,True,155,155,False,1024,979,0,0.9990234375,1.0,1.0,1,True,True,maxj_already_best
+pfq:seed43:tti8001,43,True,49,49,False,1024,779,0,0.96875,1.0,1.0,1,True,True,maxj_already_best
+pfq:seed43:tti18000,43,True,120,120,False,1024,924,0,0.986328125,1.0,1.0,1,True,True,low_confidence

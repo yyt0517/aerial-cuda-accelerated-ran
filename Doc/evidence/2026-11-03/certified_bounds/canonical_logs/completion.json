@@ -1,0 +1,16 @@
+{
+  "completed": true,
+  "engineering_equivalence_passed": true,
+  "snapshots": 12,
+  "rounds": 378,
+  "bitwise_candidate_phy_audits": 624670,
+  "new_full_candidate_evaluations": 624690,
+  "new_cached_candidate_evaluations": 183079,
+  "new_full_mmse_misses": 22203,
+  "new_cached_mmse_misses": 22203,
+  "numpy_terminal_audits": 12,
+  "new_native_runs": 0,
+  "registry_unchanged": true,
+  "wall_speed_gate_evaluated": false,
+  "closed_loop_quality_gate_evaluated": false
+}

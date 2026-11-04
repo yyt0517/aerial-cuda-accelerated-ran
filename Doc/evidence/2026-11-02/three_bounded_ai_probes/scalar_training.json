@@ -1,0 +1,34 @@
+{
+  "groups": 53,
+  "validation_groups": 36,
+  "feature_dim": 48,
+  "epochs": 30,
+  "selected_epoch": 10,
+  "selected": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/scalar_e10.npz",
+  "history": [
+    {
+      "epoch": 0,
+      "loss": null,
+      "validation_regret": 905.2523179307668,
+      "validation_near": 0.3611111111111111
+    },
+    {
+      "epoch": 10,
+      "loss": 4.099728381858681,
+      "validation_regret": 295.3649977800958,
+      "validation_near": 0.4444444444444444
+    },
+    {
+      "epoch": 20,
+      "loss": 4.039022074555451,
+      "validation_regret": 488.4356933758671,
+      "validation_near": 0.3611111111111111
+    },
+    {
+      "epoch": 30,
+      "loss": 4.002143722660136,
+      "validation_regret": 440.8692817804241,
+      "validation_near": 0.41666666666666663
+    }
+  ]
+}

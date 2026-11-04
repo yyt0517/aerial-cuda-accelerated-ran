@@ -1,0 +1,50 @@
+{
+  "training_seeds": [
+    41,
+    42,
+    43
+  ],
+  "warmup": 4000,
+  "settling": 512,
+  "rollout": 1024,
+  "max_iterations": 12,
+  "gamma": 0.9982686325973925,
+  "gae_lambda": 0.999,
+  "reward_scale": 0.01,
+  "holding": 0.0025,
+  "retention": 0.98,
+  "actor_lr": 0.0003,
+  "critic_lr": 0.001,
+  "ppo_epochs": 8,
+  "critic_epochs": 8,
+  "target_kl": 0.02,
+  "entropy_coef": 0.001,
+  "ctbs": false,
+  "business_weights": false,
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_warmup": 4000,
+  "validation_settling": 4000,
+  "validation_measured": 4000,
+  "validation_followup": 400,
+  "checkpoint_selection": "fixed iteration 12; no PPO evaluation used to select refinement",
+  "stopping": "fixed 12 iterations; reaching the budget is not evidence of convergence",
+  "physical_prior": "unweighted expected successful bytes; residual initialized to zero",
+  "limits": [
+    "full equal DPLS remains in every catalog; no speed claim",
+    "development seeds 44–45 already exposed; no independent generalization claim",
+    "2-second measurement; no automatic promotion"
+  ],
+  "resume_root": "/opt/nvidia/cuBB/deliverables/ppo_diagnosis_continue_20261030_v1/formal",
+  "resume_iteration": 6,
+  "actor_minibatch": 128,
+  "optimizer_refinement": "128-state minibatches, 24 steps per epoch; entire epoch rollback if KL exceeds 0.02",
+  "resume_checkpoint_sha256": "fada4f5d7e4575faae1141cda87a926e2e8590b2695484e7300089b15da8e8f6",
+  "refinement_reason": "six full-batch rounds yielded per-round KL around 1e-7; actor optimized only 8 steps per round",
+  "prefix_replay": "exact native actions and rewards, final catalog features and sampler state checked",
+  "new_training_samples": 18432,
+  "reused_prefix_training_samples": 18432,
+  "reused_control": "/opt/nvidia/cuBB/deliverables/ppo_diagnosis_continue_20261030_v1/formal"
+}

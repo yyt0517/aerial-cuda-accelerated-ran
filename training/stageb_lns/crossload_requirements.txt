@@ -1,0 +1,4 @@
+# Additional packages only; existing NumPy/SciPy/PyTorch runtime stays fixed.
+scikit-learn==1.7.2
+joblib==1.5.2
+threadpoolctl==3.6.0

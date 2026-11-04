@@ -1,0 +1,37 @@
+{
+  "strict_requested_target_passed": false,
+  "positive_gains_and_p95_passed": false,
+  "seeds": [
+    {
+      "seed": 44,
+      "checks": {
+        "p95_no_worse_than_equal_dpls": true,
+        "payload_previous_gain_fully_retained": false,
+        "expiry_previous_gain_fully_retained": false,
+        "payload_still_above_both_physical_controls": false,
+        "expiry_still_below_both_physical_controls": false,
+        "mean_delay_no_worse_than_equal_dpls": true,
+        "ue_p5_no_worse_than_equal_dpls": true
+      },
+      "strict_requested_target_passed": false,
+      "positive_gains_and_p95_passed": false
+    },
+    {
+      "seed": 45,
+      "checks": {
+        "p95_no_worse_than_equal_dpls": true,
+        "payload_previous_gain_fully_retained": false,
+        "expiry_previous_gain_fully_retained": false,
+        "payload_still_above_both_physical_controls": false,
+        "expiry_still_below_both_physical_controls": false,
+        "mean_delay_no_worse_than_equal_dpls": true,
+        "ue_p5_no_worse_than_equal_dpls": true
+      },
+      "strict_requested_target_passed": false,
+      "positive_gains_and_p95_passed": false
+    }
+  ],
+  "project_quality_passed": false,
+  "selected_checkpoint": "fixed 24th additional iteration, no development checkpoint selection",
+  "promoted": false
+}

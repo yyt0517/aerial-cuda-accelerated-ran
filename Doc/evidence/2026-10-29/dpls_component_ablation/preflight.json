@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "smoke_arms": [
+    "ctbs",
+    "raw_global_equal",
+    "raw_global_deficit",
+    "ctbs_global_equal",
+    "full",
+    "ctbs_independent_equal",
+    "ctbs_independent_deficit"
+  ],
+  "smoke_full_native_byte_exact": true,
+  "promoted_saved_state_exact_comparisons": 12,
+  "full_candidate_rounds_and_predictions_exact": true,
+  "protocol_sha256": "39926f1cc9f9d377c06f5719101c6e6f1e2fce867356d4442bd198720d2a3482",
+  "mps_connections2_seed45_native_metrics_bit_exact": true,
+  "mps_connections2_metrics_sha256": "0a1f0e0414979c06e5abea5514a9c946a6479eeb257f8106b2e18a90f2db515a"
+}

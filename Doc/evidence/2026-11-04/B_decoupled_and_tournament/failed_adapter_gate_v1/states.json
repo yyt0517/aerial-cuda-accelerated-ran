@@ -1,0 +1,1514 @@
+[
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/cold_full_seed41/states/tti004001.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "fcca8737d2d79ff64359adc3a222c9a88dcb7cb9fcc7e389ff22bf1307203957"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/cold_full_seed41/states/tti004009.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "93d49bfcee733259a97c34a7126cd4f7398f5c0a21fb405a1982714ce1acfe93"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/cold_full_seed41/states/tti004017.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "cc6b0c8b93f9d49d585585fde9ecb8d002c441b1120d8543e45b67f299c828dd"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/cold_full_seed41/states/tti004025.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "917f69dd79cdf6be2a687a22139373bc349b61dbfc4ef78334f477ab06225f44"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_full_seed41/states/tti004001.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "43a6c473178b2d486cad7c8a856fe653ae37e93572bd626b113ae23d366b267a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_full_seed41/states/tti004009.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "7d30f78af3271a47a2345b48bd501d56def56df1d61b7812ff3bcec22de89c18"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_full_seed41/states/tti004017.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "f20ea593c9ec81fb84971975c3e79ebe5a51e9f74b54ddb921709e5ca984c053"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_full_seed41/states/tti004025.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "3d77aaef4a4f35c85e7bdbc0e7d5d1d2f731184670da83188b0e10c21d26f818"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_n3_seed41/states/tti004001.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "fab9de02cefeacfdbe03099c086deb97e096c28d21ffda9cc1b0b95351ffc9ae"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_n3_seed41/states/tti004009.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "7651d410715c4b724d486f40b694dd70dfea39f46cbbfa27255eb77aa76b6c13"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_n3_seed41/states/tti004017.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "afb41bf67f79d2033e2b9fd2f34d403f9d4d4e603a25f5d54616f2d945a5af60"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3/warm_n3_seed41/states/tti004025.pt",
+    "rate": 0.0,
+    "seed": 41,
+    "sha256": "13a841da1872c7e5f7ffc0954c3c75595f6bed028e7aa81ffa35e52442f1203b"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008001.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "f8f645f63370d731d86dc3a85bbbe92bedf41145aa8eb186191b28a5790c19a7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008101.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "9ac3824b975a51ce0140e77c489bdf1fe49591631f0a3a3b38bb2a734810f890"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008201.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "8dcd0bc7fdc67cf9a07b90dd12cd2131cfb455767565868fd62105b5d624ad40"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008301.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "c6d3fdbb9ee3f81343d50af54b1a8d37c29408a34fadcf001b48e08ee96fd00f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008401.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "84229867e92bf361c26991275ad954ca18ed8cb10c8f4ba5e0b39f27231d1c4a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008501.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "411f12df5fe08335a24bf3bdcdce14600ebb65d6dd3c226837f51577ae388bd6"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008601.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "5a18b8ffa393f5e02316c0925e4622e09c114f3fddda9555ad66372c85b83f45"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008701.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "6fc123bd193854744b0f9200c83e929792bd9edcc5bfd13ae41099c8c16cf5e3"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008801.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "b447f694aef4140795e73dbe4cb76238c9179343ed168bb99427bc28a8797ebb"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti008901.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "d7cbc8a36e836aafda10f29f62f8f1b2f05e3fe98295572cb5c31129f3522869"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009001.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "1c06b8196ad64f09653cc3ecc1acf67382b9b07e7b8feb00a999d7d63faa1f76"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009101.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "4f742f8c7ff9765658b4cd0cd7cb970622c823d3cdf676d0d3de1fcf33563b8d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009201.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "caac545e91ed4702227b2346af96c80320ba5cf85411b73d2570a549b2d6cd98"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009301.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "2e2bfc1cabf1f2a6cf261b63f6ee8ce04b8d9dbe9194f98034e654eaf0a5f2af"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009401.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "e2db7afc5247d5a8fd49c7d59c2c2bde653234c1b70d98f8ca19fc977392ceb6"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009501.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "0c6095d06fa9aea2febdca175f3955d6104f0a4fd9b6ee6031e0fe4d88c3097c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009601.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "dc61898cf281eb69f43f1c9dd7401e0c19b3c144d5c7b3ee57d2f5e9db743c01"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009701.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "673c6fc9a018a8c0945033b95de0843cd0f3822e0709f40f8bf6b686e4d65e2d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009801.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "d54dce88df292b8c83d336f6b2775dd1530f91819ed1cffedcf80b0234da3183"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti009901.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "adcf065a95aeda0739c337fb62f303206c3d9658878f783dca20d17ee4975c6d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010001.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "cdb5ffadbf4b7bd42b2217080b30ecd6ff058e4600a28d52d7ec5a34aae90d72"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010101.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "380903f276510cf8c6b4d4c3d440206708f70366714eb6cbe19d02d5eb6df080"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010201.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "5b180e5e86a448f8ac1220a1474626e8b14f050f88bee48c49ecca3e1802076c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010301.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "9246a7acef55cbfa7d26f48192f71e6b55f991e6062b632092081786a77101d4"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010401.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "ac6db33b2903e1eba6a7bce05495b1b6a62cb74c5ba5dd157154030a0f52908f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010501.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "ada13f62afb4af131da077337e314ccaaedcf7bb94ab1ba60f497d3dc3a18c39"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010601.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "046d14488859e6bd6596c67acbe7ba3b07b2ed4588f9a491f492f79e7d5526ae"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010701.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "53e821d203fd0ad28783b1a42c550a6cb2364b70e010cf33de4ede85bc169191"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010801.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "ad11809c419eaac10b52cd0c6c992d39cc506975dbbde6cbb13961f0f52b4823"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti010901.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "3563ddf741845da5aab84acbdf3641ed4f6e1734118497d2667748630be933b5"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011001.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "c02eeb0296d7189ed5141a2056425c48a532eb59415c3927e5affd802d3e148c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011101.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "1ea6082489bb6bbc6ee1b2adc0195b2dd7e9cc174c836828fa06df6fe85c2def"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011201.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "3e5e8734363316f8c8f4145ab45b9a59e75fc7a191c4195f8805f9f1d8275a24"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011301.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "b4567472122b2747e0619a03c81b18e39a9ca343a21122eb7f1ffd5d47ae18f7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011401.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "347ca2a2f6faf4b5ef8f2a8d7d9dc6986d1aca130f401de73cc4754dafa1cd9f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011501.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "253aecdf28cc981ceedcfb18f1f2d6e6b83025ceabafac33a97365d120c2d1a0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011601.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "d0ac561d39e3e862da5ecf8772dbdd56de325d9b0d081f5e8d2c03cf73ee6fa5"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011701.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "965da06d74af2b53e8808b21f33221f53e1158666fb71da423f690a4e201edc9"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011801.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "aa6988cb54fae31c20a70a708a70d258d5b8c77abf80c45bc9a8b12a5e6d5129"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed41/states/tti011901.pt",
+    "rate": 0.8,
+    "seed": 41,
+    "sha256": "91f604c0e396af1009cc4e8e6b34b6ca3498293b2f7e7cd9f54362f268d56c8a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008001.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "111f04579d23c8572f38954b3567ed9735f75e7600498b55154b3c3ac600d2ce"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008101.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "a482918f32f3923057df9e7d8d06a1aafcd1759953e66032e95419c9eda0fc38"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008201.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "3e05115e5f6f321761e9500c7d86d0ab09e8fd296da90338582bc4b7a2c65e32"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008301.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "eea0294d1c6ca690f96a22a50a15a0ddee8d455f1b44b3209fb00d6134714334"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008401.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "897bcc0867ab2e4526945255990707fb14228611afab161c967652acdf7d159f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008501.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "554662ee2c441bf276a24ebc5d5de56dd611ba95b95eca854f71cf4c10aef7d5"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008601.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "5e942de9a868d99ebd6a5e228d9c39ce53bb92471606ea99f4411c1cfae2c980"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008701.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "c5230894992eeef4104a27fc0f3280853ea61621dfe648b41699f7e91eab96ce"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008801.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "f2dcd818c0194d76310dfddfb29a6d1c5dbc0c48cd32d4129f74a5b98a2504c1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti008901.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "bb229b8f3d130306f338838a351971209e8d41b4ac2835e67cc5fec1ed619b05"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009001.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "a4d8d61170930696266714332f4fc6873b401182031b91b36f59580f032982d7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009101.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "e4103db32121f4f2ff1dd9f32922d8f81c1b1d4651f1849c47b9b4a549620ea1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009201.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "87c51e3f10557f96514be58bb536a03e94d6d8d38531beb1db53954418959800"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009301.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "124e92af042e39699fdd1bee3615d51d95888752e66cbddb75864f779dfd8659"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009401.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "258be490bd2aa9c345b981621df5b3933d28e1e0123c9b86a91d4e7aa38c1aa2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009501.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "713d7c318e4d16ee2f27ea3aec3e2c39a507f43ffc8f6cfbd6c442fc11bc314c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009601.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "74330a78d51750d1f0fb144f0bf571ad26f4be85a64f3976e76085b3f1d4fe19"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009701.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "60a935eb9c5c7e1b25109b70ce96cd5727c7b2f60817b52a7fb867d231a3e3fa"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009801.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "fbb5af4a8ca1f93c43dd8b7459142f038961991896c7f6eff098181e5ccabc72"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti009901.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "535ffb26f62ab578d4be8c92cd245792f09e060425c6bbcbb6ef7e6ee4bb14d8"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010001.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "0ccc569ddc758ca41d7524fe0128150684194cc08112c51b1b4c2f42f9a9a078"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010101.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "1578c174e7a98f5a709fbc2018d417b7180c2f7a2677ecab3c2bc2fbc1274615"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010201.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "ab1a87fe27aaa12433fa8bd30e98b3d8982b0e27736a9a5e7fdfb746f904005e"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010301.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "ac00c4f7d45dc419219bd1070bf7f9e90e887e5767e9c2ac4f2fe4cba08a61de"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010401.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "784b283f8470a975d1f323b674a569152895b9edd11f4b20614f6f07595aa7a6"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010501.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "54c0d7b4c59a161a8f0c2e9c8712d50430a692d51557ab079b9484a5e585aaff"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010601.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "e07b5f8aeb66c1796e9efb23fcfd2f26eba33db1d5c6ad76129348be6d828915"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010701.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "23b75a2a7a73ee5fb7f67a8ba3525b6a615ac552ad9aaa36374b3684660a9ce7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010801.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "0273238e943c327219078b582530de88f292f8f8e309c66d734974f42b646f7c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti010901.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "b0b560276bc10d6b3775ea303a6d33fbd5072e3c530469dc6cca0fc93ce4f7a4"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011001.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "751c9fa008853a36f81f0a30ad79becdc3bed2cbcfb0bcca9bf7080ed7a2bba2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011101.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "e6ff0f696ce86c433f59603c5c28ce42435b2a794787d98bd2f98a579348d309"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011201.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "838d70934df7d12bc3394258bfb9ddff78d9e0d54f873c1e361529d967b29b6f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011301.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "0ca5f9ff773b4d2852963c0f221742bddb58695f1dbea1acbd2198221f968f54"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011401.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "8439cc6a71f4f2049d4b5549c8bedd38db59d3ccc6a292836169f08ec7bb17d0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011501.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "f1f46fa3a816cb5dbc678115b3ff02dbf712580ab4d8afac13acb19c5ce30faf"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011601.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "d8b01aee6fdd6096ab0c0bde26c5394cb4e1e71eac46ff49e353afe7c62b7bfd"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011701.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "11218b0f0877a86d0b63c1c38f5ee0808fef58a97643acedd8e4863309d51fdf"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011801.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "2532d00562828435d7a1e3a44cae971e6049a44af7efcc079f2de9d65e6bde47"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r0p8_k0_seed42/states/tti011901.pt",
+    "rate": 0.8,
+    "seed": 42,
+    "sha256": "0d91e7636c0db3d8aa7c7496e14e1cd36b6f8b684bfbab1e680889b327360329"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008001.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "5426a08e44fb92f782437b70bc93fbb171055cdd2adc81f77432b29f44f2f6c2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008101.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "29a1c1ac051bf2dd483f8bf2056af423f6d872006f7185ab29bd7f1486004947"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008201.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "a7d69a3a83f8e61764bc71132abfb6e2f3399cc029490f8a0c6510451c944d2d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008301.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "bac788542fc1e6f86e4b9b25fd1a938e5e29ec2eb42b02190c3aa3163acca368"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008401.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "7008a522dbae104513bc58b1ce280c13f083aa58fe211d94bd8101fea5cfcee1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008501.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "4fc5bb4c3807306f77a669c64dca79f8da2a7734710959e0b691d5bd769f9f75"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008601.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "229fc97a992a16c2d114c9f6eaf4d4c47f37d121eca155402cac410cfc1b36cd"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008701.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "97c2d1c92bd31b979e94f07077d6636df3f67bee0d032fac53cab6ccb3898576"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008801.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "d6dc8bfa7cb57b90e766780482963ec236dbb31d90e294f486d62de9939a9949"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti008901.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "f9a0b20e68bfcd50bab25d2ba32fe453c0ba3dc80b2aaaf42485ed9577aaed09"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009001.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "696a606e2af2b199881ea187b299278f1e1311afb3902bacda7d7155cc667f1b"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009101.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "ca87a5bde5df2c61b91cec7ce867cfc45e2d7b43b441f9fd34cd91ffc68c3945"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009201.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "9ef4c117469bc3baddee4639ddd01b7a876be3621e71b065e15d7a8dfe8ab053"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009301.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "6e09d19bdc394467ceb4130bbb698c37e42f2403ab7a660dd1589cf14f70734f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009401.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "caa6f339389982bb5a2a227f5ddc0beb482adf82e00eaaf7a98e27a222b1eb42"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009501.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "9a0ca73d908c6eecdb33e62b5f4fdef7746a9a923e7f558ccacbb74998b962dd"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009601.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "5e396ca510d665a50a64bee999a875d0b27879b2573404efb996a03e512af72c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009701.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "4222e52a0a2dc6ce77d408411d4321143d083e7428d83f65d3b699e5115e913a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009801.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "161401c2062a32f291df6c783070b03e2a630c6962ed46f117a5ae7a9d6bc410"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti009901.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "492314b7a501c5c01be77a75b3ccb2658b7e4459bc67a30bb45aa0c4d56faa71"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010001.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "492eaedd0e1d251deff1724f6e1c82f9b8cd90de27c27bbf2d07140e08629aa6"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010101.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "c28efe30e081b7ce3dbeb9097a731802ef660945bf17db5ef23ef0884b57c839"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010201.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "c514812511225f3fa2163da41a6cf1a01c398d28a05ba056a04141bff8a4d1f4"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010301.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "2e714c8fcdd8575c62c0c3c6ae398806f66e87d335967984f123ebc45e178a5c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010401.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "e87c3af7e0fb3484cbbf34b17dfd780f8b165c6571c64d5d3c7bc5eff30377d2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010501.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "b7511ec5f18be785cf03ef894d8725a47910fada359e8a1b1dd0613099eb81b7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010601.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "44d7cf11f57b65112a7b4443e65ba18df4440c8e3c0a09267c498a9172a1237f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010701.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "e18565c727b3c28d4b7d3e8a9abe430ce3871138ad6ba95ec6211b209c7fcd05"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010801.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "85f39596a4d44fcdc4ea0d8cd337f1c61ca9bb0ea4879e2e71fd256e7eafa285"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti010901.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "fea842c4de60ca56e835dc92be23593ce3ae24227c7e2fcec19caaa841684293"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011001.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "624d3fd7d76f46d71b08b7d1e35165275538ad33f078590fe9b26a3de399a613"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011101.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "370e72f8f66b0e0d3a66b23f57bae34a8b86a5a7529a391065583608047e6219"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011201.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "854fed91461fe635465f1678d3481a24cf06f293cbe7e8dfd8f852a83313863f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011301.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "f306ebb8783c9afbf7fd9d5b663c452bab86db83e371a1a2f6c374a0299f0dd2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011401.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "78c3ec276e5213dc705d9f10bec7aec4b33e3a4063e80ee03ef728e52f689c99"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011501.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "256d38d1baa19a642c3cc22d1d14667588977dbe0db1ee7c74f0a0412a29d049"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011601.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "b3145a2a16fb7330ce3039ace2da385663dc55182383d4d0d5e94497396896a9"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011701.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "b9a4c0b2cc8fe4267dd3662efdd0f9607c938c9041004dac784a338c247a2ea0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011801.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "7d864a62fac1b1f539855374b693689348e036cf6c91335ce2e69076f6ed6f73"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed41/states/tti011901.pt",
+    "rate": 1.12,
+    "seed": 41,
+    "sha256": "111c125864c1c388fe10fd8f01a9684238adffff936a7f10bcf9e932844f06d1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008001.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "c3ff2781f9e84508499706468661260d51155b3d74b59fce572acd36b7b28369"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008101.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "d642bdd92b97898124de568e6037a0a22512237eadb397b9001aec58e3d094c9"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008201.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "8136befe558f524c68c30e324655f0bd19825df03f03033c17025369bbc05675"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008301.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "65aa8b2bf942dfed35e8bda2ffbac92e56d3a8790d68261a0c3b7d8c8e8124ca"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008401.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "3625769ea1f009fb7b72b9cc11ec55709a4aac270d73f249ce53a3d3a81b3e15"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008501.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "a26a51d53a583fe91e48b9ee843b3600e5e2af7f76cbc72866485927ecff2da2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008601.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "67e87c05ccda98d01a1aba485390d954a7629b4fc9471030700cea9ff84ccf19"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008701.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "f74c3ad4c53e7101efcdad8960c7dc8ca59d712dbfb560febf59c2d8ba3a4e50"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008801.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "953db4f499b49d82490aa28d5fbd26625fe87e5d69a1ab6a603e502fb2075613"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti008901.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "b5e9219e5b2367117289dd256d6943a8edce14b9e3ca9bd3d5e2f6aaff5ba25d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009001.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "f36785dd23c3011950e07016a9aba63225dc061735c6a5b3405b76928a608dae"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009101.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "53bbb999087e3b417e96960876cf39d444f6451b8a3ec510f3188a8889ed47e6"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009201.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "26b2505ad963caea92f5f7ba255488bcb29394294727285b2ccce3e95e962d71"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009301.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "0ce10a5760ba432eab057919e1d4089a652816b2ce87c03d78e86b242ee9983b"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009401.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "7965fea080a440a23233c4130829055721ac92aaa5f324ae14be24b7343402e3"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009501.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "5a78480bdac201c759d4517851679461b8e81740174571209b54c956ce68c7fa"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009601.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "eef36ebecf0bae255521e634042ba88c574eb3c04986c98c8bb79d68463b0d35"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009701.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "790c629b251203ccc4da055a76352135909e4c898a88973c4d4c7e6845aaebea"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009801.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "61b0fa150a0c376a79f2b88cf55e464645b299fa4701cceec03bbf92ba10d692"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti009901.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "0018010c56b0aeb5374258522fbedb03412ed57c31c80f3d321a1f60d4387c73"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010001.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "18020ff9c13008bcc6e5e46cf21d0587cdab0176824d37727514c2a63f84cebe"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010101.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "7146a1cce35aa0d7582e8f48d3b0feef888b21d6150568d85c9375664bd0c331"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010201.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "47c7e32d38efaec71ec8ad0b9db7a96b287b07572efcf41e426c6d18d6bdbc6c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010301.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "ccfa19e0d4e28083583d4a968f4744fe29cfc504da34db3635b6fc373df979af"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010401.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "f4f89a6110dba7724895bd7d0a0706c7a7e8c5d8aec12daa372fbd15c1e2983a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010501.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "c7522bac3c96d839595e2b359e01f132d61cfb4d2e758dbde862d298232db964"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010601.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "6f43f305f4b7e08cebef397bc388881da852164bdab1467f4af8e0b03f1c4090"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010701.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "9fc22b87b7779661af22465a7bad473b33d99dd9ead6d792ad508e6a2d51321f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010801.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "48b4f2dcecab783f8ce12e3bf512f4e81c3b7e0e089b5d58eea8e7e4b4c61ffe"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti010901.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "c5b93176d28190cec45276c5a17d3a75f345a83322e4d42620483b6abf8a3512"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011001.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "e855a9ab8fbd506c4eaca67d0ee3eda83ac858d160573ac9c91bf6cae49dbd69"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011101.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "716d93a42aabe6a37ad372c77a9e37b4f8b4f0989a488d457bff4a9db00ac7b0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011201.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "94a79c715c6a3a43fa19c9d451187d977a3527a56cc3d9a8e7d3d5e81d5cc0f0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011301.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "b9ee34076a64bbc999c643d18196b245fdf422c38e748863faa54f223d3494a7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011401.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "ef775c700de3cf99c6e3ca49cede992894f3225ce4dbc09343bba14bad37991c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011501.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "b9af63ac7cf55ce6000be1803ab6c6c07da7303b7e3f8a54690ca40b64db8fff"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011601.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "7f686aa5b83ba9db0e98de93fc7a99da6a3d65017319784775c0e83ba4626a75"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011701.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "bbf6ccbe43d41913577813585ba5f9348c9bd2628179c0e3ec7af7b581900a68"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011801.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "18768d14c8302d38b79dc5c34bd6149d2846dc670e639ea673cb5d4e0a4d6d89"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p12_k0_seed42/states/tti011901.pt",
+    "rate": 1.12,
+    "seed": 42,
+    "sha256": "19f75c081bc2c9f28a667a83f08d2779f26c432af3aeae5d5dc174ffaec68aaf"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008001.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "0b9f820f530a8d4cb4765c6e3e295d19c4087436b766d72ee1a55c427e20e8b2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008101.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "bbb3cf197679326041cc65706dc7be0e5d6905a52977dbf457c2107d5e5fc195"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008201.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "e29cab89e4acdb7bacdd3bcbd71cc48f40db835bcc3c2a7f1084a2c4b81ee902"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008301.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "d75e5219c90b0cc1ad5a0e44c26c0f0a35fd76cf430cb215111fa80137dc45da"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008401.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "dfbe607790e40f728d13f3fc7ae669ddc531cfd3f81a5831ae3c0716fa58f927"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008501.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "f18faff2dd7c3d600c4acd949e48462423abc18a05c281e61ab38341dfb3549f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008601.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "bbdb0de04798a14b694ae255dcc37914d9179a434aaec9355aa76705de9db31f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008701.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "614a26b180ee296ca9882244b87ce8dbc9149ff8ecf3e64aa341e4dc2f8b464c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008801.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "c848f3b6997e2e7bb346269aa03bc198b4890d1d6f1b69afeabfbc9e56078c13"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti008901.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "38c019885cd1d8c17cb168c06d44385c65d32759dda5c0e97c3ad9eef0ecef6d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009001.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "f7e80b4d4d507bbe3e5c45885026309e2f61d759f1952dbc9098d75a1cb946f7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009101.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "f35e704f56c3a45a46e925299bd27465efea8a73e28864ccef6fa6465fb058a1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009201.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "b82ddded77225dfada0fd99e32793618921f9a806417cd7e0931557f86faebb7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009301.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "ece2b865b59662a52ad746c4bd4ae4f67ed6efe0e4218ecd20fac9f9e4f95a74"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009401.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "1df1832c51e59c1c285e2172a2821e2bdeccf2bbe204922913080a0847c637e7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009501.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "5c04e06fd8ff80aaf675c5d5d0a02ebc48b598643539c7afef7703c5a01b3003"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009601.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "3917cfddceead00985d623653fa8e4192bea259d0ef10088c03521ce51584f76"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009701.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "f2efa0d2c6cf95550c1e09be88fa4239168c65506a14e5907d40f51ddcce0de1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009801.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "cf4566b4dc3bbc50fcee96a220e69d0e084c0185e01ffc56c421e5c5fe28be4a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti009901.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "3aff247b44cf72e4dc3520cf37aed4701b434299c6cf277000f9ddbfdbdc0415"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010001.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "86b4d7683751c6431b5774ca9d07cac5deb5ab063f203ec461ae25dc81f087c0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010101.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "c01980cf8ff5d6f8057994e8d4c20828c12642df3293fdf66e4afd3f67156557"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010201.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "1c6ae38bd04dddf850e5955b46f077113e5d275d2c9bf3dcba553ef1d7f5e82e"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010301.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "a7a59a19ed097ada49cff3dc6a2a119b594106cc265e3027075efbd881511e42"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010401.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "18e3d5d225d1d1721622ea418ea60d3afe22e6f1833478d375e53ad2dbe6d335"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010501.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "e5cdaf8ac1127c5fd26726c425187cfb62910b05cb80e0214f8c8fdf372e5c96"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010601.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "a5585a7664c9377db31254ade62280786f133a7b7e3669faf108175c1dbf448b"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010701.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "154c1c19ef06ffca479c0681b1d0deb033225c4f5684f2d5bea55f8679442090"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010801.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "9fdbf4cb44db5718eb6d38658ed3eb814dc74a84b6b101c345e813c87079bf41"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti010901.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "aa760012dc90e7025e161f85bfc7fec3e085abc037e29a40a475c76d0c0e1107"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011001.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "1a20e2423df54fd8dd081634ebdaf670712e673b8831a4971e099c44352e7e3a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011101.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "736b5dda2bc2536a2990233034c92d31b84795542f1afd51f8f6c144a2f50385"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011201.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "63162537cbabbba3e63da15891d13c02d07bcd52fb82580ce56dd9870f003b62"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011301.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "4f035cdc920606e005f0e6a695808cf09275b3c5ac8cfd11914bdbcdfe78f04b"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011401.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "ea403abbf4aeff1b6f9bc8cd31b926d10cf48e16e83f6afe236a4f1310eb8ead"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011501.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "4c088c672a2e0fe8e9d7021ce08cf53720f839d890610c5dd8259c9381d8f447"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011601.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "ff351b2c04c55ff5b8194c5725b8d31257fc7f72be498d97450aef98076795ef"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011701.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "b5b384baba6a1df548d052e1b51945c103a8d3fc8db4be8a6c4536aca56d58fc"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011801.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "de086bfde767d88f42eee3f4f437f9d77a2130a0919cf58c9639c9dbcdfcb3fd"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed41/states/tti011901.pt",
+    "rate": 1.28,
+    "seed": 41,
+    "sha256": "3c98d0113c0fa90b99c0ba79e3d0f84d461d08ccbdcb63e27e10ead8abc833ee"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008001.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "8cd77a5b2ea4f8d90b1e86f3ffff8a532308143eb6c7ca9d8187598e127228e3"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008101.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "8e2e5655fa89a1d4822c77864050a0c4c8f9833e996697e13b0ac0f81b487458"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008201.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "771f18327e43698dd94592078aab0cbe92643602e0e97b1901d6df3c02a53ec2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008301.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "285c966a0677157f3581905fc72f5cc263acd8dfca80299d9645ec39c58e5c7b"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008401.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "d3e54c526efc5993da587d7f355d72a1a33c051f6fffcabdb150943b8372e54d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008501.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "4a19ae392d53dce8b554723ffc95fa8710c5c55e353a3a0c66b8f7cfdc75c397"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008601.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "6590f65f57aa5f69369a8b97d35dd0a6724bfed982e15c63c44e3ef25f4f9f70"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008701.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "f06743659568b977ddd056bbb0e643df1c0ff3a359f85ece59fec8fc82f6c7f7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008801.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "b3ccf072c73daa0292bcbd5c6e91246c2142485cbd444e74bb4be37c7490aa5e"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti008901.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "4f9bad5ea8c9ed25bb7ab8666bd871888e8f49c8e8f8b0a6a45fef00f2ad159c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009001.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "28c7ae0f9cc59804ea23023bd1df0f5cfaeb7784aa74ce392570d3dd3b83789f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009101.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "b925af29da41a8f11a0497cf0a2945a013ed0487e1ef5f475b59b044002a38d2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009201.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "becdb736c13ea5c9b7b3f1fb726a76650f46e14d0fc1a3d80e7e49235ed7d457"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009301.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "67768ba6e229e2d7ad5aadac8a99dae4e60166ff460eb7847ca3abc45cbfbaf9"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009401.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "7424e12a31fa04d5440252badb7c5d2cba15d30b90bb4fd705701e30929e9fec"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009501.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "089589d508720179ba1296ea67683905a808933a2b4d0c5de81ee3dc4d695d90"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009601.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "876b8a561c0d85eb7337f8b5bee722bb7ba6622b40c034362e1309a6f6f278d7"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009701.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "c905669f03b517296a690bfa6883e8c9717a1334e1b5f25a9c79694ea30be8dd"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009801.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "755d535c515731b4e7b2e720161f64c422c531633f500606cc36a8bee087956c"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti009901.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "b23389eeb34dd737f325787156f31ca457dcdc9c6b2ec6a5b2a031c035b0d57e"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010001.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "3bd10580772df670953c638db0830bc54649e4e0d41a33787f71995e2771265f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010101.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "9ddeafd11a623a57587b318e52815682f48c4f25271a7b609612c14b9dd993e1"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010201.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "5ccf1170377884d86069f33a8e6423df52622bee72f7d13197c24fd9a8f23382"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010301.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "50ae842fd08259adf2e4ea7bdc829eeafedf3b2d1156f440ace08909204d2ae2"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010401.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "345b57c67a6d20996b5832a6905e4aa9aa9a18c4083ae002e65979c7cffd763a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010501.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "561570754f0556cc8bc88a90e548846fdb2286e9d7d4987c1ce4df0ac7721b04"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010601.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "aa15da36edb2e01099baa727fb4d8cdce220e40901f6e45096042910ab86db64"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010701.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "cbe1ce64cd623ec1cc1bf6aad0b84d82d670aafa385aca003d75381e247965ee"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010801.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "b0b6a31f48c46e0b967f8272a6f39dde6be35320df70de70265a3eeeb448bfe5"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti010901.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "acd42939f428d3e61d026acbfde07303d6bcc770ccfb827cab3a6fe138562b87"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011001.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "feb0847b86b58d4206dcebccebb3fcef7a332783a8e5d6e13969aae75c187af9"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011101.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "1f32eb67dc484a58faa09767151ef97d539a495371b7dcf882e228eb436af05a"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011201.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "158e5e78dde2a1e6721d96523cb28ddc6e4fcafaee6f2ac7f4a431871a863f0d"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011301.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "84bd82b2965bd0a63fe7ef8172ea850ad48c1e52d03b3e6f2769548be988e14f"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011401.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "1e5fbcf9820ca404ad4c81901bd764d3a8b4af69ffa26a042098f7962a165346"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011501.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "99fe76d9f8ea72a1f353f55ab0fb31b363e87dab3dfdbfdf682ae1ad6594026e"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011601.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "25454fdf255943a5a370a109fdf2ffd732ff9b33678374374b903098b88fcfa0"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011701.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "a5767189c7886eaae8459650a386b233dcac277cbbf0c170ddff3cd91b531b65"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011801.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "16d763b98edc9b2139c9f87d9f49c181079fc538c5805eeb98cace762b6390be"
+  },
+  {
+    "path": "/data/aerial-cuda-accelerated-ran/deliverables/bounded_load_stress_20261104_v1/r1p28_k0_seed42/states/tti011901.pt",
+    "rate": 1.28,
+    "seed": 42,
+    "sha256": "2a6b69e6e12335ff180a7770cf8dc54471c77d9325e70e332a5ad0bbafef4908"
+  }
+]

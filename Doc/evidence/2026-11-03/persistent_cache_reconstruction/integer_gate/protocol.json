@@ -1,0 +1,18 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/deliverables/anytime_dpls_20261103_smoke_v3",
+  "reference": "/data/aerial-cuda-accelerated-ran/deliverables/canonical_cached_dpls_gate_20261103_v1",
+  "envelope": "/data/aerial-cuda-accelerated-ran/deliverables/full_service_envelope_20261103_v2",
+  "version": "persistent_q1e6_v1",
+  "quantization": "per UE nearbyint((expected*weight)*1e6), nearest-even, sum int64",
+  "bounds": "positive integer queues, sum ceil(queue*weight*1e6)+1 < INT64_MAX/4; fail outside contract",
+  "threshold_q": "strict >1e6 first2 rounds, >16e6 later; true maximum anchored one-unit tie then canonical key",
+  "cache": "persistent per-PRG edits; regenerate only changed PRGs; invalidate other entries by affected-UE union; sparse payload and integer deltas",
+  "equivalence": "new independent Python full-array/full-integer-sum baseline versus native full-refresh/cache: every round all candidate PHY fields and integer scores/choices exact",
+  "guard": "compare candidate batch to canonical best-single counterfactual; reject whole batch on new unallocated UE or any causal deficit-top20% UE expected loss>1e-6B; fall back to single",
+  "guard_phy": "no extra scoring; all needed per-UE payloads already scored and independent",
+  "service": "report old single-reference gate and pre-frozen full empirical envelope separately; not a probability/fairness certificate",
+  "entry": "all12 guarded4 empirical-envelope passes required for two-seed2s native development",
+  "native_runs": 0,
+  "learning": false,
+  "dirty_M_paused": true
+}

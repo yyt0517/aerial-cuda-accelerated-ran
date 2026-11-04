@@ -1,0 +1,69 @@
+[
+  {
+    "arm": "cached_maxj",
+    "terminal_ms": 0.18116148809591928,
+    "generation_ms": 9.30791161954403,
+    "proxy_ms": 29.32692381242911,
+    "service_ms": 10.749323190086416,
+    "matching_ms": 15.199040787087547,
+    "proxy_computed": 6168.333333333333,
+    "proxy_cache_hits": 7185.444444444444,
+    "cache_payload_bytes": 6891467.0
+  },
+  {
+    "arm": "aggregate_guard",
+    "terminal_ms": 3.8059140659040875,
+    "generation_ms": 9.265818115737703,
+    "proxy_ms": 29.240342995358834,
+    "service_ms": 10.672230273485184,
+    "matching_ms": 15.36587325649129,
+    "proxy_computed": 6168.333333333333,
+    "proxy_cache_hits": 7185.444444444444,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 3.452837984595034,
+    "terminal_network_ms": 0.11672048519055049,
+    "terminal_selection_ms": 0.02027530637052324
+  },
+  {
+    "arm": "ue_heuristic_guard",
+    "terminal_ms": 1.5517866445912256,
+    "generation_ms": 9.25236257414023,
+    "proxy_ms": 29.102271526224083,
+    "service_ms": 10.69601418243514,
+    "matching_ms": 15.157220160795582,
+    "proxy_computed": 6168.333333333333,
+    "proxy_cache_hits": 7185.444444444444,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 1.0008115528358352,
+    "terminal_network_ms": 0.2525331866410044,
+    "terminal_selection_ms": 0.08522584620449279
+  },
+  {
+    "arm": "ue_pair",
+    "terminal_ms": 2.3667410843902164,
+    "generation_ms": 9.24273787273301,
+    "proxy_ms": 29.033443166149983,
+    "service_ms": 10.667103342711926,
+    "matching_ms": 15.160427946183416,
+    "proxy_computed": 6168.333333333333,
+    "proxy_cache_hits": 7185.444444444444,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 0.9999057898918787,
+    "terminal_network_ms": 1.0639016206065814,
+    "terminal_selection_ms": 0.08524902578857209
+  },
+  {
+    "arm": "ue_pair_guard",
+    "terminal_ms": 2.3748759801189103,
+    "generation_ms": 9.254584813283548,
+    "proxy_ms": 29.15532907678021,
+    "service_ms": 10.677835904061794,
+    "matching_ms": 15.124393937488398,
+    "proxy_computed": 6168.333333333333,
+    "proxy_cache_hits": 7185.444444444444,
+    "cache_payload_bytes": 6891467.0,
+    "terminal_feature_ms": 1.0015428480174806,
+    "terminal_network_ms": 1.0694295374883547,
+    "terminal_selection_ms": 0.0864408082432217
+  }
+]

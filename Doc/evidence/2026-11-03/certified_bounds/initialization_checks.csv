@@ -1,0 +1,13 @@
+state,initializer,warm_score_gap_B,warm_floor_feasible,integer_initializer_stable
+0,raw_pfq,,False,True
+1,raw_pfq,,False,True
+2,raw_pfq,,False,True
+3,raw_pfq,,False,True
+4,previous_executed,4520.651671331267,True,True
+5,previous_executed,15087.109508948131,True,True
+6,previous_executed,14978.507790745003,True,True
+7,raw_pfq,23626.240721717637,False,True
+8,previous_executed,4520.651671331267,True,True
+9,previous_executed,15917.343680579172,True,True
+10,previous_executed,16746.89287473206,True,True
+11,previous_executed,23380.96481698555,True,True

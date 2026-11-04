@@ -1,0 +1,9 @@
+{
+  "note": "Executed original snapshot in deliverables/source; reporter/plots added after all measurements.",
+  "files": {
+    "budget_curve.py": "cf303a295f5c050dd57dd3fb352e36092d118f3a976dc2430f3b11f4d238702f",
+    "report_budget_curve.py": "21c0d18660a7d5fae9a68957cbd4ccc0c16ec84ad4f9dafb5b6023a07f639c99",
+    "test_budget_curve.py": "7bc196c7229283cd083f5910f04977c851e0d9931841be12215bfe2cc6fded83",
+    "budget_curve_README.rst": "a1b8861dd1934631d40c9741b43775f6e581f785e2959acd0c953f8f8915e48e"
+  }
+}

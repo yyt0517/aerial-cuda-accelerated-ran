@@ -1,0 +1,57 @@
+{
+  "independent_phy": [
+    {
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "max_error": 1.0658141036401503e-14
+    },
+    {
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "max_error": 5.329070518200751e-15
+    },
+    {
+      "state_id": "pfq:seed44:tti4001",
+      "max_error": 1.1368683772161603e-13
+    },
+    {
+      "state_id": "pfq:seed44:tti8001",
+      "max_error": 1.3642420526593924e-12
+    },
+    {
+      "state_id": "pfq:seed44:tti18000",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti4001",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed45:tti8001",
+      "max_error": 6.821210263296962e-13
+    },
+    {
+      "state_id": "pfq:seed45:tti18000",
+      "max_error": 2.7284841053187847e-12
+    }
+  ],
+  "states": 12,
+  "elapsed_s": 1.2692473772913218,
+  "physical_scores": 617686,
+  "teacher_preparation_outside_solver_timing": true,
+  "complete_teacher_position_not_passed_to_solver": true
+}

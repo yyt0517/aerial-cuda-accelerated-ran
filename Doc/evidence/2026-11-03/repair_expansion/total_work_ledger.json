@@ -1,0 +1,17 @@
+{
+  "formal_decisions": 378,
+  "formal_exact_scores": 3920388,
+  "new_teacher_decisions": 39,
+  "new_teacher_scores": 2241144,
+  "new_teacher_ms": 5613.676032051444,
+  "new_collection_decoders": 18,
+  "new_collection_scores": 3816,
+  "new_collection_ms": 1676.3294851407409,
+  "engineering_decisions": 12,
+  "engineering_scores": 2544,
+  "posthoc_native_scores": 0,
+  "feature_preparation_native_scores": 0,
+  "independent_numpy_finals": 195,
+  "prior_training_cost_source": "/data/aerial-cuda-accelerated-ran/deliverables/terminal_service_20261103_v1/total_work_ledger.json",
+  "new_native_scores": 6167892
+}

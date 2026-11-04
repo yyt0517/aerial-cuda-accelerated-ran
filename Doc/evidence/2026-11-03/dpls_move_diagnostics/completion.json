@@ -1,0 +1,10 @@
+{
+  "completed": true,
+  "traces": 96,
+  "rounds": 1952,
+  "transitions": 1856,
+  "new_native_runs": 0,
+  "new_candidate_phy_evaluations": 0,
+  "new_mmse_evaluations": 0,
+  "guarded_phy_entrypoints": true
+}

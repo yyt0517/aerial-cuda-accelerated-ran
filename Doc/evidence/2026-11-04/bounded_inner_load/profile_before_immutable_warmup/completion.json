@@ -1,0 +1,7 @@
+{
+  "completed": true,
+  "profiled_decisions": 240,
+  "profiled_candidate_evaluations": 1010267,
+  "new_native_runs": 0,
+  "interpretation": "separate profiling, not fair timed decisions; all actions match completed native trajectories"
+}

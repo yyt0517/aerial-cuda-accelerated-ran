@@ -1,0 +1,9 @@
+seed,arm,selected_pfq_pct,all_neural_rejected_pct,mean_unique,mean_eligible,mean_neural_eligible
+44,fast4_greedy,0.0,0.0,3.99925,3.99925,2.99925
+44,fast8_greedy,0.0,0.0,8.0,8.0,7.0
+44,fast4_ppo,0.0,0.0,3.9995,3.9995,2.9995
+44,fast8_ppo,0.0,0.0,7.99975,7.99975,6.99975
+45,fast4_greedy,0.125,0.0,3.99975,3.99975,2.99975
+45,fast8_greedy,0.075,0.0,7.9995,7.9995,6.9995
+45,fast4_ppo,0.0,0.0,3.999,3.999,2.999
+45,fast8_ppo,0.0,0.0,7.99925,7.99925,6.99925

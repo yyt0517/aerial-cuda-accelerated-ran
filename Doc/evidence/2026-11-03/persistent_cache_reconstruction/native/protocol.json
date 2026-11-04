@@ -1,0 +1,24 @@
+{
+  "seeds": [
+    44,
+    45
+  ],
+  "modes": [
+    "full",
+    "guarded4"
+  ],
+  "warmup": 4000,
+  "settling": 4000,
+  "measured": 4000,
+  "followup": 400,
+  "measured_seconds": 2.0,
+  "gate": "/opt/nvidia/cuBB/deliverables/persistent_integer_gate_20261103_v1",
+  "workers": 4,
+  "scene": "boundary/rate0.8 noCTBS causal deficit",
+  "initializer": "cold raw PFQ, same integer objective both arms",
+  "weak_guard": "causal deficit-top20%, compare batch vs best single; no current full teacher",
+  "sampling": "exposed44/45 development, mature arrival cohort; not final new-seed confirmation",
+  "timing": "concurrent native trajectories; native elapsed/policy times not fair speed measurement",
+  "selection": "one guarded configuration frozen before native outcomes; no retuning",
+  "numerical": "same 1e-6B integer contributions, strict1/16B threshold and canonical one-unit tie"
+}

@@ -1,0 +1,11 @@
+{
+  "training/stageb_lns/bounded_native.py": "55d8ec21448c4bc765073bc4465852b646cfdb56f9843f56200c0b9b3f4bd869",
+  "training/stageb_lns/rate_native.py": "413ee5172da198f48b52dfc760749b42f9dc49910b63196fff481f21a9d50cc6",
+  "training/stageb_lns/ttl_weights.py": "ee227410112c3e0fd830f62bfb3e70b663f1d5d5806ea274dcfebac6b2736a00",
+  "training/stageb_lns/bounded_dpls.py": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+  "training/stageb_lns/bounded_kernel.cpp": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c",
+  "training/stageb_lns/_bounded.so": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+  "training/stageb_lns/persistent_kernel.cpp": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090",
+  "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0"
+}

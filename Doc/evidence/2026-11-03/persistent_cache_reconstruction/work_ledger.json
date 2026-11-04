@@ -1,0 +1,75 @@
+{
+  "calibration": {
+    "completed": true,
+    "decisions": 96,
+    "new_native_runs": 0,
+    "candidate_evaluations": 5336917,
+    "mmse_misses": 178975,
+    "numpy_terminal_audits": 96,
+    "canonical_shuffle_control_passed": true
+  },
+  "integer_gate": {
+    "completed": true,
+    "integer_equivalence_passed": true,
+    "audited_full_and_cache_rounds": 756,
+    "audited_full_and_cache_candidates": 1249340,
+    "guarded_envelope_passes": 12,
+    "guarded_states": 12,
+    "native_entry_authorized_by_gate": true,
+    "online_candidate_evaluations": 1764508,
+    "audit_candidate_evaluations": 499,
+    "numpy_terminal_audits": 48,
+    "new_native_runs": 0
+  },
+  "benchmark": {
+    "completed": true,
+    "timed_decisions": 360,
+    "profiled_decisions": 36,
+    "timed_candidate_evaluations": 11945990,
+    "profiled_candidate_evaluations": 984879,
+    "all_outputs_match_frozen_gate": true,
+    "new_native_runs": 0
+  },
+  "native": {
+    "runs": 4,
+    "steps": 49600,
+    "warmup_per_run": 4000,
+    "policy_decisions_per_run": 8400,
+    "policy_candidate_evaluations": 667646244
+  },
+  "smoke": {
+    "completed": true,
+    "runs": [
+      {
+        "seed": 41,
+        "mode": "guarded4",
+        "smoke": true,
+        "native_passed": true,
+        "cohort_evaluated": false,
+        "mean_candidate_evaluations": 13473.375,
+        "p95_candidate_evaluations": 16377.05,
+        "mean_generated_edits": 4395.25,
+        "guard_rejections": 177,
+        "accepted_batches": 17
+      },
+      {
+        "seed": 41,
+        "mode": "full",
+        "smoke": true,
+        "native_passed": true,
+        "cohort_evaluated": false,
+        "mean_candidate_evaluations": 46235.125,
+        "p95_candidate_evaluations": 57442.85,
+        "mean_generated_edits": 4214.25,
+        "guard_rejections": 0,
+        "accepted_batches": 0
+      }
+    ],
+    "native_runs": 2,
+    "native_steps": 32,
+    "smoke": true
+  },
+  "envelope_and_report_new_PHY": 0,
+  "training_steps": 0,
+  "new_M_decisions": 0
+}

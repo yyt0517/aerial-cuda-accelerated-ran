@@ -1,0 +1,5 @@
+phase,state_id,arm,generated_unique,previously_paid_skipped,unseen_exact_candidates,whole_pool_scored,ms,candidate_evaluations,ue_evaluations,mmse_requests,mmse_misses,proxy_gamma_reads,directed_gamma_reads,directed_attempts,directed_combinations
+validation,raw_global_deficit:seed44:tti18000,baseline,692,52,640,True,11.532960459589958,641,1899,9574,2448,3871,389,174,18
+validation,raw_global_deficit:seed44:tti18000,joint4,679,15,664,True,11.400009505450726,665,1978,9784,2448,4053,257,114,9
+evaluation,pfq:seed48:tti5000,baseline,680,46,634,True,12.025250121951103,635,1865,11672,2448,3785,927,486,9
+evaluation,pfq:seed48:tti5000,joint4,628,47,581,True,11.304124258458614,582,1703,11045,2448,3455,987,486,9

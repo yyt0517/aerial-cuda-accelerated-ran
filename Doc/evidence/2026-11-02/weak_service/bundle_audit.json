@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "formal_decisions": 441,
+  "formal_independent_finals": 147,
+  "teacher_independent_finals": 23,
+  "engineering_independent_finals": 10,
+  "max_formal_teacher_absolute_phy_error": 2.864908310584724e-11,
+  "source_binaries_registry_hashes_valid": true,
+  "all_small_arrays_including_visited_values_archived": true,
+  "repeated_query_hashes_checked": true,
+  "documentation_links_valid": true,
+  "posthoc_additional_physical_scores": 0,
+  "scientific_gate_passed": false
+}

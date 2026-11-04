@@ -1,0 +1,13 @@
+{
+  "note": "Six implementation/training/campaign/test/README files from pre-execution snapshot; reporter added after measurements. Complete dependency/binary snapshot stays in local deliverables/source.",
+  "files": {
+    "service_repair_campaign.py": "302f9f7e26ca456cc16b37f90147bbeba924935cfdcc57b86798804840773cf4",
+    "service_repair.py": "525e0959eba8f687ffc274b5bca7189862818bd71c5d187826607e39f44b8678",
+    "service_repair_README.rst": "5bf2801bf41a8a9b3909d05a6d6efcff28fd0105d09e0de6390cd20cd49733f1",
+    "report_service_repair.py": "894e5fe9b3ffbe9cf97ae02116441d5e63fe4b1c571d02399d6ad8b9eda5b4d3",
+    "service_sets.py": "0353cb99a608b437866ea44c46d637e71c46738a0033f0728676060dd4b5545e",
+    "service_set_training.py": "9b0acbbc04c7a5cdfd5f078104c8fdd2ce49a6073737d7db50ca1626a67ff056",
+    "test_service_repair.py": "a00df597b512fc019d45d037579916c19ae3a1d9d8b10302122802c344b24260"
+  },
+  "full_executed_manifest_sha256": "8875dd5cee5d20191ecf167a351e411fc465dabf96ca53fb29aa3d095cde682c"
+}

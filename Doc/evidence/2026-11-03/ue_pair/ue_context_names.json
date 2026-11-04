@@ -1,0 +1,22 @@
+[
+  "count",
+  "layer",
+  "mcs",
+  "log_quota",
+  "queue_fraction",
+  "relative_weight",
+  "weighted_quota_share",
+  "max_r",
+  "q90_r",
+  "mean_r",
+  "median_r",
+  "std_r",
+  "positive_frequency",
+  "reliable_frequency",
+  "bestj_r",
+  "cell_activity_fraction",
+  "legal_fraction",
+  "quota_share",
+  "min_r",
+  "quota_group_fraction"
+]

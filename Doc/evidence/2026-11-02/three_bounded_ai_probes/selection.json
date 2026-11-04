@@ -1,0 +1,19 @@
+{
+  "scalar": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/scalar_e10.npz",
+    "sha256": "667dcac191737e3599f79e0ab7773c479a191f387b76bc5daacee0901fe89d1e",
+    "epoch": 10
+  },
+  "spatial": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/spatial_e20.npz",
+    "sha256": "685b9c94c673ce139fcd53c7be23e37060d77950eff4e9e5ad690fa2a02e1273",
+    "epoch": 20
+  },
+  "block": {
+    "checkpoint": "/data/aerial-cuda-accelerated-ran/deliverables/three_bounded_ai_probes_20261102_v2/block_e30.npz",
+    "sha256": "91c1363aa88333e51d8d3a94ce53b6cb369caca2fb4cac6eb157061c2a75d4b0",
+    "epoch": 30
+  },
+  "evaluation_unread_at_selection": true,
+  "protocol_sha256": "9991bfe85d7cc316f229a279280ce2556c91eaeb01568659e7af630e95b29d70"
+}

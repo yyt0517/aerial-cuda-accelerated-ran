@@ -1,0 +1,39 @@
+{
+  "completed": true,
+  "quality_passed": false,
+  "seeds": [
+    {
+      "seed": 44,
+      "checks": {
+        "payload": true,
+        "expiry": false,
+        "mean_delay": true,
+        "p95_delay": true,
+        "ue_p5": true
+      },
+      "passed": false,
+      "ppo_minus_catalog_greedy_mbps": -0.7799999999997453,
+      "ppo_minus_catalog_greedy_expiry_pp": 0.1696176679301451
+    },
+    {
+      "seed": 45,
+      "checks": {
+        "payload": true,
+        "expiry": false,
+        "mean_delay": true,
+        "p95_delay": true,
+        "ue_p5": true
+      },
+      "passed": false,
+      "ppo_minus_catalog_greedy_mbps": -4.511999999999944,
+      "ppo_minus_catalog_greedy_expiry_pp": 0.5378017569343571
+    }
+  ],
+  "promoted": false,
+  "selection": "fixed final iteration; no evaluation-based selection",
+  "limits": [
+    "full equal DPLS remains in every catalog; no speed claim",
+    "development seeds 44–45 already exposed; no independent generalization claim",
+    "2-second measurement; no automatic promotion"
+  ]
+}

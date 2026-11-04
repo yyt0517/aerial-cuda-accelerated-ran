@@ -1,0 +1,15 @@
+{
+  "version": "capacity_bound_q1e6_v1",
+  "states": 12,
+  "objective": "unchanged perUE nearest-even1e-6B, same initialization/floor/1/16B thresholds/canonical1-unit band",
+  "certificate": "current max m/key k: unresolved UB>=m or UB==m-1 with smaller key; no budget bypass",
+  "required_set": "CURRENT-UNKNOWN eligible entries with UB>=true max, UB==max-1 with key<final winner, plus unknown winner; confirmation UB>threshold",
+  "inference": "required for frozen maximum-based certificate, not all conceivable key-aware certificates",
+  "gate": "every root/choice/upper/logicalD/cached exact delta vs newly paid independent full integer reference",
+  "timing": "serial CPU pinned, alternating rotating order, fresh causal input/context/PFQ/search/close; observers/log/history/profiling off; immutable imports/tables warm",
+  "repeats": 5,
+  "cpu": 255,
+  "wall_gate": "bounded mean <=40% same architecture native full",
+  "heavy_load_next": "rate0.8 multiplied1.4/1.6 =>1.12/1.28; report measuredTTI P95/max and serial fixed-input paired replays",
+  "B_entry": "only after equivalence/wall/high-load cost checks; five frozen urgency coefficients on training41--43; no ranking training"
+}

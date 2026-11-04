@@ -1,0 +1,134 @@
+[
+  {
+    "state": 0,
+    "distinct_service_patterns": 2,
+    "source_J": 84224.84033837903,
+    "P5_informative": false,
+    "J_min": 82011.64284334308,
+    "unallocated_max": 21,
+    "effective_min": 15,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 8189.825519225732
+  },
+  {
+    "state": 1,
+    "distinct_service_patterns": 2,
+    "source_J": 75270.57770706216,
+    "P5_informative": false,
+    "J_min": 74894.22481852684,
+    "unallocated_max": 19,
+    "effective_min": 16,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 10243.855161112058
+  },
+  {
+    "state": 2,
+    "distinct_service_patterns": 1,
+    "source_J": 74872.49373234212,
+    "P5_informative": false,
+    "J_min": 74498.1312636804,
+    "unallocated_max": 19,
+    "effective_min": 17,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 21295.5542915736
+  },
+  {
+    "state": 3,
+    "distinct_service_patterns": 1,
+    "source_J": 75174.29359510692,
+    "P5_informative": false,
+    "J_min": 74798.42212713139,
+    "unallocated_max": 18,
+    "effective_min": 16,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 15738.750608599512
+  },
+  {
+    "state": 4,
+    "distinct_service_patterns": 2,
+    "source_J": 82423.76165160109,
+    "P5_informative": false,
+    "J_min": 82011.64284334308,
+    "unallocated_max": 21,
+    "effective_min": 15,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 8189.825519225732
+  },
+  {
+    "state": 5,
+    "distinct_service_patterns": 2,
+    "source_J": 75962.06532672193,
+    "P5_informative": false,
+    "J_min": 75256.59437347985,
+    "unallocated_max": 16,
+    "effective_min": 18,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 11211.419675559211
+  },
+  {
+    "state": 6,
+    "distinct_service_patterns": 2,
+    "source_J": 79918.95997135142,
+    "P5_informative": false,
+    "J_min": 75292.56467878142,
+    "unallocated_max": 19,
+    "effective_min": 17,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 14297.228489815629
+  },
+  {
+    "state": 7,
+    "distinct_service_patterns": 1,
+    "source_J": 76325.6684116952,
+    "P5_informative": false,
+    "J_min": 75944.04006963671,
+    "unallocated_max": 19,
+    "effective_min": 17,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 16798.504717567568
+  },
+  {
+    "state": 8,
+    "distinct_service_patterns": 2,
+    "source_J": 82423.76165160109,
+    "P5_informative": false,
+    "J_min": 82011.64284334308,
+    "unallocated_max": 21,
+    "effective_min": 15,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 8189.825519225732
+  },
+  {
+    "state": 9,
+    "distinct_service_patterns": 3,
+    "source_J": 81440.47666998953,
+    "P5_informative": false,
+    "J_min": 80775.2100819977,
+    "unallocated_max": 22,
+    "effective_min": 14,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 13889.576800000938
+  },
+  {
+    "state": 10,
+    "distinct_service_patterns": 2,
+    "source_J": 87676.60128408414,
+    "P5_informative": false,
+    "J_min": 87238.21827766372,
+    "unallocated_max": 21,
+    "effective_min": 14,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 19503.06659100806
+  },
+  {
+    "state": 11,
+    "distinct_service_patterns": 2,
+    "source_J": 87093.73121752003,
+    "P5_informative": false,
+    "J_min": 86658.26256143244,
+    "unallocated_max": 21,
+    "effective_min": 15,
+    "queue_positive_P5_min": 0.0,
+    "deficit_weak_sum_min": 3637.4799272180385
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "arm": "previous_guard",
+    "states": 30,
+    "repairable": 3,
+    "total_pairs": 0,
+    "strict_pairs": 0,
+    "repair_vs_maxj_pairs": 0,
+    "repair_cohort_good_vs_bad_pairs": 0,
+    "in_sample_repairs": 0,
+    "oof_repairs": null,
+    "in_sample_control_harms": 0,
+    "oof_control_harms": null
+  },
+  {
+    "arm": "expanded_ordinary",
+    "states": 30,
+    "repairable": 3,
+    "total_pairs": 56750,
+    "strict_pairs": 28224,
+    "repair_vs_maxj_pairs": 15,
+    "repair_cohort_good_vs_bad_pairs": 353,
+    "in_sample_repairs": 1,
+    "oof_repairs": 0,
+    "in_sample_control_harms": 0,
+    "oof_control_harms": 0
+  },
+  {
+    "arm": "repair_guard",
+    "states": 30,
+    "repairable": 3,
+    "total_pairs": 3257,
+    "strict_pairs": 1033,
+    "repair_vs_maxj_pairs": 15,
+    "repair_cohort_good_vs_bad_pairs": 120,
+    "in_sample_repairs": 2,
+    "oof_repairs": 1,
+    "in_sample_control_harms": 0,
+    "oof_control_harms": 0
+  }
+]

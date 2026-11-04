@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "prior_output": "/data/aerial-cuda-accelerated-ran/deliverables/resource_conditions_20261102_v1",
+  "prior_protocol_sha256": "f505a5b1098793a1f0d0c477b0cdc05a8486ffe04e2543c0fb0d6ab41241a711",
+  "prior_source_manifest_sha256": "74fd684a56fbecd9db9e0385e497fcacfec1bd4444f2ee4d152f60549cabac27",
+  "changes": [
+    "compiled identical ordered local pool",
+    "first-occurrence byte dedup instead of equivalent row-wise np.unique"
+  ],
+  "unchanged": [
+    "conditions",
+    "budgets",
+    "proxy",
+    "beam",
+    "seed",
+    "acceptance",
+    "matching/global reseeds"
+  ],
+  "parity": "all validation/development final actions AND values must match V1 exactly",
+  "historical_exposure": "V1 outcomes were read; this is engineering remeasurement, not independent quality confirmation"
+}

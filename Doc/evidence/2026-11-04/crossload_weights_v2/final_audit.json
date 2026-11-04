@@ -1,0 +1,24 @@
+{
+  "completed": true,
+  "tests": 17,
+  "quality_points": 72,
+  "new_native_steps": 731600,
+  "reused_steps_not_new": 161200,
+  "mature_cohort_rows": 11075712,
+  "previous_files_unchanged": 954,
+  "labels_sha256": "5fae79e32523c7bb7502ff37e14e78a3491a31da1487e5c76cae57939e47db8d",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "old_solver_unchanged": true,
+  "default_changed": false,
+  "learning_trained": true,
+  "learning_all_no_worse_gates": true,
+  "learning_any_strict_improvement": true,
+  "SoA_bitwise_passed": false,
+  "engineering_stopped": true,
+  "engineering_cost_curve": [
+    0.3390066000374841,
+    0.4122752089726274,
+    0.4637749941500488
+  ],
+  "final_confirmation_seeds_used": false
+}

@@ -1,0 +1,27 @@
+{
+  "weak_service.py": {
+    "sha256": "1afc410ea21078a452ff5182612938bdb9c7670aba64abf1fcc8ec918f106d7f",
+    "origin": "deliverables/weak_service_20261102_v1/source/weak_service.py",
+    "role": "frozen before formal experiment"
+  },
+  "weak_service_campaign.py": {
+    "sha256": "e1a9d5a7e2754ad392b7882bde046c1e4a80de3c36c729bf2baaedd785447889",
+    "origin": "deliverables/weak_service_20261102_v1/source/weak_service_campaign.py",
+    "role": "frozen before formal experiment"
+  },
+  "test_weak_service.py": {
+    "sha256": "652d66193698d423ea7b73291fdb5018e22794e0985a74948f43716808cd88f4",
+    "origin": "deliverables/weak_service_20261102_v1/source/test_weak_service.py",
+    "role": "frozen before formal experiment"
+  },
+  "weak_service_README.rst": {
+    "sha256": "ed4030c3ee080309571639e18490d124e3d5142e7e62dc0c337367c51738df53",
+    "origin": "deliverables/weak_service_20261102_v1/source/weak_service_README.rst",
+    "role": "frozen before formal experiment"
+  },
+  "report_weak_service.py": {
+    "sha256": "09ca8decb8121b3a79fcb83c01810a25c34ae5dc1a63dc6f74f93b5d43b2f64e",
+    "origin": "training/stageb_lns/report_weak_service.py",
+    "role": "post-execution audit/statistics/plot;not a search source"
+  }
+}

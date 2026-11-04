@@ -1,0 +1,16 @@
+{
+  "training/stageb_lns/crossload_campaign.py": "a22295e25bbffa9e4f78b4567a4e062613a5a0f223c9178ec1a1ab249547916c",
+  "training/stageb_lns/crossload_native.py": "4e0d6fcb75bf2621152273d45d77f609f54b667f45bc65ad4d05a9b474a8c7f7",
+  "training/stageb_lns/crossload_learning.py": "49ebb580681c31db6d83880cb9ad27991482b21f4ff925c7e57257612f0beed4",
+  "training/stageb_lns/analyze_crossload.py": "39a947161fca75a4417967ef8d3bb9d57d76fbba957bd468ed263dcbf52d8bc2",
+  "training/stageb_lns/analyze_crossload_learning.py": "2f8af8d69bd403fcf4d258a4eaa252e795529c714b344b45ab5305baa8ec44cb",
+  "training/stageb_lns/report_crossload.py": "598bcfea5048cde1ffa444386a822c97439191c8f23a75202d6c6a6ded5f487c",
+  "training/stageb_lns/crossload_README.rst": "3c7c3d681bf1e290adc20b19b4d310a74c3ff5fe99e42833fbcd6b89412d0df3",
+  "training/stageb_lns/crossload_requirements.txt": "ff8e5752f86405497577979ea701813cc507a5f0697fb088a516889481a9a8ef",
+  "training/stageb_lns/test_crossload_weights.py": "ec3f6f9aa53e28ceb5ccf5b43c880971efea628e47f4b4d7b8056d1e13eb0117",
+  "training/stageb_lns/gamma_soa.cpp": "0ab55b71f542848d9d662455946db85d087303f1a14ab71389451765b7029356",
+  "training/stageb_lns/gamma_bridge.cpp": "e65827aa7bbf92df78000738ea82d1ed128aa04ec3cfb9783687a8d51a008cb7",
+  "training/stageb_lns/build_gamma_soa.py": "f7a9a439896ce11f320cc09667ff5baf58dfba0fff169f9c854ffed25e2d755d",
+  "training/stageb_lns/audit_gamma_soa.py": "1947fc6de34545bd40cd949838f45e47778793f6f1c1e5618aeaea99c3d72cdd",
+  "training/stageb_lns/_gamma_soa.so": "98acff5e7a3330d3d8ec5431fe6dea5797b8a2e7a4829e83b12e478f389578e6"
+}

@@ -1,0 +1,98 @@
+{
+  "date": "2026-11-02",
+  "version": 1,
+  "training": false,
+  "ppo": false,
+  "ctbs": false,
+  "headroom_masks": false,
+  "methods": [
+    "full",
+    "ordinary212",
+    "bank_none212",
+    "quota_layer212",
+    "activity212",
+    "joint212"
+  ],
+  "config": {
+    "max_candidates": 212,
+    "max_feature_roots": 56,
+    "rounds": 56,
+    "seed_candidates": 16,
+    "batch_size": 8,
+    "beam_width": 4,
+    "seed": 20261102
+  },
+  "conditions": {
+    "quota_layer212": [
+      "perUE count",
+      "exact perUE minimum layer"
+    ],
+    "activity212": [
+      "per-cell/per-PRG activity bits"
+    ],
+    "joint212": [
+      "both"
+    ]
+  },
+  "excluded_teacher_information": [
+    "UE-to-PRG positions",
+    "teacher expected service",
+    "teacher J inside solver",
+    "teacher edit path"
+  ],
+  "decoder": "linear assignment with one cap==L witness token/UE and remaining cap>=L; blanks allowed only where conditions permit",
+  "initial_candidates": "16 fixed causal gamma/TBS/weight/log-utility or greedy variants; deterministic random seed",
+  "search": "same 4-beam archive, pair swaps/3-cycles, legal3-UE alternatives when quotas free, periodic full redecoding; top8 exact per root",
+  "proxy": "root-anchored smooth reliability from causal precomputed gamma; never candidate native BLER or exact complete J",
+  "physics_bank": "all U*P*2^(C-1) MMSE solves inside solver timing, requests/misses and proxy complete schedules/UE rows charged separately",
+  "physical_budget": "212 exact complete-schedule evaluations including initial raw PFQ; not equal MMSE/proxy work or equal wall time",
+  "floor": "canonical native BLER, causal deficit-weighted J; own unpruned PFQ90% dequeue floor",
+  "feasibility": "strict supplied conditions; no layer relaxation; no feasible exact candidate=>unknown conditional score and explicit raw-PFQ fallback",
+  "scope": "conditional finite-solver headroom only, not global optimum or complete upper bound; no causal learner trained this round",
+  "engineering": "first/last state of training seeds41-43, fixed before validation; 2teacher+8decoder runs, no hyperparameter selection",
+  "validation_seeds": [
+    44,
+    45
+  ],
+  "validation_sources": [
+    "raw_global_deficit",
+    "pfq"
+  ],
+  "validation_ttis": [
+    4001,
+    8001,
+    18000
+  ],
+  "development_seeds": [
+    46,
+    47,
+    48
+  ],
+  "development_sources": [
+    "pfq"
+  ],
+  "development_ttis": [
+    3001,
+    4001,
+    5000
+  ],
+  "historical_development": true,
+  "final_seeds_not_read": [
+    311,
+    312,
+    313,
+    314,
+    315
+  ],
+  "repeats": 3,
+  "teacher": "fresh separately charged full-DPLS preparation/decision; same teacher compressed into each condition; no positions passed to solve_conditional",
+  "selection": "freeze conditional quality candidate and execution-cost candidate on validation before reading development; cost excludes teacher and is not online AI latency",
+  "quality_gate": "every state J>=99.5% full",
+  "coverage_gate": "no newly unallocated UE; full-positive UE P5/bottom20%>=98% full",
+  "execution_cost_gate": "seed-equal mean complete per-state median solver time<=80% full, teacher excluded and explicitly nondeployable",
+  "timing": "raw input/PFQ decode, fresh PHY/cache, condition validation, MMSE bank, matching, all proxies/pools, exact scores, final scoring and cleanup",
+  "exclusions": "teacher preparation, compilation/archive/library IO and first immutable TBS setup; condition compression/validation inside, audits separate",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "physics_source_sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35"
+}

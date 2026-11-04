@@ -1,0 +1,35 @@
+{
+  "equal_seed_means": {
+    "pfq": {
+      "complete_payload_mbps": 687.3779999999999,
+      "expiry_pct": 37.84448719934183,
+      "success_delay_mean_ms": 106.65398317610847,
+      "success_delay_p95_ms": 200.0,
+      "ue_complete_payload_p5_mbps": 5.931
+    },
+    "bc": {
+      "complete_payload_mbps": 797.358,
+      "expiry_pct": 35.44843752030938,
+      "success_delay_mean_ms": 8.747942878484778,
+      "success_delay_p95_ms": 28.25,
+      "ue_complete_payload_p5_mbps": 0.018000000000000002
+    },
+    "ppo": {
+      "complete_payload_mbps": 812.0699999999999,
+      "expiry_pct": 34.14467577850816,
+      "success_delay_mean_ms": 12.72272232133049,
+      "success_delay_p95_ms": 111.25,
+      "ue_complete_payload_p5_mbps": 0.594
+    },
+    "raw_global_equal": {
+      "complete_payload_mbps": 1237.926,
+      "expiry_pct": 0.7975931230580955,
+      "success_delay_mean_ms": 5.886920416952295,
+      "success_delay_p95_ms": 13.0,
+      "ue_complete_payload_p5_mbps": 33.1425
+    }
+  },
+  "ppo_vs_bc_payload_pct": 1.8450934210229253,
+  "ppo_vs_equal_dpls_payload_pct": -34.40076385825971,
+  "ppo_vs_pfq_payload_pct": 18.140237249373705
+}

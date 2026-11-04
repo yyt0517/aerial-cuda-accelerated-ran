@@ -1,0 +1,15 @@
+{
+  "completed": true,
+  "formal_decisions": 441,
+  "formal_independent_finals": 147,
+  "offline_teacher_decisions": 23,
+  "engineering_decoder_decisions": 10,
+  "validation_states": 12,
+  "development_states": 9,
+  "training_updates": 0,
+  "registry_and_physics_unchanged": true,
+  "executed_sources_unchanged": true,
+  "native_trajectories": 0,
+  "final_seeds_read": false,
+  "elapsed_s": 53.02028501499444
+}

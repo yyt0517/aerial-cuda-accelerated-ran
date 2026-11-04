@@ -1,0 +1,74 @@
+{
+  "model_sha256": "9a20de40f133751e5e0a14e794c6489abf5f08c383e4326e889d1498607a7b30",
+  "entry": "/opt/nvidia/cuBB/deliverables/crossload_grid_analysis_20261104_v2/learning_entry.json",
+  "frozen_from_parent": "/opt/nvidia/cuBB/deliverables/crossload_weights_20261104_v2/protocol.json",
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "rates": [
+    0.8,
+    1.12,
+    1.28
+  ],
+  "jobs": [
+    {
+      "seed": 41,
+      "rate": 0.8
+    },
+    {
+      "seed": 42,
+      "rate": 0.8
+    },
+    {
+      "seed": 43,
+      "rate": 0.8
+    },
+    {
+      "seed": 41,
+      "rate": 1.12
+    },
+    {
+      "seed": 42,
+      "rate": 1.12
+    },
+    {
+      "seed": 43,
+      "rate": 1.12
+    },
+    {
+      "seed": 41,
+      "rate": 1.28
+    },
+    {
+      "seed": 42,
+      "rate": 1.28
+    },
+    {
+      "seed": 43,
+      "rate": 1.28
+    }
+  ],
+  "warmup": 4000,
+  "settling": 4000,
+  "measured": 4000,
+  "followup": 400,
+  "solver": "same original _bounded.so",
+  "policy": "predeclared depth2 tree on six causal queue/age/EMA summaries; no rate/seed/future outcome input",
+  "baselines": "same seed/load fixedk2 and fixed perload oracle selected using only train seeds41/42",
+  "runtime": "process-local weights_for callback only; original kernel and input adapter unchanged",
+  "no_retuning": true,
+  "workers": 9,
+  "cpu_pins": [
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243
+  ]
+}

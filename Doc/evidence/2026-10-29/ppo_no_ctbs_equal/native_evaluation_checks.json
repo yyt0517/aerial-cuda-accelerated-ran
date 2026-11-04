@@ -1,0 +1,70 @@
+{
+  "eval_bc_seed44/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "eval_bc_seed44/validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 360.893836514093
+  },
+  "eval_bc_seed45/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "eval_bc_seed45/validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 359.51888530515134
+  },
+  "eval_ppo_seed44/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "eval_ppo_seed44/validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 370.1448381571099
+  },
+  "eval_ppo_seed45/reward_validation.json": {
+    "passed": true,
+    "full_payload_reward_exact": true,
+    "expiry_full_packet_reward_exact": true,
+    "tti": 12400
+  },
+  "eval_ppo_seed45/validation.json": {
+    "passed": true,
+    "horizon": 12400,
+    "exact_native_actions": 12400,
+    "fresh_input_checks": 12400,
+    "exact_mcs_layer_tbs_dequeue": 12400,
+    "no_ctbs_action_clipping": true,
+    "equal_ue_reward": true,
+    "sources_unchanged": true,
+    "elapsed_s": 363.2253816500306
+  }
+}

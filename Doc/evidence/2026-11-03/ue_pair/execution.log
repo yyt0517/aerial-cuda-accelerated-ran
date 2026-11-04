@@ -1,0 +1,44 @@
+RESOURCE_TEACHER validation raw_global_deficit:seed44:tti4001
+RESOURCE_TEACHER validation raw_global_deficit:seed44:tti8001
+RESOURCE_TEACHER validation raw_global_deficit:seed44:tti18000
+RESOURCE_TEACHER validation pfq:seed44:tti4001
+RESOURCE_TEACHER validation pfq:seed44:tti8001
+RESOURCE_TEACHER validation pfq:seed44:tti18000
+RESOURCE_TEACHER validation raw_global_deficit:seed45:tti4001
+RESOURCE_TEACHER validation raw_global_deficit:seed45:tti8001
+RESOURCE_TEACHER validation raw_global_deficit:seed45:tti18000
+RESOURCE_TEACHER validation pfq:seed45:tti4001
+RESOURCE_TEACHER validation pfq:seed45:tti8001
+RESOURCE_TEACHER validation pfq:seed45:tti18000
+UE PAIR BENCH validation raw_global_deficit:seed44:tti4001
+UE PAIR BENCH validation raw_global_deficit:seed44:tti8001
+UE PAIR BENCH validation raw_global_deficit:seed44:tti18000
+UE PAIR BENCH validation pfq:seed44:tti4001
+UE PAIR BENCH validation pfq:seed44:tti8001
+UE PAIR BENCH validation pfq:seed44:tti18000
+UE PAIR BENCH validation raw_global_deficit:seed45:tti4001
+UE PAIR BENCH validation raw_global_deficit:seed45:tti8001
+UE PAIR BENCH validation raw_global_deficit:seed45:tti18000
+UE PAIR BENCH validation pfq:seed45:tti4001
+UE PAIR BENCH validation pfq:seed45:tti8001
+UE PAIR BENCH validation pfq:seed45:tti18000
+UE PAIR SELECTION FROZEN {'quality_candidate': 'cached_maxj', 'execution_cost_candidate': 'cached_maxj', 'execution_cost_feasible': False, 'validation_only': True, 'development_not_read': True, 'historical_exposure': True, 'teacher_preparation_excluded': True, 'rule': 'same prior rule: all-state quality/service then mean quality shortfall, service shortfall, mean ratio; execution cost filter, lower time on ties', 'online_ai_claim': False}
+RESOURCE_TEACHER evaluation pfq:seed46:tti3001
+RESOURCE_TEACHER evaluation pfq:seed46:tti4001
+RESOURCE_TEACHER evaluation pfq:seed46:tti5000
+RESOURCE_TEACHER evaluation pfq:seed47:tti3001
+RESOURCE_TEACHER evaluation pfq:seed47:tti4001
+RESOURCE_TEACHER evaluation pfq:seed47:tti5000
+RESOURCE_TEACHER evaluation pfq:seed48:tti3001
+RESOURCE_TEACHER evaluation pfq:seed48:tti4001
+RESOURCE_TEACHER evaluation pfq:seed48:tti5000
+UE PAIR BENCH evaluation pfq:seed46:tti3001
+UE PAIR BENCH evaluation pfq:seed46:tti4001
+UE PAIR BENCH evaluation pfq:seed46:tti5000
+UE PAIR BENCH evaluation pfq:seed47:tti3001
+UE PAIR BENCH evaluation pfq:seed47:tti4001
+UE PAIR BENCH evaluation pfq:seed47:tti5000
+UE PAIR BENCH evaluation pfq:seed48:tti3001
+UE PAIR BENCH evaluation pfq:seed48:tti4001
+UE PAIR BENCH evaluation pfq:seed48:tti5000
+UE PAIR COMPLETE /data/aerial-cuda-accelerated-ran/deliverables/ue_pair_20261103_v1

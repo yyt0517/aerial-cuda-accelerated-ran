@@ -1,0 +1,32 @@
+{
+  "joint_reorder.py": {
+    "sha256": "29e4d6ea472cd72b094a2c7ccc33b667c404a4b836c275b718da41ed9d1ad873",
+    "origin": "deliverables/joint_reorder_20261102_v1/source/joint_reorder.py",
+    "role": "frozen before formal execution"
+  },
+  "joint_reorder_kernel.cpp": {
+    "sha256": "fd99b550e1c29fb4ffd9ab97f14ae4de5f31cc05e703a579aacd269af1e869c2",
+    "origin": "deliverables/joint_reorder_20261102_v1/source/joint_reorder_kernel.cpp",
+    "role": "frozen before formal execution"
+  },
+  "joint_reorder_campaign.py": {
+    "sha256": "43ad949fb3b83b4053f44e15152be4ab6a828cc8ad575f8fbb9b3a81ea71e460",
+    "origin": "deliverables/joint_reorder_20261102_v1/source/joint_reorder_campaign.py",
+    "role": "frozen before formal execution"
+  },
+  "test_joint_reorder.py": {
+    "sha256": "be32a84e649916a9f8adc946a0c52532724320c7a2ffa03c6b9e62d1debacadb",
+    "origin": "deliverables/joint_reorder_20261102_v1/source/test_joint_reorder.py",
+    "role": "frozen before formal execution"
+  },
+  "joint_reorder_README.rst": {
+    "sha256": "f1a8688bb4429f5262d958312590541e5778043ba7db33735327e61c4860888a",
+    "origin": "deliverables/joint_reorder_20261102_v1/source/joint_reorder_README.rst",
+    "role": "frozen before formal execution"
+  },
+  "report_joint_reorder.py": {
+    "sha256": "d2bcf2f02ff9deba168a0f862833f968bbecfb86baf3474db6ec0817b22b053d",
+    "origin": "training/stageb_lns/report_joint_reorder.py",
+    "role": "post-execution read-only statistics/diagnosis/plot reporter; not an executed search source"
+  }
+}

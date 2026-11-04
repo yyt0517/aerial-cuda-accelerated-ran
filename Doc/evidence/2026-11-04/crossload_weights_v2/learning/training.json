@@ -1,0 +1,34 @@
+{
+  "fit_calls": 1,
+  "rows": 80000,
+  "features": [
+    "queue_mean_norm",
+    "queue_P95_norm",
+    "active_fraction",
+    "urgency_mean",
+    "urgency_P95",
+    "ema_mean_norm"
+  ],
+  "train_seeds": [
+    41,
+    42
+  ],
+  "sklearn_version": "1.7.2",
+  "numpy_version": "2.2.6",
+  "scipy_version": "1.15.3",
+  "joblib_version": "1.5.2",
+  "development_eval_seed": 43,
+  "labels": {
+    "0.8": 8.0,
+    "1.12": 2.0,
+    "1.28": 0.0
+  },
+  "load_balanced": true,
+  "train_accuracy": 1.0,
+  "nodes": 5,
+  "leaves": 3,
+  "depth": 2,
+  "gradient_steps": 0,
+  "limitation": "imitates per-regime fixed-policy labels; these are not optimal counterfactual per-TTI actions; closed-loop result decides usefulness",
+  "test": "seed43 never participates in oracle labels or fit; already-exposed development seed, no final generalization claim"
+}

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "native_prefix": [
+    {
+      "seed": 41,
+      "matched_native_prefix": 11680,
+      "first_action_divergence_tti": 11711
+    },
+    {
+      "seed": 42,
+      "matched_native_prefix": 11680,
+      "first_action_divergence_tti": 11684
+    },
+    {
+      "seed": 43,
+      "matched_native_prefix": 11680,
+      "first_action_divergence_tti": 11682
+    }
+  ],
+  "scope": "Training terminal-time rewards for TTI 11681\u201316800; not validation arrival-cohort throughput."
+}

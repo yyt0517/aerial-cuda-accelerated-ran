@@ -1,0 +1,10 @@
+{
+  "training/stageb_ppo/__init__.py": "1eab8874f09312cf249f52ba240810eba5e06892612887f237e38ea38c8f9242",
+  "training/stageb_ppo/campaign.py": "d686d0c179a44932235d464b1c89eb59fc128dfd4eba471204fa5aa1db0f4008",
+  "training/stageb_ppo/evaluate.py": "2492c92379fd2fad260330df8d21f9b4f5fee018054fdcf50393afa5bb691f34",
+  "training/stageb_ppo/learn.py": "5cc155a5ce9d79770fa43144058ab428026c2705d428cfde1274e1474605a2e3",
+  "training/stageb_ppo/model.py": "8776b07977bc3640d4afbf96805053fdc787f661779d08f1176a4781022ec9ae",
+  "training/stageb_ppo/native.py": "9b761ac4a1859c2325ee20ceb8f57e1eaf90f2a0dbbf2bb97990101137edf710",
+  "training/stageb_ppo/reward.py": "fd53abb03e153294d5dd99b54d2137f98c49c9ef55c0ca979133c86930b3b17c",
+  "training/stageb_ppo/tests/test_contract.py": "3dd6fdf107e2b3d1b139ef7ec0484437a4d26462c1474c563ea7617122c034e6"
+}

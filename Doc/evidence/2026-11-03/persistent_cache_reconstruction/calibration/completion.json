@@ -1,0 +1,9 @@
+{
+  "completed": true,
+  "decisions": 96,
+  "new_native_runs": 0,
+  "candidate_evaluations": 5336917,
+  "mmse_misses": 178975,
+  "numpy_terminal_audits": 96,
+  "canonical_shuffle_control_passed": true
+}

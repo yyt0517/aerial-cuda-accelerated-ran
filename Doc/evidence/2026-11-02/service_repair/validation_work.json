@@ -1,0 +1,155 @@
+[
+  {
+    "arm": "unprotected212",
+    "main_phy": 211.41666666666669,
+    "repair_phy": 0.0,
+    "repair_submitted": 0.0,
+    "repair_accepted": 0.0,
+    "repair_j_losses": 0.0,
+    "main_ms": 64.90877961429456,
+    "repair_ms": 0.00031253633399804437,
+    "proposal_ms": 0.0,
+    "feature_ms": 14.29774627710382,
+    "candidate_generation_ms": 34.753687058885895,
+    "proxy_candidates": 6640.666666666666,
+    "memo_hits": 0.25,
+    "feature_roots": 29.5,
+    "repair_stop_counts": {
+      "disabled": 12
+    }
+  },
+  {
+    "arm": "main180",
+    "main_phy": 180.0,
+    "repair_phy": 0.0,
+    "repair_submitted": 0.0,
+    "repair_accepted": 0.0,
+    "repair_j_losses": 0.0,
+    "main_ms": 55.1326593849808,
+    "repair_ms": 0.0002761371433734894,
+    "proposal_ms": 0.0,
+    "feature_ms": 12.262857131039102,
+    "candidate_generation_ms": 29.532509933536254,
+    "proxy_candidates": 5681.25,
+    "memo_hits": 0.16666666666666666,
+    "feature_roots": 27.75,
+    "repair_stop_counts": {
+      "disabled": 12
+    }
+  },
+  {
+    "arm": "heuristic_lock_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.91666666666667,
+    "repair_accepted": 3.25,
+    "repair_j_losses": 1.9166666666666665,
+    "main_ms": 56.45410297438502,
+    "repair_ms": 47.90609981864691,
+    "proposal_ms": 0.6721750056991975,
+    "feature_ms": 20.539964083582163,
+    "candidate_generation_ms": 51.18459129395585,
+    "proxy_candidates": 9789.5,
+    "memo_hits": 1.1666666666666667,
+    "feature_roots": 28.666666666666664,
+    "repair_stop_counts": {
+      "repair_budget": 12
+    }
+  },
+  {
+    "arm": "learned_lock_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 35.58333333333333,
+    "repair_accepted": 2.5,
+    "repair_j_losses": 1.5833333333333335,
+    "main_ms": 56.08305800706148,
+    "repair_ms": 51.375038378561534,
+    "proposal_ms": 0.6970709655433893,
+    "feature_ms": 20.91626481463512,
+    "candidate_generation_ms": 52.26986366324127,
+    "proxy_candidates": 9944.416666666668,
+    "memo_hits": 3.75,
+    "feature_roots": 29.666666666666668,
+    "repair_stop_counts": {
+      "repair_budget": 12
+    }
+  },
+  {
+    "arm": "heuristic_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 32.25,
+    "repair_accepted": 2.0,
+    "repair_j_losses": 1.25,
+    "main_ms": 55.13465342422326,
+    "repair_ms": 46.775555626178786,
+    "proposal_ms": 0.6606685152898233,
+    "feature_ms": 20.196240007256467,
+    "candidate_generation_ms": 50.334223701308176,
+    "proxy_candidates": 9622.25,
+    "memo_hits": 0.41666666666666663,
+    "feature_roots": 30.0,
+    "repair_stop_counts": {
+      "repair_budget": 12
+    }
+  },
+  {
+    "arm": "matched_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 33.33333333333333,
+    "repair_accepted": 2.25,
+    "repair_j_losses": 1.5,
+    "main_ms": 54.87285430232684,
+    "repair_ms": 48.41003776527941,
+    "proposal_ms": 0.7467628456652164,
+    "feature_ms": 20.311754119272035,
+    "candidate_generation_ms": 50.799117113153144,
+    "proxy_candidates": 9720.75,
+    "memo_hits": 1.5,
+    "feature_roots": 30.333333333333336,
+    "repair_stop_counts": {
+      "repair_budget": 12
+    }
+  },
+  {
+    "arm": "learned_repair32",
+    "main_phy": 180.0,
+    "repair_phy": 32.0,
+    "repair_submitted": 33.41666666666667,
+    "repair_accepted": 4.583333333333333,
+    "repair_j_losses": 2.166666666666667,
+    "main_ms": 54.77905413135886,
+    "repair_ms": 48.69316006079316,
+    "proposal_ms": 0.683862017467618,
+    "feature_ms": 20.39880476271113,
+    "candidate_generation_ms": 50.789170122394964,
+    "proxy_candidates": 9739.583333333332,
+    "memo_hits": 1.5833333333333335,
+    "feature_roots": 32.66666666666667,
+    "repair_stop_counts": {
+      "repair_budget": 12
+    }
+  },
+  {
+    "arm": "learned_repair64",
+    "main_phy": 148.0,
+    "repair_phy": 63.33333333333333,
+    "repair_submitted": 65.16666666666666,
+    "repair_accepted": 6.416666666666667,
+    "repair_j_losses": 2.6666666666666665,
+    "main_ms": 45.29822547920048,
+    "repair_ms": 94.73563140879075,
+    "proposal_ms": 0.6916869897395372,
+    "feature_ms": 26.271226039777197,
+    "candidate_generation_ms": 65.9181069737921,
+    "proxy_candidates": 12615.666666666666,
+    "memo_hits": 1.8333333333333333,
+    "feature_roots": 31.916666666666668,
+    "repair_stop_counts": {
+      "pass_limit": 2,
+      "repair_budget": 10
+    }
+  }
+]

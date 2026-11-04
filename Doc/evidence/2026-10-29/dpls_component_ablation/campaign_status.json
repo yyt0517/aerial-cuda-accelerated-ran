@@ -1,0 +1,156 @@
+{
+  "completed": [
+    {
+      "arm": "ctbs",
+      "seed": 41,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed41_current_20000"
+    },
+    {
+      "arm": "ctbs",
+      "seed": 42,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed42_current_20000"
+    },
+    {
+      "arm": "ctbs",
+      "seed": 43,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed43_current_20000"
+    },
+    {
+      "arm": "ctbs",
+      "seed": 45,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed45_current_20000"
+    },
+    {
+      "arm": "ctbs",
+      "seed": 44,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs/seed44_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_equal",
+      "seed": 41,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed41_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_deficit",
+      "seed": 42,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed42_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_deficit",
+      "seed": 43,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed43_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_equal",
+      "seed": 43,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed43_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_deficit",
+      "seed": 44,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed44_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_deficit",
+      "seed": 45,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed45_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_equal",
+      "seed": 44,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed44_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_equal",
+      "seed": 42,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed42_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_equal",
+      "seed": 45,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_equal/seed45_current_20000"
+    },
+    {
+      "arm": "ctbs_independent_deficit",
+      "seed": 41,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_independent_deficit/seed41_current_20000"
+    },
+    {
+      "arm": "ctbs_global_equal",
+      "seed": 41,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed41_current_20000"
+    },
+    {
+      "arm": "ctbs_global_equal",
+      "seed": 45,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed45_current_20000"
+    },
+    {
+      "arm": "raw_global_deficit",
+      "seed": 41,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed41_current_20000"
+    },
+    {
+      "arm": "ctbs_global_equal",
+      "seed": 44,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed44_current_20000"
+    },
+    {
+      "arm": "raw_global_equal",
+      "seed": 44,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed44_current_20000"
+    },
+    {
+      "arm": "raw_global_equal",
+      "seed": 45,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed45_current_20000"
+    },
+    {
+      "arm": "raw_global_deficit",
+      "seed": 44,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed44_current_20000"
+    },
+    {
+      "arm": "raw_global_equal",
+      "seed": 41,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed41_current_20000"
+    },
+    {
+      "arm": "raw_global_deficit",
+      "seed": 42,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed42_current_20000"
+    },
+    {
+      "arm": "ctbs_global_equal",
+      "seed": 43,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed43_current_20000"
+    },
+    {
+      "arm": "raw_global_deficit",
+      "seed": 45,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed45_current_20000"
+    },
+    {
+      "arm": "raw_global_deficit",
+      "seed": 43,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_deficit/seed43_current_20000"
+    },
+    {
+      "arm": "raw_global_equal",
+      "seed": 43,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed43_current_20000"
+    },
+    {
+      "arm": "ctbs_global_equal",
+      "seed": 42,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/ctbs_global_equal/seed42_current_20000"
+    },
+    {
+      "arm": "raw_global_equal",
+      "seed": 42,
+      "path": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/native/raw_global_equal/seed42_current_20000"
+    }
+  ],
+  "errors": [],
+  "elapsed_s": 5176.53029972408
+}

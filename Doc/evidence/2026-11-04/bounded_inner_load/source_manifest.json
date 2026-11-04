@@ -1,0 +1,16 @@
+{
+  "training/stageb_lns/bounded_kernel.cpp": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c",
+  "training/stageb_lns/bounded_dpls.py": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+  "training/stageb_lns/build_bounded.py": "a9cd2891a71d61a98b3a169ca46a313243f6cb644821340481a687e2572a3a9c",
+  "training/stageb_lns/_bounded.so": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+  "training/stageb_lns/bounded_campaign.py": "034d1d22ac9cdc615a90cebe3c09d912171ad8622b5d2ddf4b769671d1fcbea2",
+  "training/stageb_lns/bounded_native.py": "55d8ec21448c4bc765073bc4465852b646cfdb56f9843f56200c0b9b3f4bd869",
+  "training/stageb_lns/rate_native.py": "413ee5172da198f48b52dfc760749b42f9dc49910b63196fff481f21a9d50cc6",
+  "training/stageb_lns/ttl_weights.py": "ee227410112c3e0fd830f62bfb3e70b663f1d5d5806ea274dcfebac6b2736a00",
+  "training/stageb_lns/test_bounded_dpls.py": "18bda75979a3e9c454855b4f09afe4fccb2898a2090c04ad01341c904ee8bebd",
+  "training/stageb_lns/analyze_bounded_stress.py": "b198f7f25e1d92d074031bdd1e71cdb39a1f2f2787d018ef2d0a10942cd85298",
+  "training/stageb_lns/analyze_ttl_frontier.py": "3a686d88e05e01dffb997884c6924e4c2a3cc0e568672100faee3a22c852b03f",
+  "training/stageb_lns/bounded_README.rst": "83ec8290b733aa8d59194d014cd85be6c5277babd68ac0acd1dc1e362d855641",
+  "training/stageb_lns/report_bounded_pipeline.py": "f61261c44cfa764b45680627eeb43cbb3b297a4c3ab0c4ca6a112fd8051db222",
+  "training/stageb_lns/profile_bounded_stress.py": "c3f8108d397395c91a8a19e48e01347dfc8d1e2bfc85fc2edcf536974102b9c9"
+}

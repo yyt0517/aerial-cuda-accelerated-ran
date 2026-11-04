@@ -1,0 +1,278 @@
+{
+  "repeats_actions_values_groups_queries_identical": true,
+  "full_phy": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "baseline",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "existing2",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint2",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "joint4",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "sparse2",
+      "max_error": 2.2737367544323206e-13
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "full",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "baseline",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "existing2",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint2",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "joint4",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "sparse2",
+      "max_error": 2.2737367544323206e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "full",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "baseline",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "existing2",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint2",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "joint4",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "sparse2",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "full",
+      "max_error": 3.410605131648481e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "baseline",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "existing2",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint2",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "joint4",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "sparse2",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "full",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "baseline",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "existing2",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint2",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "joint4",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "sparse2",
+      "max_error": 1.0913936421275139e-11
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "full",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "baseline",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "existing2",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint2",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "joint4",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "sparse2",
+      "max_error": 2.7284841053187847e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "full",
+      "max_error": 1.3642420526593924e-11
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "baseline",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "existing2",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint2",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "joint4",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "sparse2",
+      "max_error": 9.094947017729282e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "baseline",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "existing2",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint2",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "joint4",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "sparse2",
+      "max_error": 9.094947017729282e-13
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "full",
+      "max_error": 1.8189894035458565e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "baseline",
+      "max_error": 5.4569682106375694e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "existing2",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint2",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "joint4",
+      "max_error": 3.637978807091713e-12
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "sparse2",
+      "max_error": 3.637978807091713e-12
+    }
+  ],
+  "budget_floor_conditions_valid": true,
+  "baseline_previous_equivalent_states": 9,
+  "no_teacher_service_group_or_positions": true
+}

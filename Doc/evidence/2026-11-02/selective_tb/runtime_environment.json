@@ -1,0 +1,21 @@
+{
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "torch": "2.10.0+cu128",
+  "threads": 1,
+  "gpu_used": false,
+  "build": [
+    "g++",
+    "-O3",
+    "-std=c++17",
+    "-DNDEBUG",
+    "-ffp-contract=off",
+    "-shared",
+    "-fPIC"
+  ],
+  "timing_exclusions": [
+    "compilation",
+    "archive/model/library IO",
+    "first immutable TBS setup"
+  ]
+}

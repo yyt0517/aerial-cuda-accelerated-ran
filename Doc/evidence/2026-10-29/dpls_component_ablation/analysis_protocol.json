@@ -1,0 +1,25 @@
+{
+  "primary_metric": "complete_payload_mbps",
+  "primary_contrasts": 11,
+  "paired_unit": "seed",
+  "paired_seed_count": 5,
+  "holm_family": "11 predeclared primary metric contrasts",
+  "intervals": "nominal 95% paired t, not simultaneous intervals",
+  "shapley": "three factors, all six orders, no-search weight duplicates map to the same baseline",
+  "main_measurement_observed": false,
+  "files": {
+    "analyze.py": "d325a47e2472106ca4422fbdc9623d3f479af2633a6e139ec28456ffacc98c92",
+    "validate.py": "3cd0fd2e3acd1a0bb17ba35b3f66b1d8bd0794ec0309def7a23e4bf2fcde1118",
+    "campaign.py": "70f25f47e0fd3c31727b8d1d3dd5898d3e2c2f9093de6e76e162efb85316dbec"
+  },
+  "resource_only_revision": "MPS compute connections reduced to2 per client; analysis and policy sources unchanged.",
+  "additional_exploratory_output": "Per-UE matched payload, delay, TTL and >2% degradation counts; no primary contrast/statistics changes.",
+  "source_revisions": [
+    {
+      "old_sha256": "4d2d3f41e4c81ca136f0b4c2138e3816d4608a9796da7138b0f00799c50b5385",
+      "new_sha256": "d325a47e2472106ca4422fbdc9623d3f479af2633a6e139ec28456ffacc98c92",
+      "reason": "Per-UE matched payload, delay, TTL and >2% degradation counts; no primary contrast/statistics changes.",
+      "quality_outcomes_inspected": false
+    }
+  ]
+}

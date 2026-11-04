@@ -5,6 +5,7 @@ This directory contains the HGraph, PFQ-residual and independent-actor research 
 - [Current progress](../../Doc/stageB_current_progress.md)
 - [Current configuration and version boundaries](../../Doc/current_stageB_effective_configuration.md)
 - [Historical HGraph experiments](../../Doc/archive/hgraph_experiments/stageB_hgraph_v9c_v19_retrospective.md)
+- [2026-10-29 PPO retraining without CTBS or business weighting](../stageb_ppo/README.md): a separate, newly initialized joint autoregressive actor; the completed development run did not pass the equal-DPLS quality gates.
 
 As of 2026-10-29 the active policy remains coordinator-free PFQ+CTBS+deficit-weighted physical search with causal floor rho=0.90. Its [version registry](current_algorithm.json) and [launcher](../../cuMAC/scripts/run_stageB_current_algorithm.sh) identify the boundary runner and existing CUDA/worktree dependencies; the uniform validation uses a separate dedicated runner. Five-seed long-window results and neural research quality gates are maintained in the progress document above. The generic HGraph/PPO interfaces below remain historical research interfaces. Previous seed42/v33 smoke results and training recommendations are retained in the [historical configuration appendix](../../Doc/archive/platform/stageB_legacy_configuration_reference.md).
 

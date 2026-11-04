@@ -1,0 +1,14 @@
+{
+  "completed": true,
+  "B_entry_passed": false,
+  "equivalence_passed": true,
+  "audited_states": 240,
+  "audited_rounds": 6527,
+  "audited_candidates": 9382271,
+  "UB_order_over_required": 1.0,
+  "measured_TTIs": 24000,
+  "new_native_runs": 0,
+  "training_steps": 0,
+  "density_variation_reported": true,
+  "wall_speed_reference": "separate serial saved-input controls"
+}

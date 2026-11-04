@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "manifests_verified": {
+    "source_manifest.json": 90,
+    "runtime_supplement_manifest.json": 4,
+    "analysis_source_manifest.json": 12
+  },
+  "checkpoints": {
+    "ppo/generator.npz": "55ddfb0c3c6c89f08bca966a18b349f22a0afc0482f05c0183f6daad8fa8a9c3",
+    "ppo/ppo_final.pt": "b4f435b83882e126236576fc67047a0129fcdb74d08d1c07c4e4e5c9e0c40a5c"
+  },
+  "identical_evidence_copies": [
+    "quality_gate.json",
+    "comparison_means.csv",
+    "candidate_usage.csv",
+    "report.txt",
+    "paired_timing.csv",
+    "independent_training_audit.json",
+    "runtime_supplement_manifest.json",
+    "comparison.csv",
+    "timing_by_state_distribution.csv",
+    "source_manifest.json",
+    "inference_timing.json",
+    "completion.json",
+    "execution_environment.json",
+    "native_evaluation_validation.json",
+    "training_and_comparison.png",
+    "matched_packets.csv",
+    "requested_target_gate.json",
+    "protocol.json",
+    "native_training_validation.json"
+  ],
+  "native_training_evaluation_and_timing_passed": true,
+  "promoted": false
+}

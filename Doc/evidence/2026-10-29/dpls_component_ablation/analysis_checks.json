@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "synthetic_known_shapley_all_metrics": true,
+  "known_interactions": true,
+  "contribution_sum_exact": true,
+  "zero_effect_holm_p_one": true,
+  "paired_t_interval_known_result": true,
+  "no_synthetic_results_in_main_output": true
+}

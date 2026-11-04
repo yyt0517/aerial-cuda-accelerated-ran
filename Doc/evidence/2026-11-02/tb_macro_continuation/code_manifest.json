@@ -1,0 +1,12 @@
+{
+  "note": "Mechanism/campaign/tests/README copied from pre-measurement executed snapshot; reporter and validation-only posthoc probe added after formal measurements. Full dependency snapshot remains in local deliverables/source.",
+  "files": {
+    "tb_macro_README.rst": "8c33de0acb9583646a661a1a31ed7982a7f27e81bcef085f5608065a91cf1b70",
+    "tb_macro_campaign.py": "2285043a1c494e921079a2b67c620b67a22ecb996840c1687a4e835b011c90f4",
+    "tb_macro_headroom.py": "000fc9e85e2d0cc1794a93941b6f03e8af61de60cf49aa5e3fb7e547084e2bad",
+    "tb_macro.py": "40902a54c6c52d7bc2ce8043d9c647332d4df838ae6d05449eca12348c1f25da",
+    "test_tb_macro.py": "d67aa84ac8e531fe208da707ef28e7601ca70630f287d860223c9028f7ae7b9f",
+    "report_tb_macro.py": "325ec42e77eec57668869122cd7e4754ae4734e9cff480072adc794b0d43fff5"
+  },
+  "full_executed_manifest_sha256": "cd8b8ce2fca82f7323e5fc050ba50075aa394fe375d694bded0ec410035fe18c"
+}

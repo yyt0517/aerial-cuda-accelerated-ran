@@ -1,0 +1,16 @@
+{
+  "collected": "after execution in the same venv",
+  "python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "platform": "Linux-6.8.0-136-generic-x86_64-with-glibc2.35",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3",
+  "configured_threads": {
+    "OPENBLAS_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "MKL_NUM_THREADS": 1
+  },
+  "gpu": false,
+  "compiler": "g++ -O3 -std=c++17 -DNDEBUG -ffp-contract=off -shared -fPIC",
+  "timing": "serial decisions; per-state median of 3 repeats, seed-equal mean",
+  "complete_execution_and_exclusions": "See frozen protocol.json"
+}

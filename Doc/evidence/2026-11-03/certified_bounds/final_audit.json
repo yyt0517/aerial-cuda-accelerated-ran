@@ -1,0 +1,18 @@
+{
+  "completed": true,
+  "tests": 7,
+  "random_priority_cases": 450,
+  "logical_candidate_bounds": 624670,
+  "new_candidate_PHY": 0,
+  "new_UE_PHY": 0,
+  "new_MMSE": 0,
+  "new_native_runs": 0,
+  "training_steps": 0,
+  "online_kernel_unchanged": true,
+  "previous_archive_unchanged": true,
+  "labels_sha256": "5fae79e32523c7bb7502ff37e14e78a3491a31da1487e5c76cae57939e47db8d",
+  "registry_sha256": "cf95920592a8c572efc669d00915f5eb99b55962778ee130f3cd88bceb0999c3",
+  "capacity_work_bound": 23738,
+  "executed_lazy_equivalence_gate": false,
+  "wall_speedup_evaluated": false
+}

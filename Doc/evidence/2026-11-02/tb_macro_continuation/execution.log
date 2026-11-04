@@ -1,0 +1,23 @@
+TB_BENCH validation raw_global_deficit:seed44:tti4001
+TB_BENCH validation raw_global_deficit:seed44:tti8001
+TB_BENCH validation raw_global_deficit:seed44:tti18000
+TB_BENCH validation pfq:seed44:tti4001
+TB_BENCH validation pfq:seed44:tti8001
+TB_BENCH validation pfq:seed44:tti18000
+TB_BENCH validation raw_global_deficit:seed45:tti4001
+TB_BENCH validation raw_global_deficit:seed45:tti8001
+TB_BENCH validation raw_global_deficit:seed45:tti18000
+TB_BENCH validation pfq:seed45:tti4001
+TB_BENCH validation pfq:seed45:tti8001
+TB_BENCH validation pfq:seed45:tti18000
+TB SELECTION FROZEN {'quality_best': 'single_b424', 'within_cost_best': 'shortlist_trained212', 'cost_feasible': True, 'rule': 'validation only; gates, J shortfall, service shortfall, mean ratio; lower complete time on ties', 'development_not_read_in_this_run': True, 'historical_exposure': True}
+TB_BENCH evaluation pfq:seed46:tti3001
+TB_BENCH evaluation pfq:seed46:tti4001
+TB_BENCH evaluation pfq:seed46:tti5000
+TB_BENCH evaluation pfq:seed47:tti3001
+TB_BENCH evaluation pfq:seed47:tti4001
+TB_BENCH evaluation pfq:seed47:tti5000
+TB_BENCH evaluation pfq:seed48:tti3001
+TB_BENCH evaluation pfq:seed48:tti4001
+TB_BENCH evaluation pfq:seed48:tti5000
+TB MACRO COMPLETE /data/aerial-cuda-accelerated-ran/deliverables/tb_macro_continuation_20261102_v1

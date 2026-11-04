@@ -1,0 +1,1 @@
+Post-run read-only diagnostics and narrative helpers. Frozen executed search/training sources are under source/. Run from repo root with PYTHONPATH=. after a complete campaign. Oracle auxiliary-head replacement is label-only analysis, never part of decision or training.

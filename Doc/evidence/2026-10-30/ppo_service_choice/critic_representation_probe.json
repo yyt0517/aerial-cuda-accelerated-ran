@@ -1,0 +1,293 @@
+{
+  "scope": "Saved iteration-3 GAE labels, chronological split within each seed; diagnostic only, not independent true returns.",
+  "rows": [
+    {
+      "architecture": "raw_pool",
+      "epoch": 8,
+      "seed": 41,
+      "split": "fit",
+      "mse": 0.00486740143969655,
+      "explained_variance": -5.289963722229004
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 8,
+      "seed": 41,
+      "split": "time_holdout",
+      "mse": 0.0005770461866632104,
+      "explained_variance": 0.18656152486801147
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 8,
+      "seed": 42,
+      "split": "fit",
+      "mse": 0.002143506659194827,
+      "explained_variance": -3.3726577758789062
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 8,
+      "seed": 42,
+      "split": "time_holdout",
+      "mse": 0.0022614197805523872,
+      "explained_variance": -15.478382110595703
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 8,
+      "seed": 43,
+      "split": "fit",
+      "mse": 0.00243406742811203,
+      "explained_variance": -8.869138717651367
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 8,
+      "seed": 43,
+      "split": "time_holdout",
+      "mse": 0.002558754291385412,
+      "explained_variance": -0.7562695741653442
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 24,
+      "seed": 41,
+      "split": "fit",
+      "mse": 0.0020122204441577196,
+      "explained_variance": -4.910562992095947
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 24,
+      "seed": 41,
+      "split": "time_holdout",
+      "mse": 0.0026485370472073555,
+      "explained_variance": 0.08974754810333252
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 24,
+      "seed": 42,
+      "split": "fit",
+      "mse": 0.0043160016648471355,
+      "explained_variance": -2.5467193126678467
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 24,
+      "seed": 42,
+      "split": "time_holdout",
+      "mse": 0.003211683826521039,
+      "explained_variance": -16.811120986938477
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 24,
+      "seed": 43,
+      "split": "fit",
+      "mse": 0.0011504765134304762,
+      "explained_variance": -8.038565635681152
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 24,
+      "seed": 43,
+      "split": "time_holdout",
+      "mse": 0.0007173328194767237,
+      "explained_variance": -1.234813928604126
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 80,
+      "seed": 41,
+      "split": "fit",
+      "mse": 0.0024826470762491226,
+      "explained_variance": -3.0601959228515625
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 80,
+      "seed": 41,
+      "split": "time_holdout",
+      "mse": 0.001860522199422121,
+      "explained_variance": -0.43948113918304443
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 80,
+      "seed": 42,
+      "split": "fit",
+      "mse": 0.0007313312962651253,
+      "explained_variance": -1.6005284786224365
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 80,
+      "seed": 42,
+      "split": "time_holdout",
+      "mse": 0.00209340313449502,
+      "explained_variance": -11.408763885498047
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 80,
+      "seed": 43,
+      "split": "fit",
+      "mse": 0.0011641877936199307,
+      "explained_variance": -5.750699996948242
+    },
+    {
+      "architecture": "raw_pool",
+      "epoch": 80,
+      "seed": 43,
+      "split": "time_holdout",
+      "mse": 0.0011835929471999407,
+      "explained_variance": -1.6113426685333252
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 8,
+      "seed": 41,
+      "split": "fit",
+      "mse": 0.002535258186981082,
+      "explained_variance": -4.9568772315979
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 8,
+      "seed": 41,
+      "split": "time_holdout",
+      "mse": 0.003506190376356244,
+      "explained_variance": -1.3299665451049805
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 8,
+      "seed": 42,
+      "split": "fit",
+      "mse": 0.0034100257325917482,
+      "explained_variance": -3.9101076126098633
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 8,
+      "seed": 42,
+      "split": "time_holdout",
+      "mse": 0.0025367853231728077,
+      "explained_variance": -16.525617599487305
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 8,
+      "seed": 43,
+      "split": "fit",
+      "mse": 0.0015194760635495186,
+      "explained_variance": -10.899744033813477
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 8,
+      "seed": 43,
+      "split": "time_holdout",
+      "mse": 0.0017692549154162407,
+      "explained_variance": -4.319712162017822
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 24,
+      "seed": 41,
+      "split": "fit",
+      "mse": 0.0020969051402062178,
+      "explained_variance": -3.8924989700317383
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 24,
+      "seed": 41,
+      "split": "time_holdout",
+      "mse": 0.0035870030988007784,
+      "explained_variance": -1.390289545059204
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 24,
+      "seed": 42,
+      "split": "fit",
+      "mse": 0.0012415595119819045,
+      "explained_variance": -2.5489511489868164
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 24,
+      "seed": 42,
+      "split": "time_holdout",
+      "mse": 0.0017791874706745148,
+      "explained_variance": -12.084327697753906
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 24,
+      "seed": 43,
+      "split": "fit",
+      "mse": 0.0013519752537831664,
+      "explained_variance": -9.162701606750488
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 24,
+      "seed": 43,
+      "split": "time_holdout",
+      "mse": 0.0012530131498351693,
+      "explained_variance": -3.2544445991516113
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 80,
+      "seed": 41,
+      "split": "fit",
+      "mse": 0.000975439150352031,
+      "explained_variance": -1.8848426342010498
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 80,
+      "seed": 41,
+      "split": "time_holdout",
+      "mse": 0.0041411505080759525,
+      "explained_variance": -0.3320971727371216
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 80,
+      "seed": 42,
+      "split": "fit",
+      "mse": 0.0007734143291600049,
+      "explained_variance": -0.8644618988037109
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 80,
+      "seed": 42,
+      "split": "time_holdout",
+      "mse": 0.0006059046136215329,
+      "explained_variance": -3.4242310523986816
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 80,
+      "seed": 43,
+      "split": "fit",
+      "mse": 0.0004562926187645644,
+      "explained_variance": -2.5617258548736572
+    },
+    {
+      "architecture": "ue_encoded",
+      "epoch": 80,
+      "seed": 43,
+      "split": "time_holdout",
+      "mse": 0.0010841557523235679,
+      "explained_variance": -0.9814732074737549
+    }
+  ]
+}

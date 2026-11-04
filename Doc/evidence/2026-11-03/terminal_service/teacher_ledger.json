@@ -1,0 +1,22 @@
+{
+  "training": {
+    "decisions": 18,
+    "exact_scores": 1011932,
+    "teacher_ms": 1996.148151345551
+  },
+  "validation": {
+    "decisions": 12,
+    "exact_scores": 617686,
+    "teacher_ms": 1230.1565669476986
+  },
+  "evaluation": {
+    "decisions": 9,
+    "exact_scores": 666850,
+    "teacher_ms": 1327.054369263351
+  },
+  "total": {
+    "decisions": 39,
+    "exact_scores": 2296468,
+    "teacher_ms": 4553.359087556601
+  }
+}

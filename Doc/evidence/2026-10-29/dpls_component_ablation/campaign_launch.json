@@ -1,0 +1,136 @@
+{
+  "jobs": [
+    [
+      "ctbs",
+      41
+    ],
+    [
+      "raw_global_equal",
+      41
+    ],
+    [
+      "raw_global_deficit",
+      41
+    ],
+    [
+      "ctbs_global_equal",
+      41
+    ],
+    [
+      "ctbs_independent_equal",
+      41
+    ],
+    [
+      "ctbs_independent_deficit",
+      41
+    ],
+    [
+      "ctbs",
+      42
+    ],
+    [
+      "raw_global_equal",
+      42
+    ],
+    [
+      "raw_global_deficit",
+      42
+    ],
+    [
+      "ctbs_global_equal",
+      42
+    ],
+    [
+      "ctbs_independent_equal",
+      42
+    ],
+    [
+      "ctbs_independent_deficit",
+      42
+    ],
+    [
+      "ctbs",
+      43
+    ],
+    [
+      "raw_global_equal",
+      43
+    ],
+    [
+      "raw_global_deficit",
+      43
+    ],
+    [
+      "ctbs_global_equal",
+      43
+    ],
+    [
+      "ctbs_independent_equal",
+      43
+    ],
+    [
+      "ctbs_independent_deficit",
+      43
+    ],
+    [
+      "ctbs",
+      44
+    ],
+    [
+      "raw_global_equal",
+      44
+    ],
+    [
+      "raw_global_deficit",
+      44
+    ],
+    [
+      "ctbs_global_equal",
+      44
+    ],
+    [
+      "ctbs_independent_equal",
+      44
+    ],
+    [
+      "ctbs_independent_deficit",
+      44
+    ],
+    [
+      "ctbs",
+      45
+    ],
+    [
+      "raw_global_equal",
+      45
+    ],
+    [
+      "raw_global_deficit",
+      45
+    ],
+    [
+      "ctbs_global_equal",
+      45
+    ],
+    [
+      "ctbs_independent_equal",
+      45
+    ],
+    [
+      "ctbs_independent_deficit",
+      45
+    ]
+  ],
+  "workers": 30,
+  "pid": 8390,
+  "protocol_sha256": "39926f1cc9f9d377c06f5719101c6e6f1e2fce867356d4442bd198720d2a3482",
+  "runtime_environment": {
+    "CUDA_DEVICE_MAX_CONNECTIONS": "2",
+    "CUDA_MPS_PIPE_DIRECTORY": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/runtime/mps",
+    "CUDA_MPS_LOG_DIRECTORY": "/opt/nvidia/cuBB/deliverables/dpls_component_ablation_20261029_v1/runtime/mps_logs"
+  },
+  "sources": {
+    "campaign.py": "70f25f47e0fd3c31727b8d1d3dd5898d3e2c2f9093de6e76e162efb85316dbec",
+    "validate.py": "3cd0fd2e3acd1a0bb17ba35b3f66b1d8bd0794ec0309def7a23e4bf2fcde1118"
+  }
+}

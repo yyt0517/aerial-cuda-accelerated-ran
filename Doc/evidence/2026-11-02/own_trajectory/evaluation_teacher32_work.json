@@ -1,0 +1,61 @@
+{
+  "teacher_work": [
+    {
+      "state_id": "pfq:seed46:tti3001",
+      "candidate_evaluations": 88871,
+      "ue_evaluations": 292337,
+      "mmse_misses": 1888
+    },
+    {
+      "state_id": "pfq:seed46:tti4001",
+      "candidate_evaluations": 66901,
+      "ue_evaluations": 220668,
+      "mmse_misses": 1862
+    },
+    {
+      "state_id": "pfq:seed46:tti5000",
+      "candidate_evaluations": 65999,
+      "ue_evaluations": 215543,
+      "mmse_misses": 1888
+    },
+    {
+      "state_id": "pfq:seed47:tti3001",
+      "candidate_evaluations": 76204,
+      "ue_evaluations": 248844,
+      "mmse_misses": 1897
+    },
+    {
+      "state_id": "pfq:seed47:tti4001",
+      "candidate_evaluations": 83014,
+      "ue_evaluations": 271170,
+      "mmse_misses": 1886
+    },
+    {
+      "state_id": "pfq:seed47:tti5000",
+      "candidate_evaluations": 65137,
+      "ue_evaluations": 214674,
+      "mmse_misses": 1861
+    },
+    {
+      "state_id": "pfq:seed48:tti3001",
+      "candidate_evaluations": 85390,
+      "ue_evaluations": 280833,
+      "mmse_misses": 1890
+    },
+    {
+      "state_id": "pfq:seed48:tti4001",
+      "candidate_evaluations": 54272,
+      "ue_evaluations": 177327,
+      "mmse_misses": 1884
+    },
+    {
+      "state_id": "pfq:seed48:tti5000",
+      "candidate_evaluations": 81062,
+      "ue_evaluations": 268446,
+      "mmse_misses": 1863
+    }
+  ],
+  "finite_greedy_prefix_only": true,
+  "global_upper_bound": false,
+  "online_capability": false
+}

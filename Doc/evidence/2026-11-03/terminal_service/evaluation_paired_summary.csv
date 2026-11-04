@@ -1,0 +1,6 @@
+new,old,j_wins,j_losses,j_ties,mean_j_delta,mean_ms_delta,mean_j_delta_pp
+cached_maxj,existing2,0,0,9,0.0,-11.856653417150179,0.0
+continuous,cached_maxj,0,1,8,-3.2308270762037457,0.2658398201068242,-0.0037418883095657264
+attainable,cached_maxj,0,0,9,0.0,3.577066585421562,0.0
+calibrated,cached_maxj,0,0,9,0.0,3.6315244312087693,0.0
+calibrated,attainable,0,0,9,0.0,0.05445784578720728,0.0

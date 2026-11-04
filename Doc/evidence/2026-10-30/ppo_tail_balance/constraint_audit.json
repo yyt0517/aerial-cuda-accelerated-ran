@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "rows": {
+    "train_seed41": {
+      "passed": true,
+      "decisions": 12288,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800000235868668,
+      "maximum_choices": 16,
+      "reused_control": false
+    },
+    "train_seed42": {
+      "passed": true,
+      "decisions": 12288,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800001245783584,
+      "maximum_choices": 16,
+      "reused_control": false
+    },
+    "train_seed43": {
+      "passed": true,
+      "decisions": 12288,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800000739344462,
+      "maximum_choices": 16,
+      "reused_control": false
+    },
+    "eval_ppo_seed44": {
+      "passed": true,
+      "decisions": 8400,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800001682158916,
+      "maximum_choices": 16,
+      "reused_control": false
+    },
+    "eval_ppo_seed45": {
+      "passed": true,
+      "decisions": 8400,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800000874244286,
+      "maximum_choices": 16,
+      "reused_control": false
+    },
+    "eval_physical_greedy_seed44": {
+      "passed": true,
+      "decisions": 8400,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800001512693276,
+      "maximum_choices": 16,
+      "reused_control": true
+    },
+    "eval_physical_greedy_seed45": {
+      "passed": true,
+      "decisions": 8400,
+      "ctbs_pruned_total": 0,
+      "weights_min": 1.0,
+      "weights_max": 1.0,
+      "minimum_catalog_expected_ratio": 0.9800001201051992,
+      "maximum_choices": 16,
+      "reused_control": true
+    }
+  }
+}

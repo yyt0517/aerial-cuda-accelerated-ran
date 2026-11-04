@@ -1,0 +1,383 @@
+{
+  "teacher": [
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1668,
+      "ue_evaluations": 5420,
+      "mmse_requests": 11323,
+      "mmse_misses": 1769
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1716,
+      "ue_evaluations": 5686,
+      "mmse_requests": 8853,
+      "mmse_misses": 1817
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1118,
+      "ue_evaluations": 3238,
+      "mmse_requests": 6976,
+      "mmse_misses": 1215
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti8001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1152,
+      "ue_evaluations": 3432,
+      "mmse_requests": 6754,
+      "mmse_misses": 1249
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1334,
+      "ue_evaluations": 4244,
+      "mmse_requests": 10151,
+      "mmse_misses": 1435
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed44:tti18000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1274,
+      "ue_evaluations": 3902,
+      "mmse_requests": 9203,
+      "mmse_misses": 1371
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1668,
+      "ue_evaluations": 5420,
+      "mmse_requests": 11323,
+      "mmse_misses": 1769
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1716,
+      "ue_evaluations": 5686,
+      "mmse_requests": 8853,
+      "mmse_misses": 1817
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1668,
+      "ue_evaluations": 5420,
+      "mmse_requests": 10407,
+      "mmse_misses": 1769
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti8001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1649,
+      "ue_evaluations": 5307,
+      "mmse_requests": 12820,
+      "mmse_misses": 1750
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1718,
+      "ue_evaluations": 5694,
+      "mmse_requests": 7685,
+      "mmse_misses": 1819
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed44:tti18000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1718,
+      "ue_evaluations": 5694,
+      "mmse_requests": 7685,
+      "mmse_misses": 1819
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1635,
+      "ue_evaluations": 5251,
+      "mmse_requests": 9294,
+      "mmse_misses": 1736
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1685,
+      "ue_evaluations": 5525,
+      "mmse_requests": 8148,
+      "mmse_misses": 1786
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1346,
+      "ue_evaluations": 4130,
+      "mmse_requests": 7279,
+      "mmse_misses": 1439
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti8001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1226,
+      "ue_evaluations": 3484,
+      "mmse_requests": 5872,
+      "mmse_misses": 1315
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1164,
+      "ue_evaluations": 3570,
+      "mmse_requests": 6603,
+      "mmse_misses": 1257
+    },
+    {
+      "role": "validation",
+      "state_id": "raw_global_deficit:seed45:tti18000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1164,
+      "ue_evaluations": 3570,
+      "mmse_requests": 6415,
+      "mmse_misses": 1257
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1635,
+      "ue_evaluations": 5251,
+      "mmse_requests": 9294,
+      "mmse_misses": 1736
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1685,
+      "ue_evaluations": 5525,
+      "mmse_requests": 8148,
+      "mmse_misses": 1786
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1663,
+      "ue_evaluations": 5400,
+      "mmse_requests": 7990,
+      "mmse_misses": 1764
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti8001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1663,
+      "ue_evaluations": 5400,
+      "mmse_requests": 10486,
+      "mmse_misses": 1764
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1463,
+      "ue_evaluations": 4534,
+      "mmse_requests": 10510,
+      "mmse_misses": 1564
+    },
+    {
+      "role": "validation",
+      "state_id": "pfq:seed45:tti18000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1398,
+      "ue_evaluations": 4169,
+      "mmse_requests": 9255,
+      "mmse_misses": 1499
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1697,
+      "ue_evaluations": 5573,
+      "mmse_requests": 10070,
+      "mmse_misses": 1798
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti3001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1697,
+      "ue_evaluations": 5573,
+      "mmse_requests": 8360,
+      "mmse_misses": 1798
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1735,
+      "ue_evaluations": 5799,
+      "mmse_requests": 7704,
+      "mmse_misses": 1836
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1735,
+      "ue_evaluations": 5799,
+      "mmse_requests": 7860,
+      "mmse_misses": 1836
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1713,
+      "ue_evaluations": 5674,
+      "mmse_requests": 9120,
+      "mmse_misses": 1814
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed46:tti5000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1713,
+      "ue_evaluations": 5674,
+      "mmse_requests": 7860,
+      "mmse_misses": 1814
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1675,
+      "ue_evaluations": 5448,
+      "mmse_requests": 23884,
+      "mmse_misses": 1776
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti3001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1693,
+      "ue_evaluations": 5557,
+      "mmse_requests": 7566,
+      "mmse_misses": 1794
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1693,
+      "ue_evaluations": 5557,
+      "mmse_requests": 8808,
+      "mmse_misses": 1794
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1693,
+      "ue_evaluations": 5557,
+      "mmse_requests": 8668,
+      "mmse_misses": 1794
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1696,
+      "ue_evaluations": 5569,
+      "mmse_requests": 7143,
+      "mmse_misses": 1797
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed47:tti5000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1693,
+      "ue_evaluations": 5557,
+      "mmse_requests": 7864,
+      "mmse_misses": 1794
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1666,
+      "ue_evaluations": 5412,
+      "mmse_requests": 12209,
+      "mmse_misses": 1767
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti3001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1689,
+      "ue_evaluations": 5541,
+      "mmse_requests": 7666,
+      "mmse_misses": 1790
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1672,
+      "ue_evaluations": 5436,
+      "mmse_requests": 12067,
+      "mmse_misses": 1773
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti4001",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1672,
+      "ue_evaluations": 5436,
+      "mmse_requests": 7999,
+      "mmse_misses": 1773
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "initial_deep",
+      "candidate_evaluations": 1712,
+      "ue_evaluations": 5670,
+      "mmse_requests": 8119,
+      "mmse_misses": 1813
+    },
+    {
+      "role": "evaluation",
+      "state_id": "pfq:seed48:tti5000",
+      "arm": "trained_deep",
+      "candidate_evaluations": 1712,
+      "ue_evaluations": 5670,
+      "mmse_requests": 7985,
+      "mmse_misses": 1813
+    }
+  ],
+  "models_unchanged": true
+}

@@ -1,0 +1,121 @@
+{
+  "training_steps": 6144,
+  "actor_optimizer_steps": 24,
+  "bc_unique_states": 384,
+  "teacher_ttis": [
+    4001,
+    4128
+  ],
+  "teacher_time_span_ms": 64,
+  "gamma": 0.9982686325973925,
+  "gae_lambda": 0.995,
+  "gae_trace_effective_ttis": 148.74952450248335,
+  "old_holding_cost_per_full_ttl_in_packet_units": 4.0,
+  "state_omissions": [
+    "Explicit per-UE PRG counts and cumulative TBS in the sampled prefix",
+    "Per-cell interference changes under blanking",
+    "FIFO partial-packet CRC damage and clean completion progress"
+  ],
+  "observations": [
+    {
+      "iteration": 1,
+      "value_before_mean": -0.2960595488548279,
+      "value_after_mean": -4.564979553222656,
+      "target_mean": -174.83326721191406,
+      "target_std": 57.93687057495117,
+      "mse": 32348.009765625,
+      "explained_variance": -1.2993812561035156e-05,
+      "mean_predictor_mse": 3356.68115234375,
+      "entropy_per_token": 1.815163016319275,
+      "mean_max_choice_probability": 0.37921249866485596,
+      "sampled_vs_prefix_argmax_fraction": 0.6171109080314636
+    },
+    {
+      "iteration": 6,
+      "value_before_mean": -10.356654167175293,
+      "value_after_mean": -11.644113540649414,
+      "target_mean": -256.8262634277344,
+      "target_std": 90.04793548583984,
+      "mse": 68222.875,
+      "explained_variance": 4.231929779052734e-06,
+      "mean_predictor_mse": 8108.63134765625,
+      "entropy_per_token": 1.8694565296173096,
+      "mean_max_choice_probability": 0.35671645402908325,
+      "sampled_vs_prefix_argmax_fraction": 0.647212028503418
+    },
+    {
+      "iteration": 12,
+      "value_before_mean": -17.990861892700195,
+      "value_after_mean": -19.251571655273438,
+      "target_mean": -274.90631103515625,
+      "target_std": 89.60296630859375,
+      "mse": 73388.0390625,
+      "explained_variance": -3.5762786865234375e-07,
+      "mean_predictor_mse": 8028.6923828125,
+      "entropy_per_token": 1.8710604906082153,
+      "mean_max_choice_probability": 0.3611431419849396,
+      "sampled_vs_prefix_argmax_fraction": 0.6341911554336548
+    }
+  ],
+  "reward_decomposition": [
+    {
+      "seed": 41,
+      "stage": "teacher",
+      "queue_mean_bytes": 18436063.0703125,
+      "complete_credit": 1.1829969618055556,
+      "expiry_cost": 0.3493923611111111,
+      "holding_cost": 2.133803596100984,
+      "reward": -1.3001989954065394
+    },
+    {
+      "seed": 41,
+      "stage": "ppo",
+      "queue_mean_bytes": 17115118.533203125,
+      "complete_credit": 0.4868570963541667,
+      "expiry_cost": 0.4069688585069444,
+      "holding_cost": 1.9809164968985098,
+      "reward": -1.9010282590512877
+    },
+    {
+      "seed": 42,
+      "stage": "teacher",
+      "queue_mean_bytes": 22140308.28125,
+      "complete_credit": 1.1537000868055556,
+      "expiry_cost": 0.4446072048611111,
+      "holding_cost": 2.5625356807002317,
+      "reward": -1.853442798755787
+    },
+    {
+      "seed": 42,
+      "stage": "ppo",
+      "queue_mean_bytes": 20568396.78515625,
+      "complete_credit": 0.4337056477864583,
+      "expiry_cost": 0.4817877875434028,
+      "holding_cost": 2.380601479763455,
+      "reward": -2.4286836195203994
+    },
+    {
+      "seed": 43,
+      "stage": "teacher",
+      "queue_mean_bytes": 25139646.375,
+      "complete_credit": 1.1661783854166667,
+      "expiry_cost": 0.3911675347222222,
+      "holding_cost": 2.9096812934027776,
+      "reward": -2.1346704427083334
+    },
+    {
+      "seed": 43,
+      "stage": "ppo",
+      "queue_mean_bytes": 20133890.362304688,
+      "complete_credit": 0.4532029893663194,
+      "expiry_cost": 0.4777696397569444,
+      "holding_cost": 2.3303113845260057,
+      "reward": -2.3548780349166303
+    }
+  ],
+  "limits": [
+    "MSE alone does not establish critic failure; scale probe and explained variance are reported.",
+    "Diagnostic associations are not a factorial causal attribution.",
+    "No policy, trajectory, or model was modified in this diagnosis."
+  ]
+}

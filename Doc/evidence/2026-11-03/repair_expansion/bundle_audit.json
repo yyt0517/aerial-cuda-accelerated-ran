@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "copied_files": 274,
+  "all_copied_bytes_equal": true,
+  "all_json_npz_load": true,
+  "source_model_registry_hashes_valid": true,
+  "postprocessing_did_not_retrain": true
+}

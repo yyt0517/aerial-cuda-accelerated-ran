@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/B_ttl_decoupled_20261104_v1/r0p8_k0p25_seed41/states/tti008001.pt",
+    "sha256": "fd4764459eb7db2e28f3e295b11c265e416084ef3130859702c67f9f55d2b83a"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/B_ttl_decoupled_20261104_v1/r0p8_k0p25_seed41/states/tti009001.pt",
+    "sha256": "fe57e543de51c67379418820188729ff85876f08d6df8e2cf764e1c63e04fa5c"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/B_ttl_decoupled_20261104_v1/r0p8_k0p25_seed41/states/tti010001.pt",
+    "sha256": "d22ab6b9c776975c85fba1d17dbb946bcd6017377a402c95ded658d010f1cc39"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/B_ttl_decoupled_20261104_v1/r0p8_k0p25_seed41/states/tti011001.pt",
+    "sha256": "5e43cc73bd5128ed2d33d87f369e145ced97e4e80920f62b3144f52787a5ac6a"
+  }
+]

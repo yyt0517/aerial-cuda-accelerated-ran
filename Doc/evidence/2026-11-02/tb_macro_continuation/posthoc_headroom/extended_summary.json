@@ -1,0 +1,22 @@
+[
+  {
+    "gate": "floor",
+    "total_blocks": 48,
+    "both_observed": 48,
+    "joint_positive_no_single_positive_in_both": 16,
+    "joint_positive_missed_by_proxy_top2_all_joint_observed": 10,
+    "retained_root_mean_joint_gain_in_both": 124.11245267235972,
+    "retained_root_mean_single_gain_in_both": 152.19127205530245,
+    "note": "missing family values are excluded from conditional means, not replaced with zero; do-nothing root remains feasible"
+  },
+  {
+    "gate": "root_service",
+    "total_blocks": 48,
+    "both_observed": 41,
+    "joint_positive_no_single_positive_in_both": 13,
+    "joint_positive_missed_by_proxy_top2_all_joint_observed": 4,
+    "retained_root_mean_joint_gain_in_both": 81.1902072684539,
+    "retained_root_mean_single_gain_in_both": 132.5667056374386,
+    "note": "missing family values are excluded from conditional means, not replaced with zero; do-nothing root remains feasible"
+  }
+]

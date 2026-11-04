@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "states": 27,
+  "arms": 2,
+  "exact_actions": true,
+  "identical_physical_work": true,
+  "scope": "behavior-preserving repeated-priority reuse, checkpoint frozen"
+}

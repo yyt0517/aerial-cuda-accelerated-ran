@@ -1,0 +1,13 @@
+{
+  "unique_states": 15,
+  "baseline_failures": 2,
+  "repairable_failures": 1,
+  "repairable_failure_states": [
+    "raw_global_deficit:seed41:tti18000"
+  ],
+  "sampled_good_vs_bad_pairs": 10843,
+  "sampled_repair_vs_maxj_pairs": 2,
+  "posthoc": true,
+  "training_changed": false,
+  "additional_native_scores": 0
+}

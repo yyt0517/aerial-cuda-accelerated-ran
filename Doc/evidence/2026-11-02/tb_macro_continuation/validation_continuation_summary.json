@@ -1,0 +1,41 @@
+[
+  {
+    "arm": "single_continue_b212",
+    "domains": 48,
+    "observed_seeds": 48,
+    "complete_domains": 48,
+    "incomplete_domains": 0,
+    "no_domain": 0,
+    "seed_below_floor": 4,
+    "rescued": 8,
+    "positive_root_gain": 10,
+    "physical_scores": 191,
+    "finite_observed_future_gains": 44
+  },
+  {
+    "arm": "joint_continue_b212",
+    "domains": 48,
+    "observed_seeds": 48,
+    "complete_domains": 48,
+    "incomplete_domains": 0,
+    "no_domain": 0,
+    "seed_below_floor": 10,
+    "rescued": 1,
+    "positive_root_gain": 2,
+    "physical_scores": 192,
+    "finite_observed_future_gains": 38
+  },
+  {
+    "arm": "joint_continue_b424",
+    "domains": 48,
+    "observed_seeds": 48,
+    "complete_domains": 48,
+    "incomplete_domains": 0,
+    "no_domain": 0,
+    "seed_below_floor": 10,
+    "rescued": 1,
+    "positive_root_gain": 2,
+    "physical_scores": 192,
+    "finite_observed_future_gains": 38
+  }
+]
