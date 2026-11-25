@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seed": 41,
+      "all_4000_warmup_native_metrics_equal": true,
+      "first_dpls_and_original_da_actions_equal": true,
+      "selected_branch": "from_dpls_da"
+    },
+    {
+      "seed": 42,
+      "all_4000_warmup_native_metrics_equal": true,
+      "first_dpls_and_original_da_actions_equal": true,
+      "selected_branch": "original_da"
+    },
+    {
+      "seed": 43,
+      "all_4000_warmup_native_metrics_equal": true,
+      "first_dpls_and_original_da_actions_equal": true,
+      "selected_branch": "from_dpls_da"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "source_report_unchanged": true,
+  "original_tables_preserved": 33,
+  "added_tables": 3,
+  "original_math_objects_preserved": 72,
+  "original_figures_preserved": 15,
+  "table_values_match_exported_csv": true,
+  "pdf_section_pages": [
+    130,
+    132
+  ],
+  "table_of_contents_updated": true,
+  "pdf_page_count": 147,
+  "files": {
+    "技术研究报告_二阶段同频_泛化实验补充版.pdf": "23e98f3af8c3f728a861e90f0872308233e793dece6621a313adc58e199951b9",
+    "技术研究报告_二阶段同频_泛化实验补充版.docx": "265bdd8245f0cf157b7ac0a7566a83303e09d3e777bfebbb4ba7765bc32d841b",
+    "泛化实验补充节.pdf": "6eddc0f7765534c13b52a35367bf18f27e0e7240af55a85295d38f14d3ae1ecf"
+  }
+}

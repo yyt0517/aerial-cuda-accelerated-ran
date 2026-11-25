@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "runs": 24,
+  "passed": true,
+  "unit": "equal-weight seed; paired nominal 95% t intervals; exploratory study",
+  "seeds": [
+    41,
+    42,
+    43
+  ]
+}

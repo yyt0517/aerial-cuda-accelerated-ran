@@ -1,0 +1,8 @@
+NATIVE_TIMING boundary_r0.8_exact_deficit_s41
+NATIVE_TIMING boundary_r0.8_reported_deficit_s41
+NATIVE_TIMING boundary_r0.8_exact_mlwdf_pf_s41
+NATIVE_TIMING boundary_r0.8_reported_mlwdf_pf_s41
+NATIVE_TIMING uniform_r1_exact_deficit_s41
+NATIVE_TIMING uniform_r1_reported_deficit_s41
+NATIVE_TIMING uniform_r1_exact_mlwdf_pf_s41
+NATIVE_TIMING uniform_r1_reported_mlwdf_pf_s41

@@ -1,0 +1,27 @@
+[
+  {
+    "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/instrumented_main.cpp",
+    "sha256": "b2c8a9a0dfd7f025669f0f78cd0a94da85e868f170c6478972bbd8a24c2df9ee",
+    "matched": true
+  },
+  {
+    "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/fresh_observation.h",
+    "sha256": "913ab2db315d0aedc7830c830ba1c7fa5ec37718fda265facdb46e47e19e33de",
+    "matched": true
+  },
+  {
+    "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_coordination_20261008_v1/directed_snapshot.h",
+    "sha256": "6b38f5100b8cca4d3434df84cc8eb388ee3c9f28e4666e5bca0711a70df94e91",
+    "matched": true
+  },
+  {
+    "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+    "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+    "matched": true
+  },
+  {
+    "path": ".worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.h",
+    "sha256": "a83e98ada69c1255e8ca7f36777d7b842717b1d3ed9043b1f083244a4e25ac59",
+    "matched": true
+  }
+]

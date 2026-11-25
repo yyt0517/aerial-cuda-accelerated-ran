@@ -1,0 +1,10 @@
+{
+  "scenario": "G2",
+  "arm": "pfq",
+  "seed": 52,
+  "key": "G2_pfq_s52",
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G2_pfq_s52",
+  "horizon": 28400,
+  "native_passed": true,
+  "smoke": false
+}

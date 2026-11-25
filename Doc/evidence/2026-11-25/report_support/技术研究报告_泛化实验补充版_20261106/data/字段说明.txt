@@ -1,0 +1,44 @@
+新增实验的数据口径
+
+场景：G1＝混合布点；G2＝混合布点＋异构包长／到达频率；G3＝混合布点＋小区负载不平衡；G4＝三者叠加。
+算法：pfq＝PFQ；deficit＝缺口权重DPLS；mlwdf_pf＝DA-PLS。
+seed：51–55。每个场景每种算法5次独立运行；同场景同seed配对。
+
+主要指标
+payload_mbps：测量期到达且最终完整成功的包载荷字节×8／10秒，以Mbps计。
+expiry_pct：同一到达包集合中，过期包数占比（%）。
+expiry_byte_pct：过期包完整载荷字节占输入载荷字节比例（%）；部分传输后过期仍计完整包载荷。
+success_pct：所有分段CRC均成功且未过期的完整包数占比（%）。
+delay_mean_ms / delay_p95_ms：完整成功包的平均／95分位系统时延（ms）。
+outcome_mean_ms / outcome_p95_ms：所有完结包的平均／95分位时延（ms）；MAC完成含CRC损坏后完成，过期按200 ms。
+worst_ue_expiry_pct：每次运行中先取36个UE过期率最大值，再跨seed平均（%）。
+offered_mbps：测量窗口实际到达的总载荷字节速率，区别于配置的理论输入。
+served_mbps：测量窗口MAC计划出队字节速率；不等同于完整包吞吐。
+goodput_mbps：测量窗口CRC成功分段字节速率；不要求所属完整包的其他分段成功。
+queue_mean_mb：测量窗口簇队列总字节数的时间均值，十进制MB。
+prg_occupancy_pct：实际发射的UE-PRG总数／（测量TTI数×3小区×17 PRG）。
+sinr_tx_mean_db / mcs_tx_mean：仅对实际传输的UE-TTI样本求均值。
+ue_payload_p5_mbps：单次运行36个UE完整包速率的5分位。
+jain_payload：单次运行36个UE完整包速率的Jain指数；负载不平衡场景不以此单独评价公平性。
+
+汇总方式
+所有指标先在单次运行内统计，再对5个seed等权平均。aggregate中__mean、__min、__max、__std分别表示5个seed的均值、最小值、最大值和样本标准差；不是逐包最小/最大值。
+配对差值表为同一seed内DA-PLS减基线，再跨seed汇总；positive/negative/zero为差值正/负/零的seed数。未把少量seed的数值差异表述为统计显著性。
+
+分组
+placement_group：boundary＝按边界带规则生成的18个UE；uniform＝按原Uniform规则随机生成的18个UE，不能直接理解为小区中心UE。
+traffic_group：small_high＝1500 B小包高频UE；large_low＝12000 B大包低频UE；homogeneous＝3000 B同构UE。
+cell_load：heavy_cell＝当前seed的重载小区；light_cells＝另两个轻载小区合并。
+heavy_cell_traffic：仅在重载小区内部按包型分组。
+serving_cell：实际最强信号关联的小区，运行中保持固定。
+分组的过期率与完整成功率以本组到达包为分母；成功包时延仅统计本组完整成功包。分组可能交叠，不得把不同比例直接相加。
+
+测量与输入
+每次4000 TTI共同PFQ预热＋4000 TTI稳定期＋20000 TTI测量＋400 TTI延长观察，TTI为0.5 ms。
+测量期到达包全部追踪至终止，完整包CRC口径与原报告一致，不将未终止包记为零。
+G1/G2每UE平均2400 B/TTI；G3/G4按实际服务小区的2∶1∶1输入分配后，在各小区内部按UE等分平均字节输入。
+四场景理论簇输入均为1382.40 Mbps。G2两种包型的到达率为1.6与0.2包/TTI；G4按小区分配进一步调整，不能把G2的频率直接套用于所有G4用户。
+
+原始日志保存在工作区 deliverables/stage2_generalization_20261106 中。
+analysis 下的每次运行目录包含成熟到达包集合、逐UE/分组/小区统计及核验记录。
+正式统计仅包含60个不同的场景—算法—seed组合；短程试跑不计入正式均值。

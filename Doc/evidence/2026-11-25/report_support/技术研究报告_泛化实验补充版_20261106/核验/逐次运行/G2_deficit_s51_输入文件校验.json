@@ -1,0 +1,8 @@
+{
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s51/launch.json": "e165a57f8966959b9820e24759cc4320272c260926ca68f206990a0ef36c7374",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s51/metrics.bin": "8b91874e9088874d8c9d1ea9f9f37a019b61c194da925b122d42ee1382a01d3f",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s51/traffic_offered_packets.csv": "b63513d834839ef81d8e77fa66c9d4be9ff1f1effa128b2ae9a3c6e6a8b55d9c",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s51/packet_outcome_samples.csv": "ac1fd102b3db5ab13913fb94114f559657b20d5fb018acfad4a0eb2be53cd8f2",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s51/actions.npz": "bcfcb5b7e1025c0d57eaab5f52f6586d2b3e07dce95d1f5e45c0caee8f5ed357",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_generalization_20261106/plans/G2_s51.csv": "362f79af8226ca5bf6f5d1950ea5d08bf26bbe0e951e4c82498d3b4d6b5cda83"
+}

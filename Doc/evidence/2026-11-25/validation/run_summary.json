@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-25",
+  "base_commit": "b9caec17273c132750822db73cf5620568d67a16",
+  "research_tests": {
+    "passed": true,
+    "count": 20,
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python -m unittest training.stageb_rsrp.test_model training.stageb_rsrp_ablation.test_model training.stageb_rsrp_covariance.test_model training.stageb_sevencell.test_scale training.stageb_sevencell_multistart.test_policy training.stageb_sevencell_guarded.test_policy -v"
+  },
+  "native_build": {
+    "passed": true,
+    "command": "docker exec -w /opt/nvidia/cuBB c_aerial_oai2 cmake --build build.x86_64 --target multiCellSchedulerUeSelection -j 4",
+    "scope": "Recompiled main.cpp and network.cu, linked target; no full native quality rerun."
+  },
+  "historical_interference_recomputation": {
+    "passed": true,
+    "reference": "output/stageB_actual_interference_goodput_compare_17prg_pfq_teacher_vs_v9c_pytorch_s41_w1000/actual_interference_summary.json",
+    "comparison": "All metrics and paired seeds exactly equal."
+  },
+  "full_gpu_experiments_rerun": false,
+  "registered_policy_changed": false
+}

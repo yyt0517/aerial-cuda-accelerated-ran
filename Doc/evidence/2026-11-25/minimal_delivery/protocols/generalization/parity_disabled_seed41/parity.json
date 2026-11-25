@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "ttis": 512,
+  "exact_actions_inputs_active_phy_queues_service_traffic": true,
+  "inactive_layer_sentinel_encoding_differences": 532,
+  "scenario_extension_disabled": true
+}

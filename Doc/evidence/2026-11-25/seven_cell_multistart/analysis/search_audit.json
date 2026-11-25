@@ -1,0 +1,297 @@
+{
+  "passed": true,
+  "states": 12,
+  "branch_searches": 36,
+  "checks": [
+    {
+      "run": "da_three_branch_s41",
+      "tti": 4001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 96,
+      "candidates": 855674
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 4001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 87,
+      "candidates": 709860
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 4001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 49,
+      "candidates": 392877
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 8001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 74,
+      "candidates": 605548
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 8001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 69,
+      "candidates": 554836
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 8001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 23,
+      "candidates": 179308
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 18001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 88,
+      "candidates": 734251
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 18001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 76,
+      "candidates": 620025
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 18001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 15,
+      "candidates": 118948
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 28000,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 73,
+      "candidates": 603353
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 28000,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 63,
+      "candidates": 507471
+    },
+    {
+      "run": "da_three_branch_s41",
+      "tti": 28000,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 19,
+      "candidates": 147967
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 4001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 88,
+      "candidates": 794917
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 4001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 92,
+      "candidates": 825405
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 4001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 41,
+      "candidates": 367664
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 8001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 71,
+      "candidates": 570475
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 8001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 66,
+      "candidates": 549698
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 8001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 8,
+      "candidates": 60704
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 18001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 82,
+      "candidates": 671858
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 18001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 56,
+      "candidates": 465594
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 18001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 9,
+      "candidates": 69696
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 28000,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 82,
+      "candidates": 673266
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 28000,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 51,
+      "candidates": 427806
+    },
+    {
+      "run": "da_three_branch_s42",
+      "tti": 28000,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 20,
+      "candidates": 156807
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 4001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 94,
+      "candidates": 844438
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 4001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 86,
+      "candidates": 772826
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 4001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 35,
+      "candidates": 302352
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 8001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 79,
+      "candidates": 657462
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 8001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 65,
+      "candidates": 543276
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 8001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 30,
+      "candidates": 230878
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 18001,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 93,
+      "candidates": 746122
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 18001,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 57,
+      "candidates": 487142
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 18001,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 16,
+      "candidates": 120134
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 28000,
+      "branch": "dpls",
+      "passed": true,
+      "rounds": 92,
+      "candidates": 778250
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 28000,
+      "branch": "original_da",
+      "passed": true,
+      "rounds": 49,
+      "candidates": 416044
+    },
+    {
+      "run": "da_three_branch_s43",
+      "tti": 28000,
+      "branch": "from_dpls_da",
+      "passed": true,
+      "rounds": 25,
+      "candidates": 203072
+    }
+  ],
+  "selected_actions_match_native_execution": true,
+  "all_three_branch_scores_and_selection_exact": true
+}

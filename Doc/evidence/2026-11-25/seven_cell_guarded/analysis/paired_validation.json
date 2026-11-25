@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seed": 41,
+      "reference": "pfq",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 41,
+      "reference": "deficit",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 41,
+      "reference": "mlwdf_pf",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 41,
+      "reference": "da_three_branch",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 42,
+      "reference": "pfq",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 42,
+      "reference": "deficit",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 42,
+      "reference": "mlwdf_pf",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 42,
+      "reference": "da_three_branch",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 43,
+      "reference": "pfq",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 43,
+      "reference": "deficit",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 43,
+      "reference": "mlwdf_pf",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 43,
+      "reference": "da_three_branch",
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    }
+  ],
+  "every_decision_guard_and_max_eligible_score": true
+}

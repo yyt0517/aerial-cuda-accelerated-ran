@@ -1,0 +1,364 @@
+{
+  "path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r1.28_mlwdf_pf_s45/states/tti028000.pt",
+  "sha256": "6449e96dcd7486078a0c38d1422024cd4dc9d1688de93f409177d9e840097c12",
+  "tti": 28000,
+  "passed": true,
+  "rounds": [
+    {
+      "iteration": 1,
+      "candidates": 1734,
+      "fresh": 474,
+      "required": 474,
+      "known_before": 0,
+      "still_unscored": 1260
+    },
+    {
+      "iteration": 2,
+      "candidates": 1709,
+      "fresh": 159,
+      "required": 159,
+      "known_before": 277,
+      "still_unscored": 1273
+    },
+    {
+      "iteration": 3,
+      "candidates": 1696,
+      "fresh": 28,
+      "required": 28,
+      "known_before": 311,
+      "still_unscored": 1357
+    },
+    {
+      "iteration": 4,
+      "candidates": 1674,
+      "fresh": 94,
+      "required": 94,
+      "known_before": 191,
+      "still_unscored": 1389
+    },
+    {
+      "iteration": 5,
+      "candidates": 1649,
+      "fresh": 164,
+      "required": 164,
+      "known_before": 157,
+      "still_unscored": 1328
+    },
+    {
+      "iteration": 6,
+      "candidates": 1627,
+      "fresh": 89,
+      "required": 89,
+      "known_before": 157,
+      "still_unscored": 1381
+    },
+    {
+      "iteration": 7,
+      "candidates": 1614,
+      "fresh": 143,
+      "required": 143,
+      "known_before": 69,
+      "still_unscored": 1402
+    },
+    {
+      "iteration": 8,
+      "candidates": 1592,
+      "fresh": 86,
+      "required": 86,
+      "known_before": 151,
+      "still_unscored": 1355
+    },
+    {
+      "iteration": 9,
+      "candidates": 1570,
+      "fresh": 105,
+      "required": 105,
+      "known_before": 116,
+      "still_unscored": 1349
+    },
+    {
+      "iteration": 10,
+      "candidates": 1561,
+      "fresh": 41,
+      "required": 41,
+      "known_before": 159,
+      "still_unscored": 1361
+    },
+    {
+      "iteration": 11,
+      "candidates": 1539,
+      "fresh": 125,
+      "required": 125,
+      "known_before": 122,
+      "still_unscored": 1292
+    },
+    {
+      "iteration": 12,
+      "candidates": 1539,
+      "fresh": 47,
+      "required": 47,
+      "known_before": 200,
+      "still_unscored": 1292
+    },
+    {
+      "iteration": 13,
+      "candidates": 1517,
+      "fresh": 30,
+      "required": 30,
+      "known_before": 168,
+      "still_unscored": 1319
+    },
+    {
+      "iteration": 14,
+      "candidates": 1517,
+      "fresh": 39,
+      "required": 39,
+      "known_before": 155,
+      "still_unscored": 1323
+    },
+    {
+      "iteration": 15,
+      "candidates": 1517,
+      "fresh": 18,
+      "required": 18,
+      "known_before": 171,
+      "still_unscored": 1328
+    },
+    {
+      "iteration": 16,
+      "candidates": 1517,
+      "fresh": 69,
+      "required": 69,
+      "known_before": 142,
+      "still_unscored": 1306
+    },
+    {
+      "iteration": 17,
+      "candidates": 1517,
+      "fresh": 89,
+      "required": 89,
+      "known_before": 168,
+      "still_unscored": 1260
+    },
+    {
+      "iteration": 18,
+      "candidates": 1517,
+      "fresh": 51,
+      "required": 51,
+      "known_before": 204,
+      "still_unscored": 1262
+    },
+    {
+      "iteration": 19,
+      "candidates": 1517,
+      "fresh": 59,
+      "required": 59,
+      "known_before": 195,
+      "still_unscored": 1263
+    },
+    {
+      "iteration": 20,
+      "candidates": 1517,
+      "fresh": 85,
+      "required": 85,
+      "known_before": 175,
+      "still_unscored": 1257
+    },
+    {
+      "iteration": 21,
+      "candidates": 1517,
+      "fresh": 127,
+      "required": 127,
+      "known_before": 194,
+      "still_unscored": 1196
+    }
+  ],
+  "timing": [
+    {
+      "arm": "python_full",
+      "repeat": 0,
+      "wall_ms": 92.01530180871487,
+      "cpu_ms": 92.01815299999794,
+      "candidates": 33158,
+      "ue_evaluations": 102407,
+      "mmse_misses": 2103
+    },
+    {
+      "arm": "native_full",
+      "repeat": 0,
+      "wall_ms": 16.198065131902695,
+      "cpu_ms": 15.996502999996665,
+      "candidates": 33158,
+      "ue_evaluations": 102407,
+      "mmse_misses": 2103
+    },
+    {
+      "arm": "bounded",
+      "repeat": 0,
+      "wall_ms": 6.025088019669056,
+      "cpu_ms": 6.0262339999965775,
+      "candidates": 2123,
+      "ue_evaluations": 6920,
+      "mmse_misses": 1099
+    },
+    {
+      "arm": "native_full",
+      "repeat": 1,
+      "wall_ms": 15.914959833025932,
+      "cpu_ms": 15.916458999996053,
+      "candidates": 33158,
+      "ue_evaluations": 102407,
+      "mmse_misses": 2103
+    },
+    {
+      "arm": "bounded",
+      "repeat": 1,
+      "wall_ms": 5.98307978361845,
+      "cpu_ms": 5.984212999997851,
+      "candidates": 2123,
+      "ue_evaluations": 6920,
+      "mmse_misses": 1099
+    },
+    {
+      "arm": "python_full",
+      "repeat": 1,
+      "wall_ms": 91.2418644875288,
+      "cpu_ms": 91.24591300000162,
+      "candidates": 33158,
+      "ue_evaluations": 102407,
+      "mmse_misses": 2103
+    },
+    {
+      "arm": "bounded",
+      "repeat": 2,
+      "wall_ms": 6.2705110758543015,
+      "cpu_ms": 6.1740140000026145,
+      "candidates": 2123,
+      "ue_evaluations": 6920,
+      "mmse_misses": 1099
+    },
+    {
+      "arm": "python_full",
+      "repeat": 2,
+      "wall_ms": 92.5771426409483,
+      "cpu_ms": 92.38724099999729,
+      "candidates": 33158,
+      "ue_evaluations": 102407,
+      "mmse_misses": 2103
+    },
+    {
+      "arm": "native_full",
+      "repeat": 2,
+      "wall_ms": 15.979703515768051,
+      "cpu_ms": 15.981214999996496,
+      "candidates": 33158,
+      "ue_evaluations": 102407,
+      "mmse_misses": 2103
+    }
+  ],
+  "case": {
+    "tti": 28000,
+    "iteration": 1,
+    "edits": [
+      {
+        "cell": 1,
+        "prg": 15,
+        "old_ue": 27,
+        "new_ue": 20
+      },
+      {
+        "cell": 2,
+        "prg": 15,
+        "old_ue": 28,
+        "new_ue": -1
+      }
+    ],
+    "gain_q": 10590383499,
+    "dequeue_before": 117327,
+    "dequeue_after": 116242,
+    "floor": 105595,
+    "ues": [
+      {
+        "ue": 0,
+        "weight": 0.801477592082173,
+        "expected_before": 416.1330159197594,
+        "expected_after": 3004.159043724108,
+        "weighted_delta": 2074.2448690106203,
+        "sinr_before_db": 6.182707972180977,
+        "sinr_after_db": 6.994394201851694,
+        "count_before": 2,
+        "count_after": 2
+      },
+      {
+        "ue": 20,
+        "weight": 1.2168428985527455,
+        "expected_before": 0.0,
+        "expected_after": 6998.552270087445,
+        "weighted_delta": 8516.138630006104,
+        "sinr_before_db": 8.474206544724547,
+        "sinr_after_db": 12.939704471457244,
+        "count_before": 1,
+        "count_after": 2
+      },
+      {
+        "ue": 27,
+        "weight": 1.7107612877596041,
+        "expected_before": 0.0,
+        "expected_after": 0.0,
+        "weighted_delta": 0.0,
+        "sinr_before_db": 2.8764280452503406,
+        "sinr_after_db": -999.0,
+        "count_before": 1,
+        "count_after": 0
+      },
+      {
+        "ue": 28,
+        "weight": 0.6821430827817101,
+        "expected_before": 0.0,
+        "expected_after": 0.0,
+        "weighted_delta": 0.0,
+        "sinr_before_db": 5.113468345111256,
+        "sinr_after_db": 4.618664182185396,
+        "count_before": 3,
+        "count_after": 2
+      }
+    ]
+  },
+  "full": {
+    "score_q": 90367439628,
+    "rounds": 21,
+    "converged": true,
+    "candidate_evaluations": 33158,
+    "ue_evaluations": 102407,
+    "mmse_requests": 172203,
+    "mmse_misses": 2103
+  },
+  "bounded": {
+    "version": "capacity_bound_q1e6_v1",
+    "rounds": 21,
+    "accepted_moves": 20,
+    "generated_edits": 3475,
+    "regenerated_prgs": 37,
+    "scored_edits": 2122,
+    "sum_neighborhood_sizes": 33157,
+    "first_scan_evaluations": 474,
+    "initialization_evaluations": 1,
+    "converged": true,
+    "score_q": 90367439628,
+    "floor": 105595,
+    "chosen_dequeue": 105656,
+    "bound_updates": 10832,
+    "heap_pushes": 11906,
+    "certificate_heap_pruned": 9784,
+    "known_exact_reuses": 2968,
+    "floor_pruned": 15596,
+    "threshold_pruned": 2687,
+    "score": 90367.43962759439,
+    "candidate_evaluations": 2123,
+    "ue_evaluations": 6920,
+    "mmse_requests": 12025,
+    "mmse_misses": 1099,
+    "core_ms": 14.910467900335789
+  },
+  "concurrent_quality_campaign": false
+}

@@ -1,0 +1,12 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "stage": "prg_t100",
+  "objective": "mlwdf_pf",
+  "seed": 41,
+  "key": "uniform_r1_prg_t100_mlwdf_pf_s41",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/uniform_r1_prg_t100_mlwdf_pf_s41",
+  "native_passed": true,
+  "smoke": false
+}

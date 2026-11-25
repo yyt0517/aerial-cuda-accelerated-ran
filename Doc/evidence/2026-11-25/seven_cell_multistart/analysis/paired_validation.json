@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seed": 41,
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_all_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 42,
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_all_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    },
+    {
+      "seed": 43,
+      "topology_traffic_all_channels_equal": true,
+      "warmup_actions_observations_and_all_native_metrics_equal": true,
+      "first_policy_input_equal": true
+    }
+  ]
+}

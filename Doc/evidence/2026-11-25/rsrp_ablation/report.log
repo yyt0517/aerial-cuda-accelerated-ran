@@ -1,0 +1,126 @@
+UE_DIAGNOSTICS boundary_r0.8_spatial_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_exact_deficit_s42
+UE_DIAGNOSTICS boundary_r0.8_frequency_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_exact_mlwdf_pf_s42
+UE_DIAGNOSTICS boundary_r0.8_exact_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_spatial_mlwdf_pf_s42
+UE_DIAGNOSTICS boundary_r0.8_exact_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_frequency_deficit_s42
+UE_DIAGNOSTICS uniform_r1_spatial_deficit_s42
+UE_DIAGNOSTICS uniform_r1_reported_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_spatial_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_reported_mlwdf_pf_s41
+UE_DIAGNOSTICS boundary_r0.8_frequency_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_reported_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_spatial_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_filtered_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_filtered_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_pilot_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_exact_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_spatial_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_exact_mlwdf_pf_s41
+UE_DIAGNOSTICS boundary_r0.8_filtered_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_pilot_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_frequency_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_pilot_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_frequency_deficit_s42
+UE_DIAGNOSTICS boundary_r0.8_spatial_deficit_s42
+UE_DIAGNOSTICS boundary_r0.8_filtered_deficit_s42
+UE_DIAGNOSTICS uniform_r1_pilot_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_pilot_deficit_s41
+UE_DIAGNOSTICS uniform_r1_reported_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_reported_deficit_s43
+UE_DIAGNOSTICS uniform_r1_exact_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_frequency_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_reported_deficit_s41
+UE_DIAGNOSTICS uniform_r1_pilot_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_pilot_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_spatial_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_exact_deficit_s42
+UE_DIAGNOSTICS boundary_r0.8_filtered_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_frequency_deficit_s43
+UE_DIAGNOSTICS uniform_r1_filtered_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_reported_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_filtered_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_filtered_deficit_s42
+UE_DIAGNOSTICS uniform_r1_exact_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_reported_mlwdf_pf_s43
+UE_DIAGNOSTICS boundary_r0.8_reported_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_frequency_deficit_s41
+UE_DIAGNOSTICS boundary_r0.8_reported_deficit_s42
+UE_DIAGNOSTICS uniform_r1_pilot_deficit_s41
+UE_DIAGNOSTICS uniform_r1_spatial_deficit_s41
+UE_DIAGNOSTICS uniform_r1_reported_deficit_s42
+UE_DIAGNOSTICS boundary_r0.8_spatial_mlwdf_pf_s41
+UE_DIAGNOSTICS boundary_r0.8_spatial_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_pilot_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_exact_mlwdf_pf_s41
+UE_DIAGNOSTICS uniform_r1_frequency_deficit_s41
+UE_DIAGNOSTICS uniform_r1_pilot_deficit_s42
+UE_DIAGNOSTICS boundary_r0.8_frequency_mlwdf_pf_s41
+UE_DIAGNOSTICS boundary_r0.8_reported_mlwdf_pf_s42
+UE_DIAGNOSTICS boundary_r0.8_pilot_mlwdf_pf_s43
+UE_DIAGNOSTICS boundary_r0.8_exact_deficit_s43
+UE_DIAGNOSTICS boundary_r0.8_exact_mlwdf_pf_s42
+UE_DIAGNOSTICS boundary_r0.8_filtered_mlwdf_pf_s41
+UE_DIAGNOSTICS boundary_r0.8_pilot_deficit_s42
+UE_DIAGNOSTICS uniform_r1_frequency_mlwdf_pf_s42
+UE_DIAGNOSTICS uniform_r1_spatial_mlwdf_pf_s43
+UE_DIAGNOSTICS boundary_r0.8_frequency_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_filtered_mlwdf_pf_s42
+UE_DIAGNOSTICS boundary_r0.8_filtered_mlwdf_pf_s43
+UE_DIAGNOSTICS uniform_r1_filtered_deficit_s43
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+WAITING for separate native timing probe
+   scene algorithm    factor     stage   control  throughput_delta_mbps  throughput_delta_pct_of_exact  p95_delta_ms  p99_delta_ms  expiry_delta_pp  serial_cpu_delta_ms  throughput_ci_low  throughput_ci_high
+boundary      DPLS   空间协方差丢失   spatial     exact              -111.7432                      -9.064167    117.333333      2.666667         9.686196             1.734840        -129.136551          -94.349849
+boundary      DPLS      频域平均 frequency   spatial               -25.0184                      -2.029394      0.000000      0.000000         2.553593             0.617536         -44.108176           -5.928624
+boundary      DPLS   单参考端口采样     pilot frequency                 3.6232                       0.293900      0.000000      0.000000        -0.332928            -0.155081         -13.584016           20.830416
+boundary      DPLS      时间滤波  filtered     pilot                 2.6672                       0.216353      0.000000      0.000000        -0.106054             0.048692         -11.888280           17.222680
+boundary      DPLS 周期上报与传输延迟  reported  filtered                -7.9864                      -0.647825      0.000000      0.000000         0.558823            -0.064040         -36.610137           20.637337
+boundary    DA-PLS   空间协方差丢失   spatial     exact              -132.2896                     -10.543215    192.500000    192.833333        10.219466             1.545320        -321.838454           57.259254
+boundary    DA-PLS      频域平均 frequency   spatial               -58.0096                      -4.623248      1.333333      0.166667         4.621709             0.768423         -79.778428          -36.240772
+boundary    DA-PLS   单参考端口采样     pilot frequency                 7.9016                       0.629742     -0.333333      0.000000        -0.603079             0.011606           5.292587           10.510613
+boundary    DA-PLS      时间滤波  filtered     pilot                -8.3696                      -0.667040      0.333333      0.000000         0.654947            -0.236750         -10.113608           -6.625592
+boundary    DA-PLS 周期上报与传输延迟  reported  filtered                 1.4536                       0.115849     -0.166667      0.000000        -0.101902             0.060315          -5.483649            8.390849
+ uniform      DPLS   空间协方差丢失   spatial     exact               -21.9144                      -1.361497      0.500000     68.166667         0.384587             0.643552         -45.922539            2.093739
+ uniform      DPLS      频域平均 frequency   spatial               -10.5968                      -0.658358      0.166667      5.166667         0.102158             0.113713         -18.157464           -3.036136
+ uniform      DPLS   单参考端口采样     pilot frequency                -1.2344                      -0.076691     -0.166667      5.000000        -0.008436             0.042386          -2.751607            0.282807
+ uniform      DPLS      时间滤波  filtered     pilot                 0.9224                       0.057307      0.166667      0.500000        -0.002544            -0.119920          -0.511259            2.356059
+ uniform      DPLS 周期上报与传输延迟  reported  filtered                 0.1488                       0.009245      0.000000      3.018333         0.002543            -0.029544          -0.605614            0.903214
+ uniform    DA-PLS   空间协方差丢失   spatial     exact               -12.7880                      -0.795755      0.500000      0.500000         0.000000             0.524847         -24.154338           -1.421662
+ uniform    DA-PLS      频域平均 frequency   spatial                -6.7360                      -0.419159      0.000000      0.166667         0.000000             0.132580         -10.277429           -3.194571
+ uniform    DA-PLS   单参考端口采样     pilot frequency                -1.3376                      -0.083234      0.000000      0.000000         0.000000            -0.055398          -2.416105           -0.259095
+ uniform    DA-PLS      时间滤波  filtered     pilot                 0.7960                       0.049532      0.000000      0.000000         0.000000             0.017048           0.066246            1.525754
+ uniform    DA-PLS 周期上报与传输延迟  reported  filtered                -0.3152                      -0.019614      0.000000      0.000000         0.000000             0.098026          -1.374418            0.744018
+   scene algorithm  throughput_change_pct  p95_original_ms  p95_reported_ms  p99_original_ms  p99_reported_ms  expiry_original_pct  expiry_reported_pct  serial_cpu_original_ms  serial_cpu_reported_ms  serial_cpu_change_pct  paid_scoring_change_pct  first_round_paid_original  first_round_paid_reported  first_slack_original  first_slack_reported
+boundary      DPLS             -11.231134             82.0       199.333333       197.333333       200.000000             0.672955            13.032586                5.917537                8.099483              36.872545               153.767406                 298.777778                1036.388889           7287.264798          10256.298621
+boundary    DA-PLS             -15.087913              5.5       199.166667         7.000000       200.000000             0.000000            14.791142                4.865057                7.013971              44.170366               204.699905                  54.166667                 638.722222           3616.750071           6655.104210
+ uniform      DPLS              -2.029994              1.0         1.666667         1.833333        83.685000             0.000000             0.478308                3.794481                4.444667              17.135060                72.051815                 193.277778                 308.388889           6892.472419           8550.158112
+ uniform    DA-PLS              -1.268230              1.0         1.500000         1.500000         2.166667             0.000000             0.000000                3.966342                4.683445              18.079712                67.449645                 174.055556                 313.222222           7936.419224          10522.475592

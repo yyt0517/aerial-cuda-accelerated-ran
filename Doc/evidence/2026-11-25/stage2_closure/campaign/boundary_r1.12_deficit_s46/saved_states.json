@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r1.12_deficit_s46/states/tti008001.pt",
+    "sha256": "fdb70f6ef7744a81efcbfc5002c0dafde43e1f078c73903c55d46797298f2d01"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r1.12_deficit_s46/states/tti018001.pt",
+    "sha256": "7e6cfc9063ccdfa41e3754b94355e4826f3fc15cc5511a316b73d346a806fe2a"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r1.12_deficit_s46/states/tti028000.pt",
+    "sha256": "b20ecb19b3b165694a29a2750fcca1df82986282335aa1d68dafc0c36eba1acc"
+  }
+]

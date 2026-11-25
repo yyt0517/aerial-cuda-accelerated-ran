@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": [
+    "boundary_r0.8_reported_deficit_s41",
+    "boundary_r0.8_exact_deficit_s41",
+    "boundary_r0.8_reported_mlwdf_pf_s41",
+    "uniform_r1_exact_mlwdf_pf_s41",
+    "uniform_r1_reported_deficit_s41",
+    "uniform_r1_reported_mlwdf_pf_s41",
+    "uniform_r1_exact_deficit_s41",
+    "boundary_r0.8_exact_mlwdf_pf_s41"
+  ],
+  "scope": "all native metrics, actions and input hashes bit identical to prior exact AND reported smoke"
+}

@@ -1,0 +1,11 @@
+{
+  "same_state_comparisons": 18,
+  "first_round_divergences": 15,
+  "second_round_divergences": 3,
+  "da_lower_than_dpls_under_da_objective": 4,
+  "da_lower_unweighted_expected_bytes": 18,
+  "dpls_initialized_da_better_than_original_da_objective": 12,
+  "dpls_initialized_da_objective_ge_dpls_all": true,
+  "unweighted_expected_da_vs_dpls_mean_paired_pct": -19.024442684552227,
+  "scope": "18 saved states, offline per-decision diagnostic; not 18 independent seeds and not a new closed-loop performance benchmark"
+}

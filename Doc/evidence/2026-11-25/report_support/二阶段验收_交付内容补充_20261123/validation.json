@@ -1,0 +1,24 @@
+{
+  "source_slide_count": 25,
+  "output_slide_count": 27,
+  "inserted_positions": [
+    24,
+    25
+  ],
+  "inserted_titles": [
+    "二阶段实验代码与结果交付包",
+    "二阶段技术研究报告"
+  ],
+  "original_parts_preserved": true,
+  "zip_integrity": true,
+  "shape_bounds_valid": true,
+  "source_sha256": "c3bd480436837d34de09c02abed68e556aedbcd5ed4ef124ddf748692157a07c",
+  "output_sha256": "29e75c74b1aa26630951b2ce9dddd8d99f0ff3c07ba444a96f00d177ab5404c3",
+  "rendered_pdf_pages": 27,
+  "visual_review_passed": true,
+  "new_slide_relationships_valid": true,
+  "preview_positions": [
+    24,
+    25
+  ]
+}

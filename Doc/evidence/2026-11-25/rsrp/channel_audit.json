@@ -1,0 +1,279 @@
+{
+  "passed": true,
+  "conclusion": "instantaneous complex H including path loss, shadowing and correlated Rayleigh small-scale fading",
+  "formula": "H[t] = rho H[t-1] + rhoPrime amplitude_LS (N_real + j N_imag)",
+  "rho": 0.9938,
+  "rhoPrime": 0.0786,
+  "simulator_sha256": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "note": "Inherited rho constants are used as coded; do not reinterpret their 1 ms comment as the actual 0.5 ms experiment TTI.",
+  "evidence": [
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "pattern": "netData->rho =",
+      "matches": [
+        {
+          "line": 916,
+          "text": "netData->rho = 0.9938; // for 2.5 GHz carrier frequency, 1 ms time slot duration, 3 m/s UE moving speed"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "pattern": "netData->rhoPrime =",
+      "matches": [
+        {
+          "line": 917,
+          "text": "netData->rhoPrime = 0.0786; // sqrt(1-0.9938^2)*sqrt(0.5), for 2.5 GHz carrier frequency, 1 ms time slot duration, 3 m/s UE moving speed"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "pattern": "float PL =",
+      "matches": [
+        {
+          "line": 4564,
+          "text": "float PL = 32.4+20.0*log10(netData->carrierFreq)+30.0*log10(distanceBsUe_3D);"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "pattern": "netData->rxSigPowDB[cIdx * nActiveUe + uIdx] =",
+      "matches": [
+        {
+          "line": 4567,
+          "text": "netData->rxSigPowDB[cIdx * nActiveUe + uIdx] = netData->bsTxPower_perAntPrg + antGain - PL - SF;"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "pattern": "channMatGpu_real = rho*",
+      "matches": [
+        {
+          "line": 5031,
+          "text": "channMatGpu_real = rho*channMatGpu[currChannIdx].x + rhoPrime*sqrtAmpl*curand_normal(&states[globalThdIdx]);"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/instrumented_main.cpp",
+      "sha256": "b2c8a9a0dfd7f025669f0f78cd0a94da85e868f170c6478972bbd8a24c2df9ee",
+      "pattern": "net->genFastFadingGpu(t);",
+      "matches": [
+        {
+          "line": 1748,
+          "text": "net->genFastFadingGpu(t);  // Continuous channel time; slotIdx only wraps bounded record buffers."
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/instrumented_main.cpp",
+      "sha256": "b2c8a9a0dfd7f025669f0f78cd0a94da85e868f170c6478972bbd8a24c2df9ee",
+      "pattern": "writeDirectedSnapshot(t,",
+      "matches": [
+        {
+          "line": 2052,
+          "text": "writeDirectedSnapshot(t, net->cellGrpPrmsGpu.get(), net->cellGrpUeStatusCpu.get());"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_directed_coordination_20261008_v1/directed_snapshot.h",
+      "sha256": "6b38f5100b8cca4d3434df84cc8eb388ee3c9f28e4666e5bca0711a70df94e91",
+      "pattern": "gpu->estH_fr_actUe",
+      "matches": [
+        {
+          "line": 15,
+          "text": "CUDA_CHECK_ERR(cudaMemcpy(h.data(), gpu->estH_fr_actUe, h.size()*sizeof(cuComplex), cudaMemcpyDeviceToHost));"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/no_ctbs_inputs.py",
+      "sha256": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+      "pattern": "h = np.asarray(snapshot['h'])",
+      "matches": [
+        {
+          "line": 92,
+          "text": "h = np.asarray(snapshot['h'])"
+        }
+      ]
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/physics.py",
+      "sha256": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+      "pattern": "self.covariance = problem.h @",
+      "matches": [
+        {
+          "line": 131,
+          "text": "self.covariance = problem.h @ problem.h.conj().swapaxes(-1, -2)"
+        }
+      ]
+    }
+  ],
+  "snapshot_checks": [
+    {
+      "scene": "boundary",
+      "seed": 41,
+      "shape": [
+        36,
+        17,
+        3,
+        4,
+        4
+      ],
+      "prg_residual_over_channel_norm": 0.9703854097388024,
+      "tti_samples": [
+        8001,
+        18001,
+        28000
+      ],
+      "time_relative_differences": [
+        1.418708741444883,
+        1.4224114091126192
+      ],
+      "hashes": [
+        "03b4fe0a1285794b093688f9145c040b8e7c3a7b50499f15de709845ecefd3f2",
+        "44b0c0d3b280a6bc7de2a477a487b8ce004e627d924249357e68327e9fd7d28a",
+        "26316b9450b0988ebfbd6d57230077fad64286ad07ade5cfe722d4a6c0a5ae16"
+      ]
+    },
+    {
+      "scene": "boundary",
+      "seed": 42,
+      "shape": [
+        36,
+        17,
+        3,
+        4,
+        4
+      ],
+      "prg_residual_over_channel_norm": 0.971748884962618,
+      "tti_samples": [
+        8001,
+        18001,
+        28000
+      ],
+      "time_relative_differences": [
+        1.419978738026109,
+        1.4224779385911217
+      ],
+      "hashes": [
+        "775435a6982e66b4fff59e15a5be84ea6ed30c17642c82e11c565750312daa40",
+        "2ea8344b9947537e4c09edbb044870eb58fc82f6f5ff0d28d54c43cff72309a5",
+        "ebcdd1b7f5dfb080613a022e7efe62fa05a3f6a0cfa54999347649b23f692f4c"
+      ]
+    },
+    {
+      "scene": "boundary",
+      "seed": 43,
+      "shape": [
+        36,
+        17,
+        3,
+        4,
+        4
+      ],
+      "prg_residual_over_channel_norm": 0.9715170851517103,
+      "tti_samples": [
+        8001,
+        18001,
+        28000
+      ],
+      "time_relative_differences": [
+        1.4153258894919885,
+        1.4057072592404034
+      ],
+      "hashes": [
+        "ce6e6af11cdd9ea212705e01e0afef16c6c6f3bf56ba22d87750f92e895940ef",
+        "f7a584fb7630f0e8a915823d8f09bbdd58e6381c18a7dbb1a53af59f8a5ba026",
+        "3df1dc0d3727fa0c31dae66ad04988c8a7de91c3a0d0affbb42d9d93583c9e30"
+      ]
+    },
+    {
+      "scene": "uniform",
+      "seed": 41,
+      "shape": [
+        36,
+        17,
+        3,
+        4,
+        4
+      ],
+      "prg_residual_over_channel_norm": 0.9723328402383824,
+      "tti_samples": [
+        8001,
+        18001,
+        28000
+      ],
+      "time_relative_differences": [
+        1.4108705052891282,
+        1.396849034689163
+      ],
+      "hashes": [
+        "819c7802f7b0dee19c4db8430704f56358a9ec15e4c790f4822e4cd1db90ae90",
+        "2535b23ac450fdb09cd8fcfa86ee8a635568c7c677d8e12214a4191ab1965cf7",
+        "588d4a6bd0fef885b646e5267bf696e1620d0d5b232f7f626d1bdd1f72030196"
+      ]
+    },
+    {
+      "scene": "uniform",
+      "seed": 42,
+      "shape": [
+        36,
+        17,
+        3,
+        4,
+        4
+      ],
+      "prg_residual_over_channel_norm": 0.9734263848430406,
+      "tti_samples": [
+        8001,
+        18001,
+        28000
+      ],
+      "time_relative_differences": [
+        1.407021347514084,
+        1.4334116618568675
+      ],
+      "hashes": [
+        "ecc41faf179c5930fed26e64d0beb889ce0eb1e9e36262b99662c66186e58bc7",
+        "e2249204f514f0bd57cae9e2553d2d2d60ab8842dc89c78f574c5d49e04a47d7",
+        "f7356e6d08ecb5e4e7984901727c0dd5315078b4c0aa3049134a2eb2edb52df1"
+      ]
+    },
+    {
+      "scene": "uniform",
+      "seed": 43,
+      "shape": [
+        36,
+        17,
+        3,
+        4,
+        4
+      ],
+      "prg_residual_over_channel_norm": 0.9687120018147664,
+      "tti_samples": [
+        8001,
+        18001,
+        28000
+      ],
+      "time_relative_differences": [
+        1.41074730979926,
+        1.3867236034358772
+      ],
+      "hashes": [
+        "7b3dc43cc4b8bfd1f374a9d64acd052710bf32143ec520ae38bc203ef12e2b5e",
+        "1427ca5154378fb2448bd341c3d909c3b0a12d729b01365a94f07a7e72747ce8",
+        "a404ed7454328f74d3729e9cc70380d11775e2dc5ad4764141358267b61dbcf9"
+      ]
+    }
+  ]
+}

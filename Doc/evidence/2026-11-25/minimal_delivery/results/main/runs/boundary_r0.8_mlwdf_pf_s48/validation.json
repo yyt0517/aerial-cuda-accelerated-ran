@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "fifo_conservation": true,
+  "native_terminal_pairing": true,
+  "no_censoring": true,
+  "whole_packet_crc": true
+}

@@ -1,0 +1,408 @@
+DONE boundary_r0.8_exact_deficit_s41 1 / 72
+DONE boundary_r0.8_exact_deficit_s42 2 / 72
+DONE boundary_r0.8_exact_deficit_s43 3 / 72
+DONE uniform_r1_exact_deficit_s41 4 / 72
+DONE uniform_r1_exact_deficit_s43 5 / 72
+DONE boundary_r0.8_exact_mlwdf_pf_s42 6 / 72
+DONE boundary_r0.8_exact_mlwdf_pf_s43 7 / 72
+DONE uniform_r1_exact_mlwdf_pf_s43 8 / 72
+DONE boundary_r0.8_exact_mlwdf_pf_s41 9 / 72
+DONE uniform_r1_exact_deficit_s42 10 / 72
+DONE uniform_r1_exact_mlwdf_pf_s41 11 / 72
+DONE uniform_r1_exact_mlwdf_pf_s42 12 / 72
+PROGRESS boundary_r0.8_pilot_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s42 4000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 4000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 4000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 4000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 4000 28400
+PROGRESS uniform_r1_pilot_deficit_s41 4000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 4000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 4000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 4000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 4000 28400
+PROGRESS uniform_r1_pilot_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 4000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 4000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 4000 28400
+PROGRESS uniform_r1_spatial_deficit_s42 4000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 4000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 8000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s41 8000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 8000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 8000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_pilot_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 8000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 8000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 8000 28400
+PROGRESS uniform_r1_pilot_deficit_s42 8000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 8000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 8000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 8000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 8000 28400
+PROGRESS uniform_r1_spatial_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 8000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 8000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s43 8000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 8000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 12000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 12000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 12000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 12000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 12000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 12000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 12000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 12000 28400
+PROGRESS uniform_r1_pilot_deficit_s41 12000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 12000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s41 12000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 12000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 12000 28400
+PROGRESS uniform_r1_pilot_deficit_s42 12000 28400
+PROGRESS uniform_r1_spatial_deficit_s42 12000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 12000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s42 12000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 12000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 12000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 12000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 12000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 12000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 12000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 12000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 12000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 12000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 12000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 12000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s43 12000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s42 12000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 12000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 12000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 16000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 16000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 16000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 16000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 16000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 16000 28400
+PROGRESS uniform_r1_pilot_deficit_s41 16000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 16000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 16000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 16000 28400
+PROGRESS uniform_r1_pilot_deficit_s42 16000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 16000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s41 16000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 16000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 16000 28400
+PROGRESS uniform_r1_spatial_deficit_s42 16000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 16000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s42 16000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 16000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 16000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 16000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 16000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 16000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 16000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 16000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 16000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 16000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 16000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s42 16000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s43 16000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 16000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 16000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 20000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 20000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 20000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 20000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 20000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 20000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 20000 28400
+PROGRESS uniform_r1_pilot_deficit_s41 20000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 20000 28400
+PROGRESS uniform_r1_pilot_deficit_s42 20000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 20000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 20000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 20000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 20000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s41 20000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s42 20000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 20000 28400
+PROGRESS uniform_r1_spatial_deficit_s42 20000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 20000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 20000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 20000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 20000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 20000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 20000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 20000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 20000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 20000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s42 20000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 20000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s43 20000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 20000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 20000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 24000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 24000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 24000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 24000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 24000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 24000 28400
+PROGRESS uniform_r1_pilot_deficit_s42 24000 28400
+PROGRESS uniform_r1_pilot_deficit_s41 24000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 24000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 24000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 24000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 24000 28400
+PROGRESS uniform_r1_spatial_deficit_s42 24000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s41 24000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 24000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s42 24000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 24000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 24000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 24000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 24000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 24000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 24000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 24000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 24000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s42 24000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 24000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s43 24000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 24000 28400
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s41 28000 28400
+PROGRESS uniform_r1_frequency_deficit_s43 28000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s43 28000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s42 28000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s42 28000 28400
+PROGRESS uniform_r1_frequency_mlwdf_pf_s41 28000 28400
+DONE uniform_r1_frequency_deficit_s43 13 / 72
+DONE uniform_r1_spatial_mlwdf_pf_s41 14 / 72
+PROGRESS uniform_r1_pilot_deficit_s42 28000 28400
+PROGRESS uniform_r1_spatial_deficit_s41 28000 28400
+PROGRESS uniform_r1_frequency_deficit_s42 28000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s41 28000 28400
+DONE uniform_r1_frequency_mlwdf_pf_s43 15 / 72
+PROGRESS uniform_r1_pilot_deficit_s41 28000 28400
+PROGRESS uniform_r1_spatial_mlwdf_pf_s43 28000 28400
+DONE uniform_r1_spatial_mlwdf_pf_s42 16 / 72
+PROGRESS uniform_r1_spatial_deficit_s42 28000 28400
+PROGRESS uniform_r1_spatial_deficit_s43 28000 28400
+PROGRESS uniform_r1_frequency_deficit_s41 28000 28400
+DONE uniform_r1_frequency_mlwdf_pf_s42 17 / 72
+DONE uniform_r1_frequency_mlwdf_pf_s41 18 / 72
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s43 28000 28400
+DONE uniform_r1_pilot_deficit_s42 19 / 72
+DONE uniform_r1_spatial_deficit_s41 20 / 72
+PROGRESS boundary_r0.8_pilot_deficit_s41 28000 28400
+PROGRESS boundary_r0.8_spatial_mlwdf_pf_s42 28000 28400
+DONE boundary_r0.8_spatial_mlwdf_pf_s41 21 / 72
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s41 28000 28400
+DONE uniform_r1_frequency_deficit_s42 22 / 72
+DONE uniform_r1_pilot_deficit_s41 23 / 72
+PROGRESS boundary_r0.8_frequency_deficit_s42 28000 28400
+DONE uniform_r1_spatial_mlwdf_pf_s43 24 / 72
+DONE uniform_r1_frequency_deficit_s41 25 / 72
+DONE uniform_r1_spatial_deficit_s43 26 / 72
+DONE uniform_r1_spatial_deficit_s42 27 / 72
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s41 28000 28400
+DONE boundary_r0.8_spatial_mlwdf_pf_s43 28 / 72
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s43 28000 28400
+PROGRESS boundary_r0.8_pilot_mlwdf_pf_s42 28000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s43 28000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s43 28000 28400
+PROGRESS boundary_r0.8_pilot_deficit_s42 28000 28400
+DONE boundary_r0.8_pilot_deficit_s41 29 / 72
+DONE boundary_r0.8_reported_deficit_s41 30 / 72
+DONE boundary_r0.8_reported_deficit_s42 31 / 72
+DONE boundary_r0.8_reported_deficit_s43 32 / 72
+DONE boundary_r0.8_reported_mlwdf_pf_s41 33 / 72
+DONE boundary_r0.8_reported_mlwdf_pf_s42 34 / 72
+DONE boundary_r0.8_reported_mlwdf_pf_s43 35 / 72
+DONE uniform_r1_reported_deficit_s41 36 / 72
+DONE uniform_r1_reported_deficit_s42 37 / 72
+DONE uniform_r1_reported_deficit_s43 38 / 72
+DONE uniform_r1_reported_mlwdf_pf_s41 39 / 72
+DONE uniform_r1_reported_mlwdf_pf_s42 40 / 72
+DONE uniform_r1_reported_mlwdf_pf_s43 41 / 72
+DONE boundary_r0.8_pilot_mlwdf_pf_s41 42 / 72
+DONE boundary_r0.8_spatial_mlwdf_pf_s42 43 / 72
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s42 28000 28400
+PROGRESS boundary_r0.8_frequency_deficit_s41 28000 28400
+DONE boundary_r0.8_frequency_deficit_s42 44 / 72
+PROGRESS boundary_r0.8_pilot_deficit_s43 28000 28400
+PROGRESS boundary_r0.8_spatial_deficit_s41 28000 28400
+DONE boundary_r0.8_frequency_mlwdf_pf_s41 45 / 72
+PROGRESS boundary_r0.8_spatial_deficit_s42 28000 28400
+DONE boundary_r0.8_pilot_mlwdf_pf_s42 46 / 72
+DONE boundary_r0.8_pilot_deficit_s42 47 / 72
+DONE boundary_r0.8_pilot_mlwdf_pf_s43 48 / 72
+DONE boundary_r0.8_spatial_deficit_s43 49 / 72
+DONE boundary_r0.8_frequency_deficit_s43 50 / 72
+DONE boundary_r0.8_frequency_mlwdf_pf_s42 51 / 72
+DONE boundary_r0.8_frequency_deficit_s41 52 / 72
+PROGRESS boundary_r0.8_frequency_mlwdf_pf_s43 28000 28400
+DONE boundary_r0.8_pilot_deficit_s43 53 / 72
+DONE boundary_r0.8_spatial_deficit_s41 54 / 72
+DONE boundary_r0.8_spatial_deficit_s42 55 / 72
+DONE boundary_r0.8_frequency_mlwdf_pf_s43 56 / 72
+PROGRESS uniform_r1_pilot_deficit_s43 4000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 4000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 4000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 4000 28400
+PROGRESS uniform_r1_filtered_deficit_s41 4000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 4000 28400
+PROGRESS uniform_r1_pilot_deficit_s43 8000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 8000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 8000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 8000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 8000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 8000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s43 8000 28400
+PROGRESS uniform_r1_filtered_deficit_s41 8000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 8000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 8000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_pilot_deficit_s43 12000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 12000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 12000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 12000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 12000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 12000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 12000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 12000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 12000 28400
+PROGRESS uniform_r1_filtered_deficit_s41 12000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 12000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s42 12000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 12000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 12000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s43 12000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 12000 28400
+PROGRESS uniform_r1_pilot_deficit_s43 16000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 16000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 16000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 16000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 16000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 16000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 16000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 16000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 16000 28400
+PROGRESS uniform_r1_filtered_deficit_s41 16000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 16000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s42 16000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 16000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 16000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 16000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s43 16000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 20000 28400
+PROGRESS uniform_r1_pilot_deficit_s43 20000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 20000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 20000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 20000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 20000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 20000 28400
+PROGRESS uniform_r1_filtered_deficit_s41 20000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 20000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 20000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 20000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 20000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 20000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s42 20000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s43 20000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 20000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 24000 28400
+PROGRESS uniform_r1_pilot_deficit_s43 24000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 24000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 24000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 24000 28400
+PROGRESS uniform_r1_filtered_deficit_s41 24000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 24000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 24000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 24000 28400
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 24000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s42 24000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 24000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s43 24000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 24000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s41 28000 28400
+PROGRESS uniform_r1_pilot_deficit_s43 28000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s42 28000 28400
+PROGRESS uniform_r1_pilot_mlwdf_pf_s43 28000 28400
+DONE uniform_r1_pilot_mlwdf_pf_s41 57 / 72
+DONE uniform_r1_pilot_deficit_s43 58 / 72
+DONE uniform_r1_pilot_mlwdf_pf_s42 59 / 72
+DONE uniform_r1_pilot_mlwdf_pf_s43 60 / 72
+PROGRESS uniform_r1_filtered_mlwdf_pf_s43 28000 28400
+PROGRESS uniform_r1_filtered_deficit_s43 28000 28400
+DONE uniform_r1_filtered_mlwdf_pf_s43 61 / 72
+PROGRESS uniform_r1_filtered_mlwdf_pf_s42 28000 28400
+DONE uniform_r1_filtered_deficit_s43 62 / 72
+PROGRESS uniform_r1_filtered_deficit_s41 28000 28400
+DONE uniform_r1_filtered_mlwdf_pf_s42 63 / 72
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s42 28000 28400
+PROGRESS uniform_r1_filtered_deficit_s42 28000 28400
+PROGRESS boundary_r0.8_filtered_deficit_s41 28000 28400
+DONE uniform_r1_filtered_deficit_s41 64 / 72
+DONE boundary_r0.8_filtered_mlwdf_pf_s42 65 / 72
+PROGRESS boundary_r0.8_filtered_deficit_s42 28000 28400
+DONE uniform_r1_filtered_deficit_s42 66 / 72
+PROGRESS uniform_r1_filtered_mlwdf_pf_s41 28000 28400
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s41 28000 28400
+DONE boundary_r0.8_filtered_deficit_s41 67 / 72
+PROGRESS boundary_r0.8_filtered_deficit_s43 28000 28400
+DONE uniform_r1_filtered_mlwdf_pf_s41 68 / 72
+DONE boundary_r0.8_filtered_deficit_s42 69 / 72
+PROGRESS boundary_r0.8_filtered_mlwdf_pf_s43 28000 28400
+DONE boundary_r0.8_filtered_mlwdf_pf_s41 70 / 72
+DONE boundary_r0.8_filtered_deficit_s43 71 / 72
+DONE boundary_r0.8_filtered_mlwdf_pf_s43 72 / 72

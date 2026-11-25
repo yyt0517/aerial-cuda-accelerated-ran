@@ -1,0 +1,13 @@
+{
+  "completed": true,
+  "states": 90,
+  "passed": true,
+  "audited_rounds": 2477,
+  "audited_candidates": 3923174,
+  "new_evaluations": 163167,
+  "required_evaluations": 163167,
+  "timing_scope": "serial CPU pinned; saved-input reconstruction, weight generation/consistency check, PFQ decode, context/search/destruction; excludes raw observation copy, HOL FIFO scan, native PFQ computation, bridge and GPU simulator",
+  "repeats": 3,
+  "cpu": 128,
+  "concurrent_quality_campaign": false
+}

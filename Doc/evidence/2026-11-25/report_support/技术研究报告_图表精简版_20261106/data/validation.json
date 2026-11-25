@@ -1,0 +1,864 @@
+{
+  "passed": true,
+  "simulation_rerun": false,
+  "cohorts": 120,
+  "packets": 77748786,
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "aggregation": "Equal seed means, not pooled packet weighting",
+  "delay_bins": "MAC-completed (including CRC-damaged) split by delay; expired packets exclusively in final bin; all mature arrivals in denominator",
+  "ue_ranking": "Sort 36 UE rates within each seed and algorithm, then average each rank across seeds. Rank is not a fixed UE identity.",
+  "da_pls_all_720_ue_seed_rates_zero": true,
+  "checks": [
+    {
+      "key": "boundary_r0.8_deficit_s41",
+      "packets": 577040,
+      "expired": 3794,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s42",
+      "packets": 575616,
+      "expired": 4572,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s43",
+      "packets": 575744,
+      "expired": 3265,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s44",
+      "packets": 575953,
+      "expired": 2004,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s45",
+      "packets": 575811,
+      "expired": 1771,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s46",
+      "packets": 575302,
+      "expired": 13191,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s47",
+      "packets": 575058,
+      "expired": 11768,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s48",
+      "packets": 576006,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s49",
+      "packets": 577279,
+      "expired": 1144,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_deficit_s50",
+      "packets": 576554,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s41",
+      "packets": 577040,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s42",
+      "packets": 575616,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s43",
+      "packets": 575744,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s44",
+      "packets": 575953,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s45",
+      "packets": 575811,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s46",
+      "packets": 575302,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s47",
+      "packets": 575058,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s48",
+      "packets": 576006,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s49",
+      "packets": 577279,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_mlwdf_pf_s50",
+      "packets": 576554,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s41",
+      "packets": 577040,
+      "expired": 217051,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s42",
+      "packets": 575616,
+      "expired": 230666,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s43",
+      "packets": 575744,
+      "expired": 181674,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s44",
+      "packets": 575953,
+      "expired": 217797,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s45",
+      "packets": 575811,
+      "expired": 247668,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s46",
+      "packets": 575302,
+      "expired": 200459,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s47",
+      "packets": 575058,
+      "expired": 213903,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s48",
+      "packets": 576006,
+      "expired": 169213,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s49",
+      "packets": 577279,
+      "expired": 205832,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pf_s50",
+      "packets": 576554,
+      "expired": 190203,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s41",
+      "packets": 577040,
+      "expired": 172680,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s42",
+      "packets": 575616,
+      "expired": 196577,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s43",
+      "packets": 575744,
+      "expired": 186191,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s44",
+      "packets": 575953,
+      "expired": 184540,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s45",
+      "packets": 575811,
+      "expired": 241381,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s46",
+      "packets": 575302,
+      "expired": 203671,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s47",
+      "packets": 575058,
+      "expired": 196132,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s48",
+      "packets": 576006,
+      "expired": 147460,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s49",
+      "packets": 577279,
+      "expired": 156860,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_pfq_s50",
+      "packets": 576554,
+      "expired": 119808,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s41",
+      "packets": 577040,
+      "expired": 358367,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s42",
+      "packets": 575616,
+      "expired": 387537,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s43",
+      "packets": 575744,
+      "expired": 397700,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s44",
+      "packets": 575953,
+      "expired": 362024,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s45",
+      "packets": 575811,
+      "expired": 393326,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s46",
+      "packets": 575302,
+      "expired": 409975,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s47",
+      "packets": 575058,
+      "expired": 392345,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s48",
+      "packets": 576006,
+      "expired": 333756,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s49",
+      "packets": 577279,
+      "expired": 361543,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rr_s50",
+      "packets": 576554,
+      "expired": 335053,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s41",
+      "packets": 577040,
+      "expired": 357980,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s42",
+      "packets": 575616,
+      "expired": 386616,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s43",
+      "packets": 575744,
+      "expired": 397700,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s44",
+      "packets": 575953,
+      "expired": 361895,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s45",
+      "packets": 575811,
+      "expired": 391998,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s46",
+      "packets": 575302,
+      "expired": 409975,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s47",
+      "packets": 575058,
+      "expired": 392314,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s48",
+      "packets": 576006,
+      "expired": 333032,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s49",
+      "packets": 577279,
+      "expired": 360993,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "boundary_r0.8_rrq_s50",
+      "packets": 576554,
+      "expired": 334506,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s41",
+      "packets": 719473,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s42",
+      "packets": 719116,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s43",
+      "packets": 720466,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s44",
+      "packets": 719383,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s45",
+      "packets": 719688,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s46",
+      "packets": 719270,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s47",
+      "packets": 718216,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s48",
+      "packets": 720738,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s49",
+      "packets": 721298,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_deficit_s50",
+      "packets": 720120,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s41",
+      "packets": 719473,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s42",
+      "packets": 719116,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s43",
+      "packets": 720466,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s44",
+      "packets": 719383,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s45",
+      "packets": 719688,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s46",
+      "packets": 719270,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s47",
+      "packets": 718216,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s48",
+      "packets": 720738,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s49",
+      "packets": 721298,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_mlwdf_pf_s50",
+      "packets": 720120,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s41",
+      "packets": 719473,
+      "expired": 291952,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s42",
+      "packets": 719116,
+      "expired": 220554,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s43",
+      "packets": 720466,
+      "expired": 280005,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s44",
+      "packets": 719383,
+      "expired": 247139,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s45",
+      "packets": 719688,
+      "expired": 264273,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s46",
+      "packets": 719270,
+      "expired": 247440,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s47",
+      "packets": 718216,
+      "expired": 306741,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s48",
+      "packets": 720738,
+      "expired": 262665,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s49",
+      "packets": 721298,
+      "expired": 263267,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pf_s50",
+      "packets": 720120,
+      "expired": 283717,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s41",
+      "packets": 719473,
+      "expired": 4914,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s42",
+      "packets": 719116,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s43",
+      "packets": 720466,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s44",
+      "packets": 719383,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s45",
+      "packets": 719688,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s46",
+      "packets": 719270,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s47",
+      "packets": 718216,
+      "expired": 33484,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s48",
+      "packets": 720738,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s49",
+      "packets": 721298,
+      "expired": 6823,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_pfq_s50",
+      "packets": 720120,
+      "expired": 2364,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s41",
+      "packets": 719473,
+      "expired": 86145,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s42",
+      "packets": 719116,
+      "expired": 66676,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s43",
+      "packets": 720466,
+      "expired": 83432,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s44",
+      "packets": 719383,
+      "expired": 48186,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s45",
+      "packets": 719688,
+      "expired": 79611,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s46",
+      "packets": 719270,
+      "expired": 42752,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s47",
+      "packets": 718216,
+      "expired": 150932,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s48",
+      "packets": 720738,
+      "expired": 76750,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s49",
+      "packets": 721298,
+      "expired": 97374,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rr_s50",
+      "packets": 720120,
+      "expired": 102713,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s41",
+      "packets": 719473,
+      "expired": 46482,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s42",
+      "packets": 719116,
+      "expired": 15368,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s43",
+      "packets": 720466,
+      "expired": 54503,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s44",
+      "packets": 719383,
+      "expired": 9757,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s45",
+      "packets": 719688,
+      "expired": 42549,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s46",
+      "packets": 719270,
+      "expired": 0,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s47",
+      "packets": 718216,
+      "expired": 119914,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s48",
+      "packets": 720738,
+      "expired": 47162,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s49",
+      "packets": 721298,
+      "expired": 68019,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    },
+    {
+      "key": "uniform_r1_rrq_s50",
+      "packets": 720120,
+      "expired": 82455,
+      "core_metrics_reproduced": true,
+      "per_ue_reproduced": true
+    }
+  ]
+}

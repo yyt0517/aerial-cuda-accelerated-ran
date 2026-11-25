@@ -1,0 +1,19 @@
+{
+  "README.rst": "276da916405949f32d67bd1b5fa28820890aa01e299d44a952c9717ad84aad36",
+  "__init__.py": "07183c25cb598f49bf0daf67b086dc26d8473190a01213433b246229d422f687",
+  "report.py": "1da67e4d33b15e839bc90b7bc7c40b0324b4e0c7cef73e989961f2f26aa3b529",
+  "analyze.py": "d1856681350c57b4a9289347002a4bc67b6b6da2edcdaae2dc2e6c4b5652e3ba",
+  "policy.py": "7b5fcb0bf94237dac3da22dec2176c1666d15447cb093b1aeaf4b2eb55fe7808",
+  "seeded_solver.py": "2e7864ce478f2ffd08eb88137488848a685b90bf9e929b44669dab9a437f484a",
+  "audit.py": "f43bcd6b182ab10ea59cf8d5aef2f227d0babda8f0b11d47b344210240c45faa",
+  "run_campaign.sh": "c75e8bcb5ef47587f06ec75f8f27eeb79e71cad0605da60a986247cb9a6a1c53",
+  "build.py": "c3af94cb652a8b9ad47a7641fd5efb0cdd60cd945cb167c75ec9ce20f1ab32d2",
+  "campaign.py": "2534beaec41f1973f5ebf0e46d46d6eb962d4cd22344d8b853b026fb440d6ca7",
+  "_seeded.so": "b41c21834bfab2152faddf665fa17d0b5e44806dce87e6bb7614a0e044135013",
+  "test_policy.py": "e7225d692079bc9ed321e5b530a994a7f248ec42d09a2cba96fede79fbd50c8f",
+  "kernel/persistent_kernel.cpp": "ee54d3668e852d1913c19a77455b12bba5bf71fb55bd660d477208d40d7157ed",
+  "kernel/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+  "kernel/manifest.json": "9324cfeaf160be2ab4794fa6d50180095c6477d17a5f1246708e42b2252ad1a5",
+  "kernel/forced_start.diff": "ea7db85dcd2081277ec0879169bab0af5e0dfd2a758beb390d0547029f1ef98b",
+  "kernel/bounded_kernel.cpp": "992c2f011417bda5348632092880cfd50695e81e95109cbb18e7d1869606c426"
+}

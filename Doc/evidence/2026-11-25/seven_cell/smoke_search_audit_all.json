@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "states": 6,
+  "checks": [
+    {
+      "run": "deficit_s41",
+      "tti": 17,
+      "passed": true,
+      "rounds": 73,
+      "candidates": 657199,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 33,
+      "passed": true,
+      "rounds": 88,
+      "candidates": 686508,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 48,
+      "passed": true,
+      "rounds": 88,
+      "candidates": 654153,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 17,
+      "passed": true,
+      "rounds": 113,
+      "candidates": 965728,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 33,
+      "passed": true,
+      "rounds": 85,
+      "candidates": 746324,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 48,
+      "passed": true,
+      "rounds": 65,
+      "candidates": 551995,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    }
+  ]
+}

@@ -1,0 +1,876 @@
+{
+  "archived_on": "2026-11-25",
+  "source_root": "outputs/技术研究报告_泛化实验补充版_20261106",
+  "complete_copy": false,
+  "files": [
+    {
+      "path": "data/20组场景_逐UE配置.csv",
+      "bytes": 33829,
+      "sha256": "93356237ddbfad985e11a4a2549176693f20faf9ef4e8aa22c5ab25508402ba2"
+    },
+    {
+      "path": "data/60次实验_逐seed指标.csv",
+      "bytes": 33325,
+      "sha256": "8252802b261b06a5ec0210aff8615a05f1f2d625a4cd369e9115726fff0a6ac9"
+    },
+    {
+      "path": "data/DA-PLS相对基线_配对差值.csv",
+      "bytes": 3058,
+      "sha256": "cbe6ba42d684fcb4e143057ef8da6e3bf58a0d6756ce408afc8ffecba037fe14"
+    },
+    {
+      "path": "data/四场景_均值与范围.csv",
+      "bytes": 19493,
+      "sha256": "292e66e97c9bd30325e42b250cbf7b57256baa4392c711c02a6ccbb9ac3401ee"
+    },
+    {
+      "path": "data/字段说明.txt",
+      "bytes": 3737,
+      "sha256": "1e2005954886e16051818cf141b8546d3f916dbc2310486f9664ad21211a4981"
+    },
+    {
+      "path": "data/用户位置与实际小区关联.csv",
+      "bytes": 10290,
+      "sha256": "7cab502de8b4e721d672e799f9ebad40e8ce7d195f663c0a313836dc0b422231"
+    },
+    {
+      "path": "data/表9-5_场景配置.csv",
+      "bytes": 379,
+      "sha256": "27f9b89801087204f37acc3272116d47a6b3aaf0136734b9147d1c9e58bde697"
+    },
+    {
+      "path": "data/表9-6_核心结果.csv",
+      "bytes": 673,
+      "sha256": "82632cd7ae77311b2a3fe3a28194236b8d06563786d73d8fed6e9b423f4faf46"
+    },
+    {
+      "path": "data/表9-7_重点用户分组.csv",
+      "bytes": 693,
+      "sha256": "da82a38e71f691aad26bd1e1b92cfc5c8157035e4ae976673a0517a6c68a9857"
+    },
+    {
+      "path": "data/逐UE指标.csv",
+      "bytes": 319197,
+      "sha256": "90ab9200c7820afa3e7b518a41ac9c9708731d998d774de9be5241a846929414"
+    },
+    {
+      "path": "data/逐小区指标.csv",
+      "bytes": 34379,
+      "sha256": "154acb351aed36f024a3f195ca4bb60a249834b14f0d5641529865dc37961109"
+    },
+    {
+      "path": "data/重点分组_均值.csv",
+      "bytes": 16489,
+      "sha256": "9b92c52b28dbf45f557bbfe9457b965382727c33913c4b97707c82ce17bab0dc"
+    },
+    {
+      "path": "data/重点分组_逐seed指标.csv",
+      "bytes": 74220,
+      "sha256": "ae655ed9acb67d53740e7d58852c62023d23223b63dcc66c4df42687a2ffb87b"
+    },
+    {
+      "path": "source/experiment/__init__.py",
+      "bytes": 73,
+      "sha256": "97c12512ba2d1f6d7ba51891e703fbd604bc2acb1a5f26e831f3d2f2c7735e5b"
+    },
+    {
+      "path": "source/experiment/analyze.py",
+      "bytes": 14873,
+      "sha256": "1bbb4cd9f601f964e7c065b08103c56202d7df119cf9b6ad77c5bd36fb2fc949"
+    },
+    {
+      "path": "source/experiment/build.py",
+      "bytes": 4786,
+      "sha256": "14bfa8e3a67d0dbd46814e1a7ccd8ae2a3f0cb5ae99799892659555db414144f"
+    },
+    {
+      "path": "source/experiment/campaign.py",
+      "bytes": 9789,
+      "sha256": "bea99df5c5eba6f04c1d7888c955481e5d04f038dabe653eb0d5f4a110756b58"
+    },
+    {
+      "path": "source/experiment/fifo.py",
+      "bytes": 1626,
+      "sha256": "b911ac4b0e63afbe8c206be70728d9cd0a77948b6fa027c63f05f92ff0c628a1"
+    },
+    {
+      "path": "source/experiment/native.py",
+      "bytes": 5065,
+      "sha256": "ab2265b8db0d5b417e03a8833a0b3a6cb73fa506347da0bae3e787ee9a9f5d7f"
+    },
+    {
+      "path": "source/experiment/protocol.py",
+      "bytes": 1282,
+      "sha256": "cf2731ed9a5a2c60372482d69a03e5c03a49799c4a3c9a766d09fb3a60454069"
+    },
+    {
+      "path": "source/finalize_report.py",
+      "bytes": 3769,
+      "sha256": "d5fe1d37244e0c70ea71277352564e2200b43a4421998dd6fe92e0753f2b8b5e"
+    },
+    {
+      "path": "source/normalize_links.py",
+      "bytes": 1071,
+      "sha256": "16269177a0d9df1fc5e3070162869f88dcb56c46d2a228de80f0b67631bc6a5f"
+    },
+    {
+      "path": "source/package_results.py",
+      "bytes": 3117,
+      "sha256": "763a48f723c1de712fe1311fa615b0bf251498830c09ad0a76e753008f4bb0f6"
+    },
+    {
+      "path": "source/parallel_tail.py",
+      "bytes": 2336,
+      "sha256": "57d337343c96ba1c95e2a4ae5e612140336cc6aeaaed5e6711cfb71321b5b0e6"
+    },
+    {
+      "path": "source/render_report.py",
+      "bytes": 3520,
+      "sha256": "2b0ae591d76cd7a808520e6995827dbcbb0e223b29c93734ab7a9896dc176b3e"
+    },
+    {
+      "path": "source/result_narrative.json",
+      "bytes": 2920,
+      "sha256": "b542ea3ec051c81708e86639f39e33636536ef32c7f8ccc1ec6be00ad170a8f1"
+    },
+    {
+      "path": "source/review_results.py",
+      "bytes": 1520,
+      "sha256": "d8c1b9b2b237710813c587fdaf2c155799917993d94f632a4ccce38bc382f513"
+    },
+    {
+      "path": "source/update_generalization_report.py",
+      "bytes": 14810,
+      "sha256": "17589a482a7dd44231ad031132a3ae89b534d53e53a938430c81190b80082c60"
+    },
+    {
+      "path": "source/verify_packet_accounting.py",
+      "bytes": 2454,
+      "sha256": "4a403c75f4519ccfc9d9a37a603146c527682de44ffa3dee91a402f70a987b54"
+    },
+    {
+      "path": "source/verify_protocol.py",
+      "bytes": 3057,
+      "sha256": "98f2db1dec3afbf6a714e94c30010a8155c67b6665c6529b380b6140284da262"
+    },
+    {
+      "path": "source/watch_analysis.py",
+      "bytes": 2103,
+      "sha256": "ec1d1d0519bb2839198962b34a422c4b84524de6b809f5902c42caa4ec69c596"
+    },
+    {
+      "path": "source/write_narrative.py",
+      "bytes": 5846,
+      "sha256": "20d7a170ebc9274f56579d05eebe77f469fd126e391164fafe3526f04bb319bc"
+    },
+    {
+      "path": "交付说明.txt",
+      "bytes": 3624,
+      "sha256": "8ee80340f8ac604bc1699a016855ad677c8415f99a6613efb286ac051171e5d4"
+    },
+    {
+      "path": "核验/60次实验核验.json",
+      "bytes": 2572,
+      "sha256": "2aebf3cb022e9f053c25f9573c7220d9b9cec67c949edc9509c835dc53b0d68d"
+    },
+    {
+      "path": "核验/交付文件校验.json",
+      "bytes": 27378,
+      "sha256": "2a0b99e9642d728c67e201ff49cac19c7f991690d532f96c797ad9ab5ed9e5d5"
+    },
+    {
+      "path": "核验/原场景一致性核验.json",
+      "bytes": 196,
+      "sha256": "e855db95e70a16a8c86bdacbbe54780c96e110a247a7b93b63ef5ca79e397cdf"
+    },
+    {
+      "path": "核验/场景扩展构建记录.json",
+      "bytes": 9183,
+      "sha256": "7248014b331ff00d6922db176ccafc5ce24604fc4be956902f5dd14a734137b3"
+    },
+    {
+      "path": "核验/场景配置核验.json",
+      "bytes": 5803,
+      "sha256": "85153051ee9f5dbe602aa3c08b1115b16e762632028ae73b4bba23d47cf0403a"
+    },
+    {
+      "path": "核验/完整统计复核.txt",
+      "bytes": 24084,
+      "sha256": "df8753693f1a0dbfd87c9a4d25cfabf94afc4a6d9503f433cce2a02805c1407f"
+    },
+    {
+      "path": "核验/并行执行计划.json",
+      "bytes": 1389,
+      "sha256": "e37539e9793f8d74f744e93ff7c41916afc10ba1c0503bde1414e921de0bb017"
+    },
+    {
+      "path": "核验/并行运行完成记录.json",
+      "bytes": 3963,
+      "sha256": "a1dc76719505ef14d8cb6171c298419dc0b3bb950993a9aed394907ce7e81630"
+    },
+    {
+      "path": "核验/异构包统计核验.json",
+      "bytes": 279,
+      "sha256": "379c75c006a007d2c3418ed27229370dfb900b49d5818ee4c3f479a792b39d95"
+    },
+    {
+      "path": "核验/文档生成核验.json",
+      "bytes": 3627,
+      "sha256": "8f4d0c32286edc630fb5fc6a68c771477066005c3ec40f125794373b47e4c50b"
+    },
+    {
+      "path": "核验/最终文档核验.json",
+      "bytes": 732,
+      "sha256": "d0c853a9d01d11896c571dbd2ea2ff47f70fc6a43e6996f110ec884076de6c60"
+    },
+    {
+      "path": "核验/正式实验协议.json",
+      "bytes": 15049,
+      "sha256": "4079a70a5a3488625c146cd20572371ab05c0619c06adf3edf18787c8f048723"
+    },
+    {
+      "path": "核验/正式运行完成记录.json",
+      "bytes": 17519,
+      "sha256": "0ab6ec806cef1717faf7c068d4aecdc9833efc7281050ba613966465894fb2ee"
+    },
+    {
+      "path": "核验/正文数值核验.json",
+      "bytes": 581,
+      "sha256": "79285078566c5e949f58bab1ff74ed46b5bb0889f14184ee9224c982f1e591d0"
+    },
+    {
+      "path": "核验/测量初段输入核验.json",
+      "bytes": 1250,
+      "sha256": "f46605f8889d7111891b97247475555b9d19b9808707bb48bed39e06015b9bb0"
+    },
+    {
+      "path": "核验/短程试跑核验.json",
+      "bytes": 775,
+      "sha256": "0d1cb6676dd1381a91930fcfd8a2fe396c0c0b62372213ffbb3c44e2e5d73ae1"
+    },
+    {
+      "path": "核验/补充节文本.txt",
+      "bytes": 7557,
+      "sha256": "01e542dd463592fdaa2180cc7e0202516f7200c5e181970b07b51081738d7da1"
+    },
+    {
+      "path": "核验/视觉排版核验.json",
+      "bytes": 554,
+      "sha256": "64bc97e508cf76a3b9ad82922b46517a51270cdcca960ca6f6dd1f800dc1700e"
+    },
+    {
+      "path": "核验/运行路径映射.json",
+      "bytes": 3795,
+      "sha256": "805bb89e480bee67379ef235b12980f5b8ac362434237fa6af8984d9d726ded2"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s51_核验.json",
+      "bytes": 919,
+      "sha256": "67b476270bc6773d1efdaf44832b065c5325e81de27ff77a10aa6d289e62724f"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s51_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "7c03684650841c771a7c39d7833626db96731e11761152cb83b2eca25f16cba3"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s52_核验.json",
+      "bytes": 921,
+      "sha256": "1864a527866454685aa7c2778171a95a1081d1f9f90ec5a69c6176fe4e053715"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s52_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "d7168ab09414cfa9acca5811e2932d6f2caac6aabc57216fb7f4a1354f64a12e"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s53_核验.json",
+      "bytes": 919,
+      "sha256": "971d5a078e3f18bde870eec9d83d0817f1c216b482f174a09b290938edb486ef"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s53_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "4a954bcf4ac28933afccc5638a887b5a5dcab44bbdb9a97356e0051539a18e20"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s54_核验.json",
+      "bytes": 921,
+      "sha256": "551e57a4d6cf30f5ebb846b41ebd1ff41443cafbabfaf9fb11a5db8c26c3ce32"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s54_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "8eb8fce5fb3890fa91255795f58a0d0074b2d52244ae10d1e7eeabf22e2d0956"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s55_核验.json",
+      "bytes": 921,
+      "sha256": "522684913df1957a23abd0ddd4afa1575dd07f29e5e92b71d1ab465a94d1a378"
+    },
+    {
+      "path": "核验/逐次运行/G1_deficit_s55_输入文件校验.json",
+      "bytes": 1221,
+      "sha256": "67892735c56247078c0fd123b4a0f87727b3b74756c33ec50762d0f80a1aa1e3"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s51_核验.json",
+      "bytes": 921,
+      "sha256": "98044ef315718d4d8bac6b98449cb4ed044c949b9b6b3a1e5459953517953021"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s51_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "effe409fc3fa6feeafe4a7ae3cb344b598f5abeb8893bd40b5ce294e3e921899"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s52_核验.json",
+      "bytes": 923,
+      "sha256": "67bfc68f03056aa608ac40a79f84f4c8f9c9bcf27c7cba1616d876e29dcf9cce"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s52_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "2b5c88cd2d577f8fb2697c4c1b38b91d42301391c1a7b7f8ed53556d5dbc34db"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s53_核验.json",
+      "bytes": 921,
+      "sha256": "747e85949915a55672d4151c908ceb92fae2e5a7f0bfd2afdc7d427ed15e6c51"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s53_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "75ef28301f063a50c5085e480fbb5ccc245df83710005a1dfbeb36cd8e109e83"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s54_核验.json",
+      "bytes": 921,
+      "sha256": "5e95df4495f1ed6c988983f8a4d76a31d8329441e860752cffde4ccc38ef2780"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s54_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "75931dc6004c2509bcd1635c4f2801967ba57c6094f3aebc75290ee6e5f3829a"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s55_核验.json",
+      "bytes": 922,
+      "sha256": "0107ecb1ea537715478bed902009e286a73ede41183e8bf00377374cdab04842"
+    },
+    {
+      "path": "核验/逐次运行/G1_mlwdf_pf_s55_输入文件校验.json",
+      "bytes": 1226,
+      "sha256": "daeb71d5917ffffb8be8d065f224fc623848133ec7f8c9fa6d69d5a4cb4a649b"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s51_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s51_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "28ceaef2223829f4764b04a6d09d43489c792bd4742a08b2bbb52ccafc5307a9"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s52_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s52_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "ab0d9ad6f2a9e370c5abaed520e44ff521f96bf6b6c621ad5c1f6aa0facda52a"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s53_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s53_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "884ee24e3bd99d08ea196426afde55c7e221ce47f88275f05c0b7d6200869dff"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s54_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s54_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "c14a63ca892a2a599adb2811d8a089d077c7410a2c2d2bd5447c4ec88fe7607d"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s55_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G1_pfq_s55_输入文件校验.json",
+      "bytes": 1201,
+      "sha256": "9a170f823c1ef76d753cb3a84a648eb6f871d42ce883414f57572f5b644b8d09"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s51_核验.json",
+      "bytes": 923,
+      "sha256": "db1036230bd173f9312cea0cd20e93029bc35d54823fb60ea65f5a966d4cdaa4"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s51_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "3a3e1b3e4c5ec967a52c08a985181523390d54d310931d50696a7215739d84fe"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s52_核验.json",
+      "bytes": 918,
+      "sha256": "a7d6b02016ae2a326209ea2cadaf01459ca75272bbce1073a75734eda02a7dda"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s52_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "2417fc7cae4799be523fc9788bf1a5cd3bd336ff6dcbc94001a4524ac002a018"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s53_核验.json",
+      "bytes": 921,
+      "sha256": "3687708c92d75aa8bebc217161e220b251c3f4a478bb6e4d99d8ed63fb940156"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s53_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "47c59098468a785f23c93cd3c4a8fe58947503490134f3c5020e64cd2afe7bd0"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s54_核验.json",
+      "bytes": 921,
+      "sha256": "022445c54e8501fd440d0fbd9ec1b4dffe811526de300ab27ad2646a650bd904"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s54_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "41ba94ea551dfa904debb46126a37244485bad8641fb82f0dfeb799214da7501"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s55_核验.json",
+      "bytes": 919,
+      "sha256": "3a864f92fa1d9e273e201d6acfbd7363eb5ffdfe7e913e63156552c590283d64"
+    },
+    {
+      "path": "核验/逐次运行/G2_deficit_s55_输入文件校验.json",
+      "bytes": 1221,
+      "sha256": "c0bd2e83b13623acc4fe47e4fbebfc6351dc4e1d8f72d11099ca1b446b7c4a22"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s51_核验.json",
+      "bytes": 921,
+      "sha256": "c9efcbcc90e8d40736af607231dd64204b07055fc6adbcf00ed0a68a7d39ece1"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s51_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "09a632d17ca7e30de79c22d42f6c85643df8c2246ec26e04056c288ec3de9374"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s52_核验.json",
+      "bytes": 901,
+      "sha256": "c4f2ec3470f54e1fb2bf2bcbadf9c0807ced5ff3b947e316483ff605da78c5e8"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s52_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "c83e167d48dd33842601e34b5b99f4bf2793737c625acba9d7d5a20f9af0c4dc"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s53_核验.json",
+      "bytes": 918,
+      "sha256": "1b89e518396313da73bf371289cb4022265738834bc8a6bb381e7aa8ddabefba"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s53_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "708eb0e5f23541c87012d6cb2a5075a6d61ab60116a600601adfe69013a99447"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s54_核验.json",
+      "bytes": 920,
+      "sha256": "9f7311edda4b04f4cab263dae3f6ba625bc15c4ee51a660d8c290d6717f2bcea"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s54_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "e5a911e889a769504c525aeb6263bcab0a481d64aa727f65498dbec025c11c95"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s55_核验.json",
+      "bytes": 922,
+      "sha256": "400b5908be56763e7029179b8e41c9b410c5b259ac21bdd07c42ef161a9ea31f"
+    },
+    {
+      "path": "核验/逐次运行/G2_mlwdf_pf_s55_输入文件校验.json",
+      "bytes": 1226,
+      "sha256": "4a0b4ae5905319a27d1c2f4daf9fcf9f9d9a7e22e73539d4b9e39bb5b35e850f"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s51_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s51_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "f8a04bcbaf8a9b27d970e269d5545705d0fde2c6feabd50e1642d8d27a467144"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s52_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s52_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "a6a98abb4bcb28f4434bbad009f66907ac6dc13c2f842410b03ba4dfae358092"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s53_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s53_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "fa5321c47d8f98eabb1c20259b820607cda3575dcbe1a6e2bacdcbc65bd21ff6"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s54_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s54_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "3f2dc1c59d9f5b87997c6d540cbdf8ec07aa3d2980838a04cc9ff12d3ba3b253"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s55_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G2_pfq_s55_输入文件校验.json",
+      "bytes": 1201,
+      "sha256": "2ab9a07ebbe7ef968369081d0c09e0c2e844c101e2b31f565883588961889027"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s51_核验.json",
+      "bytes": 922,
+      "sha256": "5f6123f7c8cc8d6e1fdbd085c89cf1a07ec633e651b6ed781aa868ac6df7abce"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s51_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "bccaf6c436c1b2598e7e3fe6bceb35526b24095450eef37bd533427ae7ff335b"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s52_核验.json",
+      "bytes": 922,
+      "sha256": "d43078e434d1ce03e8a8c0e89b2ee55b9f31d334fa2a9d3d2ec3e6e463344f52"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s52_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "540272b0564c0e02c4c4505a81ede455b51b850bab1f52b77af6b6343b65f2e6"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s53_核验.json",
+      "bytes": 920,
+      "sha256": "94a6c0deb2dd1be53b48bd0472c10758a67a3f3b148fb6e13381211053966ccf"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s53_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "25565f8baffa643570dc1ba37a9b528932628957ace0e3af1e82d5eeb59a3380"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s54_核验.json",
+      "bytes": 919,
+      "sha256": "1b3aa2a49dde4ff70c212c373884651c19ae27d8e4a226a3ddf81aea00ce18c8"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s54_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "31926e0d6296abfa7975d6bc5896d0f80900533bf7bdc84ebe9492c1899177b2"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s55_核验.json",
+      "bytes": 921,
+      "sha256": "1b9b03001938655756ea7bb320a54ad984b9b2deec0c39d9c51bcff56591a369"
+    },
+    {
+      "path": "核验/逐次运行/G3_deficit_s55_输入文件校验.json",
+      "bytes": 1221,
+      "sha256": "7d07458ed1eb5cb97bdca57e27489823fdda6ccd75a329653186c2dc3380972d"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s51_核验.json",
+      "bytes": 919,
+      "sha256": "ea587ab6f6fe492591f8a8b915cad1932edc8bb5d115ce8657272e2e8c318000"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s51_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "a8c1eedf6670760838611f15b44d51de8f57236927659e9b401c0566c2abad5f"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s52_核验.json",
+      "bytes": 919,
+      "sha256": "6f8bc42607a6fc9208251ba0796b4ee588bc9b415174ef18842e664ea2c543b4"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s52_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "8d28265b36ed5e9a91a93cc104f998d8a98139b3253da343c8d5453a2b7f6d4f"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s53_核验.json",
+      "bytes": 919,
+      "sha256": "364f357a68311cf4b104fb56ae62dd9d01e41ff9cb271d654c873209af01d8f6"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s53_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "cab871cac2d413119b93c40e59f4ed2cafd6731062b77a714bf709db00cb3d23"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s54_核验.json",
+      "bytes": 922,
+      "sha256": "efad14edb7948abf9267020f6790d1d07b4898574c6611819cd1d9d9eaf228da"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s54_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "3d25fa8000e4ea0b8007ee456037f69b53f0723259a1f4cf02e48e3a3f690c03"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s55_核验.json",
+      "bytes": 920,
+      "sha256": "92d784aac9cedb611b0af2d310205ae380082d018aa2f3a4f7a2af3f685c65fd"
+    },
+    {
+      "path": "核验/逐次运行/G3_mlwdf_pf_s55_输入文件校验.json",
+      "bytes": 1226,
+      "sha256": "0a99cd87edfcfb04e58bcaad95e25a5245fbd3697c5a3d676316286a39b4ce91"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s51_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s51_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "561cfb70c7ce93a4048ddb881a639ea4261029dbf64207e7702dd811a54a26f9"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s52_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s52_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "db2c0734c544cbbbe52d430a47e3f613558c45e11cb06c49217158e0f6320d57"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s53_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s53_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "60ba0fa78075810342288eb32a68ec13ceb46ac75f5525ed1f803d0cbf3396b1"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s54_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s54_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "d1b608414e98d5b79737dbf743f6b90da0d3a34ddadc1fbcd49200486b80801e"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s55_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G3_pfq_s55_输入文件校验.json",
+      "bytes": 1201,
+      "sha256": "ba5984c09021d61c43693c66decfb0ef5208b3e25ae17f19ff5c036a525f6265"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s51_核验.json",
+      "bytes": 903,
+      "sha256": "68e98350eea4c61d9205ee5c588d6a8d9b61c3c2975802527b7b29290cca278d"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s51_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "505ddaffc2f8604b7a20695e9202a0dbb2cceea9acbe912ff64eb4ab3fee95a9"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s52_核验.json",
+      "bytes": 922,
+      "sha256": "530d25b8781b26db997d78c27ad096cdac988fb1a4811c64682189a5aeb029b7"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s52_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "5208329ec426ced74ec8f9b24b624ff5ed3654034d52f58918160592d73b3c09"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s53_核验.json",
+      "bytes": 900,
+      "sha256": "935fe83efdf4d37d060d2eae170778ae3a2d3656fa2ce029e054c341a3b4689c"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s53_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "023c2559dc0a4f6b660eeb0ce9626eb9fdc11bfdc2697143727a77a2f1a79436"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s54_核验.json",
+      "bytes": 903,
+      "sha256": "a65b886aa881251036d8fd2e5be91193c3a83b47cd39ab17b25b4a1258c418a0"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s54_输入文件校验.json",
+      "bytes": 1137,
+      "sha256": "1c2d82e0da46dfd03aa76929a222c195a46a8c1a5e08f02805e51ee0edf40c4a"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s55_核验.json",
+      "bytes": 902,
+      "sha256": "1a2306007aa9f2aa1539c5aa37835f0bd51efde9090a5f960225696a267770b0"
+    },
+    {
+      "path": "核验/逐次运行/G4_deficit_s55_输入文件校验.json",
+      "bytes": 1221,
+      "sha256": "5b2016d8f11bbeb5fe3ba650acf759c09e22d0a47d4efdff08956ab4afc7423a"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s51_核验.json",
+      "bytes": 903,
+      "sha256": "de7a46e6443d0ec5bdbfa3f887135469c1f0cf1ab04b2869d463e59b64d6a980"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s51_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "c3790a0977541e9cca6ef4af6d4ed08cd274e6b0f77401315a1bb3b751441955"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s52_核验.json",
+      "bytes": 922,
+      "sha256": "aeabbef449a728948337e0a18d7a8dbf5812f4d77d95bcc2343a108cafa8208b"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s52_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "f3ea3c0b76812a31ad3f9bf807f2927a460dbb1100dbd4cd54e7e0c22ccac277"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s53_核验.json",
+      "bytes": 922,
+      "sha256": "d4e6882ef355199019507e5da9b4e992898ab224259fb430885d9ff9f5546996"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s53_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "00e1912b25f7c0bc0ecfb3305a785d496b83241ac875a12e16c941819bf49de2"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s54_核验.json",
+      "bytes": 920,
+      "sha256": "fdcc4ee66989e5f5a07d3e430da8fa0e9d99f93c62a3d85bd79f60aab8a3e279"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s54_输入文件校验.json",
+      "bytes": 1142,
+      "sha256": "405bab31d89ca359b6c09eb5cbf0a34b1a31cc3a7301b893e07feca2f2772aa1"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s55_核验.json",
+      "bytes": 918,
+      "sha256": "426c2983117b1ce5eab47bb93523f540365c59be9162c7759a799b2c92bdcf16"
+    },
+    {
+      "path": "核验/逐次运行/G4_mlwdf_pf_s55_输入文件校验.json",
+      "bytes": 1226,
+      "sha256": "2d71bce145d92d04e60eb45b74ad30017cb726f9f4cde548eb51fa36e80b9a2c"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s51_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s51_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "50b2630d017ab27f55f718218ea9f59305bd9ef6b24fd6234d211a90d2b17db8"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s52_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s52_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "6192619074d20403f35015ef7df2bf5a455e945d761eea17cd54f94ad7eca92e"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s53_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s53_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "05d32f04e82f0b78295f552b7c52075765283dfa6f7d090c1b9b513196e195ea"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s54_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s54_输入文件校验.json",
+      "bytes": 1117,
+      "sha256": "5451a41f69277e0b012a20e9f3bd7279ed8e040a2ebef0dcf9d595a72e09adad"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s55_核验.json",
+      "bytes": 242,
+      "sha256": "8d7403d66e6e425b52fb71c3b9df1d020226f7f70cbf827e904c16f2e65102ff"
+    },
+    {
+      "path": "核验/逐次运行/G4_pfq_s55_输入文件校验.json",
+      "bytes": 1201,
+      "sha256": "b7bc71290c5e26546be381c4ba98a268d3d337f6b351ccbee907b9f486cb5b62"
+    }
+  ],
+  "omitted_files_by_extension": {
+    ".pyc": 5,
+    ".docx": 1,
+    ".pdf": 2,
+    ".zip": 1,
+    ".png": 9
+  },
+  "omitted_bytes": 28757194,
+  "scope": "Frozen source bytes. Omitted raw data, binaries and exports remain local; original manifests may reference omitted files."
+}

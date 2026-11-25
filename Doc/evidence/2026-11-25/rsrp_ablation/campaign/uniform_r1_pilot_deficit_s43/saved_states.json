@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_pilot_deficit_s43/states/tti008001.pt",
+    "sha256": "ee8ce121ba7a9b9920a03ad105bab9fceca566ec20d8c9e873c8a61dfca3aded"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_pilot_deficit_s43/states/tti018001.pt",
+    "sha256": "880919a30ff969adc7981f2f8bd95ed9c5fe4a9b96dcfda1c43dd2414c7398d9"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_pilot_deficit_s43/states/tti028000.pt",
+    "sha256": "a4911b20de44c55fb8629f817a793557ad4e00c73cc3101b775c484dd5c189eb"
+  }
+]

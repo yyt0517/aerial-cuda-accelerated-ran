@@ -1,0 +1,24 @@
+{
+  "archived_on": "2026-11-25",
+  "source_root": "outputs/二阶段验收_交付内容补充_20261123",
+  "complete_copy": false,
+  "files": [
+    {
+      "path": "source/add_delivery_slides.py",
+      "bytes": 14603,
+      "sha256": "53cc6f331e2de73c1ed2d5ce4be07f85cdf18cb42f7307f1d3498be7bf6391b5"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 625,
+      "sha256": "c1ade7ed39fc5a0fdcdce1e7d5f170004552ea4b737bf250a24a239d8e61fb81"
+    }
+  ],
+  "omitted_files_by_extension": {
+    ".pptx": 1,
+    ".pdf": 2,
+    ".png": 3
+  },
+  "omitted_bytes": 20260422,
+  "scope": "Frozen source bytes. Omitted raw data, binaries and exports remain local; original manifests may reference omitted files."
+}

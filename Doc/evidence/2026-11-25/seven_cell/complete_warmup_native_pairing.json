@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seed": 41,
+      "arm": "deficit",
+      "tti": 4000,
+      "all_native_metrics_exact": true
+    },
+    {
+      "seed": 41,
+      "arm": "mlwdf_pf",
+      "tti": 4000,
+      "all_native_metrics_exact": true
+    },
+    {
+      "seed": 42,
+      "arm": "deficit",
+      "tti": 4000,
+      "all_native_metrics_exact": true
+    },
+    {
+      "seed": 42,
+      "arm": "mlwdf_pf",
+      "tti": 4000,
+      "all_native_metrics_exact": true
+    },
+    {
+      "seed": 43,
+      "arm": "deficit",
+      "tti": 4000,
+      "all_native_metrics_exact": true
+    },
+    {
+      "seed": 43,
+      "arm": "mlwdf_pf",
+      "tti": 4000,
+      "all_native_metrics_exact": true
+    }
+  ]
+}

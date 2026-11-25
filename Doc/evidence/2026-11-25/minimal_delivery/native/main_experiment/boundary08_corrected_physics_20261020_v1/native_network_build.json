@@ -1,0 +1,37 @@
+{
+  "source_sha256": {
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/cuMAC/examples/network.cu": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/cuMAC/examples/network.h": "a83e98ada69c1255e8ca7f36777d7b842717b1d3ed9043b1f083244a4e25ac59"
+  },
+  "object_sha256": "b9719cce98123f21f2ac7f2b59fbb2ef8e697d81241489f6b19c629fd6d7f7e4",
+  "command": [
+    "/usr/local/cuda/bin/nvcc",
+    "-forward-unknown-to-host-compiler",
+    "-DAERIAL_METRICS",
+    "-DAERIAL_SDK_VERSION=\"25-3-cubb\"",
+    "-DENABLE_L2_SLT_RSP",
+    "-DENABLE_SCHED_FIFO_ALL_RT",
+    "-DFMT_SHARED",
+    "-DNVIPC_FMTLOG_ENABLE",
+    "-DUSE_PUSCH_PER_UE_PREQ_NOISE_VAR=1",
+    "--options-file",
+    "CMakeFiles/multiCellSchedulerUeSelection.dir/includes_CUDA.rsp",
+    "-O3",
+    "-DNDEBUG",
+    "-std=c++17",
+    "-arch=native",
+    "-Werror=all-warnings",
+    "-x",
+    "cu",
+    "-c",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/cuMAC/examples/network.cu",
+    "-o",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network.o"
+  ],
+  "old_artifacts_sha256": {
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_fast_multiseed_20261010_v1/simulator": "d6c4b84466bfe87b44bf752cd9f47967a766e7125b6807982d11ada85c6ade84",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/src/libcumac.so": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/examples/multiCellSchedulerUeSelection/CMakeFiles/multiCellSchedulerUeSelection.dir/__/network.cu.o": "ab5c45f5209e361e97a697db717c864d261786ca3b262a40605a5d0fd908c584",
+    "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/build.corrected_uniform_v1/cuMAC/examples/multiCellSchedulerUeSelection/CMakeFiles/multiCellSchedulerUeSelection.dir/main.cpp.o": "9fbd81284cd9ad72ee717ac6e0c6204ffe47f00a16f37ae340f3aafd26ab4ad3"
+  }
+}

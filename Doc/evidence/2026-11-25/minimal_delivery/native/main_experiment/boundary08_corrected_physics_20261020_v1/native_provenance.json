@@ -1,0 +1,32 @@
+{
+  "upstream_release_commit": "654c2491461e8073321ef472b68deb116241e8a6",
+  "upstream_release_label": "Release 25-3",
+  "upstream_url": "https://raw.githubusercontent.com/NVIDIA/aerial-cuda-accelerated-ran/654c2491461e8073321ef472b68deb116241e8a6/cuMAC/examples/network.cu",
+  "upstream_matches_local_git_blob": true,
+  "upstream_source_sha256": "d2d5f534bde65fb1e66341909964cd3220ea3ec3ecce634b11440f743e2c5b5e",
+  "original_fixed_association_lines": [
+    339,
+    356
+  ],
+  "original_svd_nominal_lines": [
+    3916,
+    3920
+  ],
+  "original_shadow_lines": [
+    283,
+    3415,
+    3450
+  ],
+  "strongest_association_added_commit": "6c31b20aa1ce277a7906b788b5c9b15bae4485f6",
+  "strongest_association_added_date": "2026-02-28",
+  "strongest_association_source_lines": [
+    3673,
+    3710
+  ],
+  "unchanged_nominal_svd_at_introduction_lines": [
+    4230,
+    4233
+  ],
+  "conclusion_svd": "The nominal SVD selection was upstream. Under upstream fixed nominal association it matched the serving link. The local strongest-association extension changed that assumption without adapting SVD input, producing the audited fixed-strongest mismatch. This finding does not claim every upstream dynamic-association mode was audited.",
+  "conclusion_shadow": "The dB-vs-lognormal-ln-sigma mismatch was already present in the upstream Release25-3 source."
+}

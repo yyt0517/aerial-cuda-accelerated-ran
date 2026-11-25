@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "horizon": 28400,
+  "simulator": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "libcumac": "7b414f13851e50da73c91db3fc1342017113c8180a04148606f24a5adcc08eea",
+  "native_shadow_parameters": [
+    {
+      "std_db": 3.0,
+      "ln_std": 0.690775514
+    }
+  ],
+  "native_log_sha256": "0c626356acf76349a4f197717a31a7da91595105066e3e97faf11bb4ffba3a80"
+}

@@ -1,0 +1,114 @@
+{
+  "passed": true,
+  "states": 18,
+  "checks": [
+    {
+      "run": "deficit_s41",
+      "tti": 8001,
+      "rounds": 63,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 18001,
+      "rounds": 65,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 28000,
+      "rounds": 58,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 8001,
+      "rounds": 73,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 18001,
+      "rounds": 41,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 28000,
+      "rounds": 55,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 8001,
+      "rounds": 66,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 18001,
+      "rounds": 77,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 28000,
+      "rounds": 71,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 8001,
+      "rounds": 63,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 18001,
+      "rounds": 68,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 28000,
+      "rounds": 74,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 8001,
+      "rounds": 69,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 18001,
+      "rounds": 67,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 28000,
+      "rounds": 63,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 8001,
+      "rounds": 69,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 18001,
+      "rounds": 58,
+      "exact_saved_and_executed_action": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 28000,
+      "rounds": 57,
+      "exact_saved_and_executed_action": true
+    }
+  ]
+}

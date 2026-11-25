@@ -1,0 +1,8 @@
+{
+  "seed": 41,
+  "arm": "mlwdf_pf",
+  "label": "DA-PLS",
+  "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_20261105_v1/campaign/mlwdf_pf_s41",
+  "smoke": false,
+  "native_passed": true
+}

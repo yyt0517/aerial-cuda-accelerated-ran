@@ -1,0 +1,25 @@
+test_approximate_phy_and_bounded_search_match_independent_oracles (training.stageb_rsrp.test_model.RsrpTests) ... ok
+test_delayed_periodic_reports_and_linear_filter (training.stageb_rsrp.test_model.RsrpTests) ... ok
+test_neighbor_phase_and_unmeasured_ports_cannot_leak_into_report (training.stageb_rsrp.test_model.RsrpTests) ... ok
+test_scalar_covariance_and_original_execution_are_unchanged (training.stageb_rsrp.test_model.RsrpTests) ... ok
+test_filtered_and_reported_are_causal_and_old_endpoint_exact (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_frequency_step_is_average_of_spatial_covariances (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_profile_observer_and_pruning_do_not_change_decisions (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_spatial_step_preserves_each_prg_source_power (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_delay_hold_and_receiver_reuse (training.stageb_rsrp_covariance.test_model.SpatialTests) ... ok
+test_feedback_counts_only_neighbors_and_normalized_degrees (training.stageb_rsrp_covariance.test_model.SpatialTests) ... ok
+test_isotropic_packet_matches_scalar_phy_and_ignores_neighbor_H (training.stageb_rsrp_covariance.test_model.SpatialTests) ... ok
+test_singular_covariance_and_exact_search_reference (training.stageb_rsrp_covariance.test_model.SpatialTests) ... ok
+test_trace_psd_encoding_and_power_separation (training.stageb_rsrp_covariance.test_model.SpatialTests) ... ok
+test_eighty_four_users_including_high_bits (training.stageb_sevencell.test_scale.ScaleTests) ... ok
+test_original_three_cell_parity (training.stageb_sevencell.test_scale.ScaleTests) ... ok
+test_forced_lower_scoring_seed_and_original_floor (training.stageb_sevencell_multistart.test_policy.PolicyTests) ... ok
+test_same_state_branches_and_old_actions (training.stageb_sevencell_multistart.test_policy.PolicyTests) ... ok
+test_guard_rejects_high_score_and_keeps_boundary_and_ties (training.stageb_sevencell_guarded.test_policy.PolicyTests) ... ok
+test_real_dpls_endpoint_and_new_search_full_oracle (training.stageb_sevencell_guarded.test_policy.PolicyTests) ... ok
+test_young_queues_keep_base_and_weights_are_bounded (training.stageb_sevencell_guarded.test_policy.PolicyTests) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 14.771s
+
+OK

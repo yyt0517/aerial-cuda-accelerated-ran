@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "points": 220,
+  "existing_metrics_unchanged": [
+    "payload_mbps",
+    "goodput_mbps",
+    "expiry_pct",
+    "other_nondelivery_pct",
+    "delay_mean_ms",
+    "delay_p95_ms",
+    "ue_payload_p5_mbps",
+    "ue_goodput_p5_mbps",
+    "jain_payload",
+    "jain_goodput",
+    "worst_ue_expiry_pct",
+    "sinr_tx_mean_db",
+    "mcs_tx_mean",
+    "prg_occupancy_pct",
+    "bytes_per_used_prg",
+    "tb_error_pct",
+    "reuse_0_pct",
+    "reuse_1_pct",
+    "reuse_2_pct",
+    "reuse_3_pct",
+    "success_pct"
+  ],
+  "new_metrics": [
+    "success_pct",
+    "outcome_mean_ms",
+    "outcome_p95_ms",
+    "offered_mbps",
+    "served_mbps",
+    "ue_payload_mean_mbps",
+    "ue_goodput_mean_mbps",
+    "queue_mean_mb",
+    "queue_start_mb",
+    "queue_end_mb",
+    "layer_tx_mean",
+    "cluster_goodput_spectral_efficiency",
+    "worst_cell_goodput_spectral_efficiency"
+  ],
+  "report_delay_quantiles": [
+    0.95
+  ],
+  "previous_release": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104",
+  "simulation_rerun": false
+}

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "complete": true,
+  "runs": 12,
+  "expected": 12,
+  "paired_checks": [
+    {
+      "scenario": "G1",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G2",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G3",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G4",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    }
+  ],
+  "packets": 24387,
+  "saved_states_verified": 24,
+  "exact_search_rounds": 534,
+  "scope": "Mature cohort and full-payload CRC, per-seed averaging, paired topology/arrivals/warmup; saved-state exact enumeration and native PHY"
+}

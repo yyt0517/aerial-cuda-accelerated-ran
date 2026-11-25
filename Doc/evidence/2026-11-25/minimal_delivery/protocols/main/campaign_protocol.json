@@ -1,0 +1,1365 @@
+{
+  "version": "stage2_closure_v1",
+  "seeds": [
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "jobs": [
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "mlwdf_pf",
+      "seed": 50
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 44
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 45
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 46
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 47
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 48
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 49
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "mlwdf_pf",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "deficit",
+      "seed": 50
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 44
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 45
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 46
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 47
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 48
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 49
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "deficit",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pfq",
+      "seed": 50
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 44
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 45
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 46
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 47
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 48
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 49
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pfq",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "equal",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl1",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "ttl2",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "exp_pf",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rr",
+      "seed": 50
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 44
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 45
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 46
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 47
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 48
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 49
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rr",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "rrq",
+      "seed": 50
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 44
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 45
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 46
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 47
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 48
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 49
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "rrq",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "arm": "pf",
+      "seed": 50
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 44
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 45
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 46
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 47
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 48
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 49
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "arm": "pf",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "mlwdf_pf",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "mlwdf_pf",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "deficit",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "deficit",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 44
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 45
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 46
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 47
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 48
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 49
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.12,
+      "arm": "pfq",
+      "seed": 50
+    },
+    {
+      "scene": "boundary",
+      "rate": 1.28,
+      "arm": "pfq",
+      "seed": 50
+    }
+  ],
+  "smoke": false,
+  "windows": {
+    "warmup": 4000,
+    "settling": 4000,
+    "measured": 20000,
+    "followup": 400
+  },
+  "sources": {
+    "training/stage2_closure/campaign.py": "20d6d881b081d1c5edfc543fba419b8e378c8dea00d1e126a5ce21bd6058e84e",
+    "training/stage2_closure/native.py": "658665747080c27812baefd007b33819910cc50075b82962e24ab40bd45c8c72",
+    "training/stage2_closure/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "training/stageb_lns/_bounded.so": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+    "training/stageb_lns/_persistent.so": "a2a02219a8f042f37f4f7c75a6874425cafcfa9ded29d782f2dcd4a4444cce07",
+    "training/stageb_lns/bounded_dpls.py": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+    "training/stageb_lns/persistent_dpls.py": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+    "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+    "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+    "training/stageb_lns/crossload_native.py": "4e0d6fcb75bf2621152273d45d77f609f54b667f45bc65ad4d05a9b474a8c7f7",
+    "training/stageb_lns/ttl_weights.py": "ee227410112c3e0fd830f62bfb3e70b663f1d5d5806ea274dcfebac6b2736a00"
+  },
+  "simulator": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "statistical_unit": "seed; equal seed means; paired t CI; separate 44-50 robustness subset, not pristine unseen seeds",
+  "timing": "parallel trajectories descriptive only; serial saved-state cost measured separately",
+  "variants": "all search arms raw PFQ initialization and 90% raw-PFQ dequeue floor; no CTBS scheduler",
+  "execution": {
+    "mps_pipe": "/tmp/stage2_closure_mps_pipe",
+    "cuda_connections": "2"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "unit_tests": 3,
+  "full_oracle_policy_tests_states": 3,
+  "smoke_native_ttis": 448,
+  "smoke_decision_ttis": 432,
+  "smoke_saved_states": 3,
+  "smoke_full_neighborhood_branch_searches": 9,
+  "smoke_paired_inputs_equal": true,
+  "policy_sources_same_as_smoke": true,
+  "post_smoke_changes": [
+    "training/stageb_sevencell_guarded/finalize.py"
+  ],
+  "post_smoke_change_reason": "Packaging-only: hash a sealed execution-log copy because finalizer writes stdout to live pipeline.log.",
+  "source_files_frozen": 57,
+  "lambda_value": 0.1,
+  "beta": 0.98
+}

@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "packet_fifo_crc_conservation": true,
+  "no_censoring": true,
+  "per_ue_packet_sizes_verified": true,
+  "native_reward_matches_reconstruction": true,
+  "actual_serving_association_verified": true,
+  "saved_states": []
+}

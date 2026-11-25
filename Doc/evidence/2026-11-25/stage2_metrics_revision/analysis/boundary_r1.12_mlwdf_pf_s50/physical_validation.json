@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "tti": 8001,
+      "tx_ues": 15,
+      "sinr_max_abs_db": 1.914982764361639e-06,
+      "bler_max_abs": 6.781705774172586e-07,
+      "passed": true
+    },
+    {
+      "tti": 18001,
+      "tx_ues": 17,
+      "sinr_max_abs_db": 7.844422185598887e-06,
+      "bler_max_abs": 7.422353270614135e-07,
+      "passed": true
+    },
+    {
+      "tti": 28000,
+      "tx_ues": 20,
+      "sinr_max_abs_db": 6.189180250970594e-06,
+      "bler_max_abs": 1.6512088992504115e-06,
+      "passed": true
+    }
+  ],
+  "sinr_tolerance_db": 0.005,
+  "bler_tolerance": 0.0005,
+  "scope": "selected full-TB values vs independent NumPy MMSE and actual native transmission; separate float tolerance from exact actions/bytes"
+}

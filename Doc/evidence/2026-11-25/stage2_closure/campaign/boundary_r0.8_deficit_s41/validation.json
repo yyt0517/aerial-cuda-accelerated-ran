@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "horizon": 28400,
+  "exact_native_actions": 28400,
+  "fresh_input_checks": 28400,
+  "exact_mcs_layer_tbs_dequeue": 28400,
+  "no_ctbs_action_clipping": true,
+  "equal_ue_reward": true,
+  "sources_unchanged": true,
+  "elapsed_s": 3838.1832413505763
+}

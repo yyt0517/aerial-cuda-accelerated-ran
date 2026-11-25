@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t1_deficit_s42/diagnostic_states/tti009616.pt",
+    "sha256": "5eec2d0b2572b48b7f75b11caa69e6d9772f317e769ab8b9b22212d3cd4a4c7e"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t1_deficit_s42/diagnostic_states/tti012640.pt",
+    "sha256": "3279d16512247ae514f91ac6e85b07ebc130ba598bd4e87c424f81e7a637c093"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t1_deficit_s42/diagnostic_states/tti015695.pt",
+    "sha256": "2193b4a9c58cd1612ca6e68c3fa3674cc074a3f1c629af79af2dbf4b70789267"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t1_deficit_s42/diagnostic_states/tti018730.pt",
+    "sha256": "e216ed34cb4bae22411069947a8f05e990ba830f7408ae030d3382a9fa627c58"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t1_deficit_s42/diagnostic_states/tti021739.pt",
+    "sha256": "c0e3ccfedeba9749c2692c1e6868d7f57a2b73223bae97e016fa4e2719c54322"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t1_deficit_s42/diagnostic_states/tti024777.pt",
+    "sha256": "73f10c2f37bc6065e213d97a2626f028812df0469e3921ebd59f75042240c102"
+  }
+]

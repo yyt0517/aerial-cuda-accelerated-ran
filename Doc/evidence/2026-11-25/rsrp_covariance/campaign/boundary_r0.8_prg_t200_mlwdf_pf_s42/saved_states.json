@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t200_mlwdf_pf_s42/states/tti008001.pt",
+    "sha256": "8c8c09d5e710976110fbe60a0db1c58d7972faa68515de4115d65ed5917e2a76"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t200_mlwdf_pf_s42/states/tti018001.pt",
+    "sha256": "6bdcd687cbaec76560bcbc079eaf62351ca6b8fd48ac87383d9b05a0cbf7b4f9"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t200_mlwdf_pf_s42/states/tti028000.pt",
+    "sha256": "0980fd2e564d3325df906684d498134a82567ff97813cea8cf944b94a0396eb8"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "completed": true,
+  "runs": 24,
+  "new_runs": 12,
+  "reused_runs": 12,
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "code_audit": "instantaneous H, not large-scale-only",
+  "artifacts": {
+    "report.html": "33bad0ee55bea64b66e481163eb04b7a1598fae86e0483885a5fc9cbfa3e8ff0",
+    "quality.png": "5324d5b92331c525308d8a157afd59accc73e75dd4fd46c954414427b18e0b48",
+    "timing.png": "58c2a0f45a74bc1689b911e40201c11a91bb7e077c24c4cbc9404da59a4193bc",
+    "comparison.csv": "b4fb27b71eb3f6deb49c6b164e17ed34efbebc2c369c01f076386184eabded3b",
+    "analysis/per_seed.csv": "f618dae429552fd34f945989850d6cf0a92a1792722ac580f6d7b83420c6bfab",
+    "analysis/paired.csv": "a02b3000ea8874f786effddb8d726e2b6a152b266d6c84035ea5ee754fe0f4d7",
+    "analysis/pairing.json": "0dd86b922a97aeac1535452b7ff2e703bb96009bd2954f4e0be17de30cc9e78a",
+    "timing/validation.json": "3bcf6a7465c393e74d190aa30c06f3a57b94fad6e8169faa1b7cf0412a323728"
+  },
+  "source_sha256": {
+    "model.py": "5922d14374740fa019cf79d454940dc8fb1846d0e0f9894e8f14bd7751a0091e",
+    "README.rst": "c6e0489187faaacc63d57eed811561803742db96e85d5f4090d74787387b05f5",
+    "__init__.py": "017e0d40d270437c1b3bd9f7ae1e38342e5a9747f2c21f29848dd81bee95ed11",
+    "timing.py": "c4b18703d8a44d2f335c70d0c3cae029e385dc30db4dfdf8483da6e75d25fedb",
+    "report.py": "44e280c67744204ee5db63c4571459a3b39eebc7aeaca9a80928ed4874693020",
+    "diagnostics.py": "f1945d9d32753b95694e6a754a0ebe962db34183034a9e12fd7b64c59b6823a4",
+    "analyze.py": "c815123790ad2893b25c18e6223d13c8bf01a9662618e281ce7f9154903ee81a",
+    "test_model.py": "30752bfb3ac6401c4631ad4e0771b68e4e204678b0ae9936fd43348827e69be0",
+    "channel_audit.py": "b00f82c97bf9df2a779a1f7757fc36c49770b1241ffbb97227e188d6f0fa384e",
+    "campaign.py": "ad8fd167bf030beaea58974fd9e24bc2ea1c04d498c6b0fda5cae60580976a8b"
+  }
+}

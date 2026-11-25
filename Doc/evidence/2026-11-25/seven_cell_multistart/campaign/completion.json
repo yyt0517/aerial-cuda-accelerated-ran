@@ -1,0 +1,31 @@
+{
+  "completed": true,
+  "runs": [
+    {
+      "seed": 42,
+      "arm": "da_three_branch",
+      "label": "DA-PLS (three branches)",
+      "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_multistart_20261105_v1/campaign/da_three_branch_s42",
+      "smoke": false,
+      "native_passed": true
+    },
+    {
+      "seed": 43,
+      "arm": "da_three_branch",
+      "label": "DA-PLS (three branches)",
+      "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_multistart_20261105_v1/campaign/da_three_branch_s43",
+      "smoke": false,
+      "native_passed": true
+    },
+    {
+      "seed": 41,
+      "arm": "da_three_branch",
+      "label": "DA-PLS (three branches)",
+      "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_multistart_20261105_v1/campaign/da_three_branch_s41",
+      "smoke": false,
+      "native_passed": true
+    }
+  ],
+  "failed": [],
+  "total": 3
+}

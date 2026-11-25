@@ -1,0 +1,486 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "key": "boundary_r0.8_prg_t1_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t100_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t20_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t200_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t4_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t1_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t100_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t20_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t200_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t4_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t1_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t100_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t20_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t200_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t4_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t1_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t100_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t20_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t200_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t4_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t1_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t100_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t20_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t200_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t4_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t1_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t100_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t20_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t200_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t4_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t1_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t100_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t20_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t200_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t4_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t1_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t100_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t20_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t200_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t4_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t1_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t100_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t20_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t200_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t4_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t1_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t100_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t20_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t200_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t4_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t1_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t100_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t20_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t200_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_prg_t4_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t1_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t100_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t20_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t200_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "boundary_r0.8_wideband_t4_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t1_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t100_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t20_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t200_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t4_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t1_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t100_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t20_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t200_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t4_deficit_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t1_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t100_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t20_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t200_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t4_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t1_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t100_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t20_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t200_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t4_mlwdf_pf_s41",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t1_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t100_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t20_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t200_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t4_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t1_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t100_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t20_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t200_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t4_deficit_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t1_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t100_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t20_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t200_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t4_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t1_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t100_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t20_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t200_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t4_mlwdf_pf_s42",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t1_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t100_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t20_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t200_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t4_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t1_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t100_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t20_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t200_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t4_deficit_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t1_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t100_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t20_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t200_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_prg_t4_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t1_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t100_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t20_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t200_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    },
+    {
+      "key": "uniform_r1_wideband_t4_mlwdf_pf_s43",
+      "shared_exogenous_spatial_reports_exact": true
+    }
+  ],
+  "all_spatial_streams_identical_between_objectives": true
+}

@@ -1,0 +1,11 @@
+{
+  "scene": "boundary",
+  "rate": 1.12,
+  "arm": "pfq",
+  "seed": 43,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r1.12_pfq_s43",
+  "key": "boundary_r1.12_pfq_s43",
+  "native_passed": true,
+  "smoke": false
+}

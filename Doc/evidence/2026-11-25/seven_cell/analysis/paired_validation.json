@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "seed": 41,
+      "arm": "pfq",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 41,
+      "arm": "deficit",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 41,
+      "arm": "mlwdf_pf",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 42,
+      "arm": "pfq",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 42,
+      "arm": "deficit",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 42,
+      "arm": "mlwdf_pf",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 43,
+      "arm": "pfq",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 43,
+      "arm": "deficit",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    },
+    {
+      "seed": 43,
+      "arm": "mlwdf_pf",
+      "topology_traffic_all_channels_and_common_pfq_prefix": true
+    }
+  ]
+}

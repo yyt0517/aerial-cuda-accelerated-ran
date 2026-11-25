@@ -1,0 +1,7 @@
+DONE boundary_r0.8_pfq_s41 1 / 220
+DONE boundary_r0.8_pfq_s44 2 / 220
+DONE boundary_r0.8_pfq_s43 3 / 220
+DONE boundary_r0.8_pfq_s42 4 / 220
+DONE boundary_r0.8_pfq_s45 5 / 220
+/usr/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 5 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

@@ -1,0 +1,158 @@
+PROGRESS 41 1000 28400
+PROGRESS 42 1000 28400
+PROGRESS 43 1000 28400
+PROGRESS 41 2000 28400
+PROGRESS 42 2000 28400
+PROGRESS 43 2000 28400
+PROGRESS 41 3000 28400
+PROGRESS 42 3000 28400
+PROGRESS 43 3000 28400
+PROGRESS 41 4000 28400
+PROGRESS 42 4000 28400
+PROGRESS 43 4000 28400
+PROGRESS 43 5000 28400
+PROGRESS 41 5000 28400
+PROGRESS 42 5000 28400
+PROGRESS 43 6000 28400
+PROGRESS 42 6000 28400
+PROGRESS 41 6000 28400
+PROGRESS 43 7000 28400
+PROGRESS 42 7000 28400
+PROGRESS 41 7000 28400
+PROGRESS 43 8000 28400
+PROGRESS 42 8000 28400
+PROGRESS 41 8000 28400
+PROGRESS 42 9000 28400
+PROGRESS 43 9000 28400
+PROGRESS 41 9000 28400
+PROGRESS 42 10000 28400
+PROGRESS 43 10000 28400
+PROGRESS 41 10000 28400
+PROGRESS 42 11000 28400
+PROGRESS 43 11000 28400
+PROGRESS 41 11000 28400
+PROGRESS 42 12000 28400
+PROGRESS 43 12000 28400
+PROGRESS 41 12000 28400
+PROGRESS 42 13000 28400
+PROGRESS 43 13000 28400
+PROGRESS 41 13000 28400
+PROGRESS 42 14000 28400
+PROGRESS 43 14000 28400
+PROGRESS 41 14000 28400
+PROGRESS 42 15000 28400
+PROGRESS 43 15000 28400
+PROGRESS 41 15000 28400
+PROGRESS 42 16000 28400
+PROGRESS 43 16000 28400
+PROGRESS 41 16000 28400
+PROGRESS 42 17000 28400
+PROGRESS 43 17000 28400
+PROGRESS 41 17000 28400
+PROGRESS 42 18000 28400
+PROGRESS 43 18000 28400
+PROGRESS 42 19000 28400
+PROGRESS 41 18000 28400
+PROGRESS 43 19000 28400
+PROGRESS 42 20000 28400
+PROGRESS 41 19000 28400
+PROGRESS 43 20000 28400
+PROGRESS 42 21000 28400
+PROGRESS 41 20000 28400
+PROGRESS 43 21000 28400
+PROGRESS 42 22000 28400
+PROGRESS 41 21000 28400
+PROGRESS 43 22000 28400
+PROGRESS 42 23000 28400
+PROGRESS 43 23000 28400
+PROGRESS 41 22000 28400
+PROGRESS 42 24000 28400
+PROGRESS 41 23000 28400
+PROGRESS 43 24000 28400
+PROGRESS 42 25000 28400
+PROGRESS 43 25000 28400
+PROGRESS 41 24000 28400
+PROGRESS 42 26000 28400
+PROGRESS 43 26000 28400
+PROGRESS 41 25000 28400
+PROGRESS 42 27000 28400
+PROGRESS 43 27000 28400
+PROGRESS 41 26000 28400
+PROGRESS 42 28000 28400
+DONE 42
+PROGRESS 41 27000 28400
+PROGRESS 43 28000 28400
+DONE 43
+PROGRESS 41 28000 28400
+DONE 41
+ANALYZED da_guarded_l010_b098_s43
+ANALYZED da_guarded_l010_b098_s42
+ANALYZED da_guarded_l010_b098_s41
+AUDIT da_guarded_l010_b098_s41 4001 dpls {'passed': True, 'rounds': 96, 'candidates': 855674}
+AUDIT da_guarded_l010_b098_s41 4001 new_cold {'passed': True, 'rounds': 87, 'candidates': 774980}
+AUDIT da_guarded_l010_b098_s41 4001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 26481}
+AUDIT da_guarded_l010_b098_s41 8001 dpls {'passed': True, 'rounds': 54, 'candidates': 375713}
+AUDIT da_guarded_l010_b098_s41 8001 new_cold {'passed': True, 'rounds': 41, 'candidates': 290985}
+AUDIT da_guarded_l010_b098_s41 8001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 19647}
+AUDIT da_guarded_l010_b098_s41 18001 dpls {'passed': True, 'rounds': 66, 'candidates': 454322}
+AUDIT da_guarded_l010_b098_s41 18001 new_cold {'passed': True, 'rounds': 56, 'candidates': 412279}
+AUDIT da_guarded_l010_b098_s41 18001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 18729}
+AUDIT da_guarded_l010_b098_s41 28000 dpls {'passed': True, 'rounds': 66, 'candidates': 463163}
+AUDIT da_guarded_l010_b098_s41 28000 new_cold {'passed': True, 'rounds': 60, 'candidates': 428738}
+AUDIT da_guarded_l010_b098_s41 28000 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 19284}
+AUDIT da_guarded_l010_b098_s42 4001 dpls {'passed': True, 'rounds': 88, 'candidates': 794917}
+AUDIT da_guarded_l010_b098_s42 4001 new_cold {'passed': True, 'rounds': 85, 'candidates': 769351}
+AUDIT da_guarded_l010_b098_s42 4001 new_from_dpls {'passed': True, 'rounds': 4, 'candidates': 36168}
+AUDIT da_guarded_l010_b098_s42 8001 dpls {'passed': True, 'rounds': 74, 'candidates': 565238}
+AUDIT da_guarded_l010_b098_s42 8001 new_cold {'passed': True, 'rounds': 57, 'candidates': 454735}
+AUDIT da_guarded_l010_b098_s42 8001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 21123}
+AUDIT da_guarded_l010_b098_s42 18001 dpls {'passed': True, 'rounds': 81, 'candidates': 634589}
+AUDIT da_guarded_l010_b098_s42 18001 new_cold {'passed': True, 'rounds': 99, 'candidates': 760713}
+AUDIT da_guarded_l010_b098_s42 18001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 22059}
+AUDIT da_guarded_l010_b098_s42 28000 dpls {'passed': True, 'rounds': 73, 'candidates': 559953}
+AUDIT da_guarded_l010_b098_s42 28000 new_cold {'passed': True, 'rounds': 72, 'candidates': 558744}
+AUDIT da_guarded_l010_b098_s42 28000 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 21573}
+AUDIT da_guarded_l010_b098_s43 4001 dpls {'passed': True, 'rounds': 94, 'candidates': 844438}
+AUDIT da_guarded_l010_b098_s43 4001 new_cold {'passed': True, 'rounds': 87, 'candidates': 782886}
+AUDIT da_guarded_l010_b098_s43 4001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 26916}
+AUDIT da_guarded_l010_b098_s43 8001 dpls {'passed': True, 'rounds': 57, 'candidates': 442812}
+AUDIT da_guarded_l010_b098_s43 8001 new_cold {'passed': True, 'rounds': 80, 'candidates': 601486}
+AUDIT da_guarded_l010_b098_s43 8001 new_from_dpls {'passed': True, 'rounds': 5, 'candidates': 36817}
+AUDIT da_guarded_l010_b098_s43 18001 dpls {'passed': True, 'rounds': 64, 'candidates': 488844}
+AUDIT da_guarded_l010_b098_s43 18001 new_cold {'passed': True, 'rounds': 77, 'candidates': 569806}
+AUDIT da_guarded_l010_b098_s43 18001 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 20853}
+AUDIT da_guarded_l010_b098_s43 28000 dpls {'passed': True, 'rounds': 69, 'candidates': 529750}
+AUDIT da_guarded_l010_b098_s43 28000 new_cold {'passed': True, 'rounds': 60, 'candidates': 472799}
+AUDIT da_guarded_l010_b098_s43 28000 new_from_dpls {'passed': True, 'rounds': 3, 'candidates': 21801}
+deliverables/seven_cell_boundary08_guarded_l010_b098_20261106_v1/analysis/report.txt
+{
+  "completed": true,
+  "cells": 7,
+  "users": 84,
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "lambda_value": 0.1,
+  "beta": 0.98,
+  "new_runs": 3,
+  "reused_runs": 9,
+  "native_ttis_validated": 85200,
+  "strategy_decisions_validated": 73200,
+  "measurement_seconds_per_seed": 10,
+  "all_cohorts_uncensored": true,
+  "paired_inputs_identical": true,
+  "full_warmup_and_first_policy_inputs_identical": true,
+  "every_decision_service_guard_and_max_eligible_new_score": true,
+  "physics_states_checked": 12,
+  "full_neighborhood_branch_searches": 36,
+  "audited_search_rounds": 1782,
+  "audited_candidates": 14178366,
+  "max_saved_sinr_error_db": 2.888672248069213e-06,
+  "max_saved_bler_error": 2.5061776903201327e-06,
+  "execution_sources_unchanged": true,
+  "baseline_artifacts_unchanged": true,
+  "frozen_native_dependencies_match_baseline": true
+}
+PACKAGED deliverables/seven_cell_boundary08_guarded_l010_b098_20261106_v1/seven_cell_guarded_da_results.zip 517258

@@ -1,0 +1,45 @@
+{
+  "task": "Complete three-branch DA closed-loop rerun and compare throughput/delay/expiry against original seven-cell results",
+  "output_root": "/data/aerial-cuda-accelerated-ran/deliverables/seven_cell_boundary08_multistart_20261105_v1",
+  "baseline_root": "/data/aerial-cuda-accelerated-ran/deliverables/seven_cell_boundary08_20261105_v1",
+  "source": "training/stageb_sevencell_multistart",
+  "pipeline_session_id": 1275,
+  "status_script": "/tmp/sevencell_multistart_status.py",
+  "warning": "All simulations, packet analysis, full-neighborhood audits and final artifact verification completed successfully. Preserve the frozen outputs.",
+  "pipeline": "run_campaign.sh automatically runs native campaign, packet analysis, independent full-neighborhood audit, report and figures",
+  "protocol": {
+    "seeds": [
+      41,
+      42,
+      43
+    ],
+    "cells": 7,
+    "users": 84,
+    "windows": [
+      4000,
+      4000,
+      20000,
+      400
+    ],
+    "native_ttis_total": 85200
+  },
+  "branches": [
+    "DPLS from raw PFQ",
+    "original DA from raw PFQ",
+    "DA forcibly initialized at DPLS endpoint with original PFQ floor"
+  ],
+  "selection": "Highest canonical DA integer score, exact ties prefer original_da then from_dpls_da then dpls",
+  "preflight": "2 meaningful tests, 448-TTI native smoke, 9 complete-neighborhood branch audits, exact full 4000-TTI warmup and first baseline actions for all seeds passed",
+  "implementation": "Sequential production branches. Shared-cache and parallel benchmark diagnostics were read-only trials and were NOT adopted.",
+  "pending": [],
+  "prepared_finalizer": "/tmp/finalize_sevencell_multistart.py",
+  "finalizer_invocation": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 .venv/bin/python /tmp/finalize_sevencell_multistart.py",
+  "finalizer_note": "Run only after pipeline report and audits complete; verifies all sources, original artifacts and captured weights, adds DPLS-selection explanation, produces manifest and results ZIP.",
+  "status": "completed",
+  "result_report": "/data/aerial-cuda-accelerated-ran/deliverables/seven_cell_boundary08_multistart_20261105_v1/analysis/report.txt",
+  "result_archive": "/data/aerial-cuda-accelerated-ran/deliverables/seven_cell_boundary08_multistart_20261105_v1/seven_cell_three_branch_results.zip",
+  "validated_native_ttis": 85200,
+  "validated_decisions": 73200,
+  "validated_branch_searches": 36,
+  "conclusion": "Compared with original DA: complete-packet payload +3.376883%, mean successful delay -9.465983 ms, expiry -1.627624 percentage points; all three seeds improve. Compared with DPLS: payload essentially unchanged (+0.129791%), mean successful delay +41.843397 ms, expiry -0.121173 percentage points."
+}

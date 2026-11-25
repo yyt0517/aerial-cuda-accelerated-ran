@@ -1,0 +1,98 @@
+{
+  "passed": true,
+  "states": 18,
+  "checks": [
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s41/states/tti008001.pt",
+      "sha256": "f62466957f70a07f517f0006902ade719fb79b2b31a87c747209e073ac985cd0",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s41/states/tti018001.pt",
+      "sha256": "9ed537c3f9c016405b67bad1077b5e366e8dc9b609227c7593221b12d7a8f011",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s41/states/tti028000.pt",
+      "sha256": "8dad96e0bd13e7cc8cd5f85aca241f6b4fe731cf457bac858da5cb4b1a2a2a8e",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s42/states/tti008001.pt",
+      "sha256": "1f6feba943c7077bf93bb3feffe0979255e9c25cac2cfa9e1e58c7331ea00c60",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s42/states/tti018001.pt",
+      "sha256": "0f71b235934714f0a27d3f334523c36331a935643a26d58705e081d753daa987",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s42/states/tti028000.pt",
+      "sha256": "ce36d6069da7e55ae6e13bf45859dd0e3b9cffe2f6ebf623855fc91b07900af3",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s43/states/tti008001.pt",
+      "sha256": "3359497969dfa68953d550db01f75ad0e04c6f8f9fa390701da0bff0885c8f7e",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s43/states/tti018001.pt",
+      "sha256": "3c149505078e17c22d99523ce8ca31a49616081ae09867b5e138914aea9bee47",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s43/states/tti028000.pt",
+      "sha256": "1a9a9a2c02bc2572e5e5aab46cdc9059f9cf3abdd119425ed3c0738299ffeb45",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s41/states/tti008001.pt",
+      "sha256": "9e00ffec8bd23135a8d8bafd293aeb4283ad9582ac1ef9e35fe811b41cf7dfe1",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s41/states/tti018001.pt",
+      "sha256": "82ebcf200a39e5b09711de3fd9eaef12bf7306c10f2543435e75228640be5300",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s41/states/tti028000.pt",
+      "sha256": "d3d1c2db0b40077331172a3a6856107d9e6f80f4eb411438ddd2fb60262fa629",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s42/states/tti008001.pt",
+      "sha256": "7992d74778c8c0d118228b5349c6400fc7b4c64abeeef6e959587510dc699010",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s42/states/tti018001.pt",
+      "sha256": "437b0f71383021045b420139f6177e881a2852692746812f55cfc3a431f34ac5",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s42/states/tti028000.pt",
+      "sha256": "c3c971d289c7c0569586533201122908fd4faa5ca77cd4c2f808be19d2b3ff26",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s43/states/tti008001.pt",
+      "sha256": "fd934bf5b22dbbbcefda47343e026d72222e2802f5e5cbb3363efdb3e98292ae",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s43/states/tti018001.pt",
+      "sha256": "1bdbc22cc28ce3f51ddb147c4aa5eec82ba8e1e21c9668ac550eb286fab17854",
+      "passed": true
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s43/states/tti028000.pt",
+      "sha256": "370c9570563fab3b61fae2a77ce2d8414173893268a3d9157079f711af547ad6",
+      "passed": true
+    }
+  ],
+  "scope": "same archived exogenous channels; all UE/neighbor pairs equally weighted, not traffic-weighted",
+  "caveat": "different information-error measures are descriptive, not causal performance-loss shares"
+}

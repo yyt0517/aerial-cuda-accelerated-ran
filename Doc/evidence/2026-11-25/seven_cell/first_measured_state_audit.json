@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "all_six_checked": true,
+  "checks": [
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 8001,
+      "state_sha256": "b78b23d71aa091516f474fd92d5b6892c0f2ef77ee2410a96d9b53d58caea773",
+      "captured_native_policy_action_exact": true,
+      "passed": true,
+      "rounds": 63,
+      "candidates": 515993,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 8001,
+      "state_sha256": "0a6afe3bf5f2c7149c6a900af6af93412a37a0db394ea90d9f1d174371db0d62",
+      "captured_native_policy_action_exact": true,
+      "passed": true,
+      "rounds": 69,
+      "candidates": 580231,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 8001,
+      "state_sha256": "b782dc1bb68dd90895258c8263ca0fdb5cc917afd15ad7d24feaead1b8e6b973",
+      "captured_native_policy_action_exact": true,
+      "passed": true,
+      "rounds": 69,
+      "candidates": 567978,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 8001,
+      "state_sha256": "6af7b03d8cb55744cfd2494848a0926648c584316fe24c0006c27cfa0f403043",
+      "captured_native_policy_action_exact": true,
+      "passed": true,
+      "rounds": 63,
+      "candidates": 443776,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 8001,
+      "state_sha256": "3072242416b8670cb5d03735ccec8553365f8f73aba79531ff51a3e00e577500",
+      "captured_native_policy_action_exact": true,
+      "passed": true,
+      "rounds": 73,
+      "candidates": 577555,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 8001,
+      "state_sha256": "cac0961365d67d43b143531baef36884fa007f93d4a4d3a2ff74663dcab2fd21",
+      "captured_native_policy_action_exact": true,
+      "passed": true,
+      "rounds": 66,
+      "candidates": 494186,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    }
+  ]
+}

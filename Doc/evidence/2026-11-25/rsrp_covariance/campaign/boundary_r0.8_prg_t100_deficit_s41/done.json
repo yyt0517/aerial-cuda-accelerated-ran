@@ -1,0 +1,12 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "stage": "prg_t100",
+  "objective": "deficit",
+  "seed": 41,
+  "key": "boundary_r0.8_prg_t100_deficit_s41",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_prg_t100_deficit_s41",
+  "native_passed": true,
+  "smoke": false
+}

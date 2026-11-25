@@ -1,0 +1,83 @@
+{
+  "passed": true,
+  "checked": 11,
+  "checks": [
+    {
+      "run": "boundary_r0.8_rsrp_deficit_s41",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 1.7988656235701228e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "boundary_r0.8_rsrp_deficit_s42",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 2.8972918570957518e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "boundary_r0.8_rsrp_deficit_s43",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 2.4824709878856765e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "boundary_r0.8_rsrp_mlwdf_pf_s41",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 2.8165300989257958e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "boundary_r0.8_rsrp_mlwdf_pf_s42",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 4.16086517773806e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "boundary_r0.8_rsrp_mlwdf_pf_s43",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 3.287152264164206e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "uniform_r1_rsrp_deficit_s41",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 2.7294364954855155e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "uniform_r1_rsrp_deficit_s42",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 8.899977821386074e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "uniform_r1_rsrp_mlwdf_pf_s41",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 2.921168572811439e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "uniform_r1_rsrp_mlwdf_pf_s42",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 2.965829096979178e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    },
+    {
+      "run": "uniform_r1_rsrp_mlwdf_pf_s43",
+      "tti": 8001,
+      "native_sinr_max_abs_error_db": 4.848400671164654e-06,
+      "raw_channel_equal_to_original": true,
+      "passed": true
+    }
+  ]
+}

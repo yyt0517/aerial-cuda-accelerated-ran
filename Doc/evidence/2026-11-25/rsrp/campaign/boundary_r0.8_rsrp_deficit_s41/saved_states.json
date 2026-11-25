@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s41/states/tti008001.pt",
+    "sha256": "f62466957f70a07f517f0006902ade719fb79b2b31a87c747209e073ac985cd0"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s41/states/tti018001.pt",
+    "sha256": "9ed537c3f9c016405b67bad1077b5e366e8dc9b609227c7593221b12d7a8f011"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_deficit_s41/states/tti028000.pt",
+    "sha256": "8dad96e0bd13e7cc8cd5f85aca241f6b4fe731cf457bac858da5cb4b1a2a2a8e"
+  }
+]

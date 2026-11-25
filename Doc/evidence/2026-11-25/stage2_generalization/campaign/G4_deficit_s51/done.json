@@ -1,0 +1,10 @@
+{
+  "scenario": "G4",
+  "arm": "deficit",
+  "seed": 51,
+  "key": "G4_deficit_s51",
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G4_deficit_s51",
+  "horizon": 28400,
+  "native_passed": true,
+  "smoke": false
+}

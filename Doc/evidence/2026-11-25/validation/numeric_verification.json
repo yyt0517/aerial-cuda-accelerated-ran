@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "hash_verified_files": 3043,
+  "report_numeric_checks": 696,
+  "aggregate_checks": 504,
+  "zero_expiry_run_checks": 40,
+  "archived_search_audit_states": 90,
+  "table_9_4_case_verified": true,
+  "failures": [],
+  "scope": "Recompute equal-seed means from archived CSVs and verify report rounding. No full trajectory/GPU rerun."
+}

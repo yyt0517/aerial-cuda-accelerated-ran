@@ -1,0 +1,307 @@
+{
+  "passed": true,
+  "checks": 60,
+  "rows": [
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s41/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s41/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s41/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s42/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s42/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s42/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s43/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s43/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s43/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s44/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s44/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s44/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s45/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s45/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s45/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s46/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s46/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s46/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s47/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s47/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s47/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s48/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s48/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s48/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s49/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s49/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s49/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s50/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s50/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/boundary_r0.8_mlwdf_pf_s50/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s41/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s41/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s41/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s42/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s42/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s42/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s43/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s43/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s43/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s44/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s44/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s44/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s45/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s45/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s45/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s46/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s46/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s46/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s47/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s47/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s47/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s48/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s48/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s48/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s49/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s49/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s49/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s50/states/tti008001.pt",
+      "arm": "rr",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s50/states/tti008001.pt",
+      "arm": "rrq",
+      "passed": true
+    },
+    {
+      "state": "deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s50/states/tti008001.pt",
+      "arm": "pf",
+      "passed": true
+    }
+  ],
+  "scope": "legal mask, native slot encoding and exact action round trip on live saved states; separate from long-run quality metrics"
+}

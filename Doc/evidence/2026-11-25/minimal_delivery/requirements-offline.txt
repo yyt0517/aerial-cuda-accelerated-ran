@@ -1,0 +1,2 @@
+# Tested offline replay dependency; g++ and Eigen3 are system prerequisites.
+numpy==2.2.6

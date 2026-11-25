@@ -1,0 +1,23 @@
+[
+  {
+    "seed": 41,
+    "actions_values_rounds_exact": true,
+    "sequential_ms": 314.65818360447884,
+    "parallel_ms": 191.50508381426334,
+    "ratio": 0.6086130721932301
+  },
+  {
+    "seed": 42,
+    "actions_values_rounds_exact": true,
+    "sequential_ms": 272.4249577149749,
+    "parallel_ms": 170.27416545897722,
+    "ratio": 0.6250314467778202
+  },
+  {
+    "seed": 43,
+    "actions_values_rounds_exact": true,
+    "sequential_ms": 263.05051147937775,
+    "parallel_ms": 192.26274359971285,
+    "ratio": 0.730896672728141
+  }
+]

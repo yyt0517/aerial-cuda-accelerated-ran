@@ -1,0 +1,85 @@
+DONE boundary_r0.8_reported_deficit_s41 1 / 144
+DONE uniform_r1_reported_mlwdf_pf_s42 2 / 144
+DONE boundary_r0.8_exact_deficit_s41 3 / 144
+DONE boundary_r0.8_exact_deficit_s42 4 / 144
+DONE boundary_r0.8_exact_mlwdf_pf_s42 5 / 144
+DONE boundary_r0.8_exact_mlwdf_pf_s41 6 / 144
+DONE uniform_r1_exact_deficit_s41 7 / 144
+DONE uniform_r1_reported_deficit_s43 8 / 144
+DONE uniform_r1_reported_deficit_s42 9 / 144
+DONE boundary_r0.8_reported_mlwdf_pf_s41 10 / 144
+DONE uniform_r1_exact_mlwdf_pf_s41 11 / 144
+DONE boundary_r0.8_reported_deficit_s43 12 / 144
+DONE boundary_r0.8_exact_mlwdf_pf_s43 13 / 144
+DONE uniform_r1_exact_mlwdf_pf_s43 14 / 144
+DONE boundary_r0.8_exact_deficit_s43 15 / 144
+DONE boundary_r0.8_reported_mlwdf_pf_s43 16 / 144
+DONE uniform_r1_exact_mlwdf_pf_s42 17 / 144
+DONE uniform_r1_reported_mlwdf_pf_s43 18 / 144
+DONE uniform_r1_exact_deficit_s42 19 / 144
+DONE boundary_r0.8_reported_mlwdf_pf_s42 20 / 144
+DONE uniform_r1_reported_deficit_s41 21 / 144
+DONE boundary_r0.8_reported_deficit_s42 22 / 144
+DONE uniform_r1_reported_mlwdf_pf_s41 23 / 144
+DONE uniform_r1_exact_deficit_s43 24 / 144
+PROGRESS uniform_r1_prg_t4_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_prg_t4_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_prg_t4_mlwdf_pf_s42 4000 28400
+PROGRESS uniform_r1_prg_t20_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t20_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t20_deficit_s43 4000 28400
+PROGRESS uniform_r1_prg_t4_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_prg_t20_mlwdf_pf_s43 4000 28400
+PROGRESS uniform_r1_prg_t4_mlwdf_pf_s43 4000 28400
+PROGRESS boundary_r0.8_prg_t4_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_prg_t20_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_prg_t4_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_prg_t1_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_prg_t4_deficit_s41 4000 28400
+PROGRESS boundary_r0.8_prg_t1_mlwdf_pf_s41 4000 28400
+PROGRESS boundary_r0.8_prg_t1_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t4_mlwdf_pf_s41 4000 28400
+PROGRESS boundary_r0.8_prg_t4_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t20_deficit_s41 4000 28400
+PROGRESS uniform_r1_prg_t1_deficit_s42 4000 28400
+PROGRESS uniform_r1_prg_t4_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t20_deficit_s42 4000 28400
+PROGRESS uniform_r1_prg_t1_mlwdf_pf_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t1_mlwdf_pf_s42 4000 28400
+PROGRESS uniform_r1_prg_t1_mlwdf_pf_s41 4000 28400
+PROGRESS uniform_r1_prg_t20_deficit_s41 4000 28400
+PROGRESS uniform_r1_prg_t1_deficit_s43 4000 28400
+PROGRESS uniform_r1_prg_t1_mlwdf_pf_s43 4000 28400
+PROGRESS boundary_r0.8_prg_t4_deficit_s42 4000 28400
+PROGRESS boundary_r0.8_prg_t1_mlwdf_pf_s43 4000 28400
+PROGRESS boundary_r0.8_prg_t1_deficit_s43 4000 28400
+PROGRESS boundary_r0.8_prg_t1_deficit_s41 4000 28400
+PROGRESS uniform_r1_prg_t20_deficit_s42 8000 28400
+PROGRESS uniform_r1_prg_t4_deficit_s41 8000 28400
+PROGRESS uniform_r1_prg_t4_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_prg_t4_deficit_s43 8000 28400
+PROGRESS uniform_r1_prg_t4_mlwdf_pf_s42 8000 28400
+PROGRESS boundary_r0.8_prg_t20_mlwdf_pf_s42 8000 28400
+PROGRESS uniform_r1_prg_t1_deficit_s43 8000 28400
+PROGRESS boundary_r0.8_prg_t20_mlwdf_pf_s41 8000 28400
+PROGRESS uniform_r1_prg_t4_mlwdf_pf_s41 8000 28400
+PROGRESS uniform_r1_prg_t4_deficit_s42 8000 28400
+PROGRESS uniform_r1_prg_t1_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_prg_t4_mlwdf_pf_s43 8000 28400
+PROGRESS boundary_r0.8_prg_t4_mlwdf_pf_s42 8000 28400
+PROGRESS boundary_r0.8_prg_t4_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_prg_t1_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_prg_t20_deficit_s43 8000 28400
+PROGRESS uniform_r1_prg_t1_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_prg_t20_mlwdf_pf_s43 8000 28400
+PROGRESS boundary_r0.8_prg_t4_deficit_s43 8000 28400
+PROGRESS uniform_r1_prg_t1_mlwdf_pf_s41 8000 28400
+PROGRESS boundary_r0.8_prg_t1_mlwdf_pf_s42 8000 28400
+PROGRESS boundary_r0.8_prg_t20_deficit_s41 8000 28400
+PROGRESS uniform_r1_prg_t1_mlwdf_pf_s43 8000 28400
+PROGRESS boundary_r0.8_prg_t4_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_prg_t1_mlwdf_pf_s41 8000 28400
+PROGRESS uniform_r1_prg_t20_deficit_s41 8000 28400
+PROGRESS boundary_r0.8_prg_t20_deficit_s42 8000 28400
+PROGRESS boundary_r0.8_prg_t1_mlwdf_pf_s43 8000 28400
+PROGRESS uniform_r1_prg_t1_mlwdf_pf_s42 8000 28400

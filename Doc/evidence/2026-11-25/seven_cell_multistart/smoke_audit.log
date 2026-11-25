@@ -1,0 +1,9 @@
+AUDIT da_three_branch_s41 17 dpls {'passed': True, 'rounds': 73, 'candidates': 657199}
+AUDIT da_three_branch_s41 17 original_da {'passed': True, 'rounds': 113, 'candidates': 965728}
+AUDIT da_three_branch_s41 17 from_dpls_da {'passed': True, 'rounds': 90, 'candidates': 765728}
+AUDIT da_three_branch_s41 33 dpls {'passed': True, 'rounds': 93, 'candidates': 832400}
+AUDIT da_three_branch_s41 33 original_da {'passed': True, 'rounds': 70, 'candidates': 604827}
+AUDIT da_three_branch_s41 33 from_dpls_da {'passed': True, 'rounds': 89, 'candidates': 773417}
+AUDIT da_three_branch_s41 48 dpls {'passed': True, 'rounds': 74, 'candidates': 644386}
+AUDIT da_three_branch_s41 48 original_da {'passed': True, 'rounds': 67, 'candidates': 554268}
+AUDIT da_three_branch_s41 48 from_dpls_da {'passed': True, 'rounds': 72, 'candidates': 581148}

@@ -1,0 +1,12 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "stage": "wideband_t200",
+  "objective": "mlwdf_pf",
+  "seed": 42,
+  "key": "uniform_r1_wideband_t200_mlwdf_pf_s42",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/uniform_r1_wideband_t200_mlwdf_pf_s42",
+  "native_passed": true,
+  "smoke": false
+}

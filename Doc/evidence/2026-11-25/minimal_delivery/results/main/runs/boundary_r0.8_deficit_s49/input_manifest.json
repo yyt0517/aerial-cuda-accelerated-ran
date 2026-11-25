@@ -1,0 +1,8 @@
+{
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s49/launch.json": "f950e8fa3ecdbe8bad1357d54fb014eff72dc3a3bc351f9c12eca3da801753c3",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s49/validation.json": "b7d62ce46a31db06e4f17b79e66ab4b9cb23062f997bb5a73f55b4868c3932aa",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s49/metrics.bin": "87bfa549776111225f8f75320877e3295722da2f24eb32466e60c3b3a61f784f",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s49/traffic_offered_packets.csv": "056e1ecbf680c90599c4ab193d760b742c5eb3b41ef3a1ca691c8e5f4276a7da",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s49/packet_outcome_samples.csv": "4f51f75e31e5f347f115dfa60b6d762b17472f92d1aa75e4bd2e4ee7a161d244",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s49/actions.npz": "42e35ece8c7fcbcb30bc508fe0f351f97401bd205a55f953344dfb5f53acd360"
+}

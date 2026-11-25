@@ -1,0 +1,12 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "stage": "pilot",
+  "objective": "mlwdf_pf",
+  "seed": 41,
+  "key": "boundary_r0.8_pilot_mlwdf_pf_s41",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/boundary_r0.8_pilot_mlwdf_pf_s41",
+  "native_passed": true,
+  "smoke": false
+}

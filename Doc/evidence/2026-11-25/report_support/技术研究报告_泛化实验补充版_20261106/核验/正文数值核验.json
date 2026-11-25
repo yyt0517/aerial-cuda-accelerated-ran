@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "runs": 60,
+  "gain_vs_pfq_pct": {
+    "G1": 18.285132088146906,
+    "G2": 28.20769031762964,
+    "G3": 27.76971365469265,
+    "G4": 35.28454059135802
+  },
+  "gain_vs_dpls_pct": {
+    "G1": 0.07909801805232597,
+    "G2": 0.052969135553904145,
+    "G3": -0.0592899576129291,
+    "G4": 0.07625413964544858
+  },
+  "max_absolute_mean_delay_difference_vs_dpls_ms": 0.016769984409139682,
+  "da_all_720_ue_run_expiry_values_zero": true,
+  "dpls_all_720_ue_run_expiry_values_zero": true,
+  "all_20_paired_comparisons_improved_payload_delay_and_expiry_vs_pfq": true
+}

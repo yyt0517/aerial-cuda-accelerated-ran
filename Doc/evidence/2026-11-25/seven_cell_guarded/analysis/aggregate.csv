@@ -1,0 +1,69 @@
+arm,label,metric,n,mean,std
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",payload_mbps,3,2221.7783999999997,38.861564814608265
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",goodput_mbps,3,2467.6807072,46.42477637666012
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",delay_mean_ms,3,84.40587243774605,5.126644400176411
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",delay_p50_ms,3,13.833333333333334,12.858201014657274
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",delay_p95_ms,3,200.0,0.0
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",success_le10ms_pct,3,50.40365012110218,2.5661768935036764
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",expiry_pct,3,22.518888815099476,1.5269995281700193
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",outcome_mean_ms,3,110.19955402111869,5.61469631919788
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",outcome_p95_ms,3,200.0,0.0
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",ue_payload_p5_mbps,3,7.9688799999999995,1.3415169276606234
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",jain_payload,3,0.890142398895485,0.010367814477138559
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",worst_ue_expiry_pct,3,91.18186996706343,1.5971291325811383
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",inr_pooled_db,3,21.85335075648622,0.1397378501750139
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",sinr_mean_db,3,7.376324361440401,0.2800442699087665
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",occupancy_pct,3,74.10350140056022,2.6004206939844425
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",other_nondelivery_pct,3,8.56960603023161,0.36360984915008693
+da_guarded_l010_b098,"Bounded-urgency DA (lambda=0.1, beta=0.98)",queue_mean_mb,3,44.15854521691667,2.251349861042526
+da_three_branch,DA-PLS (three branches),payload_mbps,3,2193.4416,43.7037701476657
+da_three_branch,DA-PLS (three branches),goodput_mbps,3,2445.6123141333333,47.97267070100098
+da_three_branch,DA-PLS (three branches),delay_mean_ms,3,129.1350054819375,2.327861791031444
+da_three_branch,DA-PLS (three branches),delay_p50_ms,3,144.83333333333334,15.3324275094759
+da_three_branch,DA-PLS (three branches),delay_p95_ms,3,200.0,0.0
+da_three_branch,DA-PLS (three branches),success_le10ms_pct,3,4.704731230146886,1.7079890266487838
+da_three_branch,DA-PLS (three branches),expiry_pct,3,23.348895083074623,1.6676665344802
+da_three_branch,DA-PLS (three branches),outcome_mean_ms,3,145.39638506982672,2.1350127028077344
+da_three_branch,DA-PLS (three branches),outcome_p95_ms,3,200.0,0.0
+da_three_branch,DA-PLS (three branches),ue_payload_p5_mbps,3,7.81844,1.6095625736205466
+da_three_branch,DA-PLS (three branches),jain_payload,3,0.887040467225925,0.0144432668829993
+da_three_branch,DA-PLS (three branches),worst_ue_expiry_pct,3,88.2465230348987,1.6745265797989473
+da_three_branch,DA-PLS (three branches),inr_pooled_db,3,22.4792862435588,0.22883249572636602
+da_three_branch,DA-PLS (three branches),sinr_mean_db,3,6.128515336195522,0.09561833317809686
+da_three_branch,DA-PLS (three branches),occupancy_pct,3,79.29285714285714,2.0803167773722593
+da_three_branch,DA-PLS (three branches),other_nondelivery_pct,3,8.618541651938976,0.33465372008901667
+da_three_branch,DA-PLS (three branches),queue_mean_mb,3,58.33615685588333,0.8529744960554076
+deficit,DPLS,payload_mbps,3,2190.5984000000003,40.51986608467513
+deficit,DPLS,goodput_mbps,3,2445.1768986666666,48.27854662504603
+deficit,DPLS,delay_mean_ms,3,87.29160820761776,5.319835592705011
+deficit,DPLS,delay_p50_ms,3,17.333333333333332,18.071616788027942
+deficit,DPLS,delay_p95_ms,3,200.0,0.0
+deficit,DPLS,success_le10ms_pct,3,49.97797632614353,2.5186259548340524
+deficit,DPLS,expiry_pct,3,23.470068070422,1.5983429451005848
+deficit,DPLS,outcome_mean_ms,3,113.53721844593689,5.702986710813464
+deficit,DPLS,outcome_p95_ms,3,200.0,0.0
+deficit,DPLS,ue_payload_p5_mbps,3,7.58484,1.3665977918905028
+deficit,DPLS,jain_payload,3,0.885995152588733,0.010709429372975837
+deficit,DPLS,worst_ue_expiry_pct,3,91.1493771938395,1.6500121839741089
+deficit,DPLS,inr_pooled_db,3,21.887791879425915,0.1485066329706927
+deficit,DPLS,sinr_mean_db,3,7.287932669351441,0.2633587920365807
+deficit,DPLS,occupancy_pct,3,74.52875350140056,2.5785762766687284
+deficit,DPLS,other_nondelivery_pct,3,8.585532937094197,0.3906759891061923
+deficit,DPLS,queue_mean_mb,3,45.50833652123333,2.289875718200932
+mlwdf_pf,DA-PLS,payload_mbps,3,2121.7911999999997,24.460824999987036
+mlwdf_pf,DA-PLS,goodput_mbps,3,2402.9482448000003,36.58079221494012
+mlwdf_pf,DA-PLS,delay_mean_ms,3,138.60098839007745,6.884401528626783
+mlwdf_pf,DA-PLS,delay_p50_ms,3,160.16666666666666,8.751190395216717
+mlwdf_pf,DA-PLS,delay_p95_ms,3,200.0,0.0
+mlwdf_pf,DA-PLS,success_le10ms_pct,3,3.0417918377134066,1.3373852257966408
+mlwdf_pf,DA-PLS,expiry_pct,3,24.97651865781769,1.1242809655861332
+mlwdf_pf,DA-PLS,outcome_mean_ms,3,153.55394227057985,4.775009476218142
+mlwdf_pf,DA-PLS,outcome_p95_ms,3,200.0,0.0
+mlwdf_pf,DA-PLS,ue_payload_p5_mbps,3,6.90684,1.5805768784845615
+mlwdf_pf,DA-PLS,jain_payload,3,0.8758552183068854,0.013094058604322466
+mlwdf_pf,DA-PLS,worst_ue_expiry_pct,3,89.04312248554173,1.5379554749133737
+mlwdf_pf,DA-PLS,inr_pooled_db,3,22.603531272552498,0.18097070943199697
+mlwdf_pf,DA-PLS,sinr_mean_db,3,5.8983024018399135,0.17569477168625347
+mlwdf_pf,DA-PLS,occupancy_pct,3,82.00289915966387,2.990906494076605
+mlwdf_pf,DA-PLS,other_nondelivery_pct,3,9.213127654616876,0.392104371495371
+mlwdf_pf,DA-PLS,queue_mean_mb,3,61.62653889935,1.932749089835767

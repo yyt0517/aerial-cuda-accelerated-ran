@@ -1,0 +1,92 @@
+{
+  "seed": 53,
+  "serving": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    0,
+    0,
+    2,
+    2,
+    0,
+    2
+  ],
+  "cell_ue_counts": [
+    14,
+    11,
+    11
+  ],
+  "configurations": {
+    "G1": {
+      "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/plans/G1_s53.csv",
+      "sha256": "d495d9c579c933009c9d96003326de3d3d73cf6c4540b4816b30fdd596ebb25a",
+      "expected_cluster_mbps": 1382.4,
+      "expected_cell_mbps": [
+        537.6,
+        422.40000000000003,
+        422.40000000000003
+      ],
+      "heavy_cell": null
+    },
+    "G2": {
+      "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/plans/G2_s53.csv",
+      "sha256": "63ed98d5beb36820950a51a0c0fac149fa20dd5be5eb3a147fcb8279359c1e6a",
+      "expected_cluster_mbps": 1382.4,
+      "expected_cell_mbps": [
+        537.6,
+        422.40000000000003,
+        422.40000000000003
+      ],
+      "heavy_cell": null
+    },
+    "G3": {
+      "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/plans/G3_s53.csv",
+      "sha256": "e418b57c2671d32cfb4a926b887a0a242f4d59add40dfd08010c65af5d02e813",
+      "expected_cluster_mbps": 1382.3999999999999,
+      "expected_cell_mbps": [
+        345.60000000000014,
+        345.6,
+        691.2
+      ],
+      "heavy_cell": 2
+    },
+    "G4": {
+      "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/plans/G4_s53.csv",
+      "sha256": "e24eff68e8f2739a3c56b73bfa60cb206b6df45db9ac2814a9c97a600cffb06e",
+      "expected_cluster_mbps": 1382.3999999999999,
+      "expected_cell_mbps": [
+        345.60000000000014,
+        345.6,
+        691.2
+      ],
+      "heavy_cell": 2
+    }
+  }
+}

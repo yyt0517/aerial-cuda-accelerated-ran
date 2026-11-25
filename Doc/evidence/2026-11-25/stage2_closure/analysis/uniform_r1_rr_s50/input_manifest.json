@@ -1,0 +1,9 @@
+{
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/launch.json": "3abb3de6c44ef3739fa3bf4d32d61979d07421a91fef8f38cdba933cdd78e2eb",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/validation.json": "5c9a241f6273a7ce22a8eedca7bf268e5c597056674cd6740de212d1fd6a36da",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/sim.log": "09ea3d3d4f57ffafdbc932fec1f14df8b0aeaf0377738c5e32151f319364900c",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/metrics.bin": "46089d82d8105b8a2a3a02c805cd29310b4815563329cb245901e999627f67eb",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/traffic_offered_packets.csv": "30a8f93c8da2e7f377e3638295c50584c911c52c49337e5e8b36ce9918486d08",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/packet_outcome_samples.csv": "269d559f9febfe31a4d6f314ef2106a06966eab374c8e5d2d40af2a078ea2719",
+  "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s50/actions.npz": "7b6018767563dcfa2455f91fdaafa68948cd2c34c546dbd3f441de26ccbe4fe4"
+}

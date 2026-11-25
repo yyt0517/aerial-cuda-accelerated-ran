@@ -1,0 +1,138 @@
+[
+  {
+    "run": "boundary_r0.8_deficit_s45",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 9429,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_mlwdf_pf_s44",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 2423,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_mlwdf_pf_s43",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 5449,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_deficit_s42",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 2992,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_deficit_s42",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 1813,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_mlwdf_pf_s42",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 2992,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_mlwdf_pf_s45",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 4060,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_mlwdf_pf_s41",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 6808,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_mlwdf_pf_s42",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 1813,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_deficit_s43",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 321,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_mlwdf_pf_s44",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 1769,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_mlwdf_pf_s43",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 321,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_mlwdf_pf_s45",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 9429,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_mlwdf_pf_s41",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 2525,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_deficit_s44",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 2423,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "boundary_r0.8_deficit_s41",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 2525,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  },
+  {
+    "run": "uniform_r1_deficit_s41",
+    "ttis": 4000,
+    "passed": true,
+    "byte_and_tx_phy_exact": true,
+    "inactive_layer_sentinel_normalized": 6808,
+    "note": "Unscheduled layer -1/255 is nonphysical sentinel; all other fields and scheduled layers exact."
+  }
+]

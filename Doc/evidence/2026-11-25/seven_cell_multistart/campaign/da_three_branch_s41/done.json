@@ -1,0 +1,8 @@
+{
+  "seed": 41,
+  "arm": "da_three_branch",
+  "label": "DA-PLS (three branches)",
+  "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_multistart_20261105_v1/campaign/da_three_branch_s41",
+  "smoke": false,
+  "native_passed": true
+}

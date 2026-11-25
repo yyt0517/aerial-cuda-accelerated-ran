@@ -1,0 +1,56 @@
+{
+  "font": "Noto Serif CJK SC",
+  "font_note": "Source body uses 宋体; local renderer substitutes Noto Serif CJK SC. Figures use the identical Song-style local fallback.",
+  "algorithm_colors": {
+    "rr": "#CED2D5",
+    "rrq": "#8F979F",
+    "pf": "#91B9D3",
+    "pfq": "#284F73",
+    "deficit": "#CA914F",
+    "mlwdf_pf": "#008A79"
+  },
+  "figures": {
+    "A_传统基线核心指标": {
+      "width_inches": 6,
+      "height_inches": 4.65,
+      "minimum_font_pt": 9.5,
+      "conclusion": "PFQ是最强传统基线，但边界场景仍有31.3%过期"
+    },
+    "B7_传统基线时延分档": {
+      "width_inches": 6,
+      "height_inches": 4.55,
+      "minimum_font_pt": 9.5,
+      "conclusion": "传统基线：边界场景中大量包等待至期限"
+    },
+    "C_协同算法核心指标": {
+      "width_inches": 6,
+      "height_inches": 4.65,
+      "minimum_font_pt": 9.5,
+      "conclusion": "DA-PLS消除过期；Uniform下与DPLS基本持平"
+    },
+    "D_逐UE过期率": {
+      "width_inches": 6,
+      "height_inches": 4.4,
+      "minimum_font_pt": 9.5,
+      "conclusion": "平均值之外，DA-PLS在本实验的全部UE上均无过期"
+    },
+    "E_代价与收益": {
+      "width_inches": 6,
+      "height_inches": 5.2,
+      "minimum_font_pt": 9.5,
+      "conclusion": "链路质量略降，但出队速率接近输入、队列和最差UE风险下降"
+    },
+    "B9_协同算法时延分档": {
+      "width_inches": 6,
+      "height_inches": 4.0,
+      "minimum_font_pt": 9.5,
+      "conclusion": "DA-PLS将时延压向短时延区间，并消除过期"
+    },
+    "案例_联合调整": {
+      "width_inches": 6,
+      "height_inches": 3.65,
+      "minimum_font_pt": 9.5,
+      "conclusion": "联合调整的净增益为正；显式标注UE 28的零变化"
+    }
+  }
+}

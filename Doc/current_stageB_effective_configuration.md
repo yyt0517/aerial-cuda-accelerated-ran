@@ -1,6 +1,6 @@
 # Stage-B 当前有效实验配置
 
-更新至 **2026-11-04**。有效算法仍为 2026-10-27 冻结的 **PFQ＋CTBS＋因果服务缺口加权物理搜索，因果出队下界 ρ=0.90**（DPLS）；已完成 boundary/rate0.8 和 uniform/rate1.0 两项五 seed 长窗口验证。最新 M-LWDF-PF 精确剪枝内层作为独立研究候选在下文列出。[当前进展](stageB_current_progress.md)维护结果；旧含协调器 current 保留原版本身份。
+更新至 **2026-11-25**。注册默认算法仍为 2026-10-27 冻结的 **PFQ＋CTBS＋因果服务缺口加权物理搜索，因果出队下界 ρ=0.90**（DPLS）。最新二阶段报告使用原始 PFQ 初选、无 CTBS 的 DPLS/DA-PLS，配置见第 0.2 节；不得通过“最新结果”自动替换注册表。[当前进展](stageB_current_progress.md)维护结果。
 
 ## 0. 当前算法与统一入口
 
@@ -17,7 +17,7 @@ bash cuMAC/scripts/run_stageB_current_algorithm.sh --seed 41 --gpu 0
 
 入口调用现有 `c_aerial_oai2` CUDA容器及研究worktree中的 `FORMAL/boundary08_rho090_five_seed_20261027_v1/run.py`；`--smoke`运行136TTI，已有同名结果目录拒绝覆盖。当前策略复用 `boundary08_causal_floor_ratio_seed41_20261027_v1/policy.py`，SHA-256为 `f0267e4f00e2f488f488c2047493a45f6116d488f68a010da5587776fc057cdc`，入口将比例固定为90/100。**注册表与此启动脚本目前仅对应 boundary 场景**，不会自动启动 uniform 验证。研究运行时仍依赖原工件，不等同于通用生产调度器集成。
 
-### 0.1 最新独立研究候选：M-LWDF-PF＋精确剪枝DPLS
+### 0.1 11 月 4 日开发版：M-LWDF-PF＋精确剪枝DPLS
 
 此候选使用 `training/stageb_lns/crossload_native.py` 的 `mlwdf_pf` 权重与冻结 `capacity_bound_q1e6_v1` 内层，未注册成当前默认，也未替换第0节启动入口。Boundary/rate0.8、seed41–43、4000共同PFQ预热＋4000稳定＋4000测量＋400TTL追踪的同窗口PFQ比较见[独立报告](evidence/2026-11-04/mlwdf_pfq_boundary_comparison/report.txt)。这组2秒开发证据与第2节五seed10秒配置分别解释。
 
@@ -35,11 +35,27 @@ bash cuMAC/scripts/run_stageB_current_algorithm.sh --seed 41 --gpu 0
 
 权重形式和原文来源见[跨负载说明](../training/stageb_lns/crossload_README.rst)，精确内层契约见[容量界说明](../training/stageb_lns/bounded_README.rst)。研究源码已纳入主仓库；运行库需按构建脚本生成，原生仿真仍依赖下文worktree/容器与本地大工件。未以新研究结果追改旧冻结报告或原失败门槛。
 
+### 0.2 二阶段长窗交付与后续研究
+
+报告主实验的执行模块为 `training/stage2_closure/`，沿用第 0.1 节的 M-LWDF-PF 权重、原始 PFQ 初始化、90% 当前计划出队下界及精确内层；不加载学习模型。版本身份以[最小交付包](evidence/2026-11-25/minimal_delivery/README.md)内的源码校验、原生入口和原始协议为准，主工作区的可选动作后干扰插桩不参与这些冻结结果。
+
+| 研究 | 场景、seed 与范围 | 协议/证据 |
+|---|---|---|
+| 二阶段完整矩阵 | Boundary 0.8/1.12/1.28、Uniform 1.0；seed41–50；220 点含 10 点 PFQ 复用 | [运行协议](evidence/2026-11-25/stage2_closure/campaign/protocol.json) |
+| 报告主场景 | Boundary0.8、Uniform1.0；六算法×十 seed，共 120 条 | [交付范围](evidence/2026-11-25/minimal_delivery/provenance/package_scope.json) |
+| G1–G4 | 36 UE；混合布点/异构包/小区不平衡；seed51–55；三算法共 60 条 | [协议](evidence/2026-11-25/stage2_generalization/protocol.json) |
+| 七小区 | 84 UE；seed41–43；原三臂、三分支及 λ0.1/β0.98 保护版本分别冻结 | [研究说明](../training/stageb_sevencell/README.rst) |
+| RSRP 系列 | 36 UE；两场景、两权重；seed41–43；标量、有序消融、协方差更新 | [标量](../training/stageb_rsrp/README.rst)、[消融](../training/stageb_rsrp_ablation/README.rst)、[协方差](../training/stageb_rsrp_covariance/README.rst) |
+
+正式轨迹共同使用 4000 预热＋4000 稳定＋20000 测量＋400 随访 TTI（0.5 ms/TTI）；短程 smoke 和保存状态 replay 不算正式质量轨迹。原生模拟器主身份仍为 `a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615`；泛化和七小区用各自独立构建，不能直接继承原二进制身份。G1–G4 缺口公式使用各 UE 配置平均到达字节；七小区掩码扩为 128 位以覆盖 UE64–83。
+
+完整包吞吐、成功包时延、所有 outcome 时延、MAC 字节 goodput 分别统计。原始完整协议可能列出 220/144 点，最小交付包筛选为 120 条主场景、60 条泛化、36 条输入简化结果，含复用端点，不把这些计数相加当作新增实验。
+
 ## 1. 实现与版本边界
 
 | 对象 | 身份与状态 |
 |---|---|
-| 本次整理前主分支 | `main`，基底 `6ecde90`；此前已于 10-21 整理文档和证据，通用 independent actor / rescue cohort 实现仍保留 |
+| 10 月整理前主分支（历史） | `main`，基底 `6ecde90`；此前已于 10-21 整理文档和证据，通用 independent actor / rescue cohort 实现仍保留 |
 | 最新实验工作区 | `.worktrees/pfq-independent-reuse-actor`，分支 `research/pfq-independent-reuse-actor` |
 | 实验 Git 基底 | `aa1401b542abce8ad2de141d233ff7e0ab0de1ff`；存在未提交修正，不能仅凭 HEAD 复现 |
 | 9 月有效性分界 | 实验分支 `7f3b700` 修正容量 bit/byte、PHY slot 索引、GPU MCS 初始化同步 |

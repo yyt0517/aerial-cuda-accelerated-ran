@@ -1,0 +1,23 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "objective": "mlwdf_pf",
+  "stage": "reported",
+  "seed": 41,
+  "key": "uniform_r1_reported_mlwdf_pf_s41",
+  "reused": true,
+  "directory": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_mlwdf_pf_s41",
+  "prior_key": "uniform_r1_rsrp_mlwdf_pf_s41",
+  "prior_analysis": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/analysis/uniform_r1_rsrp_mlwdf_pf_s41",
+  "hashes": {
+    "launch.json": "fcd8cd5e72ad217c155fb3e597b416fffe1d13d80779d7c5ca913edce15fb18f",
+    "validation.json": "636e42ef45bcd7f409674be29079b26d7fa2f688efa3bf17f1fe43929f1fc73f",
+    "metrics.bin": "6890e656c4709e6290a10e1e4b6f3b2504fb426581030403fb69264d02f34eb7",
+    "actions.npz": "276ec7ba91ed18041708574463061442252d9033d608f4e81a42242c12a787f3",
+    "traffic_offered_packets.csv": "00122d8d66a15e9136213c20b1918d58025d828a7457c5c48817f838cddfd3bd",
+    "packet_outcome_samples.csv": "e566b792015117ee212b17b3f98e031fcb419976059cb0eb844b59dce10d83b6",
+    "ue_topology.csv": "180c7802648d9f1505022ab06e079473ef7a72cee2a4d133e20e6a87e1b651ea",
+    "saved_states.json": "a865efae96258930bdffe7fb9f14787e58e12788ec1eff87f347c9953cd99c6d",
+    "search.csv.gz": "d78359e5b8c485c65bd4a85157912f1fb4c6917ac70a5389aad07a1a08b88610"
+  }
+}

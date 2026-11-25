@@ -1,0 +1,86 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "tti": 8001,
+      "native_sinr_max_error_db": 1.7191286243445347e-06,
+      "native_bler_max_error": 5.358706553215686e-07,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    },
+    {
+      "tti": 18001,
+      "native_sinr_max_error_db": 3.5988003004305824e-06,
+      "native_bler_max_error": 3.3377722231109352e-06,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    },
+    {
+      "tti": 28000,
+      "native_sinr_max_error_db": 5.345282429125575e-06,
+      "native_bler_max_error": 4.952647452927117e-06,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    }
+  ]
+}

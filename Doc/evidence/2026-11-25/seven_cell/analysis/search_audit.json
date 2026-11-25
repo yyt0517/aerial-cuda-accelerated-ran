@@ -1,0 +1,150 @@
+{
+  "passed": true,
+  "states": 18,
+  "checks": [
+    {
+      "run": "deficit_s41",
+      "tti": 8001,
+      "passed": true,
+      "rounds": 63,
+      "candidates": 443776,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 18001,
+      "passed": true,
+      "rounds": 65,
+      "candidates": 431568,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s41",
+      "tti": 28000,
+      "passed": true,
+      "rounds": 58,
+      "candidates": 404496,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 8001,
+      "passed": true,
+      "rounds": 73,
+      "candidates": 577555,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 18001,
+      "passed": true,
+      "rounds": 41,
+      "candidates": 334600,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s42",
+      "tti": 28000,
+      "passed": true,
+      "rounds": 55,
+      "candidates": 439516,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 8001,
+      "passed": true,
+      "rounds": 66,
+      "candidates": 494186,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 18001,
+      "passed": true,
+      "rounds": 77,
+      "candidates": 604048,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "deficit_s43",
+      "tti": 28000,
+      "passed": true,
+      "rounds": 71,
+      "candidates": 556017,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 8001,
+      "passed": true,
+      "rounds": 63,
+      "candidates": 515993,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 18001,
+      "passed": true,
+      "rounds": 68,
+      "candidates": 556089,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s41",
+      "tti": 28000,
+      "passed": true,
+      "rounds": 74,
+      "candidates": 593616,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 8001,
+      "passed": true,
+      "rounds": 69,
+      "candidates": 580231,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 18001,
+      "passed": true,
+      "rounds": 67,
+      "candidates": 553229,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s42",
+      "tti": 28000,
+      "passed": true,
+      "rounds": 63,
+      "candidates": 534598,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 8001,
+      "passed": true,
+      "rounds": 69,
+      "candidates": 567978,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 18001,
+      "passed": true,
+      "rounds": 58,
+      "candidates": 487120,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    },
+    {
+      "run": "mlwdf_pf_s43",
+      "tti": 28000,
+      "passed": true,
+      "rounds": 57,
+      "candidates": 485300,
+      "full_array_actions_values_bounds_cache_choices_and_numpy_phy": true
+    }
+  ]
+}

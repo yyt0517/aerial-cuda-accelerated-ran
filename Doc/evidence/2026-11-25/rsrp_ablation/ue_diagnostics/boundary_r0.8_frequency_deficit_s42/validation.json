@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "olla_checks": [
+    {
+      "tti": 8001,
+      "all_36_offsets_and_prior_crc_exact": true
+    },
+    {
+      "tti": 18001,
+      "all_36_offsets_and_prior_crc_exact": true
+    },
+    {
+      "tti": 28000,
+      "all_36_offsets_and_prior_crc_exact": true
+    }
+  ],
+  "olla_samples": 720000,
+  "full_window_bler_expiry_mcs_olla": true,
+  "sinr_scope": "three inherited saved states only; counts and signed errors retained",
+  "mcs_unchanged_by_model_on_same_state": true,
+  "candidate_scope": "all measured TTIs; occurrences across rounds are distinct from unique generated edit entries"
+}

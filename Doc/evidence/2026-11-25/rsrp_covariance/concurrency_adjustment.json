@@ -1,0 +1,17 @@
+{
+  "reason": "Increase independent simulation workers from 32 to 48 using observed GPU memory headroom; statistical protocol and decision sources unchanged",
+  "initial_attempt": "campaign_workers32_initial",
+  "initial_attempt_completed_new_trajectories": 0,
+  "initial_tti_range_at_stop": [
+    7800,
+    8600
+  ],
+  "stopped_campaign_pid": 22254,
+  "owned_process_tree_size": 66,
+  "gpu_client_cleanup_required_additional_wait": true,
+  "old_process_exit_confirmed": true,
+  "other_tasks_touched": false,
+  "new_workers": 48,
+  "gpu_memory_after_start_mib": 66482,
+  "gpu_total_mib": 81920
+}

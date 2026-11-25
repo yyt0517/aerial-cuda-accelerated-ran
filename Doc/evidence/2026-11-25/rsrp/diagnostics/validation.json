@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "states": 36,
+  "scope": "same selected actions; spatial/frequency diagnostics use oracle instantaneous H and are NOT closed-loop treatment arms",
+  "caveat": "differences between diagnostic MAEs are not an additive causal decomposition; exact local search is not a global optimum"
+}

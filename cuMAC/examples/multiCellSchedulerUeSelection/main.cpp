@@ -221,6 +221,153 @@ struct PrgUsageStats {
     double reuseRatio = 0.0;
 };
 
+struct ActualInterferenceTtiStats {
+    uint64_t scheduledLinkCount = 0ULL;
+    uint64_t interferedLinkCount = 0ULL;
+    double inrSum = 0.0;
+    double inrInterferedSum = 0.0;
+    std::vector<double> linkInr;
+};
+
+double quantileSorted(const std::vector<double>& sorted, double q)
+{
+    if (sorted.empty()) {
+        return 0.0;
+    }
+    const double pos = std::max(0.0, std::min(1.0, q)) * static_cast<double>(sorted.size() - 1U);
+    const size_t lo = static_cast<size_t>(std::floor(pos));
+    const size_t hi = static_cast<size_t>(std::ceil(pos));
+    const double frac = pos - static_cast<double>(lo);
+    return sorted[lo] * (1.0 - frac) + sorted[hi] * frac;
+}
+
+double inrToDbm(double inr, double noiseFloorDbm)
+{
+    if (!(inr > 0.0)) {
+        return -std::numeric_limits<double>::infinity();
+    }
+    return noiseFloorDbm + 10.0 * std::log10(inr);
+}
+
+ActualInterferenceTtiStats computeActualInterferenceTti(
+    const cumacSchdSol* schdSol,
+    const cumacCellGrpPrms* cellGrpPrms,
+    const cuComplex* estHFrActUe,
+    const cuComplex* prdMatActUe)
+{
+    ActualInterferenceTtiStats stats;
+    if (schdSol == nullptr || cellGrpPrms == nullptr || schdSol->allocSol == nullptr ||
+        schdSol->setSchdUePerCellTTI == nullptr || schdSol->layerSelSol == nullptr ||
+        estHFrActUe == nullptr || prdMatActUe == nullptr || cellGrpPrms->allocType != 0U ||
+        cellGrpPrms->dlSchInd == 0U) {
+        return stats;
+    }
+
+    const size_t nCell = cellGrpPrms->totNumCell;
+    const size_t nUe = cellGrpPrms->nActiveUe;
+    const size_t nPrg = cellGrpPrms->nPrbGrp;
+    const size_t nBsAnt = cellGrpPrms->nBsAnt;
+    const size_t nUeAnt = cellGrpPrms->nUeAnt;
+    if (nCell == 0U || nUe == 0U || nPrg == 0U || nBsAnt == 0U || nUeAnt == 0U) {
+        return stats;
+    }
+
+    const size_t hPerCell = nBsAnt * nUeAnt;
+    const size_t hPerUe = nCell * hPerCell;
+    const size_t hPerPrg = nUe * hPerUe;
+    const size_t vPerUePrg = nBsAnt * nBsAnt;
+    stats.linkInr.reserve(nCell * nPrg);
+
+    for (size_t prgIdx = 0; prgIdx < nPrg; ++prgIdx) {
+        for (size_t victimCell = 0; victimCell < nCell; ++victimCell) {
+            const int16_t victimSlot = schdSol->allocSol[prgIdx * nCell + victimCell];
+            if (victimSlot < 0 || static_cast<size_t>(victimSlot) >= cellGrpPrms->nUe) {
+                continue;
+            }
+            const uint16_t victimUe = schdSol->setSchdUePerCellTTI[victimSlot];
+            if (victimUe == 0xFFFF || static_cast<size_t>(victimUe) >= nUe) {
+                continue;
+            }
+
+            double linkInr = 0.0;
+            for (size_t interfererCell = 0; interfererCell < nCell; ++interfererCell) {
+                if (interfererCell == victimCell) {
+                    continue;
+                }
+                const int16_t interfererSlot = schdSol->allocSol[prgIdx * nCell + interfererCell];
+                if (interfererSlot < 0 || static_cast<size_t>(interfererSlot) >= cellGrpPrms->nUe) {
+                    continue;
+                }
+                const uint16_t interfererUe = schdSol->setSchdUePerCellTTI[interfererSlot];
+                if (interfererUe == 0xFFFF || static_cast<size_t>(interfererUe) >= nUe) {
+                    continue;
+                }
+                const size_t layerCount = std::max<size_t>(
+                    1U,
+                    std::min<size_t>(nBsAnt, schdSol->layerSelSol[interfererSlot]));
+                const size_t hBase = prgIdx * hPerPrg + static_cast<size_t>(victimUe) * hPerUe +
+                                     interfererCell * hPerCell;
+                const size_t vBase = (static_cast<size_t>(interfererUe) * nPrg + prgIdx) * vPerUePrg;
+                for (size_t rxAnt = 0; rxAnt < nUeAnt; ++rxAnt) {
+                    for (size_t layer = 0; layer < layerCount; ++layer) {
+                        double real = 0.0;
+                        double imag = 0.0;
+                        for (size_t txAnt = 0; txAnt < nBsAnt; ++txAnt) {
+                            const cuComplex h = estHFrActUe[hBase + txAnt * nUeAnt + rxAnt];
+                            const cuComplex v = prdMatActUe[vBase + layer * nBsAnt + txAnt];
+                            real += static_cast<double>(h.x) * v.x - static_cast<double>(h.y) * v.y;
+                            imag += static_cast<double>(h.x) * v.y + static_cast<double>(h.y) * v.x;
+                        }
+                        linkInr += real * real + imag * imag;
+                    }
+                }
+            }
+            linkInr /= static_cast<double>(nUeAnt);
+            stats.scheduledLinkCount += 1ULL;
+            stats.inrSum += linkInr;
+            stats.linkInr.push_back(linkInr);
+            if (linkInr > 0.0) {
+                stats.interferedLinkCount += 1ULL;
+                stats.inrInterferedSum += linkInr;
+            }
+        }
+    }
+    std::sort(stats.linkInr.begin(), stats.linkInr.end());
+    return stats;
+}
+
+void writeActualInterferenceTtiCsvRow(
+    std::ofstream& out,
+    int tti,
+    double noiseFloorDbm,
+    const ActualInterferenceTtiStats& stats,
+    const std::vector<unsigned long long>& goodputBytesThisTti,
+    double slotDurationSec)
+{
+    unsigned long long goodputBytes = 0ULL;
+    for (const unsigned long long bytes : goodputBytesThisTti) {
+        goodputBytes += bytes;
+    }
+    const double goodputMbps = slotDurationSec > 0.0
+                                   ? static_cast<double>(goodputBytes) * 8.0 / slotDurationSec / 1.0e6
+                                   : 0.0;
+    const double meanAll = stats.scheduledLinkCount > 0ULL
+                               ? stats.inrSum / static_cast<double>(stats.scheduledLinkCount)
+                               : 0.0;
+    const double meanInterfered = stats.interferedLinkCount > 0ULL
+                                      ? stats.inrInterferedSum / static_cast<double>(stats.interferedLinkCount)
+                                      : 0.0;
+    const double p50 = quantileSorted(stats.linkInr, 0.50);
+    const double p90 = quantileSorted(stats.linkInr, 0.90);
+    const double p95 = quantileSorted(stats.linkInr, 0.95);
+    out << tti << ',' << stats.scheduledLinkCount << ',' << stats.interferedLinkCount << ','
+        << stats.inrSum << ',' << meanAll << ',' << meanInterfered << ','
+        << inrToDbm(meanAll, noiseFloorDbm) << ',' << inrToDbm(meanInterfered, noiseFloorDbm) << ','
+        << p50 << ',' << p90 << ',' << p95 << ','
+        << inrToDbm(p50, noiseFloorDbm) << ',' << inrToDbm(p90, noiseFloorDbm) << ','
+        << inrToDbm(p95, noiseFloorDbm) << ',' << goodputBytes << ',' << goodputMbps << '\n';
+}
+
 std::vector<uint32_t> countAssignedPrgsPerSchedSlot(const cumacSchdSol* schdSol, const cumacCellGrpPrms* cellGrpPrms)
 {
     std::vector<uint32_t> slotPrgCount;
@@ -957,6 +1104,9 @@ int main(int argc, char* argv[])
       getEnvString("CUMAC_PACKET_DELAY_SAMPLES_CSV", "packet_delay_samples.csv");
   const std::string packetOutcomeSamplesCsv =
       getEnvString("CUMAC_PACKET_OUTCOME_SAMPLES_CSV", "packet_outcome_samples.csv");
+  const std::string actualInterferenceCsv =
+      getEnvString("CUMAC_ACTUAL_INTERFERENCE_CSV", "");
+  const bool actualInterferenceEnabled = !actualInterferenceCsv.empty();
   const float trafficArrivalRate = getEnvFloat("CUMAC_TRAFFIC_ARRIVAL_RATE", 1.0f);
   const int packetTtlTtiEnv = getEnvInt("CUMAC_PACKET_TTL_TTI", 0);
   const float packetTtlMsEnv = getEnvFloat("CUMAC_PACKET_TTL_MS", 0.0f);
@@ -1078,6 +1228,29 @@ int main(int argc, char* argv[])
 
   // create API
   net->createAPI();
+
+  std::ofstream actualInterferenceOut;
+  if (actualInterferenceEnabled) {
+      if (!prdSchemeConst) {
+          fprintf(stderr,
+                  "ERROR: CUMAC_ACTUAL_INTERFERENCE_CSV currently requires SVD precoding so that the "
+                  "post-action interferer precoders are defined.\n");
+          return 1;
+      }
+      actualInterferenceOut.open(actualInterferenceCsv);
+      if (!actualInterferenceOut) {
+          fprintf(stderr, "ERROR: failed to open actual interference CSV for writing: %s\n",
+                  actualInterferenceCsv.c_str());
+          return 1;
+      }
+      actualInterferenceOut
+          << "tti,scheduled_link_count,interfered_link_count,inr_sum,inr_mean_all,inr_mean_interfered,"
+             "interference_mean_all_dbm,interference_mean_interfered_dbm,inr_p50,inr_p90,inr_p95,"
+             "interference_p50_dbm,interference_p90_dbm,interference_p95_dbm,goodput_bytes,goodput_mbps\n";
+      actualInterferenceOut << std::setprecision(12);
+      printf("cuMAC scheduler pipeline test: actual post-action interference log=%s noise_floor_dbm=%.6f\n",
+             actualInterferenceCsv.c_str(), net->getNoiseFloorDbm());
+  }
   net->cellGrpPrmsGpu->pfQueueBufferCoeff = pfQueueBufferCoeff;
   net->cellGrpPrmsGpu->pfQueueBufferScaleBytes = pfQueueBufferScaleBytes;
   net->cellGrpPrmsGpu->pfQueueDemandAwareCap = pfQueueDemandAwareCap ? 1 : 0;
@@ -1432,6 +1605,7 @@ int main(int argc, char* argv[])
       break;
     }
     const int slotIdx = (onlineBridgeEnabled && onlinePersistentMode) ? (t % numSimChnRlz) : t;
+    ActualInterferenceTtiStats actualInterference;
     if (compactTtiLog) {
       if (progressTtiInterval > 0 &&
           ((t % progressTtiInterval) == 0 || (!onlineBridgeEnabled && t == (numSimChnRlz - 1)))) {
@@ -1475,6 +1649,10 @@ int main(int argc, char* argv[])
         // run SVD precoder
         svdPrd->run(net->cellGrpPrmsGpu.get());
         CUDA_CHECK_ERR(cudaStreamSynchronize(cuStrmMain));
+        if (actualInterferenceEnabled) {
+          net->copyPrdMatGpu2Cpu(cuStrmMain);
+          CUDA_CHECK_ERR(cudaStreamSynchronize(cuStrmMain));
+        }
         std::cout<<"SVD precoder and singular values computed"<<std::endl;
       }
     }
@@ -1858,6 +2036,13 @@ int main(int argc, char* argv[])
     actualUePrgCount = countAssignedPrgsPerActiveUe(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get());
     totalPrgCapacity += static_cast<unsigned long long>(net->cellGrpPrmsCpu.get()->totNumCell) *
                         static_cast<unsigned long long>(net->cellGrpPrmsCpu.get()->nPrbGrp);
+    if (actualInterferenceEnabled) {
+      actualInterference = computeActualInterferenceTti(
+          net->schdSolCpu.get(),
+          net->cellGrpPrmsCpu.get(),
+          net->getEstH_frActUe(),
+          net->cellGrpPrmsCpu.get()->prdMat_actUe);
+    }
 
     // accumulate per-UE average MCS based on scheduled UE mapping
     for (int schdUidx = 0; schdUidx < nUeSched; ++schdUidx) {
@@ -2004,6 +2189,16 @@ int main(int argc, char* argv[])
     }
 
     executedTtiCount = t + 1;
+
+    if (actualInterferenceEnabled) {
+      writeActualInterferenceTtiCsvRow(
+          actualInterferenceOut,
+          t,
+          net->getNoiseFloorDbm(),
+          actualInterference,
+          goodputBytesThisTti,
+          slotDurationConst);
+    }
 
     onlineObsExtrasBuilder.observeTtiResult(net->schdSolCpu.get(), net->cellGrpPrmsCpu.get(), goodputBytesThisTti);
 

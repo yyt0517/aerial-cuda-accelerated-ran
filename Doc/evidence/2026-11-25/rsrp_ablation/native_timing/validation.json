@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "runs": 8,
+  "checks": [
+    {
+      "key": "boundary_r0.8_exact_deficit_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "boundary_r0.8_reported_deficit_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "boundary_r0.8_exact_mlwdf_pf_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "boundary_r0.8_reported_mlwdf_pf_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "uniform_r1_exact_deficit_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "uniform_r1_reported_deficit_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "uniform_r1_exact_mlwdf_pf_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    },
+    {
+      "key": "uniform_r1_reported_mlwdf_pf_s41",
+      "passed": true,
+      "all_native_metrics_actions_and_channels_bit_identical": true
+    }
+  ],
+  "scope": "sequential 512-TTI smoke-equivalent probes, first 32 excluded; synchronized channel and SVD wall clocks",
+  "roundtrip": "parent step wall includes native simulator, bridge and host validation; final step has no next-state refresh",
+  "native_invocations": "513 input-state generations/SVDs and 1025 PFQ calls for 512 actions; final unexecuted input state excluded; both PFQ calls reported",
+  "channel_timing": "channel/precoder at input state, roundtrip advances to next state; averages are separate categories, not aligned additive slices",
+  "caveat": "shared GPU wall time, short-run diagnostic only; main scheduler CPU study excludes native generation altogether"
+}

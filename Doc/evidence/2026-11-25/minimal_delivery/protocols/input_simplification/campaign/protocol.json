@@ -1,0 +1,1089 @@
+{
+  "version": "rsrp_normalized_spatial_covariance_v1",
+  "stages": [
+    "exact",
+    "reported",
+    "prg_t1",
+    "prg_t4",
+    "prg_t20",
+    "prg_t100",
+    "prg_t200",
+    "wideband_t1",
+    "wideband_t4",
+    "wideband_t20",
+    "wideband_t100",
+    "wideband_t200"
+  ],
+  "periods_tti": [
+    1,
+    4,
+    20,
+    100,
+    200
+  ],
+  "periods_ms": [
+    0.5,
+    2.0,
+    10.0,
+    50.0,
+    100.0
+  ],
+  "jobs": [
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "exact",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "exact",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "exact",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "exact",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "exact",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "exact",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "exact",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "exact",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "exact",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "exact",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "exact",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "exact",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "reported",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "reported",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "reported",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "reported",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "reported",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "reported",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "reported",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "reported",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "reported",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "reported",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "reported",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "reported",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t1",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t1",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t1",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t1",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t1",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t1",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t1",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t1",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t1",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t1",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t1",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t1",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t4",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t4",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t4",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t4",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t4",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t4",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t4",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t4",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t4",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t4",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t4",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t4",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t20",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t20",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t20",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t20",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t20",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t20",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t20",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t20",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t20",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t20",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t20",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t20",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t100",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t100",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t100",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t100",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t100",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t100",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t100",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t100",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t100",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t100",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t100",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t100",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t200",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t200",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t200",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t200",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t200",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "prg_t200",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t200",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t200",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t200",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t200",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t200",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "prg_t200",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t1",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t1",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t1",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t1",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t1",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t1",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t1",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t1",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t1",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t1",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t1",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t1",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t4",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t4",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t4",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t4",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t4",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t4",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t4",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t4",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t4",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t4",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t4",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t4",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t20",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t20",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t20",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t20",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t20",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t20",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t20",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t20",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t20",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t20",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t20",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t20",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t100",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t100",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t100",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t100",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t100",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t100",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t100",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t100",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t100",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t100",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t100",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t100",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t200",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t200",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t200",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t200",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t200",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "boundary",
+      "rate": 0.8,
+      "stage": "wideband_t200",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t200",
+      "objective": "deficit",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t200",
+      "objective": "deficit",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t200",
+      "objective": "deficit",
+      "seed": 43
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t200",
+      "objective": "mlwdf_pf",
+      "seed": 41
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t200",
+      "objective": "mlwdf_pf",
+      "seed": 42
+    },
+    {
+      "scene": "uniform",
+      "rate": 1.0,
+      "stage": "wideband_t200",
+      "objective": "mlwdf_pf",
+      "seed": 43
+    }
+  ],
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "smoke": false,
+  "windows": [
+    4000,
+    4000,
+    20000,
+    400
+  ],
+  "rsrp": {
+    "period_tti": 20,
+    "delay_tti": 1,
+    "tau_tti": 200.0
+  },
+  "covariance_delay_tti": 1,
+  "covariance_temporal_filter": false,
+  "covariance_normalization": "R = 4 C / trace C; C_hat = 4 beta_RSRP R",
+  "wideband": "average full-port covariance over PRGs BEFORE trace normalization",
+  "feedback": "15 independent real shape parameters per neighbor matrix, scalar RSRP separately; no quantization in PHY",
+  "witness": "prg_t1 records all periods, with six stratified/dithered report phases for matched-state timing",
+  "simulator": "a68f48668bc623c0bc793c452f1b0cd5d8943929eb26e8eefd25f776d180b615",
+  "workers": 48,
+  "sources": {
+    "training/stageb_rsrp/__init__.py": "017e0d40d270437c1b3bd9f7ae1e38342e5a9747f2c21f29848dd81bee95ed11",
+    "training/stageb_rsrp/model.py": "5922d14374740fa019cf79d454940dc8fb1846d0e0f9894e8f14bd7751a0091e",
+    "training/stageb_rsrp/campaign.py": "ad8fd167bf030beaea58974fd9e24bc2ea1c04d498c6b0fda5cae60580976a8b",
+    "training/stage2_closure/native.py": "658665747080c27812baefd007b33819910cc50075b82962e24ab40bd45c8c72",
+    "training/stageb_ppo/native.py": "9b761ac4a1859c2325ee20ceb8f57e1eaf90f2a0dbbf2bb97990101137edf710",
+    "training/stageb_ppo/reward.py": "fd53abb03e153294d5dd99b54d2137f98c49c9ef55c0ca979133c86930b3b17c",
+    "training/stageb_lns/physics.py": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+    "training/stageb_lns/no_ctbs_inputs.py": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+    "training/stageb_lns/crossload_native.py": "4e0d6fcb75bf2621152273d45d77f609f54b667f45bc65ad4d05a9b474a8c7f7",
+    "training/stageb_lns/ttl_weights.py": "ee227410112c3e0fd830f62bfb3e70b663f1d5d5806ea274dcfebac6b2736a00",
+    "training/stageb_lns/bounded_dpls.py": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+    "training/stageb_lns/_bounded.so": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+    "training/stageb_lns/persistent_dpls.py": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+    "training/stageb_lns/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_lns/persistent_kernel.cpp": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090",
+    "training/stageb_lns/bounded_kernel.cpp": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c",
+    "training/stageb_rsrp_ablation/campaign.py": "43a3db3335b491accf96790849a57f9774cec1f97277bebde991fa1564a7c261",
+    "training/stageb_rsrp_ablation/model.py": "7c89757227e4ae83032077d8aba9285c667b79f85aa361e09af6ab3effa03fd5",
+    "training/stageb_rsrp_covariance/__init__.py": "4f7912d07b4d6c207e5ee6e1941552f1139ea2ce72fbf77063faefc2022df4a4",
+    "training/stageb_rsrp_covariance/model.py": "e29b811c7b58b863c215700bdefd57df00dd01e8897c7ec40af7569d6583620a",
+    "training/stageb_rsrp_covariance/campaign.py": "274eb6586f5db0455284180b07052391d17926203befa955dbe71917b14bdf44"
+  }
+}

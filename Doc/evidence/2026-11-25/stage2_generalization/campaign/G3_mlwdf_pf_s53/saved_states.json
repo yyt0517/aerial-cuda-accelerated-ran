@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G3_mlwdf_pf_s53/states/tti008001.pt",
+    "sha256": "873cade3ecdf0060978f70ddfb31fb8259e063e2553a28fba299dd7e0d0051e7"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G3_mlwdf_pf_s53/states/tti018001.pt",
+    "sha256": "77300e9e1ef0e3a05cf28e882b61177cfb4de52fdf13d1230d426d7369385500"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G3_mlwdf_pf_s53/states/tti028000.pt",
+    "sha256": "46acf4431d1e35f9be43436eccd2e3761c298a4015f86aae776507d13de27b27"
+  }
+]

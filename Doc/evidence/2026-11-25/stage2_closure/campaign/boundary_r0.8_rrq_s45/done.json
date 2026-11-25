@@ -1,0 +1,11 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "arm": "rrq",
+  "seed": 45,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_rrq_s45",
+  "key": "boundary_r0.8_rrq_s45",
+  "native_passed": true,
+  "smoke": false
+}

@@ -1,0 +1,10 @@
+{
+  "scenario": "G1",
+  "arm": "mlwdf_pf",
+  "seed": 51,
+  "key": "G1_mlwdf_pf_s51",
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G1_mlwdf_pf_s51",
+  "horizon": 28400,
+  "native_passed": true,
+  "smoke": false
+}

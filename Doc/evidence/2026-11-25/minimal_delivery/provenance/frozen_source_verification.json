@@ -1,0 +1,275 @@
+[
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stage2_closure/campaign.py",
+    "sha256": "20d6d881b081d1c5edfc543fba419b8e378c8dea00d1e126a5ce21bd6058e84e",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stage2_closure/native.py",
+    "sha256": "658665747080c27812baefd007b33819910cc50075b82962e24ab40bd45c8c72",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stage2_closure/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/_bounded.so",
+    "sha256": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+    "matched": true,
+    "bundled": false
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/_persistent.so",
+    "sha256": "a2a02219a8f042f37f4f7c75a6874425cafcfa9ded29d782f2dcd4a4444cce07",
+    "matched": true,
+    "bundled": false
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/bounded_dpls.py",
+    "sha256": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/persistent_dpls.py",
+    "sha256": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/physics.py",
+    "sha256": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/no_ctbs_inputs.py",
+    "sha256": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/crossload_native.py",
+    "sha256": "4e0d6fcb75bf2621152273d45d77f609f54b667f45bc65ad4d05a9b474a8c7f7",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_closure_20261105_r2/campaign/protocol.json",
+    "path": "training/stageb_lns/ttl_weights.py",
+    "sha256": "ee227410112c3e0fd830f62bfb3e70b663f1d5d5806ea274dcfebac6b2736a00",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/__init__.py",
+    "sha256": "97c12512ba2d1f6d7ba51891e703fbd604bc2acb1a5f26e831f3d2f2c7735e5b",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/native.py",
+    "sha256": "ab2265b8db0d5b417e03a8833a0b3a6cb73fa506347da0bae3e787ee9a9f5d7f",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/analyze.py",
+    "sha256": "1bbb4cd9f601f964e7c065b08103c56202d7df119cf9b6ad77c5bd36fb2fc949",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/fifo.py",
+    "sha256": "b911ac4b0e63afbe8c206be70728d9cd0a77948b6fa027c63f05f92ff0c628a1",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/build.py",
+    "sha256": "14bfa8e3a67d0dbd46814e1a7ccd8ae2a3f0cb5ae99799892659555db414144f",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/campaign.py",
+    "sha256": "bea99df5c5eba6f04c1d7888c955481e5d04f038dabe653eb0d5f4a110756b58",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/stage2_generalization_20261106/protocol.json",
+    "path": "training/stage2_generalization/protocol.py",
+    "sha256": "cf2731ed9a5a2c60372482d69a03e5c03a49799c4a3c9a766d09fb3a60454069",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp/__init__.py",
+    "sha256": "017e0d40d270437c1b3bd9f7ae1e38342e5a9747f2c21f29848dd81bee95ed11",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp/model.py",
+    "sha256": "5922d14374740fa019cf79d454940dc8fb1846d0e0f9894e8f14bd7751a0091e",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp/campaign.py",
+    "sha256": "ad8fd167bf030beaea58974fd9e24bc2ea1c04d498c6b0fda5cae60580976a8b",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stage2_closure/native.py",
+    "sha256": "658665747080c27812baefd007b33819910cc50075b82962e24ab40bd45c8c72",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_ppo/native.py",
+    "sha256": "9b761ac4a1859c2325ee20ceb8f57e1eaf90f2a0dbbf2bb97990101137edf710",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_ppo/reward.py",
+    "sha256": "fd53abb03e153294d5dd99b54d2137f98c49c9ef55c0ca979133c86930b3b17c",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/physics.py",
+    "sha256": "9f35c662bf14f5049310ed6ea746aa44cf131d65dca4e9145024e410121eaf2d",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/no_ctbs_inputs.py",
+    "sha256": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/crossload_native.py",
+    "sha256": "4e0d6fcb75bf2621152273d45d77f609f54b667f45bc65ad4d05a9b474a8c7f7",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/ttl_weights.py",
+    "sha256": "ee227410112c3e0fd830f62bfb3e70b663f1d5d5806ea274dcfebac6b2736a00",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/bounded_dpls.py",
+    "sha256": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/_bounded.so",
+    "sha256": "2976573dd21cdbd0e670b09af95c9ed6c283df83fce6962f9406595c9e92a8d3",
+    "matched": true,
+    "bundled": false
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/persistent_dpls.py",
+    "sha256": "a0133c07f372b3615c1c8add932610061e487ec63130709b8bd70b036201275c",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/physics_kernel.cpp",
+    "sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/persistent_kernel.cpp",
+    "sha256": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_lns/bounded_kernel.cpp",
+    "sha256": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp_ablation/campaign.py",
+    "sha256": "43a3db3335b491accf96790849a57f9774cec1f97277bebde991fa1564a7c261",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp_ablation/model.py",
+    "sha256": "7c89757227e4ae83032077d8aba9285c667b79f85aa361e09af6ab3effa03fd5",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp_covariance/__init__.py",
+    "sha256": "4f7912d07b4d6c207e5ee6e1941552f1139ea2ce72fbf77063faefc2022df4a4",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp_covariance/model.py",
+    "sha256": "e29b811c7b58b863c215700bdefd57df00dd01e8897c7ec40af7569d6583620a",
+    "matched": true,
+    "bundled": true
+  },
+  {
+    "protocol": "deliverables/rsrp_covariance_20261110/campaign/protocol.json",
+    "path": "training/stageb_rsrp_covariance/campaign.py",
+    "sha256": "274eb6586f5db0455284180b07052391d17926203befa955dbe71917b14bdf44",
+    "matched": true,
+    "bundled": true
+  }
+]

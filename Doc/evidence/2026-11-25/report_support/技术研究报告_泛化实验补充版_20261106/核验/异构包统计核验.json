@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "tests": [
+    "1500 B completion with 12000 B partial service",
+    "Failed segment invalidates the entire large packet",
+    "Partial-service expiry counts full offered packet bytes",
+    "Fixed 3000 B compatibility: 34 random TTIs, exact equality"
+  ]
+}

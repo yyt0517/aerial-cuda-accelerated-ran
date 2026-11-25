@@ -1,0 +1,14 @@
+{
+  "original": {
+    "physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "persistent_kernel.cpp": "09fe0f6cf860b6cc5d6984c1b8b8b643a86b229c1959dd1640976d948418e090",
+    "bounded_kernel.cpp": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c"
+  },
+  "modified": {
+    "persistent_kernel.cpp": "804d9a9326648fe2767c5496e2d20a6a59435cf8334e962e12113f8c631c4752",
+    "physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "bounded_kernel.cpp": "992c2f011417bda5348632092880cfd50695e81e95109cbb18e7d1869606c426"
+  },
+  "library_sha256": "525852df30ba720502cbef1013e782be8a93a012a66d2af23d81d92b65f74c90",
+  "scope": "UE support/footprint masks widened to 128 bits; cell activity masks and canonical int64 keys unchanged"
+}

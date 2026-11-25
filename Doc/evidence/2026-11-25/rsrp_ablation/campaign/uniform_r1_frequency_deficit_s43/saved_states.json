@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_frequency_deficit_s43/states/tti008001.pt",
+    "sha256": "630100ed9bc1c455a8b60fd1876a0e5b5751bf62e20ae0fa8aecf9165b566cce"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_frequency_deficit_s43/states/tti018001.pt",
+    "sha256": "ccb30f4bb0fa08f97fdf8299355d92f992a3cb7594505121f3f50b8b80525a34"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_frequency_deficit_s43/states/tti028000.pt",
+    "sha256": "c6b709bc38e8a56f24b1dcd7015d9cc66cb64fe3924f9eb9d04eb5e1c4b28376"
+  }
+]

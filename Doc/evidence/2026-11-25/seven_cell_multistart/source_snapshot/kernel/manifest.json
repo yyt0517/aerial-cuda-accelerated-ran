@@ -1,0 +1,30 @@
+{
+  "source": {
+    "physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "persistent_kernel.cpp": "804d9a9326648fe2767c5496e2d20a6a59435cf8334e962e12113f8c631c4752",
+    "bounded_kernel.cpp": "992c2f011417bda5348632092880cfd50695e81e95109cbb18e7d1869606c426"
+  },
+  "modified": {
+    "persistent_kernel.cpp": "ee54d3668e852d1913c19a77455b12bba5bf71fb55bd660d477208d40d7157ed",
+    "physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "bounded_kernel.cpp": "992c2f011417bda5348632092880cfd50695e81e95109cbb18e7d1869606c426"
+  },
+  "library_sha256": "b41c21834bfab2152faddf665fa17d0b5e44806dce87e6bb7614a0e044135013",
+  "command": [
+    "g++",
+    "-O3",
+    "-std=c++17",
+    "-DNDEBUG",
+    "-ffp-contract=off",
+    "-fno-fast-math",
+    "-shared",
+    "-fPIC",
+    "-Wl,-Bsymbolic",
+    "-I/usr/include/eigen3",
+    "-I/usr/local/include/eigen3",
+    "/data/aerial-cuda-accelerated-ran/training/stageb_sevencell_multistart/kernel/bounded_kernel.cpp",
+    "-o",
+    "/data/aerial-cuda-accelerated-ran/training/stageb_sevencell_multistart/_seeded.so"
+  ],
+  "scope": "Only force adoption of supplied feasible initial action; floor remains based on raw PFQ; no search/PHY changes"
+}

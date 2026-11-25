@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "release": "评测扩充版",
+  "checked_at": "2026-11-05T09:29:01.782681+08:00",
+  "pdf_pages": 107,
+  "chapter_page_spans": {
+    "第六章": [
+      44,
+      47
+    ],
+    "第七章": [
+      48,
+      67
+    ],
+    "第八章": [
+      68,
+      73
+    ],
+    "第九章": [
+      74,
+      99
+    ],
+    "第十章": [
+      100,
+      102
+    ],
+    "第十一章": [
+      103,
+      104
+    ]
+  },
+  "visual_checked_pages": [
+    44,
+    48,
+    51,
+    54,
+    75,
+    101
+  ],
+  "page_boundary_violations": [],
+  "completed_experiment_points": 220,
+  "new_simulation_run_required": false,
+  "delay_columns": [
+    "成功包平均时延",
+    "成功包P95时延",
+    "outcome平均时延",
+    "outcomeP95时延"
+  ],
+  "report_p99_removed": true,
+  "report_ctbs_removed": true,
+  "existing_metrics_unchanged": [
+    "payload_mbps",
+    "goodput_mbps",
+    "expiry_pct",
+    "other_nondelivery_pct",
+    "delay_mean_ms",
+    "delay_p95_ms",
+    "ue_payload_p5_mbps",
+    "ue_goodput_p5_mbps",
+    "jain_payload",
+    "jain_goodput",
+    "worst_ue_expiry_pct",
+    "sinr_tx_mean_db",
+    "mcs_tx_mean",
+    "prg_occupancy_pct",
+    "bytes_per_used_prg",
+    "tb_error_pct",
+    "reuse_0_pct",
+    "reuse_1_pct",
+    "reuse_2_pct",
+    "reuse_3_pct",
+    "success_pct"
+  ],
+  "actual_cell_association_states_checked": 360,
+  "files": {
+    "技术研究报告_二阶段同频收尾_评测扩充版.docx": {
+      "bytes": 2568817,
+      "sha256": "746ad73d653535219508dae10e8564f6c9eea0d5aa08e05c4ed852d0eea139a2"
+    },
+    "技术研究报告_二阶段同频收尾_评测扩充版.pdf": {
+      "bytes": 4272303,
+      "sha256": "607d3e44a572ad89a4139c4721126bc70ad018d5fec0507ec2507729228310c2"
+    },
+    "仿真结果汇总_评测扩充版.xlsx": {
+      "bytes": 509206,
+      "sha256": "099c8d29b4d4c7115eb39eeac287130962c54e395cda27afd9cf6f20f78556d9"
+    },
+    "仿真证据包_评测扩充版.zip": {
+      "bytes": 4504222,
+      "sha256": "1579e10575022ded019f100f2f781568b7f5de122a2f7f65279080014eee2635"
+    }
+  }
+}

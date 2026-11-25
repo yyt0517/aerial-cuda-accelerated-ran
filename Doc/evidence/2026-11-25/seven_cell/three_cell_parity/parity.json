@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "tti": 448,
+  "exact_actions_inputs_traffic_transmitted_phy_and_byte_metrics": true,
+  "unallocated_layer_sentinel_rows": 479,
+  "sentinel_normalization": "unallocated layer 255→-1 only"
+}

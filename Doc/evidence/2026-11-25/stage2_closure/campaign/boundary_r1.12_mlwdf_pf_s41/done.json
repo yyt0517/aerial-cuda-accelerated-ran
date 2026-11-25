@@ -1,0 +1,11 @@
+{
+  "scene": "boundary",
+  "rate": 1.12,
+  "arm": "mlwdf_pf",
+  "seed": 41,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r1.12_mlwdf_pf_s41",
+  "key": "boundary_r1.12_mlwdf_pf_s41",
+  "native_passed": true,
+  "smoke": false
+}

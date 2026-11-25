@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_deficit_s41/states/tti008001.pt",
+    "sha256": "819c7802f7b0dee19c4db8430704f56358a9ec15e4c790f4822e4cd1db90ae90"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_deficit_s41/states/tti018001.pt",
+    "sha256": "2535b23ac450fdb09cd8fcfa86ee8a635568c7c677d8e12214a4191ab1965cf7"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_deficit_s41/states/tti028000.pt",
+    "sha256": "588d4a6bd0fef885b646e5267bf696e1620d0d5b232f7f626d1bdd1f72030196"
+  }
+]

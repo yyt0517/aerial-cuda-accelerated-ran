@@ -1,0 +1,127 @@
+PROGRESS 43 1000 28400
+PROGRESS 42 1000 28400
+PROGRESS 41 1000 28400
+PROGRESS 42 2000 28400
+PROGRESS 43 2000 28400
+PROGRESS 41 2000 28400
+PROGRESS 43 3000 28400
+PROGRESS 42 3000 28400
+PROGRESS 41 3000 28400
+PROGRESS 43 4000 28400
+PROGRESS 42 4000 28400
+PROGRESS 41 4000 28400
+PROGRESS 42 5000 28400
+PROGRESS 43 5000 28400
+PROGRESS 41 5000 28400
+PROGRESS 42 6000 28400
+PROGRESS 43 6000 28400
+PROGRESS 41 6000 28400
+PROGRESS 42 7000 28400
+PROGRESS 43 7000 28400
+PROGRESS 41 7000 28400
+PROGRESS 42 8000 28400
+PROGRESS 43 8000 28400
+PROGRESS 41 8000 28400
+PROGRESS 42 9000 28400
+PROGRESS 41 9000 28400
+PROGRESS 43 9000 28400
+PROGRESS 42 10000 28400
+PROGRESS 43 10000 28400
+PROGRESS 41 10000 28400
+PROGRESS 42 11000 28400
+PROGRESS 43 11000 28400
+PROGRESS 41 11000 28400
+PROGRESS 42 12000 28400
+PROGRESS 43 12000 28400
+PROGRESS 41 12000 28400
+PROGRESS 42 13000 28400
+PROGRESS 43 13000 28400
+PROGRESS 41 13000 28400
+PROGRESS 42 14000 28400
+PROGRESS 43 14000 28400
+PROGRESS 41 14000 28400
+PROGRESS 42 15000 28400
+PROGRESS 43 15000 28400
+PROGRESS 41 15000 28400
+PROGRESS 42 16000 28400
+PROGRESS 43 16000 28400
+PROGRESS 41 16000 28400
+PROGRESS 42 17000 28400
+PROGRESS 43 17000 28400
+PROGRESS 41 17000 28400
+PROGRESS 42 18000 28400
+PROGRESS 43 18000 28400
+PROGRESS 42 19000 28400
+PROGRESS 41 18000 28400
+PROGRESS 43 19000 28400
+PROGRESS 42 20000 28400
+PROGRESS 41 19000 28400
+PROGRESS 43 20000 28400
+PROGRESS 42 21000 28400
+PROGRESS 43 21000 28400
+PROGRESS 41 20000 28400
+PROGRESS 43 22000 28400
+PROGRESS 42 22000 28400
+PROGRESS 41 21000 28400
+PROGRESS 43 23000 28400
+PROGRESS 42 23000 28400
+PROGRESS 41 22000 28400
+PROGRESS 42 24000 28400
+PROGRESS 43 24000 28400
+PROGRESS 41 23000 28400
+PROGRESS 42 25000 28400
+PROGRESS 43 25000 28400
+PROGRESS 41 24000 28400
+PROGRESS 43 26000 28400
+PROGRESS 42 26000 28400
+PROGRESS 41 25000 28400
+PROGRESS 43 27000 28400
+PROGRESS 42 27000 28400
+PROGRESS 41 26000 28400
+PROGRESS 42 28000 28400
+PROGRESS 43 28000 28400
+DONE 42
+DONE 43
+PROGRESS 41 27000 28400
+PROGRESS 41 28000 28400
+DONE 41
+ANALYZED da_three_branch_s41
+ANALYZED da_three_branch_s42
+ANALYZED da_three_branch_s43
+AUDIT da_three_branch_s41 4001 dpls {'passed': True, 'rounds': 96, 'candidates': 855674}
+AUDIT da_three_branch_s41 4001 original_da {'passed': True, 'rounds': 87, 'candidates': 709860}
+AUDIT da_three_branch_s41 4001 from_dpls_da {'passed': True, 'rounds': 49, 'candidates': 392877}
+AUDIT da_three_branch_s41 8001 dpls {'passed': True, 'rounds': 74, 'candidates': 605548}
+AUDIT da_three_branch_s41 8001 original_da {'passed': True, 'rounds': 69, 'candidates': 554836}
+AUDIT da_three_branch_s41 8001 from_dpls_da {'passed': True, 'rounds': 23, 'candidates': 179308}
+AUDIT da_three_branch_s41 18001 dpls {'passed': True, 'rounds': 88, 'candidates': 734251}
+AUDIT da_three_branch_s41 18001 original_da {'passed': True, 'rounds': 76, 'candidates': 620025}
+AUDIT da_three_branch_s41 18001 from_dpls_da {'passed': True, 'rounds': 15, 'candidates': 118948}
+AUDIT da_three_branch_s41 28000 dpls {'passed': True, 'rounds': 73, 'candidates': 603353}
+AUDIT da_three_branch_s41 28000 original_da {'passed': True, 'rounds': 63, 'candidates': 507471}
+AUDIT da_three_branch_s41 28000 from_dpls_da {'passed': True, 'rounds': 19, 'candidates': 147967}
+AUDIT da_three_branch_s42 4001 dpls {'passed': True, 'rounds': 88, 'candidates': 794917}
+AUDIT da_three_branch_s42 4001 original_da {'passed': True, 'rounds': 92, 'candidates': 825405}
+AUDIT da_three_branch_s42 4001 from_dpls_da {'passed': True, 'rounds': 41, 'candidates': 367664}
+AUDIT da_three_branch_s42 8001 dpls {'passed': True, 'rounds': 71, 'candidates': 570475}
+AUDIT da_three_branch_s42 8001 original_da {'passed': True, 'rounds': 66, 'candidates': 549698}
+AUDIT da_three_branch_s42 8001 from_dpls_da {'passed': True, 'rounds': 8, 'candidates': 60704}
+AUDIT da_three_branch_s42 18001 dpls {'passed': True, 'rounds': 82, 'candidates': 671858}
+AUDIT da_three_branch_s42 18001 original_da {'passed': True, 'rounds': 56, 'candidates': 465594}
+AUDIT da_three_branch_s42 18001 from_dpls_da {'passed': True, 'rounds': 9, 'candidates': 69696}
+AUDIT da_three_branch_s42 28000 dpls {'passed': True, 'rounds': 82, 'candidates': 673266}
+AUDIT da_three_branch_s42 28000 original_da {'passed': True, 'rounds': 51, 'candidates': 427806}
+AUDIT da_three_branch_s42 28000 from_dpls_da {'passed': True, 'rounds': 20, 'candidates': 156807}
+AUDIT da_three_branch_s43 4001 dpls {'passed': True, 'rounds': 94, 'candidates': 844438}
+AUDIT da_three_branch_s43 4001 original_da {'passed': True, 'rounds': 86, 'candidates': 772826}
+AUDIT da_three_branch_s43 4001 from_dpls_da {'passed': True, 'rounds': 35, 'candidates': 302352}
+AUDIT da_three_branch_s43 8001 dpls {'passed': True, 'rounds': 79, 'candidates': 657462}
+AUDIT da_three_branch_s43 8001 original_da {'passed': True, 'rounds': 65, 'candidates': 543276}
+AUDIT da_three_branch_s43 8001 from_dpls_da {'passed': True, 'rounds': 30, 'candidates': 230878}
+AUDIT da_three_branch_s43 18001 dpls {'passed': True, 'rounds': 93, 'candidates': 746122}
+AUDIT da_three_branch_s43 18001 original_da {'passed': True, 'rounds': 57, 'candidates': 487142}
+AUDIT da_three_branch_s43 18001 from_dpls_da {'passed': True, 'rounds': 16, 'candidates': 120134}
+AUDIT da_three_branch_s43 28000 dpls {'passed': True, 'rounds': 92, 'candidates': 778250}
+AUDIT da_three_branch_s43 28000 original_da {'passed': True, 'rounds': 49, 'candidates': 416044}
+AUDIT da_three_branch_s43 28000 from_dpls_da {'passed': True, 'rounds': 25, 'candidates': 203072}
+deliverables/seven_cell_boundary08_multistart_20261105_v1/analysis/report.txt

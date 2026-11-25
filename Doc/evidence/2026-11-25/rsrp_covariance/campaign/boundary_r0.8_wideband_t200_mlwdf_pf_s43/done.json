@@ -1,0 +1,12 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "stage": "wideband_t200",
+  "objective": "mlwdf_pf",
+  "seed": 43,
+  "key": "boundary_r0.8_wideband_t200_mlwdf_pf_s43",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/boundary_r0.8_wideband_t200_mlwdf_pf_s43",
+  "native_passed": true,
+  "smoke": false
+}

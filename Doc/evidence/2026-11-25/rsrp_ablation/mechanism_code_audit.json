@@ -1,0 +1,254 @@
+{
+  "passed": true,
+  "sources": [
+    {
+      "role": "capacity_bound",
+      "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/bounded_kernel.cpp",
+      "sha256": "6fc9a8f78ceb711a89194c436d45c8dcbd1bbf80d3a421e9921c56b5f2eac14c",
+      "evidence": [
+        {
+          "pattern": "b.upper+=quant(u,d)-contribution[u]",
+          "matches": [
+            {
+              "line": 56,
+              "text": "b.upper+=quant(u,d)-contribution[u];b.dd+=bytes(d)-bytes(values[u*FIELDS+DEQUEUE]);"
+            }
+          ]
+        },
+        {
+          "pattern": "n.edit->dj>n.bound->upper",
+          "matches": [
+            {
+              "line": 109,
+              "text": "if(n.edit->dj>n.bound->upper||n.edit->dd!=n.bound->dd)throw std::runtime_error(\"Invalid capacity/floor bound\");"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "same_context",
+      "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/bounded_dpls.py",
+      "sha256": "b065da52d373b92738d11e5cc60469698101e540aa50d150255222d81a2a54cb",
+      "evidence": [
+        {
+          "pattern": "phy=BoundedPhy(p)",
+          "matches": [
+            {
+              "line": 55,
+              "text": "legal=np.ascontiguousarray(p.legal,np.uint8);phy=BoundedPhy(p)"
+            }
+          ]
+        },
+        {
+          "pattern": "phy.lib.lb_solve(phy.context",
+          "matches": [
+            {
+              "line": 76,
+              "text": "code=phy.lib.lb_solve(phy.context,legal,p.weights,raw,"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "fine_scoring",
+      "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/physics_kernel.cpp",
+      "sha256": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+      "evidence": [
+        {
+          "pattern": "out[EXPECTED]=out[DEQUEUE]*(1.-out[BLER])",
+          "matches": [
+            {
+              "line": 90,
+              "text": "out[EXPECTED]=out[DEQUEUE]*(1.-out[BLER]);"
+            }
+          ]
+        },
+        {
+          "pattern": "r.ldlt().solve(s)",
+          "matches": [
+            {
+              "line": 52,
+              "text": "Matrix e=(Matrix::Identity()+s.adjoint()*r.ldlt().solve(s)).inverse();"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "native_mcs",
+      "path": "/data/aerial-cuda-accelerated-ran/training/stageb_lns/no_ctbs_inputs.py",
+      "sha256": "f22729b748423430a657ac7299fab80796161b0b95a51aecdd46f6d781e6e6a0",
+      "evidence": [
+        {
+          "pattern": "mcs = np.array([reconstruct_mcs",
+          "matches": [
+            {
+              "line": 117,
+              "text": "mcs = np.array([reconstruct_mcs("
+            }
+          ]
+        },
+        {
+          "pattern": "olla_delta=float(vectors",
+          "matches": [
+            {
+              "line": 119,
+              "text": "olla_delta=float(vectors['olla_delta'][u]),"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "failed_dequeue",
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "evidence": [
+        {
+          "pattern": "bufferSize[activeUeId] -= sched_bytes",
+          "matches": [
+            {
+              "line": 2667,
+              "text": "cellGrpUeStatusCpu->bufferSize[activeUeId] -= sched_bytes;"
+            }
+          ]
+        },
+        {
+          "pattern": "insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;",
+          "matches": [
+            {
+              "line": 1955,
+              "text": "insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;"
+            },
+            {
+              "line": 2174,
+              "text": "insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;"
+            },
+            {
+              "line": 2440,
+              "text": "insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;"
+            },
+            {
+              "line": 2668,
+              "text": "insRate = 8.0F*static_cast<float>(sched_bytes)*(1-tbErr)/slotDuration;"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "mcs_olla",
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/cuMAC/src/4T4R/mcsSelectionLUTCpu.cpp",
+      "sha256": "9be1ba758f4e1229796b7dba1cc2c0f035f6bce62099faa6f082a7fb01719d01",
+      "evidence": [
+        {
+          "pattern": ".delta       = 0.0",
+          "matches": [
+            {
+              "line": 48,
+              "text": "ollaParamArr[ueIdx].delta       = 0.0;"
+            }
+          ]
+        },
+        {
+          "pattern": "if (numAllocPrg > 0)",
+          "matches": [
+            {
+              "line": 132,
+              "text": "if (numAllocPrg > 0) { // being scheduled for the current slot"
+            },
+            {
+              "line": 187,
+              "text": "if (numAllocPrg > 0) { // being scheduled for the current slot"
+            }
+          ]
+        },
+        {
+          "pattern": "delta +=",
+          "matches": [
+            {
+              "line": 135,
+              "text": "pDynDescr->ollaParamArr[globalUidx].delta += pDynDescr->ollaParamArr[globalUidx].delta_up;"
+            },
+            {
+              "line": 190,
+              "text": "pDynDescr->ollaParamArr[globalUidx].delta += pDynDescr->ollaParamArr[globalUidx].delta_up;"
+            }
+          ]
+        },
+        {
+          "pattern": "delta -=",
+          "matches": [
+            {
+              "line": 137,
+              "text": "pDynDescr->ollaParamArr[globalUidx].delta -= pDynDescr->ollaParamArr[globalUidx].delta_down;"
+            },
+            {
+              "line": 192,
+              "text": "pDynDescr->ollaParamArr[globalUidx].delta -= pDynDescr->ollaParamArr[globalUidx].delta_down;"
+            }
+          ]
+        },
+        {
+          "pattern": "mcsIdx = 27",
+          "matches": [
+            {
+              "line": 149,
+              "text": "for (int mcsIdx = 27; mcsIdx >= 0; mcsIdx--) {"
+            },
+            {
+              "line": 204,
+              "text": "for (int mcsIdx = 27; mcsIdx >= 0; mcsIdx--) {"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "role": "instantaneous_fast_fading",
+      "path": "/data/aerial-cuda-accelerated-ran/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_corrected_physics_20261020_v1/native_network_source.cu",
+      "sha256": "fa66806ba48e33d47506b70696217974aa7d91f36c7e1890e2c077eb51713308",
+      "evidence": [
+        {
+          "pattern": "netData->rho = 0.9938",
+          "matches": [
+            {
+              "line": 916,
+              "text": "netData->rho = 0.9938; // for 2.5 GHz carrier frequency, 1 ms time slot duration, 3 m/s UE moving speed"
+            }
+          ]
+        },
+        {
+          "pattern": "netData->rhoPrime = 0.0786",
+          "matches": [
+            {
+              "line": 917,
+              "text": "netData->rhoPrime = 0.0786; // sqrt(1-0.9938^2)*sqrt(0.5), for 2.5 GHz carrier frequency, 1 ms time slot duration, 3 m/s UE moving speed"
+            }
+          ]
+        },
+        {
+          "pattern": "channMatGpu_real = rho*channMatGpu[currChannIdx].x",
+          "matches": [
+            {
+              "line": 5031,
+              "text": "channMatGpu_real = rho*channMatGpu[currChannIdx].x + rhoPrime*sqrtAmpl*curand_normal(&states[globalThdIdx]);"
+            }
+          ]
+        },
+        {
+          "pattern": "channMatGpu_imag = rho*channMatGpu[currChannIdx].y",
+          "matches": [
+            {
+              "line": 5032,
+              "text": "channMatGpu_imag = rho*channMatGpu[currChannIdx].y + rhoPrime*sqrtAmpl*curand_normal(&states[globalThdIdx]);"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "note": "MCS/OLLA source recurrence independently verified against every analyzed saved native state; full bound oracle verifies same-model admissibility"
+}

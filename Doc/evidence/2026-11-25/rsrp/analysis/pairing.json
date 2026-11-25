@@ -1,0 +1,245 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "scene": "boundary",
+      "seed": 41,
+      "arm": "deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 41,
+      "arm": "mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 41,
+      "arm": "rsrp_deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 41,
+      "arm": "rsrp_mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 42,
+      "arm": "deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 42,
+      "arm": "mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 42,
+      "arm": "rsrp_deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 42,
+      "arm": "rsrp_mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 43,
+      "arm": "deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 43,
+      "arm": "mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 43,
+      "arm": "rsrp_deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "boundary",
+      "seed": 43,
+      "arm": "rsrp_mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 41,
+      "arm": "deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 41,
+      "arm": "mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 41,
+      "arm": "rsrp_deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 41,
+      "arm": "rsrp_mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 42,
+      "arm": "deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 42,
+      "arm": "mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 42,
+      "arm": "rsrp_deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 42,
+      "arm": "rsrp_mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 43,
+      "arm": "deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 43,
+      "arm": "mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 43,
+      "arm": "rsrp_deficit",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    },
+    {
+      "scene": "uniform",
+      "seed": 43,
+      "arm": "rsrp_mlwdf_pf",
+      "passed": true,
+      "topology": true,
+      "traffic": true,
+      "warmup": true,
+      "saved_physical_channels": true
+    }
+  ]
+}

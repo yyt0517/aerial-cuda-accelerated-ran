@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "native_original_channel_verified": true,
+  "no_censored_packets": true,
+  "whole_packet_metrics": true,
+  "warmup": 4000
+}

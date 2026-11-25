@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "runs": 72,
+  "ue_rows": 2592,
+  "full_window_olla_samples": 51840000,
+  "sinr_sample_rows": 10152,
+  "per_ue_sinr_variance": "sample variance ddof=1; undefined when fewer than two samples; all-TTI OLLA and pooled descriptive variances use ddof=0",
+  "queue_identity": "post = pre - (successful bytes + failed bytes), verified for all measured UE/TTI entries",
+  "interpretation": "full-window native BLER/OLLA/MCS/expiry; signed SINR variance is saved-state descriptive, not full-window variance"
+}

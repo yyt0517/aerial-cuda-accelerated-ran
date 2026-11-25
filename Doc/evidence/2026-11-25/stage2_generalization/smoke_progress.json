@@ -1,0 +1,126 @@
+{
+  "completed": [
+    {
+      "scenario": "G1",
+      "arm": "pfq",
+      "seed": 51,
+      "key": "G1_pfq_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G1_pfq_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G1",
+      "arm": "deficit",
+      "seed": 51,
+      "key": "G1_deficit_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G1_deficit_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "seed": 51,
+      "key": "G4_mlwdf_pf_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G4_mlwdf_pf_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "seed": 51,
+      "key": "G3_mlwdf_pf_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G3_mlwdf_pf_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G2",
+      "arm": "pfq",
+      "seed": 51,
+      "key": "G2_pfq_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G2_pfq_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G3",
+      "arm": "pfq",
+      "seed": 51,
+      "key": "G3_pfq_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G3_pfq_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "seed": 51,
+      "key": "G2_mlwdf_pf_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G2_mlwdf_pf_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G4",
+      "arm": "deficit",
+      "seed": 51,
+      "key": "G4_deficit_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G4_deficit_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G3",
+      "arm": "deficit",
+      "seed": 51,
+      "key": "G3_deficit_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G3_deficit_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G4",
+      "arm": "pfq",
+      "seed": 51,
+      "key": "G4_pfq_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G4_pfq_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G2",
+      "arm": "deficit",
+      "seed": 51,
+      "key": "G2_deficit_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G2_deficit_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    },
+    {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "seed": 51,
+      "key": "G1_mlwdf_pf_s51",
+      "directory": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/smoke/G1_mlwdf_pf_s51",
+      "horizon": 480,
+      "native_passed": true,
+      "smoke": true
+    }
+  ],
+  "failed": [],
+  "total": 12
+}

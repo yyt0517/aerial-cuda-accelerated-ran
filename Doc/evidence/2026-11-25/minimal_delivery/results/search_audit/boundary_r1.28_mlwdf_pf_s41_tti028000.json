@@ -1,0 +1,444 @@
+{
+  "path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r1.28_mlwdf_pf_s41/states/tti028000.pt",
+  "sha256": "8180b0fe2dbd51353427ed354b716d3ba2f176f28bdc89ca08faa754115ab22e",
+  "tti": 28000,
+  "passed": true,
+  "rounds": [
+    {
+      "iteration": 1,
+      "candidates": 1734,
+      "fresh": 656,
+      "required": 656,
+      "known_before": 0,
+      "still_unscored": 1078
+    },
+    {
+      "iteration": 2,
+      "candidates": 1715,
+      "fresh": 128,
+      "required": 128,
+      "known_before": 369,
+      "still_unscored": 1218
+    },
+    {
+      "iteration": 3,
+      "candidates": 1693,
+      "fresh": 151,
+      "required": 151,
+      "known_before": 220,
+      "still_unscored": 1322
+    },
+    {
+      "iteration": 4,
+      "candidates": 1674,
+      "fresh": 223,
+      "required": 223,
+      "known_before": 207,
+      "still_unscored": 1244
+    },
+    {
+      "iteration": 5,
+      "candidates": 1655,
+      "fresh": 141,
+      "required": 141,
+      "known_before": 257,
+      "still_unscored": 1257
+    },
+    {
+      "iteration": 6,
+      "candidates": 1636,
+      "fresh": 100,
+      "required": 100,
+      "known_before": 282,
+      "still_unscored": 1254
+    },
+    {
+      "iteration": 7,
+      "candidates": 1636,
+      "fresh": 48,
+      "required": 48,
+      "known_before": 207,
+      "still_unscored": 1381
+    },
+    {
+      "iteration": 8,
+      "candidates": 1614,
+      "fresh": 20,
+      "required": 20,
+      "known_before": 206,
+      "still_unscored": 1388
+    },
+    {
+      "iteration": 9,
+      "candidates": 1614,
+      "fresh": 25,
+      "required": 25,
+      "known_before": 191,
+      "still_unscored": 1398
+    },
+    {
+      "iteration": 10,
+      "candidates": 1614,
+      "fresh": 16,
+      "required": 16,
+      "known_before": 175,
+      "still_unscored": 1423
+    },
+    {
+      "iteration": 11,
+      "candidates": 1614,
+      "fresh": 52,
+      "required": 52,
+      "known_before": 163,
+      "still_unscored": 1399
+    },
+    {
+      "iteration": 12,
+      "candidates": 1595,
+      "fresh": 21,
+      "required": 21,
+      "known_before": 177,
+      "still_unscored": 1397
+    },
+    {
+      "iteration": 13,
+      "candidates": 1595,
+      "fresh": 86,
+      "required": 86,
+      "known_before": 157,
+      "still_unscored": 1352
+    },
+    {
+      "iteration": 14,
+      "candidates": 1595,
+      "fresh": 40,
+      "required": 40,
+      "known_before": 179,
+      "still_unscored": 1376
+    },
+    {
+      "iteration": 15,
+      "candidates": 1595,
+      "fresh": 99,
+      "required": 99,
+      "known_before": 184,
+      "still_unscored": 1312
+    },
+    {
+      "iteration": 16,
+      "candidates": 1595,
+      "fresh": 53,
+      "required": 53,
+      "known_before": 215,
+      "still_unscored": 1327
+    },
+    {
+      "iteration": 17,
+      "candidates": 1595,
+      "fresh": 107,
+      "required": 107,
+      "known_before": 173,
+      "still_unscored": 1315
+    },
+    {
+      "iteration": 18,
+      "candidates": 1576,
+      "fresh": 15,
+      "required": 15,
+      "known_before": 169,
+      "still_unscored": 1392
+    },
+    {
+      "iteration": 19,
+      "candidates": 1576,
+      "fresh": 56,
+      "required": 56,
+      "known_before": 155,
+      "still_unscored": 1365
+    },
+    {
+      "iteration": 20,
+      "candidates": 1576,
+      "fresh": 41,
+      "required": 41,
+      "known_before": 165,
+      "still_unscored": 1370
+    },
+    {
+      "iteration": 21,
+      "candidates": 1573,
+      "fresh": 53,
+      "required": 53,
+      "known_before": 162,
+      "still_unscored": 1358
+    },
+    {
+      "iteration": 22,
+      "candidates": 1573,
+      "fresh": 66,
+      "required": 66,
+      "known_before": 190,
+      "still_unscored": 1317
+    },
+    {
+      "iteration": 23,
+      "candidates": 1573,
+      "fresh": 33,
+      "required": 33,
+      "known_before": 223,
+      "still_unscored": 1317
+    },
+    {
+      "iteration": 24,
+      "candidates": 1573,
+      "fresh": 45,
+      "required": 45,
+      "known_before": 213,
+      "still_unscored": 1315
+    },
+    {
+      "iteration": 25,
+      "candidates": 1573,
+      "fresh": 71,
+      "required": 71,
+      "known_before": 221,
+      "still_unscored": 1281
+    },
+    {
+      "iteration": 26,
+      "candidates": 1573,
+      "fresh": 50,
+      "required": 50,
+      "known_before": 224,
+      "still_unscored": 1299
+    },
+    {
+      "iteration": 27,
+      "candidates": 1573,
+      "fresh": 69,
+      "required": 69,
+      "known_before": 218,
+      "still_unscored": 1286
+    },
+    {
+      "iteration": 28,
+      "candidates": 1573,
+      "fresh": 59,
+      "required": 59,
+      "known_before": 245,
+      "still_unscored": 1269
+    },
+    {
+      "iteration": 29,
+      "candidates": 1573,
+      "fresh": 79,
+      "required": 79,
+      "known_before": 259,
+      "still_unscored": 1235
+    },
+    {
+      "iteration": 30,
+      "candidates": 1573,
+      "fresh": 64,
+      "required": 64,
+      "known_before": 234,
+      "still_unscored": 1275
+    },
+    {
+      "iteration": 31,
+      "candidates": 1573,
+      "fresh": 142,
+      "required": 142,
+      "known_before": 207,
+      "still_unscored": 1224
+    }
+  ],
+  "timing": [
+    {
+      "arm": "python_full",
+      "repeat": 0,
+      "wall_ms": 137.2466515749693,
+      "cpu_ms": 137.24009300000262,
+      "candidates": 49801,
+      "ue_evaluations": 155547,
+      "mmse_misses": 2039
+    },
+    {
+      "arm": "native_full",
+      "repeat": 0,
+      "wall_ms": 22.31375966221094,
+      "cpu_ms": 22.315376000001663,
+      "candidates": 49801,
+      "ue_evaluations": 155547,
+      "mmse_misses": 2039
+    },
+    {
+      "arm": "bounded",
+      "repeat": 0,
+      "wall_ms": 7.101456634700298,
+      "cpu_ms": 7.102802000005681,
+      "candidates": 2810,
+      "ue_evaluations": 8580,
+      "mmse_misses": 1201
+    },
+    {
+      "arm": "native_full",
+      "repeat": 1,
+      "wall_ms": 21.929683163762093,
+      "cpu_ms": 21.930998000001978,
+      "candidates": 49801,
+      "ue_evaluations": 155547,
+      "mmse_misses": 2039
+    },
+    {
+      "arm": "bounded",
+      "repeat": 1,
+      "wall_ms": 7.1906596422195435,
+      "cpu_ms": 7.124595999997041,
+      "candidates": 2810,
+      "ue_evaluations": 8580,
+      "mmse_misses": 1201
+    },
+    {
+      "arm": "python_full",
+      "repeat": 1,
+      "wall_ms": 135.74385549873114,
+      "cpu_ms": 135.51377799999642,
+      "candidates": 49801,
+      "ue_evaluations": 155547,
+      "mmse_misses": 2039
+    },
+    {
+      "arm": "bounded",
+      "repeat": 2,
+      "wall_ms": 7.138678804039955,
+      "cpu_ms": 7.139774999998849,
+      "candidates": 2810,
+      "ue_evaluations": 8580,
+      "mmse_misses": 1201
+    },
+    {
+      "arm": "python_full",
+      "repeat": 2,
+      "wall_ms": 137.51352112740278,
+      "cpu_ms": 137.34436800000083,
+      "candidates": 49801,
+      "ue_evaluations": 155547,
+      "mmse_misses": 2039
+    },
+    {
+      "arm": "native_full",
+      "repeat": 2,
+      "wall_ms": 22.136736661195755,
+      "cpu_ms": 22.138171999998235,
+      "candidates": 49801,
+      "ue_evaluations": 155547,
+      "mmse_misses": 2039
+    }
+  ],
+  "case": {
+    "tti": 28000,
+    "iteration": 1,
+    "edits": [
+      {
+        "cell": 0,
+        "prg": 3,
+        "old_ue": 10,
+        "new_ue": -1
+      },
+      {
+        "cell": 1,
+        "prg": 3,
+        "old_ue": 8,
+        "new_ue": 31
+      }
+    ],
+    "gain_q": 9853747235,
+    "dequeue_before": 121009,
+    "dequeue_after": 116337,
+    "floor": 108909,
+    "ues": [
+      {
+        "ue": 8,
+        "weight": 0.9972947099192053,
+        "expected_before": 0.0,
+        "expected_after": 0.0,
+        "weighted_delta": 0.0,
+        "sinr_before_db": 6.971214907451454,
+        "sinr_after_db": -999.0,
+        "count_before": 1,
+        "count_after": 0
+      },
+      {
+        "ue": 10,
+        "weight": 1.030320996718796,
+        "expected_before": 0.0,
+        "expected_after": 0.0,
+        "weighted_delta": 0.0,
+        "sinr_before_db": 6.84149327269861,
+        "sinr_after_db": 7.132742146807727,
+        "count_before": 2,
+        "count_after": 1
+      },
+      {
+        "ue": 28,
+        "weight": 0.9043309258745751,
+        "expected_before": 0.0,
+        "expected_after": 3193.602061655311,
+        "weighted_delta": 2888.0731092916994,
+        "sinr_before_db": 5.536490349450965,
+        "sinr_after_db": 12.067991284441188,
+        "count_before": 1,
+        "count_after": 1
+      },
+      {
+        "ue": 31,
+        "weight": 1.9783226713007658,
+        "expected_before": 0.0,
+        "expected_after": 3521.0,
+        "weighted_delta": 6965.674125649996,
+        "sinr_before_db": 1.4258023937078481,
+        "sinr_after_db": 6.4026661315212525,
+        "count_before": 2,
+        "count_after": 3
+      }
+    ]
+  },
+  "full": {
+    "score_q": 97773612237,
+    "rounds": 31,
+    "converged": true,
+    "candidate_evaluations": 49801,
+    "ue_evaluations": 155547,
+    "mmse_requests": 302474,
+    "mmse_misses": 2039
+  },
+  "bounded": {
+    "version": "capacity_bound_q1e6_v1",
+    "rounds": 31,
+    "accepted_moves": 30,
+    "generated_edits": 4494,
+    "regenerated_prgs": 47,
+    "scored_edits": 2809,
+    "sum_neighborhood_sizes": 49800,
+    "first_scan_evaluations": 656,
+    "initialization_evaluations": 1,
+    "converged": true,
+    "score_q": 97773612237,
+    "floor": 108909,
+    "chosen_dequeue": 109464,
+    "bound_updates": 14857,
+    "heap_pushes": 11238,
+    "certificate_heap_pruned": 8429,
+    "known_exact_reuses": 4989,
+    "floor_pruned": 28675,
+    "threshold_pruned": 4898,
+    "score": 97773.61223877761,
+    "candidate_evaluations": 2810,
+    "ue_evaluations": 8580,
+    "mmse_requests": 15534,
+    "mmse_misses": 1201,
+    "core_ms": 19.474131055176258
+  },
+  "concurrent_quality_campaign": false
+}

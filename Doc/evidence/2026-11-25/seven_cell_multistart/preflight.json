@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "policy_tests_passed": true,
+  "smoke_native_ttis": 448,
+  "smoke_input_pairing": true,
+  "smoke_audited_states": 3,
+  "smoke_branch_searches": 9,
+  "audited_candidates": 6379101,
+  "initializer": "forced DPLS endpoint, same raw PFQ floor",
+  "tie_order": [
+    "original_da",
+    "from_dpls_da",
+    "dpls"
+  ],
+  "baseline": "deliverables/seven_cell_boundary08_20261105_v1"
+}

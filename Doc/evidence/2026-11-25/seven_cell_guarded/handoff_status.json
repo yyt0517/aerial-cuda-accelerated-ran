@@ -1,0 +1,80 @@
+{
+  "task": "Complete lambda=0.1 beta=0.98 seven-cell closed-loop rerun and compare DPLS, original DA, original three-branch DA",
+  "status": "completed",
+  "output_root": "/data/aerial-cuda-accelerated-ran/deliverables/seven_cell_boundary08_guarded_l010_b098_20261106_v1",
+  "source": "training/stageb_sevencell_guarded",
+  "pipeline_session_id": 80289,
+  "baseline_root": "deliverables/seven_cell_boundary08_20261105_v1",
+  "multistart_root": "deliverables/seven_cell_boundary08_multistart_20261105_v1",
+  "warning": "Completed experiment. Preserve frozen source snapshot, original baselines and campaign artifacts; do not overwrite.",
+  "protocol": {
+    "cells": 7,
+    "users": 84,
+    "seeds": [
+      41,
+      42,
+      43
+    ],
+    "windows": [
+      4000,
+      4000,
+      20000,
+      400
+    ],
+    "lambda_value": 0.1,
+    "beta": 0.98
+  },
+  "branches": [
+    "DPLS with original deficit weights",
+    "new objective from raw PFQ",
+    "new objective forcibly initialized at same-state DPLS endpoint"
+  ],
+  "selection": "Filter final endpoints by expected_success_bytes >= 0.98 * same-state DPLS; maximize canonical new objective; exact ties new_cold then new_from_dpls then dpls",
+  "new_weights": "normalize(deficit_weight * (1 + 0.1 * causal HOL urgency)); applied throughout both new searches and final scoring",
+  "preflight": "3 tests passed; 448 native TTIs and 432 guard decisions; 3 states x 3 full-neighborhood branch audits; all baseline inputs matched",
+  "pipeline": "run_campaign.sh automatically runs 3 native campaigns, packet analysis, independent 36-branch audit, report/plots and final manifest/ZIP",
+  "status_command": ".venv/bin/python -m training.stageb_sevencell_guarded.status --wait 50",
+  "pending": [],
+  "notes": [
+    "Current shared GPU also had three unrelated jobs at launch. Do not modify/stop other tasks or MPS.",
+    "One preflight startup failed before simulation due to an archival dependency path in provenance; fixed and successful smoke is separate. Failure log preserved.",
+    "Only post-smoke code change was packaging logic in finalize.py: snapshot live pipeline.log into execution_log.txt before hashing; documented in preflight.json.",
+    "Source snapshot includes 57 runtime files plus README and launcher. Formal campaign path must never be overwritten."
+  ],
+  "early_pairing": "Passed all three seeds: exact full 4000-TTI native fields, first policy inputs and DPLS endpoint; baseline_reference/early_pairing.json is included automatically in final package.",
+  "latest_progress": "All three complete: 85200 native TTIs, 73200 strategy decisions; paired inputs and all guards verified. Independent audit passed 36 branch searches / 1782 rounds / 14178366 candidates. Report, figures and ZIP complete; final 118 artifact hashes and archive CRC verified.",
+  "snapshot_note": "Do not edit any existing guarded package file, prior package, or 57 frozen dependencies until workers finish. status reads live progress.",
+  "expected_remaining": "None",
+  "pipeline_exit_code": 0,
+  "results_files": [
+    "analysis/report.txt",
+    "analysis/per_seed.csv",
+    "analysis/paired.csv",
+    "analysis/comparison.png",
+    "analysis/comparison.pdf",
+    "delivery_manifest.json",
+    "seven_cell_guarded_da_results.zip"
+  ],
+  "mean_results": {
+    "da_guarded_l010_b098": {
+      "payload_mbps": 2221.7783999999997,
+      "delay_mean_ms": 84.40587243774604,
+      "expiry_pct": 22.518888815099483
+    },
+    "da_three_branch": {
+      "payload_mbps": 2193.4416,
+      "delay_mean_ms": 129.1350054819375,
+      "expiry_pct": 23.348895083074623
+    },
+    "deficit": {
+      "payload_mbps": 2190.5984000000003,
+      "delay_mean_ms": 87.29160820761776,
+      "expiry_pct": 23.470068070422
+    },
+    "mlwdf_pf": {
+      "payload_mbps": 2121.7911999999997,
+      "delay_mean_ms": 138.60098839007745,
+      "expiry_pct": 24.97651865781769
+    }
+  }
+}

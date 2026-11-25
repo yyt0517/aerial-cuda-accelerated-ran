@@ -1,0 +1,68 @@
+{
+  "jobs": [
+    {
+      "scenario": "G1",
+      "arm": "pfq",
+      "seed": 55
+    },
+    {
+      "scenario": "G1",
+      "arm": "deficit",
+      "seed": 55
+    },
+    {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "seed": 55
+    },
+    {
+      "scenario": "G2",
+      "arm": "pfq",
+      "seed": 55
+    },
+    {
+      "scenario": "G2",
+      "arm": "deficit",
+      "seed": 55
+    },
+    {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "seed": 55
+    },
+    {
+      "scenario": "G3",
+      "arm": "pfq",
+      "seed": 55
+    },
+    {
+      "scenario": "G3",
+      "arm": "deficit",
+      "seed": 55
+    },
+    {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "seed": 55
+    },
+    {
+      "scenario": "G4",
+      "arm": "pfq",
+      "seed": 55
+    },
+    {
+      "scenario": "G4",
+      "arm": "deficit",
+      "seed": 55
+    },
+    {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "seed": 55
+    }
+  ],
+  "script": "/opt/nvidia/cuBB/outputs/\u6280\u672f\u7814\u7a76\u62a5\u544a_\u6cdb\u5316\u5b9e\u9a8c\u8865\u5145\u7248_20261106/source/parallel_tail.py",
+  "script_sha256": "57d337343c96ba1c95e2a4ae5e612140336cc6aeaaed5e6711cfb71321b5b0e6",
+  "protocol_sha256": "4079a70a5a3488625c146cd20572371ab05c0619c06adf3edf18787c8f048723",
+  "publication": "Completed validated runs only; primary existing directories take precedence independent of result"
+}

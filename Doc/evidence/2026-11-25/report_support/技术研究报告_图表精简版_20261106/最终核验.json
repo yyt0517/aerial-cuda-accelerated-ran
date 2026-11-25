@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "source_unchanged": true,
+  "original_formula_objects_preserved": 72,
+  "table_values_preserved": true,
+  "tables": 33,
+  "new_result_figures": 6,
+  "retained_case_figures": 1,
+  "caption_sequence": [
+    "图 7-1 两种场景的传统基线核心指标",
+    "图 7-2 两种场景的传统基线完结包时延分档",
+    "图 9-1 两种场景的协同算法核心指标",
+    "图 9-2 Boundary08下按过期率排序的逐UE结果",
+    "图 9-3 Boundary08下DA-PLS相对DPLS的代价与收益",
+    "图 9-4 两种场景的协同算法完结包时延分档",
+    "图 9-5 真实存档调度输入中的静默与邻区换UE联合调整"
+  ],
+  "width_inches": 6,
+  "minimum_figure_font_pt": 9.5,
+  "pdf_pages": 142,
+  "table_of_contents_updated": true,
+  "raw_cohorts_revalidated": 120,
+  "raw_packets_revalidated": 77748786,
+  "da_pls_720_ue_seed_results_zero_expiry": true,
+  "aggregation": "Within-seed first, equal-seed average",
+  "visual_checks": "All seven figures inspected; embedded page layouts checked; zero labels, cases, figure/caption pairing checked.",
+  "main_files": {
+    "技术研究报告_二阶段同频_图表精简版.pdf": "044c103575e438a5970ce6693727bd726aa521a36a5be2ae5151325918f3a207",
+    "技术研究报告_二阶段同频_图表精简版.docx": "11a79c57b335a97b7bd21b4a720f0f3838b90763f2a5869dba141755a6d64528",
+    "新图汇总.pdf": "657fa1d2e71f9bb63847d45fc94a2081edd88c3c59f17828ea0e9c0b8a3aa4df"
+  }
+}

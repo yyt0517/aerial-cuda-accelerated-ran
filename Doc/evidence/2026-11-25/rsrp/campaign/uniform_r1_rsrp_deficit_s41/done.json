@@ -1,0 +1,11 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "rsrp_deficit",
+  "seed": 41,
+  "key": "uniform_r1_rsrp_deficit_s41",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_deficit_s41",
+  "native_passed": true,
+  "smoke": false
+}

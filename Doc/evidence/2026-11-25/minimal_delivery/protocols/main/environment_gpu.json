@@ -1,0 +1,8 @@
+{
+  "name": "NVIDIA A800 80GB PCIe",
+  "driver": "610.57.04",
+  "memory_mib": 81920,
+  "pci_bus_id": "00000000:1B:00.0",
+  "accessible_devices": 1,
+  "container": "c_aerial_oai2"
+}

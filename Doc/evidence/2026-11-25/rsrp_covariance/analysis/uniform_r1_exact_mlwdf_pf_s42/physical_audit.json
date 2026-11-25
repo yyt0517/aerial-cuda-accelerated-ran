@@ -1,0 +1,93 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "tti": 8001,
+      "native_sinr_max_error_db": 6.4849170655634225e-06,
+      "native_bler_max_error": 1.4102009907590585e-06,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    },
+    {
+      "tti": 18001,
+      "native_sinr_max_error_db": 2.454200018320307e-06,
+      "native_bler_max_error": 9.799926175418916e-08,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    },
+    {
+      "tti": 28000,
+      "native_sinr_max_error_db": 2.9422775043030924e-06,
+      "native_bler_max_error": 3.9575984878571085e-09,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    }
+  ]
+}

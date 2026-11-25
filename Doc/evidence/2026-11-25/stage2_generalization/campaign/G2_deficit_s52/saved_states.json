@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s52/states/tti008001.pt",
+    "sha256": "06ee525e8b59e6b3ab163e54bf2cc539398c24e5f2d90d5d6d80a733f86c335f"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s52/states/tti018001.pt",
+    "sha256": "9722193f7eb916ad1c044e03a686e14c76f1693f3ca39b0f1b9e6571f6a500e9"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G2_deficit_s52/states/tti028000.pt",
+    "sha256": "ddb6865f6ab955d3226b07e8f434bf3fececb87e26be7d433bd7b7bd306a8eaf"
+  }
+]

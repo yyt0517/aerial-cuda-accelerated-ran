@@ -1,0 +1,11 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "pfq",
+  "seed": 47,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_pfq_s47",
+  "key": "uniform_r1_pfq_s47",
+  "native_passed": true,
+  "smoke": false
+}

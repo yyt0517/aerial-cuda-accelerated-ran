@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "samples": [
+    {
+      "tti": 8001,
+      "native_sinr_max_error_db": 2.830615188909036e-06,
+      "native_bler_max_error": 2.8603943025284906e-07,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    },
+    {
+      "tti": 18001,
+      "native_sinr_max_error_db": 4.963710114935793e-06,
+      "native_bler_max_error": 9.921770762477689e-07,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    },
+    {
+      "tti": 28000,
+      "native_sinr_max_error_db": 4.858070660418434e-06,
+      "native_bler_max_error": 4.402974168940532e-08,
+      "approximation_sinr_errors_db": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "approximation_expected_bytes_error": 0.0,
+      "passed": true
+    }
+  ]
+}

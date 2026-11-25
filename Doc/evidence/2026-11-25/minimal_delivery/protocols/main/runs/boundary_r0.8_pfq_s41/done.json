@@ -1,0 +1,17 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "arm": "pfq",
+  "seed": 41,
+  "reused": true,
+  "directory": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/boundary08_steady_state_20261021_v1/seed41_pfq0_20000",
+  "key": "boundary_r0.8_pfq_s41",
+  "input_sha256": {
+    "launch.json": "9cb67beba7d5fdab61652984ca72858b381eeb91171b76f8a48131783bcfa4b1",
+    "validation.json": "178d541c53508f3cdd5178e24b147c5a1d609a13a7852c8a86492fc6526ebbe0",
+    "metrics.bin": "73db98095dc5aff0d4417312a90c2c3e605d9769d916c3f0fc69fec59cd5ff5b",
+    "prefix.npz": "51f6c02025df904d7452bd69c31ffaf65276c1851c5c71db315afa402672f24c",
+    "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+    "packet_outcome_samples.csv": "fb009c646dbe1fcf4e3b3ddd74961161632f9f010e8f033b938631fdc4526d36"
+  }
+}

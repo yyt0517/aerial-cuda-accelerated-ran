@@ -1,0 +1,11 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "mlwdf_pf",
+  "seed": 49,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_mlwdf_pf_s49",
+  "key": "uniform_r1_mlwdf_pf_s49",
+  "native_passed": true,
+  "smoke": false
+}

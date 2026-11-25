@@ -1,0 +1,180 @@
+{
+  "passed": true,
+  "cpu": 255,
+  "states": 24,
+  "repeats": 1,
+  "checks": [
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_deficit_s41/states/tti000049.pt",
+      "sha256": "8a1e0c9284c747e37b571607dff4a73064f9e245b52e86908f7a5d6ef68c4e1c",
+      "saved_decision_reproduced": true,
+      "changed_positions": 33,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_deficit_s41/states/tti000081.pt",
+      "sha256": "df9ff1a8eac63a5a64c6a98d3c314e9ae1a3de08ea64ca2db4dc356c75508dd0",
+      "saved_decision_reproduced": true,
+      "changed_positions": 43,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_deficit_s41/states/tti000112.pt",
+      "sha256": "7455f92980f3dba72ac6bcc7b6641573f930b306225a526cd33677daf462f559",
+      "saved_decision_reproduced": true,
+      "changed_positions": 34,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_mlwdf_pf_s41/states/tti000049.pt",
+      "sha256": "5279a4b36f5bd15c986ba30f851544f47eadda2d1223d61f804696d4f2813e5f",
+      "saved_decision_reproduced": true,
+      "changed_positions": 29,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_mlwdf_pf_s41/states/tti000081.pt",
+      "sha256": "88c721332c9bf57593e422584e4c858533d826363d5b4866626c9b7d9c8730e7",
+      "saved_decision_reproduced": true,
+      "changed_positions": 41,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_mlwdf_pf_s41/states/tti000112.pt",
+      "sha256": "54d775622cafc0e7842ab4afa868852b57416c61c6decf57c4c6f5d75ac7e86c",
+      "saved_decision_reproduced": true,
+      "changed_positions": 33,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_rsrp_deficit_s41/states/tti000049.pt",
+      "sha256": "6f67b02b512a6e7edd3e8810ca74c3c5e10b85937db86392ee39cf5a9eaa7312",
+      "saved_decision_reproduced": true,
+      "changed_positions": 37,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_rsrp_deficit_s41/states/tti000081.pt",
+      "sha256": "e65d2f17381a8ff8380c8aa60be46a490b0bf6bc206b7f90e26f471ec13f1742",
+      "saved_decision_reproduced": true,
+      "changed_positions": 42,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_rsrp_deficit_s41/states/tti000112.pt",
+      "sha256": "35a90df97e86ab8f867c7119f9c45555621dc4fb1a5d506cfb6e1016592f6882",
+      "saved_decision_reproduced": true,
+      "changed_positions": 41,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_rsrp_mlwdf_pf_s41/states/tti000049.pt",
+      "sha256": "a9c28b57951cd693525657bbe538c78396aac97174714521b98e2a0d10165a08",
+      "saved_decision_reproduced": true,
+      "changed_positions": 47,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_rsrp_mlwdf_pf_s41/states/tti000081.pt",
+      "sha256": "6e71c19e1bb30d687f2b0f24d731d77059408d045e3f93f0b0a7bdb8ef6a3527",
+      "saved_decision_reproduced": true,
+      "changed_positions": 44,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/boundary_r0.8_rsrp_mlwdf_pf_s41/states/tti000112.pt",
+      "sha256": "3e20c9c4744317d42f9040f28b4c01bab501abe3c226d7976f35582e6c739567",
+      "saved_decision_reproduced": true,
+      "changed_positions": 45,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_deficit_s41/states/tti000049.pt",
+      "sha256": "7f1db02e0c9243aa11bdb499b6a8b9bd3bb30ea4f32247eacefae94026b59fee",
+      "saved_decision_reproduced": true,
+      "changed_positions": 22,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_deficit_s41/states/tti000081.pt",
+      "sha256": "8411e43a270a28d567451fba0a9994268ef66bb2683fb24430f5029f41c58fc5",
+      "saved_decision_reproduced": true,
+      "changed_positions": 35,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_deficit_s41/states/tti000112.pt",
+      "sha256": "6026851354a0a5b0f3c62e56d3b8126e77c06a3678b1cb72a1636644c5723133",
+      "saved_decision_reproduced": true,
+      "changed_positions": 30,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_mlwdf_pf_s41/states/tti000049.pt",
+      "sha256": "cfe8f52eefd128dbe925d58a2e49f6f076bbae68b6239b8dc469e2cecdbc4e4d",
+      "saved_decision_reproduced": true,
+      "changed_positions": 21,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_mlwdf_pf_s41/states/tti000081.pt",
+      "sha256": "de4154246caa2441dfc60ae4bfcb2919db7465f533e2f5700fb07724e1c3cbc4",
+      "saved_decision_reproduced": true,
+      "changed_positions": 29,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_mlwdf_pf_s41/states/tti000112.pt",
+      "sha256": "36938361d61c958f4e5ace68f4543f7589845d3453d3c7dcd2edc4a563341274",
+      "saved_decision_reproduced": true,
+      "changed_positions": 35,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_rsrp_deficit_s41/states/tti000049.pt",
+      "sha256": "8b550939cd1a3d1538a500936d9be7aae8aa09cbe6e8e26959db68d9b1513f08",
+      "saved_decision_reproduced": true,
+      "changed_positions": 24,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_rsrp_deficit_s41/states/tti000081.pt",
+      "sha256": "9c8057cfc3fcfd772ffc4bb7ce6b8712ae6a9c39869047e101da7badad9dd37b",
+      "saved_decision_reproduced": true,
+      "changed_positions": 35,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_rsrp_deficit_s41/states/tti000112.pt",
+      "sha256": "6c81bdce7769d7d300d775ed6d29778e3f4ff629966c1c3b9694bc6f00ba935d",
+      "saved_decision_reproduced": true,
+      "changed_positions": 29,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_rsrp_mlwdf_pf_s41/states/tti000049.pt",
+      "sha256": "fecbd3a3ec585b12949f6cb08d04a0b2f093ae1d5aa6f4730fa4fc23b3e93f8a",
+      "saved_decision_reproduced": true,
+      "changed_positions": 26,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_rsrp_mlwdf_pf_s41/states/tti000081.pt",
+      "sha256": "e117a6f468a45777bbe23b62e061557fcccd0cf47406235901de0039896fb967",
+      "saved_decision_reproduced": true,
+      "changed_positions": 35,
+      "passed": true
+    },
+    {
+      "source": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/smoke_v1/uniform_r1_rsrp_mlwdf_pf_s41/states/tti000112.pt",
+      "sha256": "ce263ea2eb1ce7e170f50600d10ce16d8f40adca600e7e9727ebd99d785fd26b",
+      "saved_decision_reproduced": true,
+      "changed_positions": 33,
+      "passed": true
+    }
+  ],
+  "scope": "serial saved-state reconstruction, fixed recorded weights, PFQ decode, RSRP model conversion, context/search/destruction",
+  "exclusions": "GPU/native PFQ, bridge, FIFO HOL scan, report measurement and transport; measurement emulation separately logged online",
+  "same_solver": true,
+  "closed_loop_quality_campaign_finished": true
+}

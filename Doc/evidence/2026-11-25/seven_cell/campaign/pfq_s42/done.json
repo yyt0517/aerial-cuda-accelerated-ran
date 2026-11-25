@@ -1,0 +1,8 @@
+{
+  "seed": 42,
+  "arm": "pfq",
+  "label": "PFQ",
+  "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_20261105_v1/campaign/pfq_s42",
+  "smoke": false,
+  "native_passed": true
+}

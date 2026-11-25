@@ -1,0 +1,206 @@
+                   offered_mbps  payload_mbps  expiry_pct  expiry_byte_pct  delay_mean_ms  delay_p95_ms  worst_ue_expiry_pct  success_pct  queue_mean_mb  prg_occupancy_pct  sinr_tx_mean_db
+scenario arm                                                                                                                                                                                
+G1       deficit     1384.32192    1270.12032     0.00000          0.00000        0.69206           1.6              0.00000     91.75058        0.01413           65.51839         16.75808
+         mlwdf_pf    1384.32192    1271.12496     0.00000          0.00000        0.70072           1.6              0.00000     91.82314        0.01421           67.64941         16.18235
+         pfq         1384.32192    1074.62784     6.87788          6.87788       39.33084         197.2             55.05348     77.62799        8.92326           97.85071          8.90999
+G2       deficit     1384.06872    1269.56952     0.00000          0.00000        0.61159           1.0              0.00000     92.77554        0.00955           57.46596         19.45550
+         mlwdf_pf    1384.06872    1270.24200     0.00000          0.00000        0.61076           1.1              0.00000     93.02997        0.00858           56.34959         19.88661
+         pfq         1384.06872     990.76896     6.47046          6.85785       42.54987         199.2             52.98234     78.88911        8.95702           97.50837          8.74519
+G3       deficit     1383.07728    1275.89904     0.00000          0.00000        0.67346           1.4              0.00000     92.25095        0.01363           62.09861         17.70174
+         mlwdf_pf    1383.07728    1275.14256     0.00000          0.00000        0.69023           1.5              0.00000     92.19623        0.01702           63.21194         17.38553
+         pfq         1383.07728     998.00064    15.03310         15.03310       45.16652         199.7             75.91371     72.15728       11.93501           95.12098          9.11660
+G4       deficit     1382.99856    1269.96384     0.00000          0.00000        0.59561           1.0              0.00000     92.92625        0.00787           54.47331         20.43466
+         mlwdf_pf    1382.99856    1270.93224     0.00000          0.00000        0.60664           1.0              0.00000     93.05686        0.00831           53.92184         20.66254
+         pfq         1382.99856     939.45120    13.81518         14.27742       48.62126         200.0             71.39579     73.81059       11.79921           94.25441          9.19064
+
+PAIRED DIFFERENCES DA minus baseline
+scenario baseline              metric  n       mean        min        max  positive  negative  zero
+      G1      pfq        payload_mbps  5 196.497120 149.997600 252.273600         5         0     0
+      G1      pfq          expiry_pct  5  -6.877880 -11.744189  -2.642948         0         5     0
+      G1      pfq     expiry_byte_pct  5  -6.877880 -11.744189  -2.642948         0         5     0
+      G1      pfq       delay_mean_ms  5 -38.630116 -56.315108 -24.753771         0         5     0
+      G1      pfq worst_ue_expiry_pct  5 -55.053483 -72.231622 -39.170303         0         5     0
+      G1  deficit        payload_mbps  5   1.004640  -0.360000   4.500000         3         2     0
+      G1  deficit          expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G1  deficit     expiry_byte_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G1  deficit       delay_mean_ms  5   0.008666  -0.003775   0.020311         4         1     0
+      G1  deficit worst_ue_expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G2      pfq        payload_mbps  5 279.473040 228.846000 325.812000         5         0     0
+      G2      pfq          expiry_pct  5  -6.470461  -9.842095  -3.348456         0         5     0
+      G2      pfq     expiry_byte_pct  5  -6.857846 -11.405471  -2.643434         0         5     0
+      G2      pfq       delay_mean_ms  5 -41.939117 -68.439388 -27.773453         0         5     0
+      G2      pfq worst_ue_expiry_pct  5 -52.982337 -76.078619 -35.971646         0         5     0
+      G2  deficit        payload_mbps  5   0.672480  -1.584000   5.470800         2         3     0
+      G2  deficit          expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G2  deficit     expiry_byte_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G2  deficit       delay_mean_ms  5  -0.000833  -0.023562   0.027775         2         3     0
+      G2  deficit worst_ue_expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G3      pfq        payload_mbps  5 277.141920 215.059200 326.294400         5         0     0
+      G3      pfq          expiry_pct  5 -15.033102 -19.480837  -8.613319         0         5     0
+      G3      pfq     expiry_byte_pct  5 -15.033102 -19.480837  -8.613319         0         5     0
+      G3      pfq       delay_mean_ms  5 -44.476284 -53.235014 -30.884070         0         5     0
+      G3      pfq worst_ue_expiry_pct  5 -75.913709 -86.700949 -67.208464         0         5     0
+      G3  deficit        payload_mbps  5  -0.756480  -2.704800   1.144800         2         3     0
+      G3  deficit          expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G3  deficit     expiry_byte_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G3  deficit       delay_mean_ms  5   0.016770  -0.010831   0.048826         4         1     0
+      G3  deficit worst_ue_expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G4      pfq        payload_mbps  5 331.481040 294.960000 378.561600         5         0     0
+      G4      pfq          expiry_pct  5 -13.815182 -17.889397  -6.875221         0         5     0
+      G4      pfq     expiry_byte_pct  5 -14.277424 -19.053034  -8.065886         0         5     0
+      G4      pfq       delay_mean_ms  5 -48.014620 -61.474356 -27.723060         0         5     0
+      G4      pfq worst_ue_expiry_pct  5 -71.395795 -79.903977 -55.337587         0         5     0
+      G4  deficit        payload_mbps  5   0.968400  -1.778400   3.043200         3         2     0
+      G4  deficit          expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G4  deficit     expiry_byte_pct  5   0.000000   0.000000   0.000000         0         0     5
+      G4  deficit       delay_mean_ms  5   0.011030  -0.006117   0.025686         4         1     0
+      G4  deficit worst_ue_expiry_pct  5   0.000000   0.000000   0.000000         0         0     5
+
+DA individual seeds
+scenario  seed  offered_mbps  payload_mbps  expiry_pct  expiry_byte_pct  delay_mean_ms  delay_p95_ms  worst_ue_expiry_pct  success_pct  queue_mean_mb  prg_occupancy_pct  sinr_tx_mean_db
+      G1    51     1384.9080     1265.3568         0.0              0.0       0.702094           1.5                  0.0    91.367571       0.012123          68.970882        15.440733
+      G1    52     1384.5288     1282.1832         0.0              0.0       0.626566           1.5                  0.0    92.607911       0.008234          62.462157        18.291932
+      G1    53     1384.4328     1263.9216         0.0              0.0       0.809524           2.0                  0.0    91.295265       0.025530          74.445882        13.371024
+      G1    54     1384.8552     1264.4760         0.0              0.0       0.714489           1.5                  0.0    91.307452       0.014455          70.734020        14.613204
+      G1    55     1382.8848     1279.6872         0.0              0.0       0.650936           1.5                  0.0    92.537513       0.010691          61.634118        19.194871
+      G2    51     1385.1072     1272.4800         0.0              0.0       0.600901           1.0                  0.0    93.190439       0.006975          55.691471        19.793307
+      G2    52     1383.9312     1280.4708         0.0              0.0       0.599697           1.0                  0.0    93.367872       0.006958          54.717353        20.009093
+      G2    53     1385.9664     1259.7000         0.0              0.0       0.661570           1.5                  0.0    92.088277       0.014908          60.846176        17.381652
+      G2    54     1379.9808     1260.5244         0.0              0.0       0.605254           1.0                  0.0    92.631864       0.007424          56.824510        19.042736
+      G2    55     1385.3580     1278.0348         0.0              0.0       0.586357           1.0                  0.0    93.871394       0.006642          53.668431        23.206238
+      G3    51     1382.6688     1270.3824         0.0              0.0       0.725951           1.5                  0.0    91.879010       0.020797          64.968627        16.273540
+      G3    52     1382.3328     1283.9832         0.0              0.0       0.638610           1.5                  0.0    92.885244       0.011683          59.658039        19.131589
+      G3    53     1384.3584     1266.8280         0.0              0.0       0.704425           1.5                  0.0    91.510118       0.017957          67.413725        15.442684
+      G3    54     1382.9688     1271.9064         0.0              0.0       0.728136           1.5                  0.0    91.969277       0.021918          64.902941        16.297642
+      G3    55     1383.0576     1282.6128         0.0              0.0       0.654038           1.5                  0.0    92.737483       0.012734          59.116373        19.782198
+      G4    51     1381.4724     1268.7420         0.0              0.0       0.607665           1.0                  0.0    92.842716       0.008488          53.533137        20.283293
+      G4    52     1384.1592     1279.0332         0.0              0.0       0.602865           1.0                  0.0    93.273004       0.007772          52.892549        20.597486
+      G4    53     1381.5072     1264.1208         0.0              0.0       0.613293           1.0                  0.0    92.664477       0.008375          55.341471        19.365883
+      G4    54     1384.4460     1267.5708         0.0              0.0       0.616721           1.0                  0.0    92.721768       0.009532          55.648431        19.544868
+      G4    55     1383.4080     1275.1944         0.0              0.0       0.592646           1.0                  0.0    93.782355       0.007360          52.193627        23.521177
+
+GROUPS
+scenario      arm          dimension       group  payload_mbps  expiry_pct  success_pct  delay_mean_ms  worst_ue_expiry_pct
+      G1  deficit    placement_group    boundary     630.01488     0.00000     91.01924        0.76609              0.00000
+      G1  deficit    placement_group     uniform     640.10544     0.00000     92.48234        0.61924              0.00000
+      G1  deficit       serving_cell           0     401.63616     0.00000     91.72164        0.69772              0.00000
+      G1  deficit       serving_cell           1     444.16752     0.00000     91.59636        0.69532              0.00000
+      G1  deficit       serving_cell           2     424.31664     0.00000     91.97399        0.66542              0.00000
+      G1  deficit      traffic_group homogeneous    1270.12032     0.00000     91.75058        0.69206              0.00000
+      G1 mlwdf_pf    placement_group    boundary     631.53696     0.00000     91.23936        0.76736              0.00000
+      G1 mlwdf_pf    placement_group     uniform     639.58800     0.00000     92.40749        0.63494              0.00000
+      G1 mlwdf_pf       serving_cell           0     402.08832     0.00000     91.79158        0.69346              0.00000
+      G1 mlwdf_pf       serving_cell           1     444.72864     0.00000     91.71598        0.71463              0.00000
+      G1 mlwdf_pf       serving_cell           2     424.30800     0.00000     91.96964        0.68078              0.00000
+      G1 mlwdf_pf      traffic_group homogeneous    1271.12496     0.00000     91.82314        0.70072              0.00000
+      G1      pfq    placement_group    boundary     497.95536    11.19436     71.93731       68.54717             53.43719
+      G1      pfq    placement_group     uniform     576.67248     2.56157     83.32006       14.45489             33.32411
+      G1      pfq       serving_cell           0     347.06976     4.85058     80.37231       22.56919             22.28039
+      G1      pfq       serving_cell           1     352.70352    10.27793     73.50726       64.35287             41.50476
+      G1      pfq       serving_cell           2     374.85456     3.21691     81.60390       30.74075             17.87086
+      G1      pfq      traffic_group homogeneous    1074.62784     6.87788     77.62799       39.33084             55.05348
+      G2  deficit    placement_group    boundary     630.58224     0.00000     92.39399        0.62653              0.00000
+      G2  deficit    placement_group     uniform     638.98728     0.00000     93.15678        0.59673              0.00000
+      G2  deficit       serving_cell           0     401.03040     0.00000     92.69112        0.61811              0.00000
+      G2  deficit       serving_cell           1     444.19752     0.00000     92.60203        0.61541              0.00000
+      G2  deficit       serving_cell           2     424.34160     0.00000     93.13515        0.59378              0.00000
+      G2  deficit      traffic_group   large_low     625.82016     0.00000     90.37996        0.79257              0.00000
+      G2  deficit      traffic_group  small_high     643.74936     0.00000     93.07526        0.58960              0.00000
+      G2 mlwdf_pf    placement_group    boundary     629.79120     0.00000     92.64103        0.62455              0.00000
+      G2 mlwdf_pf    placement_group     uniform     640.45080     0.00000     93.41855        0.59702              0.00000
+      G2 mlwdf_pf       serving_cell           0     402.09048     0.00000     93.04639        0.61465              0.00000
+      G2 mlwdf_pf       serving_cell           1     443.82408     0.00000     92.83436        0.62196              0.00000
+      G2 mlwdf_pf       serving_cell           2     424.32744     0.00000     93.27988        0.58949              0.00000
+      G2 mlwdf_pf      traffic_group   large_low     624.32832     0.00000     90.16468        0.76554              0.00000
+      G2 mlwdf_pf      traffic_group  small_high     645.91368     0.00000     93.38846        0.59206              0.00000
+      G2      pfq    placement_group    boundary     444.33576    11.05767     73.22466       74.90958             51.74493
+      G2      pfq    placement_group     uniform     546.43320     1.87840     84.55746       15.05054             30.97053
+      G2      pfq       serving_cell           0     328.11744     3.70851     82.48937       23.87211             22.41005
+      G2      pfq       serving_cell           1     322.10160    10.59688     74.03918       71.99960             38.08082
+      G2      pfq       serving_cell           2     340.54992     2.84545     82.53862       30.03944             18.81048
+      G2      pfq      traffic_group   large_low     430.70592     7.35585     62.20084       30.39468             47.47636
+      G2      pfq      traffic_group  small_high     560.06304     6.35977     80.97744       43.68794             48.85784
+      G3  deficit          cell_load  heavy_cell     642.39600     0.00000     92.85263        0.68051              0.00000
+      G3  deficit          cell_load light_cells     633.50304     0.00000     91.64926        0.66640              0.00000
+      G3  deficit heavy_cell_traffic homogeneous     642.39600     0.00000     92.85263        0.68051              0.00000
+      G3  deficit    placement_group    boundary     626.54256     0.00000     91.63055        0.71694              0.00000
+      G3  deficit    placement_group     uniform     649.35648     0.00000     92.86115        0.63120              0.00000
+      G3  deficit       serving_cell           0     447.01248     0.00000     92.26543        0.67821              0.00000
+      G3  deficit       serving_cell           1     446.85312     0.00000     92.00170        0.66403              0.00000
+      G3  deficit       serving_cell           2     382.03344     0.00000     91.88420        0.67108              0.00000
+      G3  deficit      traffic_group homogeneous    1275.89904     0.00000     92.25095        0.67346              0.00000
+      G3 mlwdf_pf          cell_load  heavy_cell     638.08512     0.00000     92.22937        0.77410              0.00000
+      G3 mlwdf_pf          cell_load light_cells     637.05744     0.00000     92.16341        0.60618              0.00000
+      G3 mlwdf_pf heavy_cell_traffic homogeneous     638.08512     0.00000     92.22937        0.77410              0.00000
+      G3 mlwdf_pf    placement_group    boundary     627.56208     0.00000     91.78347        0.73869              0.00000
+      G3 mlwdf_pf    placement_group     uniform     647.58048     0.00000     92.60706        0.64309              0.00000
+      G3 mlwdf_pf       serving_cell           0     445.75728     0.00000     92.17979        0.68738              0.00000
+      G3 mlwdf_pf       serving_cell           1     446.30928     0.00000     92.06679        0.66044              0.00000
+      G3 mlwdf_pf       serving_cell           2     383.07600     0.00000     92.30881        0.63860              0.00000
+      G3 mlwdf_pf      traffic_group homogeneous    1275.14256     0.00000     92.19623        0.69023              0.00000
+      G3      pfq          cell_load  heavy_cell     404.76096    30.05314     58.50148      111.19542             75.91371
+      G3      pfq          cell_load light_cells     593.23968     0.00000     85.82531        1.45802              0.00000
+      G3      pfq heavy_cell_traffic homogeneous     404.76096    30.05314     58.50148      111.19542             75.91371
+      G3      pfq    placement_group    boundary     441.19536    22.17707     64.65767       64.87951             71.88066
+      G3      pfq    placement_group     uniform     556.80528     7.81638     79.69631       29.96300             57.63809
+      G3      pfq       serving_cell           0     337.29840    12.59266     74.73439       53.70901             32.70009
+      G3      pfq       serving_cell           1     324.71664    14.01634     72.35409       46.32828             29.77193
+      G3      pfq       serving_cell           2     335.98560     3.44415     83.06514       14.07573             13.44169
+      G3      pfq      traffic_group homogeneous     998.00064    15.03310     72.15728       45.16652             75.91371
+      G4  deficit          cell_load  heavy_cell     635.30664     0.00000     93.10583        0.58971              0.00000
+      G4  deficit          cell_load light_cells     634.65720     0.00000     92.76423        0.60087              0.00000
+      G4  deficit heavy_cell_traffic   large_low     297.87264     0.00000     90.53280        0.77571              0.00000
+      G4  deficit heavy_cell_traffic  small_high     337.43400     0.00000     93.40160        0.56918              0.00000
+      G4  deficit    placement_group    boundary     622.58952     0.00000     92.50679        0.60789              0.00000
+      G4  deficit    placement_group     uniform     647.37432     0.00000     93.34332        0.58377              0.00000
+      G4  deficit       serving_cell           0     444.53664     0.00000     92.84099        0.59739              0.00000
+      G4  deficit       serving_cell           1     444.98016     0.00000     92.64341        0.60377              0.00000
+      G4  deficit       serving_cell           2     380.44704     0.00000     93.16388        0.59068              0.00000
+      G4  deficit      traffic_group   large_low     618.33024     0.00000     90.38150        0.75577              0.00000
+      G4  deficit      traffic_group  small_high     651.63360     0.00000     93.23704        0.57656              0.00000
+      G4 mlwdf_pf          cell_load  heavy_cell     633.05232     0.00000     92.82469        0.65336              0.00000
+      G4 mlwdf_pf          cell_load light_cells     637.87992     0.00000     93.31229        0.55709              0.00000
+      G4 mlwdf_pf heavy_cell_traffic   large_low     296.53632     0.00000     90.13185        0.88298              0.00000
+      G4 mlwdf_pf heavy_cell_traffic  small_high     336.51600     0.00000     93.13137        0.62763              0.00000
+      G4 mlwdf_pf    placement_group    boundary     623.29008     0.00000     92.80922        0.61833              0.00000
+      G4 mlwdf_pf    placement_group     uniform     647.64216     0.00000     93.31590        0.59515              0.00000
+      G4 mlwdf_pf       serving_cell           0     444.98544     0.00000     93.11511        0.60625              0.00000
+      G4 mlwdf_pf       serving_cell           1     444.88032     0.00000     92.93249        0.59253              0.00000
+      G4 mlwdf_pf       serving_cell           2     381.06648     0.00000     93.41332        0.56886              0.00000
+      G4 mlwdf_pf      traffic_group   large_low     618.26688     0.00000     90.37322        0.75134              0.00000
+      G4 mlwdf_pf      traffic_group  small_high     652.66536     0.00000     93.38486        0.58939              0.00000
+      G4      pfq          cell_load  heavy_cell     383.08152    26.68580     62.27633      110.86189             71.39579
+      G4      pfq          cell_load light_cells     556.36968     0.00000     86.21867        1.53152              0.00000
+      G4      pfq heavy_cell_traffic   large_low     152.84928    31.02014     46.20089      103.02906             64.19962
+      G4      pfq heavy_cell_traffic  small_high     230.23224    26.13830     64.16541      111.51498             67.12163
+      G4      pfq    placement_group    boundary     407.80416    21.81431     65.59037       73.03080             66.07662
+      G4      pfq    placement_group     uniform     531.64704     5.65696     82.14720       30.00685             57.65022
+      G4      pfq       serving_cell           0     323.32896    11.60205     76.47709       53.98126             31.73049
+      G4      pfq       serving_cell           1     305.70576    12.18898     74.30047       46.99211             28.59778
+      G4      pfq       serving_cell           2     310.41648     2.89477     83.86457       13.01978             11.06752
+      G4      pfq      traffic_group   large_low     412.45056    14.82093     60.28822       37.97953             64.19962
+      G4      pfq      traffic_group  small_high     527.00064    13.67707     75.48370       49.65662             67.12163
+
+UE zero expiry
+                   min        max  <lambda_0>
+scenario arm                                 
+G1       deficit   0.0   0.000000           0
+         mlwdf_pf  0.0   0.000000           0
+         pfq       0.0  72.231622          42
+G2       deficit   0.0   0.000000           0
+         mlwdf_pf  0.0   0.000000           0
+         pfq       0.0  76.078619          42
+G3       deficit   0.0   0.000000           0
+         mlwdf_pf  0.0   0.000000           0
+         pfq       0.0  86.700949          42
+G4       deficit   0.0   0.000000           0
+         mlwdf_pf  0.0   0.000000           0
+         pfq       0.0  79.903977          42
+
+Observed input by load role
+                     mean       min       max
+scenario heavy                               
+G3       False  345.61416  343.8216  346.8480
+         True   691.84896  690.7632  692.9640
+G4       False  346.36128  344.7876  348.4104
+         True   690.27600  687.6408  693.1896

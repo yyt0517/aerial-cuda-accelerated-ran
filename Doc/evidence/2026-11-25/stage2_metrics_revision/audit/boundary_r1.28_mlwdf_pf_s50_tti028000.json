@@ -1,0 +1,444 @@
+{
+  "path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/campaign/boundary_r1.28_mlwdf_pf_s50/states/tti028000.pt",
+  "sha256": "65b1acb3cabc1f7a4c76a09e33a70c970a708930bb6727a471a189d25a8e341f",
+  "tti": 28000,
+  "passed": true,
+  "rounds": [
+    {
+      "iteration": 1,
+      "candidates": 1734,
+      "fresh": 594,
+      "required": 594,
+      "known_before": 0,
+      "still_unscored": 1140
+    },
+    {
+      "iteration": 2,
+      "candidates": 1714,
+      "fresh": 155,
+      "required": 155,
+      "known_before": 398,
+      "still_unscored": 1161
+    },
+    {
+      "iteration": 3,
+      "candidates": 1695,
+      "fresh": 177,
+      "required": 177,
+      "known_before": 191,
+      "still_unscored": 1327
+    },
+    {
+      "iteration": 4,
+      "candidates": 1674,
+      "fresh": 156,
+      "required": 156,
+      "known_before": 123,
+      "still_unscored": 1395
+    },
+    {
+      "iteration": 5,
+      "candidates": 1655,
+      "fresh": 82,
+      "required": 82,
+      "known_before": 171,
+      "still_unscored": 1402
+    },
+    {
+      "iteration": 6,
+      "candidates": 1636,
+      "fresh": 136,
+      "required": 136,
+      "known_before": 128,
+      "still_unscored": 1372
+    },
+    {
+      "iteration": 7,
+      "candidates": 1636,
+      "fresh": 78,
+      "required": 78,
+      "known_before": 226,
+      "still_unscored": 1332
+    },
+    {
+      "iteration": 8,
+      "candidates": 1617,
+      "fresh": 48,
+      "required": 48,
+      "known_before": 174,
+      "still_unscored": 1395
+    },
+    {
+      "iteration": 9,
+      "candidates": 1617,
+      "fresh": 40,
+      "required": 40,
+      "known_before": 151,
+      "still_unscored": 1426
+    },
+    {
+      "iteration": 10,
+      "candidates": 1617,
+      "fresh": 58,
+      "required": 58,
+      "known_before": 131,
+      "still_unscored": 1428
+    },
+    {
+      "iteration": 11,
+      "candidates": 1617,
+      "fresh": 63,
+      "required": 63,
+      "known_before": 163,
+      "still_unscored": 1391
+    },
+    {
+      "iteration": 12,
+      "candidates": 1617,
+      "fresh": 46,
+      "required": 46,
+      "known_before": 149,
+      "still_unscored": 1422
+    },
+    {
+      "iteration": 13,
+      "candidates": 1617,
+      "fresh": 32,
+      "required": 32,
+      "known_before": 151,
+      "still_unscored": 1434
+    },
+    {
+      "iteration": 14,
+      "candidates": 1617,
+      "fresh": 61,
+      "required": 61,
+      "known_before": 141,
+      "still_unscored": 1415
+    },
+    {
+      "iteration": 15,
+      "candidates": 1617,
+      "fresh": 30,
+      "required": 30,
+      "known_before": 158,
+      "still_unscored": 1429
+    },
+    {
+      "iteration": 16,
+      "candidates": 1597,
+      "fresh": 36,
+      "required": 36,
+      "known_before": 125,
+      "still_unscored": 1436
+    },
+    {
+      "iteration": 17,
+      "candidates": 1597,
+      "fresh": 33,
+      "required": 33,
+      "known_before": 143,
+      "still_unscored": 1421
+    },
+    {
+      "iteration": 18,
+      "candidates": 1597,
+      "fresh": 35,
+      "required": 35,
+      "known_before": 131,
+      "still_unscored": 1431
+    },
+    {
+      "iteration": 19,
+      "candidates": 1597,
+      "fresh": 68,
+      "required": 68,
+      "known_before": 116,
+      "still_unscored": 1413
+    },
+    {
+      "iteration": 20,
+      "candidates": 1597,
+      "fresh": 35,
+      "required": 35,
+      "known_before": 141,
+      "still_unscored": 1421
+    },
+    {
+      "iteration": 21,
+      "candidates": 1597,
+      "fresh": 36,
+      "required": 36,
+      "known_before": 123,
+      "still_unscored": 1438
+    },
+    {
+      "iteration": 22,
+      "candidates": 1597,
+      "fresh": 51,
+      "required": 51,
+      "known_before": 109,
+      "still_unscored": 1437
+    },
+    {
+      "iteration": 23,
+      "candidates": 1597,
+      "fresh": 35,
+      "required": 35,
+      "known_before": 106,
+      "still_unscored": 1456
+    },
+    {
+      "iteration": 24,
+      "candidates": 1597,
+      "fresh": 189,
+      "required": 189,
+      "known_before": 91,
+      "still_unscored": 1317
+    },
+    {
+      "iteration": 25,
+      "candidates": 1597,
+      "fresh": 28,
+      "required": 28,
+      "known_before": 255,
+      "still_unscored": 1314
+    },
+    {
+      "iteration": 26,
+      "candidates": 1597,
+      "fresh": 48,
+      "required": 48,
+      "known_before": 240,
+      "still_unscored": 1309
+    },
+    {
+      "iteration": 27,
+      "candidates": 1597,
+      "fresh": 36,
+      "required": 36,
+      "known_before": 186,
+      "still_unscored": 1375
+    },
+    {
+      "iteration": 28,
+      "candidates": 1597,
+      "fresh": 21,
+      "required": 21,
+      "known_before": 194,
+      "still_unscored": 1382
+    },
+    {
+      "iteration": 29,
+      "candidates": 1597,
+      "fresh": 80,
+      "required": 80,
+      "known_before": 175,
+      "still_unscored": 1342
+    },
+    {
+      "iteration": 30,
+      "candidates": 1597,
+      "fresh": 133,
+      "required": 133,
+      "known_before": 190,
+      "still_unscored": 1274
+    },
+    {
+      "iteration": 31,
+      "candidates": 1597,
+      "fresh": 130,
+      "required": 130,
+      "known_before": 243,
+      "still_unscored": 1224
+    }
+  ],
+  "timing": [
+    {
+      "arm": "python_full",
+      "repeat": 0,
+      "wall_ms": 138.9754069969058,
+      "cpu_ms": 138.9797139999942,
+      "candidates": 50233,
+      "ue_evaluations": 157941,
+      "mmse_misses": 2001
+    },
+    {
+      "arm": "native_full",
+      "repeat": 0,
+      "wall_ms": 22.281134501099586,
+      "cpu_ms": 22.282597999996767,
+      "candidates": 50233,
+      "ue_evaluations": 157941,
+      "mmse_misses": 2001
+    },
+    {
+      "arm": "bounded",
+      "repeat": 0,
+      "wall_ms": 7.055563852190971,
+      "cpu_ms": 7.056709000003991,
+      "candidates": 2751,
+      "ue_evaluations": 8427,
+      "mmse_misses": 1175
+    },
+    {
+      "arm": "native_full",
+      "repeat": 1,
+      "wall_ms": 22.119835950434208,
+      "cpu_ms": 22.12119100000365,
+      "candidates": 50233,
+      "ue_evaluations": 157941,
+      "mmse_misses": 2001
+    },
+    {
+      "arm": "bounded",
+      "repeat": 1,
+      "wall_ms": 7.162121124565601,
+      "cpu_ms": 7.163063000000136,
+      "candidates": 2751,
+      "ue_evaluations": 8427,
+      "mmse_misses": 1175
+    },
+    {
+      "arm": "python_full",
+      "repeat": 1,
+      "wall_ms": 137.29439862072468,
+      "cpu_ms": 137.198975000004,
+      "candidates": 50233,
+      "ue_evaluations": 157941,
+      "mmse_misses": 2001
+    },
+    {
+      "arm": "bounded",
+      "repeat": 2,
+      "wall_ms": 7.060032337903976,
+      "cpu_ms": 7.061195999995107,
+      "candidates": 2751,
+      "ue_evaluations": 8427,
+      "mmse_misses": 1175
+    },
+    {
+      "arm": "python_full",
+      "repeat": 2,
+      "wall_ms": 138.3805824443698,
+      "cpu_ms": 138.21111099999683,
+      "candidates": 50233,
+      "ue_evaluations": 157941,
+      "mmse_misses": 2001
+    },
+    {
+      "arm": "native_full",
+      "repeat": 2,
+      "wall_ms": 22.14383240789175,
+      "cpu_ms": 22.145305000002224,
+      "candidates": 50233,
+      "ue_evaluations": 157941,
+      "mmse_misses": 2001
+    }
+  ],
+  "case": {
+    "tti": 28000,
+    "iteration": 1,
+    "edits": [
+      {
+        "cell": 0,
+        "prg": 4,
+        "old_ue": 0,
+        "new_ue": 5
+      },
+      {
+        "cell": 2,
+        "prg": 4,
+        "old_ue": 32,
+        "new_ue": -1
+      }
+    ],
+    "gain_q": 10821367648,
+    "dequeue_before": 124624,
+    "dequeue_after": 123376,
+    "floor": 112162,
+    "ues": [
+      {
+        "ue": 0,
+        "weight": 1.3699482876388533,
+        "expected_before": 0.0,
+        "expected_after": 0.0,
+        "weighted_delta": 0.0,
+        "sinr_before_db": 4.990737859061257,
+        "sinr_after_db": -999.0,
+        "count_before": 1,
+        "count_after": 0
+      },
+      {
+        "ue": 5,
+        "weight": 0.7799335778210558,
+        "expected_before": 0.0,
+        "expected_after": 8197.0,
+        "weighted_delta": 6393.115537399194,
+        "sinr_before_db": 5.728083846227451,
+        "sinr_after_db": 12.392784136020698,
+        "count_before": 2,
+        "count_after": 3
+      },
+      {
+        "ue": 23,
+        "weight": 0.9348220626067997,
+        "expected_before": 0.0,
+        "expected_after": 4737.0,
+        "weighted_delta": 4428.25211056841,
+        "sinr_before_db": 7.726982568042802,
+        "sinr_after_db": 12.789226452806037,
+        "count_before": 2,
+        "count_after": 2
+      },
+      {
+        "ue": 32,
+        "weight": 0.7200706159565239,
+        "expected_before": 0.0,
+        "expected_after": 0.0,
+        "weighted_delta": 0.0,
+        "sinr_before_db": 7.969517063638775,
+        "sinr_after_db": -999.0,
+        "count_before": 1,
+        "count_after": 0
+      }
+    ]
+  },
+  "full": {
+    "score_q": 108318716674,
+    "rounds": 31,
+    "converged": true,
+    "candidate_evaluations": 50233,
+    "ue_evaluations": 157941,
+    "mmse_requests": 304216,
+    "mmse_misses": 2001
+  },
+  "bounded": {
+    "version": "capacity_bound_q1e6_v1",
+    "rounds": 31,
+    "accepted_moves": 30,
+    "generated_edits": 4580,
+    "regenerated_prgs": 47,
+    "scored_edits": 2750,
+    "sum_neighborhood_sizes": 50232,
+    "first_scan_evaluations": 594,
+    "initialization_evaluations": 1,
+    "converged": true,
+    "score_q": 108318716674,
+    "floor": 112162,
+    "chosen_dequeue": 114332,
+    "bound_updates": 14777,
+    "heap_pushes": 13094,
+    "certificate_heap_pruned": 10344,
+    "known_exact_reuses": 4482,
+    "floor_pruned": 27625,
+    "threshold_pruned": 5031,
+    "score": 108318.71667328442,
+    "candidate_evaluations": 2751,
+    "ue_evaluations": 8427,
+    "mmse_requests": 15181,
+    "mmse_misses": 1175,
+    "core_ms": 19.628471694886684
+  },
+  "concurrent_quality_campaign": false
+}

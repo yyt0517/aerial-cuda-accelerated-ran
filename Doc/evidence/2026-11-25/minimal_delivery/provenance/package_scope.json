@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-23",
+  "main_trajectories": 120,
+  "generalization_trajectories": 60,
+  "input_trajectories": 36,
+  "input_unique_new_trajectories": 24,
+  "input_reused_main_trajectories": 6,
+  "pfq_input_reference_trajectories": 6,
+  "search_audit_states": 90,
+  "code_files": 150,
+  "excluded": [
+    "完整逐TTI metrics.bin/信道与逐包轨迹",
+    "其他七小区/高负载业务/学习训练等非报告实验",
+    "失败、中断、试跑结果",
+    "旧版报告、重复ZIP/PDF/Word、构建产物、虚拟环境、Git目录",
+    "GPU平台第三方依赖与完整SDK"
+  ],
+  "limits": "结果可逐seed复核；新增NPZ样例可离线搜索验证；完整GPU端到端仿真仍需原Aerial/CUDA环境及原目录依赖。历史协议保留原始全批次计数，不能据此推断包内包含全批次轨迹。",
+  "input_reused_prior_rsrp_trajectories": 6
+}

@@ -1,0 +1,101 @@
+{
+  "passed": true,
+  "trace_runs": 9,
+  "checks": [
+    {
+      "arm": "deficit",
+      "seed": 41,
+      "checked_saved_ttis": [
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "mlwdf_pf",
+      "seed": 41,
+      "checked_saved_ttis": [
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "da_three_branch",
+      "seed": 41,
+      "checked_saved_ttis": [
+        4001,
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "deficit",
+      "seed": 42,
+      "checked_saved_ttis": [
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "mlwdf_pf",
+      "seed": 42,
+      "checked_saved_ttis": [
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "da_three_branch",
+      "seed": 42,
+      "checked_saved_ttis": [
+        4001,
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "deficit",
+      "seed": 43,
+      "checked_saved_ttis": [
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "mlwdf_pf",
+      "seed": 43,
+      "checked_saved_ttis": [
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    },
+    {
+      "arm": "da_three_branch",
+      "seed": 43,
+      "checked_saved_ttis": [
+        4001,
+        8001,
+        18001,
+        28000
+      ],
+      "queue_hol_ema_weights_reconstructed": true
+    }
+  ],
+  "matched_cohort_ids_exact": true,
+  "scope": "Retrospective diagnosis and same-state re-ranking only; no changed objective closed-loop run."
+}

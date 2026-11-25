@@ -1,0 +1,112 @@
+{
+  "passed": true,
+  "complete": true,
+  "runs": 60,
+  "expected": 60,
+  "paired_checks": [
+    {
+      "scenario": "G1",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G1",
+      "seed": 52,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G1",
+      "seed": 53,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G1",
+      "seed": 54,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G1",
+      "seed": 55,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G2",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G2",
+      "seed": 52,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G2",
+      "seed": 53,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G2",
+      "seed": 54,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G2",
+      "seed": 55,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G3",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G3",
+      "seed": 52,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G3",
+      "seed": 53,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G3",
+      "seed": 54,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G3",
+      "seed": 55,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G4",
+      "seed": 51,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G4",
+      "seed": 52,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G4",
+      "seed": 53,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G4",
+      "seed": 54,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    },
+    {
+      "scenario": "G4",
+      "seed": 55,
+      "identical_topology_arrivals_and_pfq_warmup": true
+    }
+  ],
+  "packets": 36828594,
+  "saved_states_verified": 120,
+  "exact_search_rounds": 2231,
+  "scope": "Mature cohort and full-payload CRC, per-seed averaging, paired topology/arrivals/warmup; saved-state exact enumeration and native PHY"
+}

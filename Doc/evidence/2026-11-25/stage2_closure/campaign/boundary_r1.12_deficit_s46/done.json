@@ -1,0 +1,11 @@
+{
+  "scene": "boundary",
+  "rate": 1.12,
+  "arm": "deficit",
+  "seed": 46,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r1.12_deficit_s46",
+  "key": "boundary_r1.12_deficit_s46",
+  "native_passed": true,
+  "smoke": false
+}

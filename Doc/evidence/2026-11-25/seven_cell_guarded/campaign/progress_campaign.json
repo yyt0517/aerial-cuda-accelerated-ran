@@ -1,0 +1,30 @@
+{
+  "completed": [
+    {
+      "seed": 42,
+      "arm": "da_guarded_l010_b098",
+      "label": "Bounded-urgency DA (lambda=0.1, beta=0.98)",
+      "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_guarded_l010_b098_20261106_v1/campaign/da_guarded_l010_b098_s42",
+      "smoke": false,
+      "native_passed": true
+    },
+    {
+      "seed": 43,
+      "arm": "da_guarded_l010_b098",
+      "label": "Bounded-urgency DA (lambda=0.1, beta=0.98)",
+      "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_guarded_l010_b098_20261106_v1/campaign/da_guarded_l010_b098_s43",
+      "smoke": false,
+      "native_passed": true
+    },
+    {
+      "seed": 41,
+      "arm": "da_guarded_l010_b098",
+      "label": "Bounded-urgency DA (lambda=0.1, beta=0.98)",
+      "directory": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_guarded_l010_b098_20261106_v1/campaign/da_guarded_l010_b098_s41",
+      "smoke": false,
+      "native_passed": true
+    }
+  ],
+  "failed": [],
+  "total": 3
+}

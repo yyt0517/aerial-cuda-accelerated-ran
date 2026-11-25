@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "states": 360,
+  "source": "actual serving_cell in native saved states",
+  "aggregation": "executed common-PFQ prefix; strongest-cell assignment; nominal topology cell ignored"
+}

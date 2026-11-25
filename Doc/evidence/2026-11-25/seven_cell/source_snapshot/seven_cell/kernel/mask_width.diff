@@ -1,0 +1,67 @@
+--- /data/aerial-cuda-accelerated-ran/training/stageb_lns/persistent_kernel.cpp
++++ persistent_kernel.cpp
+@@ -16,7 +16,7 @@
+ struct Edit {
+     int prg;
+     int64_t key=0,dj=0,dd=0;
+-    uint64_t support=0,footprint=0;
++    __uint128_t support=0,footprint=0;
+     bool valid=false;
+     std::vector<int64_t> target;
+     std::vector<int> users;
+@@ -32,7 +32,7 @@
+     std::vector<uint64_t> masks;
+     std::vector<std::vector<Edit>> table;
+     int64_t score=0,dequeue=0,floor=0;
+-    uint64_t weak=0;
++    __uint128_t weak=0;
+     int mode; //0 full-refresh;1 exact cache;2 unguarded cap4;3 guarded cap4
+     bool profile;
+     int64_t stats[18]{};
+@@ -81,14 +81,14 @@
+         bool activity=false;
+         for(int c=0;c<phy.C;++c){
+             auto old=action[c*phy.P+p],next=e.target[c]==-2?old:e.target[c];
+-            if(old!=next){if(old>=0)e.support|=uint64_t(1)<<old;if(next>=0)e.support|=uint64_t(1)<<next;activity|=(old>=0)!=(next>=0);}
++            if(old!=next){if(old>=0)e.support|=__uint128_t(1)<<old;if(next>=0)e.support|=__uint128_t(1)<<next;activity|=(old>=0)!=(next>=0);}
+         }
+         if(activity)for(int c=0;c<phy.C;++c){
+             auto old=action[c*phy.P+p],next=e.target[c]==-2?old:e.target[c];
+-            if(old>=0)e.support|=uint64_t(1)<<old;if(next>=0)e.support|=uint64_t(1)<<next;
++            if(old>=0)e.support|=__uint128_t(1)<<old;if(next>=0)e.support|=__uint128_t(1)<<next;
+         }
+         e.key=p;for(auto t:e.target)e.key=e.key*(phy.U+3)+t+2;
+-        e.footprint=e.support|(uint64_t(1)<<(phy.U+p));
++        e.footprint=e.support|(__uint128_t(1)<<(phy.U+p));
+         for(int u=0;u<phy.U;++u)if((e.support>>u)&1)e.users.push_back(u);
+         e.payload.resize(e.users.size());table[p].push_back(std::move(e));++stats[2];
+     }
+@@ -168,7 +168,7 @@
+                 for(auto e:all)if(e!=best&&e->dj>threshold&&dequeue+e->dd>=floor)remaining.push_back(e);
+                 // Integer deltas have a one-unit epsilon band. Build only the
+                 // necessary score bands, preserving the same canonical tie law.
+-                uint64_t used=best->footprint;int64_t change=best->dd;
++                __uint128_t used=best->footprint;int64_t change=best->dd;
+                 while(!remaining.empty()&&selected.size()<4){
+                     auto next=choose(remaining,threshold);if(!next)break;
+                     remaining.erase(std::remove(remaining.begin(),remaining.end(),next),remaining.end());
+@@ -185,7 +185,7 @@
+                 if(profile&&iteration==1)times[6]=std::chrono::duration<double,std::milli>(Clock::now()-start).count();
+                 if(iteration>=3){stats[10]=1;break;}else continue;
+             }
+-            uint64_t changed=0;std::vector<int> changed_prgs;
++            __uint128_t changed=0;std::vector<int> changed_prgs;
+             for(auto e:selected){
+                 for(int c=0;c<phy.C;++c)if(e->target[c]!=-2)action[c*phy.P+e->prg]=e->target[c];
+                 put(values,e);score+=e->dj;dequeue+=e->dd;changed|=e->support;changed_prgs.push_back(e->prg);
+--- /data/aerial-cuda-accelerated-ran/training/stageb_lns/bounded_kernel.cpp
++++ bounded_kernel.cpp
+@@ -118,7 +118,7 @@
+                 if(profile&&iteration==1)times[6]=std::chrono::duration<double,std::milli>(pd::Clock::now()-first).count();
+                 if(iteration>=3){stats[10]=1;break;}else continue;
+             }
+-            int p=chosen->prg;uint64_t changed=chosen->support;
++            int p=chosen->prg;__uint128_t changed=chosen->support;
+             for(int c=0;c<phy.C;++c)if(chosen->target[c]!=-2)action[c*phy.P+p]=chosen->target[c];
+             put(values,chosen);score+=chosen->dj;dequeue+=chosen->dd;++stats[1];
+             stamp=pd::Clock::now();

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "decision_ttis": 24400,
+  "sources_unchanged": true,
+  "all_branches_converged": true,
+  "common_floor_all_branches": true,
+  "selected_new_score_max_over_eligible": true,
+  "selected_score_ge_dpls": true,
+  "forced_dpls_seed_new_score_monotone": true,
+  "service_guard_every_decision": true,
+  "lambda_value": 0.1,
+  "beta": 0.98
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G4_deficit_s54/states/tti008001.pt",
+    "sha256": "972a5b63458fb70d24a01e1b6c7afe8f7cc22f7a79b03534bb82ca06d31fe6a3"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G4_deficit_s54/states/tti018001.pt",
+    "sha256": "65b218294805e0ed232d7537b1286dcc400048ae0b70212e60e148371328ef47"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/stage2_generalization_20261106/campaign/G4_deficit_s54/states/tti028000.pt",
+    "sha256": "e5439b6e46924c645a1b330bd5ef5cffbc754dd31f1c9a8913abeab815aa94c2"
+  }
+]

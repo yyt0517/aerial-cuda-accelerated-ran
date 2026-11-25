@@ -1,0 +1,15 @@
+Building build.py
+Building build_persistent.py
+Building build_bounded.py
+{
+  "passed": true,
+  "sample": "Boundary08, seed43, TTI18001",
+  "python_full_cpp_full_bounded_equal_to_archived_action_and_values": true,
+  "independent_numpy_phy_passed": true,
+  "exact_rounds": 24,
+  "audited_candidates": 38376,
+  "floor": 78562,
+  "chosen_dequeue": 78594,
+  "compiled_from_packaged_source": true,
+  "scope": "One-state offline correctness check; not a reproduction of the full-campaign timing or end-to-end GPU experiment."
+}

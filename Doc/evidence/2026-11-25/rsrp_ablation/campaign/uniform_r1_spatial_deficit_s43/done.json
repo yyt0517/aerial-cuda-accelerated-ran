@@ -1,0 +1,12 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "stage": "spatial",
+  "objective": "deficit",
+  "seed": 43,
+  "key": "uniform_r1_spatial_deficit_s43",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/campaign/uniform_r1_spatial_deficit_s43",
+  "native_passed": true,
+  "smoke": false
+}

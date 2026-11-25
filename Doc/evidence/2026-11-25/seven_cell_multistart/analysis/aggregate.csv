@@ -1,0 +1,61 @@
+arm,label,metric,n,mean,std
+da_three_branch,DA-PLS (three branches),payload_mbps,3,2193.4416,43.7037701476657
+da_three_branch,DA-PLS (three branches),goodput_mbps,3,2445.6123141333333,47.97267070100098
+da_three_branch,DA-PLS (three branches),delay_mean_ms,3,129.1350054819375,2.327861791031444
+da_three_branch,DA-PLS (three branches),delay_p95_ms,3,200.0,0.0
+da_three_branch,DA-PLS (three branches),expiry_pct,3,23.348895083074623,1.6676665344802
+da_three_branch,DA-PLS (three branches),outcome_mean_ms,3,145.39638506982672,2.1350127028077344
+da_three_branch,DA-PLS (three branches),outcome_p95_ms,3,200.0,0.0
+da_three_branch,DA-PLS (three branches),ue_payload_p5_mbps,3,7.81844,1.6095625736205466
+da_three_branch,DA-PLS (three branches),jain_payload,3,0.887040467225925,0.0144432668829993
+da_three_branch,DA-PLS (three branches),worst_ue_expiry_pct,3,88.2465230348987,1.6745265797989473
+da_three_branch,DA-PLS (three branches),inr_pooled_db,3,22.4792862435588,0.22883249572636602
+da_three_branch,DA-PLS (three branches),sinr_mean_db,3,6.128515336195522,0.09561833317809686
+da_three_branch,DA-PLS (three branches),occupancy_pct,3,79.29285714285714,2.0803167773722593
+da_three_branch,DA-PLS (three branches),other_nondelivery_pct,3,8.618541651938976,0.33465372008901667
+da_three_branch,DA-PLS (three branches),queue_mean_mb,3,58.33615685588333,0.8529744960554076
+deficit,DPLS,payload_mbps,3,2190.5984000000003,40.51986608467513
+deficit,DPLS,goodput_mbps,3,2445.1768986666666,48.27854662504603
+deficit,DPLS,delay_mean_ms,3,87.29160820761776,5.319835592705011
+deficit,DPLS,delay_p95_ms,3,200.0,0.0
+deficit,DPLS,expiry_pct,3,23.470068070422,1.5983429451005848
+deficit,DPLS,outcome_mean_ms,3,113.53721844593689,5.702986710813464
+deficit,DPLS,outcome_p95_ms,3,200.0,0.0
+deficit,DPLS,ue_payload_p5_mbps,3,7.58484,1.3665977918905028
+deficit,DPLS,jain_payload,3,0.885995152588733,0.010709429372975837
+deficit,DPLS,worst_ue_expiry_pct,3,91.1493771938395,1.6500121839741089
+deficit,DPLS,inr_pooled_db,3,21.887791879425915,0.1485066329706927
+deficit,DPLS,sinr_mean_db,3,7.287932669351441,0.2633587920365807
+deficit,DPLS,occupancy_pct,3,74.52875350140056,2.5785762766687284
+deficit,DPLS,other_nondelivery_pct,3,8.585532937094197,0.3906759891061923
+deficit,DPLS,queue_mean_mb,3,45.50833652123333,2.289875718200932
+mlwdf_pf,DA-PLS,payload_mbps,3,2121.7911999999997,24.460824999987036
+mlwdf_pf,DA-PLS,goodput_mbps,3,2402.9482448000003,36.58079221494012
+mlwdf_pf,DA-PLS,delay_mean_ms,3,138.60098839007745,6.884401528626783
+mlwdf_pf,DA-PLS,delay_p95_ms,3,200.0,0.0
+mlwdf_pf,DA-PLS,expiry_pct,3,24.97651865781769,1.1242809655861332
+mlwdf_pf,DA-PLS,outcome_mean_ms,3,153.55394227057985,4.775009476218142
+mlwdf_pf,DA-PLS,outcome_p95_ms,3,200.0,0.0
+mlwdf_pf,DA-PLS,ue_payload_p5_mbps,3,6.90684,1.5805768784845615
+mlwdf_pf,DA-PLS,jain_payload,3,0.8758552183068854,0.013094058604322466
+mlwdf_pf,DA-PLS,worst_ue_expiry_pct,3,89.04312248554173,1.5379554749133737
+mlwdf_pf,DA-PLS,inr_pooled_db,3,22.603531272552498,0.18097070943199697
+mlwdf_pf,DA-PLS,sinr_mean_db,3,5.8983024018399135,0.17569477168625347
+mlwdf_pf,DA-PLS,occupancy_pct,3,82.00289915966387,2.990906494076605
+mlwdf_pf,DA-PLS,other_nondelivery_pct,3,9.213127654616876,0.392104371495371
+mlwdf_pf,DA-PLS,queue_mean_mb,3,61.62653889935,1.932749089835767
+pfq,PFQ,payload_mbps,3,994.3328,30.276628705323144
+pfq,PFQ,goodput_mbps,3,1706.2421933333335,71.32275876864693
+pfq,PFQ,delay_mean_ms,3,151.71713597924258,17.04148129840815
+pfq,PFQ,delay_p95_ms,3,200.0,0.0
+pfq,PFQ,expiry_pct,3,59.615338044784096,1.6164292675553635
+pfq,PFQ,outcome_mean_ms,3,181.68376640594076,5.608928839321494
+pfq,PFQ,outcome_p95_ms,3,200.0,0.0
+pfq,PFQ,ue_payload_p5_mbps,3,1.0517200000000002,0.6090696236063657
+pfq,PFQ,jain_payload,3,0.6095240756190604,0.06034336797536784
+pfq,PFQ,worst_ue_expiry_pct,3,97.34668551085481,1.839562373363107
+pfq,PFQ,inr_pooled_db,3,24.107807108426105,0.30007160224768153
+pfq,PFQ,sinr_mean_db,3,3.450811627495886,0.1620487341417974
+pfq,PFQ,occupancy_pct,3,99.78434173669467,0.3735310691168885
+pfq,PFQ,other_nondelivery_pct,3,9.544147268008308,0.6893987307720482
+pfq,PFQ,queue_mean_mb,3,73.02455006355,2.275231910363659

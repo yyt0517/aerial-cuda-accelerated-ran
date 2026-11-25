@@ -3646,6 +3646,16 @@ void network::phyAbstract(uint8_t gpuInd, int slotIdx)
     return estH_fr.get();
  }
 
+ cuComplex* network::getEstH_frActUe()
+ {
+    return estH_fr_actUe.get();
+ }
+
+ float network::getNoiseFloorDbm() const
+ {
+    return netData != nullptr ? netData->noiseFloor : -std::numeric_limits<float>::infinity();
+ }
+
  uint16_t* network::getCellID()
  {
     return cellId.get();

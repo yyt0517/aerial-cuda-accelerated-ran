@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/uniform_r1_prg_t4_deficit_s42/states/tti008001.pt",
+    "sha256": "1156d2c0d17b5f90490ce9c102419d6fbbb8c964b1b9c0fd4ba1ddaa14ed2d43"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/uniform_r1_prg_t4_deficit_s42/states/tti018001.pt",
+    "sha256": "2a24ef355d1eb041dd3a50b6a516c9fbcad88dfa200ff496c991f855b8754163"
+  },
+  {
+    "path": "/opt/nvidia/cuBB/deliverables/rsrp_covariance_20261110/campaign/uniform_r1_prg_t4_deficit_s42/states/tti028000.pt",
+    "sha256": "2aa83ee987ee2977162c77bb22da77a47d0a8eb19cbb6398491ec7474fc7034e"
+  }
+]

@@ -1,0 +1,12 @@
+--- /data/aerial-cuda-accelerated-ran/training/stageb_sevencell/kernel/persistent_kernel.cpp
++++ persistent_kernel.cpp
+@@ -70,7 +70,8 @@
+         if(warm){
+             std::vector<double> v(p.U*FIELDS);phy.evaluate(warm,nullptr,nullptr,v.data());++stats[9];
+             int64_t j=0,d=0;for(int u=0;u<p.U;++u){j+=quant(u,v[u*FIELDS+EXPECTED]);d+=bytes(v[u*FIELDS+DEQUEUE]);}
+-            if(d>=floor&&j>score){action.assign(warm,warm+p.C*p.P);values.swap(v);totals();}
++            if(d<floor)throw std::runtime_error("Forced start violates raw PFQ floor");
++            action.assign(warm,warm+p.C*p.P);values.swap(v);totals();
+         }
+         for(int q=0;q<p.P;++q)mask(q);
+     }

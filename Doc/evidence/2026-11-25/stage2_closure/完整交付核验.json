@@ -1,0 +1,49 @@
+{
+  "completed_utc": "2026-11-04T15:15:52.400367+00:00",
+  "report_pages": 71,
+  "quality_points": 220,
+  "new_runs": 210,
+  "verified_same_protocol_pfq_reuse": 10,
+  "common_prefix_checks": 220,
+  "physical_states": 360,
+  "exact_search_states": 90,
+  "exact_search_rounds": 2477,
+  "exact_search_candidates": 3923174,
+  "new_and_required_evaluations": 163167,
+  "final_timing_during_quality_campaign": false,
+  "core_deliverables_preserved": true,
+  "pdf_out_of_page_words": 0,
+  "evidence_data_files_verified": 1214,
+  "reproduction_sources_verified": 13,
+  "algorithm_files_verified": 24,
+  "key_pages_visually_checked": [
+    2,
+    59,
+    60,
+    61,
+    63,
+    64
+  ],
+  "files": {
+    "技术研究报告_二阶段同频收尾_DA-PLS.docx": {
+      "bytes": 1319319,
+      "sha256": "28a5fee58e5d1a605207594cc0a30215b20bd4609979efd104eeced1ded14ae1"
+    },
+    "技术研究报告_二阶段同频收尾_DA-PLS.pdf": {
+      "bytes": 2155633,
+      "sha256": "5ea0f6f4fb5a41c6a3a843b1eebf43ce5813164fc727d273d5208b40d1aa9e71"
+    },
+    "仿真结果汇总_完整结果.xlsx": {
+      "bytes": 317045,
+      "sha256": "4c08648b33165ce15f78bc630f3b98db7ea61dc9869d1676c53ccefce75c1489"
+    },
+    "仿真证据包_完整结果.zip": {
+      "bytes": 1991650,
+      "sha256": "42fec542463ab4e20c1dce556b5b43bdfd69f325a6280ce911f562ca4732ed0a"
+    },
+    "交付文件校验_完整结果.json": {
+      "bytes": 158090,
+      "sha256": "66eb172313bfa1a0eebf1473064bf1ab197761775b795a253795fdacdba0dadc"
+    }
+  }
+}

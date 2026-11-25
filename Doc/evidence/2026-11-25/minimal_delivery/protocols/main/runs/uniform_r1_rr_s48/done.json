@@ -1,0 +1,11 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "rr",
+  "seed": 48,
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_rr_s48",
+  "key": "uniform_r1_rr_s48",
+  "native_passed": true,
+  "smoke": false
+}

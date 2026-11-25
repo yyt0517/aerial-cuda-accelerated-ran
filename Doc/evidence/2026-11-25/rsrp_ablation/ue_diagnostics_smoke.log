@@ -1,0 +1,22 @@
+boundary_r0.8_exact_deficit_s41
+/data/aerial-cuda-accelerated-ran/training/stageb_rsrp_ablation/ue_diagnostics.py:79: RuntimeWarning: Mean of empty slice.
+  actual_tb_bler=e/n if n else np.nan,native_predicted_bler_mean=float(get('predicted_bler_cpu')[ok,u].mean()),
+/data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/_core/_methods.py:145: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+/data/aerial-cuda-accelerated-ran/training/stageb_rsrp_ablation/ue_diagnostics.py:80: RuntimeWarning: Mean of empty slice.
+  scheduled_tti_pct=float(100*ok.mean()),native_mcs_mean=float(get('mcs')[ok,u].mean()),
+Traceback (most recent call last):
+  File "<stdin>", line 6, in <module>
+  File "/data/aerial-cuda-accelerated-ran/training/stageb_rsrp_ablation/ue_diagnostics.py", line 81, in one
+    native_mcs_p95=float(np.quantile(get('mcs')[ok,u],.95)),
+  File "/data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py", line 4537, in quantile
+    return _quantile_unchecked(
+  File "/data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py", line 4550, in _quantile_unchecked
+    return _ureduce(a,
+  File "/data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py", line 3894, in _ureduce
+    r = func(a, **kwargs)
+  File "/data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py", line 4727, in _quantile_ureduce_func
+    result = _quantile(arr,
+  File "/data/aerial-cuda-accelerated-ran/.venv/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py", line 4849, in _quantile
+    slices_having_nans = np.isnan(arr[-1, ...])
+IndexError: index -1 is out of bounds for axis 0 with size 0

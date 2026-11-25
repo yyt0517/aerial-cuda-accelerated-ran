@@ -1,0 +1,237 @@
+{
+  "aggregation": "Each seed: arithmetic mean of system_time_ms over successfully_delivered packets; then equal-weight arithmetic mean of seeds 41,42,43.",
+  "period": "10-second measurement arrival cohort; terminal outcomes followed; ms",
+  "verified_original_metric_columns": [
+    "payload_mbps",
+    "delay_p95_ms",
+    "expiry_pct"
+  ],
+  "existing_percentage_columns_preserved": true,
+  "verified_seed_summaries": 30,
+  "sources": [
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/per_seed.csv",
+      "sha256": "58182036cb31039ce85638b75087c7421d08cd3bc9142214a57dbb327de6b008"
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/per_seed.csv",
+      "sha256": "5c43b7f83d9499f8a38a1adb7f141785797a0765b207b9c38903d1fbeaf6fe45"
+    },
+    {
+      "path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/means.csv",
+      "sha256": "080519bff3c0ff9f6082c4e124f1071aea860ed8b6a93fe3200f46ec2a3acc96"
+    }
+  ],
+  "values": [
+    {
+      "scene": "boundary",
+      "stage": "pfq",
+      "seed": 41,
+      "delay_mean_ms": 94.34788955609251,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/boundary_r0.8_pfq_s41/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "pfq",
+      "seed": 42,
+      "delay_mean_ms": 130.58862736789715,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/boundary_r0.8_pfq_s42/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "pfq",
+      "seed": 43,
+      "delay_mean_ms": 147.73065104635373,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/boundary_r0.8_pfq_s43/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "exact",
+      "seed": 41,
+      "delay_mean_ms": 2.4101208358495563,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_exact_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "exact",
+      "seed": 42,
+      "delay_mean_ms": 2.8496246145595925,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_exact_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "exact",
+      "seed": 43,
+      "delay_mean_ms": 3.1624057280518025,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_exact_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "reported",
+      "seed": 41,
+      "delay_mean_ms": 103.96080877541057,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_reported_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "reported",
+      "seed": 42,
+      "delay_mean_ms": 143.39978752021062,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_reported_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "reported",
+      "seed": 43,
+      "delay_mean_ms": 136.74912781257248,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_reported_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "prg_t1",
+      "seed": 41,
+      "delay_mean_ms": 91.15680866496407,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_prg_t1_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "prg_t1",
+      "seed": 42,
+      "delay_mean_ms": 125.77467401334984,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_prg_t1_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "prg_t1",
+      "seed": 43,
+      "delay_mean_ms": 124.69152965428174,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_prg_t1_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "prg_t4",
+      "seed": 41,
+      "delay_mean_ms": 105.19790222240842,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_prg_t4_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "prg_t4",
+      "seed": 42,
+      "delay_mean_ms": 136.48772519637978,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_prg_t4_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "boundary",
+      "stage": "prg_t4",
+      "seed": 43,
+      "delay_mean_ms": 133.8814557744797,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/boundary_r0.8_prg_t4_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "pfq",
+      "seed": 41,
+      "delay_mean_ms": 4.643431731210654,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/uniform_r1_pfq_s41/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "pfq",
+      "seed": 42,
+      "delay_mean_ms": 0.8428119509004648,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/uniform_r1_pfq_s42/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "pfq",
+      "seed": 43,
+      "delay_mean_ms": 1.0462140613222344,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/stage2_closure_20261104/analysis/uniform_r1_pfq_s43/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "exact",
+      "seed": 41,
+      "delay_mean_ms": 0.6131050329181187,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_exact_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "exact",
+      "seed": 42,
+      "delay_mean_ms": 0.5959897013756318,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_exact_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "exact",
+      "seed": 43,
+      "delay_mean_ms": 0.6067075122171959,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_exact_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "reported",
+      "seed": 41,
+      "delay_mean_ms": 0.7510204019700966,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_reported_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "reported",
+      "seed": 42,
+      "delay_mean_ms": 0.6391788163691693,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_reported_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "reported",
+      "seed": 43,
+      "delay_mean_ms": 0.6767338009835118,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_reported_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "prg_t1",
+      "seed": 41,
+      "delay_mean_ms": 0.6315134739491476,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_prg_t1_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "prg_t1",
+      "seed": 42,
+      "delay_mean_ms": 0.5954612851202883,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_prg_t1_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "prg_t1",
+      "seed": 43,
+      "delay_mean_ms": 0.6165288582580897,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_prg_t1_mlwdf_pf_s43/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "prg_t4",
+      "seed": 41,
+      "delay_mean_ms": 0.6394931349311663,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_prg_t4_mlwdf_pf_s41/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "prg_t4",
+      "seed": 42,
+      "delay_mean_ms": 0.5958474167069049,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_prg_t4_mlwdf_pf_s42/summary.json"
+    },
+    {
+      "scene": "uniform",
+      "stage": "prg_t4",
+      "seed": 43,
+      "delay_mean_ms": 0.6178429929089378,
+      "summary_path": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_covariance_20261110/analysis/uniform_r1_prg_t4_mlwdf_pf_s43/summary.json"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+   scene algorithm  throughput_change_pct  p95_original_ms  p95_rsrp_ms  expiry_original_pct  expiry_rsrp_pct  expiry_change_pp  serial_cpu_original_ms  serial_cpu_rsrp_ms  serial_cpu_change_pct
+boundary      DPLS             -11.231134             82.0   199.333333             0.672955        13.032586         12.359631                6.178937            8.560056              38.536049
+boundary    DA-PLS             -15.087913              5.5   199.166667             0.000000        14.791142         14.791142                4.578300            6.684831              46.011201
+ uniform      DPLS              -2.029994              1.0     1.666667             0.000000         0.478308          0.478308                3.619969            4.243104              17.213817
+ uniform    DA-PLS              -1.268230              1.0     1.500000             0.000000         0.000000          0.000000                3.752372            4.449045              18.566209

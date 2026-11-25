@@ -1,0 +1,11 @@
+{
+  "completed": true,
+  "runs": 72,
+  "passed": true,
+  "unit": "equal-weight seed; paired nominal 95% t intervals; exploratory ordered contrasts",
+  "seeds": [
+    41,
+    42,
+    43
+  ]
+}

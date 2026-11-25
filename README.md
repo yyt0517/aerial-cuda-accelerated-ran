@@ -77,7 +77,7 @@ source .venv/bin/activate
 
 Run the legacy Stage-B training and evaluation commands from the activated shell. The current-policy launcher described below runs on the host and enters the existing CUDA container itself.
 
-Current Stage-B research status (updated 2026-11-04):
+Current Stage-B research status (updated 2026-11-25):
 
 - [Project documentation](Doc/README.md)
 - [Current progress and evidence](Doc/stageB_current_progress.md)
@@ -85,7 +85,7 @@ Current Stage-B research status (updated 2026-11-04):
 
 The registered research policy is PFQ + CTBS + causal deficit-weighted physical local search with a causal dequeue floor of rho=0.90. Five-seed, ten-second comparisons against PFQ are complete for boundary/rate0.8 and uniform/rate1.0. Its [version registry](training/stageb_hgraph/current_algorithm.json) and [launcher](cuMAC/scripts/run_stageB_current_algorithm.sh) identify the boundary entrypoint, which requires the existing CUDA container and research worktree.
 
-The latest Boundary/rate0.8 candidate combines M-LWDF-PF weights with exact upper-bound-pruned DPLS. On three development seeds and matching two-second arrival cohorts, complete-packet payload improves 68.96% over PFQ, successful mean delay falls 97.76%, and expiry is zero. This classical scheduling rule and heuristic search combination has no trained model. Higher-load results and inference-time comparisons have separate limits; see the [paired report](Doc/evidence/2026-11-04/mlwdf_pfq_boundary_comparison/report.txt). It has not replaced the registered policy. Research source packages and frozen evidence are included; complete native replay still requires local worktree, trace and model artifacts. Build research runtime libraries from the supplied scripts.
+The latest research delivery evaluates DA-PLS (M-LWDF-PF weights with exact upper-bound-pruned local search). Across ten seeds and matching ten-second arrival cohorts, Boundary/rate0.8 complete-packet payload improves 67.78% over PFQ, successful mean delay falls 97.84%, and observed expiry is zero. This result does not extend unchanged to seven cells or reduced neighbor information. The [November evidence archive](Doc/evidence/2026-11-25/README.md) includes the final report's [minimal source and result package](Doc/evidence/2026-11-25/minimal_delivery/README.md), numerical verification and an offline replay sample, plus generalization, seven-cell and RSRP studies. This research policy has no trained model and has not replaced the registered default. Full GPU replay still requires the frozen local worktree, container and raw artifacts; build runtime libraries from the supplied sources.
 
 ### Further Information
 

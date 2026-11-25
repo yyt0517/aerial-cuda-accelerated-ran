@@ -1,0 +1,12 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "seed": 41,
+  "objective": "mlwdf_pf",
+  "stage": "reported",
+  "key": "uniform_r1_reported_mlwdf_pf_s41",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_ablation_20261110/native_timing/runs/uniform_r1_reported_mlwdf_pf_s41",
+  "native_passed": true,
+  "smoke": true
+}

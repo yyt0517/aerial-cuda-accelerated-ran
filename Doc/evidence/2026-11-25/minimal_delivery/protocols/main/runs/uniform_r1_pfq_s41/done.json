@@ -1,0 +1,17 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "pfq",
+  "seed": 41,
+  "reused": true,
+  "directory": "/opt/nvidia/cuBB/.worktrees/pfq-independent-reuse-actor/output/pfq_independent_reuse/formal/uniform10_steady_state_20261021_v1/seed41_pfq0_20000",
+  "key": "uniform_r1_pfq_s41",
+  "input_sha256": {
+    "launch.json": "165b9f4075e7e5544107808ffef7bb2ce55b65dd4bcadb2884f3952d4637c3c3",
+    "validation.json": "cd182295bd855d7623ab4921cd5fdb1d5bef113e72a14e1b396c5df4228b204b",
+    "metrics.bin": "8019c69773f1bce06eb3b015cab340f1e357adae938f3b5579c47ba3aafd0602",
+    "prefix.npz": "9d666aa40327b40b541bcdca3beccb73e1394ba009e31cebbd3c828bb3b04f76",
+    "traffic_offered_packets.csv": "00122d8d66a15e9136213c20b1918d58025d828a7457c5c48817f838cddfd3bd",
+    "packet_outcome_samples.csv": "7a67cadc539294f1c0ca7d2fc2be52660566ba6a7436c3ea14b8d01513fd9e82"
+  }
+}

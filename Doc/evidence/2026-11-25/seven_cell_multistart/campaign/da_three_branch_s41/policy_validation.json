@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "decision_ttis": 24400,
+  "sources_unchanged": true,
+  "all_branches_converged": true,
+  "common_floor_all_branches": true,
+  "selected_da_score_ge_all_three": true,
+  "forced_dpls_seed_da_score_monotone": true
+}

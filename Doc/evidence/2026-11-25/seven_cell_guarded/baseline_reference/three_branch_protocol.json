@@ -1,0 +1,52 @@
+{
+  "cells": 7,
+  "users": 84,
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "arms": [
+    "da_three_branch"
+  ],
+  "smoke": false,
+  "windows": [
+    4000,
+    4000,
+    20000,
+    400
+  ],
+  "rate": 0.8,
+  "prgs_per_cell": 17,
+  "prbs_per_prg": 16,
+  "packet_bytes": 3000,
+  "ttl_ms": 200,
+  "labels": {
+    "da_three_branch": "DA-PLS (three branches)"
+  },
+  "build": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_20261105_v1/build_final",
+  "baseline": "/opt/nvidia/cuBB/deliverables/seven_cell_boundary08_20261105_v1",
+  "branch_tie_order": [
+    "original_da",
+    "from_dpls_da",
+    "dpls"
+  ],
+  "changes": "Three same-state branches, maximize canonical DA score; third forcibly starts at DPLS endpoint, original PFQ floor retained",
+  "source_sha256": {
+    "training/stageb_sevencell_multistart/__init__.py": "07183c25cb598f49bf0daf67b086dc26d8473190a01213433b246229d422f687",
+    "training/stageb_sevencell_multistart/report.py": "1da67e4d33b15e839bc90b7bc7c40b0324b4e0c7cef73e989961f2f26aa3b529",
+    "training/stageb_sevencell_multistart/analyze.py": "d1856681350c57b4a9289347002a4bc67b6b6da2edcdaae2dc2e6c4b5652e3ba",
+    "training/stageb_sevencell_multistart/policy.py": "7b5fcb0bf94237dac3da22dec2176c1666d15447cb093b1aeaf4b2eb55fe7808",
+    "training/stageb_sevencell_multistart/seeded_solver.py": "2e7864ce478f2ffd08eb88137488848a685b90bf9e929b44669dab9a437f484a",
+    "training/stageb_sevencell_multistart/audit.py": "f43bcd6b182ab10ea59cf8d5aef2f227d0babda8f0b11d47b344210240c45faa",
+    "training/stageb_sevencell_multistart/build.py": "c3af94cb652a8b9ad47a7641fd5efb0cdd60cd945cb167c75ec9ce20f1ab32d2",
+    "training/stageb_sevencell_multistart/campaign.py": "2534beaec41f1973f5ebf0e46d46d6eb962d4cd22344d8b853b026fb440d6ca7",
+    "training/stageb_sevencell_multistart/_seeded.so": "b41c21834bfab2152faddf665fa17d0b5e44806dce87e6bb7614a0e044135013",
+    "training/stageb_sevencell_multistart/test_policy.py": "e7225d692079bc9ed321e5b530a994a7f248ec42d09a2cba96fede79fbd50c8f",
+    "training/stageb_sevencell_multistart/kernel/persistent_kernel.cpp": "ee54d3668e852d1913c19a77455b12bba5bf71fb55bd660d477208d40d7157ed",
+    "training/stageb_sevencell_multistart/kernel/physics_kernel.cpp": "0f61d0e19a48190ea42bfa0ea6579c7486663864e03ae9044cb5a0f129c3ee5b",
+    "training/stageb_sevencell_multistart/kernel/bounded_kernel.cpp": "992c2f011417bda5348632092880cfd50695e81e95109cbb18e7d1869606c426"
+  },
+  "simulator_sha256": "cf45681742c778c92bf3440dfd830060681e2e2fc049d377b113f819169990b8",
+  "note": "Single-step DA objective dominance only; no long-horizon throughput or delay guarantee"
+}

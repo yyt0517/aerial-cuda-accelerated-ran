@@ -1,0 +1,23 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "stage": "exact",
+  "objective": "deficit",
+  "seed": 43,
+  "key": "uniform_r1_exact_deficit_s43",
+  "reused": true,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_deficit_s43",
+  "prior_key": "uniform_r1_deficit_s43",
+  "prior_analysis": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/analysis/uniform_r1_deficit_s43",
+  "hashes": {
+    "launch.json": "624662e696cc155b895ea73d824050136bcf9f85ee2c0f6f5cd431ff31e81f42",
+    "validation.json": "9c218495c6960303a9b7b73958f626b6c9a9605a4f04a459421ca8026177fe60",
+    "metrics.bin": "5e8f30068d7247aa4894f63e9145f27b969c7d18b7f75483c21ac4bffd7c71c4",
+    "actions.npz": "2154f8a7b7c69873ea8abff267eded3b946400f2c0766d1d4d91bd6382d18a9f",
+    "traffic_offered_packets.csv": "dfb4b3fc91add3a5dd394ac2f9cc8e4248657e3d7e776fb60f6b539e0c4a839e",
+    "packet_outcome_samples.csv": "5863dc691ad87a1083cd5a9962856fc1425287e8830113497c18f093f2b0d504",
+    "ue_topology.csv": "d9997e8c9148c2af355f00327d28d329b211878f4dfccb14b2312e47b3039a98",
+    "saved_states.json": "1a213a9390f3e8ab439d2bcf4e5386b39005621500b97e32d60d7be3b6bd475d",
+    "search.csv.gz": "e93726b9e132cb102f419ec734f3ffaf3b196c503b94ec7c93ffc604e39f1717"
+  }
+}

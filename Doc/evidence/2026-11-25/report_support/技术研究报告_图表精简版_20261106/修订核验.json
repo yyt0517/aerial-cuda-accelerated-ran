@@ -1,0 +1,77 @@
+{
+  "source": "/home/oai-mac/.codex/attachments/2f3e26fc-a491-4e56-a9e0-fbf5e3fbc2c6/技术研究报告_二阶段同频.docx",
+  "source_sha256": "b02438a998acc0c86f33227d030002a8543c40b46d4c42f3444be2cc6588a52b",
+  "output": "/data/aerial-cuda-accelerated-ran/outputs/技术研究报告_图表精简版_20261106/技术研究报告_二阶段同频_图表精简版.docx",
+  "old_result_figures": 12,
+  "new_result_figures": 6,
+  "case_retained": true,
+  "case_renumbering": "9-7 -> 9-5",
+  "tables_preserved": 33,
+  "native_math_objects_preserved": 72,
+  "figures": [
+    {
+      "caption": "图 7-1 两种场景的传统基线核心指标",
+      "figure": "A_传统基线核心指标",
+      "note": "seed 41–50共10个seed平均；柱为均值，小点为每个seed的结果。上行为Boundary08，下行为Uniform。仅保留完整包吞吐、过期率和成功包平均时延，P95等指标见表7-4、表7-5。",
+      "width_inches": 6
+    },
+    {
+      "caption": "图 7-2 两种场景的传统基线完结包时延分档",
+      "figure": "B7_传统基线时延分档",
+      "note": "seed 41–50共10个seed平均。分母为测量期到达并已全部终止的包；前四档包含所有MAC完成包（含CRC损坏后完成），不等同于完整成功交付。分档依次为≤5、(5,20]、(20,100]、(100,200] ms；过期包单独计入深红档，与前四档互斥。细小色段可能难以辨认，右侧列出过期率；标签按显示精度取舍。",
+      "width_inches": 6
+    },
+    {
+      "caption": "图 9-1 两种场景的协同算法核心指标",
+      "figure": "C_协同算法核心指标",
+      "note": "seed 41–50共10个seed平均；柱为均值，小点为每个seed的结果。近零过期率仍直接标值，0.000%对应本次实验未观测到过期；各场景采用独立纵轴范围。完整精确指标见表9-1、表9-2。",
+      "width_inches": 6
+    },
+    {
+      "caption": "图 9-2 Boundary08下按过期率排序的逐UE结果",
+      "figure": "D_逐UE过期率",
+      "note": "10个seed平均。各seed、各算法独立对36个UE由低到高排序，再平均同一名次；横轴是排序名次，不用于跨算法识别同一UE。上下图纵轴范围不同；下图重合零值仅沿横向轻微错开，不改变过期率。DPLS末位为13.706%，DA-PLS全部为0.000%。",
+      "width_inches": 6
+    },
+    {
+      "caption": "图 9-3 Boundary08下DA-PLS相对DPLS的代价与收益",
+      "figure": "E_代价与收益",
+      "note": "seed 41–50共10个seed平均。左侧为PRG占用率与平均SINR，右侧为出队速率、平均簇队列与最差UE过期率。出队速率采用局部范围的点图，虚线为相同业务到达下的实测输入1382.487 Mbps；理论输入为1382.40 Mbps。其余条形图均从0起。",
+      "width_inches": 6
+    },
+    {
+      "caption": "图 9-4 两种场景的协同算法完结包时延分档",
+      "figure": "B9_协同算法时延分档",
+      "note": "seed 41–50共10个seed平均。分母为测量期到达并已全部终止的包；前四档包含所有MAC完成包（含CRC损坏后完成），不等同于完整成功交付。分档依次为≤5、(5,20]、(20,100]、(100,200] ms；过期包单独计入深红档，与前四档互斥。细小色段可能难以辨认，右侧列出过期率；标签按显示精度取舍。",
+      "width_inches": 6
+    },
+    {
+      "caption": "图 9-5 真实存档调度输入中的静默与邻区换UE联合调整",
+      "figure": "案例_联合调整",
+      "note": "采用相同动作前输入比较调整前后完整TB的预期服务，柱上直接标出加权变化；UE 28的零值以横线与0.000标出。",
+      "width_inches": 6
+    }
+  ],
+  "removed_captions": [
+    "图 7-1 Boundary08主负载吞吐、交付与两类时延对比",
+    "图 7-2 Boundary08主负载成功包与完结包时延累计分布",
+    "图 7-3 Boundary08主负载实际发送SINR与MCS累计分布",
+    "图 7-4 Uniform均匀布点吞吐、交付与两类时延对比",
+    "图 7-5 Uniform均匀布点成功包与完结包时延累计分布",
+    "图 7-6 Uniform均匀布点实际发送SINR与MCS累计分布",
+    "图 9-1 Boundary08主负载协同算法的服务与两类时延",
+    "图 9-2 Uniform均匀布点协同算法的服务与两类时延",
+    "图 9-3 Boundary08的实际发送SINR与MCS分布",
+    "图 9-4 Boundary08的成功包及完结包时延分布",
+    "图 9-5 Uniform的实际发送SINR与MCS分布",
+    "图 9-6 Uniform的成功包及完结包时延分布",
+    "图 9-7 真实存档调度输入中的静默与邻区换UE联合调整"
+  ],
+  "notes": [
+    "No new simulations. 120 runs, seed 41–50.",
+    "Input rate label corrected from theoretical to measured; values unchanged.",
+    "Rank-wise UE means preserve mean-of-within-seed-worst convention.",
+    "Uniform DA-PLS and DPLS remain described as comparable.",
+    "Source uses 宋体; local PDF renderer substitutes Noto Serif CJK SC; new plots use same fallback."
+  ]
+}

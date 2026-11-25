@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "cohort_mature": true,
+  "fifo_crc_native_terminals_exact": true,
+  "selected_physics": [
+    {
+      "tti": 8001,
+      "sinr_max_error_db": 1.39376351526721e-06,
+      "bler_max_error": 1.3750564911152452e-06
+    },
+    {
+      "tti": 18001,
+      "sinr_max_error_db": 2.1273438317592763e-06,
+      "bler_max_error": 7.287906163833124e-07
+    },
+    {
+      "tti": 28000,
+      "sinr_max_error_db": 3.311443650844126e-06,
+      "bler_max_error": 6.06169324041117e-07
+    }
+  ]
+}

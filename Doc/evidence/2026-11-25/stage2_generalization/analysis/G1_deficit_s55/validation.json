@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "packet_fifo_crc_conservation": true,
+  "no_censoring": true,
+  "per_ue_packet_sizes_verified": true,
+  "native_reward_matches_reconstruction": true,
+  "actual_serving_association_verified": true,
+  "saved_states": [
+    {
+      "tti": 8001,
+      "sinr_max_abs_db": 6.261393032502838e-06,
+      "bler_max_abs": 8.98950609992677e-07,
+      "full_enumeration_exact": true,
+      "rounds": 25,
+      "bounded_certificates_valid": true
+    },
+    {
+      "tti": 18001,
+      "sinr_max_abs_db": 5.4920579160011584e-06,
+      "bler_max_abs": 1.1048385596592464e-08,
+      "full_enumeration_exact": true,
+      "rounds": 23,
+      "bounded_certificates_valid": true
+    },
+    {
+      "tti": 28000,
+      "sinr_max_abs_db": 1.8002221828794518e-06,
+      "bler_max_abs": 1.1618078588418457e-07,
+      "full_enumeration_exact": true,
+      "rounds": 17,
+      "bounded_certificates_valid": true
+    }
+  ]
+}

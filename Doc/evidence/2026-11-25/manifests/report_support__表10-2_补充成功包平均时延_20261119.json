@@ -1,0 +1,28 @@
+{
+  "archived_on": "2026-11-25",
+  "source_root": "outputs/表10-2_补充成功包平均时延_20261119",
+  "complete_copy": false,
+  "files": [
+    {
+      "path": "成功包平均时延_逐seed核验.csv",
+      "bytes": 4910,
+      "sha256": "93588c5b79529d3fa32fe79458a1dc233840a9aa9cd98d7a26d78d1a2f5c9e31"
+    },
+    {
+      "path": "数据来源与核验.json",
+      "bytes": 9271,
+      "sha256": "fab9fd6307f14a3aa3f1002184d40a625fb700c52ef56286d3b8558b0c8b0b1e"
+    },
+    {
+      "path": "表10-2_补充成功包平均时延.csv",
+      "bytes": 944,
+      "sha256": "52f41e5cc55ed71f17a2058e9e9050d75168678153d03dc6419798742a8ba11f"
+    }
+  ],
+  "omitted_files_by_extension": {
+    ".docx": 1,
+    ".pdf": 1
+  },
+  "omitted_bytes": 73128,
+  "scope": "Frozen source bytes. Omitted raw data, binaries and exports remain local; original manifests may reference omitted files."
+}

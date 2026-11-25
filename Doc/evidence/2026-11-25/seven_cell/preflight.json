@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "formal_topology_checks": 3,
+  "old_simulator_and_library_unchanged": true,
+  "smoke_native_runs": 3,
+  "smoke_search_states": 6,
+  "audited_rounds": 512,
+  "audited_candidates": 4261907,
+  "three_cell_parity_ttis": 448,
+  "original_failed_smoke_directories": [
+    "smoke",
+    "smoke_adjacent"
+  ],
+  "accepted_smoke_directory": "smoke_final",
+  "precision_note": "Solver compiled on host with same Eigen/compiler as original libraries; an initial container compiler build had ~1e-15 float differences and was replaced before accepted runs"
+}

@@ -1,0 +1,10 @@
+{
+  "completed": true,
+  "points": 220,
+  "prefix_checks": 220,
+  "statistical_unit": "seed",
+  "pool_packets": false,
+  "physical_states": 360,
+  "physical_sinr_max_abs_db": 1.594352305644975e-05,
+  "physical_bler_max_abs": 6.53920850807177e-06
+}

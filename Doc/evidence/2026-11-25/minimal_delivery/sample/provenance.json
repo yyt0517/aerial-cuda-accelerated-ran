@@ -1,0 +1,6 @@
+{
+  "original": "deliverables/stage2_closure_20261105_r2/campaign/boundary_r0.8_mlwdf_pf_s43/states/tti018001.pt",
+  "sha256": "e5e4e467e8ce53cb0739ae5d97b0a03da62bcb83cdb8ea17fd04b3194defe08d",
+  "conversion": "Same numerical Problem arrays, raw PFQ and archived selected action/values; converted to non-pickle NPZ, allow_pickle=False",
+  "report": "图9-5与表9-4所用seed43、TTI18001"
+}

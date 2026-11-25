@@ -1,0 +1,128 @@
+{
+  "archived_on": "2026-11-25",
+  "source_root": "deliverables/seven_cell_delay_diagnosis_20261106_v1",
+  "complete_copy": false,
+  "files": [
+    {
+      "path": "candidate_reweight_summary.csv",
+      "bytes": 786,
+      "sha256": "efd0a8cdc99c3d8064addb1c6ac478cd37cb8a15bd2618ca2bdf4cb18c599e86"
+    },
+    {
+      "path": "delay_cdf.csv",
+      "bytes": 139376,
+      "sha256": "343289e548cb67634e6aa2b72620a7b92d2ff9a42951a2c1585e33497a2f4a96"
+    },
+    {
+      "path": "delay_mechanism.png",
+      "bytes": 432250,
+      "sha256": "a734a10d8ae596398936caf8e06073a8be1be822c56bdccda970abe93a5213b2"
+    },
+    {
+      "path": "delivery_manifest.json",
+      "bytes": 2566,
+      "sha256": "188a493ebf757f833b8cbbfdb43b5d875b0a39f8a487a86f5cfa0f9434be91a8"
+    },
+    {
+      "path": "matched_packets.csv",
+      "bytes": 1249,
+      "sha256": "45da5d8bef99141643629291b4bc4706027956b61ae148cd0389c9870b4bbd5b"
+    },
+    {
+      "path": "matched_packets_per_ue.csv",
+      "bytes": 21710,
+      "sha256": "4d864def66dbb19ffe0048c568c8c38e0206ae6abb08bd931c6cd458c98e4ce9"
+    },
+    {
+      "path": "packet_delay_summary.csv",
+      "bytes": 2620,
+      "sha256": "971954b2eb30fef1c04fe60ba90dadeb614ae2437c38aecf21fee61071302996"
+    },
+    {
+      "path": "per_ue_diagnosis.csv",
+      "bytes": 186059,
+      "sha256": "18e7dace0315d44b7e7d44bce6adb6d7967b507f7f924fb97abf90601e94e6a9"
+    },
+    {
+      "path": "per_ue_paired.csv",
+      "bytes": 132422,
+      "sha256": "e21f157aae45f36c8fcdcbccb6c4cd3ed7dbd1ceb956e2be842c482f59866550"
+    },
+    {
+      "path": "queue_area_delay_check.csv",
+      "bytes": 525,
+      "sha256": "1fe2c87ddcdb17ff39c7a52c0d0b768ceaad6bf8144cabf2497b33e4314a5e38"
+    },
+    {
+      "path": "queue_phase_summary.csv",
+      "bytes": 1216,
+      "sha256": "e2b1b292e945e9a71b6a3c7ab0d52a54c2a9ab76b4bc8201a3f274c8da0e203b"
+    },
+    {
+      "path": "queue_time_series.csv",
+      "bytes": 129149,
+      "sha256": "b29dc3d6d55445c2106f5837fd64f81bede95fac3eedc6de59997d9aa64613da"
+    },
+    {
+      "path": "report.txt",
+      "bytes": 9333,
+      "sha256": "83a8499a8dcabf94c449efe6d242b4361803c8bbab6be8cf8064883f7e6a57db"
+    },
+    {
+      "path": "report_source.py",
+      "bytes": 17501,
+      "sha256": "f164a24b3178c9a5b4714a8ccaf17278d1ba76db4f69e7d9bf5f2a19b98eac07"
+    },
+    {
+      "path": "same_state_service_guards.csv",
+      "bytes": 1222,
+      "sha256": "c8f61545823898cd0199b8eebac96cc2ff294c3d64708e93079700d5cc94c3d4"
+    },
+    {
+      "path": "saved_candidate_reweight.csv",
+      "bytes": 6648,
+      "sha256": "4d14c9dda9186738bcaa82e227ab451ed0e5975fc44ce73f42ba47a5c6db1b41"
+    },
+    {
+      "path": "saved_service_transfers.csv",
+      "bytes": 85065,
+      "sha256": "d6d5f854334c28b66bf63a137102e351747f91ce51609646fec5a7ff89b8e721"
+    },
+    {
+      "path": "service_guard_summary.csv",
+      "bytes": 641,
+      "sha256": "0d8f2b09c214ab8cc8145cd8d4b711c6500929b35cadd661bf80aac3697968dd"
+    },
+    {
+      "path": "service_transfer_summary.csv",
+      "bytes": 218,
+      "sha256": "3de013af57ee29d44693ec7f686034a95f12c4821154b462be4d80fc2a30971e"
+    },
+    {
+      "path": "source.py",
+      "bytes": 12615,
+      "sha256": "5b624eee5f5879cfd70c3ab65cb2512345c399256274ff9a017d75696d0a2af2"
+    },
+    {
+      "path": "trajectory_summary.csv",
+      "bytes": 3837,
+      "sha256": "2ee12124da32a90d1c5083532c46a10dd4191ba189eee5b58ebc8633b0c53033"
+    },
+    {
+      "path": "ue_group_effects.csv",
+      "bytes": 622,
+      "sha256": "669535571ca00931c7b2bb670e00a3bf75c3110e76c86e3c7303ed2b1ead55ae"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 1954,
+      "sha256": "7e6dc401a3ffb1a1feb83380fbd84598951f3facaa8bacbf8b958481c357efb6"
+    }
+  ],
+  "omitted_files_by_extension": {
+    ".zip": 1,
+    ".pdf": 1
+  },
+  "omitted_bytes": 786924,
+  "scope": "Frozen source bytes. Omitted raw data, binaries and exports remain local; original manifests may reference omitted files."
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "scenario": "G1",
+    "seed": 51,
+    "interval": "First 1 second of measurement; input audit only",
+    "cluster_mbps": 1381.272,
+    "cell_mbps": [
+      462.048,
+      419.04,
+      500.184
+    ],
+    "rejected_bytes": 0.0,
+    "packet_size_multiples_valid": true,
+    "arrivals_conserved": true
+  },
+  {
+    "scenario": "G2",
+    "seed": 51,
+    "interval": "First 1 second of measurement; input audit only",
+    "cluster_mbps": 1382.568,
+    "cell_mbps": [
+      458.28,
+      418.5,
+      505.788
+    ],
+    "rejected_bytes": 0.0,
+    "packet_size_multiples_valid": true,
+    "arrivals_conserved": true
+  },
+  {
+    "scenario": "G3",
+    "seed": 51,
+    "interval": "First 1 second of measurement; input audit only",
+    "cluster_mbps": 1379.208,
+    "cell_mbps": [
+      692.544,
+      340.176,
+      346.488
+    ],
+    "rejected_bytes": 0.0,
+    "packet_size_multiples_valid": true,
+    "arrivals_conserved": true
+  },
+  {
+    "scenario": "G4",
+    "seed": 51,
+    "interval": "First 1 second of measurement; input audit only",
+    "cluster_mbps": 1372.932,
+    "cell_mbps": [
+      683.964,
+      346.428,
+      342.54
+    ],
+    "rejected_bytes": 0.0,
+    "packet_size_multiples_valid": true,
+    "arrivals_conserved": true
+  }
+]

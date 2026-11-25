@@ -1,0 +1,362 @@
+{
+  "completed": true,
+  "scope": "core first; suspend only native children with established blocking sockets",
+  "scientific_protocol_changed": false,
+  "events": [
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15880,
+      "trajectory": "boundary_r0.8_equal_s41",
+      "utc": "2026-11-04T09:20:39.870274+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15893,
+      "trajectory": "boundary_r0.8_equal_s42",
+      "utc": "2026-11-04T09:20:39.870643+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15906,
+      "trajectory": "boundary_r0.8_equal_s43",
+      "utc": "2026-11-04T09:20:39.871026+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15919,
+      "trajectory": "boundary_r0.8_equal_s44",
+      "utc": "2026-11-04T09:20:39.997800+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15932,
+      "trajectory": "boundary_r0.8_equal_s45",
+      "utc": "2026-11-04T09:20:40.532568+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15945,
+      "trajectory": "boundary_r0.8_equal_s46",
+      "utc": "2026-11-04T09:20:40.533613+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15958,
+      "trajectory": "boundary_r0.8_equal_s47",
+      "utc": "2026-11-04T09:20:40.552443+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15971,
+      "trajectory": "boundary_r0.8_equal_s48",
+      "utc": "2026-11-04T09:20:40.564250+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15984,
+      "trajectory": "boundary_r0.8_equal_s49",
+      "utc": "2026-11-04T09:20:40.567492+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 15997,
+      "trajectory": "boundary_r0.8_equal_s50",
+      "utc": "2026-11-04T09:20:40.581968+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16010,
+      "trajectory": "boundary_r0.8_ttl1_s41",
+      "utc": "2026-11-04T09:20:40.641174+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16023,
+      "trajectory": "boundary_r0.8_ttl1_s42",
+      "utc": "2026-11-04T09:20:40.642532+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16036,
+      "trajectory": "boundary_r0.8_ttl1_s43",
+      "utc": "2026-11-04T09:20:40.980350+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16049,
+      "trajectory": "boundary_r0.8_ttl1_s44",
+      "utc": "2026-11-04T09:20:41.006803+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16090,
+      "trajectory": "boundary_r0.8_ttl1_s45",
+      "utc": "2026-11-04T09:32:20.084837+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16103,
+      "trajectory": "boundary_r0.8_ttl1_s46",
+      "utc": "2026-11-04T09:32:24.126805+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16116,
+      "trajectory": "boundary_r0.8_ttl1_s47",
+      "utc": "2026-11-04T09:32:28.167701+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16129,
+      "trajectory": "boundary_r0.8_ttl1_s48",
+      "utc": "2026-11-04T09:32:40.292480+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16142,
+      "trajectory": "boundary_r0.8_ttl1_s49",
+      "utc": "2026-11-04T09:32:44.334098+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16155,
+      "trajectory": "boundary_r0.8_ttl1_s50",
+      "utc": "2026-11-04T09:32:46.355083+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16168,
+      "trajectory": "boundary_r0.8_ttl2_s41",
+      "utc": "2026-11-04T09:32:58.476086+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16178,
+      "trajectory": "boundary_r0.8_ttl2_s42",
+      "utc": "2026-11-04T09:32:58.477261+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16194,
+      "trajectory": "boundary_r0.8_ttl2_s43",
+      "utc": "2026-11-04T09:33:04.746329+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16207,
+      "trajectory": "boundary_r0.8_ttl2_s44",
+      "utc": "2026-11-04T09:33:10.808402+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16220,
+      "trajectory": "boundary_r0.8_ttl2_s45",
+      "utc": "2026-11-04T09:33:37.079220+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16233,
+      "trajectory": "boundary_r0.8_ttl2_s46",
+      "utc": "2026-11-04T09:33:57.282500+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16246,
+      "trajectory": "boundary_r0.8_ttl2_s47",
+      "utc": "2026-11-04T09:44:17.790012+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16259,
+      "trajectory": "boundary_r0.8_ttl2_s48",
+      "utc": "2026-11-04T09:44:23.850386+00:00"
+    },
+    {
+      "action": "SUSPEND_EXTENSION",
+      "pid": 16272,
+      "trajectory": "boundary_r0.8_ttl2_s49",
+      "utc": "2026-11-04T09:44:27.889849+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15880,
+      "trajectory": "boundary_r0.8_equal_s41",
+      "utc": "2026-11-04T09:44:37.974945+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15893,
+      "trajectory": "boundary_r0.8_equal_s42",
+      "utc": "2026-11-04T09:44:37.976219+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15906,
+      "trajectory": "boundary_r0.8_equal_s43",
+      "utc": "2026-11-04T09:44:38.007592+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15919,
+      "trajectory": "boundary_r0.8_equal_s44",
+      "utc": "2026-11-04T09:44:38.060807+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15932,
+      "trajectory": "boundary_r0.8_equal_s45",
+      "utc": "2026-11-04T09:44:38.062060+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15945,
+      "trajectory": "boundary_r0.8_equal_s46",
+      "utc": "2026-11-04T09:44:38.084402+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15958,
+      "trajectory": "boundary_r0.8_equal_s47",
+      "utc": "2026-11-04T09:44:38.146195+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15971,
+      "trajectory": "boundary_r0.8_equal_s48",
+      "utc": "2026-11-04T09:44:38.147501+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15984,
+      "trajectory": "boundary_r0.8_equal_s49",
+      "utc": "2026-11-04T09:44:38.222845+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 15997,
+      "trajectory": "boundary_r0.8_equal_s50",
+      "utc": "2026-11-04T09:44:38.226454+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16010,
+      "trajectory": "boundary_r0.8_ttl1_s41",
+      "utc": "2026-11-04T09:44:38.232510+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16023,
+      "trajectory": "boundary_r0.8_ttl1_s42",
+      "utc": "2026-11-04T09:44:38.239444+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16036,
+      "trajectory": "boundary_r0.8_ttl1_s43",
+      "utc": "2026-11-04T09:44:38.363020+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16049,
+      "trajectory": "boundary_r0.8_ttl1_s44",
+      "utc": "2026-11-04T09:44:38.364378+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16090,
+      "trajectory": "boundary_r0.8_ttl1_s45",
+      "utc": "2026-11-04T09:44:38.392041+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16103,
+      "trajectory": "boundary_r0.8_ttl1_s46",
+      "utc": "2026-11-04T09:44:38.404076+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16116,
+      "trajectory": "boundary_r0.8_ttl1_s47",
+      "utc": "2026-11-04T09:44:38.411865+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16129,
+      "trajectory": "boundary_r0.8_ttl1_s48",
+      "utc": "2026-11-04T09:44:38.440090+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16142,
+      "trajectory": "boundary_r0.8_ttl1_s49",
+      "utc": "2026-11-04T09:44:38.441524+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16155,
+      "trajectory": "boundary_r0.8_ttl1_s50",
+      "utc": "2026-11-04T09:44:38.633093+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16168,
+      "trajectory": "boundary_r0.8_ttl2_s41",
+      "utc": "2026-11-04T09:44:38.672098+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16178,
+      "trajectory": "boundary_r0.8_ttl2_s42",
+      "utc": "2026-11-04T09:44:38.681007+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16194,
+      "trajectory": "boundary_r0.8_ttl2_s43",
+      "utc": "2026-11-04T09:44:38.807086+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16207,
+      "trajectory": "boundary_r0.8_ttl2_s44",
+      "utc": "2026-11-04T09:44:38.850033+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16220,
+      "trajectory": "boundary_r0.8_ttl2_s45",
+      "utc": "2026-11-04T09:44:38.851740+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16233,
+      "trajectory": "boundary_r0.8_ttl2_s46",
+      "utc": "2026-11-04T09:44:38.867182+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16246,
+      "trajectory": "boundary_r0.8_ttl2_s47",
+      "utc": "2026-11-04T09:44:38.880507+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16259,
+      "trajectory": "boundary_r0.8_ttl2_s48",
+      "utc": "2026-11-04T09:44:38.882021+00:00"
+    },
+    {
+      "action": "RESUME_EXTENSION",
+      "pid": 16272,
+      "trajectory": "boundary_r0.8_ttl2_s49",
+      "utc": "2026-11-04T09:44:38.888998+00:00"
+    },
+    {
+      "action": "CORE_COMPLETE",
+      "pid": 16077,
+      "trajectory": "campaign",
+      "utc": "2026-11-04T09:44:38.911392+00:00"
+    }
+  ],
+  "paused_pids": {}
+}

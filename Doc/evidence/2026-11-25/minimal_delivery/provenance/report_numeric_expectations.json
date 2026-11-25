@@ -1,0 +1,8592 @@
+[
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "served_mbps",
+    "report_value": 775.291,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "served_mbps",
+    "report_value": 776.029,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "served_mbps",
+    "report_value": 1029.987,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "served_mbps",
+    "report_value": 1108.721,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 695.758,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 696.581,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 928.309,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 996.279,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "payload_mbps",
+    "report_value": 370.872,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 371.922,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 729.692,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 749.497,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 156.133,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 155.913,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 141.354,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 121.577,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 184.795,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 184.689,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 164.343,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 147.267,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "success_pct",
+    "report_value": 26.824,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "success_pct",
+    "report_value": 26.899,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "success_pct",
+    "report_value": 52.781,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "success_pct",
+    "report_value": 54.211,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "expiry_pct",
+    "report_value": 64.785,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 64.704,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 36.013,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 31.344,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 8.392,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 8.396,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 11.206,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 14.446,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.091,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.091,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.091,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.091,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 1.408,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 1.419,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 9.244,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 8.682,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 10.089,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 10.087,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 17.509,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 18.68,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.5723,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.5725,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.8583,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.8545,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.8697,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.8695,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9496,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9544,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 97.036,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 97.027,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 76.747,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 77.817,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 10.302,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 10.331,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 20.269,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 20.819,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 19.327,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 19.349,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 25.786,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 27.674,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 31.844,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 31.826,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 28.291,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 25.33,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 31.081,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 31.976,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 31.049,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 31.96,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 27.742,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 28.549,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 24.995,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 25.342,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 4.12,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 4.12,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 6.318,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 5.899,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.474,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.473,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.693,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.155,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.592,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.592,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.612,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.639,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 100.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 100.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 100.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 99.873,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 852.644,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 853.653,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1137.633,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1222.385,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 2.368,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 2.371,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 3.16,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 3.391,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 2.189,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 2.19,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 2.823,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-4",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 3.098,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "served_mbps",
+    "report_value": 1596.281,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "served_mbps",
+    "report_value": 1651.391,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "served_mbps",
+    "report_value": 1198.508,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "served_mbps",
+    "report_value": 1720.507,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1452.403,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1517.653,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1096.506,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1584.308,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1330.599,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1435.271,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 968.481,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1516.871,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 24.419,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 16.776,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 127.544,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 4.34,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 199.15,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 139.85,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 25.05,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 46.642,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 30.492,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 156.025,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 5.88,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 173.9,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 40.05,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "success_pct",
+    "report_value": 77.025,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "success_pct",
+    "report_value": 83.085,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "success_pct",
+    "report_value": 56.063,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "success_pct",
+    "report_value": 87.808,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "expiry_pct",
+    "report_value": 11.596,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 6.755,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 37.064,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.662,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 11.379,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 10.16,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 6.873,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 11.53,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.886,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.897,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.343,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.9,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 12.079,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 22.982,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 7.043,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 39.039,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 24.245,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 31.971,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 13.7,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 42.222,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9162,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9514,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.8062,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9956,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9673,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9812,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.8867,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9986,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 86.806,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 69.198,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 90.724,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 12.668,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 36.961,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 39.869,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 26.902,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 42.135,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 40.345,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 42.157,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 30.459,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 44.009,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 9.942,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 6.454,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 33.573,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 1.125,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 9.594,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 10.023,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 5.94,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 6.539,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 32.446,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 33.872,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 1.123,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 1.112,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 12.887,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 13.192,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 15.879,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 14.165,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 11.624,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 11.695,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 15.184,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 12.204,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.528,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.537,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.733,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.593,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 100.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 97.615,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 100.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 91.642,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1779.905,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1906.604,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1343.758,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 2122.34,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 4.944,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 5.166,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 3.733,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 5.393,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 4.63,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 4.858,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 3.498,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "7-5",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 5.087,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1382.487,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "served_mbps",
+    "report_value": 1108.721,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "served_mbps",
+    "report_value": 1374.889,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "served_mbps",
+    "report_value": 1382.443,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 996.279,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1289.749,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1312.463,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 749.497,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1232.912,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1257.499,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 121.577,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 12.656,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 2.624,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 90.9,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 5.15,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 147.267,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 14.004,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 2.605,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 200.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 120.75,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 5.15,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "success_pct",
+    "report_value": 54.211,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "success_pct",
+    "report_value": 89.18,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "success_pct",
+    "report_value": 90.959,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 31.344,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.721,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 14.446,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 10.099,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 9.041,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.091,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.092,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 9.09,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 8.682,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 32.564,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 34.252,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 18.68,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 34.552,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 35.874,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.8545,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9985,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9998,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9544,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9992,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9999,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 77.817,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 13.706,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 20.819,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 34.248,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 34.931,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 27.674,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 35.826,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 36.457,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 25.33,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 2.285,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 0.312,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 24.995,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 25.342,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 2.444,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 2.208,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 0.288,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 0.342,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 5.899,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 10.352,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 8.11,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.155,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 9.585,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 7.699,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.639,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.672,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.719,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 99.873,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 77.582,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 85.554,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1222.385,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 2040.23,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 1880.74,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 3.391,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 4.39,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 4.468,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 3.098,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 3.559,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-1",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 3.598,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "offered_mbps",
+    "report_value": 1727.464,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "served_mbps",
+    "report_value": 1720.507,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "served_mbps",
+    "report_value": 1727.469,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "served_mbps",
+    "report_value": 1727.468,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1584.308,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1622.903,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 1620.085,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1516.871,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1605.527,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1603.46,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 4.34,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.62,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.613,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 25.05,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.05,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.1,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 5.88,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 0.629,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "outcome_mean_ms",
+    "report_value": 0.62,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 40.05,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 1.15,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "outcome_p95_ms",
+    "report_value": 1.15,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "success_pct",
+    "report_value": 87.808,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "success_pct",
+    "report_value": 92.941,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "success_pct",
+    "report_value": 92.822,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.662,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 11.53,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 7.059,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "other_nondelivery_pct",
+    "report_value": 7.178,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.9,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.189,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "tb_error_pct",
+    "report_value": 8.254,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 39.039,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 43.633,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_payload_p5_mbps",
+    "report_value": 43.658,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 42.222,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 44.185,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_goodput_p5_mbps",
+    "report_value": 44.116,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9956,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9995,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "jain_payload",
+    "report_value": 0.9995,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9986,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9996,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "jain_goodput",
+    "report_value": 0.9996,
+    "decimals": 4,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 12.668,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 42.135,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 44.598,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_payload_mean_mbps",
+    "report_value": 44.541,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 44.009,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 45.081,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "ue_goodput_mean_mbps",
+    "report_value": 45.002,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 1.125,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 0.013,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "queue_mean_mb",
+    "report_value": 0.011,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 1.123,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 1.112,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 0.015,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 0.009,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "queue_start_mb",
+    "report_value": 0.013,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "queue_end_mb",
+    "report_value": 0.008,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 14.165,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 21.334,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "sinr_tx_mean_db",
+    "report_value": 21.278,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 12.204,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 19.805,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 19.749,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.593,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.554,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.557,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 91.642,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 62.975,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "prg_occupancy_pct",
+    "report_value": 63.114,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 2122.34,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 3164.024,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "bytes_per_used_prg",
+    "report_value": 3153.553,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 5.393,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 5.525,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "cluster_goodput_spectral_efficiency",
+    "report_value": 5.515,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 5.087,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 5.182,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-2",
+    "dataset": "results/main/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_cell_goodput_spectral_efficiency",
+    "report_value": 5.174,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 224.574,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.372,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.581,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 2.293,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 236.742,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.522,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.601,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 2.418,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 234.442,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.569,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.56,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 2.394,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 224.861,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.371,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.581,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 2.296,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 236.885,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.522,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.601,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 2.419,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 234.836,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 3.568,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.561,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 2.398,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 303.55,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.534,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.601,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.1,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 327.279,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.842,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.62,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.342,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 297.479,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.666,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.589,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.038,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 324.038,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 4.974,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.627,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.309,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 346.616,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.316,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.647,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.54,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 325.625,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 5.061,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.606,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.325,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 424.241,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 9.316,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.676,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.333,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 459.292,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 9.887,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.673,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.69,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 406.216,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 9.27,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.648,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.148,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 433.8,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 7.522,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.712,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.43,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 466.973,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 7.973,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.729,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.769,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 411.691,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 7.366,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.708,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-1",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.204,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 478.22,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 11.633,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.51,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.884,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 504.476,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 12.849,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.526,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.152,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 469.707,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 10.686,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.536,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rr",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 4.797,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 500.185,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 11.72,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.522,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.108,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 525.39,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 12.994,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.542,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.365,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 492.078,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 10.793,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.54,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "rrq",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.025,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 359.981,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 15.025,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.717,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.676,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 379.457,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 16.371,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.755,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.875,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 357.068,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 14.393,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.719,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pf",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 3.647,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 514.208,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 12.017,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.584,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.251,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 543.118,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 13.223,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.603,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.547,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 526.982,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 11.448,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.589,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "pfq",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.382,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 521.937,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 19.324,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.537,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.33,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 560.149,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 20.597,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.562,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.72,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 540.816,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 19.446,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.561,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "deficit",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.523,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 521.155,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 19.284,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.543,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "0"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.322,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 559.208,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 20.586,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.564,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "1"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.711,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "goodput_mbps",
+    "report_value": 539.722,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "mcs_tx_mean",
+    "report_value": 19.318,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "layer_tx_mean",
+    "report_value": 3.562,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "A-2",
+    "dataset": "results/main/cell_per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "arm": "mlwdf_pf",
+      "cell": "2"
+    },
+    "metric": "spectral_efficiency",
+    "report_value": 5.512,
+    "decimals": 3,
+    "n": 10
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1074.628,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 6.878,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 6.878,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 39.331,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 55.053,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "deficit"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1270.12,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "deficit"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "deficit"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "deficit"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.692,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "deficit"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1271.125,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.701,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 990.769,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 6.47,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 6.858,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 42.55,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 52.982,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "deficit"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1269.57,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "deficit"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "deficit"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "deficit"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.612,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "deficit"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1270.242,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.611,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 998.001,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 15.033,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 15.033,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 45.167,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 75.914,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "deficit"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1275.899,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "deficit"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "deficit"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "deficit"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.673,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "deficit"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1275.143,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.69,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq"
+    },
+    "metric": "payload_mbps",
+    "report_value": 939.451,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq"
+    },
+    "metric": "expiry_pct",
+    "report_value": 13.815,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 14.277,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 48.621,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 71.396,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "deficit"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1269.964,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "deficit"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "deficit"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "deficit"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.596,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "deficit"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1270.932,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "expiry_byte_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.607,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-6",
+    "dataset": "results/generalization/per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf"
+    },
+    "metric": "worst_ue_expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "expiry_pct",
+    "report_value": 11.194,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.767,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "success_pct",
+    "report_value": 91.239,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "pfq",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "expiry_pct",
+    "report_value": 2.562,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.635,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G1",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "success_pct",
+    "report_value": 92.407,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "expiry_pct",
+    "report_value": 6.36,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.592,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "success_pct",
+    "report_value": 93.388,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "pfq",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "expiry_pct",
+    "report_value": 7.356,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.766,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G2",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "success_pct",
+    "report_value": 90.165,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "expiry_pct",
+    "report_value": 30.053,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.774,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "success_pct",
+    "report_value": 92.229,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "pfq",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.606,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G3",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "success_pct",
+    "report_value": 92.163,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "expiry_pct",
+    "report_value": 21.814,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.618,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "boundary"
+    },
+    "metric": "success_pct",
+    "report_value": 92.809,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "expiry_pct",
+    "report_value": 5.657,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.595,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "placement_group",
+      "group": "uniform"
+    },
+    "metric": "success_pct",
+    "report_value": 93.316,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "expiry_pct",
+    "report_value": 13.677,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.589,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "small_high"
+    },
+    "metric": "success_pct",
+    "report_value": 93.385,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "expiry_pct",
+    "report_value": 14.821,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.751,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "traffic_group",
+      "group": "large_low"
+    },
+    "metric": "success_pct",
+    "report_value": 90.373,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "expiry_pct",
+    "report_value": 26.686,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.653,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "heavy_cell"
+    },
+    "metric": "success_pct",
+    "report_value": 92.825,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.557,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "cell_load",
+      "group": "light_cells"
+    },
+    "metric": "success_pct",
+    "report_value": 93.312,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "pfq",
+      "dimension": "heavy_cell_traffic",
+      "group": "large_low"
+    },
+    "metric": "expiry_pct",
+    "report_value": 31.02,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "heavy_cell_traffic",
+      "group": "large_low"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "heavy_cell_traffic",
+      "group": "large_low"
+    },
+    "metric": "delay_mean_ms",
+    "report_value": 0.883,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "9-7",
+    "dataset": "results/generalization/groups_per_seed.csv",
+    "selector": {
+      "scenario": "G4",
+      "arm": "mlwdf_pf",
+      "dimension": "heavy_cell_traffic",
+      "group": "large_low"
+    },
+    "metric": "success_pct",
+    "report_value": 90.132,
+    "decimals": 3,
+    "n": 5
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/pfq_per_seed.csv",
+    "selector": {
+      "scene": "boundary"
+    },
+    "metric": "payload_mbps",
+    "report_value": 738.3,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/pfq_per_seed.csv",
+    "selector": {
+      "scene": "boundary"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 200.0,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/pfq_per_seed.csv",
+    "selector": {
+      "scene": "boundary"
+    },
+    "metric": "expiry_pct",
+    "report_value": 32.14,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "exact"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1254.7,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "exact"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 5.5,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "exact"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 0,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "reported"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1065.4,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "reported"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 199.2,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "reported"
+    },
+    "metric": "expiry_pct",
+    "report_value": 14.79,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "prg_t1"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1166.9,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "prg_t1"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 193.0,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "prg_t1"
+    },
+    "metric": "expiry_pct",
+    "report_value": 2.97,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "prg_t4"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1131.9,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "prg_t4"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 197.0,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "boundary",
+      "stage": "prg_t4"
+    },
+    "metric": "expiry_pct",
+    "report_value": 5.49,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/pfq_per_seed.csv",
+    "selector": {
+      "scene": "uniform"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1529.4,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/pfq_per_seed.csv",
+    "selector": {
+      "scene": "uniform"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.83,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/pfq_per_seed.csv",
+    "selector": {
+      "scene": "uniform"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.228,
+    "decimals": 3,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "exact"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1607.0,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "exact"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.0,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "exact"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 0,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "reported"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1586.6,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "reported"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.5,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "reported"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 0,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "prg_t1"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1585.0,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "prg_t1"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.17,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "prg_t1"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 0,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "prg_t4"
+    },
+    "metric": "payload_mbps",
+    "report_value": 1582.3,
+    "decimals": 1,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "prg_t4"
+    },
+    "metric": "delay_p95_ms",
+    "report_value": 1.17,
+    "decimals": 2,
+    "n": 3
+  },
+  {
+    "table": "10-2",
+    "dataset": "results/input_simplification/per_seed.csv",
+    "selector": {
+      "scene": "uniform",
+      "stage": "prg_t4"
+    },
+    "metric": "expiry_pct",
+    "report_value": 0.0,
+    "decimals": 0,
+    "n": 3
+  },
+  {
+    "table": "10-1",
+    "dataset": "results/input_simplification/feedback.csv",
+    "selector": {
+      "stage": "exact"
+    },
+    "metric": "payload_mbps_at_16bits",
+    "report_value": 626.7,
+    "decimals": 1,
+    "n": 1
+  },
+  {
+    "table": "10-1",
+    "dataset": "results/input_simplification/feedback.csv",
+    "selector": {
+      "stage": "reported"
+    },
+    "metric": "payload_mbps_at_16bits",
+    "report_value": 0.115,
+    "decimals": 3,
+    "n": 1
+  },
+  {
+    "table": "10-1",
+    "dataset": "results/input_simplification/feedback.csv",
+    "selector": {
+      "stage": "prg_t1"
+    },
+    "metric": "payload_mbps_at_16bits",
+    "report_value": 587.6,
+    "decimals": 1,
+    "n": 1
+  },
+  {
+    "table": "10-1",
+    "dataset": "results/input_simplification/feedback.csv",
+    "selector": {
+      "stage": "prg_t4"
+    },
+    "metric": "payload_mbps_at_16bits",
+    "report_value": 147.0,
+    "decimals": 1,
+    "n": 1
+  }
+]

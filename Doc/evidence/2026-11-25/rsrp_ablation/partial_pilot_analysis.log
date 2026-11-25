@@ -1,0 +1,17 @@
+ANALYZED boundary_r0.8_pilot_mlwdf_pf_s41
+ANALYZED boundary_r0.8_pilot_mlwdf_pf_s42
+ANALYZED boundary_r0.8_pilot_deficit_s41
+ANALYZED uniform_r1_pilot_deficit_s41
+ANALYZED boundary_r0.8_pilot_deficit_s43
+ANALYZED uniform_r1_pilot_deficit_s42
+ANALYZED boundary_r0.8_pilot_mlwdf_pf_s43
+ANALYZED boundary_r0.8_pilot_deficit_s42
+DIAGNOSED boundary_r0.8_pilot_mlwdf_pf_s41
+DIAGNOSED boundary_r0.8_pilot_mlwdf_pf_s42
+DIAGNOSED boundary_r0.8_pilot_deficit_s41
+DIAGNOSED uniform_r1_pilot_deficit_s41
+DIAGNOSED boundary_r0.8_pilot_deficit_s43
+DIAGNOSED uniform_r1_pilot_deficit_s42
+DIAGNOSED boundary_r0.8_pilot_mlwdf_pf_s43
+DIAGNOSED boundary_r0.8_pilot_deficit_s42
+PARTIAL_PILOT_COMPLETE 8

@@ -1,0 +1,9 @@
+test_filtered_and_reported_are_causal_and_old_endpoint_exact (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_frequency_step_is_average_of_spatial_covariances (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_profile_observer_and_pruning_do_not_change_decisions (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+test_spatial_step_preserves_each_prg_source_power (training.stageb_rsrp_ablation.test_model.AblationTests) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.075s
+
+OK

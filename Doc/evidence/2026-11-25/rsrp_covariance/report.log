@@ -1,0 +1,9 @@
+   scene objective granularity  period_ms  payload_mbps  payload_mbps_gap_recovered_pct  delay_p95_ms  delay_p99_ms  expiry_pct  amortized_cpu_ms  amortized_cpu_ms_change_vs_scalar_pct  payload_mbps_at_16bits
+boundary      DPLS         prg        0.5     1185.6992                       65.980632    189.666667    199.000000    2.383402          9.614634                              25.101690                587.6352
+boundary      DPLS    wideband        0.5     1099.4056                        3.655704    199.333333    200.000000   12.491592          8.010400                               4.228048                 34.6752
+boundary    DA-PLS         prg        0.5     1166.9272                       53.616856    193.000000    199.166667    2.967446          9.049199                              30.994769                587.6352
+boundary    DA-PLS    wideband        0.5     1075.4480                        5.295341    199.166667    200.000000   13.986739          6.855991                              -0.753761                 34.6752
+ uniform      DPLS         prg        0.5     1585.4336                       26.097495      1.166667      2.333333    0.000000          7.466825                              72.226418                587.6352
+ uniform      DPLS    wideband       10.0     1577.7160                        2.477781      1.500000     71.166667    0.452182          4.437163                               2.345595                  1.8432
+ uniform    DA-PLS         prg        0.5     1585.0320                       -7.921181      1.166667      1.666667    0.000000          7.280454                              72.978902                587.6352
+ uniform    DA-PLS    wideband        0.5     1586.7312                        0.416078      1.500000      2.166667    0.000000          4.648814                              10.452837                 34.6752

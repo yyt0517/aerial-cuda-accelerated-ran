@@ -1,0 +1,23 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "stage": "exact",
+  "objective": "deficit",
+  "seed": 42,
+  "key": "boundary_r0.8_exact_deficit_s42",
+  "reused": true,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/boundary_r0.8_deficit_s42",
+  "prior_key": "boundary_r0.8_deficit_s42",
+  "prior_analysis": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/analysis/boundary_r0.8_deficit_s42",
+  "hashes": {
+    "launch.json": "dd918c9b949280b2e107fb77b09ab3cb878b632cd38a753273fbf650ded4cdd9",
+    "validation.json": "03c96699e0354d90c77c9a7311cd6a38e71e742d82638e45a88d0b0079fa41e3",
+    "metrics.bin": "baca9d70888263e8c93ba7e2d0aae1eb9850bcdf162cc8f8f74b94bf8ba604c0",
+    "actions.npz": "4d4a9d8b514e3e4301e165db0ea50744bc1ff77b5202caed5dc216096326d133",
+    "traffic_offered_packets.csv": "058c3ef831d1304a46bfc09873dc5ce05b14948d01703930882da7dd2a4fc99f",
+    "packet_outcome_samples.csv": "97bc8fbe7119bb6a2809a8d99037b0516ff3bfcf36f39c7d45223650e6a53098",
+    "ue_topology.csv": "7b1187b539635b9e9a6f8abf91f2ff22eea5b0a9eee900d2bc2e41dcf2877b1d",
+    "saved_states.json": "f361dcfcdb152cc1542fe0858e057e46675abeea59455d7825588a8977281dc0",
+    "search.csv.gz": "66f172041a504ef39dcc5e47048c0d02dab3d2e3ffc823b09963a16ac215b5f2"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "scene": "boundary",
+  "rate": 0.8,
+  "objective": "mlwdf_pf",
+  "stage": "reported",
+  "seed": 41,
+  "key": "boundary_r0.8_reported_mlwdf_pf_s41",
+  "reused": true,
+  "directory": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/campaign/boundary_r0.8_rsrp_mlwdf_pf_s41",
+  "prior_key": "boundary_r0.8_rsrp_mlwdf_pf_s41",
+  "prior_analysis": "/data/aerial-cuda-accelerated-ran/deliverables/rsrp_interference_20261109/analysis/boundary_r0.8_rsrp_mlwdf_pf_s41",
+  "hashes": {
+    "launch.json": "3d682f5a9af3c7decc8fa60c7e17488dcd53ec510cde236c02a3d22fa6c069c2",
+    "validation.json": "890354888a0577799fa65f176e6f9ac687c4eaad212e31d2fdfee18e8e2e6101",
+    "metrics.bin": "2bfde939905c69f5e3279196703058a8cc4dc812293b3bda9685bb88750e5de3",
+    "actions.npz": "de2b4079e3b4f38ed900e6c6a278d1029150616c700e6162fb9c1109118e7b1d",
+    "traffic_offered_packets.csv": "4c7cdffbcef10a50de2a443d440336ff7b181f2768ac35cfd9e4008c564f6908",
+    "packet_outcome_samples.csv": "6a950d9fdfcbc9f99782499ae15fcab3309e9197d8af1d0ba286d3f2631b100b",
+    "ue_topology.csv": "8f20a1675e238196d7eddf91920acb6099649e44b59e5ef315cab3ff15ad47b5",
+    "saved_states.json": "4eb5d3a7563b2eab7e751237e950795b79fec4fb1ae92613644214ac84795840",
+    "search.csv.gz": "7efd71b75f447f5b74eee8d0f92db33fb8bd56d1aa7e7f38fde460120182c553"
+  }
+}

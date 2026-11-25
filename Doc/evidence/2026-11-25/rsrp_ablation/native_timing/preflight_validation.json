@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "all_native_results_bit_identical": true,
+  "lengths": {
+    "channel_generation_us.bin": 513,
+    "svd_us.bin": 513,
+    "pfq_core_us.bin": 1025
+  },
+  "extra_state": "one final pre-action state never executed",
+  "pfq_calls": "before action and post-step export"
+}

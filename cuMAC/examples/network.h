@@ -118,6 +118,8 @@ namespace cumac {
 
     uint8_t*   getCellAssoc();
     cuComplex* getEstH_fr();
+    cuComplex* getEstH_frActUe();
+    float      getNoiseFloorDbm() const;
     uint16_t*  getCellID();
     uint16_t*  getInterfCellID();
     int16_t*   getGpuAllocSol();

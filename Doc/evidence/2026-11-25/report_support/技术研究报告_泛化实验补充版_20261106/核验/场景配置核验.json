@@ -1,0 +1,253 @@
+{
+  "passed": true,
+  "configured_plans": [
+    {
+      "scenario": "G1",
+      "seed": 51,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        460.8,
+        422.40000000000003,
+        499.2
+      ],
+      "sha256": "ffd6cf7bb39a6cee8d2478a37c35076a5c62359053cf3ea8326bf3bd2dc846f5"
+    },
+    {
+      "scenario": "G2",
+      "seed": 51,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        460.8,
+        422.40000000000003,
+        499.2
+      ],
+      "sha256": "362f79af8226ca5bf6f5d1950ea5d08bf26bbe0e951e4c82498d3b4d6b5cda83"
+    },
+    {
+      "scenario": "G3",
+      "seed": 51,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        691.2,
+        345.6000000000002,
+        345.6
+      ],
+      "sha256": "0543d3b1dfbdca0c2c06722d402ba2a5483fb48f4a42f0f0039bc6349adf2241"
+    },
+    {
+      "scenario": "G4",
+      "seed": 51,
+      "cluster_mbps": 1382.4000000000005,
+      "cell_mbps": [
+        691.2,
+        345.60000000000053,
+        345.5999999999998
+      ],
+      "sha256": "cfed5cf3c919fc4fa35bc06ccfca1ba5339f26b17a7323ea1199f74f736aebab"
+    },
+    {
+      "scenario": "G1",
+      "seed": 52,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        422.40000000000003,
+        537.6,
+        422.40000000000003
+      ],
+      "sha256": "62ac584b9e7eb21760eeb2472ee45f096db7e800c125045b7bb0603887bb84f8"
+    },
+    {
+      "scenario": "G2",
+      "seed": 52,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        422.40000000000003,
+        537.6,
+        422.40000000000003
+      ],
+      "sha256": "6ebf750aea3e75e2e378aa4c33a7792b8f96388e66ea14a6ea03c0dc8bda2251"
+    },
+    {
+      "scenario": "G3",
+      "seed": 52,
+      "cluster_mbps": 1382.4000000000012,
+      "cell_mbps": [
+        345.6000000000002,
+        691.200000000001,
+        345.6000000000002
+      ],
+      "sha256": "7c7f8ca4d0a6a5b13631634cf2c04498effa51c34f724d189cc608c82df20798"
+    },
+    {
+      "scenario": "G4",
+      "seed": 52,
+      "cluster_mbps": 1382.400000000001,
+      "cell_mbps": [
+        345.6000000000005,
+        691.2000000000003,
+        345.6000000000005
+      ],
+      "sha256": "4dda8f24d4543392f47bc0b42c6f216f7506dd26e0900c8cb9b253f03558b67e"
+    },
+    {
+      "scenario": "G1",
+      "seed": 53,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        537.6,
+        422.40000000000003,
+        422.40000000000003
+      ],
+      "sha256": "d495d9c579c933009c9d96003326de3d3d73cf6c4540b4816b30fdd596ebb25a"
+    },
+    {
+      "scenario": "G2",
+      "seed": 53,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        537.6,
+        422.40000000000003,
+        422.40000000000003
+      ],
+      "sha256": "63ed98d5beb36820950a51a0c0fac149fa20dd5be5eb3a147fcb8279359c1e6a"
+    },
+    {
+      "scenario": "G3",
+      "seed": 53,
+      "cluster_mbps": 1382.4000000000005,
+      "cell_mbps": [
+        345.5999999999998,
+        345.6000000000002,
+        691.2000000000004
+      ],
+      "sha256": "e418b57c2671d32cfb4a926b887a0a242f4d59add40dfd08010c65af5d02e813"
+    },
+    {
+      "scenario": "G4",
+      "seed": 53,
+      "cluster_mbps": 1382.400000000001,
+      "cell_mbps": [
+        345.60000000000076,
+        345.60000000000053,
+        691.1999999999998
+      ],
+      "sha256": "e24eff68e8f2739a3c56b73bfa60cb206b6df45db9ac2814a9c97a600cffb06e"
+    },
+    {
+      "scenario": "G1",
+      "seed": 54,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        422.40000000000003,
+        460.8,
+        499.2
+      ],
+      "sha256": "e0e7be3c3de4a37103df6cd296a17e3057d06dfd1d0db4bc0ced92d0c3d83a84"
+    },
+    {
+      "scenario": "G2",
+      "seed": 54,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        422.40000000000003,
+        460.8,
+        499.2
+      ],
+      "sha256": "c2b5686baf6f78f279dbb2b0228fd3520210ffb6b86fda7038f4cc57347116a0"
+    },
+    {
+      "scenario": "G3",
+      "seed": 54,
+      "cluster_mbps": 1382.4000000000005,
+      "cell_mbps": [
+        691.2000000000004,
+        345.6,
+        345.6
+      ],
+      "sha256": "eee22fe4936aef935c7905f726bdc410dfa043e02dc50a0f0479cab2a535b692"
+    },
+    {
+      "scenario": "G4",
+      "seed": 54,
+      "cluster_mbps": 1382.3999999999996,
+      "cell_mbps": [
+        691.1999999999999,
+        345.6,
+        345.59999999999974
+      ],
+      "sha256": "1737b7fa1d8137646b628887f15120217833eb1ed1a4a2bb34de163213673056"
+    },
+    {
+      "scenario": "G1",
+      "seed": 55,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        345.6,
+        576.0,
+        460.8
+      ],
+      "sha256": "b94f4fe04189b304416feca074f9ad278bfc0ac08f56d94cb6efb4dce1ca799e"
+    },
+    {
+      "scenario": "G2",
+      "seed": 55,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        345.6,
+        576.0,
+        460.8
+      ],
+      "sha256": "6b177ac58906693652b007abcf9a5b2a3ce9e80627381f8565de0fd94443c88c"
+    },
+    {
+      "scenario": "G3",
+      "seed": 55,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        345.6,
+        691.2,
+        345.6
+      ],
+      "sha256": "0fd787f49a8dc4251640d95db85e68ea46fbc880847723fc629af7ec3c1bac79"
+    },
+    {
+      "scenario": "G4",
+      "seed": 55,
+      "cluster_mbps": 1382.4,
+      "cell_mbps": [
+        345.6,
+        691.2,
+        345.6
+      ],
+      "sha256": "319ad6ab404580acd8f7781982b7eb217de38a284074ee9b181ccaaff059605c"
+    }
+  ],
+  "geometry": [
+    {
+      "seed": 51,
+      "files": 12,
+      "unique_topologies": 1
+    },
+    {
+      "seed": 52,
+      "files": 12,
+      "unique_topologies": 1
+    },
+    {
+      "seed": 53,
+      "files": 12,
+      "unique_topologies": 1
+    },
+    {
+      "seed": 54,
+      "files": 12,
+      "unique_topologies": 1
+    },
+    {
+      "seed": 55,
+      "files": 12,
+      "unique_topologies": 1
+    }
+  ],
+  "all_protocol_sources_unchanged": true
+}

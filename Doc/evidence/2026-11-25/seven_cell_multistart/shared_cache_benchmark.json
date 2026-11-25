@@ -1,0 +1,23 @@
+[
+  {
+    "seed": 41,
+    "all_actions_values_exact": true,
+    "independent_ms": 306.77896086126566,
+    "shared_ms": 278.38831953704357,
+    "ratio": 0.9074557093337924
+  },
+  {
+    "seed": 42,
+    "all_actions_values_exact": true,
+    "independent_ms": 263.453914783895,
+    "shared_ms": 253.98083310574293,
+    "ratio": 0.9640427370915227
+  },
+  {
+    "seed": 43,
+    "all_actions_values_exact": true,
+    "independent_ms": 257.52396136522293,
+    "shared_ms": 249.1845590993762,
+    "ratio": 0.9676169851471813
+  }
+]

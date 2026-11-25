@@ -1,0 +1,13 @@
+{
+  "completed": true,
+  "passed": true,
+  "runs": 144,
+  "seeds": [
+    41,
+    42,
+    43
+  ],
+  "recovery": "ratio of equal-seed mean improvements to original-minus-scalar gap; not clipped; zero denominator undefined",
+  "intervals": "nominal paired 95% t; exploratory n=3; no multiplicity adjustment",
+  "feedback": "neighbor-link payload only; 15 real shape parameters; 16/32-bit rates hypothetical, PHY unquantized"
+}

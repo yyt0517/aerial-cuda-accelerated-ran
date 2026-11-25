@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/opt/nvidia/cuBB/training/stage2_closure/priority.py", line 23, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--output',required=True);p.add_argument('--scene',choices=['boundary','uniform'],required=True);main(p.parse_args())
+  File "/opt/nvidia/cuBB/training/stage2_closure/priority.py", line 17, in main
+    assert all(not (root/f"{j['scene']}_r{j['rate']:g}_{j['arm']}_s{j['seed']}").exists() for j in selected)
+AssertionError

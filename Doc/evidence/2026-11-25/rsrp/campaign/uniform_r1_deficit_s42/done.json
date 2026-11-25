@@ -1,0 +1,20 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "deficit",
+  "seed": 42,
+  "key": "uniform_r1_deficit_s42",
+  "reused": true,
+  "directory": "/opt/nvidia/cuBB/deliverables/stage2_closure_20261104/campaign/uniform_r1_deficit_s42",
+  "hashes": {
+    "launch.json": "bb1424fa1a2fe6c3d1b59f168323c146502ca245c81ced2e1cf10718dd8990fd",
+    "validation.json": "cd70e824eeade87b54783a9247cc9c6ec12c575d2b23609deb5966e986cf9f7f",
+    "metrics.bin": "3e1146bae38750fdbcc8f9937fc0fdb8fd2dbf801b2b5e01ca10eec917565583",
+    "actions.npz": "7989fad2f26ed2e759dad7a3fba7cc941632c53745cc4165f24ca43f6d80385b",
+    "traffic_offered_packets.csv": "67393fd984f8d2c2d840e9803e7de6a22e91ac3677db73c80c673e83483bec3a",
+    "packet_outcome_samples.csv": "b02c88d4a8a6667d4973f2ab03e35b9d564b182eb334b228c970f79db86ba1ac",
+    "ue_topology.csv": "14e474cb934ebc97422d25598985b3b4898013085a9b07201ddcd94bddc06fb3",
+    "saved_states.json": "674b5a47a96b87e179e97278cf04a28f70ceb9a8189be9e7a3ddd2b5e29635f5",
+    "search.csv.gz": "ba38b809b286b5792090d1b7c441d4595993840b4c07a22050e475cca84d37e8"
+  }
+}

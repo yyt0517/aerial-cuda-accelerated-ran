@@ -1,0 +1,112 @@
+{
+  "archived_on": "2026-11-25",
+  "source_root": "outputs/技术研究报告_图表精简版_20261106",
+  "complete_copy": false,
+  "files": [
+    {
+      "path": "data/delay_bins_mean.csv",
+      "bytes": 2236,
+      "sha256": "b591da6c6d0e3a11ce382182d377ab2a8c825390b6672d7ab884a43a7378d74d"
+    },
+    {
+      "path": "data/delay_bins_per_seed.csv",
+      "bytes": 30253,
+      "sha256": "944acaa11e1c72cf469e36e02cad5157d1ce91645f130ecf8484335e5c9232b8"
+    },
+    {
+      "path": "data/fixed_ue_mean.csv",
+      "bytes": 12519,
+      "sha256": "4e627b7f5fbcef0b247e557f34d0e86804e9ed83146c045004b0f90e259dbd9b"
+    },
+    {
+      "path": "data/input_sha256.json",
+      "bytes": 68358,
+      "sha256": "a7ae4534421ca13247a8ea137efeb9262611f512449d0896d6bc643a108d7c03"
+    },
+    {
+      "path": "data/joint_case.json",
+      "bytes": 8731,
+      "sha256": "a5d8613ef1fc88569ef3b1fc53a3e0054b174df67ed2dc26c1edf2897927ba3d"
+    },
+    {
+      "path": "data/per_seed_metrics.csv",
+      "bytes": 107685,
+      "sha256": "b9ee0ca028b965d300f2a68b580a4a48f230352a70f802b0e2e3fce13d262790"
+    },
+    {
+      "path": "data/per_seed_per_ue.csv",
+      "bytes": 124442,
+      "sha256": "cfba1a07e48a3a4c98974d85c8ceeb5eb56cd66a4dfddd419c14c0d38997da7e"
+    },
+    {
+      "path": "data/ue_rank_mean.csv",
+      "bytes": 11626,
+      "sha256": "a4f0ef4e6dcbe38210f23b0475fd381a218a180b6705f2fadb1e0b088f889b4e"
+    },
+    {
+      "path": "data/ue_rank_per_seed.csv",
+      "bytes": 124564,
+      "sha256": "e8221aa4a8f41388c3fd0b39801b28f36e36e906fa5f4b98f7798574dc061428"
+    },
+    {
+      "path": "data/validation.json",
+      "bytes": 20972,
+      "sha256": "3fd90c113dcfe78c8f9e8c75f087585e774683989e12f444321f080adcfad42e"
+    },
+    {
+      "path": "figures/figure_manifest.json",
+      "bytes": 1806,
+      "sha256": "c301cc040309dd0772ca0b32395288638340e6d6afeae62bd9426042a9e140de"
+    },
+    {
+      "path": "source/draw_figures.py",
+      "bytes": 15275,
+      "sha256": "a0d979acf9856c7d2f268b95e735d5a3a1f6456c2a9c18309642e6a3e14b1369"
+    },
+    {
+      "path": "source/finalize.py",
+      "bytes": 3461,
+      "sha256": "61e80eb770597eaaa1a6234c1aabe27f2922e1f351413a30decd62b6e6c8b06f"
+    },
+    {
+      "path": "source/prepare_data.py",
+      "bytes": 5131,
+      "sha256": "0224390c5cfcaeada3527fa53a9faef42dd827d43023c611e3b86c4ba62ec4a8"
+    },
+    {
+      "path": "source/render_report.py",
+      "bytes": 3482,
+      "sha256": "ed6ce3236091835130844425e8f9fd25f4c007812d036c199f126f53bc5e9542"
+    },
+    {
+      "path": "source/update_report.py",
+      "bytes": 10808,
+      "sha256": "d0590f42f578ba48e9660c0531cc6d854426c316f76b1f8be8329182712ae702"
+    },
+    {
+      "path": "交付说明.txt",
+      "bytes": 3363,
+      "sha256": "f4fd3538fc3bf10b0b0b86159b49ea853f7026ac3e0df21455142390ac39aec5"
+    },
+    {
+      "path": "修订核验.json",
+      "bytes": 5027,
+      "sha256": "74df635c5a4a2f67ed6088fdb005152e39264b10fe4b93bc37d7ce2af83645d5"
+    },
+    {
+      "path": "最终核验.json",
+      "bytes": 1469,
+      "sha256": "80a507f02c4c2b63f22c01c8c8674c09b72c2b4559a4cb4de7356d9b42b8db24"
+    }
+  ],
+  "omitted_files_by_extension": {
+    ".pdf": 9,
+    ".png": 7,
+    ".svg": 7,
+    ".ttf": 1,
+    ".zip": 1,
+    ".docx": 1
+  },
+  "omitted_bytes": 40124766,
+  "scope": "Frozen source bytes. Omitted raw data, binaries and exports remain local; original manifests may reference omitted files."
+}

@@ -1,0 +1,127 @@
+{
+  "source": "/data/aerial-cuda-accelerated-ran/outputs/技术研究报告_图表精简版_20261106/技术研究报告_二阶段同频_图表精简版.docx",
+  "source_sha256": "11a79c57b335a97b7bd21b4a720f0f3838b90763f2a5869dba141755a6d64528",
+  "output": "/data/aerial-cuda-accelerated-ran/outputs/技术研究报告_泛化实验补充版_20261106/技术研究报告_二阶段同频_泛化实验补充版.docx",
+  "source_tables_preserved": 33,
+  "added_tables": [
+    "9-5",
+    "9-6",
+    "9-7"
+  ],
+  "native_math_preserved": 72,
+  "experiment_validation": {
+    "passed": true,
+    "complete": true,
+    "runs": 60,
+    "expected": 60,
+    "paired_checks": [
+      {
+        "scenario": "G1",
+        "seed": 51,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G1",
+        "seed": 52,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G1",
+        "seed": 53,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G1",
+        "seed": 54,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G1",
+        "seed": 55,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G2",
+        "seed": 51,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G2",
+        "seed": 52,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G2",
+        "seed": 53,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G2",
+        "seed": 54,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G2",
+        "seed": 55,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G3",
+        "seed": 51,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G3",
+        "seed": 52,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G3",
+        "seed": 53,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G3",
+        "seed": 54,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G3",
+        "seed": 55,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G4",
+        "seed": 51,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G4",
+        "seed": 52,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G4",
+        "seed": 53,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G4",
+        "seed": 54,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      },
+      {
+        "scenario": "G4",
+        "seed": 55,
+        "identical_topology_arrivals_and_pfq_warmup": true
+      }
+    ],
+    "packets": 36828594,
+    "saved_states_verified": 120,
+    "exact_search_rounds": 2231,
+    "scope": "Mature cohort and full-payload CRC, per-seed averaging, paired topology/arrivals/warmup; saved-state exact enumeration and native PHY"
+  },
+  "protocol_sha256": "4079a70a5a3488625c146cd20572371ab05c0619c06adf3edf18787c8f048723",
+  "per_seed_sha256": "8252802b261b06a5ec0210aff8615a05f1f2d625a4cd369e9115726fff0a6ac9",
+  "narrative_sha256": "b542ea3ec051c81708e86639f39e33636536ef32c7f8ccc1ec6be00ad170a8f1"
+}

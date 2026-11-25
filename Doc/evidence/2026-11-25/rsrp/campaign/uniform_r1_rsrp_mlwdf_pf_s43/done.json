@@ -1,0 +1,11 @@
+{
+  "scene": "uniform",
+  "rate": 1.0,
+  "arm": "rsrp_mlwdf_pf",
+  "seed": 43,
+  "key": "uniform_r1_rsrp_mlwdf_pf_s43",
+  "reused": false,
+  "directory": "/opt/nvidia/cuBB/deliverables/rsrp_interference_20261109/campaign/uniform_r1_rsrp_mlwdf_pf_s43",
+  "native_passed": true,
+  "smoke": false
+}
